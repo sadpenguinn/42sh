@@ -1,0 +1,265 @@
+#<simple_list> ::=					<simple_list1>
+#								|	<simple_list1> '&'
+#								|	<simple_list1> ';'
+<simple_list> ::=					<simple_list1> ( '&' | ';' | /* empty */ )
+								;
+
+
+#<simple_list1> ::= 					<simple_list1> '&&' <newline_list> <simple_list1>
+#								|	<simple_list1> '||' <newline_list> <simple_list1>
+#								|	<simple_list1> '&' <simple_list1>
+#								|	<simple_list1> ';' <simple_list1>
+#								|	<pipeline_command>
+<simple_list1>	::=					<pipeline_command> <simple_list1_rest>
+								;
+<simple_list1_rest>					'&&' <simple_list2> <simple_list1_rest>
+								|	/* empty */
+								;
+
+<simple_list2>	::=					<pipeline_command> <simple_list2_rest>
+								;
+<simple_list2_rest>					'||' <simple_list3> <simple_list2_rest>
+								|	/* empty */
+								;
+
+<simple_list3>	::=					<pipeline_command> <simple_list3_rest>
+								;
+<simple_list3_rest>					'&' <simple_list4> <simple_list3_rest>
+								|	/* empty */
+								;
+
+<simple_list4>	::=					<pipeline_command> <simple_list4_rest>
+								;
+<simple_list4_rest>					';' <pipeline_command> <simple_list4_rest>
+								|	/* empty */
+								;
+
+<pipeline_command> ::=				<pipeline>
+								|	'!' <pipeline>
+								;
+
+
+#<pipeline> ::=						<pipeline> '|' <newline_list> <pipeline>
+#								|	<command>
+<pipline>	::=						<command> <pipline_rest>
+								;
+<pipline_rest>	::=					'|' <newline_list> <command> <pipline_rest>
+								|	/* empty */
+								;
+
+
+<command> ::=						<simple_command>
+								|	<shell_command>
+								|	<shell_command> <redirection_list>
+								;
+
+
+#<simple_command>	::=				<simple_command_element>
+#								|	<simple_command> <simple_command_element>
+<simple_command>	::=				<simple_command_element> <simple_command_rest>
+								;
+<simple_command_rest>	::=			<simple_command_element> <simple_command_rest>
+								|	/* empty */
+								;
+
+<simple_command_element> ::= 		<word>
+								|	<assignment_word>
+								|	<redirection>
+								;
+
+
+#<redirection_list> ::=				<redirection>
+#								|	<redirection_list> <redirection>
+<redirection_list> ::=				<redirection> <redirection_list_rest>
+								;
+<redirection_list_rest>	::=			<redirection> <redirection_list_rest>
+								|	/* empty */
+								;
+
+
+<shell_command> ::=					<for_command>
+								|	<case_command>
+								|	while <compound_list> do <compound_list> done
+								|	until <compound_list> do <compound_list> done
+								|	<select_command>
+								|	<if_command>
+								|	<subshell>
+								|	<group_command>
+								|	<function_def>
+								;
+
+<for_command> ::=					for <word> <newline_list> do <compound_list> done
+								|	for <word> <newline_list> '{' <compound_list> '}'
+								|	for <word> ';' <newline_list> do <compound_list> done
+								|	for <word> ';' <newline_list> '{' <compound_list> '}'
+								|	for <word> <newline_list> in <word_list> <list_terminator>
+									<newline_list> do <compound_list> done
+								|	for <word> <newline_list> in <word_list> <list_terminator>
+									<newline_list> '{' <compound_list> '}'
+								;
+
+
+<case_command> ::=					case <word> <newline_list> in <newline_list> esac
+								|	case <word> <newline_list> in <case_clause_sequence> <newline_list> esac
+								|	case <word> <newline_list> in <case_clause> esac
+								;
+
+<case_clause> ::=					<pattern_list>
+								|	<case_clause_sequence> <pattern_list>
+								;
+
+#<case_clause_sequence> ::=			<pattern_list> ';;'
+#								|	<case_clause_sequence> <pattern_list> ';;'
+<case_clause_sequence> ::=			<pattern_list> ';;' <case_clause_sequence_rest>
+								;
+<case_clause_sequence_rest>	::=		<pattern_list> ';;' <case_clause_sequence_rest>
+								|	/* empty */
+								;
+
+<pattern_list> ::=					<newline_list> <pattern> ')' <compound_list>
+								|	<newline_list> <pattern> ')' <newline_list>
+								|	<newline_list> '(' <pattern> ')' <compound_list>
+								|	<newline_list> '(' <pattern> ')' <newline_list>
+								;
+
+#<pattern> ::=						<word>
+#								|	<pattern> '|' <word>
+<pattern> ::=						<word> <pattern_rest>
+								;
+<pattern_rest>	::=					'|' <word> <pattern_rest>
+								|	/* empty */
+								;
+
+
+<compound_list> ::=					<list>
+								|	<newline_list> <list1>
+								;
+
+
+<select_command> ::=				select <word> <newline_list> do <list> done
+								|	select <word> <newline_list> '{' <list> '}'
+								|	select <word> ';' <newline_list> do <list> done
+								|	select <word> ';' <newline_list> '{' list '}'
+								|	select <word> <newline_list> in <word_list>
+									<list_terminator> <newline_list> do <list> done
+								|	select <word> <newline_list> in <word_list>
+									<list_terminator> <newline_list> '{' <list> '}'
+								;
+
+
+<if_command> ::=					if <compound_list> then <compound_list> fi
+								|	if <compound_list> then <compound_list> else <compound_list> fi
+								|	if <compound_list> then <compound_list> <elif_clause> fi
+								;
+
+<elif_clause> ::=					elif <compound_list> then <compound_list>
+								|	elif <compound_list> then <compound_list> else <compound_list>
+								|	elif <compound_list> then <compound_list> <elif_clause>
+								;
+
+
+<subshell> ::=						'(' <compound_list> ')'
+
+<group_command> ::=					'{' <list> '}'
+
+<function_def> ::=					<word> '(' ')' <newline_list> <group_command>
+								|	function <word> '(' ')' <newline_list> <group_command>
+								|	function <word> <newline_list> <group_command>
+								;
+
+
+<list> ::=							<newline_list> <list0>
+								;
+
+
+<newline_list> ::=					<newline_list> '\n'
+								|	/* empty */
+								;
+
+
+<list_terminator> ::=				'\n'
+								|	';'
+								;
+
+
+<list0> ::=							<list1> '\n' <newline_list>
+								|	<list1> '&' <newline_list>
+								|	<list1> ';' <newline_list>
+
+
+#<list1> ::=							<list1> '&&' <newline_list> <list1>
+#								|	<list1> '||' <newline_list> <list1>
+#								|	<list1> '&' <newline_list> <list1>
+#								|	<list1> ';' <newline_list> <list1>
+#								|	<list1> '\n' <newline_list> <list1>
+#								|	<pipeline_command>
+<list1>	::=							<list2>	<list1_rest>
+								;
+<list1_rest>						'&&' <newline_list> <list2> <list1_rest>
+								|	/* empty */
+								;
+
+<list2>	::=							<list3>	<list2_rest>
+								;
+<list2_rest>						'||' <newline_list> <list3> <list2_rest>
+								|	/* empty */
+								;
+
+<list3>	::=							<list4>	<list3_rest>
+								;
+<list3_rest>						'&' <newline_list> <list4> <list3_rest>
+								|	/* empty */
+								;
+
+<list4>	::=							<list5>	<list4_rest>
+								;
+<list4_rest>						';' <newline_list> <list5> <list4_rest>
+								|	/* empty */
+								;
+
+<list5>	::=							<pipeline_command>	<list4_rest>
+								;
+<list5_rest>						'\n' <newline_list> <pipeline_command> <list5_rest>
+								|	/* empty */
+								;
+
+
+#<word_list> ::=						<word>
+#								|	<word_list> <word>
+<word_list>	::=						<word> <word_rest>
+								;
+<word_rest>	::=						<word> <word_rest>
+								|	/* empty */
+								;
+
+
+<assignment_word> ::=				<word> '=' <word>
+
+
+<redirection> ::=					'>' <word>
+								|	'<' <word>
+								|	<number> '>' <word>
+								|	<number> '<' <word>
+								|	'>>' <word>
+								|	<number> '>>' <word>
+								|	'<<' <word>
+								|	<number> '<<' <word>
+								|	'<&' <number>
+								|	<number> '<&' <number>
+								|	'>&' <number>
+								|	<number> '>&' <number>
+								|	'<&' <word>
+								|	<number> '<&' <word>
+								|	'>&' <word>
+								|	<number> '>&' <word>
+								|	'<<-' <word>
+								|	<number> '<<-' <word>
+								|	'>&' '-'
+								|	<number> '>&' '-'
+								|	'<&' '-'
+								|	<number> '<&' '-'
+								|	'&>' <word>
+								|	<number> '<>' <word>
+								|	'<>' <word>
+								|	'>|' <word>
+								|	<number> '>|' <word>

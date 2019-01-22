@@ -1,0 +1,168 @@
+<expr>	::=				<expr2> <expr_rest>
+					;
+<expr_rest>	::=			',' <expr2> <expr_rest>
+					|	/* empty */
+					;
+
+<expr2>	::= 			VAR '=' <expr2>
+					|	VAR '+=' <expr2>
+					|	VAR '-=' <expr2>
+					|	VAR '*=' <expr2>
+					|	VAR '/=' <expr2>
+					|	VAR '%=' <expr2>
+					|	VAR '<<=' <expr2>
+					|	VAR '>>=' <expr2>
+					|	VAR '&=' <expr2>
+					|	VAR '^=' <expr2>
+					|	VAR '|=' <expr2>
+					|	<expr3>
+					;
+
+<expr3>	::=				<expr4> '?' <expr3> : <expr3>
+					|	<expr4>
+					;
+
+<expr4>	::=				<expr5> <expr4_rest>
+					;
+<expr4_rest>	::=		'||' <expr5> <expr4_rest>
+					|	/* empty */
+					;
+
+<expr5>	::=				<expr6> <expr5_rest>
+					;
+<expr5_rest>	::=		'&&' <expr6> <expr5_rest>
+					|	/* empty */
+					;
+
+<expr6>	::=				<expr7> <expr6_rest>
+					;
+<expr6_rest>	::=		'|' <expr7> <expr6_rest>
+					|	/* empty */
+					;
+
+<expr7>	::=				<expr8> <expr7_rest>
+					;
+<expr7_rest>	::=		'^' <expr8> <expr7_rest>
+					|	/* empty */
+					;
+
+<expr8>	::=				<expr9> <expr8_rest>
+					;
+<expr8_rest>	::=		'&' <expr9> <expr8_rest>
+					|	/* empty */
+					;
+
+<expr9>	::=				<expr10> <expr9_rest>
+					;
+<expr9_rest>	::=		'==' <expr10> <expr9_rest>
+					|	'!=' <expr10> <expr9_rest>
+					|	/* empty */
+					;
+
+<expr10>	::=				<expr11> <expr10_rest>
+					;
+<expr10_rest>	::=		'<' <expr11> <expr10_rest>
+					|	'<=' <expr11> <expr10_rest>
+					|	'>' <expr11> <expr10_rest>
+					|	'>=' <expr11> <expr10_rest>
+					|	/* empty */
+					;
+
+<expr11>	::=			<expr12> <expr11_rest>
+					;
+<expr11_rest>	::=		'<<' <expr12> <expr11_rest>
+					|	'>>' <expr12> <expr11_rest>
+					|	/* empty */
+					;
+
+<expr12>	::=			<expr13> <expr12_rest>
+					;
+<expr12_rest>	::=		ADD <expr13> <expr12_rest>
+					|	SUB <expr13> <expr12_rest>
+					|	/* Nothing */
+					;
+
+<expr13>	::=			<expr14> <expr13_rest>
+					;
+<expr13_rest>	::=		MUL <expr14> <expr13_rest>
+					|	DIV <expr14> <expr13_rest>
+					|	MOD <expr14> <expr13_rest>
+					|	/* Nothing */
+					;
+
+
+<expr14>	::=			<operand> <expr14_rest>
+					;
+<expr14_rest>	::=		POWER <operand> <expr14_rest>
+					|	/* Nothing */
+					;
+
+<pre_unary>	::=			('-' | '+') <pre_unary>
+					|	('!' | '~') <pre_unary>
+					|	<preincdec>
+					|	<operand>
+					;
+
+<preincdec>	::=			('++' | '--') <preincdec>
+					|	<postincdec>
+					;
+
+<postincdec>	::=		<variable> <postincdec_rest>
+					;
+<postincdec_rest>	::=	('++' | '--') <postincdec_rest>
+					|	/* empty */
+					;
+
+<operand>	::=			'(' <expr> ')'
+					|	NUM
+					|	<variable>
+					;
+
+<variable>	::=			<array>
+					|	<substitution> VAR
+					|	<substitution> VAR '[' '*' ']'
+					|	<substitution> VAR '[' <expr> ']'
+					;
+
+<substitution>	::=		'#'
+					|	/* empty */
+					;
+
+2 + - ++--a++
+          E
+         / \
+        2   +
+           / \
+    (pre)++   N
+        /
+ (pre)--
+     /
+    a
+   /
+ ++(post)
+
+
+
+1 + 2 + 3
+  E
+ / \
+1   +
+   / \
+  2   +
+     / \
+    3   N
+
+2 * (3 + 4) + 7
+			E
+		   / \
+		  /   \
+		 /     \
+        E       +
+       / \     / \
+	  2   *   7   N
+    	 / \
+		E   N
+	   / \
+	  3   +
+		 / \
+		4   N
