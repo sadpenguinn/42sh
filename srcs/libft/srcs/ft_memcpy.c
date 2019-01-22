@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 18:00:39 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/22 19:30:11 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:53:52 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		*((char *)dest) = *((char *)src);
 		src++;
 		dest++;
+		src++;
 	}
 	return (res);
 }

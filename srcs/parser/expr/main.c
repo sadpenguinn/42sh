@@ -6,11 +6,12 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 07:44:20 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/22 13:31:29 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:45:35 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expr.h"
+#include "execute.h"
 
 unsigned int		g_curtok;
 void				*g_tokens;
@@ -57,5 +58,7 @@ int main(void)
 
 	root = expr();
 	print_astree(root);
+//	intmax_t ret = execute(root);
+//	printf("%jd\n", ret);
 	return (0);
 }

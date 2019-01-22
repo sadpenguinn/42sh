@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/22 19:46:36 by nkertzma          #+#    #+#              #
+#    Updated: 2019/01/22 19:46:37 by nkertzma         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = tests
 LIBFT = libft.a
 VECTOR = vector.a
 SRC_DIR = ../../srcs/lexer/
-INC_DIR = -I ../../include
+INC_DIR = -I ../../includes
 LIB_SRC_DIR = ../../srcs/libft/
 LIB_INC_DIR = -I ../../srcs/libft/includes
 VEC_SRC_DIR = ../../srcs/libft/vector/

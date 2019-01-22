@@ -6,12 +6,11 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/18 14:22:19 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:43:20 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/lexer.h"
-#include "headers/lexer_tools.h"
+#include "lexer.h"
 
 int		push_token(void **lexems, char *lexem)
 {

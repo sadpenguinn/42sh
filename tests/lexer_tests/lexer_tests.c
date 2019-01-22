@@ -6,12 +6,11 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:44:08 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/18 18:02:04 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:46:23 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/lexer.h"
-#include "headers/lexer_tools.h"
+#include "lexer.h"
 #include "libft.h"
 #include "vector.h"
 

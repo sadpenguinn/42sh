@@ -6,12 +6,11 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:21:09 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/15 17:33:07 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:43:30 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/lexer.h"
-#include "headers/lexer_tools.h"
+#include "lexer.h"
 
 static int			is_term(char c)
 {

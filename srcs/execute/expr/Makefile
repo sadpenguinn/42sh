@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/01/21 19:43:14 by nkertzma          #+#    #+#              #
-#    Updated: 2019/01/22 19:46:00 by nkertzma         ###   ########.fr        #
+#    Created: 2019/01/22 18:42:47 by nkertzma          #+#    #+#              #
+#    Updated: 2019/01/22 19:43:06 by nkertzma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
-	gcc *.c ../../../srcs/libft/libft.a -I. -I ../../../includes -I ../../../srcs/libft/includes/ -I ../../../srcs/libft/vector ../../libft/vector/vector.a
+	gcc expr_arrfunc.c expr_execute.c simple_operators.c ../../parser/expr/*.c ../../libft/libft.a ../../libft/vector/vector.a -I ../../../includes/ -I ../../libft/includes -I ../../libft/vector
 
 clean:
 	rm -rf a.out

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 11:43:58 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/22 12:53:35 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/01/22 19:15:08 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/01/22 19:16:06 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* int		execute_expr(t_astree *root) */
-/* { */
-/* 	if (!root) */
-/* 		return (1); */
-/* 	if (root->left) */
-/* 		ret1 = execute_expr2(root->left); */
-/* 	if (root->right) */
-/* } */
+#ifndef EXECUTE_H
+# define EXECUTE_H
 
-/* int		execute(t_astree *root) */
-/* { */
-/* 	return (execute_expr(root)); */
-/* } */
+# include <inttypes.h>
+
+extern intmax_t (*operators[500])(intmax_t operator, t_astree *node);
+
+intmax_t	execute(t_astree *root);
+intmax_t	op_sub(intmax_t operator, t_astree *node);
+intmax_t	op_add(intmax_t operator, t_astree *node);
+
+#endif
