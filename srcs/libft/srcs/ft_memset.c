@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 18:00:31 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/20 16:34:53 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:31:19 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
+	void				*res;
 	void				*end;
 	unsigned long int	set;
 
+	res = s;
 	end = (char *)s + n;
 	if (n > 128)
 	{
@@ -37,5 +39,5 @@ void	*ft_memset(void *s, int c, size_t n)
 		*((unsigned char *)s) = (unsigned char)c;
 		s++;
 	}
-	return (s);
+	return (res);
 }

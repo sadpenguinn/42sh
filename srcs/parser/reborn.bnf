@@ -1,15 +1,7 @@
-#<simple_list> ::=					<simple_list1>
-#								|	<simple_list1> '&'
-#								|	<simple_list1> ';'
 <simple_list> ::=					<simple_list1> ( '&' | ';' | /* empty */ )
 								;
 
 
-#<simple_list1> ::= 					<simple_list1> '&&' <newline_list> <simple_list1>
-#								|	<simple_list1> '||' <newline_list> <simple_list1>
-#								|	<simple_list1> '&' <simple_list1>
-#								|	<simple_list1> ';' <simple_list1>
-#								|	<pipeline_command>
 <simple_list1>	::=					<pipeline_command> <simple_list1_rest>
 								;
 <simple_list1_rest>					'&&' <simple_list2> <simple_list1_rest>
@@ -39,8 +31,6 @@
 								;
 
 
-#<pipeline> ::=						<pipeline> '|' <newline_list> <pipeline>
-#								|	<command>
 <pipline>	::=						<command> <pipline_rest>
 								;
 <pipline_rest>	::=					'|' <newline_list> <command> <pipline_rest>
@@ -49,13 +39,11 @@
 
 
 <command> ::=						<simple_command>
-								|	<shell_command>
 								|	<shell_command> <redirection_list>
+								|	<shell_command>
 								;
 
 
-#<simple_command>	::=				<simple_command_element>
-#								|	<simple_command> <simple_command_element>
 <simple_command>	::=				<simple_command_element> <simple_command_rest>
 								;
 <simple_command_rest>	::=			<simple_command_element> <simple_command_rest>
@@ -68,8 +56,6 @@
 								;
 
 
-#<redirection_list> ::=				<redirection>
-#								|	<redirection_list> <redirection>
 <redirection_list> ::=				<redirection> <redirection_list_rest>
 								;
 <redirection_list_rest>	::=			<redirection> <redirection_list_rest>
@@ -108,8 +94,6 @@
 								|	<case_clause_sequence> <pattern_list>
 								;
 
-#<case_clause_sequence> ::=			<pattern_list> ';;'
-#								|	<case_clause_sequence> <pattern_list> ';;'
 <case_clause_sequence> ::=			<pattern_list> ';;' <case_clause_sequence_rest>
 								;
 <case_clause_sequence_rest>	::=		<pattern_list> ';;' <case_clause_sequence_rest>
@@ -122,8 +106,6 @@
 								|	<newline_list> '(' <pattern> ')' <newline_list>
 								;
 
-#<pattern> ::=						<word>
-#								|	<pattern> '|' <word>
 <pattern> ::=						<word> <pattern_rest>
 								;
 <pattern_rest>	::=					'|' <word> <pattern_rest>
@@ -187,12 +169,6 @@
 								|	<list1> ';' <newline_list>
 
 
-#<list1> ::=							<list1> '&&' <newline_list> <list1>
-#								|	<list1> '||' <newline_list> <list1>
-#								|	<list1> '&' <newline_list> <list1>
-#								|	<list1> ';' <newline_list> <list1>
-#								|	<list1> '\n' <newline_list> <list1>
-#								|	<pipeline_command>
 <list1>	::=							<list2>	<list1_rest>
 								;
 <list1_rest>						'&&' <newline_list> <list2> <list1_rest>
@@ -224,8 +200,6 @@
 								;
 
 
-#<word_list> ::=						<word>
-#								|	<word_list> <word>
 <word_list>	::=						<word> <word_rest>
 								;
 <word_rest>	::=						<word> <word_rest>

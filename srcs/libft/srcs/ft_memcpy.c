@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 18:00:39 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/20 16:35:14 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:30:11 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
+	void	*res;
 	void	*end;
 
-	if (src == dest)
+	if (!n || src == dest)
 		return (dest);
+	res = dest;
 	end = ((unsigned char *)dest) + n;
 	if (n > 128)
 	{
@@ -33,7 +35,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	while (dest < end)
 	{
 		*((char *)dest) = *((char *)src);
+		src++;
 		dest++;
 	}
-	return (dest);
+	return (res);
 }
