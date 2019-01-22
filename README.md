@@ -1,0 +1,2 @@
+# 42sh
+Pahom shell.
