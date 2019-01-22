@@ -6,12 +6,14 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 17:55:45 by bwerewol          #+#    #+#             */
-/*   Updated: 2018/12/26 15:03:07 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/01/22 21:08:01 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
+
+#include <stdio.h>
 
 char	*ft_strdup(const char *s)
 {
