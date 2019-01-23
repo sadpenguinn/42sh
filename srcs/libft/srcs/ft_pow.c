@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 17:55:45 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/23 11:25:44 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/01/22 20:29:43 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/01/22 20:30:59 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
-
-char	*ft_strdup(const char *s)
+unsigned long ft_pow(int n, int pw)
 {
-	char	*str;
-	size_t	len;
+	unsigned long	nb;
 
-	len = ft_strlen(s);
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-		return ((char *)0);
-	return (ft_memcpy(str, s, len + 1));
+	if (n <= 0 || pw <= 0)
+		return (0);
+	if (pw == 1 || n == 1)
+		return (n);
+	nb = (unsigned long)n;
+	while (--pw)
+		nb *= (unsigned long)n;
+	return (nb);
 }

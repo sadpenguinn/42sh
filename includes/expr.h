@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:08:43 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/22 19:38:35 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/22 20:44:37 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@
 # define SUB			OPSHIFT + 1
 # define DIV			OPSHIFT + 2
 # define MOD			OPSHIFT + 3
-# define POWER			OPSHIFT + 4
-# define MUL			OPSHIFT + 5
+# define MUL			OPSHIFT + 4
+# define POWER			OPSHIFT + 5
 # define LSH			OPSHIFT + 6
 # define RSH			OPSHIFT + 7
 # define GT				OPSHIFT + 8

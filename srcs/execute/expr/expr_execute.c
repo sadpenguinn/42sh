@@ -6,11 +6,18 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 18:02:32 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/22 19:41:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/23 11:23:42 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+
+/*
+* Missing COND, QUES, COL, all ASSIGNments
+* g_sherror must be declared in 42sh.c
+*/
+
+int			g_sherror = 0;
 
 intmax_t	execute(t_astree *root)
 {

@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 07:29:36 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/22 19:01:00 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/22 20:01:39 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ t_astree	*operand_2(void)
 	if (!(leaf = ft_memalloc(sizeof(t_astree))))
 		return (0);
 	leaf->type = NUM;
-	if ((leaf->content = ft_strdup(((t_lexem *)vector_get_elem(g_tokens, g_curtok))->word)))
-	{
-		printf("%s\n%s\n", ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->word, leaf->content);
-		g_curtok++;
+	if ((leaf->content = ft_strdup(((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->word)))
 		return (leaf);
-	}
 	free(leaf);
 	return (0);
 }

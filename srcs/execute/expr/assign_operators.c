@@ -1,25 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   assign_operators.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 17:55:45 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/23 11:25:44 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/01/23 11:17:21 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/01/23 11:18:12 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#include "execute.h"
 
-char	*ft_strdup(const char *s)
-{
-	char	*str;
-	size_t	len;
-
-	len = ft_strlen(s);
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-		return ((char *)0);
-	return (ft_memcpy(str, s, len + 1));
-}

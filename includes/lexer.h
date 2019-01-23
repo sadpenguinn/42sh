@@ -6,7 +6,7 @@
 /*   By: dmorgil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 17:42:57 by dmorgil           #+#    #+#             */
-/*   Updated: 2019/01/22 19:27:24 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:57:48 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define TERM_GREATAND 7 /* &> */
 # define TERM_LESSGREAT 8 /* <> */
 # define TERM_CLOBBER 9 /* >| */
-# define TERM_LESS, 10 /* < */
+# define TERM_LESS 10 /* < */
 # define TERM_GREAT 11 /* > */
 # define TERM_LBRACE 12 /* { */
 # define TERM_RBRACE 13 /* } */
