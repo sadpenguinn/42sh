@@ -113,8 +113,7 @@ int				ft_str_is_uppercase(char *s);
 char			*ft_strupcase(char *s);
 char			*ft_strlowcase(char *s);
 void			*ft_memset(void *s, int c, size_t n);
-void			ft_bzero(void *s, size_t n)
-				 __attribute__((always_inline));
+void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dest, const void *src, size_t n);
 void			*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void			*ft_memmove(void *dest, const void *src, size_t n);
@@ -162,8 +161,7 @@ char			*ft_itoa(int n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
 void			ft_putendl(char const *s);
-void			ft_putnbr(int n)
-				 __attribute__((always_inline));
+void			ft_putnbr(int n);
 void			ft_putnbrendl(int n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
@@ -177,8 +175,7 @@ void			ft_putnchr(char ch, int n);
 void			ft_strcolor(char *str, int x1, int x2, int x3);
 int				ft_charsize(unsigned char c);
 int				ft_strnum_base(char *str, long int num, int base);
-int				ft_strnum(char *str, long int num)
-				 __attribute__((always_inline));
+int				ft_strnum(char *str, long int num);
 char			*ft_pathadd(char *path, char *name);
 unsigned long	ft_pow(int n, int pw);
 

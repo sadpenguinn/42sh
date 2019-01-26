@@ -3,208 +3,248 @@
    The Grammar
    ------------------------------------------------------- */
 
-<program>	::=					<linebreak> <complete_commands> <linebreak>
-							|	<linebreak>
-							;
+<program>	::=							<linebreak> <complete_commands> <linebreak>
+									|	<linebreak>
+									;
 
-<complete_commands>	::=			<complete_commands> <newline_list> <complete_command>
-							|	<complete_command>
-							;
-
-<complete_command>	::=			<list> <separator_op>
-							|	<list>
-							;
-
-<list>	::=						<list> <separator_op> <and_or>
-							|	<and_or>
-							;
-
-<and_or>	::=					<pipeline>
-							|	<and_or> '&&' <linebreak> <pipeline>
-							|	<and_or> '||'  <linebreak> <pipeline>
-							;
-
-<pipeline>	::=					'!' <pipe_sequence>
-							|	    <pipe_sequence>
-							;
-
-<pipe_sequence>	::=				<command>
-							|	<pipe_sequence> '|' <linebreak> <command>
-							;
-
-<command>	::=					<simple_command>
-							|	<compound_command>
-							|	<compound_command> <redirect_list>
-							|	<function_definition>
-							;
-
-<compound_command>	::=			<brace_group>
-							|	<subshell>
-							|	<for_clause>
-							|	<case_clause>
-							|	<if_clause>
-							|	<while_clause>
-							|	<until_clause>
-							;
-
-<subshell>	::=					'(' <compound_list> ')'
-							;
-
-<compound_list>	::=				<linebreak> <term>
-							|	<linebreak> <term> <separator>
-							;
-
-<term>	::=						<term> <separator> <and_or>
-							|	<and_or>
-							;
-
-<for_clause>	::=				For <name>                                            <do_group>
-							|	For <name>                           <sequential_sep> <do_group>
-							|	For <name> <linebreak> in            <sequential_sep> <do_group>
-							|	For <name> <linebreak> in <wordlist> <sequential_sep> <do_group>
-							;
-
-<name>	::=						NAME					 /* Apply rule 5 */
-							;
-
-<in>	::=						'in'					   /* Apply rule 6 */
-							;
-
-<wordlist>	::=					<wordlist> WORD
-							|			   WORD
-							;
+#<complete_commands>	::=					<complete_commands> <newline_list> <complete_command>
+#									|	<complete_command>
+#									;
+<complete_commands>	::=					<complete_command> <complete_commands_rest>
+									;
+<complete_commands_rest>	::=			<newline_list> <complete_command> <complete_commands_rest>
+									|	EMPTY
+									;
 
 
-<case_clause>	::=				Case WORD <linebreak> in <linebreak> case_list      Esac
-							|	Case WORD <linebreak> in <linebreak> <case_list_ns> Esac
-							|	Case WORD <linebreak> in <linebreak>                Esac
-							;
+<complete_command>	::=					<list> <separator_op>
+									|	<list>
+									;
 
-<case_list_ns>	::=				<case_list> <case_item_ns>
-							|			    <case_item_ns>
-							;
+#<list>	::=								<list> <separator_op> <and_or>
+#									|	<and_or>
+#									;
+<list>	::=								<and_or> <list_rest>
+									;
+<list_rest>	::=							<separator_op> <and_or>
+									|	EMPTY
+									;
 
-<case_list>	::=					<case_list> <case_item>
-							|			    <case_item>
-							;
+#<and_or>	::=							<pipeline>
+#									|	<and_or> '&&' <linebreak> <pipeline>
+#									|	<and_or> '||'  <linebreak> <pipeline>
+#									;
+<and_or>	::=							<and_or2> <and_or_rest>
+									;
+<and_or_rest>	::=						'||' <linebreak> <and_or2> <and_or_rest>
+									|	EMPTY
+									;
+<and_or2>	::=							<pipeline> <and_or2_rest>
+									;
+<and_or2_rest>	::=						'&&' <linebreak> <pipeline> <and_or2_rest>
+									|	EMPTY
+									;
 
-<case_item_ns>	::=					<pattern> ')' <linebreak>
-							|		<pattern> ')' <compound_list>
-							|	'(' <pattern> ')' <linebreak>
-							|	'(' <pattern> ')' <compound_list>
-							;
+<pipeline>	::=							'!' <pipe_sequence>
+									|	    <pipe_sequence>
+									;
 
-<case_item>	::=						<pattern> ')' <linebreak>     ';;' <linebreak>
-							|		<pattern> ')' <compound_list> ';;' <linebreak>
-							|	'(' <pattern> ')' <linebreak>     ';;' <linebreak>
-							|	'(' <pattern> ')' <compound_list> ';;' <linebreak>
-							;
+#<pipe_sequence>	::=						<command>
+#									|	<pipe_sequence> '|' <linebreak> <command>
+#									;
+<pipe_sequence>	::=						<command> <pipe_sequence_rest>
+									;
+<pipe_sequence_rest>	::=				'|' <linebreak> <pipe_sequence_rest>
+									|	EMPTY
+									;
 
-<pattern>	::=					              WORD		 /* Apply rule 4 */
-							|	<pattern> '|' WORD		 /* Do not apply rule 4 */
-							;
+<command>	::=							<simple_command>
+									|	<compound_command>
+									|	<compound_command> <redirect_list>
+									|	<function_definition>
+									;
 
-<if_clause>	::=					If <compound_list> Then <compound_list> <else_part> Fi
-							|	If <compound_list> Then <compound_list>           Fi
-							;
+<compound_command>	::=					<brace_group>
+									|	<subshell>
+									|	<for_clause>
+									|	<case_clause>
+									|	<if_clause>
+									|	<while_clause>
+									|	<until_clause>
+									;
 
-<else_part>	::=					Elif <compound_list> Then <compound_list>
-							|	Elif <compound_list> Then <compound_list> <else_part>
-							|	Else <compound_list>
-							;
+<subshell>	::=							'(' <compound_list> ')'
+									;
 
-<while_clause>	::=				While <compound_list> <do_group>
-							;
+<compound_list>	::=						<linebreak> <term>
+									|	<linebreak> <term> <separator>
+									;
 
-<until_clause>	::=			Until <compound_list> <do_group>
-						;
+#<term>	::=								<term> <separator> <and_or>
+#									|	<and_or>
+#									;
+<term>	::=								<and_or> <term_rest>
+									;
+<term_rest>	::=							<separator> <and_or> <term_rest>
+									|	EMPTY
+									;
 
-<function_definition>	::=	<fname> '(' ')' <linebreak> function_body
-						;
+<separator>	::=							<separator_op> <linebreak>
+									|	<newline_list>
+									;
 
-<function_body>	::=			<compound_command>				                    /* Apply rule 9 */
-						|	<compound_command> <redirect_list>                  /* Apply rule 9 */
-						;
+<separator_op>	::=						'&'
+									|	';'
+									;
 
-<fname>	::=					NAME					                    		/* Apply rule 8 */
-						;
+<for_clause>	::=						For <name>                                            <do_group>
+									|	For <name>                           <sequential_sep> <do_group>
+									|	For <name> <linebreak> in            <sequential_sep> <do_group>
+									|	For <name> <linebreak> in <wordlist> <sequential_sep> <do_group>
+									;
 
-<brace_group>	::=			'{' <compound_list> '}'
-						;
+<sequential_sep> 	::=					';' <linebreak>
+									|	 <newline_list>
+									;
 
-<do_group>	::=				Do <compound_list> Done		                        /* Apply rule 6 */
-						;
+<name>	::=								NAME					 /* Apply rule 5 */
+									;
 
-<simple_command>	::=		<cmd_prefix> <cmd_word> <cmd_suffix>
-						|	<cmd_prefix> <cmd_word>
-						|	<cmd_prefix>
-						|	<cmd_name> <cmd_suffix>
-						|	<cmd_name>
-						;
+<in>	::=								'in'					   /* Apply rule 6 */
+									;
 
-<cmd_name>	::=				WORD				   /* Apply rule 7a */
-						;
+<wordlist>	::=							WORD <wordlist>
+									|	WORD
+									;
 
-<cmd_word>	::=				WORD				   /* Apply rule 7b */
-						;
+<case_clause>	::=						Case WORD <linebreak> in <linebreak> <case_list>    Esac
+									|	Case WORD <linebreak> in <linebreak> <case_list_ns> Esac
+									|	Case WORD <linebreak> in <linebreak>                Esac
+									;
 
-<cmd_prefix>	::=			<io_redirect>
-						|	<cmd_prefix> <io_redirect>
-						|				 ASSIGNMENT_WORD
-						|	<cmd_prefix> ASSIGNMENT_WORD
-						;
+<case_list_ns>	::=						<case_list> <case_item_ns>
+									|			    <case_item_ns>
+									;
 
-<cmd_suffix>	::=			<cmd_suffix> <io_redirect>
-						|	             <io_redirect>
-						|	<cmd_suffix> WORD
-						|	             WORD
-						;
+<case_list>	::=							<case_item> <case_list>
+									|	<case_item>
+									;
 
-<redirect_list>	::=			              <io_redirect>
-						|	<redirect_list> <io_redirect>
-						;
+<case_item_ns>	::=							<pattern> ')' <linebreak>
+									|		<pattern> ')' <compound_list>
+									|	'(' <pattern> ')' <linebreak>
+									|	'(' <pattern> ')' <compound_list>
+									;
 
-<io_redirect>	::=			          <io_file>
-						|	IO_NUMBER <io_file>
-						|	          <io_here>
-						|	IO_NUMBER <io_here>
-						;
+<case_item>	::=								<pattern> ')' <linebreak>     ';;' <linebreak>
+									|		<pattern> ')' <compound_list> ';;' <linebreak>
+									|	'(' <pattern> ')' <linebreak>     ';;' <linebreak>
+									|	'(' <pattern> ')' <compound_list> ';;' <linebreak>
+									;
 
-<io_file> 	::=				'<'  <filename>
-						|	'<&' <filename>
-						|	'>'  <filename>
-						|	'>&' <filename>
-						|	'>>' <filename>
-						|	'<>' <filename>
-						|	'>|' <filename>
-						;
+#<pattern>	::=							              WORD		 /* Apply rule 4 */
+#									|	<pattern> '|' WORD		 /* Do not apply rule 4 */
+#									;
+<pattern>	::=							WORD <pattern_rest>
+									;
+<pattern_rest>	::=						'|' WORD <pattern_rest>
+									|	EMPTY
+									;
 
-<filename>	::=				WORD					  /* Apply rule 2 */
-						;
+<if_clause>	::=							If <compound_list> Then <compound_list> <else_part> Fi
+									|	If <compound_list> Then <compound_list>           Fi
+									;
 
-<io_here>	::=				'<<'  <here_end>
-						|	'<<-' <here_end>
-						;
+<else_part>	::=							Elif <compound_list> Then <compound_list>
+									|	Elif <compound_list> Then <compound_list> <else_part>
+									|	Else <compound_list>
+									;
 
-<here_end>	::=				WORD					  /* Apply rule 3 */
-						;
+<while_clause>	::=						While <compound_list> <do_group>
+									;
 
-<newline_list>	::=			               NEWLINE
-						|	<newline_list> NEWLINE
-						;
+<until_clause>	::=						Until <compound_list> <do_group>
+									;
 
-<linebreak>	::=				<newline_list>
-						|	/* empty */
-						;
+<function_definition>	::=				<fname> '(' ')' <linebreak> function_body
+									;
 
-<separator_op>	::=			'&'
-						|	';'
-						;
+<function_body>	::=						<compound_command>				                    /* Apply rule 9 */
+									|	<compound_command> <redirect_list>                  /* Apply rule 9 */
+									;
 
-<separator>	::=				<separator_op> <linebreak>
-						|	<newline_list>
-						;
+<redirect_list>	::=						<io_redirect> <redirect_list>
+									|	<io_redirect>
+									;
 
-<sequential_sep> 	::=		';' <linebreak>
-						|	 <newline_list>
-						;
+<fname>	::=								NAME					                    		/* Apply rule 8 */
+									;
+
+<brace_group>	::=						'{' <compound_list> '}'
+									;
+
+<do_group>	::=							Do <compound_list> Done		                        /* Apply rule 6 */
+									;
+
+<linebreak>	::=							<newline_list>
+									|	/* empty */
+									;
+
+<newline_list>	::=						NEWLINE <newline_list>
+									|	NEWLINE
+									;
+
+/*
+	XXX - Grammar for one command
+ */
+
+<simple_command>	::=					<cmd_prefix> <cmd_word> <cmd_suffix>
+									|	<cmd_prefix> <cmd_word>
+									|	<cmd_prefix>
+									|	             <cmd_name> <cmd_suffix>
+									|	             <cmd_name>
+									;
+
+<cmd_name>	::=							WORD				   /* Apply rule 7a */
+									;
+
+<cmd_word>	::=							WORD				   /* Apply rule 7b */
+									;
+
+<cmd_prefix>	::=						ASSIGNMENT_WORD
+									|	ASSIGNMENT_WORD <cmd_prefix>
+									|	<io_redirect>
+									|	<io_redirect>   <cmd_prefix>
+									;
+
+
+<cmd_suffix>	::=						WORD          <cmd_suffix>
+									|	WORD
+									|	<io_redirect> <cmd_suffix>
+									|	<io_redirect>
+									;
+
+<io_redirect>	::=						       <io_file>
+									|	NUMBER <io_file>
+									|	       <io_here>
+									|	NUMBER <io_here>
+									;
+
+<io_file> 	::=							'<'  <filename>
+									|	'<&' <filename>
+									|	'>'  <filename>
+									|	'>&' <filename>
+									|	'>>' <filename>
+									|	'<>' <filename>
+									|	'>|' <filename>
+									;
+
+<filename>	::=							WORD					  /* Apply rule 2 */
+									;
+
+<io_here>	::=							'<<'  <here_end>
+									|	'<<-' <here_end>
+									;
+
+<here_end>	::=							WORD					  /* Apply rule 3 */
+									;
