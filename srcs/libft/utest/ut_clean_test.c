@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.h                                            :+:      :+:    :+:   */
+/*   ut_clean_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 15:36:41 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/28 21:10:17 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/01/23 15:59:55 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/01/24 16:15:16 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOLS_H
-# define TOOLS_H
+#include "utest.h"
 
-# include <stdlib.h>
-# include <dirent.h>
-# include "libft.h"
+void	ut_clean_test(t_utest *ut)
+{
+	t_utest	*tmp;
 
-int		match(char *s1, char *s2);
-int		glob(char *pattern, char *path, char ***matches, int *cnt);
-int		check_var(char *var);
-
-#endif
+	while (ut)
+	{
+		tmp = ut->next;
+		free(ut->input);
+		free(ut->expect);
+		free(ut);
+		ut = tmp;
+	}
+}

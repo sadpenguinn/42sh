@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.h                                            :+:      :+:    :+:   */
+/*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 15:36:41 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/28 21:10:17 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/01/23 16:40:49 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/01/23 16:41:29 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOLS_H
-# define TOOLS_H
+#ifndef TESTS_H
+# define TESTS_H
 
-# include <stdlib.h>
-# include <dirent.h>
-# include "libft.h"
-
-int		match(char *s1, char *s2);
-int		glob(char *pattern, char *path, char ***matches, int *cnt);
-int		check_var(char *var);
+void	trim_quotes_tests(void);
 
 #endif
