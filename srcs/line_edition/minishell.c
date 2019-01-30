@@ -6,7 +6,7 @@
 /*   By: sitlcead <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 23:11:22 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/01/17 11:14:59 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/01/30 18:49:14 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		analyse_symbol(t_history *hst, t_line *line)
 	/* printf("%llx\n", c); */
 	/* fflush(stdout); */
 	check_line_reallocation(line);
-	c = (c == '\t') ? ' ' : c;
+	/* c = (c == '\t') ? ' ' : c; */
 	if (c == '\n')
 		return (end_of_line_handling(hst, line));
 	if (history_handling(hst, line, c))
@@ -62,6 +62,7 @@ int		analyse_symbol(t_history *hst, t_line *line)
 
 void	print_prompt(void)
 {
+	write(1, "\e8", 2);
 	write(1, "$> ", 3);
 }
 
@@ -81,9 +82,8 @@ int		main(void)
 	g_prev_symbol = 0;
 	while(1)
 	{
+		write(1, "\e7", 2);
 		print_prompt();
-		write(1, "$> ", 3);
-		write(1, "\e[s", 3);
 		g_mode = INSERT_MODE;
 		/* write(1, "\033]2;-- INSERT --\007", 17); */
 		/* g_time = time(NULL); */

@@ -6,7 +6,7 @@
 /*   By: sitlcead <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 23:24:09 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/01/22 14:03:12 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/01/30 22:17:30 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ long long int		g_vim_keys[] =
 
 int	normal_mode(char *buf, int *len, int *pos, t_uchar c)
 {
-	if (c == LEFT || c == BS || c == 'h')
-		move_cursor_left(move_pos_left(buf, len, pos));
-	if (c == RIGHT || c == 'l' || c == 'a')
-		move_cursor_right(move_pos_right(buf, len, pos));
+	if (c == LEFT || c == CTRL_B || c == BS || c == 'h')
+		move_pos_left(buf, len, pos);
+		/* move_cursor_left(move_pos_left(buf, len, pos)); */
+	if (c == RIGHT || c == CTRL_F || c == 'l' || c == 'a')
+		move_pos_right(buf, len, pos);
+		/* move_cursor_right(move_pos_right(buf, len, pos)); */
 	if (c == HOME1 || c == HOME2 || c == '^' || c == 'I')
 		move_cursor_left(move_pos_begin(buf, len, pos));
 	if (c == END1 || c == END2 || c == '$' || c =='A')
@@ -78,19 +80,21 @@ static int	check_normal_mode(char *buf, int *len, int *pos, t_uchar c)
 
 static int	insert_mode(char *buf, int *len, int *pos, t_uchar c)
 {
-	if (c == LEFT)
-		return (move_cursor_left(move_pos_left(buf, len, pos)));
-	if (c == RIGHT)
-		return (move_cursor_right(move_pos_right(buf, len, pos)));
+	if (c == LEFT || c == CTRL_B)
+		return (move_pos_left(buf, len, pos));
+		/* return (move_cursor_left(move_pos_left(buf, len, pos))); */
+	if (c == RIGHT || c == CTRL_F)
+		return (move_pos_right(buf, len, pos));
+		/* return (move_cursor_right(move_pos_right(buf, len, pos))); */
 	if (c == HOME1 || c == HOME2)
 		return (move_cursor_left(move_pos_begin(buf, len, pos)));
 	if (c == END1 || c == END2)
 		return (move_cursor_right(move_pos_end(buf, len, pos)));
 	if (check_normal_mode(buf, len, pos, c))
 		return (1);
-	clear_line(buf, len, pos);
+	/* clear_line(buf, len, pos); */
 	simple_line_edition(buf, len, pos, c);
-	output_line(buf, len, pos);
+	/* output_line(buf, len, pos); */
 	return (1);
 }
 
