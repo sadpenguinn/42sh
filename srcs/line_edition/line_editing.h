@@ -6,7 +6,7 @@
 /*   By: sitlcead <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 23:07:44 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/01/17 11:15:15 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/01/30 22:15:26 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 enum	keys
 {
-	UP = 0x415b1b, DOWN = 0x425b1b, RIGHT = 0x435b1b, LEFT = 0x445b1b,
+	UP = 0x415b1b, DOWN = 0x425b1b, CTRL_P = 0x10, CTRL_N = 0xe,
+	RIGHT = 0x435b1b, LEFT = 0x445b1b, CTRL_F = 0x6, CTRL_B = 0x2,
 	BS = 0x7f, DEL = 0x7e335b1b,
 	HOME1 = 0x485b1b, END1 = 0x465b1b, HOME2 = 0x7e315b1b, END2 = 0x7e345b1b,
 	ESC = 0x1b
@@ -93,6 +94,9 @@ void		history_check_last(t_history *hst, t_line *line);
 void		init_line(t_line *line);
 int			check_modes(char *buf, int *len, int *pos, t_uchar c);
 void		print_prompt(void);
+
+int		delete_symbols(int n);
+int		past_symbols(int n);
 
 int		g_mode;
 int		g_prev_symbol;

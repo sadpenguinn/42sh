@@ -6,7 +6,7 @@
 /*   By: sitlcead <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 09:01:39 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/01/14 19:33:21 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/01/30 22:18:16 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,42 @@ static int	move_cursor(int n, char c)
 	char	tmp[24];
 	int		len;
 
-	if (n == 0)
+	if (n < 1)
 		return (1);
 	memset(tmp, 0, 24);
 	memcpy(tmp, "\033[", 2);
 	len = ft_strnum(tmp + 2, n);
 	tmp[len + 2] = c;
+	write(1, tmp, len + 3);
+	return (1);
+}
+
+int		delete_symbols(int n)
+{
+	char	tmp[24];
+	int		len;
+
+	if (n < 1)
+		return (1);
+	memset(tmp, 0, 24);
+	memcpy(tmp, "\033[", 2);
+	len = ft_strnum(tmp + 2, n);
+	tmp[len + 2] = 'P';
+	write(1, tmp, len + 3);
+	return (1);
+}
+
+int		past_symbols(int n)
+{
+	char	tmp[24];
+	int		len;
+
+	if (n < 1)
+		return (1);
+	memset(tmp, 0, 24);
+	memcpy(tmp, "\033[", 2);
+	len = ft_strnum(tmp + 2, n);
+	tmp[len + 2] = '@';
 	write(1, tmp, len + 3);
 	return (1);
 }

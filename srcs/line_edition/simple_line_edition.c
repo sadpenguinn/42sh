@@ -6,7 +6,7 @@
 /*   By: sitlcead <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 23:17:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/01/14 15:00:15 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/01/30 17:49:30 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static int	insert_letter(char *buf, int *len, int *pos, t_uchar c)
 		buf[(*pos)++] = ((c >> 16) & 0xFF);
 	if ((c >> 24) & 0xFF)
 		buf[(*pos)++] = ((c >> 24) & 0xFF);
+	past_symbols(1);
+	write(1, &c, 4);
 	return (1);
 }
 
@@ -47,6 +49,8 @@ static void	del_left(char *buf, int *len, int *pos)
 	*len -= offset;
 	buf[*len] = '\0';
 	*pos -= offset;
+	move_cursor_left(1);
+	delete_symbols(1);
 }
 
 static void	del_right(char *buf, int *len, int *pos)
@@ -62,6 +66,7 @@ static void	del_right(char *buf, int *len, int *pos)
 	memmove(buf + *pos, buf + *pos + offset, *len - *pos - offset);
 	*len -= offset;
 	buf[*len] = '\0';
+	delete_symbols(1);
 }
 
 int		simple_line_edition(char *buf, int *len, int *pos, t_uchar c)

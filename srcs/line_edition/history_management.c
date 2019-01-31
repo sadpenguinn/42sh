@@ -6,7 +6,7 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 09:00:43 by narchiba          #+#    #+#             */
-/*   Updated: 2019/01/14 14:50:15 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/01/30 22:17:53 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ static void	history_down_case(t_history *hst, t_line *line)
 
 int			history_handling(t_history *hst, t_line *line, t_uchar c)
 {
-	if (c == UP || (c == 'k' && (g_mode & NORMAL_MODE)))
+	if (c == UP || c == CTRL_P || (c == 'k' && (g_mode & NORMAL_MODE)))
 	{
 		history_up_case(hst, line);
 		return (1);
 	}
-	if (c == DOWN || (c == 'j' && (g_mode & NORMAL_MODE)))
+	if (c == DOWN || c == CTRL_N || (c == 'j' && (g_mode & NORMAL_MODE)))
 	{
 		history_down_case(hst, line);
 		return (1);
