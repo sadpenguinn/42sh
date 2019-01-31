@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_name.c                                         :+:      :+:    :+:   */
+/*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 16:52:07 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 15:44:28 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/31 17:26:52 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
+#include <stdlib.h>
 
-t_astree	*cmd_name(void)
-{
-	t_lexem		*token;
-	t_astree	*root;
+void	*xmalloc(size_t bytes);
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return (0);
-	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	root = xmalloc(sizeof(t_astree));
-	g_curtok++;
-	root->type = WORD;
-	root->content = ft_strdup(token->word);
-	return (root);
-}
+/*
+**	<|Token defines|>
+**
+*/
+
+# define WORD			77
+
+

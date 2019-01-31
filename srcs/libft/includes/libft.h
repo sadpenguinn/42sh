@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 10:58:25 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/22 20:30:22 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/01/31 15:29:31 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,5 +178,6 @@ int				ft_strnum_base(char *str, long int num, int base);
 int				ft_strnum(char *str, long int num);
 char			*ft_pathadd(char *path, char *name);
 unsigned long	ft_pow(int n, int pw);
+int				fatal_error(char *message, int err);
 
 #endif

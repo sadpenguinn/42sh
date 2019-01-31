@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   io_file.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/29 15:42:15 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/31 15:51:06 by bwerewol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 t_astree        *io_file(void)
@@ -14,8 +26,7 @@ t_astree        *io_file(void)
 		type != DGREAT && type != LESSGREAT && type != CLOBBER)
 		return (0);
 	g_curtok++;
-	if (!(root = ft_memalloc(sizeof(t_astree))))
-		return (0);
+	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	if ((root->right = filename()))
 		return (root);

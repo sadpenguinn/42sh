@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_name.c                                         :+:      :+:    :+:   */
+/*   program.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 16:52:07 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 15:44:28 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/29 20:50:47 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/30 15:45:02 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**     COMPLETE_COMMANDS
+**    /                 \
+** ...                   ...
+*/
+
 #include "parser.h"
 
-t_astree	*cmd_name(void)
+t_astree	*program(void)
 {
-	t_lexem		*token;
-	t_astree	*root;
+	t_astree	*res;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return (0);
-	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	root = xmalloc(sizeof(t_astree));
-	g_curtok++;
-	root->type = WORD;
-	root->content = ft_strdup(token->word);
-	return (root);
+	linebreak();
+	res = complete_commands();
+	linebreak();
+	/*  XXX */
+	/* if (g_curtok < ((size_t *)g_tokens)[2]) */
+	/* 	return (0); */
+	return (res);
 }

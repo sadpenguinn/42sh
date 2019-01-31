@@ -17,8 +17,10 @@
 									;
 
 
-<complete_command>	::=					<list> <separator_op>
-									|	<list>
+#<complete_command>	::=					<list> <separator_op>
+#									|	<list>
+#									;
+<complete_command>	::=					<list>
 									;
 
 #<list>	::=								<list> <separator_op> <and_or>
@@ -26,7 +28,8 @@
 #									;
 <list>	::=								<and_or> <list_rest>
 									;
-<list_rest>	::=							<separator_op> <and_or>
+<list_rest>	::=							<separator_op> <and_or> <list_rest>
+									|	<separator_op>
 									|	EMPTY
 									;
 
@@ -58,6 +61,7 @@
 									|	EMPTY
 									;
 
+<-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/->
 <command>	::=							<simple_command>
 									|	<compound_command>
 									|	<compound_command> <redirect_list>
@@ -152,7 +156,7 @@
 									;
 
 <if_clause>	::=							If <compound_list> Then <compound_list> <else_part> Fi
-									|	If <compound_list> Then <compound_list>           Fi
+									|	If <compound_list> Then <compound_list>             Fi
 									;
 
 <else_part>	::=							Elif <compound_list> Then <compound_list>
@@ -166,7 +170,9 @@
 <until_clause>	::=						Until <compound_list> <do_group>
 									;
 
-<function_definition>	::=				<fname> '(' ')' <linebreak> function_body
+<function_definition>	::=				         <fname> '(' ')' <linebreak> <function_body>
+									|	FUNCTION <fname> '(' ')' <linebreak> <function_body>
+									|	FUNCTION <fname>         <linebreak> <function_body>
 									;
 
 <function_body>	::=						<compound_command>				                    /* Apply rule 9 */

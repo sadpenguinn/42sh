@@ -1,28 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_name.c                                         :+:      :+:    :+:   */
+/*   and_or.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 16:52:07 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 15:44:28 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/30 18:28:09 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/31 15:40:43 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**           /
+**    AND_OR2
+**   /
+**...
+*/
+
+/*
+**                  /
+**            AND_OR
+**           /      \
+**    AND_OR2        AND_OR_REST(type:'||')
+**   /              /           \
+**...        AND_OR2             AND_OR_REST
+*/
+
 #include "parser.h"
 
-t_astree	*cmd_name(void)
+t_astree	*and_or(void)
 {
-	t_lexem		*token;
 	t_astree	*root;
+	t_astree	*res[2];
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (!(res[0] = and_or2()))
 		return (0);
-	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
+	if (!(res[1] = and_or_rest()))
+		return (res[0]);
 	root = xmalloc(sizeof(t_astree));
-	g_curtok++;
-	root->type = WORD;
-	root->content = ft_strdup(token->word);
+	/* XXX - Need norm type */
+	root->type = 0;
+	root->left = res[0];
+	root->right = res[1];
 	return (root);
 }

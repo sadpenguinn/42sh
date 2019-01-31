@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_name.c                                         :+:      :+:    :+:   */
+/*   xmalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 16:52:07 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 15:44:28 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/31 16:07:52 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/31 16:24:15 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include <unistd.h>
+#include "libft.h"
 
-t_astree	*cmd_name(void)
+void	*xmalloc(size_t bytes)
 {
-	t_lexem		*token;
-	t_astree	*root;
+	void	*temp;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return (0);
-	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	root = xmalloc(sizeof(t_astree));
-	g_curtok++;
-	root->type = WORD;
-	root->content = ft_strdup(token->word);
-	return (root);
+	if (!(temp = malloc(bytes)))
+	{
+		write(2, "cannot allocate memory\n", 23);
+		exit(EXIT_FAILURE);
+	}
+	ft_memset(temp, 0, bytes);
+	return (temp);
 }
