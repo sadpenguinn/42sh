@@ -6,7 +6,7 @@
 /*   By: sitlcead <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 23:07:44 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/01/30 22:15:26 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/01/31 09:50:33 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ enum	keys
 	BS = 0x7f, DEL = 0x7e335b1b,
 	HOME1 = 0x485b1b, END1 = 0x465b1b, HOME2 = 0x7e315b1b, END2 = 0x7e345b1b,
 	ESC = 0x1b
+};
+enum	editing_modes
+{
+	VI = 1, READLINE = 2
 };
 enum	modes
 {
@@ -98,6 +102,7 @@ void		print_prompt(void);
 int		delete_symbols(int n);
 int		past_symbols(int n);
 
+int		g_editing_mode;
 int		g_mode;
 int		g_prev_symbol;
 time_t	g_time;
