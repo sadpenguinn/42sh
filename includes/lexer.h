@@ -6,7 +6,7 @@
 /*   By: dmorgil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 17:42:57 by dmorgil           #+#    #+#             */
-/*   Updated: 2019/01/22 19:57:48 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/02 19:20:48 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,13 @@ typedef struct				s_lexer
 
 t_lexer						*lexer(char const *str);
 int							push_token(void **lexems, char *lexem);
+char						*push_symbol(char **symbol_table, char *str, size_t len);
 int							is_delim(char c);
 char						*strsstr(const char *s1, const char *s2);
 int							get_type(char *lexems);
 void						*lexer_die(void *a1, void *a2, void *a3);
 char						*trim_quotes(char *str);
+
+void						print_token(void *lexem);
 
 #endif
