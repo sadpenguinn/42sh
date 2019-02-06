@@ -1,2 +1,8 @@
+SRC = readline.c
+NAME = line
+
 all:
-	gcc *.c ../xmalloc/xmalloc.c -I ../../includes -o line
+	gcc $(SRC) ../xmalloc/xmalloc.c -I ../../includes -o $(NAME)
+
+clean:
+	rm $(NAME)
