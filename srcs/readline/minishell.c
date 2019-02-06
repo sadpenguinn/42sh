@@ -1,27 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/06 19:00:07 by narchiba         ###   ########.fr       */
+/*   Created: 2019/02/06 18:47:26 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/06 18:47:36 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_H
-#define SHELL_H
-
-# include <stdlib.h>
-
-void	*xmalloc(size_t bytes);
-void	*xrealloc(void *p, size_t newsize, size_t oldsize);
-
-/*
-**	<|Token defines|>
-**
-*/
-
-# define WORD			77
-#endif
+#include <stdlib.h>
