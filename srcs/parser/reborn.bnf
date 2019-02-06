@@ -61,7 +61,6 @@
 									|	EMPTY
 									;
 
-<-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/->
 <command>	::=							<simple_command>
 									|	<compound_command>
 									|	<compound_command> <redirect_list>
@@ -80,54 +79,62 @@
 <subshell>	::=							'(' <compound_list> ')'
 									;
 
-<compound_list>	::=						<linebreak> <term>
-									|	<linebreak> <term> <separator>
+#<compound_list>	::=						<linebreak> <term>
+#									|	<linebreak> <term> <separator>
+#									;
+<compound_list>	::=						<linebreak> <and_or> <compound_list_rest>
+									;
+<compound_list_rest>	::=				<separator> <and_or> <compound_list_rest>
+									|	<separator>
+									|	EMPTY
 									;
 
 #<term>	::=								<term> <separator> <and_or>
 #									|	<and_or>
 #									;
-<term>	::=								<and_or> <term_rest>
-									;
-<term_rest>	::=							<separator> <and_or> <term_rest>
-									|	EMPTY
-									;
+#<term>	::=								<and_or> <term_rest>
+#									;
+#<term_rest>	::=							<separator> <and_or> <term_rest>
+#									|	EMPTY
+#									;
 
-<separator>	::=							<separator_op> <linebreak>
-									|	<newline_list>
+<separator>	::=							<newline_list>
+									|	<separator_op> <linebreak>
 									;
 
 <separator_op>	::=						'&'
 									|	';'
 									;
 
-<for_clause>	::=						For <name>                                            <do_group>
-									|	For <name>                           <sequential_sep> <do_group>
-									|	For <name> <linebreak> in            <sequential_sep> <do_group>
-									|	For <name> <linebreak> in <wordlist> <sequential_sep> <do_group>
+#									|	For <name> <linebreak> <in>            <sequential_sep> <do_group>
+<for_clause>	::=						For <name>                                              <do_group>
+									|	For <name>                             <sequential_sep> <do_group>
+									|	For <name> <linebreak> <in> <wordlist> <sequential_sep> <do_group>
 									;
 
-<sequential_sep> 	::=					';' <linebreak>
-									|	 <newline_list>
+<sequential_sep> 	::=					<newline_list>
+									|	';' <linebreak>
 									;
 
-<name>	::=								NAME					 /* Apply rule 5 */
+<name>	::=								NAME						/* Apply rule 5 */
 									;
 
-<in>	::=								'in'					   /* Apply rule 6 */
+<in>	::=								IN						  	/* Apply rule 6 */
 									;
 
 <wordlist>	::=							WORD <wordlist>
 									|	WORD
+									|	EMPTY
 									;
 
-<case_clause>	::=						Case WORD <linebreak> in <linebreak> <case_list>    Esac
-									|	Case WORD <linebreak> in <linebreak> <case_list_ns> Esac
-									|	Case WORD <linebreak> in <linebreak>                Esac
+<-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/->
+<case_clause>	::=						Case WORD <linebreak> <in> <linebreak> <case_list_ns> Esac
+									|	Case WORD <linebreak> <in> <linebreak>                Esac
 									;
 
 <case_list_ns>	::=						<case_list> <case_item_ns>
-									|			    <case_item_ns>
+									|	<case_list>
+									|	            <case_item_ns>
 									;
 
 <case_list>	::=							<case_item> <case_list>
@@ -217,10 +224,10 @@
 <cmd_word>	::=							WORD				   /* Apply rule 7b */
 									;
 
-<cmd_prefix>	::=						ASSIGNMENT_WORD
-									|	ASSIGNMENT_WORD <cmd_prefix>
-									|	<io_redirect>
+<cmd_prefix>	::=						ASSIGNMENT_WORD <cmd_prefix>
+									|	ASSIGNMENT_WORD
 									|	<io_redirect>   <cmd_prefix>
+									|	<io_redirect>
 									;
 
 

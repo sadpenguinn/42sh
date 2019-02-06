@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:52:07 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 15:44:28 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/02 16:42:02 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_astree	*cmd_name(void)
 		return (0);
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	root = xmalloc(sizeof(t_astree));
-	g_curtok++;
 	root->type = WORD;
 	root->content = ft_strdup(token->word);
+	g_curtok++;
 	return (root);
 }

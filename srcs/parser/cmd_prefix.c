@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:09:18 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 21:50:21 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/02 16:41:03 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,15 @@
 
 t_astree        *cmd_prefix_1(void)
 {
-	t_astree        *root;
+	t_lexem		*elem;
+	t_astree	*root;
 
+	if (g_curtok >= ((size_t *)g_tokens)[2])
+		return (0);
+	elem = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
+	/* XXX check word and not type */
+	if (elem->type != ASSIGMENT_WORD)
+		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = ASSIGMENT_WORD;
 	root->content = ft_strdup(((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->word);
@@ -36,18 +43,17 @@ t_astree        *cmd_prefix_1(void)
 
 t_astree        *cmd_prefix(void)
 {
-	t_astree	*root;
-	t_astree	*res;
+	unsigned int	curtmp;
+	t_astree		*root;
+	t_astree		*res;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return (0);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type ==
-													ASSIGMENT_WORD)
-		res = cmd_prefix_1();
-	else
-		res = io_redirect();
-	if (!res)
-		return (0);
+	curtmp = g_curtok;
+	if (!(res = cmd_prefix_1()))
+		if (!(res = io_redirect()))
+		{
+			g_curtok = curtmp;
+			return (0);
+		}
 	root = xmalloc(sizeof(t_astree));
 	root->left = res;
 	root->right = cmd_prefix();

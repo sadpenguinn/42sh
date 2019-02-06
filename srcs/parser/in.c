@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_sequence_rest.c                               :+:      :+:    :+:   */
+/*   in.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/31 13:47:58 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/01 18:41:41 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/05 17:23:31 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/05 17:55:33 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**                          /
-**         PIPELINE_SEQUENCE(type:PIPE)
-**        /                 \
-** COMMAND                   PIPELINE_SEQUENCE_REST(type:PIPE)
-**                          /                      \
-**                   COMMAND                  PIPELINE_SEQUENCE_REST(type:PIPE)
+**     \  /
+**      IN(content)
 */
 
 #include "parser.h"
 
-t_astree	*pipeline_sequence_rest(void)
+t_astree	*in(void)
 {
+	t_lexem		*elem;
 	t_astree	*root;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != PIPE)
+	elem = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
+	if (elem->type != IN)
 		return (0);
-	g_curtok++;
-	linebreak();
 	root = xmalloc(sizeof(t_astree));
-	root->type = PIPE;
-	/* XXX - need free and err print */
-	if (!(root->left = command()))
-		return (0);
-	root->right = pipeline_sequence_rest();
+	root->type = IN;
+	g_curtok++;
 	return (root);
 }

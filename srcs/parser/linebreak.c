@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 20:37:35 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/29 20:40:01 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/05 21:07:05 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_astree	*linebreak(void)
 {
-	newline_list();
+	t_astree	*res;
+	res = newline_list();
+	/* XXX Need free res */
 	return (0);
 }

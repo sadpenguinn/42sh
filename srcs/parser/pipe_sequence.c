@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 20:42:14 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 18:54:38 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:41:25 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 **        /                 \
 ** COMMAND                   PIPELINE_SEQUENCE_REST(type:PIPE)
 **                          /                      \
-**                   COMMAND                        PIPELINE_SEQUENCE_REST(type:PIPE)
+**                   COMMAND                PIPELINE_SEQUENCE_REST(type:PIPE)
 */
 
 #include "parser.h"

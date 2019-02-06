@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:23:13 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/30 20:20:02 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/02 17:05:40 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_astree	*list_rest(void)
 		return (0);
 	if (!(root->left = and_or()))
 		return (root);
-	/* XXX - Need norm type */
-	root->type = 0;
 	root->right = list_rest();
 	return (root);
 }

@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   io_file.c                                          :+:      :+:    :+:   */
+/*   compound_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:42:15 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/02 14:25:53 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/01 15:17:41 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/01 18:39:23 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 /*
-**                PREF
-**               /
-**              <(type)
-**             /  \
-**   (content)2    filename(content)
+**              /
+**   BRACE_GROUP
+**  /           \
 */
 
 #include "parser.h"
 
-t_astree        *io_file(void)
+t_astree	*compound_command(void)
 {
-	int				type;
-	t_astree        *root;
-	t_astree        *res;
+	int			type;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != LESS && type != LESSAND &&
-		type != GREAT && type != GREATAND &&
-		type != DGREAT && type != LESSGREAT && type != CLOBBER)
-		return (0);
-	g_curtok++;
-	if (!(res = filename()))
-		return (0);
-	root = xmalloc(sizeof(t_astree));
-	root->type = type;
-	root->right = res;
-	return (root);
+	if (type == OBRACE)
+		return (brace_group());
+	else if (type == OBRACKET)
+		return (subshell());
+	else if (type == FOR)
+		return (for_clause());
+	else if (type == CASE)
+		return (case_clause());
+	else if (type == IF)
+		return (if_clause());
+	else if (type == WHILE)
+		return (while_clause());
+	else if (type == UNTIL)
+		return (until_clause());
+	return (0);
 }
-

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newline_list.c                                     :+:      :+:    :+:   */
+/*   compound_list_rest.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 20:32:08 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/02 17:15:21 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/02 16:55:50 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/02 17:07:18 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**        COMPOUND_LIST
+**       /             \
+** AND_OR               COMPOUND_LIST_REST(type:sep)
+**                     /                  \
+**               AND_OR                    COMPOUND_LIST_REST(type:sep)
+**                                        /
+**                                       0
+*/
+
 #include "parser.h"
 
-t_astree	*newline_list(void)
+t_astree	*compound_list_rest(void)
 {
 	t_astree	*root;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (!(root = separator_op()))
 		return (0);
-	root = xmalloc(sizeof(t_astree));
-	g_curtok++;
-	while (g_curtok <= ((size_t *)g_tokens)[2])
-	{
-		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type == NEWLINE)
-			g_curtok++;
-		else
-			break ;
-	}
+	if (!(root->left = and_or()))
+		return (root);
+	root->right = complete_commands_rest();
 	return (root);
 }

@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:12:53 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 15:45:26 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/02 17:17:24 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ t_astree	*complete_commands_rest(void)
 	t_astree	*res;
 	t_astree	*root;
 
-	newline_list();
+	if (!(res = newline_list()))
+		return (0);
+	free(res);
 	if (!(res = complete_command()))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
