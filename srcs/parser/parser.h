@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/05 20:55:55 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/07 22:03:16 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ extern void				*g_tokens;
 ** <>	LESSGREAT
 ** >|	CLOBBER
 ** <<-	DLESSDASH
+** <<<	TLESS
 ** V=W	ASSIGMENT_WORD
 ** 123	NUMBER
-** W	COMMAND
 ** \n	NEWLINE
 ** !	NOT
 ** |	PIPE
@@ -70,6 +70,12 @@ extern void				*g_tokens;
 ** IN
 ** ESAC
 ** FUNCTION
+** SELECT
+** COPROC
+**
+** COMMAND_ELEM
+**
+**
 */
 # define WORD 0
 # define FORBRACKET 5
@@ -96,64 +102,30 @@ extern void				*g_tokens;
 # define LESSGREAT		SHIFT + 19
 # define CLOBBER		SHIFT + 20
 # define DLESSDASH		SHIFT + 21
-# define ASSIGMENT_WORD	SHIFT + 21
-# define NUMBER			SHIFT + 22
-# define COMMAND		SHIFT + 23
-# define NEWLINE		SHIFT + 24
-# define NOT			SHIFT + 25
-# define PIPE			SHIFT + 26
-# define IF				SHIFT + 27
-# define THEN			SHIFT + 28
-# define ELSE			SHIFT + 29
-# define ELIF			SHIFT + 30
-# define FI				SHIFT + 31
-# define FOR			SHIFT + 32
-# define WHILE			SHIFT + 33
-# define UNTIL			SHIFT + 34
-# define DO				SHIFT + 35
-# define DONE			SHIFT + 36
-# define CASE			SHIFT + 37
-# define IN				SHIFT + 38
-# define ESAC			SHIFT + 39
-# define FUNCTION		SHIFT + 40
+# define TLESS			SHIFT + 22
+# define ASSIGMENT_WORD	SHIFT + 23
+# define NUMBER			SHIFT + 24
+# define NEWLINE		SHIFT + 25
+# define NOT			SHIFT + 26
+# define PIPE			SHIFT + 27
+# define IF				SHIFT + 28
+# define THEN			SHIFT + 29
+# define ELSE			SHIFT + 30
+# define ELIF			SHIFT + 31
+# define FI				SHIFT + 32
+# define FOR			SHIFT + 33
+# define WHILE			SHIFT + 34
+# define UNTIL			SHIFT + 35
+# define DO				SHIFT + 36
+# define DONE			SHIFT + 37
+# define CASE			SHIFT + 38
+# define IN				SHIFT + 39
+# define ESAC			SHIFT + 40
+# define FUNCTION		SHIFT + 41
+# define SELECT			SHIFT + 42
+# define COPROC			SHIFT + 43
+# define COMMAND_ELEM	SHIFT + 44
 
-t_astree	*program(void);
-t_astree	*complete_commands(void);
-t_astree	*complete_commands_rest(void);
-t_astree	*complete_command(void);
-t_astree	*list(void);
-t_astree	*list_rest(void);
-t_astree	*and_or(void);
-t_astree	*and_or_rest(void);
-t_astree	*and_or2(void);
-t_astree	*and_or2_rest(void);
-t_astree	*pipeline(void);
-t_astree	*pipeline_sequence(void);
-t_astree	*pipeline_sequence_rest(void);
-t_astree	*command(void);
-t_astree	*compound_command(void);
-t_astree	*subshell(void);
-t_astree	*compound_list(void);
-t_astree	*compound_list_rest(void);
-t_astree	*separator(void);
-t_astree	*separator_op(void);
-t_astree	*for_clause(void);
-t_astree	*sequential_sep(void);
-t_astree	*name(void);
-t_astree	*in(void);
-t_astree	*wordlist(void);
-
-t_astree	*linebreak(void);
-t_astree	*newline_list(void);
-t_astree	*simple_command(void);
-t_astree	*cmd_name(void);
-t_astree	*cmd_word(void);
-t_astree	*cmd_prefix(void);
-t_astree	*cmd_suffix(void);
-t_astree	*io_redirect(void);
-t_astree	*io_file(void);
-t_astree	*filename(void);
-t_astree	*io_here(void);
-t_astree	*here_end(void);
 
 void	*savecur(unsigned int cur);
+t_astree	*freeastree(t_astree	*root);
