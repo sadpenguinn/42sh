@@ -6,7 +6,7 @@
 /*   By: dmorgil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 17:41:24 by dmorgil           #+#    #+#             */
-/*   Updated: 2019/02/03 12:15:21 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/06 17:47:56 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,14 @@ int				build_lexems(char *lexstr, void **lexems, char *symbol_table)
 	return (1);
 }
 
+void			prin(void *v)
+{
+	t_lexem *lexem;
+
+	lexem = (t_lexem *)v;
+	ft_putendl(lexem->word);
+}
+
 t_lexer			*lexer(char const *str)
 {
 	t_lexer		*lexer;
@@ -194,7 +202,6 @@ t_lexer			*lexer(char const *str)
 
 	if (!(lexstr = trim_quotes((char *)str)))
 		return (NULL);
-	ft_putendl(lexstr);
 	if (!(lexems = vector_create(sizeof(t_lexem))))
 		return (lexer_die(lexstr, NULL, NULL));
 	if (!(symbol_table = (char *)malloc(ft_strlen(lexstr) * 2)))

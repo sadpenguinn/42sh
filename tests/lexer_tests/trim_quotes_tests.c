@@ -6,14 +6,11 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:44:08 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/23 17:15:22 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/06 19:47:05 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "libft.h"
-#include "vector.h"
-#include "utest.h"
+#include "tests.h"
 
 int		trim_quotes_tests_sample(void *input, void *expect)
 {
