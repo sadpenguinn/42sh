@@ -3,7 +3,7 @@ SRC = readline.c main.c array.c\
 NAME = line
 
 all:
-	gcc $(SRC) ../xmalloc/xmalloc.c -I ../../includes -I . -o $(NAME)
+	gcc -Wall -Wextra -Werror $(SRC) ../xmalloc/xmalloc.c -I ../../includes -I . -o $(NAME)
 
 clean:
-	rm -rf $(NAME) $(NAME).dSYM
+	rm -rf $(NAME) $(NAME).dSYM a.out a.out.dSYM

@@ -6,7 +6,7 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 08:39:35 by narchiba          #+#    #+#             */
-/*   Updated: 2019/02/07 08:47:34 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/02/07 11:29:07 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,13 @@
 
 int		main(void)
 {
-	array_add(NULL);
+	array_add("abc", 3);
+	array_add("abc", 3);
+	array_add("abc\n", 4);
+	/* array_flush(); */
+	array_add("abc\n", 4);
+	array_add("abc\n", 4);
+	array_add("abc\n", 4);
+	array_add("abc\n", 4);
+	array_flush(1);
 }
