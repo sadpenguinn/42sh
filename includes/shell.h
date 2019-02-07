@@ -15,6 +15,11 @@
 
 # include <stdlib.h>
 
+# define ERR_NONE 0
+# define ERR_FLOATING_EXCEPTION 1
+
+extern int g_sherror;
+
 void	*xmalloc(size_t bytes);
 void	*xrealloc(void *p, size_t newsize, size_t oldsize);
 
