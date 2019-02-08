@@ -16,13 +16,4 @@
 
 int		main(void)
 {
-	array_add("abc", 3);
-	array_add("abc", 3);
-	array_add("abc\n", 4);
-	/* array_flush(); */
-	array_add("abc\n", 4);
-	array_add("abc\n", 4);
-	array_add("abc\n", 4);
-	array_add("abc\n", 4);
-	array_flush(1);
 }

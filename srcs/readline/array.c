@@ -15,14 +15,16 @@
 #include "shell.h"
 #include <unistd.h>
 
+/*arrays save char strings(with no size limit if ARR_LEN_LIMIT != 0) and flush them(when need) to stdout*/
+
 static t_array	*arr;
 
 static void	init_array(void)
 {
 	arr = (t_array *)xmalloc(sizeof(t_array));
-	arr->buf = (char *)xmalloc(ARRAY_SIZE);
+	arr->buf = (char *)xmalloc(DEFAULT_SIZE);
 	arr->len = 0;
-	arr->size = ARRAY_SIZE;
+	arr->size = DEFAULT_SIZE;
 }
 
 void	array_add(const char *str, unsigned int len)
@@ -40,11 +42,13 @@ void	array_add(const char *str, unsigned int len)
 	}
 	memcpy(arr->buf + arr->len, str, len);
 	arr->len += len;
+	if (ARR_LEN_LIMIT != 0 && arr->len > ARR_LEN_LIMIT)
+		array_flush();
 }
 
-void	array_flush(int fd)
+void	array_flush(void)
 {
-	write(fd, arr->buf, arr->len);
+	write(1, arr->buf, arr->len);
 	free(arr->buf);
 	free(arr);
 	arr = NULL;
