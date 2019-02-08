@@ -13,8 +13,9 @@
 #ifndef ARRAY_H
 # define ARRAY_H
 
-# define ARRAY_SIZE 10
+# define DEFAULT_SIZE 10
 # define FACTOR 2
+# define ARR_LEN_LIMIT 0
 
 typedef	struct		s_array
 {
@@ -24,6 +25,6 @@ typedef	struct		s_array
 }					t_array;
 
 void	array_add(const char *str, unsigned int len);
-void	array_flush(int fd);
+void	array_flush(void);
 
 #endif
