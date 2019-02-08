@@ -1,8 +1,8 @@
-#<inputunit>	::=									<simple_list> <simple_list_terminator>
-#											|	'\n'
-#											|	error '\n'
-#											|	yacc_EOF
-#											;
+<inputunit>	::=									<simple_list> <simple_list_terminator>
+											|	'\n'
+											|	error '\n'
+											|	yacc_EOF
+											;
 
 /* A <simple_list> is a <list> that contains no significant newlines
    and no leading or trailing newlines.  Newlines are allowed
@@ -268,6 +268,7 @@ _REDIR__________________________________________________________________
 											|	<redirection> <redirection_list>
 											;
 
+<=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>
 <redirection>	::=								       <io_file>
 											|	NUMBER <io_file>
 											|	       <io_here>
@@ -295,4 +296,3 @@ _REDIR__________________________________________________________________
 											;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-<=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>

@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   check_words.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 17:44:55 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 13:53:11 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/08 13:32:43 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/08 13:55:29 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parser.h"
 
-int	ft_str_is_numeric(char *s)
+int		check_redir_num(char *str)
 {
-	if (!s)
-		return (0);
-	while (*s)
-		if (!ft_isdigit(*s++))
-			return (0);
-	return (1);
+	return (ft_str_is_numeric(str));
 }

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   here_end.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 17:44:55 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 13:53:11 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/29 15:54:30 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/08 12:29:02 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parser.h"
 
-int	ft_str_is_numeric(char *s)
+t_astree	*here_end(void)
 {
-	if (!s)
-		return (0);
-	while (*s)
-		if (!ft_isdigit(*s++))
-			return (0);
-	return (1);
+	t_lexem		*token;
+	t_astree	*root;
+
+	if (g_curtok >= ((size_t *)g_tokens)[2])
+		return (parseerror());
+	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
+	if (token->type == NEWLINE || token->type == SEMI || token->type == AND)
+		return (parseerror());
+	root = xmalloc(sizeof(t_astree));
+	root->content = ft_strdup(token->word);
+	g_curtok++;
+	return (root);
 }

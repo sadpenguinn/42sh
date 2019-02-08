@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   redirection_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 17:44:55 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 13:53:11 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/08 14:21:31 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/08 14:26:10 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/*
+**	RDLST - ReDirection LiST
+**	RD - ReDirection
+**
+**    RDLST
+**   /     \
+** RD       RDLST
+**         /     \
+**       RD       ...
+*/
 
-int	ft_str_is_numeric(char *s)
+#include "parser.h"
+
+t_astree	*redirection_list(void)
 {
-	if (!s)
+	t_astree	*root;
+
+	if (!(root = redirection()))
 		return (0);
-	while (*s)
-		if (!ft_isdigit(*s++))
-			return (0);
-	return (1);
+	root->right = redirection_list();
+	return (root);
 }

@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/07 22:03:16 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/08 13:39:09 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,15 @@ extern void				*g_tokens;
 # define COPROC			SHIFT + 43
 # define COMMAND_ELEM	SHIFT + 44
 
+t_astree	*simple_list(void);
 
-void	*savecur(unsigned int cur);
+t_astree	*redirection(void);
+t_astree	*io_file(void);
+t_astree	*filename(void);
+t_astree	*io_here(void);
+t_astree	*here_end(void);
+
+int		check_redir_num(char *str);
+void		*savecur(unsigned int cur);
 t_astree	*freeastree(t_astree	*root);
+t_astree	*parseerror(void);
