@@ -1,0 +1,4 @@
+1)history file:
+    ".42sh_history"
+    1.1)history delimiter:
+        "42:sh:history:"
