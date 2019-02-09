@@ -1,44 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   io_file.c                                          :+:      :+:    :+:   */
+/*   case_clause_sequence.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:42:15 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 18:52:49 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/09 17:39:38 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/09 19:39:46 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**                PREF
-**               /
-**              <(type)
-**             /  \
-**   (content)2    filename(content)
+**	CCS - Case Clause Sequence
+**	PATLST - PATtern LiST
+**
+**        CCS
+**       /   \
+** PATLST     CCS
+**           /   \
+**     PATLST     CCS
+**               /   \
+**         PATLST     ...
 */
 
 #include "parser.h"
 
-t_astree	*io_file(void)
+t_astree	*case_clause_sequence(void)
 {
-	t_type			type;
-	t_astree        *root;
+	int				type;
+	unsigned int	curtmp;
 	t_astree        *res;
+	t_astree        *root;
 
+	curtmp = g_curtok;
+	res = pattern_list();
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != LESS && type != LESSAND &&
-		type != GREAT && type != GREATAND &&
-		type != DGREAT && type != LESSGREAT && type != CLOBBER)
-		return (0);
+	if (type != DSEMI && type != SEMI_AND && type != DSEMI_AND)
+		return (freeastree(res), savecur(curtmp));
 	g_curtok++;
-	if (!(res = filename()))
-		return (parseerror());
 	root = xmalloc(sizeof(t_astree));
-	root->type = type;
-	root->right = res;
+	root->type = DSEMI;
+	root->left = res;
+	root->right = case_clause_sequence();
 	return (root);
 }
-

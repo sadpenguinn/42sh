@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:25:13 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/08 13:55:08 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:57:19 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static t_list	*print_level(t_list **queue, size_t level, int max_len, size_t hei
 		if (!tree)
 			printf("    ");
 		else
-			tree->type == 0 ? printf("%4s", tree->content) : printf("%4d", tree->type);
+			tree->content ? printf("%4s", tree->content) : printf("%4d", tree->type);
 		if (level < height - 1)
 		{
 			ft_push_back(&tmp, tree ? tree->left : 0);

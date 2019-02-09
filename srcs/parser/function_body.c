@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_command.c                                   :+:      :+:    :+:   */
+/*   function_body.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 17:43:40 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/08 18:19:02 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/08 22:18:28 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** SCE - Simple Command Element
-** SC - Simple Command
+**	FD - Fuction Def
+**	FB - Function Body
+**	SHCMD - SHell CoMmanD
+**	RDLST - ReDirection LiST
 **
-**     SC
-**    /  \
-** SCE    SC
+**           FD
+**          /  \
+**        FB    ...
 **       /  \
-**    SCE    ...
+**  SHCMD    RDLST
+**
 */
 
-#include "parser.h"
+#include  "parser.h"
 
-t_astree	*simple_command(void)
+t_astree	*function_body(void)
 {
+	/* t_astree	*res; */
 	t_astree	*root;
-	t_astree	*res;
 
-	if (!(res = simple_command_element()))
-		return (0);
+	/* if (!(res = shell_command())) */
+	/* 	return (0); */
 	root = xmalloc(sizeof(t_astree));
-	root->type = COMMAND;
-	root->left = res;
-	root->right = simple_command();
+root->content = "BODY";
+	/* root->left = res; */
+	/* root->right = redirection_list(); */
 	return (root);
 }

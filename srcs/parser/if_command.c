@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_command.c                                   :+:      :+:    :+:   */
+/*   if_command.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 17:43:40 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/09 20:53:52 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/09 21:02:01 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** SCE - Simple Command Element
-** SC - Simple Command
+**	CPLST - ComPound LiST
 **
-**     SC
-**    /  \
-** SCE    SC
+**        IF
 **       /  \
-**    SCE    ...
+**  CPLST    CPLST
+**
+**        IF
+**       /  \
+**  CPLST    ELSE
+**          /    \
+**     CPLST      CPLST
+**
+**        IF
+**       /  \
+**  CPLST    ELSE
+**          /    \
+**     CPLST      IF
+**               /  \
+**          CPLST    CPLST
+**
+**        IF
+**       /  \
+**  CPLST    ELIF
+**          /    \
+**     CPLST      IF
+**               /  \
+**          CPLST    CPLST
 */
-
-#include "parser.h"
-
-t_astree	*simple_command(void)
-{
-	t_astree	*root;
-	t_astree	*res;
-
-	if (!(res = simple_command_element()))
-		return (0);
-	root = xmalloc(sizeof(t_astree));
-	root->type = COMMAND;
-	root->left = res;
-	root->right = simple_command();
-	return (root);
-}

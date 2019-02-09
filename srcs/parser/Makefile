@@ -6,7 +6,7 @@
 #    By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 18:43:26 by bwerewol          #+#    #+#              #
-#    Updated: 2019/02/08 13:46:06 by bwerewol         ###   ########.fr        #
+#    Updated: 2019/02/09 19:07:03 by bwerewol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,28 @@ SRC		=	./main.c\
 			./check_words.c\
 			./freeastree.c\
 			./savecur.c\
+			./otherfunc.c\
+			./simple_command.c\
+			./simple_command_element.c\
+			./for_command.c\
+			./case_command.c\
+			./case_clause.c\
+			./case_clause_sequence.c\
+			./pattern_list.c\
+			./pattern.c\
+			./function_def.c\
+			./function_body.c\
+			./compound_list.c\
+			./simple_list_terminator.c\
+			./list_terminator.c\
+			./newline_list.c\
+			./word_list.c\
+			./redirection_list.c\
 			./redirection.c\
 			./io_file.c\
 			./filename.c\
 			./io_here.c\
 			./here_end.c
-			# ./simple_command.c\
-			# ./simple_command_element.c
 OBJ		=	$(SRC:.c=.o)
 
 CC		?=	gcc

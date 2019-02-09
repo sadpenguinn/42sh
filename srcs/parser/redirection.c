@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:39:52 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 13:55:22 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:36:48 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static t_astree        *get_io_number(void)
 	if (!check_redir_num(elem->word))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
+	root->type = NUMBER;
 	root->content = ft_strdup(elem->word);
 	g_curtok++;
 	return (root);

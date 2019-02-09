@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_command.c                                   :+:      :+:    :+:   */
+/*   otherfunc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 17:43:40 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/09 18:46:14 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/09 18:50:20 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** SCE - Simple Command Element
-** SC - Simple Command
-**
-**     SC
-**    /  \
-** SCE    SC
-**       /  \
-**    SCE    ...
-*/
-
 #include "parser.h"
 
-t_astree	*simple_command(void)
+int		checktype(t_type type)
 {
-	t_astree	*root;
-	t_astree	*res;
-
-	if (!(res = simple_command_element()))
+	if (g_curtok >= ((size_t *)g_tokens)[2])
+		return (type == TOKEOF ? 1 : 0);
+	if  (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != type)
 		return (0);
-	root = xmalloc(sizeof(t_astree));
-	root->type = COMMAND;
-	root->left = res;
-	root->right = simple_command();
-	return (root);
+	g_curtok++;
+	return (1);
 }

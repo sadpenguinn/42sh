@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_command.c                                   :+:      :+:    :+:   */
+/*   newline_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 17:43:40 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/29 20:32:08 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/09 14:54:10 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** SCE - Simple Command Element
-** SC - Simple Command
-**
-**     SC
-**    /  \
-** SCE    SC
-**       /  \
-**    SCE    ...
-*/
-
 #include "parser.h"
 
-t_astree	*simple_command(void)
+void	newline_list(void)
 {
-	t_astree	*root;
-	t_astree	*res;
-
-	if (!(res = simple_command_element()))
-		return (0);
-	root = xmalloc(sizeof(t_astree));
-	root->type = COMMAND;
-	root->left = res;
-	root->right = simple_command();
-	return (root);
+	while (g_curtok <= ((size_t *)g_tokens)[2])
+	{
+		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type == NEWLINE)
+			g_curtok++;
+		else
+			break ;
+	}
 }
