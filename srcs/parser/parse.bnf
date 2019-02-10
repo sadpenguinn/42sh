@@ -29,18 +29,19 @@
 											|	<pipeline_command> AND_IF <newline_list> <pipeline_command>
 											;
 
-<pipeline_command>	::=							<pipeline>
-											|	BANG <pipeline_command>
-											|	BANG <list_terminator>
+<pipeline_command>	::=							     <pipeline>
+											|	NOT <pipeline_command>
+											|	NOT <list_terminator>
 											;
 
 #<pipeline>	::=									<pipeline> '|' <newline_list> <pipeline>
 #											|	<pipeline> BAR_AND <newline_list> <pipeline>
 #											|	<command>
 #											;
-<pipeline>	::=									<command>
-											|	<command> '|' <newline_list> <pipeline>
-											|	<command> BAR_AND <newline_list> <pipeline>
+<pipeline>	::=									<command> <pipeline_rest>
+											;
+<pipeline_rest>	::=								'|'     <newline_list> <pipeline> <pipeline_rest>
+											|	PIPEAND <newline_list> <pipeline> <pipeline_rest>
 											;
 
 <command>	::=									<function_def>
@@ -60,7 +61,8 @@
 											;
 ========================================================================
 
-=SHELL==================================================================
+<=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>
++SHELL==================================================================
 <shell_command>	::=								<for_command>
 											|	<case_command>
 											|	WHILE <compound_list> DO <compound_list> DONE
@@ -117,7 +119,7 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-_SELECT__________________________________________________________________
++SELECT__________________________________________________________________
 <select_command>	::=							SELECT WORD <newline_list> DO <list> DONE
 											|	SELECT WORD <newline_list> '{' <list> '}'
 											|	SELECT WORD ';' <newline_list> DO <list> DONE
@@ -146,25 +148,28 @@ _SELECT__________________________________________________________________
 											;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
++GROUP__________________________________________________________________
+<group_command>	::=								'{' <compound_list> '}'
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-<=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>
 +ARITH__________________________________________________________________
 <arith_command>	::=								ARITH_CMD
 											;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-_COND__________________________________________________________________
-<cond_command>	::=								COND_START COND_CMD COND_END
++COND__________________________________________________________________
+<cond_command>	::=								COND
 											;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-_ARITH_FOR______________________________________________________________
++ARITH_FOR______________________________________________________________
 <arith_for_command>	::=							FOR ARITH_FOR <list_terminator> <newline_list> DO <compound_list> DONE
 											|	FOR ARITH_FOR <list_terminator> <newline_list> '{' <compound_list> '}'
-											|	FOR ARITH_FOR DO <compound_list> DONE
-											|	FOR ARITH_FOR '{' <compound_list> '}'
+											|	FOR ARITH_FOR                                  DO <compound_list> DONE
+											|	FOR ARITH_FOR                                  '{' <compound_list> '}'
 											;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 =========================================================================
@@ -180,9 +185,8 @@ _ARITH_FOR______________________________________________________________
 											;
 ==========================================================================
 
-<group_command>	::=								'{' <compound_list> '}'
-											;
 
+_COMPOUND__________________________________________________________________
 <compound_list>	::=								<list>
 											|	<newline_list> <list1>
 											;
@@ -206,16 +210,21 @@ _ARITH_FOR______________________________________________________________
 #											|	<list1> '\n'    <newline_list> <list1>
 #											|	<pipeline_command>
 #											;
-<list1>	::=										<list2>
-											|	<list2> '&' <newline_list> <list1>
-											|	<list2> ';' <newline_list> <list1>
-											|	<list2> '\n' <newline_list> <list1>
+<=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>
+<list1>	::=										<list2> <list1_rest>
 											;
-<list2>	::=										<pipeline_command>
-											|	<pipeline_command> AND_IF <list2>
-											|	<pipeline_command> OR_IF <list2>
+<list1_rest>	::=								'&'  <newline_list> <list2> <list1_rest>
+											|	';'  <newline_list> <list2> <list1_rest>
+											|	'\n' <newline_list> <list2> <list1_rest>
 											;
+<list2>	::=										<pipeline_command> <list2_rest>
+											;
+<list2_rest>	::=								AND_IF <newline_list> <pipeline_command> <list2_rest>
+											|	OR_IF  <newline_list> <pipeline_command> <list2_rest>
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
++TERMS__________________________________________________________________
 <simple_list_terminator>	::=					'\n'
 											|	TOKEOF
 											;
@@ -232,6 +241,7 @@ _ARITH_FOR______________________________________________________________
 <word_list>	::=									WORD
 											|	WORD <word_list>
 											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 +REDIR__________________________________________________________________

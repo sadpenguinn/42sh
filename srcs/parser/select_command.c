@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   for_command.c                                      :+:      :+:    :+:   */
+/*   select_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/09 12:51:53 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 17:41:53 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/10 17:20:55 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/10 20:48:49 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
+**	SLCT - SeLeCT
 **	CMPLST - CoMPound LiST
 **	WLST - Word LiST
 **
-**           FOR
-**          /   \
-**      WORD     CMPLST
+**           SLCT
+**          /    \
+**      WORD      CMPLST
 **
-**           FOR
-**          /   \
-**        IN     CMPLST
+**           SLCT
+**          /    \
+**        IN      CMPLST
 **       /  \
 **   WORD    WLST
 */
@@ -37,7 +38,7 @@ static t_astree	*get_word()
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	if (!check_word_type(token->type))
 		return (0);
-	if (!check_for_word(token->word))
+	if (!check_select_word(token->word))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = WORD;
@@ -88,7 +89,7 @@ static t_astree	*get_compound_list()
 	return (root);
 }
 
-t_astree	*for_command(void)
+t_astree	*select_command(void)
 {
 	int			type;
 	t_astree	*root;
@@ -96,7 +97,7 @@ t_astree	*for_command(void)
 	if (!checktype(SELECT))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
-	root->type = FOR;
+	root->type = SELECT;
 	if (!(root->left = get_word()))
 		return (freeastree(root), parseerror());
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;

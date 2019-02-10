@@ -26,9 +26,9 @@ flags = [
     '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
     '-isystem', '/usr/local/include',
     '-isystem', '/usr/local/include/eigen3',
-    '-I../../includes/',
-    '-I../libft/includes/',
-    '-I../libft/vector/',
+    '-I/users/bwerewol/Projects/42sh/includes',
+    '-I/users/bwerewol/Projects/42sh/srcs/libft/includes',
+    '-I/users/bwerewol/Projects/42sh/srcs/libft/vector',
     '-I.',
 ]
 

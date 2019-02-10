@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 14:44:16 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:11:59 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ extern void				*g_tokens;
 ** }	CBRACE
 ** [	OARRAY
 ** ]	CARRAY
-** !	BANG
 ** &	AND
 ** ;	SEMI
 ** &&	AND_IF
@@ -58,6 +57,7 @@ extern void				*g_tokens;
 ** \n	NEWLINE
 ** !	NOT
 ** |	PIPE
+** |&	PIPEAND
 ** IF
 ** THEN
 ** ELSE
@@ -79,7 +79,10 @@ extern void				*g_tokens;
 ** REDIRECTION
 ** TOKEOF
 ** ARITH
-** COND
+** COND			[[ ... ]]
+** REST
+** CMDREDIR
+** PIPECMD
 **
 */
 # define WORD 0
@@ -92,29 +95,29 @@ extern void				*g_tokens;
 # define CBRACE			SHIFT + 4
 # define OARRAY			SHIFT + 5
 # define CARRAY			SHIFT + 6
-# define BANG			SHIFT + 7
-# define AND			SHIFT + 8
-# define SEMI			SHIFT + 9
-# define AND_IF			SHIFT + 10
-# define OR_IF			SHIFT + 11
-# define DSEMI			SHIFT + 12
-# define SEMI_AND		SHIFT + 13
-# define DSEMI_AND		SHIFT + 14
-# define LESS			SHIFT + 15
-# define GREAT			SHIFT + 16
-# define LESSAND		SHIFT + 17
-# define GREATAND		SHIFT + 18
-# define DLESS			SHIFT + 19
-# define DGREAT			SHIFT + 20
-# define LESSGREAT		SHIFT + 21
-# define CLOBBER		SHIFT + 22
-# define DLESSDASH		SHIFT + 23
-# define TLESS			SHIFT + 24
-# define ASSIGMENT_WORD	SHIFT + 25
-# define NUMBER			SHIFT + 26
-# define NEWLINE		SHIFT + 27
-# define NOT			SHIFT + 28
-# define PIPE			SHIFT + 29
+# define AND			SHIFT + 7
+# define SEMI			SHIFT + 8
+# define AND_IF			SHIFT + 9
+# define OR_IF			SHIFT + 10
+# define DSEMI			SHIFT + 11
+# define SEMI_AND		SHIFT + 12
+# define DSEMI_AND		SHIFT + 13
+# define LESS			SHIFT + 14
+# define GREAT			SHIFT + 15
+# define LESSAND		SHIFT + 16
+# define GREATAND		SHIFT + 17
+# define DLESS			SHIFT + 18
+# define DGREAT			SHIFT + 19
+# define LESSGREAT		SHIFT + 20
+# define CLOBBER		SHIFT + 21
+# define DLESSDASH		SHIFT + 22
+# define TLESS			SHIFT + 23
+# define ASSIGMENT_WORD	SHIFT + 24
+# define NUMBER			SHIFT + 25
+# define NEWLINE		SHIFT + 26
+# define NOT			SHIFT + 27
+# define PIPE			SHIFT + 28
+# define PIPEAND		SHIFT + 29
 # define IF				SHIFT + 30
 # define THEN			SHIFT + 31
 # define ELSE			SHIFT + 32
@@ -135,33 +138,41 @@ extern void				*g_tokens;
 # define TOKEOF			SHIFT + 47
 # define ARITH			SHIFT + 48
 # define COND			SHIFT + 49
+# define REST			SHIFT + 50
+# define CMDREDIR		SHIFT + 51
+# define PIPECMD		SHIFT + 52
 
 t_astree	*simple_list(void);
 
+t_astree	*pipeline_command(void);
+t_astree	*pipeline(void);
+t_astree	*command(void);
 t_astree	*simple_command(void);
 t_astree	*simple_command_element(void);
-
+t_astree	*shell_command(void);
 t_astree	*for_command(void);
-
 t_astree	*case_command(void);
 t_astree	*case_clause(void);
 t_astree	*case_clause_sequence(void);
 t_astree	*pattern_list(void);
 t_astree	*pattern(void);
-
+t_astree	*select_command(void);
 t_astree	*if_command(void);
 t_astree	*elif_clause(void);
+t_astree	*group_command(void);
 t_astree	*subshell(void);
 t_astree	*arith_command(void);
+t_astree	*cond_command(void);
+t_astree	*arith_for_command(void);
 
 t_astree	*function_def(void);
 t_astree	*function_body(void);
 
+t_astree	*list2(void);
 int			simple_list_terminator();	//	Return terminator type if exist and skip it. If no term return 0
 int			list_terminator();		//	Return terminator type if exist and skip it. If no term return 0
 void		newline_list(void);		//	Skip all \n
 t_astree	*word_list(void);
-
 t_astree	*redirection_list(void);
 t_astree	*redirection(void);
 t_astree	*io_file(void);
@@ -172,6 +183,8 @@ t_astree	*here_end(void);
 
 t_astree	*compound_list(void);
 
+int		check_select_word(char *str);
+int		check_arith_for(char *str);
 int		check_arith_word(char *str);
 int		check_word_type(int type);
 int		check_for_word(char *str);

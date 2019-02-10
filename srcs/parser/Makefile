@@ -6,7 +6,7 @@
 #    By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 18:43:26 by bwerewol          #+#    #+#              #
-#    Updated: 2019/02/10 14:44:57 by bwerewol         ###   ########.fr        #
+#    Updated: 2019/02/10 22:09:41 by bwerewol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ SRC		=	./main.c\
 			./freeastree.c\
 			./savecur.c\
 			./otherfunc.c\
+			./pipeline_command.c\
+			./pipeline.c\
+			./command.c\
 			./simple_command.c\
 			./simple_command_element.c\
 			./for_command.c\
@@ -28,13 +31,19 @@ SRC		=	./main.c\
 			./case_clause_sequence.c\
 			./pattern_list.c\
 			./pattern.c\
+			./shell_command.c\
+			./select_command.c\
 			./if_command.c\
 			./elif_clause.c\
 			./subshell.c\
+			./group_command.c\
 			./arith_command.c\
+			./cond_command.c\
+			./arith_for_command.c\
 			./function_def.c\
 			./function_body.c\
 			./compound_list.c\
+			./list2.c\
 			./simple_list_terminator.c\
 			./list_terminator.c\
 			./newline_list.c\

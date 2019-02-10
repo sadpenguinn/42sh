@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 21:04:10 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 12:57:19 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:11:38 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,45 +25,56 @@ int main(void)
 
 	g_tokens = vector_create(sizeof(t_lexem));
 
-	lex.type = IF;
-	lex.word = "if";
+	lex.type = FOR;
+	lex.word = "for";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = THEN;
-	lex.word = "then";
+	lex.type = WORD;
+	lex.word = "(;;)";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = ELIF;
-	lex.word = "else";
+	lex.type = DO;
+	lex.word = "do";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = THEN;
-	lex.word = "then";
+	lex.type = DONE;
+	lex.word = "done";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = ELSE;
-	lex.word = "else";
+	lex.type = PIPE;
+	lex.word = "|";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = FI;
-	lex.word = "fi";
+	lex.type = WORD;
+	lex.word = "ls";
 	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = THEN; */
-	/* lex.word = "case"; */
+	lex.type = OR_IF;
+	lex.word = "&&";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = WORD;
+	lex.word = "ls";
+	vector_push_back(&g_tokens, &lex);
+
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	/* lex.type = ELSE; */
-	/* lex.word = "in"; */
+	/* lex.type = NEWLINE; */
+	/* lex.word = "\n"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = NEWLINE;
-	lex.word = "\n";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = NEWLINE; */
+	/* lex.word = "\n"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
 	printf("Tok count:%lu\n", ((size_t *)g_tokens)[2]);
 
-	root = if_command();
+	root = list2();
+	/* root = pipeline_command(); */
+	/* root = command(); */
+	/* root = simple_command(); */
 	print_astree(root);
 	return (0);
 }

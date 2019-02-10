@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:58:50 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 12:46:49 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 15:24:55 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 t_astree	*freeastree(t_astree	*root)
 {
 	printf("%p\n", root);
-	printf("l:%p\n", root->left);
-	printf("r:%p\n", root->right);
 	if (!root)
 		return (0);
+	printf("l:%p\n", root->left);
+	printf("r:%p\n", root->right);
 	if (root->content)
 		free(root->content);
 	if (root->left)

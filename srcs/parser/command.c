@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arith_command.c                                    :+:      :+:    :+:   */
+/*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/10 13:23:20 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 16:45:36 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/10 20:02:37 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/10 21:57:55 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_astree	*arith_command(void)
+static t_astree	*get_shell_command(void)
 {
-	t_lexem         *token;
-	t_astree        *root;
-
-	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return (parseerror());
-	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	if (!check_word_type(token->type))
+	t_astree	*res[2];
+	t_astree	*root;
+printf("in get shell cmd\n");
+	if (!(res[0] = shell_command()))
 		return (0);
-	if (!check_arith_word(token->word))
-		return (0);
+	if (!(res[1] = redirection_list()))
+		return (res[0]);
 	root = xmalloc(sizeof(t_astree));
-	root->type = ARITH;
-	root->content = ft_strdup(token->word);
-	g_curtok++;
+	root->type = CMDREDIR;
+	root->left = res[0];
+	root->right = res[1];
 	return (root);
+}
+
+t_astree	*command(void)
+{
+	t_astree        *res;
+
+	if ((res = function_def()))
+		return (res);
+	else if ((res = get_shell_command()))
+		return (res);
+	else if ((res = simple_command()))
+		return (res);
+	return (0);
 }

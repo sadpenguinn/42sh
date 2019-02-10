@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 20:53:52 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 12:52:58 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 16:07:49 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static t_astree	*get_else(t_astree *res)
 	root = xmalloc(sizeof(t_astree));
 	root->type = ELSE;
 	root->left = res;
-	root->right = compound_list();
+	if (!(root->right = compound_list()))
+		return (freeastree(root));
 	return (root);
 }
 
@@ -72,15 +73,18 @@ t_astree		*if_command(void)
 
 	if (!checktype(IF))
 		return (0);
-	res = compound_list();
+	if (!(res = compound_list()))
+		return (parseerror());
 	if (!checktype(THEN))
 		return (freeastree(res), parseerror());
 	root = xmalloc(sizeof(t_astree));
 	root->type = IF;
 	root->left = res;
-	root->right = compound_list();
+	if (!(root->right = compound_list()))
+		return (freeastree(root), parseerror());
 	if (checktype(ELSE))
-		root->right = get_else(root->right);
+		if (!(root->right = get_else(root->right)))
+			return (freeastree(root), parseerror());
 	if (checktype(ELIF))
 		if (!(root->right = get_elif(root->right)))
 			return (freeastree(root), parseerror());
