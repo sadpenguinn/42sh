@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:55:26 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 22:47:52 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 12:32:10 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 static t_astree	*function_def_1(void)
 {
-printf("1\n");
 	t_lexem		*token;
 	t_astree	*root;
 
@@ -46,7 +45,6 @@ printf("1\n");
 
 static t_astree	*function_def_2(void)
 {
-printf("2\n");
 	t_lexem		*token;
 	t_astree	*root;
 
@@ -70,7 +68,6 @@ printf("2\n");
 
 static t_astree	*function_def_3(void)
 {
-printf("3\n");
 	t_lexem		*token;
 	t_astree	*root;
 

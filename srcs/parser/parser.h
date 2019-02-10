@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 19:06:14 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 14:44:16 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ extern void				*g_tokens;
 **
 ** COMMAND
 ** REDIRECTION
+** TOKEOF
+** ARITH
+** COND
 **
 */
 # define WORD 0
@@ -130,6 +133,8 @@ extern void				*g_tokens;
 # define COMMAND 		SHIFT + 45
 # define REDIRECTION	SHIFT + 46
 # define TOKEOF			SHIFT + 47
+# define ARITH			SHIFT + 48
+# define COND			SHIFT + 49
 
 t_astree	*simple_list(void);
 
@@ -143,6 +148,11 @@ t_astree	*case_clause(void);
 t_astree	*case_clause_sequence(void);
 t_astree	*pattern_list(void);
 t_astree	*pattern(void);
+
+t_astree	*if_command(void);
+t_astree	*elif_clause(void);
+t_astree	*subshell(void);
+t_astree	*arith_command(void);
 
 t_astree	*function_def(void);
 t_astree	*function_body(void);
@@ -162,6 +172,7 @@ t_astree	*here_end(void);
 
 t_astree	*compound_list(void);
 
+int		check_arith_word(char *str);
 int		check_word_type(int type);
 int		check_for_word(char *str);
 int		check_func_name(char *str);

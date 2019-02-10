@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   for_command.c                                      :+:      :+:    :+:   */
+/*   arith_for_command.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 12:51:53 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 12:24:14 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 15:09:37 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **	CMPLST - CoMPound LiST
-**	WLST - Word LiST
 **
 **           FOR
 **          /   \
-**      WORD     CMPLST
-**
-**           FOR
-**          /   \
-**        IN     CMPLST
-**       /  \
-**   WORD    WLST
+**     ARITH     CMPLST
 */
 
 #include "parser.h"

@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_command.c                                   :+:      :+:    :+:   */
+/*   subshell.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 15:05:55 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/10 13:00:53 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/10 13:20:42 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** SCE - Simple Command Element
-** SC - Simple Command
-**
-**     SC
-**    /  \
-** SCE    SC
-**       /  \
-**    SCE    ...
-*/
-
 #include "parser.h"
 
-t_astree	*simple_command(void)
+t_astree	*subshell(void)
 {
-	t_astree	*root;
-	t_astree	*res;
+	t_astree        *root;
 
-	if (!(res = simple_command_element()))
+	if (!checktype(OBRACKET))
 		return (0);
-	root = xmalloc(sizeof(t_astree));
-	root->type = COMMAND;
-	root->left = res;
-	root->right = simple_command();
+	root = compound_list();
+	if (!checktype(CBRACKET))
+		return (freeastree(root), parseerror());
 	return (root);
 }

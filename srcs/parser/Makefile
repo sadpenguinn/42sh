@@ -6,7 +6,7 @@
 #    By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 18:43:26 by bwerewol          #+#    #+#              #
-#    Updated: 2019/02/09 19:07:03 by bwerewol         ###   ########.fr        #
+#    Updated: 2019/02/10 14:44:57 by bwerewol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,10 @@ SRC		=	./main.c\
 			./case_clause_sequence.c\
 			./pattern_list.c\
 			./pattern.c\
+			./if_command.c\
+			./elif_clause.c\
+			./subshell.c\
+			./arith_command.c\
 			./function_def.c\
 			./function_body.c\
 			./compound_list.c\
