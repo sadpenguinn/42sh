@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   parseerror.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 17:44:55 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 13:53:11 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/08 12:03:05 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/08 13:49:12 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parser.h"
 
-int	ft_str_is_numeric(char *s)
+t_astree	*parseerror(void)
 {
-	if (!s)
+	t_lexem	*token;
+
+	if (g_curtok >= ((size_t *)g_tokens)[2])
+	{
+		printf("42h: parse error near `%s'\n", "EOF");
 		return (0);
-	while (*s)
-		if (!ft_isdigit(*s++))
-			return (0);
-	return (1);
+	}
+	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
+	printf("42h: parse error near `%s'\n", token->word);
+	return (0);
 }

@@ -1,44 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   io_file.c                                          :+:      :+:    :+:   */
+/*   here_end.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:42:15 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 18:52:49 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/29 15:54:30 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/02 14:11:52 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-**                PREF
-**               /
-**              <(type)
-**             /  \
-**   (content)2    filename(content)
-*/
-
 #include "parser.h"
 
-t_astree	*io_file(void)
+t_astree	*here_end(void)
 {
-	t_type			type;
-	t_astree        *root;
-	t_astree        *res;
+	t_lexem		*token;
+	t_astree	*root;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != LESS && type != LESSAND &&
-		type != GREAT && type != GREATAND &&
-		type != DGREAT && type != LESSGREAT && type != CLOBBER)
+	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
+	if (token->type != WORD)
 		return (0);
-	g_curtok++;
-	if (!(res = filename()))
-		return (parseerror());
 	root = xmalloc(sizeof(t_astree));
-	root->type = type;
-	root->right = res;
+	root->content = ft_strdup(token->word);
+	g_curtok++;
 	return (root);
 }
-

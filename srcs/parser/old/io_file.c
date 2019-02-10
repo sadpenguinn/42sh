@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:42:15 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 18:52:49 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/02 14:25:53 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 #include "parser.h"
 
-t_astree	*io_file(void)
+t_astree        *io_file(void)
 {
-	t_type			type;
+	int				type;
 	t_astree        *root;
 	t_astree        *res;
 
@@ -35,7 +35,7 @@ t_astree	*io_file(void)
 		return (0);
 	g_curtok++;
 	if (!(res = filename()))
-		return (parseerror());
+		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	root->right = res;

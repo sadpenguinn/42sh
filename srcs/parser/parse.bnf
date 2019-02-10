@@ -1,0 +1,268 @@
+<inputunit>	::=									<simple_list> <simple_list_terminator>
+											|	'\n'
+											|	error '\n'
+											|	TOKEOF
+											;
+
+/* A <simple_list> is a <list> that contains no significant newlines
+   and no leading or trailing newlines.  Newlines are allowed
+   only following operators, where they are not significant.
+
+   This is what an <inputunit> consists of.  */
+<simple_list>	::=								<simple_list1>
+											|	<simple_list1> '&'
+											|	<simple_list1> ';'
+											;
+
+#<simple_list1>	::=								<simple_list1> AND_IF <newline_list> <simple_list1>
+#											|	<simple_list1> OR_IF <newline_list> <simple_list1>
+#											|	<simple_list1> '&' <simple_list1>
+#											|	<simple_list1> ';' <simple_list1>
+#											|	<pipeline_command>
+#											;
+<simple_list1>	::=								<simple_list2>
+											|	<simple_list2> ';' <simple_list1>
+											|	<simple_list2> '&' <simple_list1>
+											;
+<simple_list2>	::=								<pipeline_command>
+											|	<pipeline_command> OR_IF <newline_list> <pipeline_command>
+											|	<pipeline_command> AND_IF <newline_list> <pipeline_command>
+											;
+
+<pipeline_command>	::=							<pipeline>
+											|	BANG <pipeline_command>
+											|	BANG <list_terminator>
+											;
+
+#<pipeline>	::=									<pipeline> '|' <newline_list> <pipeline>
+#											|	<pipeline> BAR_AND <newline_list> <pipeline>
+#											|	<command>
+#											;
+<pipeline>	::=									<command>
+											|	<command> '|' <newline_list> <pipeline>
+											|	<command> BAR_AND <newline_list> <pipeline>
+											;
+
+<command>	::=									<function_def>
+											|	<shell_command>
+											|	<shell_command> <redirection_list>
+											|	<simple_command>
+											;
+
++SIMPLE==================================================================
+<simple_command>	::=							<simple_command_element> <simple_command>
+											|	<simple_command_element>
+											;
+
+<simple_command_element>	::=					<redirection>
+											|	ASSIGNMENT_WORD
+											|	WORD
+											;
+========================================================================
+
+=SHELL==================================================================
+<shell_command>	::=								<for_command>
+											|	<case_command>
+											|	WHILE <compound_list> DO <compound_list> DONE
+											|	UNTIL <compound_list> DO <compound_list> DONE
+											|	<select_command>
+											|	<if_command>
+											|	<subshell>
+											|	<group_command>
+											|	<arith_command>
+											|	<cond_command>
+											|	<arith_for_command>
+											;
+
++FOR__________________________________________________________________
+<for_command>	::=								FOR WORD     <newline_list>                                                 DO  <compound_list> DONE
+											|	FOR WORD     <newline_list>                                                 '{' <compound_list> '}'
+											|	FOR WORD ';' <newline_list>                                                 DO  <compound_list> DONE
+											|	FOR WORD ';' <newline_list>                                                 '{' <compound_list> '}'
+											|	FOR WORD     <newline_list> IN <word_list> <list_terminator> <newline_list> DO  <compound_list> DONE
+											|	FOR WORD     <newline_list> IN <word_list> <list_terminator> <newline_list> '{' <compound_list> '}'
+											|	FOR WORD     <newline_list> IN             <list_terminator> <newline_list> DO  <compound_list> DONE
+											|	FOR WORD     <newline_list> IN             <list_terminator> <newline_list> '{' <compound_list> '}'
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
++CASE__________________________________________________________________
+<case_command>	::=								CASE WORD <newline_list> IN               <newline_list> ESAC
+											|	CASE WORD <newline_list> IN <case_clause> <newline_list> ESAC
+											;
+
+<case_clause>	::=								<case_clause_sequence> <pattern_list>
+											|	<case_clause_sequence>
+											|	                       <pattern_list>
+											;
+
+<case_clause_sequence>	::=						<pattern_list> DSEMI
+											|	<pattern_list> DSEMI     <case_clause_sequence>
+											|	<pattern_list> SEMI_AND
+											|	<pattern_list> SEMI_AND  <case_clause_sequence>
+											|	<pattern_list> DSEMI_AND
+											|	<pattern_list> DSEMI_AND <case_clause_sequence>
+											;
+
+<pattern_list>	::=								<newline_list>     <pattern> ')' <compound_list>
+											|	<newline_list>     <pattern> ')' <newline_list>
+											|	<newline_list> '(' <pattern> ')' <compound_list>
+											|	<newline_list> '(' <pattern> ')' <newline_list>
+											;
+
+<pattern>	::=									WORD
+											|	WORD '|' <pattern>
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+_SELECT__________________________________________________________________
+<select_command>	::=							SELECT WORD <newline_list> DO <list> DONE
+											|	SELECT WORD <newline_list> '{' <list> '}'
+											|	SELECT WORD ';' <newline_list> DO <list> DONE
+											|	SELECT WORD ';' <newline_list> '{' <list> '}'
+											|	SELECT WORD <newline_list> IN <word_list> <list_terminator> <newline_list> DO <list> DONE
+											|	SELECT WORD <newline_list> IN <word_list> <list_terminator> <newline_list> '{' <list> '}'
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
++IF__________________________________________________________________
+<if_command>	::=								IF <compound_list> THEN <compound_list>                      FI
+											|	IF <compound_list> THEN <compound_list> ELSE <compound_list> FI
+											|	IF <compound_list> THEN <compound_list> ELIF <elif_clause>   FI
+											;
+
+<elif_clause>	::=								<compound_list> THEN <compound_list>
+											|	<compound_list> THEN <compound_list> ELSE <compound_list>
+											|	<compound_list> THEN <compound_list> ELIF <elif_clause>
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
++SUBSHELL__________________________________________________________________
+<subshell>	::=									'(' <compound_list> ')'
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+<=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>
++ARITH__________________________________________________________________
+<arith_command>	::=								ARITH_CMD
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+_COND__________________________________________________________________
+<cond_command>	::=								COND_START COND_CMD COND_END
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+_ARITH_FOR______________________________________________________________
+<arith_for_command>	::=							FOR ARITH_FOR <list_terminator> <newline_list> DO <compound_list> DONE
+											|	FOR ARITH_FOR <list_terminator> <newline_list> '{' <compound_list> '}'
+											|	FOR ARITH_FOR DO <compound_list> DONE
+											|	FOR ARITH_FOR '{' <compound_list> '}'
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+=========================================================================
+
++FUNCTION_DEF============================================================
+<function_def>	::=								         WORD '(' ')' <newline_list> <function_body>
+											|	FUNCTION WORD '(' ')' <newline_list> <function_body>
+											|	FUNCTION WORD         <newline_list> <function_body>
+											;
+
+<function_body>	::=								<shell_command>
+											|	<shell_command> <redirection_list>
+											;
+==========================================================================
+
+<group_command>	::=								'{' <compound_list> '}'
+											;
+
+<compound_list>	::=								<list>
+											|	<newline_list> <list1>
+											;
+
+/* A <list> allows leading or trailing newlines and
+   newlines as operators (equivalent to semicolons).
+   It must end with a newline or semicolon.
+   Lists are used within commands such as if, for, while.  */
+<list>	::=										<newline_list> <list0>
+											;
+
+<list0>	::=										<list1> '\n' <newline_list>
+											|	<list1> '&'  <newline_list>
+											|	<list1> ';'  <newline_list>
+											;
+
+#<list1>	::=										<list1> AND_IF  <newline_list> <list1>
+#											|	<list1> OR_IF   <newline_list> <list1>
+#											|	<list1> '&'     <newline_list> <list1>
+#											|	<list1> ';'     <newline_list> <list1>
+#											|	<list1> '\n'    <newline_list> <list1>
+#											|	<pipeline_command>
+#											;
+<list1>	::=										<list2>
+											|	<list2> '&' <newline_list> <list1>
+											|	<list2> ';' <newline_list> <list1>
+											|	<list2> '\n' <newline_list> <list1>
+											;
+<list2>	::=										<pipeline_command>
+											|	<pipeline_command> AND_IF <list2>
+											|	<pipeline_command> OR_IF <list2>
+											;
+
+<simple_list_terminator>	::=					'\n'
+											|	TOKEOF
+											;
+
+<list_terminator>	::=							'\n'
+											|	';'
+											|	TOKEOF
+											;
+
+<newline_list>	::=								EMPTY
+											|	'\n' <newline_list>
+											;
+
+<word_list>	::=									WORD
+											|	WORD <word_list>
+											;
+
+
++REDIR__________________________________________________________________
+<redirection_list>	::=							<redirection>
+											|	<redirection> <redirection_list>
+											;
+
+<redirection>	::=								       <io_file>
+											|	NUMBER <io_file>
+											|	       <io_here>
+											|	NUMBER <io_here>
+											;
+
+<io_file> 	::=									'<'  <filename>
+											|	'<&' <filename>
+											|	'>'  <filename>
+											|	'>&' <filename>
+											|	'>>' <filename>
+											|	'<>' <filename>
+											|	'>|' <filename>
+											;
+
+<filename>	::=									WORD					  /* Apply rule 2 */
+											;
+
+<io_here>	::=									'<<'  <here_end>
+											|	'<<-' <here_end>
+											|	'<<<' <here_end>
+											;
+
+<here_end>	::=									WORD					  /* Apply rule 3 */
+											;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+

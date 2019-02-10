@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   io_file.c                                          :+:      :+:    :+:   */
+/*   subshell.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:42:15 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 18:52:49 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/01 18:42:09 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/02 16:50:32 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-**                PREF
-**               /
-**              <(type)
-**             /  \
-**   (content)2    filename(content)
-*/
-
 #include "parser.h"
 
-t_astree	*io_file(void)
+t_astree	*subshell(void)
 {
-	t_type			type;
 	t_astree        *root;
-	t_astree        *res;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != LESS && type != LESSAND &&
-		type != GREAT && type != GREATAND &&
-		type != DGREAT && type != LESSGREAT && type != CLOBBER)
+	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != OBRACKET)
 		return (0);
 	g_curtok++;
-	if (!(res = filename()))
-		return (parseerror());
-	root = xmalloc(sizeof(t_astree));
-	root->type = type;
-	root->right = res;
+	if (!(root = compound_list()))
+		/* XXX - Error */
+		return (0);
+	if (g_curtok >= ((size_t *)g_tokens)[2])
+		return (0);
+	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != CBRACKET)
+		return (0);
+	g_curtok++;
 	return (root);
 }
-

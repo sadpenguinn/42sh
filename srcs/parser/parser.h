@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/05 20:55:55 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 14:44:16 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ extern void				*g_tokens;
 ** &&	AND_IF
 ** ||	OR_IF
 ** ;;	DSEMI
+** ;&	SEMI_AND
+** ;;&	DSEMI_AND
 ** <	LESS
 ** >	GREAT
 ** <&	LESSAND
@@ -50,9 +52,9 @@ extern void				*g_tokens;
 ** <>	LESSGREAT
 ** >|	CLOBBER
 ** <<-	DLESSDASH
+** <<<	TLESS
 ** V=W	ASSIGMENT_WORD
 ** 123	NUMBER
-** W	COMMAND
 ** \n	NEWLINE
 ** !	NOT
 ** |	PIPE
@@ -70,6 +72,15 @@ extern void				*g_tokens;
 ** IN
 ** ESAC
 ** FUNCTION
+** SELECT
+** COPROC
+**
+** COMMAND
+** REDIRECTION
+** TOKEOF
+** ARITH
+** COND
+**
 */
 # define WORD 0
 # define FORBRACKET 5
@@ -87,73 +98,87 @@ extern void				*g_tokens;
 # define AND_IF			SHIFT + 10
 # define OR_IF			SHIFT + 11
 # define DSEMI			SHIFT + 12
-# define LESS			SHIFT + 13
-# define GREAT			SHIFT + 14
-# define LESSAND		SHIFT + 15
-# define GREATAND		SHIFT + 16
-# define DLESS			SHIFT + 17
-# define DGREAT			SHIFT + 18
-# define LESSGREAT		SHIFT + 19
-# define CLOBBER		SHIFT + 20
-# define DLESSDASH		SHIFT + 21
-# define ASSIGMENT_WORD	SHIFT + 21
-# define NUMBER			SHIFT + 22
-# define COMMAND		SHIFT + 23
-# define NEWLINE		SHIFT + 24
-# define NOT			SHIFT + 25
-# define PIPE			SHIFT + 26
-# define IF				SHIFT + 27
-# define THEN			SHIFT + 28
-# define ELSE			SHIFT + 29
-# define ELIF			SHIFT + 30
-# define FI				SHIFT + 31
-# define FOR			SHIFT + 32
-# define WHILE			SHIFT + 33
-# define UNTIL			SHIFT + 34
-# define DO				SHIFT + 35
-# define DONE			SHIFT + 36
-# define CASE			SHIFT + 37
-# define IN				SHIFT + 38
-# define ESAC			SHIFT + 39
-# define FUNCTION		SHIFT + 40
+# define SEMI_AND		SHIFT + 13
+# define DSEMI_AND		SHIFT + 14
+# define LESS			SHIFT + 15
+# define GREAT			SHIFT + 16
+# define LESSAND		SHIFT + 17
+# define GREATAND		SHIFT + 18
+# define DLESS			SHIFT + 19
+# define DGREAT			SHIFT + 20
+# define LESSGREAT		SHIFT + 21
+# define CLOBBER		SHIFT + 22
+# define DLESSDASH		SHIFT + 23
+# define TLESS			SHIFT + 24
+# define ASSIGMENT_WORD	SHIFT + 25
+# define NUMBER			SHIFT + 26
+# define NEWLINE		SHIFT + 27
+# define NOT			SHIFT + 28
+# define PIPE			SHIFT + 29
+# define IF				SHIFT + 30
+# define THEN			SHIFT + 31
+# define ELSE			SHIFT + 32
+# define ELIF			SHIFT + 33
+# define FI				SHIFT + 34
+# define FOR			SHIFT + 35
+# define WHILE			SHIFT + 36
+# define UNTIL			SHIFT + 37
+# define DO				SHIFT + 38
+# define DONE			SHIFT + 39
+# define CASE			SHIFT + 40
+# define IN				SHIFT + 41
+# define ESAC			SHIFT + 42
+# define FUNCTION		SHIFT + 43
+# define SELECT			SHIFT + 44
+# define COMMAND 		SHIFT + 45
+# define REDIRECTION	SHIFT + 46
+# define TOKEOF			SHIFT + 47
+# define ARITH			SHIFT + 48
+# define COND			SHIFT + 49
 
-t_astree	*program(void);
-t_astree	*complete_commands(void);
-t_astree	*complete_commands_rest(void);
-t_astree	*complete_command(void);
-t_astree	*list(void);
-t_astree	*list_rest(void);
-t_astree	*and_or(void);
-t_astree	*and_or_rest(void);
-t_astree	*and_or2(void);
-t_astree	*and_or2_rest(void);
-t_astree	*pipeline(void);
-t_astree	*pipeline_sequence(void);
-t_astree	*pipeline_sequence_rest(void);
-t_astree	*command(void);
-t_astree	*compound_command(void);
-t_astree	*subshell(void);
-t_astree	*compound_list(void);
-t_astree	*compound_list_rest(void);
-t_astree	*separator(void);
-t_astree	*separator_op(void);
-t_astree	*for_clause(void);
-t_astree	*sequential_sep(void);
-t_astree	*name(void);
-t_astree	*in(void);
-t_astree	*wordlist(void);
+t_astree	*simple_list(void);
 
-t_astree	*linebreak(void);
-t_astree	*newline_list(void);
 t_astree	*simple_command(void);
-t_astree	*cmd_name(void);
-t_astree	*cmd_word(void);
-t_astree	*cmd_prefix(void);
-t_astree	*cmd_suffix(void);
-t_astree	*io_redirect(void);
+t_astree	*simple_command_element(void);
+
+t_astree	*for_command(void);
+
+t_astree	*case_command(void);
+t_astree	*case_clause(void);
+t_astree	*case_clause_sequence(void);
+t_astree	*pattern_list(void);
+t_astree	*pattern(void);
+
+t_astree	*if_command(void);
+t_astree	*elif_clause(void);
+t_astree	*subshell(void);
+t_astree	*arith_command(void);
+
+t_astree	*function_def(void);
+t_astree	*function_body(void);
+
+int			simple_list_terminator();	//	Return terminator type if exist and skip it. If no term return 0
+int			list_terminator();		//	Return terminator type if exist and skip it. If no term return 0
+void		newline_list(void);		//	Skip all \n
+t_astree	*word_list(void);
+
+t_astree	*redirection_list(void);
+t_astree	*redirection(void);
 t_astree	*io_file(void);
 t_astree	*filename(void);
 t_astree	*io_here(void);
 t_astree	*here_end(void);
 
-void	*savecur(unsigned int cur);
+
+t_astree	*compound_list(void);
+
+int		check_arith_word(char *str);
+int		check_word_type(int type);
+int		check_for_word(char *str);
+int		check_func_name(char *str);
+int		check_redir_num(char *str);
+int		check_assigment_word(char *str);
+int		checktype(t_type type);
+void		*savecur(unsigned int cur);
+t_astree	*freeastree(t_astree	*root);
+t_astree	*parseerror(void);

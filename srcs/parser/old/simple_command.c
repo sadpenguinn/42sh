@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   simple_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 17:44:55 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 13:53:11 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/31 16:07:24 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parser.h"
 
-int	ft_str_is_numeric(char *s)
+t_astree	*simple_command(void)
 {
-	if (!s)
-		return (0);
-	while (*s)
-		if (!ft_isdigit(*s++))
-			return (0);
-	return (1);
+	t_astree	*root;
+	t_astree	*res;
+
+	res = cmd_prefix();
+	if (!(root = cmd_word()))
+		root = xmalloc(sizeof(t_astree));
+	root->type = COMMAND;
+	root->left = res;
+	root->right = cmd_suffix();
+	return (root);
 }

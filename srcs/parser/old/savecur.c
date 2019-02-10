@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   savecur.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 08:39:35 by narchiba          #+#    #+#             */
-/*   Updated: 2019/02/07 11:29:07 by narchiba         ###   ########.fr       */
+/*   Created: 2019/02/05 20:53:10 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/05 20:55:58 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "readline.h"
-#include "array.h"
+#include "parser.h"
 
-int		main(void)
+void	*savecur(unsigned int cur)
 {
+	g_curtok = cur;
+	return ((void *)0);
 }

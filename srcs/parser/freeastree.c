@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   freeastree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 17:44:55 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/08 13:53:11 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/07 21:58:50 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/10 12:46:49 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parser.h"
 
-int	ft_str_is_numeric(char *s)
+t_astree	*freeastree(t_astree	*root)
 {
-	if (!s)
+	printf("%p\n", root);
+	printf("l:%p\n", root->left);
+	printf("r:%p\n", root->right);
+	if (!root)
 		return (0);
-	while (*s)
-		if (!ft_isdigit(*s++))
-			return (0);
-	return (1);
+	if (root->content)
+		free(root->content);
+	if (root->left)
+		freeastree(root->left);
+	if (root->right)
+		freeastree(root->right);
+	free(root);
+	return (0);
 }

@@ -1,44 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   io_file.c                                          :+:      :+:    :+:   */
+/*   word_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 15:42:15 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 18:52:49 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/05 17:56:21 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/09 16:02:37 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**                PREF
-**               /
-**              <(type)
-**             /  \
-**   (content)2    filename(content)
+**     \
+**      WORD(content)
+**          \
+**           WORD(content)
+**               \
+**                WORD(content)
 */
 
 #include "parser.h"
 
-t_astree	*io_file(void)
+t_astree	*word_list(void)
 {
-	t_type			type;
-	t_astree        *root;
-	t_astree        *res;
+	t_lexem		*token;
+	t_astree	*root;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != LESS && type != LESSAND &&
-		type != GREAT && type != GREATAND &&
-		type != DGREAT && type != LESSGREAT && type != CLOBBER)
+	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
+	if (!check_word_type(token->type))
 		return (0);
 	g_curtok++;
-	if (!(res = filename()))
-		return (parseerror());
 	root = xmalloc(sizeof(t_astree));
-	root->type = type;
-	root->right = res;
+	root->content = ft_strdup(token->word);
+	root->right = word_list();
 	return (root);
 }
-
