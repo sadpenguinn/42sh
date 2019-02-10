@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.h                                            :+:      :+:    :+:   */
+/*   vector_foreach.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 15:36:41 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/28 21:10:17 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/01/17 17:31:33 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/02 19:14:28 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOLS_H
-# define TOOLS_H
+#include "vector.h"
 
-# include <stdlib.h>
-# include <dirent.h>
-# include "libft.h"
+void	vector_foreach(void *vector, void (c)(void *))
+{
+	void	*data;
+	size_t	len;
+	size_t	i;
 
-int		match(char *s1, char *s2);
-int		glob(char *pattern, char *path, char ***matches, int *cnt);
-int		check_var(char *var);
-
-#endif
+	i = 0;
+	len = ((size_t *)vector)[2];
+	while (i < len)
+	{
+		data = vector_get_elem(vector, i);
+		(c)(data);
+		i++;
+	}
+}

@@ -6,11 +6,11 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:39:28 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/20 17:44:59 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/09 20:53:42 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "libshell.h"
 
 static int	get_sequence(char *matches, char **s2, int *i)
 {
@@ -67,8 +67,8 @@ static int	match_in_brackets(char **s1, char **s2)
 	}
 	if (!(matches = get_matches(s2)))
 		return (0);
-	if ((!rev && ft_strchr(matches, **s1)) || \
-											(rev && !ft_strchr(matches, **s1)))
+	if ((!rev && ft_strchr(matches, **s1)) ||
+							(rev && !ft_strchr(matches, **s1)))
 	{
 		*s1 += 1;
 		*s2 += 1;

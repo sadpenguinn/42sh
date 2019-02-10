@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_get_len.c                                   :+:      :+:    :+:   */
+/*   xmalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/04 12:24:04 by narchiba          #+#    #+#             */
-/*   Updated: 2019/01/04 12:24:05 by narchiba         ###   ########.fr       */
+/*   Created: 2019/01/31 16:07:52 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/09 20:55:00 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "libshell.h"
 
-size_t	vector_get_len(void *vector)
+void	*xmalloc(size_t bytes)
 {
-	size_t	*arr;
+	void	*temp;
 
-	arr = (size_t *)vector;
-	return (arr[2]);
+	if (!(temp = malloc(bytes)))
+	{
+		write(2, "cannot allocate memory\n", 23);
+		exit(EXIT_FAILURE);
+	}
+	ft_memset(temp, 0, bytes);
+	return (temp);
 }

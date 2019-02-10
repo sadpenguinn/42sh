@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_clean_test.c                                    :+:      :+:    :+:   */
+/*   vector_get_len.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 15:59:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/24 16:15:16 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/01/04 12:24:04 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/06 17:20:05 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utest.h"
+#include "vector.h"
 
-void	ut_clean_test(t_utest *ut)
+#include <unistd.h>
+
+size_t	vector_get_len(void *vector)
 {
-	t_utest	*tmp;
+	size_t	*arr;
 
-	while (ut)
-	{
-		tmp = ut->next;
-		free(ut->input);
-		free(ut->expect);
-		free(ut);
-		ut = tmp;
-	}
+	arr = (size_t *)vector;
+	return (arr[2]);
 }
