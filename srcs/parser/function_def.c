@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:55:26 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 21:59:04 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:47:36 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ static t_astree	*function_def_3(void)
 t_astree	*function_def(void)
 {
 	t_astree	*res;
-
+printf("in func def\n");
 	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return (parseerror());
+		return (0);
 	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != FUNCTION)
 		return (function_def_1());
 	if ((res = function_def_2()))

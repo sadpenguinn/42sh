@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 22:11:59 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:03:09 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,10 @@ extern void				*g_tokens;
 # define ARITH			SHIFT + 48
 # define COND			SHIFT + 49
 # define REST			SHIFT + 50
-# define CMDREDIR		SHIFT + 51
-# define PIPECMD		SHIFT + 52
+# define LIST1			SHIFT + 51
+# define LIST2			SHIFT + 52
+# define CMDREDIR		SHIFT + 53
+# define PIPECMD		SHIFT + 54
 
 t_astree	*simple_list(void);
 
@@ -168,6 +170,8 @@ t_astree	*arith_for_command(void);
 t_astree	*function_def(void);
 t_astree	*function_body(void);
 
+/* t_astree	*list0(void); */
+t_astree	*list1(void);
 t_astree	*list2(void);
 int			simple_list_terminator();	//	Return terminator type if exist and skip it. If no term return 0
 int			list_terminator();		//	Return terminator type if exist and skip it. If no term return 0

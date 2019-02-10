@@ -6,7 +6,7 @@
 #    By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 18:43:26 by bwerewol          #+#    #+#              #
-#    Updated: 2019/02/10 22:09:41 by bwerewol         ###   ########.fr        #
+#    Updated: 2019/02/10 23:03:07 by bwerewol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC		=	./main.c\
 			./function_def.c\
 			./function_body.c\
 			./compound_list.c\
+			./list1.c\
 			./list2.c\
 			./simple_list_terminator.c\
 			./list_terminator.c\

@@ -24,6 +24,7 @@
 											|	<simple_list2> ';' <simple_list1>
 											|	<simple_list2> '&' <simple_list1>
 											;
+<=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>
 <simple_list2>	::=								<pipeline_command>
 											|	<pipeline_command> OR_IF <newline_list> <pipeline_command>
 											|	<pipeline_command> AND_IF <newline_list> <pipeline_command>
@@ -187,21 +188,20 @@
 
 
 _COMPOUND__________________________________________________________________
-<compound_list>	::=								<list>
-											|	<newline_list> <list1>
+<compound_list>	::=								<newline_list> <list1>
 											;
 
 /* A <list> allows leading or trailing newlines and
    newlines as operators (equivalent to semicolons).
    It must end with a newline or semicolon.
    Lists are used within commands such as if, for, while.  */
-<list>	::=										<newline_list> <list0>
-											;
+#<list>	::=										<newline_list> <list0>
+#											;
 
-<list0>	::=										<list1> '\n' <newline_list>
-											|	<list1> '&'  <newline_list>
-											|	<list1> ';'  <newline_list>
-											;
+#<list0>	::=										<list1> '\n' <newline_list>
+#											|	<list1> '&'  <newline_list>
+#											|	<list1> ';'  <newline_list>
+#											;
 
 #<list1>	::=										<list1> AND_IF  <newline_list> <list1>
 #											|	<list1> OR_IF   <newline_list> <list1>
@@ -210,17 +210,21 @@ _COMPOUND__________________________________________________________________
 #											|	<list1> '\n'    <newline_list> <list1>
 #											|	<pipeline_command>
 #											;
-<=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>
 <list1>	::=										<list2> <list1_rest>
 											;
-<list1_rest>	::=								'&'  <newline_list> <list2> <list1_rest>
+<list1_rest>	::=								'\n' <newline_list> <list2> <list1_rest>
+											|	'&'  <newline_list> <list2> <list1_rest>
 											|	';'  <newline_list> <list2> <list1_rest>
-											|	'\n' <newline_list> <list2> <list1_rest>
+											|	'\n' <newline_list>
+											|	'&'  <newline_list>
+											|	';'  <newline_list>
+											|	EMPTY
 											;
 <list2>	::=										<pipeline_command> <list2_rest>
 											;
 <list2_rest>	::=								AND_IF <newline_list> <pipeline_command> <list2_rest>
 											|	OR_IF  <newline_list> <pipeline_command> <list2_rest>
+											|	EMPTY
 											;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
