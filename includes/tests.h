@@ -6,21 +6,20 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:40:49 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/06 19:00:10 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/10 19:16:27 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TESTS_H
 # define TESTS_H
 
-#include "lexer.h"
-#include "libft.h"
-#include "vector.h"
-#include "utest.h"
+# include "shell.h"
+# include "lexer.h"
+# include "libft.h"
+# include "vector.h"
+# include "libut.h"
 
-#define DELIM "@"
-#define DELIM_SIZE 1
-
-void	trim_quotes_tests(void);
+# define TESTS_DELIM "@"
+# define TESTS_DELIM_SIZE 1
 
 #endif
