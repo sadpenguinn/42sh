@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 19:17:38 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/11 20:46:55 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <stdlib.h>
 # include "libshell.h"
+# include "libhash.h"
+
+extern char 	**environ;
+/*extern t_hshtb	**g_env;*/
+
+# define INITIAL_ENV_HASH_SIZE	100
 
 # define TERM_SHIFT              50
 # define TERM_WORD              TERM_SHIFT + 0 /* word */

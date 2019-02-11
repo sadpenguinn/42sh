@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libshell.h                                         :+:      :+:    :+:   */
+/*   die.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/11 20:34:30 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/11 20:32:27 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/11 20:32:46 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBSHELL_H
-# define LIBSHELL_H
+#include "libshell.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <dirent.h>
-# include "libft.h"
-
-void	*xmalloc(size_t bytes);
-void	*xrealloc(void *p, size_t newsize, size_t oldsize);
-int		check_varname(char *var);
-int		match(char *s1, char *s2);
-int		glob(char *pattern, char *path, char ***matches, int *cnt);
-void	die(void);
-
-#endif
+void	die(void)
+{
+	write(2, "cannot allocate memory\n", 23);
+	exit(EXIT_FAILURE);
+}
