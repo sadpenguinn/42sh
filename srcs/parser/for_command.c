@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 12:51:53 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 17:41:53 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 12:43:47 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ t_astree	*for_command(void)
 {
 	int			type;
 	t_astree	*root;
-
-	if (!checktype(SELECT))
+printf("in for_command\n");
+	if (!checktype(FOR))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = FOR;

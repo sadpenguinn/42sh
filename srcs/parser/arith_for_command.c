@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 12:51:53 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 16:24:30 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 12:41:10 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_astree	*arith_for_command(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = FOR;
 	if (!(root->left = get_word()))
-		return (freeastree(root), parseerror());
+		return (savecur(g_curtok - 1));
 	if (!(root->right = get_compound_list()))
 		return (freeastree(root), parseerror());
 	return (root);

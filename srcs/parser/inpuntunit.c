@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newline_list.c                                     :+:      :+:    :+:   */
+/*   inpuntunit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 20:32:08 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/02 17:15:21 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/11 13:38:43 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/11 13:45:10 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_astree	*newline_list(void)
+t_astree	*inputunit(void)
 {
-	t_astree	*root;
+	t_astree	*res;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
-	root = xmalloc(sizeof(t_astree));
-	g_curtok++;
-	while (g_curtok <= ((size_t *)g_tokens)[2])
-	{
-		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type == NEWLINE)
-			g_curtok++;
-		else
-			break ;
-	}
-	return (root);
+	res = simple_list1();
+	if (!(simple_list_terminator()))
+		return (freeastree(res), parseerror());
+	return (res);
 }

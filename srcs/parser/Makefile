@@ -6,7 +6,7 @@
 #    By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 18:43:26 by bwerewol          #+#    #+#              #
-#    Updated: 2019/02/10 23:03:07 by bwerewol         ###   ########.fr        #
+#    Updated: 2019/02/11 13:45:22 by bwerewol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ SRC		=	./main.c\
 			./freeastree.c\
 			./savecur.c\
 			./otherfunc.c\
+			./inpuntunit.c\
+			./simple_list1.c\
+			./simple_list2.c\
 			./pipeline_command.c\
 			./pipeline.c\
 			./command.c\
@@ -59,9 +62,9 @@ OBJ		=	$(SRC:.c=.o)
 
 CC		?=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-INCLUDES=	-I../libft/includes -I../libft/vector -I../../includes
-CFLAGS	+=	-O0
-OTHERSRC=	../libft/libft.a ../xmalloc/xmalloc.c ../libft/vector/vector.a
+INCLUDES=	-I../lib/libft/includes -I../lib/vector/includes -I../../includes
+CFLAGS	+=	-O0 -g
+OTHERSRC=	../lib/libft/libft.a ../lib/libshell/xmalloc.c ../lib/vector/libvector.a
 
 .PHONY: all clean fclean re
 
