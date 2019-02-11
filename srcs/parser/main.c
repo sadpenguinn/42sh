@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 21:04:10 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 23:04:43 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 13:45:46 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 unsigned int	g_curtok;
 void			*g_tokens;
+int				g_parseerr = 0;
 
 void			print_astree(t_astree *root);
 
@@ -26,57 +27,76 @@ int main(void)
 	g_tokens = vector_create(sizeof(t_lexem));
 
 
-
-	/* lex.type = WORD; */
-	/* lex.word = "ls"; */
-	/* vector_push_back(&g_tokens, &lex); */
-
-	/* lex.type = OR_IF; */
-	/* lex.word = "&&"; */
-	/* vector_push_back(&g_tokens, &lex); */
-
-	lex.type = WORD;
-	lex.word = "ls";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = AND_IF;
-	lex.word = "&&";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = WORD;
-	lex.word = "ls";
-	vector_push_back(&g_tokens, &lex);
-
-	/* lex.type = FOR; */
-	/* lex.word = "for"; */
+	/* lex.type = IF; */
+	/* lex.word = "if"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
 	/* lex.type = WORD; */
-	/* lex.word = "(;;)"; */
+	/* lex.word = "echo"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	/* lex.type = DO; */
-	/* lex.word = "do"; */
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	/* lex.type = DONE; */
-	/* lex.word = "done"; */
+	/* lex.type = THEN; */
+	/* lex.word = "then"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = AND;
-	lex.word = "&";
+	/* lex.type = WORD; */
+	/* lex.word = "echo"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = FI; */
+	/* lex.word = "fi"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = IF; */
+	/* lex.word = "if"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	lex.type = WORD;
+	lex.word = "cat";
 	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = NEWLINE; */
-	/* lex.word = "\n"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = SEMI;
+	lex.word = ";";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = THEN;
+	lex.word = "then";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = WORD;
+	lex.word = "echo";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = SEMI;
+	lex.word = ";";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = FI;
+	lex.word = "fi";
+	vector_push_back(&g_tokens, &lex);
 
 	printf("Tok count:%lu\n", ((size_t *)g_tokens)[2]);
-
-	root = list1();
+	g_parseerr = 0;
+	root = inputunit();
+	/* root = list1(); */
+	/* root = for_command(); */
 	/* root = pipeline_command(); */
 	/* root = command(); */
 	/* root = simple_command(); */
+	printf("Result: %s\n", root ? "YES" : "NO");
 	print_astree(root);
+	freeastree(root);
 	return (0);
 }

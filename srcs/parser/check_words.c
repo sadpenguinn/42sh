@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:32:43 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 21:43:14 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 12:12:47 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ int		check_assigment_word(char *str)
 
 int		check_word_type(int type)
 {
-	printf("%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n", 
-		 WORD, IF, THEN, ELSE
-		, ELIF, FI, FOR, WHILE
-		, UNTIL, DO, DONE, CASE
-		, IN, ESAC, FUNCTION, SELECT);
+	/* printf("%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n", */ 
+	/* 	 WORD, IF, THEN, ELSE */
+	/* 	, ELIF, FI, FOR, WHILE */
+	/* 	, UNTIL, DO, DONE, CASE */
+	/* 	, IN, ESAC, FUNCTION, SELECT, */
+	/* 	NOT); */
 	if (type == WORD || type == IF || type == THEN || type == ELSE ||
 		type == ELIF || type == FI || type == FOR || type == WHILE ||
 		type == UNTIL || type == DO || type == DONE || type == CASE ||

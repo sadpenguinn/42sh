@@ -1,75 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list2.c                                            :+:      :+:    :+:   */
+/*   simple_list1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:08:06 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 13:13:22 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 13:26:40 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**	PLST - Pipeline LiST
-**	N - Null
-**
 **      /
-**  PLST
+**  LST2
 **
-**      LIST2
+**      LIST1
 **     /    \
-** PLST      AND_IF
-**          /      \
-**      PLST        OR_IF
-**                 /     \
-**             PLST       ...
+** LST2      SEMI
+**          /    \
+**      LST2      NEWLINE
+**               /       \
+**           LST2         ...
 */
 
 #include "parser.h"
 
-static t_astree	*list2_rest(void)
+static t_astree	*simple_list1_rest(void)
 {
-	unsigned int	curtmp;
-	int			type;
-	t_astree	*root;
+	t_type			type;
+	t_astree		*root;
 
-	curtmp = g_curtok;
+	if (g_curtok >= ((size_t *)g_tokens)[2])
+		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != AND_IF && type != OR_IF)
+	if (type != AND && type != SEMI)
 		return (0);
 	g_curtok++;
-	newline_list();
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
-	if (!(root->left = pipeline_command()))
-		return (savecur(curtmp), freeastree(root));
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (!(root->left = simple_list2()))
 		return (root);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == AND_IF || type == OR_IF)
-		if (!(root->right = list2_rest()))
-			return (freeastree(root));
+	root->right = simple_list1_rest();
 	return (root);
 }
 
-t_astree		*list2(void)
+t_astree		*simple_list1(void)
 {
-	int				type;
+	t_type			type;
 	t_astree		*root;
 	t_astree		*res[2];
 
-	if (!(res[0] = pipeline_command()))
+	if (!(res[0] = simple_list2()))
 		return (0);
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (res[0]);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != AND_IF && type != OR_IF)
+	if (type != AND && type != SEMI)
 		return (res[0]);
-	if (!(res[1] = list2_rest()))
+	if (!(res[1] = simple_list1_rest()))
 		return (res[0]);
 	root = xmalloc(sizeof(t_astree));
-	root->type = LIST2;
+	root->type = LIST1;
 	root->left = res[0];
 	root->right = res[1];
 	return (root);

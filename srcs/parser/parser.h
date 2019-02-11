@@ -6,11 +6,12 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 23:03:09 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 13:45:08 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "vector.h"
 #include <stdio.h>
 
 void	*xmalloc(size_t bytes);
@@ -25,6 +26,7 @@ typedef struct			s_astree
 
 extern unsigned int		g_curtok;
 extern void				*g_tokens;
+extern int				g_parseerr;
 
 /*
 **	<|Parser defines|>
@@ -144,8 +146,10 @@ extern void				*g_tokens;
 # define CMDREDIR		SHIFT + 53
 # define PIPECMD		SHIFT + 54
 
-t_astree	*simple_list(void);
 
+t_astree	*inputunit(void);
+t_astree	*simple_list1(void);
+t_astree	*simple_list2(void);
 t_astree	*pipeline_command(void);
 t_astree	*pipeline(void);
 t_astree	*command(void);
@@ -170,6 +174,7 @@ t_astree	*arith_for_command(void);
 t_astree	*function_def(void);
 t_astree	*function_body(void);
 
+t_astree	*compound_list(void);
 /* t_astree	*list0(void); */
 t_astree	*list1(void);
 t_astree	*list2(void);
@@ -185,7 +190,6 @@ t_astree	*io_here(void);
 t_astree	*here_end(void);
 
 
-t_astree	*compound_list(void);
 
 int		check_select_word(char *str);
 int		check_arith_for(char *str);

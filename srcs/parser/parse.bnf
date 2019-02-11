@@ -1,4 +1,4 @@
-<inputunit>	::=									<simple_list> <simple_list_terminator>
+<inputunit>	::=									<simple_list1> <simple_list_terminator>
 											|	'\n'
 											|	error '\n'
 											|	TOKEOF
@@ -9,10 +9,6 @@
    only following operators, where they are not significant.
 
    This is what an <inputunit> consists of.  */
-<simple_list>	::=								<simple_list1>
-											|	<simple_list1> '&'
-											|	<simple_list1> ';'
-											;
 
 #<simple_list1>	::=								<simple_list1> AND_IF <newline_list> <simple_list1>
 #											|	<simple_list1> OR_IF <newline_list> <simple_list1>
@@ -20,14 +16,20 @@
 #											|	<simple_list1> ';' <simple_list1>
 #											|	<pipeline_command>
 #											;
-<simple_list1>	::=								<simple_list2>
-											|	<simple_list2> ';' <simple_list1>
-											|	<simple_list2> '&' <simple_list1>
+<simple_list1>	::=								<simple_list2> <simple_list1_rest>
+											;
+<simple_list1_rest>	::=							'&'  <simple_list2> <simple_list1_rest>
+											|	';'  <simple_list2> <simple_list1_rest>
+											|	'&'
+											|	';'
+											|	EMPTY
 											;
 <=\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/-\_/=>
-<simple_list2>	::=								<pipeline_command>
-											|	<pipeline_command> OR_IF <newline_list> <pipeline_command>
-											|	<pipeline_command> AND_IF <newline_list> <pipeline_command>
+<simple_list2>	::=								<pipeline_command> <simple_list2_rest>
+											;
+<simple_list2_rest>	::=							OR_IF  <newline_list> <pipeline_command> <simple_list2_rest>
+											|	AND_IF <newline_list> <pipeline_command> <simple_list2_rest>
+											|	EMPTY
 											;
 
 <pipeline_command>	::=							     <pipeline>

@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 18:04:30 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 20:23:32 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 12:33:34 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_astree	*until_command()
 
 static t_astree	*other_commands()
 {
-	int			type;
+	t_type		type;
 	t_astree	*res;
 
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
@@ -82,8 +82,8 @@ static t_astree	*other_commands()
 
 t_astree		*shell_command(void)
 {
-printf("IN\n");
-	int			type;
+printf("in shell_command\n");
+	t_type		type;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);

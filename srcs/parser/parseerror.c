@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:05 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 22:44:25 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 12:48:48 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ t_astree	*parseerror(void)
 {
 	t_lexem	*token;
 
+	/* if (g_parseerr) */
+	/* 	return (0); */
+	g_parseerr = 1;
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 	{
 		printf("\e[0;31m42h: parse error near `%s'\n\e[0m", "EOF");
