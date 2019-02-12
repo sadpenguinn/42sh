@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Users/nkertzma/.brew/Cellar/cmake/3.13.4/bin/cmake
+CMAKE_COMMAND = /Users/bwerewol/.brew/Cellar/cmake/3.13.3/bin/cmake
 
 # The command to remove a file.
-RM = /Users/nkertzma/.brew/Cellar/cmake/3.13.4/bin/cmake -E remove -f
+RM = /Users/bwerewol/.brew/Cellar/cmake/3.13.3/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nkertzma/Documents/42sh/srcs/lib/vector
+CMAKE_SOURCE_DIR = /Users/bwerewol/Projects/42sh/srcs/lib/vector
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nkertzma/Documents/42sh/srcs/lib/vector
+CMAKE_BINARY_DIR = /Users/bwerewol/Projects/42sh/srcs/lib/vector
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/nkertzma/Documents/42sh/srcs/lib/vector
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Users/nkertzma/.brew/Cellar/cmake/3.13.4/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Users/bwerewol/.brew/Cellar/cmake/3.13.3/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/Users/nkertzma/.brew/Cellar/cmake/3.13.4/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Users/bwerewol/.brew/Cellar/cmake/3.13.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nkertzma/Documents/42sh/srcs/lib/vector/CMakeFiles /Users/nkertzma/Documents/42sh/srcs/lib/vector/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bwerewol/Projects/42sh/srcs/lib/vector/CMakeFiles /Users/bwerewol/Projects/42sh/srcs/lib/vector/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nkertzma/Documents/42sh/srcs/lib/vector/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bwerewol/Projects/42sh/srcs/lib/vector/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 21:04:10 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 13:45:46 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/11 18:46:19 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ int main(void)
 
 	g_tokens = vector_create(sizeof(t_lexem));
 
+	lex.type = WORD;
+	lex.word = "ls";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = WORD;
+	lex.word = "ls";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = GREAT;
+	lex.word = "ls";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = WORD;
+	lex.word = "A=4";
+	vector_push_back(&g_tokens, &lex);
 
 	/* lex.type = IF; */
 	/* lex.word = "if"; */
@@ -63,29 +78,29 @@ int main(void)
 	/* lex.word = "if"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = WORD;
-	lex.word = "cat";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = WORD; */
+	/* lex.word = "cat"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = SEMI;
-	lex.word = ";";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = THEN;
-	lex.word = "then";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = THEN; */
+	/* lex.word = "then"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = WORD;
-	lex.word = "echo";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = WORD; */
+	/* lex.word = "echo"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = SEMI;
-	lex.word = ";";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = FI;
-	lex.word = "fi";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = FI; */
+	/* lex.word = "fi"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
 	printf("Tok count:%lu\n", ((size_t *)g_tokens)[2]);
 	g_parseerr = 0;
