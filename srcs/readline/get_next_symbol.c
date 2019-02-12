@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "line_editing.h"
+#include <termios.h>
+#include "readline.h"
+#include <unistd.h>
 
 static t_uchar	ft_getchar()
 {
@@ -30,6 +32,7 @@ t_uchar	get_next_symbol(void)
 	tcgetattr(0, &old);
 	new = old;
 	new.c_lflag &= ~(ICANON | ECHO);
+/*	new.c_lflag &= ~(ICANON);*/
     new.c_cc[VLNEXT] = 026;
     new.c_cc[VEOF] = 04;
     new.c_cc[VREPRINT] = 022;

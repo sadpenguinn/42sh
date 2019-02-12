@@ -16,4 +16,8 @@
 
 int		main(void)
 {
+	int     ret;
+
+	while ((ret = ft_readline()))
+		;
 }
