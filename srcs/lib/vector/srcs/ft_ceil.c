@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_front.c                                      :+:      :+:    :+:   */
+/*   ft_ceill.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/04 14:16:32 by narchiba          #+#    #+#             */
-/*   Updated: 2019/01/04 14:24:18 by narchiba         ###   ########.fr       */
+/*   Created: 2018/11/27 07:30:26 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/12 13:55:46 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-void	*queue_front(void *queue)
+long double	ft_ceill(long double x)
 {
-	size_t	*arr;
-
-	arr = (size_t *)queue;
-	if (vector_is_empty((void *)(arr[1])))
-		return (vector_front((void *)arr[0]));
-	return (vector_back((void *)arr[1]));
+	if ((size_t)x == x)
+		return ((size_t)x);
+	return ((long double)((size_t)x + 1));
 }

@@ -6,18 +6,18 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 20:46:55 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/12 12:56:02 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHELL_H
-#define SHELL_H
+# define SHELL_H
 
 # include <stdlib.h>
 # include "libshell.h"
 # include "libhash.h"
 
-extern char 	**environ;
+extern char		**environ;
 /*extern t_hshtb	**g_env;*/
 
 # define INITIAL_ENV_HASH_SIZE	100
@@ -63,7 +63,7 @@ extern char 	**environ;
 # define TERM_FOR               TERM_SHIFT + 37 /* for */
 # define TERM_FUNCTION          TERM_SHIFT + 38 /* function */
 # define TERM_IN                TERM_SHIFT + 39 /* in */
-# define TERM_SElECT            TERM_SHIFT + 40 /* select */
+# define TERM_SELECT            TERM_SHIFT + 40 /* select */
 # define TERM_AND               TERM_SHIFT + 42 /* & */
 # define TERM_DSEMI             TERM_SHIFT + 43 /* ;; */
 # define TERM_NEWLINE           TERM_SHIFT + 54 /* \n */

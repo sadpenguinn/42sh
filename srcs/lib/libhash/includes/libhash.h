@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HASH_TABLES_H
-# define HASH_TABLES_H
+#ifndef LIBHASH_H
+# define LIBHASH_H
 
 # include <stdlib.h>
 # include <unistd.h>

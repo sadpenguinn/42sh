@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned long ft_pow(int n, int pw)
+unsigned long	ft_pow(int n, int pw)
 {
 	unsigned long	nb;
 

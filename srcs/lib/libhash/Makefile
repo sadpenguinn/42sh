@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Users/nkertzma/.brew/Cellar/cmake/3.13.4/bin/cmake
+CMAKE_COMMAND = /Users/nkertzma/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /Users/nkertzma/.brew/Cellar/cmake/3.13.4/bin/cmake -E remove -f
+RM = /Users/nkertzma/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nkertzma/Documents/42sh/srcs/lib/libhash
+CMAKE_SOURCE_DIR = /Users/nkertzma/Documents/42sh
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nkertzma/Documents/42sh/srcs/lib/libhash
+CMAKE_BINARY_DIR = /Users/nkertzma/Documents/42sh
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/nkertzma/Documents/42sh/srcs/lib/libhash
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Users/nkertzma/.brew/Cellar/cmake/3.13.4/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Users/nkertzma/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/Users/nkertzma/.brew/Cellar/cmake/3.13.4/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/Users/nkertzma/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nkertzma/Documents/42sh/srcs/lib/libhash/CMakeFiles /Users/nkertzma/Documents/42sh/srcs/lib/libhash/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nkertzma/Documents/42sh/srcs/lib/libhash/CMakeFiles 0
+	cd /Users/nkertzma/Documents/42sh && $(CMAKE_COMMAND) -E cmake_progress_start /Users/nkertzma/Documents/42sh/CMakeFiles /Users/nkertzma/Documents/42sh/srcs/lib/libhash/CMakeFiles/progress.marks
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f CMakeFiles/Makefile2 srcs/lib/libhash/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nkertzma/Documents/42sh/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f CMakeFiles/Makefile2 srcs/lib/libhash/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,30 +97,32 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f CMakeFiles/Makefile2 srcs/lib/libhash/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f CMakeFiles/Makefile2 srcs/lib/libhash/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/nkertzma/Documents/42sh && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named hash
+# Convenience name for target.
+srcs/lib/libhash/CMakeFiles/hash.dir/rule:
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f CMakeFiles/Makefile2 srcs/lib/libhash/CMakeFiles/hash.dir/rule
+.PHONY : srcs/lib/libhash/CMakeFiles/hash.dir/rule
 
-# Build rule for target.
-hash: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hash
+# Convenience name for target.
+hash: srcs/lib/libhash/CMakeFiles/hash.dir/rule
+
 .PHONY : hash
 
 # fast build rule for target.
 hash/fast:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/build
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/build
 .PHONY : hash/fast
 
 srcs/hash_clean.o: srcs/hash_clean.c.o
@@ -129,7 +131,7 @@ srcs/hash_clean.o: srcs/hash_clean.c.o
 
 # target to build an object file
 srcs/hash_clean.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_clean.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_clean.c.o
 .PHONY : srcs/hash_clean.c.o
 
 srcs/hash_clean.i: srcs/hash_clean.c.i
@@ -138,7 +140,7 @@ srcs/hash_clean.i: srcs/hash_clean.c.i
 
 # target to preprocess a source file
 srcs/hash_clean.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_clean.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_clean.c.i
 .PHONY : srcs/hash_clean.c.i
 
 srcs/hash_clean.s: srcs/hash_clean.c.s
@@ -147,7 +149,7 @@ srcs/hash_clean.s: srcs/hash_clean.c.s
 
 # target to generate assembly for a file
 srcs/hash_clean.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_clean.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_clean.c.s
 .PHONY : srcs/hash_clean.c.s
 
 srcs/hash_delete.o: srcs/hash_delete.c.o
@@ -156,7 +158,7 @@ srcs/hash_delete.o: srcs/hash_delete.c.o
 
 # target to build an object file
 srcs/hash_delete.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_delete.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_delete.c.o
 .PHONY : srcs/hash_delete.c.o
 
 srcs/hash_delete.i: srcs/hash_delete.c.i
@@ -165,7 +167,7 @@ srcs/hash_delete.i: srcs/hash_delete.c.i
 
 # target to preprocess a source file
 srcs/hash_delete.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_delete.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_delete.c.i
 .PHONY : srcs/hash_delete.c.i
 
 srcs/hash_delete.s: srcs/hash_delete.c.s
@@ -174,7 +176,7 @@ srcs/hash_delete.s: srcs/hash_delete.c.s
 
 # target to generate assembly for a file
 srcs/hash_delete.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_delete.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_delete.c.s
 .PHONY : srcs/hash_delete.c.s
 
 srcs/hash_find.o: srcs/hash_find.c.o
@@ -183,7 +185,7 @@ srcs/hash_find.o: srcs/hash_find.c.o
 
 # target to build an object file
 srcs/hash_find.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_find.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_find.c.o
 .PHONY : srcs/hash_find.c.o
 
 srcs/hash_find.i: srcs/hash_find.c.i
@@ -192,7 +194,7 @@ srcs/hash_find.i: srcs/hash_find.c.i
 
 # target to preprocess a source file
 srcs/hash_find.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_find.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_find.c.i
 .PHONY : srcs/hash_find.c.i
 
 srcs/hash_find.s: srcs/hash_find.c.s
@@ -201,7 +203,7 @@ srcs/hash_find.s: srcs/hash_find.c.s
 
 # target to generate assembly for a file
 srcs/hash_find.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_find.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_find.c.s
 .PHONY : srcs/hash_find.c.s
 
 srcs/hash_foreach.o: srcs/hash_foreach.c.o
@@ -210,7 +212,7 @@ srcs/hash_foreach.o: srcs/hash_foreach.c.o
 
 # target to build an object file
 srcs/hash_foreach.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_foreach.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_foreach.c.o
 .PHONY : srcs/hash_foreach.c.o
 
 srcs/hash_foreach.i: srcs/hash_foreach.c.i
@@ -219,7 +221,7 @@ srcs/hash_foreach.i: srcs/hash_foreach.c.i
 
 # target to preprocess a source file
 srcs/hash_foreach.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_foreach.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_foreach.c.i
 .PHONY : srcs/hash_foreach.c.i
 
 srcs/hash_foreach.s: srcs/hash_foreach.c.s
@@ -228,7 +230,7 @@ srcs/hash_foreach.s: srcs/hash_foreach.c.s
 
 # target to generate assembly for a file
 srcs/hash_foreach.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_foreach.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_foreach.c.s
 .PHONY : srcs/hash_foreach.c.s
 
 srcs/hash_index.o: srcs/hash_index.c.o
@@ -237,7 +239,7 @@ srcs/hash_index.o: srcs/hash_index.c.o
 
 # target to build an object file
 srcs/hash_index.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_index.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_index.c.o
 .PHONY : srcs/hash_index.c.o
 
 srcs/hash_index.i: srcs/hash_index.c.i
@@ -246,7 +248,7 @@ srcs/hash_index.i: srcs/hash_index.c.i
 
 # target to preprocess a source file
 srcs/hash_index.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_index.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_index.c.i
 .PHONY : srcs/hash_index.c.i
 
 srcs/hash_index.s: srcs/hash_index.c.s
@@ -255,7 +257,7 @@ srcs/hash_index.s: srcs/hash_index.c.s
 
 # target to generate assembly for a file
 srcs/hash_index.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_index.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_index.c.s
 .PHONY : srcs/hash_index.c.s
 
 srcs/hash_init.o: srcs/hash_init.c.o
@@ -264,7 +266,7 @@ srcs/hash_init.o: srcs/hash_init.c.o
 
 # target to build an object file
 srcs/hash_init.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_init.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_init.c.o
 .PHONY : srcs/hash_init.c.o
 
 srcs/hash_init.i: srcs/hash_init.c.i
@@ -273,7 +275,7 @@ srcs/hash_init.i: srcs/hash_init.c.i
 
 # target to preprocess a source file
 srcs/hash_init.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_init.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_init.c.i
 .PHONY : srcs/hash_init.c.i
 
 srcs/hash_init.s: srcs/hash_init.c.s
@@ -282,7 +284,7 @@ srcs/hash_init.s: srcs/hash_init.c.s
 
 # target to generate assembly for a file
 srcs/hash_init.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_init.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_init.c.s
 .PHONY : srcs/hash_init.c.s
 
 srcs/hash_insert.o: srcs/hash_insert.c.o
@@ -291,7 +293,7 @@ srcs/hash_insert.o: srcs/hash_insert.c.o
 
 # target to build an object file
 srcs/hash_insert.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_insert.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_insert.c.o
 .PHONY : srcs/hash_insert.c.o
 
 srcs/hash_insert.i: srcs/hash_insert.c.i
@@ -300,7 +302,7 @@ srcs/hash_insert.i: srcs/hash_insert.c.i
 
 # target to preprocess a source file
 srcs/hash_insert.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_insert.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_insert.c.i
 .PHONY : srcs/hash_insert.c.i
 
 srcs/hash_insert.s: srcs/hash_insert.c.s
@@ -309,7 +311,7 @@ srcs/hash_insert.s: srcs/hash_insert.c.s
 
 # target to generate assembly for a file
 srcs/hash_insert.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_insert.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_insert.c.s
 .PHONY : srcs/hash_insert.c.s
 
 srcs/hash_print.o: srcs/hash_print.c.o
@@ -318,7 +320,7 @@ srcs/hash_print.o: srcs/hash_print.c.o
 
 # target to build an object file
 srcs/hash_print.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_print.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_print.c.o
 .PHONY : srcs/hash_print.c.o
 
 srcs/hash_print.i: srcs/hash_print.c.i
@@ -327,7 +329,7 @@ srcs/hash_print.i: srcs/hash_print.c.i
 
 # target to preprocess a source file
 srcs/hash_print.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_print.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_print.c.i
 .PHONY : srcs/hash_print.c.i
 
 srcs/hash_print.s: srcs/hash_print.c.s
@@ -336,7 +338,7 @@ srcs/hash_print.s: srcs/hash_print.c.s
 
 # target to generate assembly for a file
 srcs/hash_print.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_print.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_print.c.s
 .PHONY : srcs/hash_print.c.s
 
 srcs/hash_test.o: srcs/hash_test.c.o
@@ -345,7 +347,7 @@ srcs/hash_test.o: srcs/hash_test.c.o
 
 # target to build an object file
 srcs/hash_test.c.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_test.c.o
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_test.c.o
 .PHONY : srcs/hash_test.c.o
 
 srcs/hash_test.i: srcs/hash_test.c.i
@@ -354,7 +356,7 @@ srcs/hash_test.i: srcs/hash_test.c.i
 
 # target to preprocess a source file
 srcs/hash_test.c.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_test.c.i
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_test.c.i
 .PHONY : srcs/hash_test.c.i
 
 srcs/hash_test.s: srcs/hash_test.c.s
@@ -363,7 +365,7 @@ srcs/hash_test.s: srcs/hash_test.c.s
 
 # target to generate assembly for a file
 srcs/hash_test.c.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/srcs/hash_test.c.s
+	cd /Users/nkertzma/Documents/42sh && $(MAKE) -f srcs/lib/libhash/CMakeFiles/hash.dir/build.make srcs/lib/libhash/CMakeFiles/hash.dir/srcs/hash_test.c.s
 .PHONY : srcs/hash_test.c.s
 
 # Help Target
@@ -413,6 +415,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/nkertzma/Documents/42sh && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 11:56:48 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/24 16:17:01 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/12 13:57:52 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct	s_uinput
 	size_t		expect_size;
 }				t_uinput;
 
-int				ut_add_test(t_utest **ut, int (*test)(void *input, void *expect),
-														t_uinput *input);
+int				ut_add_test(t_utest **ut,
+				int (*test)(void *input, void *expect), t_uinput *input);
 int				ut_run_test(t_utest *ut);
 void			ut_assert_test(char *result, char *expectation);
 void			ut_clean_test(t_utest *ut);

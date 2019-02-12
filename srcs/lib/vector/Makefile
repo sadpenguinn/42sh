@@ -123,32 +123,32 @@ vector/fast:
 	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/build
 .PHONY : vector/fast
 
-srcs/ft_ceill.o: srcs/ft_ceill.c.o
+srcs/ft_ceil.o: srcs/ft_ceil.c.o
 
-.PHONY : srcs/ft_ceill.o
+.PHONY : srcs/ft_ceil.o
 
 # target to build an object file
-srcs/ft_ceill.c.o:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/ft_ceill.c.o
-.PHONY : srcs/ft_ceill.c.o
+srcs/ft_ceil.c.o:
+	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/ft_ceil.c.o
+.PHONY : srcs/ft_ceil.c.o
 
-srcs/ft_ceill.i: srcs/ft_ceill.c.i
+srcs/ft_ceil.i: srcs/ft_ceil.c.i
 
-.PHONY : srcs/ft_ceill.i
+.PHONY : srcs/ft_ceil.i
 
 # target to preprocess a source file
-srcs/ft_ceill.c.i:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/ft_ceill.c.i
-.PHONY : srcs/ft_ceill.c.i
+srcs/ft_ceil.c.i:
+	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/ft_ceil.c.i
+.PHONY : srcs/ft_ceil.c.i
 
-srcs/ft_ceill.s: srcs/ft_ceill.c.s
+srcs/ft_ceil.s: srcs/ft_ceil.c.s
 
-.PHONY : srcs/ft_ceill.s
+.PHONY : srcs/ft_ceil.s
 
 # target to generate assembly for a file
-srcs/ft_ceill.c.s:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/ft_ceill.c.s
-.PHONY : srcs/ft_ceill.c.s
+srcs/ft_ceil.c.s:
+	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/ft_ceil.c.s
+.PHONY : srcs/ft_ceil.c.s
 
 srcs/ft_floorl.o: srcs/ft_floorl.c.o
 
@@ -176,195 +176,6 @@ srcs/ft_floorl.s: srcs/ft_floorl.c.s
 srcs/ft_floorl.c.s:
 	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/ft_floorl.c.s
 .PHONY : srcs/ft_floorl.c.s
-
-srcs/queue_back.o: srcs/queue_back.c.o
-
-.PHONY : srcs/queue_back.o
-
-# target to build an object file
-srcs/queue_back.c.o:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_back.c.o
-.PHONY : srcs/queue_back.c.o
-
-srcs/queue_back.i: srcs/queue_back.c.i
-
-.PHONY : srcs/queue_back.i
-
-# target to preprocess a source file
-srcs/queue_back.c.i:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_back.c.i
-.PHONY : srcs/queue_back.c.i
-
-srcs/queue_back.s: srcs/queue_back.c.s
-
-.PHONY : srcs/queue_back.s
-
-# target to generate assembly for a file
-srcs/queue_back.c.s:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_back.c.s
-.PHONY : srcs/queue_back.c.s
-
-srcs/queue_create.o: srcs/queue_create.c.o
-
-.PHONY : srcs/queue_create.o
-
-# target to build an object file
-srcs/queue_create.c.o:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_create.c.o
-.PHONY : srcs/queue_create.c.o
-
-srcs/queue_create.i: srcs/queue_create.c.i
-
-.PHONY : srcs/queue_create.i
-
-# target to preprocess a source file
-srcs/queue_create.c.i:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_create.c.i
-.PHONY : srcs/queue_create.c.i
-
-srcs/queue_create.s: srcs/queue_create.c.s
-
-.PHONY : srcs/queue_create.s
-
-# target to generate assembly for a file
-srcs/queue_create.c.s:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_create.c.s
-.PHONY : srcs/queue_create.c.s
-
-srcs/queue_free.o: srcs/queue_free.c.o
-
-.PHONY : srcs/queue_free.o
-
-# target to build an object file
-srcs/queue_free.c.o:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_free.c.o
-.PHONY : srcs/queue_free.c.o
-
-srcs/queue_free.i: srcs/queue_free.c.i
-
-.PHONY : srcs/queue_free.i
-
-# target to preprocess a source file
-srcs/queue_free.c.i:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_free.c.i
-.PHONY : srcs/queue_free.c.i
-
-srcs/queue_free.s: srcs/queue_free.c.s
-
-.PHONY : srcs/queue_free.s
-
-# target to generate assembly for a file
-srcs/queue_free.c.s:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_free.c.s
-.PHONY : srcs/queue_free.c.s
-
-srcs/queue_front.o: srcs/queue_front.c.o
-
-.PHONY : srcs/queue_front.o
-
-# target to build an object file
-srcs/queue_front.c.o:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_front.c.o
-.PHONY : srcs/queue_front.c.o
-
-srcs/queue_front.i: srcs/queue_front.c.i
-
-.PHONY : srcs/queue_front.i
-
-# target to preprocess a source file
-srcs/queue_front.c.i:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_front.c.i
-.PHONY : srcs/queue_front.c.i
-
-srcs/queue_front.s: srcs/queue_front.c.s
-
-.PHONY : srcs/queue_front.s
-
-# target to generate assembly for a file
-srcs/queue_front.c.s:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_front.c.s
-.PHONY : srcs/queue_front.c.s
-
-srcs/queue_pop_back.o: srcs/queue_pop_back.c.o
-
-.PHONY : srcs/queue_pop_back.o
-
-# target to build an object file
-srcs/queue_pop_back.c.o:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_pop_back.c.o
-.PHONY : srcs/queue_pop_back.c.o
-
-srcs/queue_pop_back.i: srcs/queue_pop_back.c.i
-
-.PHONY : srcs/queue_pop_back.i
-
-# target to preprocess a source file
-srcs/queue_pop_back.c.i:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_pop_back.c.i
-.PHONY : srcs/queue_pop_back.c.i
-
-srcs/queue_pop_back.s: srcs/queue_pop_back.c.s
-
-.PHONY : srcs/queue_pop_back.s
-
-# target to generate assembly for a file
-srcs/queue_pop_back.c.s:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_pop_back.c.s
-.PHONY : srcs/queue_pop_back.c.s
-
-srcs/queue_push_back.o: srcs/queue_push_back.c.o
-
-.PHONY : srcs/queue_push_back.o
-
-# target to build an object file
-srcs/queue_push_back.c.o:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_push_back.c.o
-.PHONY : srcs/queue_push_back.c.o
-
-srcs/queue_push_back.i: srcs/queue_push_back.c.i
-
-.PHONY : srcs/queue_push_back.i
-
-# target to preprocess a source file
-srcs/queue_push_back.c.i:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_push_back.c.i
-.PHONY : srcs/queue_push_back.c.i
-
-srcs/queue_push_back.s: srcs/queue_push_back.c.s
-
-.PHONY : srcs/queue_push_back.s
-
-# target to generate assembly for a file
-srcs/queue_push_back.c.s:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/queue_push_back.c.s
-.PHONY : srcs/queue_push_back.c.s
-
-srcs/test_main.o: srcs/test_main.c.o
-
-.PHONY : srcs/test_main.o
-
-# target to build an object file
-srcs/test_main.c.o:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/test_main.c.o
-.PHONY : srcs/test_main.c.o
-
-srcs/test_main.i: srcs/test_main.c.i
-
-.PHONY : srcs/test_main.i
-
-# target to preprocess a source file
-srcs/test_main.c.i:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/test_main.c.i
-.PHONY : srcs/test_main.c.i
-
-srcs/test_main.s: srcs/test_main.c.s
-
-.PHONY : srcs/test_main.s
-
-# target to generate assembly for a file
-srcs/test_main.c.s:
-	$(MAKE) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/srcs/test_main.c.s
-.PHONY : srcs/test_main.c.s
 
 srcs/vector_back.o: srcs/vector_back.c.o
 
@@ -672,33 +483,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... vector"
-	@echo "... srcs/ft_ceill.o"
-	@echo "... srcs/ft_ceill.i"
-	@echo "... srcs/ft_ceill.s"
+	@echo "... srcs/ft_ceil.o"
+	@echo "... srcs/ft_ceil.i"
+	@echo "... srcs/ft_ceil.s"
 	@echo "... srcs/ft_floorl.o"
 	@echo "... srcs/ft_floorl.i"
 	@echo "... srcs/ft_floorl.s"
-	@echo "... srcs/queue_back.o"
-	@echo "... srcs/queue_back.i"
-	@echo "... srcs/queue_back.s"
-	@echo "... srcs/queue_create.o"
-	@echo "... srcs/queue_create.i"
-	@echo "... srcs/queue_create.s"
-	@echo "... srcs/queue_free.o"
-	@echo "... srcs/queue_free.i"
-	@echo "... srcs/queue_free.s"
-	@echo "... srcs/queue_front.o"
-	@echo "... srcs/queue_front.i"
-	@echo "... srcs/queue_front.s"
-	@echo "... srcs/queue_pop_back.o"
-	@echo "... srcs/queue_pop_back.i"
-	@echo "... srcs/queue_pop_back.s"
-	@echo "... srcs/queue_push_back.o"
-	@echo "... srcs/queue_push_back.i"
-	@echo "... srcs/queue_push_back.s"
-	@echo "... srcs/test_main.o"
-	@echo "... srcs/test_main.i"
-	@echo "... srcs/test_main.s"
 	@echo "... srcs/vector_back.o"
 	@echo "... srcs/vector_back.i"
 	@echo "... srcs/vector_back.s"

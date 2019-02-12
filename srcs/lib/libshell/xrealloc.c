@@ -14,14 +14,14 @@
 
 void	*xrealloc(void *p, size_t newsize, size_t oldsize)
 {
-    void	*temp;
+	void	*temp;
 
-    if (!(temp = realloc(p, newsize)))
-    {
-        write(2, "cannot allocate memory\n", 23);
-        exit(EXIT_FAILURE);
-    }
-    if (newsize > oldsize)
-        ft_memset(temp + oldsize, 0, newsize - oldsize);
-    return (temp);
+	if (!(temp = realloc(p, newsize)))
+	{
+		write(2, "cannot allocate memory\n", 23);
+		exit(EXIT_FAILURE);
+	}
+	if (newsize > oldsize)
+		ft_memset(temp + oldsize, 0, newsize - oldsize);
+	return (temp);
 }

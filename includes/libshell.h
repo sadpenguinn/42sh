@@ -24,5 +24,6 @@ int		check_varname(char *var);
 int		match(char *s1, char *s2);
 int		glob(char *pattern, char *path, char ***matches, int *cnt);
 void	die(void);
+char	*check_valid_of_variable(char *str);
 
 #endif
