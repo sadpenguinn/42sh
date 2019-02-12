@@ -28,7 +28,7 @@ int		main(int ac, char **av)
 
 	if (ac != 3)
 		return (1);
-	lex = lexer(av[1], ft_atoi(av[2]));
+	lex = lexer(av[2], ft_atoi(av[1]));
 	vector_foreach(lex->lexems, print_token);
 	return (0);
 }

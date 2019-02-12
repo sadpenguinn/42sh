@@ -9,6 +9,7 @@ set(VEC_INC ../lib/vector/includes)
 include_directories(${INC})
 include_directories(${LIBFT_INC})
 include_directories(${VEC_INC})
+include_directories(../lib/libhash/includes)
 
 add_library(libft.a SHARED IMPORTED)
 set_target_properties(libft.a PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/../lib/libft/libft.a)
