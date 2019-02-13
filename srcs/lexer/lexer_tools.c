@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/10 16:19:49 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/13 18:35:52 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,10 @@ int		push_token(void **lexems, char *lexem, int state)
 {
 	t_lexem	new;
 
-	new.type = TERM_SHIFT + state;
+	new.type = (t_type)(TERM_SHIFT + state);
 	new.word = lexem;
 	if (!(vector_push_back(lexems, (void *)(&new))))
 		return (0);
 	return (1);
 }
 
-void	*lexer_die(void *a1, void *a2)
-{
-	if (a1)
-		free(a1);
-	if (a2)
-		free(a2);
-	return (NULL);
-}
