@@ -12,8 +12,9 @@ set(SRC_LIB srcs/hash_clean.c
             srcs/hash_test.c
             srcs/hash_print.c
             srcs/hash_insert.c
-            srcs/hash_init.c)
-include_directories(includes)
+            srcs/hash_init.c
+			srcs/hash_function_djb2.c
+			srcs/hash_function_eq_djb2.c)
 include_directories(${LIBFT_INC})
 include_directories(${SHELL_INC})
 

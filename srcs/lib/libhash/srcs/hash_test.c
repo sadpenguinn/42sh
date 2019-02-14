@@ -6,12 +6,16 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:18:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/11 19:09:04 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 17:13:17 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libhash.h"
+#include "../includes/libhash.h"
 #include "libft.h"
+
+/*
+** Counts the number of collision
+*/
 
 void	hash_test(t_hshtb **table)
 {

@@ -6,54 +6,12 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/11 19:23:22 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:22:29 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libhash.h"
+#include "../includes/libhash.h"
 #include "libft.h"
-
-t_hshtb			*insert(void *content, size_t content_size, \
-											t_hshtb **table, t_hshindex index)
-{
-	t_hshtb		*tmp;
-	t_hshtb		*stmp;
-
-	if (!(tmp = (t_hshtb *)malloc(sizeof(t_hshtb))))
-		return (NULL);
-	stmp = table[index];
-	table[index] = tmp;
-	tmp->next = stmp;
-	if (!(tmp->content = malloc(content_size)))
-	{
-		free(tmp);
-		return (NULL);
-	}
-	ft_memcpy(tmp->content, content, content_size);
-	tmp->content_size = content_size;
-	(((t_hshinfo *)table[0]->content)->filled)++;
-	return (tmp);
-}
-
-static int		hash_check_avail(t_hshtb ***table)
-{
-	t_hshtb		**tmp_table;
-	size_t		avail;
-	size_t		filled;
-	size_t		new_size;
-
-	tmp_table = *table;
-	avail = (float)((t_hshinfo *)tmp_table[0]->content)->size / (float)100 \
-											* (float)HSH_PERCENTS_FILLED_MAX;
-	filled = ((t_hshinfo *)tmp_table[0]->content)->filled;
-	if (filled > avail)
-	{
-		new_size = (float)((t_hshinfo *)tmp_table[0]->content)->size / \
-								(float)100 * (float)HSH_PERCENTS_SIZE_REALLOC;
-		return (new_size);
-	}
-	return (0);
-}
 
 static void		hash_realloc(t_hshtb ***table, size_t new_size)
 {
@@ -84,6 +42,51 @@ static void		hash_realloc(t_hshtb ***table, size_t new_size)
 	*table = new_table;
 }
 
+static size_t		hash_check_avail(t_hshtb ***table)
+{
+	t_hshtb		**tmp_table;
+	size_t		avail;
+	size_t		filled;
+
+	tmp_table = *table;
+	avail = (size_t)((float)((t_hshinfo *)tmp_table[0]->content)->size / (float)100 \
+											* (float)HSH_PERCENTS_FILLED_MAX);
+	filled = ((t_hshinfo *)tmp_table[0]->content)->filled;
+	if (filled > avail)
+		return ((size_t)((float)((t_hshinfo *)tmp_table[0]->content)->size / \
+								(float)100 * (float)HSH_PERCENTS_SIZE_REALLOC));
+	return (0);
+}
+
+t_hshtb			*insert_cell(void *content, size_t content_size, \
+											t_hshtb **table, t_hshindex index)
+{
+	t_hshtb		*tmp;
+	t_hshtb		*stmp;
+
+	if (!(tmp = (t_hshtb *)malloc(sizeof(t_hshtb))))
+		return (NULL);
+	if (!(tmp->content = malloc(content_size)))
+	{
+		free(tmp);
+		return (NULL);
+	}
+	stmp = table[index];
+	table[index] = tmp;
+	tmp->next = stmp;
+	ft_memcpy(tmp->content, content, content_size);
+	tmp->content_size = content_size;
+	(((t_hshinfo *)table[0]->content)->filled)++;
+	return (tmp);
+}
+
+/*
+** Function insert cell into the table. If the row already has a cell,
+** new node joins the end of the list. If cell count is greater
+** then HSH_PERCENTS_FILLED_MAX define, table size increase by
+** HSH_PERCENTS_SIZE_REALLOC
+*/
+
 t_hshtb			*hash_insert(void *content, size_t content_size, \
 															t_hshtb ***table)
 {
@@ -95,5 +98,5 @@ t_hshtb			*hash_insert(void *content, size_t content_size, \
 		hash_realloc(table, new_size);
 	info = (t_hshinfo *)((*table)[0]->content);
 	index = hash_index(content, content_size, *table, info->hashing);
-	return (insert(content, content_size, *table, index));
+	return (insert_cell(content, content_size, *table, index));
 }

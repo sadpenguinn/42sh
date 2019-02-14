@@ -6,11 +6,11 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 16:19:29 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/11 20:44:03 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 17:14:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libhash.h"
+#include "../includes/libhash.h"
 
 static void	clean_elem(t_hshtb *elem)
 {
@@ -26,6 +26,10 @@ static void	clean_elem(t_hshtb *elem)
 		tmp = stmp;
 	}
 }
+
+/*
+** Function just clears the table
+*/
 
 void		hash_clean(t_hshtb ***tables)
 {

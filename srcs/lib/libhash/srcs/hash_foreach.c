@@ -6,11 +6,15 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 18:10:58 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/11 19:07:52 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 17:11:12 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libhash.h"
+#include "../includes/libhash.h"
+
+/*
+** Iterates the table
+*/
 
 void	hash_foreach(t_hshtb **table, \
 								void (c)(void *content, size_t content_size))
