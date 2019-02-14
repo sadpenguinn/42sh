@@ -6,13 +6,19 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 21:15:41 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/13 21:34:48 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 15:38:37 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libstring.h"
+#include "../includes/libstring.h"
 
-char 	*string_push(t_string *string, char *push, size_t push_size)
+/*
+** Concatenates strings without processing \0. If "hello\0"
+** and "hello\0" were passed, the result will be "hello\0hello\0".
+** If push_size is 0, the entire string will be attached
+*/
+
+char	*string_push(t_string *string, char *push, size_t push_size)
 {
 	char	*ret;
 	size_t	i;
@@ -26,6 +32,8 @@ char 	*string_push(t_string *string, char *push, size_t push_size)
 		if ((string_resize(string) == STRING_ERR))
 			return (NULL);
 	ret = &(string->str[string->len + 1]);
+	if (string->len > 0)
+		string->len--;
 	while (i < push_size)
 	{
 		string->str[string->len + 1] = push[i];

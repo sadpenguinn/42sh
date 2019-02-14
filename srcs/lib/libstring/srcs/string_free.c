@@ -6,17 +6,23 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:50:35 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/13 20:51:24 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 15:38:23 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libstring.h"
+#include "../includes/libstring.h"
 
-int 	string_free(t_string *string)
+/*
+** Clear memory, allocated for struct and string,
+** NULL protected
+*/
+
+int		string_free(t_string *string)
 {
-	if (!string || !string->str)
+	if (!string)
 		return (STRING_ERR);
-	free(string->str);
+	if (string->str)
+		free(string->str);
 	free(string);
 	return (STRING_OK);
 }

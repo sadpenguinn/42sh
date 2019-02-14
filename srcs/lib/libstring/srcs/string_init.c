@@ -6,16 +6,20 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:56:16 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/13 20:57:06 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 15:41:02 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libstring.h"
+#include "../includes/libstring.h"
+
+/*
+** Init string with initial size or STRING_DEFAULT define
+*/
 
 t_string	*string_init(size_t initial_size)
 {
 	t_string	*string;
-	char 		*str;
+	char		*str;
 
 	if (initial_size == 0)
 		initial_size = STRING_DEFAULT;

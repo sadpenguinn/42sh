@@ -6,19 +6,24 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:06:04 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/13 20:38:22 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 15:39:02 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libstring.h"
+#include "../includes/libstring.h"
 
-int 	string_insert(t_string *string, char c, int pos)
+/*
+** Inserts char to passed position, if position greater
+** then size of string, string will be reallocated
+*/
+
+int		string_insert(t_string *string, char c, int pos)
 {
-	int		i;
+	size_t	i;
 
 	if (!string)
 		return (STRING_ERR);
-	if (pos >= string->size)
+	while (pos >= string->size + 1)
 		if ((string_resize(string) == STRING_ERR))
 			return (STRING_ERR);
 	i = string->len - 1;

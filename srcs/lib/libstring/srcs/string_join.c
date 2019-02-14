@@ -6,11 +6,15 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:22:27 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/13 21:37:10 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/14 14:59:13 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libstring.h"
+#include "../includes/libstring.h"
+
+/*
+** Just concatenates strings
+*/
 
 int		string_join(t_string *string, char *join)
 {
