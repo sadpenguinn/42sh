@@ -9,7 +9,7 @@ void    set_term(void)
 	tcgetattr(0, &g_old);
 	new = g_old;
 	new.c_lflag &= ~(ICANON | ECHO);
-	new.c_cc[VLNEXT] = 026;
+	new.c_cc[VLNEXT] = 022;
 	new.c_cc[VEOF] = 04;
 	new.c_cc[VREPRINT] = 022;
 	new.c_cc[VQUIT] = 034;

@@ -46,7 +46,7 @@
 
 # define BUFF_SIZE 256
 
-typedef struct	s_line
+/*typedef struct	s_line
 {
 	char			*data;
 	size_t			pos;
@@ -54,7 +54,7 @@ typedef struct	s_line
 	int				fd;
 	struct s_line	*next;
 }				t_line;
-int				get_next_line(const int fd, char **line);
+int				get_next_line(const int fd, char **line);*/
 
 /*
 ** Lists

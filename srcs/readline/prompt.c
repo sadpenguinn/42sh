@@ -36,7 +36,7 @@ void        print_prompt(void)
 	char    cwd[PATH_MAX];
 	int     pos;
 
-	array_add(CURSOR_MOVE_START, 0);
+	array_add(CURSOR_MOVE_LINE_START, 0);
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, 0);
 	array_add("[42] ", 0);
 	array_add(COLOR_PROMPT, 0);
@@ -50,5 +50,6 @@ void        print_prompt(void)
 	}
 	array_add(COLOR_DEFAULT, 0);
 	array_add("$\n", 0);
+	array_add("1> ", 0);
 	array_flush();
 }
