@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   init_keyvaluecmp.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/11 18:15:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/15 18:55:54 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/15 18:09:50 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/15 18:09:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "lexer.h"
-#include "libhash.h"
 
-t_hshtb			**g_hash_env = NULL;
-t_hshtb			**g_path = NULL;
-void			*g_tokens = NULL;
-unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
-
-void	init(char **env)
+int 	keyvaluecmp(void *el1, size_t cs1, void *el2, size_t cs2)
 {
-	init_hash_env(env);
-	init_path();
-}
+	char	*str1;
+	char 	*str2;
 
-int		main(int ac, char **av, char **env)
-{
-	init(env);
-	hash_print(g_hash_env);
-	return (EXIT_SUCCESS);
+	str1 = (char *)el1;
+	str2 = (char *)el2;
+	while (*str1 && *str2 && *str1 != '=')
+	{
+		if (*str1 != *str2)
+			return (0);
+		str1++;
+		str2++;
+	}
+	if (!*str1 || (*str1 == '=' && !*(str1 + 1)))
+		return (0);
+	return (1);
 }

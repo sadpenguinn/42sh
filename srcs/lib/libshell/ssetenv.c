@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   ssetenv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/11 18:15:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/15 18:55:54 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/15 18:50:20 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/15 18:54:00 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "lexer.h"
-#include "libhash.h"
+#include "libshell.h"
 
-t_hshtb			**g_hash_env = NULL;
-t_hshtb			**g_path = NULL;
-void			*g_tokens = NULL;
-unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
-
-void	init(char **env)
+int 	ssetenv(char *str)
 {
-	init_hash_env(env);
-	init_path();
-}
-
-int		main(int ac, char **av, char **env)
-{
-	init(env);
-	hash_print(g_hash_env);
-	return (EXIT_SUCCESS);
+	if (!str)
+		return (SHERR_ERR);
+	if (!(hash_insert(str, ft_strlen(str) + 1, &g_hash_env)))
+		return (SHERR_ERR);
+	return (SHERR_OK);
 }

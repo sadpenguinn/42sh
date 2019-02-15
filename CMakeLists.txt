@@ -10,6 +10,9 @@ set(LIBFT_INC		srcs/lib/libft/includes)
 set(LIBHASH			hash)
 set(LIBHASH_DIR		srcs/lib/libhash)
 set(LIBHASH_INC		srcs/lib/libhash/includes)
+set(LIBSTRING		string)
+set(LIBSTRING_DIR	srcs/lib/libstring)
+set(LIBSTRING_INC	srcs/lib/libstring/includes)
 set(VECTOR			vector)
 set(VECTOR_DIR		srcs/lib/vector)
 set(VECTOR_INC		srcs/lib/vector/includes)
@@ -24,7 +27,10 @@ set(LIBSHELL_SRC	srcs/lib/libshell/check_varname.c
 					srcs/lib/libshell/match.c
 					srcs/lib/libshell/xmalloc.c
 					srcs/lib/libshell/xrealloc.c
-					srcs/lib/libshell/die.c)
+					srcs/lib/libshell/die.c
+					srcs/lib/libshell/serror.c
+					srcs/lib/libshell/sstrerr.c
+					srcs/lib/libshell/sgetenv.c)
 
 set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/arith_for_command.c
@@ -72,16 +78,21 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/subshell.c
 					srcs/parser/word_list.c)
 
+set(PARSER_SRC		srcs/init_shell/init_path.c
+					srcs/init_shell/init_hash_env.c
+					srcs/init_shell/init_keyvaluecmp.c srcs/lib/libshell/ssetenv.c)
 
 include_directories(${INC})
 include_directories(${PARSER_INC})
 include_directories(${LIBFT_INC})
 include_directories(${LIBHASH_INC})
+include_directories(${LIBSTRING_INC})
 include_directories(${VECTOR_INC})
 
 add_subdirectory(${LIBFT_DIR})
 add_subdirectory(${LIBHASH_DIR})
+add_subdirectory(${LIBSTRING_DIR})
 add_subdirectory(${VECTOR_DIR})
 
 add_executable(42sh ${MAIN} ${LEXER_SRC} ${PARSER_SRC} ${LIBSHELL_SRC})
-target_link_libraries(42sh ${LIBFT} ${LIBHASH} ${VECTOR})
+target_link_libraries(42sh ${LIBFT} ${LIBHASH} ${LIBSTRING} ${VECTOR})

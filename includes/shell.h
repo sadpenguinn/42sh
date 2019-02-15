@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 16:21:17 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/15 18:51:20 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,20 @@
 # include <stdlib.h>
 # include "libshell.h"
 # include "libhash.h"
+# include "init_shell.h"
 
-extern char		**environ;
-/*extern t_hshtb	**g_env;*/
+extern t_hshtb	**g_hash_env;
+extern t_hshtb	**g_path;
 
 # define INITIAL_ENV_HASH_SIZE	100
+# define INITIAL_PATH_HASH_SIZE	20
+
+/*
+** Shell error define like a standard C errno
+*/
+# define SHERR_ERR				0
+# define SHERR_OK				1
+# define SHERR_ENOENT			2
 
 # define TERM_SHIFT              50
 
@@ -45,10 +54,10 @@ extern char		**environ;
 # define TERM_TAB             	TERM_SHIFT + 56 /* tab */
 # define TERM_LESS              TERM_SHIFT + 57 /* < */
 # define TERM_GREAT             TERM_SHIFT + 58 /* > */
-# define TERM_WORD              TERM_SHIFT + 60 /* comment */
+# define TERM_COMMENT           TERM_SHIFT + 60 /* comment */
 # define TERM_DLESS             TERM_SHIFT + 61 /* << */
 # define TERM_DGREAT            TERM_SHIFT + 62 /* >> */
-# define TERM_WORD              TERM_SHIFT + 64 /* <<- */
+# define TERM_DLESSDASH         TERM_SHIFT + 64 /* <<- */
 # define TERM_CLOBBER           TERM_SHIFT + 65 /* >| */
 # define TERM_LESSGREAT         TERM_SHIFT + 71 /* <> */
 

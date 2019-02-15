@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   init_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/11 18:15:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/15 18:55:54 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/15 18:07:19 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/15 18:10:36 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
-#include "lexer.h"
-#include "libhash.h"
+#ifndef INIT_SHELL_H
+#define INIT_SHELL_H
 
-t_hshtb			**g_hash_env = NULL;
-t_hshtb			**g_path = NULL;
-void			*g_tokens = NULL;
-unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
+void	init_hash_env(char **env);
+void	init_path(void);
+int 	keyvaluecmp(void *el1, size_t cs1, void *el2, size_t cs2);
 
-void	init(char **env)
-{
-	init_hash_env(env);
-	init_path();
-}
-
-int		main(int ac, char **av, char **env)
-{
-	init(env);
-	hash_print(g_hash_env);
-	return (EXIT_SUCCESS);
-}
+#endif
