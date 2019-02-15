@@ -87,6 +87,8 @@ def refactoring_table():
             line = line + '{' + item + '},' + ' /* ' + str(i) + '. ' + chr(i) + ' */\n'
         elif i >= 0 and i <= 9:
             line = line + '{' + item + '},' + ' /*  ' + str(i) + '.   */\n'
+        elif i < 0 or i > 127:
+            line = line + '{' + item + '},' + ' /* other */\n'
         else:
             line = line + '{' + item + '},' + ' /* ' + str(i) + '.   */\n'
         i += 1
@@ -95,7 +97,7 @@ def refactoring_table():
 def init_table(cnt_states):
     file = open('lex.txt', 'w')
     i = 0
-    while i < 128:
+    while i < 129:
         k = cnt_states
         while k > 0:
             file.write('0,')
@@ -126,9 +128,13 @@ def handling_pair(state, pair):
         write_statement(state, pair, ord('\n'))
     elif pair[0] == '\\t':
         pair[0] = '\t'
+        write_statement(state, pair, ord('\t'))
     elif pair[0] == '\\-':
         pair[0] = '-'
         write_statement(state, pair, ord('-'))
+    elif pair[0] == 'other':
+        pair[0] = chr(128)
+        write_statement(state, pair, 128)
     else:
         line = pair[0].strip('\\')
         if not line:

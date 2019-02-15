@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/12 12:56:02 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/15 16:21:17 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,59 @@ extern char		**environ;
 # define INITIAL_ENV_HASH_SIZE	100
 
 # define TERM_SHIFT              50
-# define TERM_WORD              TERM_SHIFT + 0 /* word */
-# define TERM_AND_IF            TERM_SHIFT + 1 /* && */
-# define TERM_OR_IF             TERM_SHIFT + 2 /* || */
-# define TERM_DLESSDASH         TERM_SHIFT + 3 /* <<- */
-# define TERM_DLESS             TERM_SHIFT + 4 /* << */
-# define TERM_DGREAT            TERM_SHIFT + 5 /* >> */
-# define TERM_LESSAND           TERM_SHIFT + 6 /* <& */
-# define TERM_GREATAND          TERM_SHIFT + 7 /* &> */
-# define TERM_LESSGREAT         TERM_SHIFT + 8 /* <> */
-# define TERM_CLOBBER           TERM_SHIFT + 9 /* >| */
-# define TERM_LESS              TERM_SHIFT + 10 /* < */
-# define TERM_GREAT             TERM_SHIFT + 11 /* > */
-# define TERM_LBRACE            TERM_SHIFT + 12 /* { */
-# define TERM_RBRACE            TERM_SHIFT + 13 /* } */
-# define TERM_DBL_LBRACKET      TERM_SHIFT + 14 /* [[ */
-# define TERM_DBL_RBRACKET      TERM_SHIFT + 15 /* ]] */
-# define TERM_DBL_LPARENTHESIS  TERM_SHIFT + 16 /* (( */
-# define TERM_DBL_RPARENTHESIS  TERM_SHIFT + 17 /* )) */
-# define TERM_LBRACKET          TERM_SHIFT + 18 /* [ */
-# define TERM_RBRACKET          TERM_SHIFT + 19 /* ] */
-# define TERM_LPARENTHESIS      TERM_SHIFT + 20 /* ( */
-# define TERM_RPARENTHESIS      TERM_SHIFT + 21 /* ) */
-# define TERM_SEMI              TERM_SHIFT + 22 /* ; */
-# define TERM_SINGLE_QUOTE      TERM_SHIFT + 23 /* ' */
-# define TERM_QUOTE             TERM_SHIFT + 24 /* " */
-# define TERM_HASH              TERM_SHIFT + 25 /* # */
-# define TERM_IF                TERM_SHIFT + 26 /* if */
-# define TERM_THEN              TERM_SHIFT + 27 /* then */
-# define TERM_ELSE              TERM_SHIFT + 28 /* else */
-# define TERM_ELIF              TERM_SHIFT + 29 /* elif */
-# define TERM_FI                TERM_SHIFT + 30 /* fi */
-# define TERM_DO                TERM_SHIFT + 31 /* do */
-# define TERM_DONE              TERM_SHIFT + 32 /* done */
-# define TERM_CASE              TERM_SHIFT + 33 /* case */
-# define TERM_ESAC              TERM_SHIFT + 34 /* esac */
-# define TERM_WHILE             TERM_SHIFT + 35 /* while */
-# define TERM_UNTIL             TERM_SHIFT + 36 /* until */
-# define TERM_FOR               TERM_SHIFT + 37 /* for */
-# define TERM_FUNCTION          TERM_SHIFT + 38 /* function */
-# define TERM_IN                TERM_SHIFT + 39 /* in */
-# define TERM_SELECT            TERM_SHIFT + 40 /* select */
-# define TERM_AND               TERM_SHIFT + 42 /* & */
-# define TERM_DSEMI             TERM_SHIFT + 43 /* ;; */
-# define TERM_NEWLINE           TERM_SHIFT + 54 /* \n */
-# define TERM_NOT               TERM_SHIFT + 45 /* ! */
-# define TERM_PIPE              TERM_SHIFT + 46 /* | */
-# define TERM_SPACE             TERM_SHIFT + 47 /* sp */
 
+# define TERM_DO                TERM_SHIFT + 3 /* do */
+# define TERM_DONE              TERM_SHIFT + 5 /* done */
+# define TERM_CASE              TERM_SHIFT + 9 /* case */
+# define TERM_ELIF              TERM_SHIFT + 13 /* elif */
+# define TERM_ELSE              TERM_SHIFT + 15 /* else */
+# define TERM_ESAC              TERM_SHIFT + 18 /* esac */
+# define TERM_FUNCTION          TERM_SHIFT + 26 /* function */
+# define TERM_FOR               TERM_SHIFT + 28 /* for */
+# define TERM_SELECT            TERM_SHIFT + 31 /* select */
+# define TERM_FI                TERM_SHIFT + 32 /* fi */
+# define TERM_IN                TERM_SHIFT + 34 /* in */
+# define TERM_IF                TERM_SHIFT + 36 /* if */
+# define TERM_THEN              TERM_SHIFT + 40 /* then */
+# define TERM_UNTIL             TERM_SHIFT + 45 /* until */
+# define TERM_WHILE             TERM_SHIFT + 52 /* while */
+# define TERM_WORD              TERM_SHIFT + 53 /* word */
+# define TERM_NEWLINE           TERM_SHIFT + 54 /* \n */
+# define TERM_SPACE             TERM_SHIFT + 56 /* sp */
+# define TERM_TAB             	TERM_SHIFT + 56 /* tab */
+# define TERM_LESS              TERM_SHIFT + 57 /* < */
+# define TERM_GREAT             TERM_SHIFT + 58 /* > */
+# define TERM_WORD              TERM_SHIFT + 60 /* comment */
+# define TERM_DLESS             TERM_SHIFT + 61 /* << */
+# define TERM_DGREAT            TERM_SHIFT + 62 /* >> */
+# define TERM_WORD              TERM_SHIFT + 64 /* <<- */
+# define TERM_CLOBBER           TERM_SHIFT + 65 /* >| */
+# define TERM_LESSGREAT         TERM_SHIFT + 71 /* <> */
+
+# define TERM_AND_IF            TERM_SHIFT + 221 /* && */
+# define TERM_OR_IF             TERM_SHIFT + 222 /* || */
+# define TERM_LESSAND           TERM_SHIFT + 226 /* <& */
+# define TERM_GREATAND          TERM_SHIFT + 227 /* &> */
+# define TERM_LBRACE            TERM_SHIFT + 212 /* { */
+# define TERM_RBRACE            TERM_SHIFT + 213 /* } */
+# define TERM_DBL_LBRACKET      TERM_SHIFT + 214 /* [[ */
+# define TERM_DBL_RBRACKET      TERM_SHIFT + 215 /* ]] */
+# define TERM_DBL_LPARENTHESIS  TERM_SHIFT + 216 /* (( */
+# define TERM_DBL_RPARENTHESIS  TERM_SHIFT + 217 /* )) */
+# define TERM_LBRACKET          TERM_SHIFT + 218 /* [ */
+# define TERM_RBRACKET          TERM_SHIFT + 219 /* ] */
+# define TERM_LPARENTHESIS      TERM_SHIFT + 220 /* ( */
+# define TERM_RPARENTHESIS      TERM_SHIFT + 221 /* ) */
+# define TERM_SEMI              TERM_SHIFT + 222 /* ; */
+# define TERM_SINGLE_QUOTE      TERM_SHIFT + 223 /* ' */
+# define TERM_QUOTE             TERM_SHIFT + 224 /* " */
+# define TERM_HASH              TERM_SHIFT + 225 /* # */
+# define TERM_AND               TERM_SHIFT + 242 /* & */
+# define TERM_DSEMI             TERM_SHIFT + 243 /* ;; */
+# define TERM_NOT               TERM_SHIFT + 245 /* ! */
+# define TERM_PIPE              TERM_SHIFT + 246 /* | */
+
+# define C_COLORS
 # define C_DEFAULT "\x1b[0m"
 # define C_BOLD "\x1b[1m"
 # define C_LIGHT "\x1b[2m"

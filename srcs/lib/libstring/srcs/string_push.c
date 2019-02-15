@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 21:15:41 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 15:38:37 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/15 12:36:16 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,14 @@ char	*string_push(t_string *string, char *push, size_t push_size)
 	while (string->size <= string->len + push_size)
 		if ((string_resize(string) == STRING_ERR))
 			return (NULL);
-	ret = &(string->str[string->len + 1]);
-	if (string->len > 0)
-		string->len--;
+	ret	= &(string->str[string->len]);
 	while (i < push_size)
 	{
-		string->str[string->len + 1] = push[i];
+		string->str[string->len] = push[i];
 		string->len++;
 		i++;
 	}
-	string->str[string->len + 1] = '\0';
+	string->str[string->len] = '\0';
 	string->len++;
 	return (ret);
 }
