@@ -2,8 +2,8 @@ SRC = \
 ../lib/libshell/xmalloc.c\
 ../lib/libshell/xrealloc.c\
 ../lib/libft/srcs/ft_memset.c\
-ft_readline.c main.c array.c\
-get_next_symbol.c
+readline.c main.c array.c\
+get_next_symbol.c term.c prompt.c\
 
 NAME = line
 

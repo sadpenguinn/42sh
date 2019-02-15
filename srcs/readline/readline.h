@@ -14,7 +14,8 @@
 # define READLINE_H
 
 # define CSI "\e["
-# define PROMPT_COLOR "\e[34m"
+# define COLOR_PROMPT "\e[1m\e[34m"
+# define COLOR_DEFAULT "\e[0m"
 # define CURSOR_MOVE_START "\e[1G"
 # define CURSOR_CLEAR_TO_END_SCREEN "\e[0J"
 # define CURSOR_CLEAR_TO_START_SCREEN "\e[1J"
@@ -27,5 +28,6 @@ t_uchar	get_next_symbol(void);
 void    clear_screen_down(void);
 void    save_cursor(void);
 void    restore_cursor(void);
+void        print_prompt(void);
 
 #endif
