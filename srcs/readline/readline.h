@@ -96,6 +96,7 @@ t_line *init_line(void);
 int check_next_symbol(t_matrix *matrix);
 int check_utf(t_matrix *matrix, t_uchar c);
 t_uchar	get_next_symbol(size_t size);
+int get_utf_offset(unsigned char c);
 
 void	get_term_params(struct winsize	*w);
 

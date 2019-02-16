@@ -126,11 +126,23 @@ void    add_offset(int offset)
 	array_add(CURSOR_MOVE_LINE_START, 0);
 }
 
-int count_symbols(char *buf, int n)
+int count_chars(char *buf, int n)
 {
-	n++;
-	buf++;
-	return (0);
+	int i;
+	int cnt;
+
+	i = 0;
+	while (i < n)
+	{
+		i += 1 + get_utf_offset(buf[i]);
+		cnt++;
+	}
+	return (cnt);
+}
+
+void reset_line_offset(t_matrix *matrix)
+{
+	matrix->last_offset = 0;
 }
 
 void print_text(t_matrix *matrix, int row, int col)
@@ -138,7 +150,7 @@ void print_text(t_matrix *matrix, int row, int col)
 	int left;
 
 	left = matrix->left_limit;
-	matrix->last_offset = 0;
+	reset_line_offset(matrix);
 	while (left < row)
 	{
 		array_add("> ", 0);
@@ -156,7 +168,7 @@ void print_text(t_matrix *matrix, int row, int col)
 		if (col == matrix->lines[row]->len)
 			matrix->last_offset += (matrix->lines[left]->symbols + 1) / g_w.ws_col;
 		else
-			matrix->last_offset += (matrix->cursor->col + 1) / g_w.ws_col;
+			matrix->last_offset += (count_chars(matrix->lines[left]->buf, matrix->cursor->col) + 1) / g_w.ws_col;
 	}
 	array_add(matrix->lines[left]->buf, col);
 	array_flush();
@@ -175,6 +187,7 @@ void print_lines(t_matrix *matrix)
 void print_default(t_matrix *matrix)
 {
 	add_offset(matrix->last_offset);
+	array_add(CURSOR_CLEAR_TO_END_SCREEN, 0);
 	print_lines(matrix);
 	add_offset(matrix->last_offset);
 	print_cursor(matrix);
@@ -205,7 +218,7 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 				write(1, "\n", 1);
 			return (0);
 		}
-		matrix->lines[matrix->cursor->row]->len = matrix->cursor->col - 5;
+		matrix->lines[matrix->cursor->row]->len = matrix->cursor->col - 1;
 		matrix_line_insert(matrix, matrix->cursor->row + 1);
 		matrix->cursor->row += 1;
 		matrix->cursor->col = 0;
