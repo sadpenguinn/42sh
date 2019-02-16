@@ -9,6 +9,6 @@ t_line *init_line(void)
 	line->buf = (char *)xmalloc(sizeof(char) * BUF_DEFAULT + 1);
 	line->size = BUF_DEFAULT;
 	line->len = 0;
-	line->cnt = 0;
+	line->symbols = 0;
 	return (line);
 }

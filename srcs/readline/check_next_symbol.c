@@ -10,48 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
 #include "readline.h"
 #include <unistd.h>
+#include <string.h>
 
-t_uchar	get_next_symbol(void)
+t_uchar	get_next_symbol(size_t size)
 {
-	unsigned char c;
+	t_uchar c;
 
 	c = 0;
-	int ret = read(1, &c, sizeof(char));
-	if (ret == -1)
-		return (0);
+	if (size > sizeof(t_uchar))
+		size = sizeof(t_uchar);
+	read(0, &c, size);
 	return (c);
+}
+
+static int is_utf(char c)
+{
+	if ((c >> 7) & 1)
+		return (1);
+	return (0);
 }
 
 int check_utf(t_matrix *matrix, t_uchar c)
 {
 	t_uchar tmp;
 	int i;
-	int ret;
 
-	tmp = 0;
-	while (tmp == 0)
-		tmp = get_next_symbol();
-	i = 8;
-	while (tmp && is_utf_suffix(tmp))
-	{
-		c += (tmp << i);
-		tmp = get_next_symbol();
-		i += 8;
-	}
+	i = 0;
+	while (i < 7 && ((c >> (6 - i)) & 1))
+		i++;
+	tmp = get_next_symbol(i);
+	c += (tmp << 8);
 	comb_offset(c);
-	ret = check_modes(matrix, c);
-	if (tmp != 0)
-		return (check_next_symbol(matrix, tmp));
-	return (ret);
+	return (check_modes(matrix, c));
 }
 
-int check_next_symbol(t_matrix *matrix, t_uchar c)
+int check_next_symbol(t_matrix *matrix)
 {
-	while (c == 0)
-		c = get_next_symbol();
+	t_uchar c;
+
+	c = get_next_symbol(sizeof(char));
 	if (c == CTRL_D)
 		return (-1);
 	if (c == 27)

@@ -6,8 +6,7 @@
 #include <signal.h>
 #include <sys/wait.h>
 #include <sys/types.h>
-
-struct winsize	g_w;
+#include "readline.h"
 
 void	get_term_params(struct winsize	*w)
 {
@@ -34,16 +33,4 @@ void	term_monitoring(pid_t pid)
 			g_w.ws_col = w.ws_col;
 		}
 	}
-}
-
-int		main(void)
-{
-	pid_t	pid;
-	get_term_params(&g_w);
-	signal(SIGUSR1, sig_handler);
-	if ((pid = fork()))
-	{
-		term_monitoring(pid);
-	}
-	while(1);
 }

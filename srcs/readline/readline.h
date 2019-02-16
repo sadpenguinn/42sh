@@ -21,6 +21,9 @@
 # define CURSOR_CLEAR_TO_START_SCREEN "\e[1J"
 # define CURSOR_CLEAR_SCREEN "\ec"
 
+# include <sys/ioctl.h>
+# include <string.h>
+
 enum	keys
 {
 	UP = 0x415b1b, DOWN = 0x425b1b, CTRL_P = 0x10, CTRL_N = 0xe,
@@ -63,7 +66,7 @@ typedef struct  s_line
 {
 	int size;
 	int len;
-	int cnt;
+	int symbols;
 	char *buf;
 }               t_line;
 
@@ -71,12 +74,15 @@ typedef struct s_matrix
 {
 	int size;
 	int len;
-	t_line **line;
+	t_line **lines;
 	t_cursor *cursor;
 	int last_offset;
+	int left_limit;
+	int right_limit;
 } t_matrix;
 
 int g_mode;
+struct winsize g_w;
 
 int     readline(t_matrix *);
 void    clear_screen_down(void);
@@ -87,20 +93,18 @@ void        print_prompt(void);
 t_matrix *init_matrix(void);
 t_line *init_line(void);
 
-int is_utf(char c);
-int is_utf_prefix(char c);
-int is_utf_suffix(char c);
-
-int check_next_symbol(t_matrix *matrix, t_uchar c);
+int check_next_symbol(t_matrix *matrix);
 int check_utf(t_matrix *matrix, t_uchar c);
-t_uchar	get_next_symbol(void);
+t_uchar	get_next_symbol(size_t size);
+
+void	get_term_params(struct winsize	*w);
 
 void    comb_offset(t_uchar c);
 void    line_resize(t_line *line, int new_size, int old_size);
 void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cursor);
 void    matrix_string_insert(t_matrix *matrix, const char *str);
 void    make_string_from_symbol(char *str, t_uchar c);
-void    make_offset(t_matrix *matrix);
+void    add_offset(int offset);
 void print_lines(t_matrix *matrix);
 void    auto_complete(t_matrix *matrix);
 int     readline_mode(t_matrix *matrix, char *str, t_uchar c);

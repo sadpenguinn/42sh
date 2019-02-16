@@ -1,4 +1,5 @@
 #include <fcntl.h>
+#include <sys/ioctl.h>
 #include <stdlib.h>
 #include <string.h>
 #include "shell.h"
@@ -29,7 +30,7 @@ void    comb_offset(t_uchar c)
 
 void    line_resize(t_line *line, int new_size, int old_size)
 {
-	line->buf = (char *)xrealloc(line->buf, new_size + 1, old_size);
+	line->buf = (char *)xrealloc(line->buf, sizeof(char) * (new_size + 1), old_size);
 	line->size = new_size;
 }
 
@@ -44,27 +45,43 @@ void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cu
 	line->len += size;
 }
 
+void    matrix_resize(t_matrix *matrix, int new_size, int old_size)
+{
+	matrix->lines = (t_line **)xrealloc(matrix->lines, sizeof(t_line *) * new_size, sizeof(t_line *) * old_size);
+	matrix->size = new_size;
+}
+
+void    matrix_line_insert(t_matrix *matrix, int pos)
+{
+	if (matrix->len == matrix->size)
+		matrix_resize(matrix, matrix->size * RATIO, matrix->size);
+	if (pos < matrix->len)
+		memmove(matrix->lines + pos + 1, matrix->lines + pos, (matrix->len - pos) * sizeof(t_line *));
+	matrix->lines[pos] = init_line();
+	matrix->len++;
+}
+
 void    matrix_string_insert(t_matrix *matrix, const char *str)
 {
 	int j;
 	int size;
 	t_line *line;
-	int cnt;
+	int symbols;
 
-	line = matrix->line[matrix->cursor->row];
+	line = matrix->lines[matrix->cursor->row];
 	j = 0;
 	while (str[j] != 0)
 	{
-		cnt = 0;
+		symbols = 0;
 		size = 0;
 		while (str[j] != '\n' && str[j])
 		{
 			j++;
 			size++;
-			cnt++;
+			symbols++;
 		}
 		line_string_insert(line, str, size, matrix->cursor);
-		line->cnt += cnt;
+		line->symbols += symbols;
 	}
 }
 
@@ -96,45 +113,76 @@ void    make_string_from_symbol(char *str, t_uchar c)
 		str[i++] = ((c >> 56) & 0xFF);
 }
 
-void    make_offset(t_matrix *matrix)
+void    add_offset(int offset)
 {
-	int left = 0;
-	int right = matrix->last_offset;
-	while (left < right)
+	int i;
+
+	i = 0;
+	while (i < offset)
 	{
 		array_add(CSI "1A", 0);
-		left++;
+		i++;
 	}
 	array_add(CURSOR_MOVE_LINE_START, 0);
+}
+
+int count_symbols(char *buf, int n)
+{
+	n++;
+	buf++;
+	return (0);
+}
+
+void print_text(t_matrix *matrix, int row, int col)
+{
+	int left;
+
+	left = matrix->left_limit;
+	matrix->last_offset = 0;
+	while (left < row)
+	{
+		array_add("> ", 0);
+		array_add(matrix->lines[left]->buf, matrix->lines[left]->len);
+		if (g_w.ws_col)
+		{
+			matrix->last_offset += 1 + (matrix->lines[left]->symbols + 1) / g_w.ws_col;
+			array_add("\n", 1);
+		}
+		left++;
+	}
+	array_add("> ", 0);
+	if (g_w.ws_col)
+	{
+		if (col == matrix->lines[row]->len)
+			matrix->last_offset += (matrix->lines[left]->symbols + 1) / g_w.ws_col;
+		else
+			matrix->last_offset += (matrix->cursor->col + 1) / g_w.ws_col;
+	}
+	array_add(matrix->lines[left]->buf, col);
 	array_flush();
+}
+
+void print_cursor(t_matrix *matrix)
+{
+	print_text(matrix, matrix->cursor->row, matrix->cursor->col);
 }
 
 void print_lines(t_matrix *matrix)
 {
-	int left;
-	int right;
+	print_text(matrix, matrix->len - 1, matrix->lines[matrix->len - 1]->len);
+}
 
-	array_add(CURSOR_CLEAR_TO_END_SCREEN, 0);
-	left = 0;
-	right = matrix->len;
-	matrix->last_offset = 0;
-	while (left < right)
-	{
-		array_add("> ", 0);
-		array_add(matrix->line[left]->buf, matrix->line[left]->len);
-		left++;
-		if (left != right)
-		{
-			matrix->last_offset++;
-			array_add("\n", 1);
-		}
-	}
-	array_flush();
+void print_default(t_matrix *matrix)
+{
+	add_offset(matrix->last_offset);
+	print_lines(matrix);
+	add_offset(matrix->last_offset);
+	print_cursor(matrix);
 }
 
 void    auto_complete(t_matrix *matrix)
 {
-	make_offset(matrix);
+	add_offset(matrix->last_offset);
 	print_lines(matrix);
 	if (matrix)
 		ft_puts ("\nmain.c  readline.c  array.c\n", 0);
@@ -147,18 +195,18 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 	{
 		auto_complete(matrix);
 		print_lines(matrix);
+		return (1);
 	}
 	if (c == '\n')
 	{
 		if (g_comb[2] != '\\')
 		{
-			if (matrix->line[matrix->len - 1]->len != 0)
+			if (matrix->lines[matrix->len - 1]->len != 0)
 				write(1, "\n", 1);
 			return (0);
 		}
-		matrix->line[matrix->cursor->row]->len = matrix->cursor->col - 1;
-		matrix->len++;
-		matrix->line[matrix->len - 1] = init_line();
+		matrix->lines[matrix->cursor->row]->len = matrix->cursor->col - 5;
+		matrix_line_insert(matrix, matrix->cursor->row + 1);
 		matrix->cursor->row += 1;
 		matrix->cursor->col = 0;
 	}
@@ -167,8 +215,7 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 		make_string_from_symbol(str, c);
 		matrix_string_insert(matrix, str);
 	}
-	make_offset(matrix);
-	print_lines(matrix);
+	print_default(matrix);
 	return (1);
 }
 
@@ -192,7 +239,7 @@ int check_esc_code(t_matrix *matrix)
 	while (i < 8)
 	{
 		start = clock();
-		tmp = get_next_symbol();
+		tmp = get_next_symbol(sizeof(char));
 		end = clock();
 		if (end - start > 0)
 		{
@@ -223,12 +270,12 @@ int check_modes(t_matrix *matrix, t_uchar c)
 int     readline(t_matrix *matrix)
 {
 	int     ret;
-	int flags = fcntl(0, F_GETFL, 0);
-	fcntl(0, F_SETFL, flags | O_NONBLOCK);
+	get_term_params(&g_w);
 	print_prompt();
+	print_lines(matrix);
 	ret = 1;
 	while (ret > 0)
-		ret = check_next_symbol(matrix, 0);
+		ret = check_next_symbol(matrix);
 	if (ret == -1)
 	{
 		return (0);
