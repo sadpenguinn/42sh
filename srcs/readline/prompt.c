@@ -50,6 +50,6 @@ void        print_prompt(void)
 	}
 	array_add(COLOR_DEFAULT, 0);
 	array_add("$\n", 0);
-	array_add("1> ", 0);
+	array_add("> ", 0);
 	array_flush();
 }

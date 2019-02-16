@@ -48,7 +48,7 @@ enum	allocation_params
 # define CTRL_V 026
 # define CTRL_D 004
 
-typedef long long int t_uchar;
+typedef unsigned long long int t_uchar;
 
 #define MATRIX_DEFAULT 10
 #define BUF_DEFAULT 5
@@ -73,16 +73,39 @@ typedef struct s_matrix
 	int len;
 	t_line **line;
 	t_cursor *cursor;
+	int last_offset;
 } t_matrix;
 
-int     ft_readline(t_matrix *);
-t_uchar	get_next_symbol(void);
+int g_mode;
+
+int     readline(t_matrix *);
 void    clear_screen_down(void);
 void    save_cursor(void);
 void    restore_cursor(void);
 void        print_prompt(void);
 
-t_line *init_line(void);
 t_matrix *init_matrix(void);
+t_line *init_line(void);
+
+int is_utf(char c);
+int is_utf_prefix(char c);
+int is_utf_suffix(char c);
+
+int check_next_symbol(t_matrix *matrix, t_uchar c);
+int check_utf(t_matrix *matrix, t_uchar c);
+t_uchar	get_next_symbol(void);
+
+void    comb_offset(t_uchar c);
+void    line_resize(t_line *line, int new_size, int old_size);
+void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cursor);
+void    matrix_string_insert(t_matrix *matrix, const char *str);
+void    make_string_from_symbol(char *str, t_uchar c);
+void    make_offset(t_matrix *matrix);
+void print_lines(t_matrix *matrix);
+void    auto_complete(t_matrix *matrix);
+int     readline_mode(t_matrix *matrix, char *str, t_uchar c);
+int check_buttons(t_matrix *matrix, t_uchar c);
+int check_esc_code(t_matrix *matrix);
+int check_modes(t_matrix *matrix, t_uchar c);
 
 #endif
