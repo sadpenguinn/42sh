@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getenv.c                                           :+:      :+:    :+:   */
+/*   init_hash_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 18:28:45 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 14:51:10 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/15 18:05:27 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/15 18:06:21 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "libshell.h"
 
-char 	*sgetenv(char *key)
+void	init_hash_env(char **env)
 {
-	t_hshtb	*cell;
-	size_t 	len;
+	int		i;
 
-	if (!key)
-		return (NULL);
-	len = ft_strlen(key);
-	if (!(cell = hash_find(key, g_hash_env, keyvaluecmp)))
-		return (NULL);
-	if (!cell->content)
-		return (NULL);
-	return (cell->content + len + 1);
+	if (!(g_hash_env = hash_init(INITIAL_ENV_HASH_SIZE, HSH_EQ_DJB2)))
+		die();
+	i = 0;
+	while (env[i])
+	{
+		hash_insert((void *)(env[i]), &g_hash_env);
+		i++;
+	}
 }

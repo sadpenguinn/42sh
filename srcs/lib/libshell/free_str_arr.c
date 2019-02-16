@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.h                                       :+:      :+:    :+:   */
+/*   free_str_arr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 18:07:19 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/15 18:10:36 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/16 15:16:04 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/16 15:17:11 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_SHELL_H
-#define INIT_SHELL_H
+#include <stdlib.h>
 
-void	init_hash_env(char **env);
-void	init_path(void);
-int 	keyvaluecmp(void *el1, size_t cs1, void *el2, size_t cs2);
+void 	free_str_arr(char **arr)
+{
+	int 	i;
 
-#endif
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}

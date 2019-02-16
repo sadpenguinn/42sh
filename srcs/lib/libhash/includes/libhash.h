@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 17:30:09 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/16 14:44:40 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ typedef unsigned long	t_hshindex;
 
 typedef struct	s_hshtb
 {
-	void			*content;
-	size_t			content_size;
+	char			*content;
 	struct s_hshtb	*next;
 }				t_hshtb;
 
@@ -81,8 +80,7 @@ typedef struct	s_hshinfo
 ** to more than one define djb2 will be selected
 */
 
-t_hshindex		hash_index(void *content, size_t content_size, \
-														t_hshtb **table, int c);
+t_hshindex		hash_index(void *content, t_hshtb **table, int c);
 
 /*
 ** Allocate hash table with passed size and hash function.
@@ -98,24 +96,21 @@ t_hshtb			**hash_init(size_t size, int hashing);
 ** HSH_PERCENTS_SIZE_REALLOC
 */
 
-t_hshtb			*hash_insert(void *content, size_t content_size, \
-															t_hshtb ***table);
+t_hshtb			*hash_insert(void *content, t_hshtb ***table);
 
 /*
 ** Remove one cell in the table
 */
 
-void			hash_delete(void *content, size_t content_size, \
-							t_hshtb **table, int (c)(void *el1, size_t cs1, \
-														void *el2, size_t cs2));
+int				hash_delete(void *content, \
+							t_hshtb **table, int (c)(char *el1, char *el2));
 
 /*
 ** Returns a pointer if there is match, else NULL will be returned
 */
 
-t_hshtb			*hash_find(void *content, size_t content_size, \
-	t_hshtb **table, int (c)(void *el1, size_t cs1, void *el2, size_t cs2));
-
+t_hshtb			*hash_find(void *content, t_hshtb **table, \
+											int (c)(char *el1, char *el2));
 /*
 ** Function just clears the table
 */
@@ -126,8 +121,7 @@ void			hash_clean(t_hshtb ***tables);
 ** Iterates the table
 */
 
-void			hash_foreach(t_hshtb **table, \
-								void (c)(void *content, size_t content_size));
+void			hash_foreach(t_hshtb **table, void (c)(char *content));
 
 /*
 ** Just printing the table
@@ -150,7 +144,7 @@ void			hash_test(t_hshtb **table);
 ** http://www.cse.yorku.ca/~oz/hash.html
 */
 
-t_hshindex		djb2(void *content, size_t content_size);
+t_hshindex		djb2(char *content);
 
 /*
 ** Dan Bernstein hashing algorithm for variable length string.
@@ -158,6 +152,6 @@ t_hshindex		djb2(void *content, size_t content_size);
 ** http://www.cse.yorku.ca/~oz/hash.html
 */
 
-t_hshindex		eq_djb2(void *content);
+t_hshindex		eq_djb2(char *content);
 
 #endif

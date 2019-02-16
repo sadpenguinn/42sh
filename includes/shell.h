@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 18:51:20 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/16 15:12:49 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include "libshell.h"
 # include "libhash.h"
-# include "init_shell.h"
 
 extern t_hshtb	**g_hash_env;
 extern t_hshtb	**g_path;
@@ -111,5 +110,10 @@ extern t_hshtb	**g_path;
 # define BG_PURPLE "\x1b[45m"
 # define BG_AQUA "\x1b[46m"
 # define BG_GRAY "\x1b[47m"
+
+void	init_hash_env(char **env);
+void	init_path(void);
+void 	destroy_hash_env(void);
+void 	destroy_path(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:50:29 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 16:57:13 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/16 14:43:01 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** http://www.cse.yorku.ca/~oz/hash.html
 */
 
-t_hshindex	djb2(void *content, size_t content_size)
+t_hshindex	djb2(char *content)
 {
 	t_hshindex	index;
 	size_t		i;
@@ -25,9 +25,9 @@ t_hshindex	djb2(void *content, size_t content_size)
 
 	i = 0;
 	index = 5381;
-	while (i < content_size)
+	while (content[i])
 	{
-		c = ((char *)content)[i];
+		c = content[i];
 		index = ((index << 5) + index) + c;
 		i++;
 	}

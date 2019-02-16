@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:49:03 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 17:03:58 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/16 14:43:52 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,17 @@
 ** http://www.cse.yorku.ca/~oz/hash.html
 */
 
-t_hshindex	eq_djb2(void *content)
+t_hshindex	eq_djb2(char *content)
 {
 	t_hshindex	index;
-	char		*cont;
 	size_t		i;
 	int			c;
 
 	i = 0;
 	index = 5381;
-	cont = (char *)content;
-	while (cont[i] && cont[i] != '=')
+	while (content[i] && content[i] != '=')
 	{
-		c = cont[i];
+		c = content[i];
 		index = ((index << 5) + index) + c;
 		i++;
 	}

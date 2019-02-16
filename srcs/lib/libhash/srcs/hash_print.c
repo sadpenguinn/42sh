@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 13:01:56 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 17:12:12 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/16 14:42:15 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	print_row(t_hshtb *row)
 	while (row)
 	{
 		flag = 1;
-		write(1, (char *)row->content, ft_strlen((char *)row->content));
+		write(1, row->content, ft_strlen(row->content));
 		write(1, " -> ", 4);
 		row = row->next;
 	}
@@ -48,7 +48,7 @@ void		hash_print(t_hshtb **table)
 		if ((tmp = table[i]))
 		{
 			write(1, C_GREEN"Row ", 4 + 5);
-			ft_putnbrendl(i);
+			ft_putnbrendl((int)i);
 			write(1, C_DEFAULT, 5);
 			print_row(tmp);
 		}

@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_hash_env.c                                    :+:      :+:    :+:   */
+/*   sunsetenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 18:05:27 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/15 18:06:21 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/16 15:04:15 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/16 15:08:05 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	init_hash_env(char **env)
+int 	sunsetenv(char *key)
 {
-	int		i;
-
-	if (!(g_hash_env = hash_init(INITIAL_ENV_HASH_SIZE, HSH_EQ_DJB2)))
-		die();
-	i = 0;
-	while (env[i])
-	{
-		hash_insert((void *)(env[i]), ft_strlen(env[i]) + 1, &g_hash_env);
-		i++;
-	}
+	if (!key)
+		return (0);
+	return (hash_delete(key, g_hash_env, keyvaluecmp));
 }

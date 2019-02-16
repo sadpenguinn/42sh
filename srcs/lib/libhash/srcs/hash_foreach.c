@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 18:10:58 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 17:11:12 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/16 14:41:24 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 ** Iterates the table
 */
 
-void	hash_foreach(t_hshtb **table, \
-								void (c)(void *content, size_t content_size))
+void	hash_foreach(t_hshtb **table, void (c)(char *content))
 {
 	t_hshtb		*tmp;
 	size_t		len;
@@ -32,7 +31,7 @@ void	hash_foreach(t_hshtb **table, \
 		tmp = table[i];
 		while (tmp)
 		{
-			(c)(tmp->content, tmp->content_size);
+			(c)(tmp->content);
 			tmp = tmp->next;
 		}
 		i++;

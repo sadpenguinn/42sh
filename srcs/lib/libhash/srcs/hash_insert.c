@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 16:22:29 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/16 14:38:38 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		hash_realloc(t_hshtb ***table, size_t new_size)
 		tmp = tmp_table[i++];
 		while (tmp)
 		{
-			if (!(hash_insert(tmp->content, tmp->content_size, &new_table)))
+			if (!(hash_insert(tmp->content, &new_table)))
 			{
 				hash_clean(&new_table);
 				return ;
@@ -58,15 +58,14 @@ static size_t		hash_check_avail(t_hshtb ***table)
 	return (0);
 }
 
-t_hshtb			*insert_cell(void *content, size_t content_size, \
-											t_hshtb **table, t_hshindex index)
+t_hshtb			*insert_cell(void *content, t_hshtb **table, t_hshindex index)
 {
 	t_hshtb		*tmp;
 	t_hshtb		*stmp;
 
 	if (!(tmp = (t_hshtb *)malloc(sizeof(t_hshtb))))
 		return (NULL);
-	if (!(tmp->content = malloc(content_size)))
+	if (!(tmp->content = ft_strdup(content)))
 	{
 		free(tmp);
 		return (NULL);
@@ -74,8 +73,6 @@ t_hshtb			*insert_cell(void *content, size_t content_size, \
 	stmp = table[index];
 	table[index] = tmp;
 	tmp->next = stmp;
-	ft_memcpy(tmp->content, content, content_size);
-	tmp->content_size = content_size;
 	(((t_hshinfo *)table[0]->content)->filled)++;
 	return (tmp);
 }
@@ -87,8 +84,7 @@ t_hshtb			*insert_cell(void *content, size_t content_size, \
 ** HSH_PERCENTS_SIZE_REALLOC
 */
 
-t_hshtb			*hash_insert(void *content, size_t content_size, \
-															t_hshtb ***table)
+t_hshtb			*hash_insert(void *content, t_hshtb ***table)
 {
 	t_hshinfo	*info;
 	t_hshindex	index;
@@ -97,6 +93,6 @@ t_hshtb			*hash_insert(void *content, size_t content_size, \
 	if ((new_size = hash_check_avail(table)))
 		hash_realloc(table, new_size);
 	info = (t_hshinfo *)((*table)[0]->content);
-	index = hash_index(content, content_size, *table, info->hashing);
-	return (insert_cell(content, content_size, *table, index));
+	index = hash_index(content, *table, info->hashing);
+	return (insert_cell(content, *table, index));
 }

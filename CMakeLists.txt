@@ -30,7 +30,10 @@ set(LIBSHELL_SRC	srcs/lib/libshell/check_varname.c
 					srcs/lib/libshell/die.c
 					srcs/lib/libshell/serror.c
 					srcs/lib/libshell/sstrerr.c
-					srcs/lib/libshell/sgetenv.c)
+					srcs/lib/libshell/sgetenv.c
+					srcs/lib/libshell/ssetenv.c
+					srcs/lib/libshell/sunsetenv.c
+					srcs/lib/libshell/keyvaluecmp.c)
 
 set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/arith_for_command.c
@@ -78,9 +81,8 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/subshell.c
 					srcs/parser/word_list.c)
 
-set(PARSER_SRC		srcs/init_shell/init_path.c
-					srcs/init_shell/init_hash_env.c
-					srcs/init_shell/init_keyvaluecmp.c srcs/lib/libshell/ssetenv.c)
+set(PARSER_SRC srcs/shell/init_path.c
+		srcs/shell/init_hash_env.c srcs/lib/libshell/sunsetenv.c srcs/shell/destroy_hash_env.c srcs/lib/libshell/free_str_arr.c srcs/shell/destroy_path.c)
 
 include_directories(${INC})
 include_directories(${PARSER_INC})
