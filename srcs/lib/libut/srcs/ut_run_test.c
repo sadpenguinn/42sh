@@ -6,66 +6,63 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:05:41 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/09 17:19:16 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/17 17:23:42 by tony             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libut.h"
+#include "../includes/libut.h"
+#include "../includes/ut_utils.h"
 
-void	write_prompt(int id)
-{
-	ft_putstr("*=== Test ");
-	ft_putnbr(id);
-	ft_putendl(" ===*");
-}
+static size_t	g_count_passed = 0;
+static size_t	g_total = 0;
+size_t			g_utcur = 0;
 
-void	assert(int ret, int *count_passed)
-{
-	if (ret == UT_TEST_PASSED)
-	{
-		*count_passed += 1;
-		ft_putendl("\x1b[32mOK\x1b[0m");
-	}
-	else if (ret == UT_TEST_FAILED)
-		ft_putendl("\x1b[31mFAIL\x1b[0m");
-	else
-		ft_putendl("Internal Error");
-}
-
-void	write_result(int count_passed, int total)
-{
-	if (!count_passed || !total || total < count_passed)
-		ft_putstr("\x1b[31m");
-	else if ((int)((float)count_passed / (float)total * (float)100) < 75)
-		ft_putstr("\x1b[31m");
-	else
-		ft_putstr("\x1b[32m");
-	ft_putchar('\n');
-	ft_putnbr(count_passed);
-	ft_putstr(" tests passed / ");
-	ft_putnbr(total);
-	ft_putendl(" total");
-	ft_putstr("\x1b[0m");
-}
-
-int		ut_run_test(t_utest *ut)
+void			ut_check_test(t_utest *cur)
 {
 	int		ret;
-	int		count_passed;
-	int		total;
 
-	if (!ut)
-		return (UT_INVALID_INPUT);
-	total = 0;
-	count_passed = 0;
-	while (ut)
+	write_prompt(cur->id);
+	ret  = (cur->sample)(cur->input, cur->expect);
+	if (ret == UT_TEST_PASSED)
 	{
-		write_prompt(ut->id);
-		ret = (ut->test)(ut->input, ut->expect);
-		assert(ret, &count_passed);
-		total++;
-		ut = ut->next;
+		g_count_passed++;
+		ft_putendl(UT_COLOR_OK"OK"UT_COLOR_DEFAULT);
 	}
-	write_result(count_passed, total);
-	return (UT_OK);
+	else if (ret == UT_TEST_FAILED)
+		ft_putendl(UT_COLOR_FAIL"FAIL"UT_COLOR_DEFAULT);
+	else
+		ft_putendl("Internal Error");
+	g_total++;
+}
+
+void			ut_arr_foreach(t_utest *tests, void (*check)(t_utest *cur))
+{
+	t_utest	*cur;
+	size_t	indent;
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = g_utinfo.filled;
+	while (i < len)
+	{
+		g_utcur = i;
+		indent = sizeof(t_utest) * i;
+		cur = tests + indent;
+		(check)(cur);
+		i++;
+	}
+}
+
+/*
+** Function runs test in tests array
+*/
+
+int				ut_run_test(t_utest *tests)
+{
+	if (!tests)
+		return (ut_ret(UT_INVALID_INPUT));
+	ut_arr_foreach(tests, ut_check_test);
+	write_result(g_count_passed, g_total);
+	return (ut_ret(UT_OK));
 }

@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_clean_test.c                                    :+:      :+:    :+:   */
+/*   ut_ret.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tony </var/mail/tony>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 15:59:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/17 17:23:16 by tony             ###   ########.fr       */
+/*   Created: 2019/02/17 14:04:38 by tony              #+#    #+#             */
+/*   Updated: 2019/02/17 17:21:58 by tony             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libut.h"
+#include "../../includes/libut.h"
 
-/*
-** Cleans the tests array and all internal variables
-*/
-
-void	ut_clean_test(t_utest *tests)
+int		ut_ret(int ut_errno)
 {
-	free(tests);
+	g_uterrno = ut_errno;
+	return (ut_errno);
 }

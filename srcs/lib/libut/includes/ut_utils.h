@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_clean_test.c                                    :+:      :+:    :+:   */
+/*   ut_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tony </var/mail/tony>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 15:59:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/17 17:23:16 by tony             ###   ########.fr       */
+/*   Created: 2019/02/17 15:36:52 by tony              #+#    #+#             */
+/*   Updated: 2019/02/17 17:16:45 by tony             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libut.h"
+#ifndef UT_UTILS_H
+# define UT_UTILS_H
 
 /*
-** Cleans the tests array and all internal variables
+** Prototypes for internal functions
 */
 
-void	ut_clean_test(t_utest *tests)
-{
-	free(tests);
-}
+void	write_result(size_t count_passed, size_t total);
+void	write_prompt(int id);
+int		ut_ret(int ut_errno);
+
+#endif
