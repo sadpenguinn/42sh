@@ -15,6 +15,6 @@ t_matrix *init_matrix(void)
 	matrix->cursor->col = 0;
 	matrix->last_offset = 0;
 	matrix->left_limit = 0;
-	matrix->right_limit = 1;
+	matrix->right_limit = 0;
 	return (matrix);
 }
