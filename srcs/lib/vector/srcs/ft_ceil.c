@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_create.c                                     :+:      :+:    :+:   */
+/*   ft_ceill.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/04 12:21:08 by narchiba          #+#    #+#             */
-/*   Updated: 2019/01/04 13:16:19 by narchiba         ###   ########.fr       */
+/*   Created: 2018/11/27 07:30:26 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/12 13:55:46 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-void	*queue_create(size_t elem_byte_size)
+long double	ft_ceill(long double x)
 {
-	size_t	*arr;
-
-	if (!(arr = (size_t *)malloc(sizeof(size_t) * 2)))
-		return (0);
-	arr[0] = 0;
-	arr[1] = 0;
-	if (!(arr[0] = (size_t)vector_create(elem_byte_size)))
-	{
-		queue_free((void **)&arr);
-		return (0);
-	}
-	if (!(arr[1] = (size_t)vector_create(elem_byte_size)))
-	{
-		queue_free((void **)&arr);
-		return (0);
-	}
-	return ((void *)arr);
+	if ((size_t)x == x)
+		return ((size_t)x);
+	return ((long double)((size_t)x + 1));
 }

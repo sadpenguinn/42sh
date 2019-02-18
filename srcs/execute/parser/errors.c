@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_push_back.c                                  :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/04 12:36:42 by narchiba          #+#    #+#             */
-/*   Updated: 2019/01/04 16:04:24 by narchiba         ###   ########.fr       */
+/*   Created: 2019/02/13 20:20:46 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/13 20:31:46 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "libft.h"
 
-int		queue_push_back(void **queue, const void *data)
+int pipeerror(void)
 {
-	size_t	*arr;
-
-	arr = (size_t *)(*queue);
-	if (!(vector_push_back((void **)(arr + 0), data)))
-	{
-		queue_free((void **)queue);
-		return (0);
-	}
-	return (1);
+	ft_putstr("42sh: pipe create error\n");
+	return (-1);
 }

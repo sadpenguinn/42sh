@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 int		vector_pop_back(void **vector)
 {
@@ -25,7 +26,7 @@ int		vector_pop_back(void **vector)
 		size = ft_ceill(arr[1] / A);
 		if (!(tmp = (size_t *)malloc(sizeof(size_t) * 3 + size * arr[0])))
 			return (0);
-		memcpy((void *)tmp, (void *)arr, arr[0] * arr[2] +
+		ft_memcpy((void *)tmp, (void *)arr, arr[0] * arr[2] +
 				sizeof(size_t) * 3);
 		tmp[1] = size;
 		vector_free(vector);

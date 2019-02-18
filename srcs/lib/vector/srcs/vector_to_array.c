@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 int		vector_to_array(void **vector)
 {
@@ -22,7 +23,7 @@ int		vector_to_array(void **vector)
 	n = arr[2] * arr[0];
 	if (!(tmp = (size_t *)malloc(n)))
 		return (0);
-	memcpy((void *)tmp, (void *)(arr + 3), n);
+	ft_memcpy((void *)tmp, (void *)(arr + 3), n);
 	vector_free(vector);
 	*vector = tmp;
 	return (1);

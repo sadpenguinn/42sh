@@ -6,15 +6,15 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 20:36:36 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/09 20:50:35 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/12 13:38:38 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libshell.h"
 
 /*
- * Function to check name of the variable for correctness
- */
+** Function to check name of the variable for correctness
+*/
 
 int		check_varname(char *var)
 {

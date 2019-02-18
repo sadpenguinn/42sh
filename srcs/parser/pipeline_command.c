@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 21:05:30 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 21:52:43 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/13 15:46:53 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static t_astree	*get_pipline_bang(void)
 	if (!(root->left = pipeline_command()))
 		if (!list_terminator())
 			return (freeastree(root));
-printf("OK\n");
 	return (root);
 }
 

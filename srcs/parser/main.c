@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 21:04:10 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 18:46:19 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/15 20:13:36 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,66 @@ int main(void)
 
 	g_tokens = vector_create(sizeof(t_lexem));
 
+	lex.type = CASE;
+	lex.word = "case";
+	vector_push_back(&g_tokens, &lex);
+
 	lex.type = WORD;
-	lex.word = "ls";
+	lex.word = "A";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = IN;
+	lex.word = "in";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = OBRACKET;
+	lex.word = "(";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = WORD;
+	lex.word = "B";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = CBRACKET;
+	lex.word = ")";
 	vector_push_back(&g_tokens, &lex);
 
 	lex.type = WORD;
 	lex.word = "ls";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = GREAT;
-	lex.word = "ls";
+	lex.type = DSEMI;
+	lex.word = ";;";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = OBRACKET;
+	lex.word = "(";
 	vector_push_back(&g_tokens, &lex);
 
 	lex.type = WORD;
-	lex.word = "A=4";
+	lex.word = "D";
 	vector_push_back(&g_tokens, &lex);
+
+	lex.type = CBRACKET;
+	lex.word = ")";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = WORD;
+	lex.word = "cat";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = DSEMI;
+	lex.word = ";;";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = ESAC;
+	lex.word = "esac";
+	vector_push_back(&g_tokens, &lex);
+
+
+	/* lex.type = IF; */
+	/* lex.word = "if"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
 	/* lex.type = IF; */
 	/* lex.word = "if"; */
@@ -70,16 +115,12 @@ int main(void)
 	/* lex.word = "fi"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	/* lex.type = SEMI; */
-	/* lex.word = ";"; */
-	/* vector_push_back(&g_tokens, &lex); */
-
-	/* lex.type = IF; */
-	/* lex.word = "if"; */
+	/* lex.type = LESS; */
+	/* lex.word = "<"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
 	/* lex.type = WORD; */
-	/* lex.word = "cat"; */
+	/* lex.word = "a"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
 	/* lex.type = SEMI; */
@@ -100,6 +141,14 @@ int main(void)
 
 	/* lex.type = FI; */
 	/* lex.word = "fi"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = LESS; */
+	/* lex.word = "<"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = WORD; */
+	/* lex.word = "a"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
 	printf("Tok count:%lu\n", ((size_t *)g_tokens)[2]);

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 18:43:26 by bwerewol          #+#    #+#              #
-#    Updated: 2019/02/11 13:45:22 by bwerewol         ###   ########.fr        #
+#    Updated: 2019/02/15 15:26:38 by bwerewol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC		=	./main.c\
 			./inpuntunit.c\
 			./simple_list1.c\
 			./simple_list2.c\
+			./simple_list3.c\
 			./pipeline_command.c\
 			./pipeline.c\
 			./command.c\
@@ -48,6 +49,7 @@ SRC		=	./main.c\
 			./compound_list.c\
 			./list1.c\
 			./list2.c\
+			./list3.c\
 			./simple_list_terminator.c\
 			./list_terminator.c\
 			./newline_list.c\
@@ -62,7 +64,7 @@ OBJ		=	$(SRC:.c=.o)
 
 CC		?=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-INCLUDES=	-I../lib/libft/includes -I../lib/vector/includes -I../../includes
+INCLUDES=	-I../lib/libft/includes -I../lib/vector/includes -I../../includes -I../lib/libhash/includes
 CFLAGS	+=	-O0 -g
 OTHERSRC=	../lib/libft/libft.a ../lib/libshell/xmalloc.c ../lib/vector/libvector.a
 

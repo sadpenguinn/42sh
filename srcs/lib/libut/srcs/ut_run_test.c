@@ -14,8 +14,6 @@
 
 void	write_prompt(int id)
 {
-	/* if (id > 0) */
-	/* 	ft_putchar('\n'); */
 	ft_putstr("*=== Test ");
 	ft_putnbr(id);
 	ft_putendl(" ===*");

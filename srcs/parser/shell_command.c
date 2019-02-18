@@ -56,13 +56,13 @@ static t_astree	*until_command()
 	root = xmalloc(sizeof(t_astree));
 	root->type = UNTIL;
 	if (!(root->left = compound_list()))
-		return (freeastree(root), parseerror());
+		return ((void)freeastree(root), parseerror());
 	if (!checktype(DO))
-		return (freeastree(root), parseerror());
+		return ((void)freeastree(root), parseerror());
 	if (!(root->right = compound_list()))
-		return (freeastree(root), parseerror());
+		return ((void)freeastree(root), parseerror());
 	if (!checktype(DONE))
-		return (freeastree(root), parseerror());
+		return ((void)freeastree(root), parseerror());
 	return  (root);
 }
 
@@ -74,10 +74,9 @@ static t_astree	*other_commands()
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
 	if (type == FOR && (res = arith_for_command()))
 		return (res);
-	else if (type == FOR && (res = for_command()))
+	if (type == FOR && (res = for_command()))
 		return (res);
-	else
-		return (arith_command());
+	return (arith_command());
 }
 
 t_astree		*shell_command(void)

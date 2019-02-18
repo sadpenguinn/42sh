@@ -6,10 +6,9 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:11:43 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 20:00:48 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/15 21:03:32 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 /*
 **	CC - Case Clause
@@ -54,10 +53,10 @@ t_astree		*case_command(void)
 	root->type = CASE;
 	root->left = res;
 	if (!checktype(IN))
-		return (freeastree(root), parseerror());
+		return ((void)freeastree(root), parseerror());
 	root->right = case_clause();
 	newline_list();
 	if (!checktype(ESAC))
-		return (freeastree(root), parseerror());
+		return ((void)freeastree(root), parseerror());
 	return (root);
 }

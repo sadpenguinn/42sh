@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ceill.c                                         :+:      :+:    :+:   */
+/*   execfor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 07:30:26 by narchiba          #+#    #+#             */
-/*   Updated: 2019/01/04 11:55:42 by narchiba         ###   ########.fr       */
+/*   Created: 2019/02/15 22:10:38 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/15 23:21:25 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "execute.h"
 
-long double	ft_ceill(long double x)
+int		execfor(t_astree *root, int fd[2], int flag)
 {
-	if ((size_t)x == x)
-		return ((size_t)x);
-	return ((long double)((size_t)x + 1));
+	t_astree	*body;
+
+	if 
 }

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_back.c                                       :+:      :+:    :+:   */
+/*   die.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/04 14:25:09 by narchiba          #+#    #+#             */
-/*   Updated: 2019/01/04 15:14:22 by narchiba         ###   ########.fr       */
+/*   Created: 2019/02/11 20:32:27 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/11 20:32:46 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "libshell.h"
 
-void	*queue_back(void *queue)
+void	die(void)
 {
-	size_t	*arr;
-
-	arr = (size_t *)queue;
-	if (vector_is_empty((void *)arr[0]))
-		return (vector_front((void *)arr[1]));
-	return (vector_back((void *)arr[0]));
+	write(2, "cannot allocate memory\n", 23);
+	exit(EXIT_FAILURE);
 }

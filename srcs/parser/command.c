@@ -6,11 +6,17 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:02:37 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 12:59:46 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/15 20:12:00 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+/*
+**     CMDREDIR
+**    /        \
+** CMD          REDIR
+*/
 
 static t_astree	*get_shell_command(void)
 {
@@ -32,17 +38,18 @@ t_astree	*command(void)
 {
 	t_type			type;
 	t_astree        *res;
+
 printf("in command\n");
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
 	if (type == DO || type == DONE || type == IN || type == THEN || type == FI)
 		return (0);
-	else if (!g_parseerr && (res = function_def()))
+	if (!g_parseerr && (res = function_def()))
 		return (res);
-	else if (!g_parseerr && (res = get_shell_command()))
+	if (!g_parseerr && (res = get_shell_command()))
 		return (res);
-	else if (!g_parseerr && (res = simple_command()))
+	if (!g_parseerr && (res = simple_command()))
 		return (res);
 	return (0);
 }

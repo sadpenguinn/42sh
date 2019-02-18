@@ -14,7 +14,8 @@
 #include "libft.h"
 
 void	ft_putnbrendl(int n)
-{ long	ln;
+{
+	long	ln;
 	long	pos;
 
 	pos = 1;

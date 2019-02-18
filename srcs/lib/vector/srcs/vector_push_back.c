@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 int		vector_push_back(void **vector, const void *data)
 {
@@ -24,7 +25,7 @@ int		vector_push_back(void **vector, const void *data)
 		if (!(tmp = (size_t *)malloc(sizeof(size_t) * 3 +
 						arr[0] * ft_floorl(arr[1] * A))))
 			return (0);
-		memcpy((void *)tmp, (void *)arr, arr[0] * arr[2] +
+		ft_memcpy((void *)tmp, (void *)arr, arr[0] * arr[2] +
 				sizeof(size_t) * 3);
 		tmp[1] = ft_floorl(tmp[1] * A);
 		vector_free(vector);
@@ -34,6 +35,6 @@ int		vector_push_back(void **vector, const void *data)
 	arr[2]++;
 	n = arr[0];
 	arr = (size_t *)((char *)(arr + 3) + arr[0] * (arr[2] - 1));
-	memcpy((void *)arr, data, n);
+	ft_memcpy((void *)arr, data, n);
 	return (1);
 }

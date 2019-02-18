@@ -6,17 +6,23 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 19:35:16 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/13 16:16:40 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHELL_H
-#define SHELL_H
+# define SHELL_H
 
 # include <stdlib.h>
-# include "lib.h"
+# include "libshell.h"
+# include "libhash.h"
 
-#define TERM_SHIFT              50
+extern char		**environ;
+/*extern t_hshtb	**g_env;*/
+
+# define INITIAL_ENV_HASH_SIZE	100
+
+# define TERM_SHIFT              50
 # define TERM_WORD              TERM_SHIFT + 0 /* word */
 # define TERM_AND_IF            TERM_SHIFT + 1 /* && */
 # define TERM_OR_IF             TERM_SHIFT + 2 /* || */
@@ -57,12 +63,48 @@
 # define TERM_FOR               TERM_SHIFT + 37 /* for */
 # define TERM_FUNCTION          TERM_SHIFT + 38 /* function */
 # define TERM_IN                TERM_SHIFT + 39 /* in */
-# define TERM_SElECT            TERM_SHIFT + 40 /* select */
+# define TERM_SELECT            TERM_SHIFT + 40 /* select */
 # define TERM_AND               TERM_SHIFT + 42 /* & */
 # define TERM_DSEMI             TERM_SHIFT + 43 /* ;; */
 # define TERM_NEWLINE           TERM_SHIFT + 54 /* \n */
 # define TERM_NOT               TERM_SHIFT + 45 /* ! */
 # define TERM_PIPE              TERM_SHIFT + 46 /* | */
 # define TERM_SPACE             TERM_SHIFT + 47 /* sp */
+
+# define C_DEFAULT "\x1b[0m"
+# define C_BOLD "\x1b[1m"
+# define C_LIGHT "\x1b[2m"
+# define C_RM_LIGHT "\x1b[22m"
+# define C_UNDERLINE "\x1b[4m"
+# define C_RM_UNDERLINE "\x1b[24m"
+# define C_BLINK "\x1b[5m"
+# define C_RM_BLINK "\x1b[25m"
+
+# define C_BLACK "\x1b[30m"
+# define C_RED "\x1b[31m"
+# define C_GREEN "\x1b[32m"
+# define C_YELLOW "\x1b[33m"
+# define C_BLUE "\x1b[34m"
+# define C_PURPLE "\x1b[35m"
+# define C_AQUA "\x1b[36m"
+# define C_GRAY "\x1b[37m"
+
+# define BG_BLACK "\x1b[40m"
+# define BG_RED "\x1b[41m"
+# define BG_GREEN "\x1b[42m"
+# define BG_YELLOW "\x1b[43m"
+# define BG_BLUE "\x1b[44m"
+# define BG_PURPLE "\x1b[45m"
+# define BG_AQUA "\x1b[46m"
+# define BG_GRAY "\x1b[47m"
+
+typedef struct			s_astree
+{
+	int				type;
+	char			*content;
+	struct s_astree	*left;
+	struct s_astree	*right;
+}						t_astree;
+
 
 #endif
