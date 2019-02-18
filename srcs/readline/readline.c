@@ -126,6 +126,7 @@ int count_chars(char *buf, int n)
 	int cnt;
 
 	i = 0;
+	cnt = 0;
 	while (i < n)
 	{
 		i += 1 + get_utf_offset(buf[i]);
@@ -155,12 +156,14 @@ void change_limits_left_case(t_matrix *matrix, int new_left_limit)
 	size = g_w.ws_col * g_w.ws_row;
 	i = ((matrix->lines[matrix->right_limit]->symbols +
 			get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
-	while (i < size && matrix->right_limit < matrix->len - 1)
+	while (i <= size && matrix->right_limit < matrix->len - 1)
 	{
 		matrix->right_limit++;
 		i += ((matrix->lines[matrix->right_limit]->symbols +
 				get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	}
+	if (i > size)
+		matrix->right_limit--;
 }
 
 void change_limits_right_case(t_matrix *matrix, int new_right_limit)
@@ -173,16 +176,38 @@ void change_limits_right_case(t_matrix *matrix, int new_right_limit)
 	size = g_w.ws_row * g_w.ws_col;
 	i = ((matrix->lines[matrix->left_limit]->symbols +
 	      get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
-	while (i < size && matrix->left_limit)
+	while (i <= size && matrix->left_limit)
 	{
 		matrix->left_limit--;
 		i += ((matrix->lines[matrix->left_limit]->symbols +
 		      get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	}
+	if (i > size)
+		matrix->left_limit++;
 }
 
-void check_limits(t_matrix *matrix)
+void check_cursor_limits(t_matrix *matrix)
 {
+    int left_limit;
+    int i;
+    int size;
+
+	size = g_w.ws_row * g_w.ws_col;
+    left_limit = matrix->cursor->row;
+	i = ((matrix->lines[left_limit]->symbols +
+		  get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+	while (i < size && left_limit)
+	{
+		left_limit--;
+		i += ((matrix->lines[left_limit]->symbols +
+			   get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+	}
+	if (left > matrix->left_limit)
+}
+
+void set_matrix_limits(t_matrix *matrix)
+{
+
 	if (matrix->cursor->row < matrix->left_limit)
 		change_limits_left_case(matrix, matrix->cursor->row);
 	if (matrix->cursor->row > matrix->right_limit)
@@ -234,6 +259,7 @@ void print_lines(t_matrix *matrix)
 
 void print_default(t_matrix *matrix)
 {
+	set_matrix_limits(matrix);
 	add_offset(matrix->last_offset);
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, 0);
 	print_lines(matrix);
@@ -243,6 +269,7 @@ void print_default(t_matrix *matrix)
 
 void    auto_complete(t_matrix *matrix)
 {
+	check_limits(matrix);
 	add_offset(matrix->last_offset);
 	print_lines(matrix);
 	if (matrix)
@@ -276,7 +303,6 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 		make_string_from_symbol(str, c);
 		matrix_string_insert(matrix, str);
 	}
-	check_limits(matrix);
 	print_default(matrix);
 	return (1);
 }
