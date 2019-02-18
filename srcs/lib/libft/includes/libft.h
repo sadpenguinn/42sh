@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 10:58:25 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/31 15:29:31 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/18 20:07:37 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,6 @@
 # define BACKG_WHITE	47
 
 /*
-** Get Next Line
-*/
-
-# define BUFF_SIZE 256
-
-/*typedef struct	s_line
-{
-	char			*data;
-	size_t			pos;
-	long int		end;
-	int				fd;
-	struct s_line	*next;
-}				t_line;
-int				get_next_line(const int fd, char **line);*/
-
-/*
 ** Lists
 */
 
@@ -68,7 +52,7 @@ typedef struct	s_list
 
 t_list			*ft_listnew(void *data);
 t_list			*ft_push(t_list **begin, void *data);
-t_list			*ft_pop(t_list **begin);
+void			*ft_pop(t_list **begin);
 t_list			*ft_push_back(t_list **begin, void *data);
 t_list			*ft_listlast(t_list *begin);
 
@@ -179,5 +163,7 @@ int				ft_strnum(char *str, long int num);
 char			*ft_pathadd(char *path, char *name);
 unsigned long	ft_pow(int n, int pw);
 int				fatal_error(char *message, int err);
+void			*xmalloc(size_t bytes);
+void			*xrealloc(void *p, size_t newsize, size_t oldsize);
 
 #endif

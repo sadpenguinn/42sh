@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/18 13:53:50 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/18 15:47:52 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ extern t_hshtb	**g_path;
 # define BG_AQUA "\x1b[46m"
 # define BG_GRAY "\x1b[47m"
 
-<<<<<<< HEAD
 typedef struct			s_astree
 {
 	int				type;
@@ -120,11 +119,9 @@ typedef struct			s_astree
 	struct s_astree	*right;
 }						t_astree;
 
-=======
 void	init_hash_env(char **env);
 void	init_path(void);
 void 	destroy_hash_env(void);
 void 	destroy_path(void);
->>>>>>> fb2c8db063a3a252e3a138d6f62c325c61eae674
 
 #endif
