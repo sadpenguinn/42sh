@@ -6,7 +6,7 @@
 /*   By: dmorgil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 17:42:57 by dmorgil           #+#    #+#             */
-/*   Updated: 2019/02/10 19:54:06 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:32:09 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include "libft.h"
 # include "vector.h"
+# include "libstring.h"
 
 typedef unsigned long int	t_type;
 
@@ -34,8 +35,6 @@ typedef struct				s_lexer
 
 t_lexer						*lexer(char const *str, size_t len);
 int							push_token(void **lexems, char *lexem, int state);
-char						*push_symbol(char **symbol_table,
-														char *str, size_t len);
-void						*lexer_die(void *a1, void *a2);
+char						*push_symbol(t_string *string, char *str, size_t len);
 
 #endif

@@ -6,22 +6,17 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 15:59:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/09 17:19:11 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/17 17:23:16 by tony             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libut.h"
+#include "../includes/libut.h"
 
-void	ut_clean_test(t_utest *ut)
+/*
+** Cleans the tests array and all internal variables
+*/
+
+void	ut_clean_test(t_utest *tests)
 {
-	t_utest	*tmp;
-
-	while (ut)
-	{
-		tmp = ut->next;
-		free(ut->input);
-		free(ut->expect);
-		free(ut);
-		ut = tmp;
-	}
+	free(tests);
 }

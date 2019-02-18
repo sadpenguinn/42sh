@@ -42,7 +42,7 @@ void	array_add(const char *str, unsigned int len)
 	}
 	memcpy(arr->buf + arr->len, str, len);
 	arr->len += len;
-	if (ARR_LEN_LIMIT != 0 && arr->len > ARR_LEN_LIMIT)
+	if (ARR_LEN_LIMIT && arr->len > ARR_LEN_LIMIT)
 		array_flush();
 }
 

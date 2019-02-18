@@ -10,32 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "line_editing.h"
+#include "readline.h"
+#include <unistd.h>
+#include <string.h>
 
-static t_uchar	ft_getchar()
+t_uchar	get_next_symbol(size_t size)
 {
-	t_uchar	c;
+	t_uchar c;
 
 	c = 0;
-	read(1, &c, sizeof(t_uchar));
+	if (size > sizeof(t_uchar))
+		size = sizeof(t_uchar);
+	read(0, &c, size);
 	return (c);
 }
 
-t_uchar	get_next_symbol(void)
+static int is_utf(char c)
 {
-	struct termios	old;
-	struct termios	new;
-	t_uchar			c;
+	if ((c >> 7) & 1)
+		return (1);
+	return (0);
+}
 
-	tcgetattr(0, &old);
-	new = old;
-	new.c_lflag &= ~(ICANON | ECHO);
-    new.c_cc[VLNEXT] = 026;
-    new.c_cc[VEOF] = 04;
-    new.c_cc[VREPRINT] = 022;
-	new.c_cc[VQUIT] = 034;
-	tcsetattr(0, TCSANOW, &new);
-	c = ft_getchar();
-	tcsetattr(0, TCSANOW, &old);
-	return (c);
+int get_utf_offset(unsigned char c)
+{
+	int i;
+
+	if (c > 127)
+	{
+		i = 0;
+		while (i < 7 && ((c >> (6 - i)) & 1))
+			i++;
+		return (i);
+	}
+	return (0);
+}
+
+int check_utf(t_matrix *matrix, t_uchar c)
+{
+	t_uchar tmp;
+	tmp = get_next_symbol(get_utf_offset(c));
+	c += (tmp << 8);
+	comb_offset(c);
+	return (check_modes(matrix, c));
+}
+
+int check_next_symbol(t_matrix *matrix)
+{
+	t_uchar c;
+
+	c = get_next_symbol(sizeof(char));
+	if (c == CTRL_D)
+		return (-1);
+	if (c == 27)
+		return (check_esc_code(matrix));
+	if (is_utf(c))
+		return (check_utf(matrix, c));
+	comb_offset(c);
+	return (check_modes(matrix, c));
 }

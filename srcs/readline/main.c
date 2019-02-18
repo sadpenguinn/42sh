@@ -12,8 +12,22 @@
 
 #include <stdlib.h>
 #include "readline.h"
-#include "array.h"
+#include "term.h"
+#include "shell.h"
 
 int		main(void)
 {
+	int ret;
+	t_matrix *matrix;
+
+	set_term();
+	ret = 1;
+	g_mode = READLINE;
+	while (ret)
+	{
+		matrix = init_matrix();
+		ret = readline(matrix);
+	}
+	unset_term();
+	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:59:34 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/11 19:08:26 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/16 14:34:55 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libhash.h"
+#include "../includes/libhash.h"
 
 static int	fill_info(t_hshtb **table, size_t size, int hashing)
 {
@@ -25,11 +25,15 @@ static int	fill_info(t_hshtb **table, size_t size, int hashing)
 	info->size = size;
 	info->filled = 0;
 	info->hashing = hashing;
-	table[0]->content = info;
-	table[0]->content_size = sizeof(info);
+	table[0]->content = (void *)info;
 	table[0]->next = NULL;
 	return (1);
 }
+
+/*
+** Allocate hash table with passed size and hash function.
+** Hashing algorithm transmitted as define
+*/
 
 t_hshtb		**hash_init(size_t size, int hashing)
 {

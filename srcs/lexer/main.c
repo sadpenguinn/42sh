@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 17:14:01 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/10 19:17:59 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/15 15:52:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int		main(int ac, char **av)
 {
 	t_lexer		*lex;
 
-	if (ac != 3)
+	if (ac != 2)
 		return (1);
-	lex = lexer(av[1], ft_atoi(av[2]));
+	lex = lexer(av[1], ft_strlen(av[1]));
 	vector_foreach(lex->lexems, print_token);
 	return (0);
 }
