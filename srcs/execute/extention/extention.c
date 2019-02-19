@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:56:17 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/19 19:24:54 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/19 20:50:51 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,26 @@
 #include "extention.h"
 #include <stdio.h>
 
+int		get_len_of_name_var(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != ' ' && str[i])
+		i++;
+	return (i - 1);
+}
+
 int		get_len_of_dollar(char *str)
 {
 	int		i;
 	int		counter;
-	int		var;
 
 	i = 1;
 	counter = 0;
-	var = (str[i] == '{' || str[i] == '[' || str[i] == '(') ? 0 : 1;
-	while (str[i] && !(var && str[i] == ' '))
+	if (!(str[i] == '{' || str[i] == '[' || str[i] == '('))
+		return (get_len_of_name_var(str));
+	while (str[i])
 	{
 		if (str[i] == '{' || str[i] == '[' || str[i] == '(')
 			counter++;
@@ -33,7 +43,7 @@ int		get_len_of_dollar(char *str)
 		if (!counter)
 			break ;
 	}
-	if (!var && counter)
+	if (counter)
 	{
 		ft_putstr("invalid syntax!\n");
 		exit(0);
@@ -95,8 +105,11 @@ char	*extention(char *str)
 	return (res);
 }
 
-int		main(void)
+int		main(int argc, char **argv, char **env)
 {
-	printf("Result = %s\n", extention("check ${parameter#par} check"));
+	(void)argc;
+	(void)argv;
+	init_env(env);
+	printf("Result = %s\n", extention("check ${qwd:-$HOME} check"));
 	return (0);
 }
