@@ -25,8 +25,6 @@ set(LEXER_SRC		srcs/lexer/lexer.c
 set(LIBSHELL_SRC	srcs/lib/libshell/check_varname.c
 					srcs/lib/libshell/glob.c
 					srcs/lib/libshell/match.c
-					srcs/lib/libshell/xmalloc.c
-					srcs/lib/libshell/xrealloc.c
 					srcs/lib/libshell/die.c
 					srcs/lib/libshell/serror.c
 					srcs/lib/libshell/sstrerr.c

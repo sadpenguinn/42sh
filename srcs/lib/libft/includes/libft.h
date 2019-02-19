@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 10:58:25 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/18 20:07:37 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 14:25:45 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,6 @@ unsigned long	ft_pow(int n, int pw);
 int				fatal_error(char *message, int err);
 void			*xmalloc(size_t bytes);
 void			*xrealloc(void *p, size_t newsize, size_t oldsize);
+void			**ft_joinvect(void **arr1, void **arr2);
 
 #endif

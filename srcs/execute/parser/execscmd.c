@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:31:00 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/18 19:05:07 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:19:39 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
-#include "execute.h"
 
-typedef struct	s_redir
-{
-	char	*content;
-	int		type;
-	int		fd;
-}				t_redir;
+#include <unistd.h>
+#include "execute.h"
 
 char *expand(char *str)
 {
@@ -45,33 +40,31 @@ char **get_alias(char *str)
 {
 	char **new;
 
-	new = malloc(sizeof(char *) * 2);
+	new = malloc(sizeof(char *) * 3);
 	new[0] = ft_strdup(str);
-	new[1] = 0;
+	new[1] = ft_strdup("-G");
+	new[2] = 0;
 	/* free(str); */
 	return (new);
 }
-/*
-**              <(type)
-**             /  \
-**  (content)2?    filename(content)
-*/
 
-t_redir	*get_redir(t_astree *root)
+int		add_pipe_redir(t_list **redlst, int fd[2])
 {
 	t_redir		*redir;
-	int			type;
 
-	type = root->type;
-	redir = malloc(sizeof(t_redir));
-	redir->type = type;
-	redir->content = root->right->content;
-	root->right->content = 0;
-	redir->fd = (type == LESS || type == DLESS || type == LESSAND) ? 0 : 1;
-	if (root->left)
-		redir->fd = ft_atoi(root->left->content);
-	return (redir);
+	redir = malloc(sizeof(t_redir) * 2);
+	redir[0].type = REDIRECT;
+	redir[1].type = REDIRECT;
+	redir[0].fd[0] = STDIN_FILENO;
+	redir[0].fd[1] = fd[0];
+	redir[1].fd[0] = STDOUT_FILENO;
+	redir[1].fd[1] = fd[1];
+printf("rd:%d|%d\n", redir[0].fd[0], ((t_redir *)cmd[2]->data)->fd[1]);
+	ft_push(redlst, (void *)redir);
+	ft_push(redlst, (void *)(redir + 1));
+	return (0);
 }
+
 
 int	get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
 {
@@ -88,6 +81,7 @@ int	get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
 		ft_push_back(&cmd[2], get_redir(root->left));
 	else
 	{
+printf("*%s\n", root->left->content);
 		ft_push_back((type == WORD ? &cmd[0] : &cmd[1]), root->left->content);
 		root->left->content = 0;
 	}
@@ -120,19 +114,20 @@ int		set_alias_arg(t_list **args)
 	int		i;
 	char	**alias;
 
-	alias = get_alias(ft_pop(&args));
+	alias = get_alias(ft_pop(args));
 	i = 0;
 	while (alias[i])
 		i++;
-	while (--i <= 0)
-		ft_push_back(args, alias[i]);
+	while (--i >= 0)
+		ft_push(args, alias[i]);
 	free(alias);
 	return (0);
 }
 
-char	**get_argv_list(t_list *args)
+char	**get_argv(t_list *args)
 {
 	t_list	*lst;
+	char	**argv;
 
 	set_alias_arg(&args);
 	lst = args;
@@ -141,18 +136,50 @@ char	**get_argv_list(t_list *args)
 		lst->data = (char **)expandarg((char *)lst->data);
 		lst = lst->next;
 	}
+	argv = (char **)args->data;
+	args->data = 0;
+	while ((args = args->next))
+	{
+		argv = (char **)ft_joinvect((void **)argv, (void **)args->data);
+		args->data = 0;
+	}
+	return (argv);
 }
+
+/* int		execute(char *path, char **argv, t_list *redirs) */
+/* { */
+
+/* } */
+
+/*
+**	cmd[0] - ARGRS
+**	cmd[1] - ASSIGNMENT
+**	cmd[2] - REDIRECTION
+*/
 
 int	execscmd(t_astree *root, int fd[2], int flag)
 {
-	t_list	*cmd[3]; //[0]-WORD [1]-ASSIGMENT [2]-REDIRECTION
+	t_list	*cmd[3];
 	char	**argv;
+	char	*path;
+	pid_t	pid;
 
 	bzero(cmd, sizeof(t_list *) * 3);
-	get_cmd_attr(root, cmd, 1);
-	expand_assign(cmd[0]);
-	argv = get_argv_list(cmd[1]);
-
+	add_pipe_redir(fd, &cmd[3]);
+	/* get_cmd_attr(root, cmd, 1); */
+	while (cmd[2])
+	{
+		printf("rd:%d|%d\n", ((t_redir *)cmd[2]->data)->fd[0], ((t_redir *)cmd[2]->data)->fd[1]);
+		cmd[2] = cmd[2]->next;
+	}
+	/* expand_assign(cmd[1]); */
+	/* argv = get_argv(cmd[0]); */
+	/* path = get_path(argc[0]); */
+	/* if ((pid = fork()) == -1) */
+	/* 	return (-1); */
+	/* if (!pid) */
+	/* 	execute(path, argv, cmd[2]); */
+	printf("***OK***\n");
 	return (0);
 }
 
@@ -185,20 +212,27 @@ int main(void)
 	tree[4].left = &tree[54];
 	tree[4].right = 0;
 
+	tree[50].type = WORD;
+	tree[50].content = "ls";
+
 	tree[51].type = WORD;
-	tree[51].content = "ls";
+	tree[51].content = "-l";
 
 	tree[52].type = WORD;
-	tree[52].content = "-l";
+	tree[52].content = "dir1";
 
 	tree[53].type = GREAT;
-	tree[53].content = ">";
 	tree[53].right = &tree[75];
 	tree[75].type = WORD;
 	tree[75].content = "file";
 
-	tree[54].type = WORD;
-	tree[54].content = "ls";
+	tree[54].type = LESS;
+	tree[54].right = &tree[76];
+	tree[76].type = WORD;
+	tree[76].content = "file2";
+
+	tree[55].type = WORD;
+	tree[55].content = "dir2";
 
 	execscmd(&tree[0], fd, 0);
 	return (0);

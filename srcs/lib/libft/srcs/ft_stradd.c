@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 21:54:35 by bwerewol          #+#    #+#             */
-/*   Updated: 2018/12/22 14:07:35 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 13:06:45 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_stradd(char *dst, char *src)
 		return ((char *)0);
 	dstlen = ft_strlen(dst);
 	srclen = ft_strlen(src);
-	if (!(str = malloc(dstlen + srclen + 1)))
+	if (!(str = xmalloc(dstlen + srclen + 1)))
 		return ((char *)0);
 	ft_memcpy(str, dst, dstlen);
 	ft_memcpy(str + dstlen, src, srclen);

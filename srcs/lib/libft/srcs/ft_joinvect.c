@@ -1,23 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_arrayjoin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 18:03:01 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 14:19:11 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/19 13:08:32 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/19 14:24:25 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+void	**ft_joinvect(void **arr1, void **arr2)
 {
-	void	*mem;
+	int		i;
+	int		j;
+	int		newlen;
+	void	**newarr;
 
-	if (!(mem = xmalloc(size)))
-		return ((void *)0);
-	ft_memset(mem, 0, size);
-	return (mem);
+	newlen = 0;
+	i = 0;
+	while (arr1[i++])
+		newlen++;
+	i = 0;
+	while (arr2[i++])
+		newlen++;
+	newlen++;
+	newarr = xmalloc(sizeof(void *) * newlen);
+	j = 0;
+	i = 0;
+	while (arr1[i])
+		newarr[j++] = arr1[i++];
+	i = 0;
+	while (arr2[i])
+		newarr[j++] = arr2[i++];
+	free(arr1);
+	free(arr2);
+	newarr[newlen] = 0;
+	return (newarr);
 }
