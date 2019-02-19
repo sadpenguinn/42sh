@@ -12,15 +12,16 @@
 
 #include <stdlib.h>
 
-void 	free_str_arr(char **arr)
+void 	free_str_arr(char ***arr)
 {
 	int 	i;
 
 	i = 0;
-	while (arr[i])
+	while ((*arr)[i])
 	{
-		free(arr[i]);
+		free((*arr)[i]);
 		i++;
 	}
-	free(arr);
+	free((*arr));
+	*arr = NULL;
 }

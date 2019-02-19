@@ -19,6 +19,10 @@ set(VECTOR_INC		srcs/lib/vector/includes)
 
 set(MAIN			srcs/shell.c)
 
+set(SHELL_SRC		srcs/shell/init_env.c
+					srcs/shell/init_path.c
+					srcs/shell/destroy_env.c)
+
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)
 
@@ -26,12 +30,12 @@ set(LIBSHELL_SRC	srcs/lib/libshell/check_varname.c
 					srcs/lib/libshell/glob.c
 					srcs/lib/libshell/match.c
 					srcs/lib/libshell/die.c
-					srcs/lib/libshell/serror.c
+					srcs/lib/libshell/free_str_arr.c
+					srcs/lib/libshell/sputerr.c
 					srcs/lib/libshell/sstrerr.c
 					srcs/lib/libshell/sgetenv.c
 					srcs/lib/libshell/ssetenv.c
-					srcs/lib/libshell/sunsetenv.c
-					srcs/lib/libshell/keyvaluecmp.c)
+					srcs/lib/libshell/sunsetenv.c)
 
 set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/arith_for_command.c
@@ -54,9 +58,10 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/inpuntunit.c
 					srcs/parser/io_file.c
 					srcs/parser/io_here.c
-					srcs/parser/list0.c
+					#[[srcs/parser/list0.c]]
 					srcs/parser/list1.c
 					srcs/parser/list2.c
+					srcs/parser/list3.c
 					srcs/parser/list_terminator.c
 					srcs/parser/newline_list.c
 					srcs/parser/otherfunc.c
@@ -75,12 +80,10 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/simple_command_element.c
 					srcs/parser/simple_list1.c
 					srcs/parser/simple_list2.c
+					srcs/parser/simple_list3.c
 					srcs/parser/simple_list_terminator.c
 					srcs/parser/subshell.c
-					srcs/parser/word_list.c)
-
-set(PARSER_SRC srcs/shell/init_path.c
-		srcs/shell/init_hash_env.c srcs/lib/libshell/sunsetenv.c srcs/shell/destroy_hash_env.c srcs/lib/libshell/free_str_arr.c srcs/shell/destroy_path.c)
+					srcs/parser/word_list.c srcs/shell/init.c srcs/shell/destroy.c srcs/lib/libshell/split_env.c)
 
 include_directories(${INC})
 include_directories(${PARSER_INC})
@@ -94,5 +97,5 @@ add_subdirectory(${LIBHASH_DIR})
 add_subdirectory(${LIBSTRING_DIR})
 add_subdirectory(${VECTOR_DIR})
 
-add_executable(42sh ${MAIN} ${LEXER_SRC} ${PARSER_SRC} ${LIBSHELL_SRC})
+add_executable(42sh ${MAIN} ${SHELL_SRC} ${LEXER_SRC} ${PARSER_SRC} ${LIBSHELL_SRC})
 target_link_libraries(42sh ${LIBFT} ${LIBHASH} ${LIBSTRING} ${VECTOR})

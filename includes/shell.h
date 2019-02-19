@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 16:48:04 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:31:51 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 # include "libshell.h"
 # include "libhash.h"
 
-extern t_hshtb	**g_hash_env;
-extern t_hshtb	**g_path;
+extern t_hash	*g_hash_env;
+extern t_hash	*g_path;
+extern t_hash	*g_path_sums;
+extern char 	**g_env;
 
-# define INITIAL_ENV_HASH_SIZE	100
-# define INITIAL_PATH_HASH_SIZE	20
+# define INITIAL_ENV_HASH_SIZE			100
+# define INITIAL_PATH_HASH_SIZE			20
+# define INITIAL_PATH_SUMS_HASH_SIZE	20
 
 /*
 ** Shell error define like a standard C errno
@@ -118,9 +121,10 @@ typedef struct			s_astree
 	struct s_astree	*right;
 }						t_astree;
 
-void	init_hash_env(char **env);
+void	init(char **env);
+void	init_env(char **env);
 void	init_path(void);
-void 	destroy_hash_env(void);
-void 	destroy_path(void);
+void	destroy(void);
+void 	destroy_env(void);
 
 #endif

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_keyvaluecmp.c                                 :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 18:09:50 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 14:47:41 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/19 18:31:05 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/19 18:31:20 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int 	keyvaluecmp(char *el1, char *el2)
+/*
+** Global variables with env and paths hashes/arrays
+*/
+t_hash			*g_hash_env = NULL;
+t_hash			*g_path = NULL;
+t_hash			*g_path_sums = NULL;
+char 			**g_env = NULL;
+
+void	init(char **env)
 {
-	while (*el1 && *el2 && *el1 != '=')
-	{
-		if (*el1 != *el2)
-			return (0);
-		el1++;
-		el2++;
-	}
-	if (!*el1 || (*el1 == '=' && !*(el1 + 1)))
-		return (0);
-	return (1);
+	init_env(env);
+	init_path();
 }

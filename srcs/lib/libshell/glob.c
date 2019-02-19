@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:40:02 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/09 20:54:32 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/18 19:02:49 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 static size_t	get_files_count(char *path)
 {
-	struct dirent	*cdir;
 	DIR				*dirp;
 	size_t			count;
 
 	count = 0;
 	if (!(dirp = opendir(path)))
 		return (count);
-	while ((cdir = readdir(dirp)))
+	while (readdir(dirp))
 		count++;
 	closedir(dirp);
 	return (count);
@@ -38,7 +37,7 @@ static void		glob_free(char ***matches, int i)
 	*matches = NULL;
 }
 
-static int		read_dir(DIR *dirp, char *pattern, char ***matches, int *cnt)
+static int		read_dir(DIR *dirp, char *pattern, char ***matches, size_t *cnt)
 {
 	struct dirent	*cdir;
 	size_t			i;
@@ -50,7 +49,7 @@ static int		read_dir(DIR *dirp, char *pattern, char ***matches, int *cnt)
 		{
 			if (!((*matches)[i] = ft_strdup(cdir->d_name)))
 			{
-				glob_free(matches, i);
+				glob_free(matches, (int)i);
 				return (-1);
 			}
 			i++;
@@ -58,10 +57,10 @@ static int		read_dir(DIR *dirp, char *pattern, char ***matches, int *cnt)
 	}
 	*cnt = i;
 	(*matches)[i] = NULL;
-	return (i);
+	return ((int)i);
 }
 
-int				glob(char *pattern, char *path, char ***matches, int *cnt)
+int				glob(char *pattern, char *path, char ***matches, size_t *cnt)
 {
 	DIR				*dirp;
 	size_t			arr_len;
