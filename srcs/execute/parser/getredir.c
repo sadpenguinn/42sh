@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 16:02:43 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 17:46:34 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 21:23:48 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_redir	*get_redir(t_astree *root)
 		if (-1 == (redir->fd[1] = open(root->right->content,
 				O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644)))
 			return (fileerr(root->right->content, redir));
+printf(">>%s|%d|%d\n", root->right->content, redir->fd[0], redir->fd[1]);
+printf("%p\n", redir);
 	}
 	else
 	{

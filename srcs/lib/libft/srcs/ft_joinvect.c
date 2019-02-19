@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrayjoin.c                                     :+:      :+:    :+:   */
+/*   ft_joinvect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 13:08:32 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 14:24:25 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:37:54 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+#include <stdio.h>
 void	**ft_joinvect(void **arr1, void **arr2)
 {
 	int		i;
 	int		j;
-	int		newlen;
-	void	**newarr;
+	int		len;
 
-	newlen = 0;
-	i = 0;
-	while (arr1[i++])
-		newlen++;
-	i = 0;
-	while (arr2[i++])
-		newlen++;
-	newlen++;
-	newarr = xmalloc(sizeof(void *) * newlen);
-	j = 0;
+	len = 0;
 	i = 0;
 	while (arr1[i])
-		newarr[j++] = arr1[i++];
-	i = 0;
-	while (arr2[i])
-		newarr[j++] = arr2[i++];
-	free(arr1);
+		i++;
+	j = 0;
+	while (arr2[j])
+		j++;
+	len = i + j + 1;
+	arr1 = xrealloc((void *)arr1, sizeof(void *) * len, sizeof(void *) * len);
+	j = 0;
+	while (arr2[j])
+		arr1[i++] = arr2[j++];
 	free(arr2);
-	newarr[newlen] = 0;
-	return (newarr);
+	arr1[len - 1] = 0;
+	return (arr1);
 }

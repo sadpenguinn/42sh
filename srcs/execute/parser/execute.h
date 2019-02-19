@@ -6,14 +6,14 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 16:27:11 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 17:47:03 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 21:11:22 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libft.h"
 /* #include "parser.h" */
-
+#include <stdio.h>
 extern int	g_execerr;
 
 /*

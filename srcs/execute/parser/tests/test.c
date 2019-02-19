@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 14:12:02 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 20:25:56 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:44:34 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ extern char **environ;
 
 int main(int ac, char **av, char **env)
 {
-	printf("ac:%d\n", ac);
-	printf("av:%s\n", *av);
-	printf("env:%s\n", *env);
-	env = environ;
-	while (*env)
-		printf("%s\n", *env++);
+	for (int i = 0; i < ac; i++)
+		printf("av:%s\n", av[i]);
+	for (; *env; env++)
+		printf("en:%s\n", *env);
 	return (0);
 }

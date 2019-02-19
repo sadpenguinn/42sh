@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 10:58:25 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 14:25:45 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:35:12 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ char			*ft_strmap(char const *s, char (*f)(char));
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int				ft_strequ(char const *s1, char const *s2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
-char			*ft_strsub(char const *s, unsigned int start, size_t len);
+char			*ft_strsub(char const *s, size_t start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2, int free_s);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
@@ -153,7 +153,7 @@ void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 int				ft_err_msg(char *msg, int errn);
 int				ft_numlen(int64_t num, int base);
-char			*ft_stradd(char *dest, char *src);
+char			*ft_stradd(char *dst, char *src, int freesrc);
 void			*ft_memdup(void *data, size_t size);
 void			ft_putnchr(char ch, int n);
 void			ft_strcolor(char *str, int x1, int x2, int x3);
