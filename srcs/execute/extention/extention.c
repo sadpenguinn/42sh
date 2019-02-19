@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:56:17 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/19 20:50:51 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:32:49 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,34 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 	return (res);
 }
 
+/*
+**	fuck_norm[0] - len_of_extention
+**	fuck_norm[1] - brackets
+*/
+
 char	*extention(char *str)
 {
 	char	*res;
 	char	*buf;
-	int		len_of_extention;
+	int		fuck_norm[2];
 	int		i;
 	int		j;
 
 	res = xmalloc(sizeof(char) * (ft_strlen(str) + 1));
 	i = 0;
 	j = 0;
+	fuck_norm[1] = 0;
 	while (str[i])
 	{
-		if (str[i] == '$')
+		if (str[i] == '\'')
 		{
-			buf = get_pahom(&str[i], &i, &len_of_extention);
-			res = remalloc_result_of_extention(str, res, buf, len_of_extention);
+			fuck_norm[1] = (fuck_norm[1] + 1) % 2;
+			i++;
+		}
+		if (str[i] == '$' && !fuck_norm[1])
+		{
+			buf = get_pahom(&str[i], &i, &fuck_norm[1]);
+			res = remalloc_result_of_extention(str, res, buf, fuck_norm[1]);
 			j += ft_strlen(buf);
 		}
 		else
@@ -110,6 +121,8 @@ int		main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	init_env(env);
-	printf("Result = %s\n", extention("check ${qwd:-$HOME} check"));
+	// hash_print(g_hash_env);
+	// sgetenv("HOwqdqwME");
+	printf("Result = %s\n", extention("check ${qwd:=$HOME} check"));
 	return (0);
 }

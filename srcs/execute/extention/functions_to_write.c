@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:42 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/19 20:41:45 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:33:56 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*
 ** ${parameter:-word}	1	use_a_defalt_value
-** ${parameter:=word}	2	assign_a_default_value
+** ${parameter:=word}	2	assign_a_default_value // поправить присвоение
 ** ${parameter:?word}	3	display_error_if_null_or_unset
 ** ${parameter:+word}	4	use_an_alternate_value
 ** ${#parameter}		5	get_len_of_value
@@ -47,11 +47,11 @@ void	push_to_enviroment(char *name, char *val)
 
 char	*get_content_of_var(char *str)
 {
-	// return (sgetenv(str));
+	return (sgetenv(str));
 	// return (ft_strdup(str));
 
-	(void)str;
-	return (NULL);
+	// (void)str;
+	// return (NULL);
 }
 
 char	*use_a_defalt_value(char *str)
