@@ -6,12 +6,11 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 17:28:39 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 18:57:53 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 20:57:52 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-#include <sys/stat.h>
 
 void	init_read_dir(char *dir, DIR *dirp)
 {
@@ -30,9 +29,9 @@ void	init_read_dir(char *dir, DIR *dirp)
 void	init_paths(char **paths)
 {
 	struct stat	stats;
-	DIR		*dirp;
-	t_hshtb	*cell;
-	int 	i;
+	DIR			*dirp;
+	t_hshtb		*cell;
+	int 		i;
 
 	i = 0;
 	while (paths[i])
@@ -43,7 +42,7 @@ void	init_paths(char **paths)
 			continue ;
 		}
 		stat(paths[i], &stats);
-		cell = hash_insert(paths[i], ft_itoa(stats.st_mtimespec.tv_sec), g_path_sums, NULL);
+		cell = hash_insert(paths[i], ft_itoa((int)stats.st_mtimespec.tv_sec), g_path_sums, NULL);
 		init_read_dir(cell->key, dirp);
 		closedir(dirp);
 		i++;
@@ -61,7 +60,8 @@ void 	init_path(void)
 		die();
 	if (!(cell = hash_find("PATH", g_hash_env)))
 		return ;
+	ft_putendl(cell->value);
 	paths = ft_strsplit(cell->value, ':');
 	init_paths(paths);
+	free_str_arr(&paths);
 }
-

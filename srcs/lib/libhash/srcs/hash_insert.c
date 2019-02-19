@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 16:51:28 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 21:08:06 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_hshtb			*hash_insert_cell(char *key, char *value, t_hash *hash, t_hshindex ind
 
 	i = index;
 	ptr = hash->table + index;
-	while (index < hash->size - 1 && ptr->key)
+	while (index < hash->size && ptr->key)
 	{
 		ptr++;
 		index++;

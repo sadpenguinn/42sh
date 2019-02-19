@@ -14,7 +14,8 @@ set(SRC_LIB		srcs/check_varname.c
 				srcs/sstrerr.c
 				srcs/sgetenv.c
 				srcs/ssetenv.c
-				srcs/sunsetenv.c)
+				srcs/sunsetenv.c
+				srcs/split_env.c)
 
 include_directories(${INC})
 include_directories(${LIBFT_INC})

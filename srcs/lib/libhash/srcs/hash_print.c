@@ -26,7 +26,7 @@ void		hash_print_cell(char *key, char *value)
 
 int 		hash_print(t_hash *hash)
 {
-	if (!(hash_foreach(hash, hash_print_cell)))
+	if ((hash_foreach(hash, hash_print_cell)) == HSH_ERR)
 		return (HSH_ERR);
 	ft_putstr(C_GREEN"Size: ");
 	ft_putnbrendl((int)hash->size);

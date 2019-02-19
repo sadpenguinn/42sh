@@ -84,6 +84,9 @@
 		<Unit filename="/Users/nkertzma/Documents/42sh/srcs/lib/libshell/srcs/sgetenv.c">
 			<Option target="shell"/>
 		</Unit>
+		<Unit filename="/Users/nkertzma/Documents/42sh/srcs/lib/libshell/srcs/split_env.c">
+			<Option target="shell"/>
+		</Unit>
 		<Unit filename="/Users/nkertzma/Documents/42sh/srcs/lib/libshell/srcs/sputerr.c">
 			<Option target="shell"/>
 		</Unit>

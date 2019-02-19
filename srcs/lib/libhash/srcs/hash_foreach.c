@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 18:10:58 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 15:17:52 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 21:23:04 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int 	hash_foreach(t_hash *hash, void (f)(char *key, char *value))
 	size_t	size;
 	size_t	i;
 
-	if (!hash || !hash->table)
+	if (!hash || !hash->table || !f)
 		return (HSH_ERR);
 	i = 0;
 	size = hash->size;

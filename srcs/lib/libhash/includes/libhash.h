@@ -70,6 +70,7 @@ typedef struct	s_hshtb
 	char			*key;
 	char 			*value;
 	void			*data;
+	struct s_hshtb	*next;
 }				t_hshtb;
 
 typedef struct	s_hash

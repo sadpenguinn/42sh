@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:42:14 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 18:42:27 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 21:30:15 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char 	**split_env(char *str)
 	{
 		i = tmp - str;
 		pair[0] = ft_strsub(str, 0, i);
-		pair[1] = str[i++] ? ft_strsub(str, i, len) : NULL;
+		pair[1] = i++ ? ft_strsub(str, i, len - i) : NULL;
 		pair[2] = NULL;
 		return (pair);
 	}

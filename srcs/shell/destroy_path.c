@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   destroy_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/11 18:15:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 21:40:01 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/19 20:52:46 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/19 20:53:17 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/*
-** Global variables for parser
-*/
-void			*g_tokens = NULL;
-unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
-
-int		main(int ac, char **av, char **env)
+void	destroy_path(void)
 {
-	init(env);
-	char *ee = sgetenv("HOMEq");
-	if (ee)
-		ft_putendl(ee);
-	else
-		ft_putendl("NONE");
-	destroy();
-	return (EXIT_SUCCESS);
+	hash_clean(g_path);
+	hash_clean(g_path_sums);
+	g_path = NULL;
+	g_path_sums = NULL;
 }

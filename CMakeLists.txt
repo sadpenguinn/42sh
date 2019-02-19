@@ -17,13 +17,16 @@ set(VECTOR			vector)
 set(VECTOR_DIR		srcs/lib/vector)
 set(VECTOR_INC		srcs/lib/vector/includes)
 set(LIBSHELL		shell)
-set(LIBSHELL_DIR		srcs/lib/libshell)
+set(LIBSHELL_DIR	srcs/lib/libshell)
 
 set(MAIN			srcs/shell.c)
 
-set(SHELL_SRC		srcs/shell/init_env.c
+set(SHELL_SRC		srcs/shell/init.c
+					srcs/shell/init_env.c
 					srcs/shell/init_path.c
-					srcs/shell/destroy_env.c)
+					srcs/shell/destroy.c
+					srcs/shell/destroy_env.c
+					srcs/shell/destroy_path.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)
@@ -73,7 +76,7 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/simple_list3.c
 					srcs/parser/simple_list_terminator.c
 					srcs/parser/subshell.c
-					srcs/parser/word_list.c srcs/shell/init.c srcs/shell/destroy.c srcs/lib/libshell/srcs/split_env.c)
+					srcs/parser/word_list.c)
 
 include_directories(${INC})
 include_directories(${PARSER_INC})

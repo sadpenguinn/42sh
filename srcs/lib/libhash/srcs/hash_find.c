@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:43:32 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 20:27:26 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 21:38:20 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_hshtb		*hash_find(char *key, t_hash *hash)
 	index = hash_index(key, hash);
 	i = index;
 	ptr = hash->table + index;
-	while (index < hash->size - 1 && ft_strcmp(key, ptr->key))
+	while (index < hash->size && (!ptr->key || (ptr->key && ft_strcmp(key, ptr->key))))
 	{
 		ptr++;
 		index++;
@@ -36,7 +36,8 @@ t_hshtb		*hash_find(char *key, t_hash *hash)
 	{
 		index = i;
 		i = 0;
-		while (i < index && !ptr->key)
+		ptr = hash->table + i;
+		while (i < index && (!ptr->key || (ptr->key && ft_strcmp(key, ptr->key))))
 		{
 			ptr++;
 			i++;
