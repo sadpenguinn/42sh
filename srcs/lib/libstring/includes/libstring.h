@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:56:42 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 15:47:06 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:08:18 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int				string_resize(t_string *string);
 ** then size of string, string will be reallocated
 */
 
-int				string_insert(t_string *string, char c, int pos);
+int				string_insert(t_string *string, char c, size_t pos);
 
 /*
 ** Just concatenates strings

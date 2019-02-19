@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:06:04 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 15:39:02 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:08:15 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** then size of string, string will be reallocated
 */
 
-int		string_insert(t_string *string, char c, int pos)
+int		string_insert(t_string *string, char c, size_t pos)
 {
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:05:27 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 21:20:55 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:20:34 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void		init_arr_env(size_t size)
 
 void			init_env(char **env)
 {
+	t_hshtb *cell;
 	char 	**pair;
 	size_t	size;
 	int		i;
@@ -50,7 +51,7 @@ void			init_env(char **env)
 	while (env[i])
 	{
 		pair = split_env(env[i]);
-		t_hshtb *cell = hash_insert(pair[0], pair[1], g_hash_env, ft_strdup(env[i]));
+		cell = hash_insert(pair[0], pair[1], g_hash_env, ft_strdup(env[i]));
 		free_str_arr(&pair);
 		i++;
 	}
