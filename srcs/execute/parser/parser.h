@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 20:03:20 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/13 16:16:26 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,54 +95,54 @@ extern int				g_parseerr;
 # define AND_IF			SHIFT + 9
 # define OR_IF			SHIFT + 10
 # define DSEMI			SHIFT + 11
-# define LESS			SHIFT + 12
-# define GREAT			SHIFT + 13
-# define LESSAND		SHIFT + 14
-# define GREATAND		SHIFT + 15
-# define DLESS			SHIFT + 16
-# define DGREAT			SHIFT + 17
-# define LESSGREAT		SHIFT + 18
-# define CLOBBER		SHIFT + 19
-# define DLESSDASH		SHIFT + 20
-# define TLESS			SHIFT + 21
-# define ASSIGMENT_WORD	SHIFT + 22
-# define NUMBER			SHIFT + 23
-# define NEWLINE		SHIFT + 24
-# define NOT			SHIFT + 25
-# define PIPE			SHIFT + 26
-# define PIPEAND		SHIFT + 27
-# define IF				SHIFT + 28
-# define THEN			SHIFT + 29
-# define ELSE			SHIFT + 30
-# define ELIF			SHIFT + 31
-# define FI				SHIFT + 32
-# define FOR			SHIFT + 33
-# define WHILE			SHIFT + 34
-# define UNTIL			SHIFT + 35
-# define DO				SHIFT + 36
-# define DONE			SHIFT + 37
-# define CASE			SHIFT + 38
-# define IN				SHIFT + 39
-# define ESAC			SHIFT + 40
-# define FUNCTION		SHIFT + 41
-# define SELECT			SHIFT + 42
-# define COMMAND 		SHIFT + 43
-# define REDIRECTION	SHIFT + 44
-# define TOKEOF			SHIFT + 45
-# define ARITH			SHIFT + 46
-# define COND			SHIFT + 47
-# define REST			SHIFT + 48
-# define LIST1			SHIFT + 49
-# define LIST2			SHIFT + 50
-# define LIST3			SHIFT + 51
-# define CMDREDIR		SHIFT + 52
-# define PIPECMD		SHIFT + 53
+# define SEMI_AND		SHIFT + 12
+# define DSEMI_AND		SHIFT + 13
+# define LESS			SHIFT + 14
+# define GREAT			SHIFT + 15
+# define LESSAND		SHIFT + 16
+# define GREATAND		SHIFT + 17
+# define DLESS			SHIFT + 18
+# define DGREAT			SHIFT + 19
+# define LESSGREAT		SHIFT + 20
+# define CLOBBER		SHIFT + 21
+# define DLESSDASH		SHIFT + 22
+# define TLESS			SHIFT + 23
+# define ASSIGMENT_WORD	SHIFT + 24
+# define NUMBER			SHIFT + 25
+# define NEWLINE		SHIFT + 26
+# define NOT			SHIFT + 27
+# define PIPE			SHIFT + 28
+# define PIPEAND		SHIFT + 29
+# define IF				SHIFT + 30
+# define THEN			SHIFT + 31
+# define ELSE			SHIFT + 32
+# define ELIF			SHIFT + 33
+# define FI				SHIFT + 34
+# define FOR			SHIFT + 35
+# define WHILE			SHIFT + 36
+# define UNTIL			SHIFT + 37
+# define DO				SHIFT + 38
+# define DONE			SHIFT + 39
+# define CASE			SHIFT + 40
+# define IN				SHIFT + 41
+# define ESAC			SHIFT + 42
+# define FUNCTION		SHIFT + 43
+# define SELECT			SHIFT + 44
+# define COMMAND 		SHIFT + 45
+# define REDIRECTION	SHIFT + 46
+# define TOKEOF			SHIFT + 47
+# define ARITH			SHIFT + 48
+# define COND			SHIFT + 49
+# define REST			SHIFT + 50
+# define LIST1			SHIFT + 51
+# define LIST2			SHIFT + 52
+# define CMDREDIR		SHIFT + 53
+# define PIPECMD		SHIFT + 54
 
 
 t_astree	*inputunit(void);
 t_astree	*simple_list1(void);
 t_astree	*simple_list2(void);
-t_astree	*simple_list3(void);
 t_astree	*pipeline_command(void);
 t_astree	*pipeline(void);
 t_astree	*command(void);
@@ -168,7 +168,6 @@ t_astree	*function_body(void);
 t_astree	*compound_list(void);
 t_astree	*list1(void);
 t_astree	*list2(void);
-t_astree	*list3(void);
 int			simple_list_terminator();	//	Return terminator type if exist and skip it. If no term return 0
 int			list_terminator();		//	Return terminator type if exist and skip it. If no term return 0
 void		newline_list(void);		//	Skip all \n

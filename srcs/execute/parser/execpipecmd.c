@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   execpipecmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 17:57:13 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/18 20:04:34 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/13 16:01:57 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/15 19:54:14 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "execute.h"
 
-int		ft_atoi(const char *nptr)
+int		execpipecmd(t_astree *root, int fd[2], int flag)
 {
-	int			sig;
-	long long	num;
-
-	num = 0;
-	sig = 1;
-	while (*nptr == ' ' || *nptr == '\n' || *nptr == '\v' || *nptr == '\f' ||
-			*nptr == '\r' || *nptr == '\t')
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
-		sig = (*nptr++ == '-') ? -1 : 1;
-	while (*nptr >= '0' && *nptr <= '9')
-		num = num * 10 + (*nptr++ - '0');
-	return (num * sig);
+	if (!(root) || !(root->left))
+		return (-1);
+	if (root->type == NOT)
+		return (!execpipecmd(root->left, fd, flag));
+	if (root->left->type == REST)
+		return (execpipes(root->left, fd, flag));
+	if (root->left->type == COMMAND)
+		return (execcmd(root->left, fd, flag));
+	return (-1);
 }

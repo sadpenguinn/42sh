@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   xmalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 17:57:13 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/18 20:04:34 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/31 16:07:52 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/18 20:05:46 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "shell.h"
 
-int		ft_atoi(const char *nptr)
+void	*xmalloc(size_t bytes)
 {
-	int			sig;
-	long long	num;
+	void	*temp;
 
-	num = 0;
-	sig = 1;
-	while (*nptr == ' ' || *nptr == '\n' || *nptr == '\v' || *nptr == '\f' ||
-			*nptr == '\r' || *nptr == '\t')
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
-		sig = (*nptr++ == '-') ? -1 : 1;
-	while (*nptr >= '0' && *nptr <= '9')
-		num = num * 10 + (*nptr++ - '0');
-	return (num * sig);
+	if (!(temp = malloc(bytes)))
+	{
+		write(2, "cannot allocate memory\n", 23);
+		exit(EXIT_FAILURE);
+	}
+	ft_memset(temp, 0, bytes);
+	return (temp);
 }

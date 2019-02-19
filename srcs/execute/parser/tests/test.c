@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 17:57:13 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/18 20:04:34 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/11 14:12:02 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/11 20:25:56 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
-int		ft_atoi(const char *nptr)
+extern char **environ;
+
+int main(int ac, char **av, char **env)
 {
-	int			sig;
-	long long	num;
-
-	num = 0;
-	sig = 1;
-	while (*nptr == ' ' || *nptr == '\n' || *nptr == '\v' || *nptr == '\f' ||
-			*nptr == '\r' || *nptr == '\t')
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
-		sig = (*nptr++ == '-') ? -1 : 1;
-	while (*nptr >= '0' && *nptr <= '9')
-		num = num * 10 + (*nptr++ - '0');
-	return (num * sig);
+	printf("ac:%d\n", ac);
+	printf("av:%s\n", *av);
+	printf("env:%s\n", *env);
+	env = environ;
+	while (*env)
+		printf("%s\n", *env++);
+	return (0);
 }

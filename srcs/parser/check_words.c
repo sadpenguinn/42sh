@@ -52,7 +52,7 @@ int		check_arith_word(char *str)
 	return (0);
 }
 
-int		check_assigment_word(char *str)
+int		check_assigment_word(const char *str)
 {
 	int i;
 
@@ -68,7 +68,7 @@ int		check_assigment_word(char *str)
 	return (0);
 }
 
-int		check_word_type(int type)
+int		check_word_type(t_type type)
 {
 	/* printf("%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n", */ 
 	/* 	 WORD, IF, THEN, ELSE */

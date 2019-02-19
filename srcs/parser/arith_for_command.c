@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 12:51:53 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 12:41:10 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/15 23:21:35 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 **
 **           FOR
 **          /   \
-**     ARITH     DO
-**                 \
-**                  CMPLST
+**     ARITH     CMPLST
 */
 
 #include "parser.h"
@@ -43,8 +41,8 @@ static t_astree	*get_word()
 
 static t_astree	*get_compound_list()
 {
-	int			type;
-	t_astree	*root;
+    t_type		type;
+	t_astree	*res;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
@@ -52,18 +50,18 @@ static t_astree	*get_compound_list()
 	if (type != DO && type != OBRACE)
 		return (0);
 	g_curtok++;
-	root = xmalloc(sizeof(t_astree));
-	root->type = DO;
-	if (!(root->right = compound_list()))
-		return (freeastree(root));
+	/* root = xmalloc(sizeof(t_astree)); */
+	/* root->type = DO; */
+	if (!(res = compound_list()))
+		return (0);
 	if (type == DO)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != DONE)
-			return (freeastree(root));
+			return (freeastree(res));
 	if (type == OBRACE)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != CBRACE)
-			return (freeastree(root));
+			return (freeastree(res));
 	g_curtok++;
-	return (root);
+	return (res);
 }
 
 t_astree	*arith_for_command(void)
@@ -80,6 +78,6 @@ t_astree	*arith_for_command(void)
 	if (!(root->left = get_word()))
 		return (savecur(g_curtok - 1));
 	if (!(root->right = get_compound_list()))
-		return (freeastree(root), parseerror());
+        return ((void)freeastree(root), parseerror());
 	return (root);
 }

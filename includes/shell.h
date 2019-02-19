@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/16 15:12:49 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/18 15:47:52 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,14 @@ extern t_hshtb	**g_path;
 # define BG_PURPLE "\x1b[45m"
 # define BG_AQUA "\x1b[46m"
 # define BG_GRAY "\x1b[47m"
+
+typedef struct			s_astree
+{
+	int				type;
+	char			*content;
+	struct s_astree	*left;
+	struct s_astree	*right;
+}						t_astree;
 
 void	init_hash_env(char **env);
 void	init_path(void);

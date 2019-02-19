@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 12:51:53 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 12:43:47 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/15 23:21:31 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 **
 **           FOR
 **          /   \
-**      WORD     CMPLST
+**        IN     CMPLST
+**       /
+**   WORD
 **
 **           FOR
 **          /   \
@@ -46,27 +48,21 @@ static t_astree	*get_word()
 	return (root);
 }
 
-static t_astree	*get_wordlist(t_astree	*root)
+static t_astree	*get_wordlist(t_astree	*left)
 {
-	t_astree	*temp;
-
 	if (!checktype(IN))
-		return (root);
-	temp = root->left;
-	root->left = xmalloc(sizeof(t_astree));
-	root->left->type = IN;
-	root->left->left = temp;
-	root->left->right = word_list();
+		return (left);
+	left->right = word_list();
 	if (!list_terminator())
-		return (freeastree(root));
+		return (freeastree(left));
 	newline_list();
-	return (root);
+	return (left);
 }
 
 static t_astree	*get_compound_list()
 {
-	int			type;
-	t_astree	*root;
+	t_type		type;
+	t_astree	*res;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
@@ -74,37 +70,40 @@ static t_astree	*get_compound_list()
 	if (type != DO && type != OBRACE)
 		return (0);
 	g_curtok++;
-	root = xmalloc(sizeof(t_astree));
-	root->type = DO;
-	if (!(root->right = compound_list()))
-		return (freeastree(root));
+	/* root = xmalloc(sizeof(t_astree)); */
+	/* root->type = DO; */
+	if (!(res = compound_list()))
+		return (0);
 	if (type == DO)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != DONE)
-			return (freeastree(root));
+			return (freeastree(res));
 	if (type == OBRACE)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != CBRACE)
-			return (freeastree(root));
+			return (freeastree(res));
 	g_curtok++;
-	return (root);
+	return (res);
 }
 
 t_astree	*for_command(void)
 {
 	int			type;
 	t_astree	*root;
+
 printf("in for_command\n");
 	if (!checktype(FOR))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
+	root->left = xmalloc(sizeof(t_astree));
 	root->type = FOR;
-	if (!(root->left = get_word()))
+	root->left->type = IN;
+	if (!(root->left->left = get_word()))
 		return (freeastree(root), parseerror());
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
 	if (type == SEMI)
 		g_curtok++;
 	newline_list();
 	if (type != SEMI)
-		if (!(root = get_wordlist(root)))
+		if (!(root->left = get_wordlist(root->left)))
 			return (parseerror());
 	if (!(root->right = get_compound_list()))
 		return (freeastree(root), parseerror());

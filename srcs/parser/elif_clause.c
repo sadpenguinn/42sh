@@ -72,11 +72,11 @@ t_astree		*elif_clause(void)
 	root->type = IF;
 	root->left = res;
 	if (!(root->right = compound_list()))
-		return (freeastree(root), parseerror());
+		return ((void)freeastree(root), parseerror());
 	if (checktype(ELSE))
 		root->right = get_else(root->right);
 	if (checktype(ELIF))
 		if (!(root->right = get_elif(root->right)))
-			return (freeastree(root), parseerror());
+			return ((void)freeastree(root), parseerror());
 	return (root);
 }

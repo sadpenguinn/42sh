@@ -1,0 +1,2 @@
+if type NOT or PIPECMD return (execpipecmd)
+	if type REST return (execpipes) elseif type COMMAND return (execcmd)
