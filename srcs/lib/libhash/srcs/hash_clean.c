@@ -6,47 +6,33 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 16:19:29 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 17:14:58 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 15:02:16 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
 
-static void	clean_elem(t_hshtb *elem)
-{
-	t_hshtb		*tmp;
-	t_hshtb		*stmp;
-
-	tmp = elem;
-	while (tmp)
-	{
-		stmp = tmp->next;
-		free(tmp->content);
-		free(tmp);
-		tmp = stmp;
-	}
-}
-
 /*
-** Function just clears the table
+** The function just cleans the table
 */
 
-void		hash_clean(t_hshtb ***tables)
+void		hash_free_fileds(char *key, char *value)
 {
-	t_hshtb		**table;
-	size_t		size;
-	size_t		i;
+	free(key);
+	free(value);
+}
 
-	i = 0;
-	table = *tables;
-	size = ((t_hshinfo *)table[0]->content)->size;
-	while (i < size + 1)
+int 		hash_clean(t_hash *hash)
+{
+	if (!hash)
+		return (HSH_ERR);
+	if (!hash->table)
 	{
-		if (table[i])
-			clean_elem(table[i]);
-		table[i] = NULL;
-		i++;
+		free(hash);
+		return (HSH_ERR);
 	}
-	free(*tables);
-	*tables = NULL;
+	hash_foreach(hash, hash_free_fileds);
+	free(hash->table);
+	free(hash);
+	return (HSH_OK);
 }

@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_path.c                                     :+:      :+:    :+:   */
+/*   hash_get_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/16 15:18:58 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 15:19:14 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/18 15:41:02 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/19 14:14:47 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../includes/libhash.h"
 
-void 	destroy_path(void)
+/*
+** Returns length of table
+*/
+
+size_t		hash_get_len(t_hash *hash)
 {
-	hash_clean(&g_path);
+	if (!hash)
+		return ((size_t)HSH_ERR);
+	return (hash->filled);
 }

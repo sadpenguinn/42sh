@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void 	serror(char *str)
+void 	sputerr(char *str)
 {
 	if (str)
 		ft_putendl(str);

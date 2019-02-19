@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_hash_env.c                                 :+:      :+:    :+:   */
+/*   hash_get_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/16 15:12:03 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 15:12:03 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/18 15:37:18 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/19 14:14:47 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../includes/libhash.h"
 
-void 	destroy_hash_env(void)
+/*
+** Returns size of table
+*/
+
+size_t		hash_get_size(t_hash *hash)
 {
-	hash_clean(&g_hash_env);
+	if (!hash)
+		return ((size_t)HSH_ERR);
+	return (hash->size);
 }

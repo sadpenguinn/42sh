@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 14:44:40 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 16:50:02 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft.h"
+
+/*
+** Hash functions return one if this values.
+** If ret is a pointer, NULL will be returned in error case
+*/
+# define HSH_ERR 0
+# define HSH_OK 1
 
 /*
 ** Defines for hash realloc function
 */
 # define HSH_PERCENTS_FILLED_MAX 50
-# define HSH_PERCENTS_SIZE_REALLOC 200
-
-/*
-** Defines for nomination hashing algorithms
-*/
-# define HSH_DEFAULT 0
-# define HSH_DJB2 1
-# define HSH_EQ_DJB2 2
+# define HSH_PERCENTS_SIZE_REALLOC 150
 
 # ifndef C_COLORS
 #  define C_COLORS
@@ -59,99 +60,92 @@
 #  define BG_GRAY "\x1b[47m"
 # endif
 
+/*
+** Internal type for represent an index
+*/
 typedef unsigned long	t_hshindex;
 
 typedef struct	s_hshtb
 {
-	char			*content;
-	struct s_hshtb	*next;
+	char			*key;
+	char 			*value;
+	void			*data;
 }				t_hshtb;
 
-typedef struct	s_hshinfo
+typedef struct	s_hash
 {
+	t_hshtb		*table;
 	size_t		size;
 	size_t		filled;
-	int			hashing;
-}				t_hshinfo;
+}				t_hash;
 
 /*
-** Looks up the index of an item in a table. 'c' argument
-** is hashing algorithm define. If c does't correspond
-** to more than one define djb2 will be selected
+** Allocate hash table with passed size
 */
 
-t_hshindex		hash_index(void *content, t_hshtb **table, int c);
+t_hash			*hash_init(size_t size);
 
 /*
-** Allocate hash table with passed size and hash function.
-** Hashing algorithm transmitted as define
+** Looks up the index of an item in a table.
+** At hash or key == NULL, behavior is undefined
 */
 
-t_hshtb			**hash_init(size_t size, int hashing);
+t_hshindex		hash_index(char *key, t_hash *hash);
 
 /*
-** Function insert cell into the table. If the row already has a cell,
-** new node joins the end of the list. If cell count is greater
-** then HSH_PERCENTS_FILLED_MAX define, table size increase by
+** Function insert cell into the table. If cells count is greater
+** then HSH_PERCENTS_FILLED_MAX define, table size will be increased by
 ** HSH_PERCENTS_SIZE_REALLOC
 */
 
-t_hshtb			*hash_insert(void *content, t_hshtb ***table);
+t_hshtb			*hash_insert(char *key, char *value, t_hash *hash, void *data);
 
 /*
-** Remove one cell in the table
+** Remove one cell from the table
 */
 
-int				hash_delete(void *content, \
-							t_hshtb **table, int (c)(char *el1, char *el2));
+int 			hash_delete(char *key, t_hash *hash);
 
 /*
-** Returns a pointer if there is match, else NULL will be returned
+** Returns a pointer if there is match or NULL
 */
 
-t_hshtb			*hash_find(void *content, t_hshtb **table, \
-											int (c)(char *el1, char *el2));
+t_hshtb			*hash_find(char *key, t_hash *hash);
+
 /*
-** Function just clears the table
+** The function just cleans the table
 */
 
-void			hash_clean(t_hshtb ***tables);
+int 			hash_clean(t_hash *hash);
 
 /*
 ** Iterates the table
 */
 
-void			hash_foreach(t_hshtb **table, void (c)(char *content));
+int 			hash_foreach(t_hash *hash, void (f)(char *key, char *value));
+
+/*
+** Returns size of table
+*/
+
+size_t			hash_get_size(t_hash *hash);
+
+/*
+** Returns length of table
+*/
+
+size_t			hash_get_len(t_hash *hash);
 
 /*
 ** Just printing the table
 */
 
-void			hash_print(t_hshtb **table);
+int 			hash_print(t_hash *hash);
 
 /*
 ** Counts the number of collision
 */
 
-void			hash_test(t_hshtb **table);
-
-/*
-** Hash functions
-*/
-
-/*
-** Dan Bernstein hashing algorithm for variable length string
-** http://www.cse.yorku.ca/~oz/hash.html
-*/
-
-t_hshindex		djb2(char *content);
-
-/*
-** Dan Bernstein hashing algorithm for variable length string.
-** Function adapted for strings key=value. In which lines compares to =.
-** http://www.cse.yorku.ca/~oz/hash.html
-*/
-
-t_hshindex		eq_djb2(char *content);
+int 			hash_test(t_hash *hash);
 
 #endif

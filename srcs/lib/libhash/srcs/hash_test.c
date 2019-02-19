@@ -6,37 +6,37 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:18:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/14 17:13:17 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 14:14:47 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
 #include "libft.h"
 
+static size_t		g_collisions = 0;
+static t_hash		*g_hash = NULL;
+
+void				hash_collisions(char *key, char *value)
+{
+	t_hshindex	index;
+	t_hshtb		*ptr;
+
+	index = hash_index(key, g_hash);
+	ptr = g_hash->table + (sizeof(t_hshtb) * index);
+	if (ft_strcmp(key, ptr->key))
+		g_collisions++;
+}
+
 /*
 ** Counts the number of collision
 */
 
-void	hash_test(t_hshtb **table)
+int 				hash_test(t_hash *hash)
 {
-	t_hshtb	*tmp;
-	size_t	i;
-	int		cnt;
-
-	i = 1;
-	cnt = 0;
-	while (i < ((t_hshinfo *)table[0]->content)->size)
-	{
-		tmp = table[i];
-		while (tmp)
-		{
-			if (tmp->next)
-				cnt++;
-			tmp = tmp->next;
-		}
-		i++;
-	}
-	write(1, "Collision test: ", 16);
-	ft_putnbr(cnt);
-	write(1, "\n", 1);
+	g_hash = hash;
+	if (!(hash_foreach(hash, hash_collisions)))
+		return (HSH_ERR);
+	ft_putstr("Collision test: ");
+	ft_putnbrendl((int)g_collisions);
+	return (HSH_OK);
 }

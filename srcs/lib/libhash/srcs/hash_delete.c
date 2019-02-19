@@ -6,40 +6,25 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:38:30 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 15:07:21 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 14:14:47 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
 
 /*
-** Remove one cell in the table
+** Remove one cell from the table
 */
 
-int 	hash_delete(void *content, t_hshtb **table, \
-				int (c)(char *el1, char *el2))
+int 	hash_delete(char *key, t_hash *hash)
 {
-	t_hshtb		*tmp;
-	t_hshtb		*stmp;
-	t_hshindex	index;
-	t_hshinfo	*info;
+	t_hshtb		*cell;
 
-	stmp = NULL;
-	info = (t_hshinfo *)(table[0]->content);
-	index = hash_index(content, table, info->hashing);
-	tmp = table[index];
-	while (tmp && !(c)(tmp->content, content))
-	{
-		stmp = tmp;
-		tmp = tmp->next;
-	}
-	if (!tmp)
-		return(0);
-	if (stmp)
-		stmp->next = tmp->next;
-	else
-		table[index] = tmp->next;
-	free(tmp);
-	info->filled--;
-	return (1);
+	if (!(cell = hash_find(key, hash)))
+		return (HSH_ERR);
+	free(cell->key);
+	free(cell->value);
+	ft_memset((void *)cell, '\0', sizeof(t_hshtb));
+	return (HSH_OK);
 }
+

@@ -6,57 +6,34 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 13:01:56 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 14:42:15 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 14:14:47 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
 #include "libft.h"
 
-static void	print_row(t_hshtb *row)
+void		hash_print_cell(char *key, char *value)
 {
-	int		flag;
-
-	flag = 0;
-	while (row)
-	{
-		flag = 1;
-		write(1, row->content, ft_strlen(row->content));
-		write(1, " -> ", 4);
-		row = row->next;
-	}
-	if (flag)
-		write(1, "\n", 1);
+	ft_putstr(key);
+	ft_putchar('=');
+	ft_putendl(value);
 }
 
 /*
 ** Just printing the table
 */
 
-void		hash_print(t_hshtb **table)
+int 		hash_print(t_hash *hash)
 {
-	t_hshtb		*tmp;
-	size_t		size;
-	size_t		i;
+	if (!(hash_foreach(hash, hash_print_cell)))
+		return (HSH_ERR);
+	ft_putstr(C_GREEN"Size: ");
+	ft_putnbrendl((int)hash->size);
+	ft_putstr("Filled: ");
+	ft_putnbrendl((int)hash->filled);
+	ft_putstr(C_DEFAULT);
+	return (HSH_OK);
 
-	if (!table)
-		return ;
-	i = 1;
-	size = ((t_hshinfo *)table[0]->content)->size;
-	while (i < size)
-	{
-		if ((tmp = table[i]))
-		{
-			write(1, C_GREEN"Row ", 4 + 5);
-			ft_putnbrendl((int)i);
-			write(1, C_DEFAULT, 5);
-			print_row(tmp);
-		}
-		i++;
-	}
-	write(1, C_GREEN"Size: ", 6 + 5);
-	ft_putnbrendl((int)(((t_hshinfo *)table[0]->content)->size));
-	write(1, "Filled: ", 8);
-	ft_putnbrendl((int)(((t_hshinfo *)table[0]->content)->filled));
-	write(1, C_DEFAULT, 5);
+
 }

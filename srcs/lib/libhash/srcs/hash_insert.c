@@ -6,93 +6,105 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 14:38:38 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 16:51:28 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
-#include "libft.h"
 
-static void		hash_realloc(t_hshtb ***table, size_t new_size)
+static int 		hash_realloc(t_hash *hash, size_t new_size)
 {
-	t_hshtb		**tmp_table;
-	t_hshtb		**new_table;
-	t_hshtb		*tmp;
-	size_t		i;
+	t_hash	*new_hash;
+	t_hshtb	*current;
+	size_t	i;
 
-	i = 1;
-	tmp_table = *table;
-	if (!(new_table = hash_init(new_size, \
-							((t_hshinfo *)((*table)[0]->content))->hashing)))
-		return ;
-	while (i < ((t_hshinfo *)tmp_table[0]->content)->size)
+	i = 0;
+	if (!(new_hash = hash_init(new_size)))
+		return (0);
+	current = hash->table;
+	while (i < hash->size)
 	{
-		tmp = tmp_table[i++];
-		while (tmp)
+		if (current->key)
 		{
-			if (!(hash_insert(tmp->content, &new_table)))
+			if(!(hash_insert(current->key, current->value, new_hash, current->data)))
 			{
-				hash_clean(&new_table);
-				return ;
+				hash_clean(hash);
+				return (0);
 			}
-			tmp = tmp->next;
 		}
+		current++;
+		i++;
 	}
-	hash_clean(table);
-	*table = new_table;
+	current = hash->table;
+	hash->table = new_hash->table;
+	hash->size = new_hash->size;
+	hash->filled = new_hash->filled;
+	free(new_hash);
+	free(current);
+	return (1);
 }
 
-static size_t		hash_check_avail(t_hshtb ***table)
+static size_t		hash_check_avail(t_hash *hash)
 {
-	t_hshtb		**tmp_table;
-	size_t		avail;
-	size_t		filled;
+	float		avail;
+	float		filled;
 
-	tmp_table = *table;
-	avail = (size_t)((float)((t_hshinfo *)tmp_table[0]->content)->size / (float)100 \
-											* (float)HSH_PERCENTS_FILLED_MAX);
-	filled = ((t_hshinfo *)tmp_table[0]->content)->filled;
+	avail = (float)hash->size / (float)100 * (float)HSH_PERCENTS_FILLED_MAX;
+	filled = (float)hash->filled;
 	if (filled > avail)
-		return ((size_t)((float)((t_hshinfo *)tmp_table[0]->content)->size / \
-								(float)100 * (float)HSH_PERCENTS_SIZE_REALLOC));
+		return ((size_t)((float)hash->size / (float)100 * (float)HSH_PERCENTS_SIZE_REALLOC) + hash->size);
 	return (0);
 }
 
-t_hshtb			*insert_cell(void *content, t_hshtb **table, t_hshindex index)
+t_hshtb			*hash_insert_cell(char *key, char *value, t_hash *hash, t_hshindex index, void *data)
 {
-	t_hshtb		*tmp;
-	t_hshtb		*stmp;
+	t_hshindex	i;
+	t_hshtb		*ptr;
+	t_hshtb		new;
 
-	if (!(tmp = (t_hshtb *)malloc(sizeof(t_hshtb))))
-		return (NULL);
-	if (!(tmp->content = ft_strdup(content)))
+	i = index;
+	ptr = hash->table + index;
+	while (index < hash->size - 1 && ptr->key)
 	{
-		free(tmp);
-		return (NULL);
+		ptr++;
+		index++;
 	}
-	stmp = table[index];
-	table[index] = tmp;
-	tmp->next = stmp;
-	(((t_hshinfo *)table[0]->content)->filled)++;
-	return (tmp);
+	if (index == hash->size)
+	{
+		index = i;
+		i = 0;
+		while (i < index && ptr->key)
+		{
+			ptr++;
+			i++;
+		}
+		if (i == index)
+			return (NULL);
+	}
+	new.key = ft_strdup(key);
+	new.value = ft_strdup(value);
+	new.data = data;
+	ft_memmove((void *)ptr, (void *)&new, sizeof(t_hshtb));
+	hash->filled++;
+	return (ptr);
 }
 
 /*
-** Function insert cell into the table. If the row already has a cell,
-** new node joins the end of the list. If cell count is greater
-** then HSH_PERCENTS_FILLED_MAX define, table size increase by
+** Function insert cell into the table. If cells count is greater
+** then HSH_PERCENTS_FILLED_MAX define, table size will be increased by
 ** HSH_PERCENTS_SIZE_REALLOC
 */
 
-t_hshtb			*hash_insert(void *content, t_hshtb ***table)
+t_hshtb			*hash_insert(char *key, char *value, t_hash *hash, void *data)
 {
-	t_hshinfo	*info;
 	t_hshindex	index;
 	size_t		new_size;
 
-	if ((new_size = hash_check_avail(table)))
-		hash_realloc(table, new_size);
-	info = (t_hshinfo *)((*table)[0]->content);
-	index = hash_index(content, *table, info->hashing);
-	return (insert_cell(content, *table, index));
+	if (!hash || !hash->table || !key)
+		return (NULL);
+	if ((new_size = hash_check_avail(hash)))
+		if (!(hash_realloc(hash, new_size)))
+			return (NULL);
+	index = hash_index(key, hash);
+	return (hash_insert_cell(key, value, hash, index, data));
 }

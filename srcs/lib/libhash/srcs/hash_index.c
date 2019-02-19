@@ -6,30 +6,44 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:22:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/16 14:36:44 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 14:53:46 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
 
 /*
-** Looks up the index of an item in a table. 'c' argument
-** is hashing algorithm define. If c does't correspond
-** to more than one define djb2 will be selected
+** Dan Bernstein hashing algorithm for variable length strings
+** http://www.cse.yorku.ca/~oz/hash.html
 */
 
-t_hshindex			hash_index(void *content, t_hshtb **table, int c)
+static t_hshindex	djb2(char *content)
+{
+	t_hshindex	index;
+	size_t		i;
+	int			c;
+
+	i = 0;
+	index = 5381;
+	while (content[i])
+	{
+		c = content[i];
+		index = ((index << 5) + index) + c;
+		i++;
+	}
+	return (index);
+}
+
+/*
+** Looks up the index of an item in a table.
+** At hash or key == NULL, behavior is undefined
+*/
+
+t_hshindex			hash_index(char *key, t_hash *hash)
 {
 	t_hshindex	index;
 
-	if (c == HSH_DJB2)
-		index = djb2(content);
-	else if (c == HSH_EQ_DJB2)
-		index = eq_djb2(content);
-	else
-		index = djb2(content);
-	index = index % ((t_hshinfo *)table[0]->content)->size;
-	if (!index)
-		return (index + 1);
+	index = djb2(key);
+	index = index % hash->size;
 	return (index);
 }
