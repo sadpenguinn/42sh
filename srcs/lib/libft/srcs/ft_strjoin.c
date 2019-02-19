@@ -6,11 +6,10 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 17:47:14 by bwerewol          #+#    #+#             */
-/*   Updated: 2018/12/26 15:14:37 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 12:41:45 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2, int free_s)
@@ -23,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2, int free_s)
 		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	if (!(str = (char *)malloc(len1 + len2 + 1)))
+	if (!(str = (char *)xmalloc(len1 + len2 + 1)))
 		return (NULL);
 	ft_memcpy(str, s1, len1);
 	ft_memcpy(str + len1, s2, len2 + 1);

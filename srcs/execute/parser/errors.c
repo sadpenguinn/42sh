@@ -6,14 +6,23 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:20:46 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/13 20:31:46 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 17:03:39 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "execute.h"
+
+int	g_execerr = 0;
 
 int pipeerror(void)
 {
 	ft_putstr("42sh: pipe create error\n");
+	return (-1);
+}
+
+int fileerror(char *file)
+{
+	ft_putstr("42sh: can't open file : ");
+	ft_putstr(file);
 	return (-1);
 }

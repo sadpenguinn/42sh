@@ -6,19 +6,31 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 16:27:11 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 23:21:27 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 17:47:03 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libft.h"
 /* #include "parser.h" */
-#include <fcntl.h>
-#include <unistd.h>
+
+extern int	g_execerr;
+
+/*
+** redir types and struct
+*/
+
+# define REDIRECT		1
+# define CLOSEFD		2
+
+typedef struct	s_redir
+{
+	int		type;
+	int		fd[2];
+}				t_redir;
 
 /*
 **	compound_list -> exexlist1
-**
 */
 
 int		execlist1(t_astree *root, int fd[2], int flag);
@@ -36,7 +48,10 @@ int		subshell(t_astree *root, int fd[2], int flag);
 # define EX_JOB			1
 
 
+t_redir	*get_redir(t_astree *root);
+
 int pipeerror(void);
+int fileerror(char *file);
 /*
 **	<|Parser defines|>
 **

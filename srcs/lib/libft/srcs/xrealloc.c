@@ -6,11 +6,13 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 20:39:50 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/09 20:55:05 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 13:02:20 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libshell.h"
+#include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 void	*xrealloc(void *p, size_t newsize, size_t oldsize)
 {

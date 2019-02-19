@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 17:54:03 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/22 20:06:16 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 12:52:21 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	const char *begin;
 
+	if (!s)
+		return (0);
 	begin = s;
 	while (*s++)
 		;

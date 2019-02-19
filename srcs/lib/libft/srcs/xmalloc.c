@@ -6,11 +6,12 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:07:52 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/18 20:05:46 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 12:31:37 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "libft.h"
+#include <unistd.h>
 
 void	*xmalloc(size_t bytes)
 {

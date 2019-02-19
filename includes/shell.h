@@ -6,14 +6,13 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/18 15:47:52 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/19 16:48:04 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHELL_H
 # define SHELL_H
 
-# include <stdlib.h>
 # include "libshell.h"
 # include "libhash.h"
 
