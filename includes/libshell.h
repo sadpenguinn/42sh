@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libshell.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 18:18:38 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 19:43:18 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int		check_varname(char *var);
 int		match(char *s1, char *s2);
 int		glob(char *pattern, char *path, char ***matches, size_t *cnt);
 void	die(void);
-void 	serror(char *str);
+void 	sputerr(char *str);
 char 	*sstrerr(int e);
 char	*check_valid_of_variable(char *str);
 
 char 	*sgetenv(char *key);
-int 	ssetenv(char *key, char *value, int overwrite);
+int 	ssetenv(char *key, char *value);
 int 	sunsetenv(char *key);
 int 	keyvaluecmp(char *el1, char *el2);
 
