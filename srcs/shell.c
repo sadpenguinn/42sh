@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 18:15:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 18:32:47 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 20:22:31 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int				g_parseerr = 0;
 int		main(int ac, char **av, char **env)
 {
 	init(env);
-	ft_putendl(sgetenv("PATH"));
+	ft_putendl(sgetenv("Pqqqqqq"));
 	destroy();
 	return (EXIT_SUCCESS);
 }

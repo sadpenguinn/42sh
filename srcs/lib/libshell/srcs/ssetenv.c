@@ -13,7 +13,7 @@
 #include "shell.h"
 #include "libshell.h"
 
-int 	ssetenv(char *key, char *value, int overwrite)
+int 	ssetenv(char *key, char *value)
 {
 	char 	*str;
 

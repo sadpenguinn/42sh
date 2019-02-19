@@ -23,5 +23,5 @@ char 			**g_env = NULL;
 void	init(char **env)
 {
 	init_env(env);
-	init_path();
+/*	init_path();*/
 }
