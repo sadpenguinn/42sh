@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/19 19:10:46 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/19 20:42:01 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@
 */
 
 char	*get_content_of_expression(char *str);
+char	*extention(char *str);
 
 #endif

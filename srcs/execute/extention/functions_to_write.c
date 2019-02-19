@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:42 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/19 18:36:24 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/19 20:41:45 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ char	*get_last_n_symbols(char *str, int n, int freed)
 
 void	push_to_enviroment(char *name, char *val)
 {
+	ssetenv(name, val);
 	printf("ENV: %s=%s\n", name, val);
 }
 
 char	*get_content_of_var(char *str)
 {
-	return (ft_strdup(str));
+	// return (sgetenv(str));
+	// return (ft_strdup(str));
 
-	// (void)str;
-	// return (NULL);
+	(void)str;
+	return (NULL);
 }
 
 char	*use_a_defalt_value(char *str)
@@ -208,11 +210,24 @@ char	*get_output_of_programm(char *str)
 	return (ft_strdup(str));
 }
 
+char	*erase_repetitions_recursion(char *str)
+{
+	char	*tmp;
+
+	tmp = ft_strchr(&str[1], '$');
+	if (!tmp)
+		return (str);
+	return (ft_strjoin("$", extention(&str[1]), 0));
+}
+
 char	*get_content_of_expression(char *str)
 {
 	int		len;
 
+	str = erase_repetitions_recursion(str);
 	len = ft_strlen(str);
+	if (str[1] != '(' && str[1] != '[' && str[1] != '{')
+		return (sgetenv(&str[1]));
 	if (ft_strstr(str, ":-"))
 		return (use_a_defalt_value(str));
 	if (ft_strstr(str, ":="))
