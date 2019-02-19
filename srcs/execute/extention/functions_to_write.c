@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:42 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/18 20:08:38 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:31:40 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,13 +223,13 @@ char	*get_content_of_expression(char *str)
 		return (use_an_alternate_value(str));
 	if (str[2] == '#')
 		return (get_len_of_value(str));
-	if (str[len - 2] == '%' && str[len - 3] == '%')
+	if (ft_strstr(str, "%%"))
 		return (ft_strdup("<obosralsya(%%>"));
-	if (str[len - 2] == '%')
+	if (ft_strstr(str, "%"))
 		return (remove_smallest_suffix_pattern(str));
-	if (str[len - 2] == '#' && str[len - 3] == '#')
+	if (ft_strstr(str, "##"))
 		return (ft_strdup("<obosralsya(##>"));
-	if (str[len - 2] == '#')
+	if (ft_strstr(str, "#"))
 		return (remove_smallest_prefix_pattern(str));
-
+	return ("something wrong in get_content_of_expression");
 }
