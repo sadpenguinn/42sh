@@ -12,7 +12,7 @@ NAME = line
 TEST = a.test
 
 all:
-	gcc -Wall -Wextra -Werror $(SRC) -I ../../includes -I . -I ../lib/libft/includes -I ../lib/libhash/includes -o $(NAME)
+	gcc -Wall -Wextra -Werror $(SRC) -I ../../includes -I ../lib/vector/includes -I . -I ../lib/libft/includes -I ../lib/libhash/includes -o $(NAME)
 
 clean:
 	rm -rf $(NAME) $(NAME).dSYM a.out a.out.dSYM $(TEST)

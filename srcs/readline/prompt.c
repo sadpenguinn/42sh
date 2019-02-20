@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:03 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:12:03 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/20 18:55:26 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,35 @@ static int	get_prompt(char *cwd)
 	return (-1);
 }
 
+void		add_prompt_style(void)
+{
+	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
+	array_add(TEXT_COLOR_BLUE, strlen(TEXT_COLOR_BLUE));
+}
+
+void		add_prompt_prefix(void)
+{
+	array_add("[42sh] ", 7);
+}
+
 void		print_prompt(void)
 {
 	char	cwd[PATH_MAX];
 	int		pos;
 
-	array_add(CURSOR_MOVE_LINE_START, 0);
-	array_add(CURSOR_CLEAR_TO_END_SCREEN, 0);
-	array_add("[42] ", 0);
-	array_add(COLOR_PROMPT, 0);
+	array_add(CURSOR_MOVE_LINE_START, strlen(CURSOR_MOVE_LINE_START));
+	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
+	add_prompt_style();
+	add_prompt_prefix();
 	pos = get_prompt(cwd);
 	if (pos >= 0)
 	{
 		if (pos != 0)
-			array_add("~", 0);
-		array_add(cwd + pos, 0);
-		array_add("/", 0);
+			array_add("~", 1);
+		array_add(cwd + pos, strlen(cwd + pos));
+		array_add("/", 1);
 	}
-	array_add(COLOR_DEFAULT, 0);
-	array_add("$\n", 0);
+	array_add(COLOR_DEFAULT, strlen(COLOR_DEFAULT));
+	array_add("$\n", 2);
 	array_flush();
 }

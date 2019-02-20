@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:54:34 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 21:20:05 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,22 @@
 # define READLINE_H
 
 # define CSI "\e["
-# define COLOR_PROMPT "\e[1m\e[34m"
 # define COLOR_DEFAULT "\e[0m"
 # define CURSOR_MOVE_LINE_START "\e[1G"
 # define CURSOR_CLEAR_TO_END_SCREEN "\e[0J"
 # define CURSOR_CLEAR_TO_START_SCREEN "\e[1J"
 # define CURSOR_CLEAR_SCREEN "\ec"
+
+# define TEXT_COLOR_BLACK "\e[30m"
+# define TEXT_COLOR_RED "\e[31m"
+# define TEXT_COLOR_GREEN "\e[32m"
+# define TEXT_COLOR_YELLOW "\e[33m"
+# define TEXT_COLOR_BLUE "\e[34m"
+# define TEXT_COLOR_MAGENTA "\e[35m"
+# define TEXT_COLOR_CYAN "\e[36m"
+# define TEXT_COLOR_WHITE "\e[37m"
+
+# define TEXT_BOLD "\e[1m"
 
 # include <sys/ioctl.h>
 # include <string.h>
@@ -99,14 +109,15 @@ void	get_term_params(struct winsize	*w);
 
 void    comb_offset(t_uchar c);
 void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cursor);
-void    matrix_string_insert(t_matrix *matrix, const char *str);
-void    make_string_from_symbol(char *str, t_uchar c);
 void    add_offset(int offset);
 void add_lines(t_matrix *matrix);
-void    auto_complete(t_matrix *matrix);
 int     readline_mode(t_matrix *matrix, char *str, t_uchar c);
 int check_esc_code(t_matrix *matrix);
 int check_modes(t_matrix *matrix, t_uchar c);
+int print_autocomplete(t_matrix *matrix);
+
+void    matrix_string_insert(t_matrix *matrix, const char *str, int size);
+int	make_string_from_symbol(char *str, t_uchar c);
 
 void    line_resize(t_line *line, int new_size, int old_size);
 void    matrix_resize(t_matrix *matrix, int new_size, int old_size);
@@ -118,6 +129,8 @@ int move_cursor_down(t_matrix *matrix);
 int move_cursor_home(t_matrix *matrix);
 int move_cursor_end(t_matrix *matrix);
 
-void print_default(t_matrix *matrix);
+int get_line_prompt_len(int max);
+
+int print_default(t_matrix *matrix);
 
 #endif

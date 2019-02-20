@@ -32,7 +32,7 @@ void		array_add(const char *str, unsigned int len)
 	if (arr == NULL)
 		init_array();
 	if (len == 0)
-		len = strlen(str);
+		return ;
 	if (arr->len + len > arr->size)
 	{
 		arr->buf = (char *)xrealloc(arr->buf, arr->size * FACTOR + len, arr->size);
