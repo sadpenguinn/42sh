@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 16:27:11 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 21:11:22 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:25:48 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,21 @@ typedef struct	s_redir
 **	compound_list -> exexlist1
 */
 
-int		execlist1(t_astree *root, int fd[2], int flag);
-int		execlist2(t_astree *root, int fd[2], int flag);
-int		execlist3(t_astree *root, int fd[2], int flag);
-int		execpipecmd(t_astree *root, int fd[2], int flag);
-int		execpipes(t_astree	*root, int fd[2], int flag);
-int		execcmd(t_astree *root, int fd[2], int flag);
+int		execlist1(t_astree *root, int fd[2], int job);
+int		execlist2(t_astree *root, int fd[2], int job);
+int		execlist3(t_astree *root, int fd[2], int job);
+int		execpipecmd(t_astree *root, int fd[2], int job);
+int		execpipes(t_astree	*root, int fd[2], int job);
+int		execcmd(t_astree *root, int fd[2], int job, int pipe);
 
-int		execcase(t_astree *root, int fd[2], int flag);
-int		execif(t_astree *root, int fd[2], int flag);
+int		execcase(t_astree *root, int fd[2], int job);
+int		execif(t_astree *root, int fd[2], int job);
 
-int		subshell(t_astree *root, int fd[2], int flag);
+int		subshell(t_astree *root, int fd[2], int job);
+int		function(t_astree *func, char **argv, int fd[2], int job);
 
-# define EX_JOB			1
-
+# define EX_NOFG	0
+# define EX_FG		1
 
 t_redir	*get_redir(t_astree *root);
 

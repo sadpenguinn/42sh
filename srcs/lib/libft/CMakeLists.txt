@@ -32,7 +32,9 @@ set(SRC_LIB srcs/fatal_error.c
         srcs/ft_itoa_base.c
         srcs/ft_listlast.c
         srcs/ft_listnew.c
+		srcs/ft_listdel.c
         srcs/ft_memalloc.c
+		srcs/ft_free.c
         srcs/ft_memccpy.c
         srcs/ft_memchr.c
         srcs/ft_memcmp.c

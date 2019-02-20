@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:31:00 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 22:50:09 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:50:12 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include <unistd.h>
 #include "execute.h"
+#include "libshell.h"
 
 char *expand(char *str)
 {
@@ -141,7 +142,7 @@ char	**get_argv(t_list *args)
 	args->data = 0;
 	while ((args = args->next))
 	{
-		argv = (char **)ft_joinvect((void **)argv, (void **)args->data);
+		argv = (char **)ft_joinvect((void **)argv, (void **)args->data, 1);
 		args->data = 0;
 	}
 	return (argv);
@@ -165,10 +166,9 @@ char	**get_envp(t_list *envs)
 	while (envs)
 	{
 		envp[i] = (char *)envs->data;
-		envs->data = 0;
 		envs = envs->next;
 	}
-	/* envs = ft_joinvect(envp, get_env()); */
+	/* 	envp = (char **)ft_joinvect((void **)envp, (void **)g_env, 0); */
 	return (envp);
 }
 int		execute(char *path, char **argv, char **envp, t_list *redirs)
@@ -196,36 +196,86 @@ int		execute(char *path, char **argv, char **envp, t_list *redirs)
 	return (0);
 }
 
+int	set_envs(t_list	*envs)
+{
+	char	*val;
+
+	while(envs)
+	{
+		val = (char *)envs->data;
+		while (*val != '=')
+			val++;
+		*val++ = 0;
+		ssetenv((char *)envs->data, val);
+		envs = envs->next;
+	}
+	return (EXIT_SUCCESS);
+}
+
+static void	initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
+{
+	bzero(cmd, sizeof(t_list *) * 3);
+	get_cmd_attr(root, cmd, 1);
+	add_pipe_redir(&cmd[2], fd);
+	expand_assign(cmd[1]);
+	aven[0] = get_argv(cmd[0]);
+	aven[1] = get_envp(cmd[1]);
+}
+
+static void	freecmd(t_list *cmd[3], char **aven[2])
+{
+	int		i;
+	t_list	*redirs;
+
+	i = 0;
+	while (aven[0][i])
+		free(aven[0][i++]);
+	free(aven[0]);
+	free(aven[1]);
+	redirs = cmd[2];
+	while (redirs)
+	{
+		if (((t_redir *)redirs->data)->fd[1] > 2)
+			close(((t_redir *)redirs->data)->fd[1]);
+		redirs = redirs->next;
+	}
+	ft_listdel(&cmd[0], &ft_free);
+	ft_listdel(&cmd[1], &ft_free);
+	ft_listdel(&cmd[2], &ft_free);
+}
 /*
 **	cmd[0] - ARGRS
 **	cmd[1] - ASSIGNMENT
 **	cmd[2] - REDIRECTION
+**
+**	aven[0] - argv[][]
+**	aven[1] - envp[][]
 */
 
-int	execscmd(t_astree *root, int fd[2], int flag)
+int	execscmd(t_astree *root, int fd[2], int job, int pipe)
 {
 	t_list	*cmd[3];
-	char	**argv;
+	char	**aven[2];
 	char	*path;
-	char	**envp;
-	pid_t	proc;
+	pid_t	pid;
+	int		status;
 
-	bzero(cmd, sizeof(t_list *) * 3);
-	get_cmd_attr(root, cmd, 1);
-	/* add_pipe_redir(&cmd[2], fd); */
-	expand_assign(cmd[1]);
-	argv = get_argv(cmd[0]);
-	envp = get_envp(cmd[1]);
-	if (!(path = ft_strdup("/bin/ls")))
-		return (0);
-	/* if (!argv[0]) */
-	/* 	return (set_envs(cmd[1])); */
-	/* else */
-		proc = execute(path, argv, envp, cmd[2]);
-	if (!(flag & EX_JOB))
-		proc = waitpid(proc, 0, 0);
+	initcmd(root, fd, cmd, aven);
+	if (!aven[0][0])
+		return (set_envs(cmd[1]));
+	/* else if  ((root = get_function(aven[0][0]))) */
+	/* 	pid = function(root, aven[0], fd, job); */
+	/* else if ((status = get_builtin(aven[0][0])) != -1) */
+	/* 	pid = buitin(status, fd, job, args); */
+	else if ((path = sget_path(aven[0][0])))
+		pid = execute(path, aven[0], aven[1], cmd[2]);
+	else
+		printf("42sh: command not found: %s\n", aven[0][0]);
+	if (!job || !pipe)
+		return (waitpid(pid, &status, 0));
+	freecmd(cmd, aven);
 	printf("***OK***\n");
-	return (proc);
+	return (pid);
 }
 
 int main(void)
@@ -296,6 +346,6 @@ int main(void)
 	/* tree[55].type = WORD; */
 	/* tree[55].content = ft_strdup("dir2"); */
 
-	execscmd(&tree[0], fd, 0);
+	execscmd(&tree[0], fd, 0, 0);
 	return (0);
 }
