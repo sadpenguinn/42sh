@@ -101,7 +101,6 @@ int get_utf_offset(unsigned char c);
 void	get_term_params(struct winsize	*w);
 
 void    comb_offset(t_uchar c);
-void    line_resize(t_line *line, int new_size, int old_size);
 void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cursor);
 void    matrix_string_insert(t_matrix *matrix, const char *str);
 void    make_string_from_symbol(char *str, t_uchar c);
@@ -112,5 +111,8 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c);
 int check_buttons(t_matrix *matrix, t_uchar c);
 int check_esc_code(t_matrix *matrix);
 int check_modes(t_matrix *matrix, t_uchar c);
+
+void    line_resize(t_line *line, int new_size, int old_size);
+void    matrix_resize(t_matrix *matrix, int new_size, int old_size);
 
 #endif

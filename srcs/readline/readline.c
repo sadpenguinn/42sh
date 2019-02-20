@@ -28,12 +28,6 @@ void    comb_offset(t_uchar c)
 	g_comb[3] = c;
 }
 
-void    line_resize(t_line *line, int new_size, int old_size)
-{
-	line->buf = (char *)xrealloc(line->buf, new_size + 1, old_size);
-	line->size = new_size;
-}
-
 void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cursor)
 {
 	if (line->len + size > line->size)
@@ -44,13 +38,6 @@ void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cu
 	memcpy(line->buf + cursor->col, str, size);
 	cursor->col += size;
 	line->len += size;
-}
-
-void    matrix_resize(t_matrix *matrix, int new_size, int old_size)
-{
-	matrix->lines = (t_line **)xrealloc(matrix->lines,
-			sizeof(t_line *) * new_size, sizeof(t_line *) * old_size);
-	matrix->size = new_size;
 }
 
 void    matrix_line_insert(t_matrix *matrix, int pos)
