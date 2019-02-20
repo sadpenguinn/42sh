@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:05:27 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 22:20:34 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 11:37:46 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void		init_arr_env(size_t size)
 		ptr++;
 		i++;
 	}
+	size++;
 	while (k < size)
 	{
 		g_env[k] = NULL;
@@ -40,23 +41,20 @@ static void		init_arr_env(size_t size)
 
 void			init_env(char **env)
 {
-	t_hshtb *cell;
-	char 	**pair;
+	char	**pair;
 	size_t	size;
 	int		i;
 
 	i = 0;
-	if (!(g_hash_env = hash_init(INITIAL_ENV_HASH_SIZE)))
-		die();
+	g_hash_env = hash_init(INITIAL_ENV_HASH_SIZE);
 	while (env[i])
 	{
 		pair = split_env(env[i]);
-		cell = hash_insert(pair[0], pair[1], g_hash_env, ft_strdup(env[i]));
+		hash_insert(pair[0], pair[1], g_hash_env, ft_strdup(env[i]));
 		free_str_arr(&pair);
 		i++;
 	}
 	size = hash_get_size(g_hash_env);
-	if (!(g_env = (char **)malloc(sizeof(char *) * (size + 1))))
-		die();
+	g_env = (char **)xmalloc(sizeof(char *) * (size + 1));
 	init_arr_env(size);
 }

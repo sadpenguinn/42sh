@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 11:20:46 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 12:30:33 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static int 				hash_realloc(t_hash *hash, size_t new_size)
 	size_t	i;
 
 	i = 0;
-	if (!(new_hash = hash_init(new_size)))
-		return (0);
+	new_hash = hash_init(new_size);
 	current = hash->table;
 	while (i < hash->size)
 	{
@@ -28,19 +27,19 @@ static int 				hash_realloc(t_hash *hash, size_t new_size)
 		{
 			if(!(hash_insert(current->key, current->value, new_hash, current->data)))
 			{
-				hash_clean(hash);
+				hash_clean(&hash);
 				return (0);
 			}
 		}
 		current++;
 		i++;
 	}
-	current = hash->table;
+	hash_foreach(hash, hash_free_fileds);
+	free(hash->table);
 	hash->table = new_hash->table;
 	hash->size = new_hash->size;
 	hash->filled = new_hash->filled;
 	free(new_hash);
-	free(current);
 	return (1);
 }
 
@@ -64,7 +63,7 @@ static t_hshtb			*hash_insert_cell(const char *key, const char *value, t_hash *h
 
 	i = index;
 	ptr = hash->table + index;
-	while (index < hash->size && ptr->key)
+	while (index < hash->size && (ptr->key && ft_strcmp(ptr->key, key)))
 	{
 		ptr++;
 		index++;
@@ -74,7 +73,7 @@ static t_hshtb			*hash_insert_cell(const char *key, const char *value, t_hash *h
 		index = i;
 		i = 0;
 		ptr = hash->table + i;
-		while (i < index && ptr->key)
+		while (i < index && (ptr->key && ft_strcmp(ptr->key, key)))
 		{
 			ptr++;
 			i++;
@@ -82,6 +81,8 @@ static t_hshtb			*hash_insert_cell(const char *key, const char *value, t_hash *h
 		if (i == index)
 			return (NULL);
 	}
+	ft_strdel(&ptr->key);
+	ft_strdel(&ptr->value);
 	new.key = ft_strdup(key);
 	new.value = ft_strdup(value);
 	new.data = data;

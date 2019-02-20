@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/13 21:33:16 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:32:00 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ int		push_token(void **lexems, char *lexem, int state)
 		return (0);
 	return (1);
 }
-

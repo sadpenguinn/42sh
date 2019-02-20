@@ -14,8 +14,6 @@
 
 void	destroy_path(void)
 {
-	hash_clean(g_path);
-	hash_clean(g_path_sums);
-	g_path = NULL;
-	g_path_sums = NULL;
+	hash_clean(&g_path_sums);
+	hash_clean(&g_path);
 }

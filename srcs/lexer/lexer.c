@@ -6,16 +6,12 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 17:41:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/15 15:48:24 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 15:58:35 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "libshell.h"
-
-/*
- ** The current version does not fully support quotes
- */
 
 static int			g_branch_table[129][102] =
 		{
@@ -152,9 +148,9 @@ static int			g_branch_table[129][102] =
 
 static int			g_state = 1;
 
-char 				*dfa(char **str, t_string *string)
+char				*dfa(char **str, t_string *string)
 {
-	char 	*lex;
+	char	*lex;
 	int		state;
 	int		i;
 
@@ -186,9 +182,9 @@ char 				*dfa(char **str, t_string *string)
 	return (lex);
 }
 
-void 				build_lexems(char *str, void **lexems, t_string *string)
+void				build_lexems(char *str, void **lexems, t_string *string)
 {
-	char 	*lex;
+	char	*lex;
 
 	while ((lex = dfa(&str, string)))
 		push_token(lexems, lex, g_state);
@@ -199,7 +195,6 @@ t_lexer				*lexer(char const *str, size_t len)
 	t_lexer		*lexer;
 	t_string	*string;
 	void		*lexems;
-	void		*symbol_table;
 
 	if (!(lexems = vector_create(sizeof(t_lexem))))
 		die();

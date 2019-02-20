@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:40:49 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 22:08:14 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 12:45:24 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 # define TESTS_H
 
 # include "shell.h"
-# include "lexer.h"
 # include "libft.h"
-# include "vector.h"
-# include "libut.h"
-
-# define TESTS_DELIM "@"
-# define TESTS_DELIM_SIZE 1
+# include "libhash.h"
 
 #endif

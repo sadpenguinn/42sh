@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 22:08:14 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 15:47:45 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@
 /*
 ** Global variables with env and paths hashes/arrays
 */
-extern t_hash	*g_hash_env;
-extern t_hash	*g_path;
-extern t_hash	*g_path_sums;
-extern char 	**g_env;
+
+extern t_hash			*g_hash_env;
+extern t_hash			*g_path;
+extern t_hash			*g_path_sums;
+extern char				**g_env;
 
 /*
 ** Defines for initialize shell environment/path
 */
+
 # define INITIAL_ENV_HASH_SIZE			100
 # define INITIAL_PATH_HASH_SIZE			20
 # define INITIAL_PATH_SUMS_HASH_SIZE	20
@@ -35,13 +37,18 @@ extern char 	**g_env;
 /*
 ** Shell error define like a standard C errno
 */
-# define SHERR_ERR						0
-# define SHERR_OK						1
-# define SHERR_ENOENT					2
+
+# ifndef SHERR
+#  define SHERR
+#  define SHERR_ERR						0
+#  define SHERR_OK						1
+#  define SHERR_ENOENT					2
+# endif
 
 /*
 ** Defines for lexer/parser
 */
+
 # define TERM_SHIFT              		50
 # define TERM_DO                		TERM_SHIFT + 3 /* do */
 # define TERM_DONE              		TERM_SHIFT + 5 /* done */
@@ -97,6 +104,7 @@ extern char 	**g_env;
 /*
 ** Struct for parser
 */
+
 typedef struct			s_astree
 {
 	int				type;
@@ -108,11 +116,12 @@ typedef struct			s_astree
 /*
 ** Initialize and destroy shell
 */
-void	init(char **env);
-void	init_env(char **env);
-void	init_path(void);
-void	destroy(void);
-void 	destroy_env(void);
-void	destroy_path(void);
+
+void					init(char **env);
+void					init_env(char **env);
+void					init_path(void);
+void					destroy(void);
+void					destroy_env(void);
+void					destroy_path(void);
 
 #endif

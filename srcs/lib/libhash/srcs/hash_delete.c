@@ -25,6 +25,7 @@ int 	hash_delete(const char *key, t_hash *hash)
 	ft_strdel(&cell->key);
 	ft_strdel(&cell->value);
 	ft_memset(cell, '\0', sizeof(t_hshtb));
+	hash->filled--;
 	return (HSH_OK);
 }
 

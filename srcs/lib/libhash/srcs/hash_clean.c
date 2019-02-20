@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 16:19:29 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 22:32:01 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 11:31:53 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,18 @@
 ** The function just cleans the table
 */
 
-void		hash_free_fileds(char *key, char *value)
+int 		hash_clean(t_hash **hash)
 {
-	free(key);
-	free(value);
-}
-
-int 		hash_clean(t_hash *hash)
-{
-	if (!hash)
+	if (!hash || !*hash)
 		return (HSH_ERR);
-	if (!hash->table)
+	if (!(*hash)->table)
 	{
-		free(hash);
+		free(*hash);
 		return (HSH_ERR);
 	}
-	hash_foreach(hash, hash_free_fileds);
-	free(hash->table);
-	free(hash);
+	hash_foreach(*hash, hash_free_fileds);
+	free((*hash)->table);
+	free(*hash);
+	*hash = NULL;
 	return (HSH_OK);
 }

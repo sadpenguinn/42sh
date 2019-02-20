@@ -15,5 +15,5 @@
 void	destroy(void)
 {
 	destroy_env();
-	/*destroy_path();*/
+	destroy_path();
 }
