@@ -39,7 +39,8 @@ void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cu
 	if (line->len + size > line->size)
 		line_resize(line, line->len + size + line->size * RATIO, line->size);
 	if (cursor->col < line->len)
-		memmove(line->buf + cursor->col + size, line->buf + cursor->col, size);
+		memmove(line->buf + cursor->col + size, line->buf + cursor->col,
+				line->len - cursor->col);
 	memcpy(line->buf + cursor->col, str, size);
 	cursor->col += size;
 	line->len += size;
@@ -244,9 +245,10 @@ void add_text(t_matrix *matrix, int row, int col)
 		else
 			matrix->last_offset +=
 					(count_chars(matrix->lines[left]->buf, matrix->cursor->col)
-					+ get_line_prompt_len(matrix)) / g_w.ws_col;
+					+ get_line_prompt_len(matrix) - 1) / g_w.ws_col;
 	}
-	array_add(matrix->lines[left]->buf, col);
+	if (col)
+		array_add(matrix->lines[left]->buf, col);
 }
 
 char *matrix_to_string(t_matrix *matrix)
@@ -328,8 +330,18 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 
 int check_buttons(t_matrix *matrix, t_uchar c)
 {
-	(void)matrix;
-	(void)c;
+	if (c == LEFT)
+	{
+		if (matrix->cursor->col != 0)
+			matrix->cursor->col--;
+		return (1);
+	}
+	if (c == RIGHT)
+	{
+		if (matrix->cursor->col != matrix->lines[matrix->cursor->row]->len)
+			matrix->cursor->col++;
+		return (1);
+	}
 	return (0);
 }
 
@@ -341,24 +353,23 @@ int check_esc_code(t_matrix *matrix)
 	t_uchar c;
 	t_uchar tmp;
 
-	i = 0;
+	i = 1;
 	c = 27;
 	while (i < 8)
 	{
-		start = clock();
+		start = time(&start);
 		tmp = get_next_symbol(sizeof(char));
-		end = clock();
-		if (end - start > 0)
+		end = time(&end);
+		if (difftime(end, start) >= 0.2)
+			return (1);
+		c += (tmp << (i * 8));
+		if (check_buttons(matrix, c))
 		{
-			g_mode = VI;
+			print_default(matrix);
 			return (1);
 		}
-		c = (c << 8) + tmp;
-		if (check_buttons(matrix, c))
-			return (1);
 		i++;
 	}
-	g_mode = VI;
 	return (1);
 }
 
