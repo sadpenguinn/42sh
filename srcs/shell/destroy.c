@@ -16,4 +16,6 @@ void	destroy(void)
 {
 	destroy_env();
 	destroy_path();
+	destroy_jobs();
+	destroy_process();
 }

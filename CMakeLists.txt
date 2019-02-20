@@ -27,7 +27,18 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_path.c
 					srcs/shell/destroy.c
 					srcs/shell/destroy_env.c
-					srcs/shell/destroy_path.c)
+					srcs/shell/destroy_path.c
+					srcs/shell/init_jobs.c
+					srcs/shell/init_process.c
+					srcs/shell/destroy_jobs.c
+					srcs/shell/destroy_process.c)
+
+set(BUILTIN_SRC		srcs/builtins/built_cd.c
+					srcs/builtins/built_echo.c
+					srcs/builtins/built_env.c
+					srcs/builtins/built_setenv.c
+					srcs/builtins/built_unsetenv.c
+					srcs/builtins/built_exit.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)

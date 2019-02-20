@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 18:15:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 16:00:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:45:41 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,18 @@ int				g_parseerr = 0;
 
 int		main(int ac, char **av, char **env)
 {
-	char	*str;
+	/*char	*str;*/
 
 	ac = 0;
 	av = NULL;
 	init(env);
-	ssetenv("PATH", "/Users/nkertzma/Documents/42sh");
+	/*hash_print(g_path);*/
+	/*ssetenv("PATH", "/Users/nkertzma/Documents/42sh");
 	str = sgetpath("includes");
 	if (str)
 		ft_putendl(str);
 	else
-		ft_putendl("NONE");
+		ft_putendl("NONE");*/
 	destroy();
 	return (EXIT_SUCCESS);
 }
