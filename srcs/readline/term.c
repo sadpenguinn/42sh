@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   term.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/20 14:12:32 by sitlcead          #+#    #+#             */
+/*   Updated: 2019/02/20 14:12:43 by sitlcead         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <term.h>
 
-static struct termios g_old;
+static struct	termios g_old;
 
-void    set_term(void)
+void	set_term(void)
 {
 	struct termios	new;
 
@@ -16,7 +28,7 @@ void    set_term(void)
 	tcsetattr(0, TCSANOW, &new);
 }
 
-void    unset_term(void)
+void	unset_term(void)
 {
 	tcsetattr(0, TCSANOW, &g_old);
 }

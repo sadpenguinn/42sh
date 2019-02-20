@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   readline.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
+/*   Updated: 2019/02/20 14:12:10 by sitlcead         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <stdlib.h>
@@ -11,7 +23,7 @@
 #include "array.h"
 #include <time.h>
 
-t_uchar     g_comb[4];
+t_uchar	g_comb[4];
 
 void     ft_puts(char *buf, int len)
 {
@@ -53,10 +65,10 @@ void    matrix_line_insert(t_matrix *matrix, int pos)
 
 void    matrix_string_insert(t_matrix *matrix, const char *str)
 {
-	int j;
-	int size;
-	t_line *line;
-	int symbols;
+	int		j;
+	int		size;
+	t_line	*line;
+	int		symbols;
 
 	line = matrix->lines[matrix->cursor->row];
 	j = 0;
@@ -77,8 +89,8 @@ void    matrix_string_insert(t_matrix *matrix, const char *str)
 
 void    make_string_from_symbol(char *str, t_uchar c)
 {
-	int i;
-	int n;
+	int	i;
+	int	n;
 
 	i = 0;
 	if (c == '\t')
@@ -97,7 +109,7 @@ void    make_string_from_symbol(char *str, t_uchar c)
 
 void    add_offset(int offset)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < offset)
@@ -110,8 +122,8 @@ void    add_offset(int offset)
 
 int count_chars(char *buf, int n)
 {
-	int i;
-	int cnt;
+	int	i;
+	int	cnt;
 
 	i = 0;
 	cnt = 0;
@@ -136,8 +148,8 @@ int get_line_prompt_len(t_matrix *matrix)
 
 void change_limits_left_case(t_matrix *matrix, int new_left_limit)
 {
-	int size;
-	int i;
+	int	size;
+	int	i;
 
 	matrix->left_limit = new_left_limit;
 	matrix->right_limit = new_left_limit;
@@ -156,8 +168,8 @@ void change_limits_left_case(t_matrix *matrix, int new_left_limit)
 
 void change_limits_right_case(t_matrix *matrix, int new_right_limit)
 {
-	int size;
-	int i;
+	int	size;
+	int	i;
 
 	matrix->right_limit = new_right_limit;
 	matrix->left_limit = new_right_limit;
@@ -176,9 +188,9 @@ void change_limits_right_case(t_matrix *matrix, int new_right_limit)
 
 void check_cursor_limits(t_matrix *matrix)
 {
-    int left_limit;
-    int i;
-    int size;
+    int	left_limit;
+    int	i;
+    int	size;
 
 	size = g_w.ws_row * g_w.ws_col;
     left_limit = matrix->cursor->row;
@@ -207,7 +219,7 @@ void set_matrix_limits(t_matrix *matrix)
 
 void add_text(t_matrix *matrix, int row, int col)
 {
-	int left;
+	int	left;
 
 	left = matrix->left_limit;
 	reset_line_offset(matrix);
@@ -240,7 +252,7 @@ void add_text(t_matrix *matrix, int row, int col)
 
 char *matrix_to_string(t_matrix *matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < matrix->len - 1)
@@ -317,7 +329,7 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 
 int check_modes(t_matrix *matrix, t_uchar c)
 {
-	char str[9];
+	char	str[9];
 
 	memset(str, 0, 9);
 	if (g_mode == READLINE)
@@ -329,9 +341,9 @@ int check_modes(t_matrix *matrix, t_uchar c)
 
 char *readline(void)
 {
-	int ret;
-	t_matrix *matrix;
-	char *str;
+	int			ret;
+	t_matrix	*matrix;
+	char		*str;
 
 	get_term_params(&g_w);
 	matrix = init_matrix();

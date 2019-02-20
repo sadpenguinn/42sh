@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_next_symbol.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/20 14:10:56 by sitlcead          #+#    #+#             */
+/*   Updated: 2019/02/20 14:10:56 by sitlcead         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include <unistd.h>
 #include <string.h>
 
-t_uchar	get_next_symbol(size_t size)
+t_uchar		get_next_symbol(size_t size)
 {
-	t_uchar c;
+	t_uchar	c;
 
 	c = 0;
 	if (size > sizeof(t_uchar))
@@ -13,16 +25,16 @@ t_uchar	get_next_symbol(size_t size)
 	return (c);
 }
 
-static int is_utf(char c)
+static int	is_utf(char c)
 {
 	if ((c >> 7) & 1)
 		return (1);
 	return (0);
 }
 
-int get_utf_offset(unsigned char c)
+int			get_utf_offset(unsigned char c)
 {
-	int i;
+	int	i;
 
 	if (c > 127)
 	{
@@ -34,7 +46,7 @@ int get_utf_offset(unsigned char c)
 	return (0);
 }
 
-int check_utf(t_matrix *matrix, t_uchar c)
+int			check_utf(t_matrix *matrix, t_uchar c)
 {
 	t_uchar tmp;
 	tmp = get_next_symbol(get_utf_offset(c));
@@ -43,9 +55,9 @@ int check_utf(t_matrix *matrix, t_uchar c)
 	return (check_modes(matrix, c));
 }
 
-int check_next_symbol(t_matrix *matrix)
+int			check_next_symbol(t_matrix *matrix)
 {
-	t_uchar c;
+	t_uchar	c;
 
 	c = get_next_symbol(sizeof(char));
 	if (c == CTRL_D)

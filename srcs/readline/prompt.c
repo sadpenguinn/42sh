@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prompt.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/20 14:12:03 by sitlcead          #+#    #+#             */
+/*   Updated: 2019/02/20 14:12:03 by sitlcead         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "array.h"
 #include "readline.h"
 #include <limits.h>
@@ -21,9 +33,9 @@ static int	get_pos(const char *s1, const char *s2)
 	return (i);
 }
 
-static int  get_prompt(char *cwd)
+static int	get_prompt(char *cwd)
 {
-	struct passwd   *pw;
+	struct passwd	*pw;
 
 	pw = getpwuid(getuid());
 	if (getcwd(cwd, PATH_MAX) != NULL)
@@ -31,10 +43,10 @@ static int  get_prompt(char *cwd)
 	return (-1);
 }
 
-void        print_prompt(void)
+void		print_prompt(void)
 {
-	char    cwd[PATH_MAX];
-	int     pos;
+	char	cwd[PATH_MAX];
+	int		pos;
 
 	array_add(CURSOR_MOVE_LINE_START, 0);
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, 0);
@@ -50,6 +62,5 @@ void        print_prompt(void)
 	}
 	array_add(COLOR_DEFAULT, 0);
 	array_add("$\n", 0);
-//	array_add("> ", 0);
 	array_flush();
 }

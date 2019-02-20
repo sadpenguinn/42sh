@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_matrix.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/20 14:11:21 by sitlcead          #+#    #+#             */
+/*   Updated: 2019/02/20 14:11:21 by sitlcead         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "shell.h"
 
-t_matrix *init_matrix(void)
+t_matrix	*init_matrix(void)
 {
-	t_matrix *matrix;
+	t_matrix	*matrix;
 
 	matrix = xmalloc(sizeof(t_matrix));
 	matrix->lines = (t_line **)xmalloc(sizeof(t_line *) * MATRIX_DEFAULT_SIZE);

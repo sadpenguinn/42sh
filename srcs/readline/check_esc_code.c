@@ -13,7 +13,7 @@
 #include "readline.h"
 #include "time.h"
 
-static int check_buttons(t_matrix *matrix, t_uchar c)
+static int	check_buttons(t_matrix *matrix, t_uchar c)
 {
 	if (c == LEFT)
 		return (move_cursor_left(matrix));
@@ -30,13 +30,13 @@ static int check_buttons(t_matrix *matrix, t_uchar c)
 	return (0);
 }
 
-int check_esc_code(t_matrix *matrix)
+int			check_esc_code(t_matrix *matrix)
 {
-	int i;
-	time_t start;
-	time_t end;
-	t_uchar c;
-	t_uchar tmp;
+	int		i;
+	time_t	start;
+	time_t	end;
+	t_uchar	c;
+	t_uchar	tmp;
 
 	i = 1;
 	c = 27;
