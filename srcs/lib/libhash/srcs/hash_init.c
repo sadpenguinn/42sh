@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:59:34 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 15:25:13 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:32:01 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_hash		*hash_init(size_t size)
 		free(hash);
 		return (NULL);
 	}
-	ft_memset((void *)hash, '\0', sizeof(t_hash));
-	ft_memset((void *)table, '\0', sizeof(t_hshtb) * size);
+	ft_memset(hash, '\0', sizeof(t_hash));
+	ft_memset(table, '\0', sizeof(t_hshtb) * size);
 	hash->table = table;
 	hash->size = size;
 	hash->filled = 0;

@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 16:50:02 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 11:17:41 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_hash			*hash_init(size_t size);
 ** At hash or key == NULL, behavior is undefined
 */
 
-t_hshindex		hash_index(char *key, t_hash *hash);
+t_hshindex		hash_index(const char *key, t_hash *hash);
 
 /*
 ** Function insert cell into the table. If cells count is greater
@@ -99,19 +99,19 @@ t_hshindex		hash_index(char *key, t_hash *hash);
 ** HSH_PERCENTS_SIZE_REALLOC
 */
 
-t_hshtb			*hash_insert(char *key, char *value, t_hash *hash, void *data);
+t_hshtb			*hash_insert(const char *key, const char *value, t_hash *hash, void *data);
 
 /*
 ** Remove one cell from the table
 */
 
-int 			hash_delete(char *key, t_hash *hash);
+int 			hash_delete(const char *key, t_hash *hash);
 
 /*
 ** Returns a pointer if there is match or NULL
 */
 
-t_hshtb			*hash_find(char *key, t_hash *hash);
+t_hshtb			*hash_find(const char *key, t_hash *hash);
 
 /*
 ** The function just cleans the table

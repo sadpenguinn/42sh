@@ -6,13 +6,13 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 21:08:06 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 11:20:46 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
 
-static int 		hash_realloc(t_hash *hash, size_t new_size)
+static int 				hash_realloc(t_hash *hash, size_t new_size)
 {
 	t_hash	*new_hash;
 	t_hshtb	*current;
@@ -44,7 +44,7 @@ static int 		hash_realloc(t_hash *hash, size_t new_size)
 	return (1);
 }
 
-static size_t		hash_check_avail(t_hash *hash)
+static size_t			hash_check_avail(t_hash *hash)
 {
 	float		avail;
 	float		filled;
@@ -56,7 +56,7 @@ static size_t		hash_check_avail(t_hash *hash)
 	return (0);
 }
 
-t_hshtb			*hash_insert_cell(char *key, char *value, t_hash *hash, t_hshindex index, void *data)
+static t_hshtb			*hash_insert_cell(const char *key, const char *value, t_hash *hash, t_hshindex index, void *data)
 {
 	t_hshindex	i;
 	t_hshtb		*ptr;
@@ -73,6 +73,7 @@ t_hshtb			*hash_insert_cell(char *key, char *value, t_hash *hash, t_hshindex ind
 	{
 		index = i;
 		i = 0;
+		ptr = hash->table + i;
 		while (i < index && ptr->key)
 		{
 			ptr++;
@@ -95,7 +96,7 @@ t_hshtb			*hash_insert_cell(char *key, char *value, t_hash *hash, t_hshindex ind
 ** HSH_PERCENTS_SIZE_REALLOC
 */
 
-t_hshtb			*hash_insert(char *key, char *value, t_hash *hash, void *data)
+t_hshtb					*hash_insert(const char *key, const char *value, t_hash *hash, void *data)
 {
 	t_hshindex	index;
 	size_t		new_size;

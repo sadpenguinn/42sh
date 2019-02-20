@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:22:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 14:53:46 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 11:16:36 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** http://www.cse.yorku.ca/~oz/hash.html
 */
 
-static t_hshindex	djb2(char *content)
+static t_hshindex	djb2(const char *content)
 {
 	t_hshindex	index;
 	size_t		i;
@@ -39,7 +39,7 @@ static t_hshindex	djb2(char *content)
 ** At hash or key == NULL, behavior is undefined
 */
 
-t_hshindex			hash_index(char *key, t_hash *hash)
+t_hshindex			hash_index(const char *key, t_hash *hash)
 {
 	t_hshindex	index;
 

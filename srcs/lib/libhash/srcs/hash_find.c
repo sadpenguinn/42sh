@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:43:32 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 21:38:20 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/19 22:32:01 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Returns a pointer if there is match or NULL
 */
 
-t_hshtb		*hash_find(char *key, t_hash *hash)
+t_hshtb		*hash_find(const char *key, t_hash *hash)
 {
 	t_hshindex	index;
 	t_hshindex	i;
