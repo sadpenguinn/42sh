@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 19:00:55 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/20 19:02:00 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,12 +143,6 @@ void reset_line_offset(t_matrix *matrix)
 	matrix->last_offset = 0;
 }
 
-int get_line_prompt_len(t_matrix *matrix)
-{
-	(void)matrix;
-	return (2);
-}
-
 int	change_limits_left_case(t_matrix *matrix, int new_left_limit)
 {
 	int	size;
@@ -158,12 +152,12 @@ int	change_limits_left_case(t_matrix *matrix, int new_left_limit)
 	matrix->right_limit = new_left_limit;
 	size = g_w.ws_col * g_w.ws_row;
 	i = ((matrix->lines[matrix->right_limit]->symbols +
-			get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+			get_line_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	while (i <= size && matrix->right_limit < matrix->len - 1)
 	{
 		matrix->right_limit++;
 		i += ((matrix->lines[matrix->right_limit]->symbols +
-				get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+				get_line_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	}
 	if (i > size)
 		matrix->right_limit--;
@@ -179,12 +173,12 @@ int	change_limits_right_case(t_matrix *matrix, int new_right_limit)
 	matrix->left_limit = new_right_limit;
 	size = g_w.ws_row * g_w.ws_col;
 	i = ((matrix->lines[matrix->left_limit]->symbols +
-	      get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+	      get_line_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	while (i <= size && matrix->left_limit)
 	{
 		matrix->left_limit--;
 		i += ((matrix->lines[matrix->left_limit]->symbols +
-		      get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+		      get_line_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	}
 	if (i > size)
 		matrix->left_limit++;
@@ -200,12 +194,12 @@ void check_cursor_limits(t_matrix *matrix)
 	size = g_w.ws_row * g_w.ws_col;
     left_limit = matrix->cursor->row;
 	i = ((matrix->lines[left_limit]->symbols +
-		  get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+		  get_line_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	while (i <= size && left_limit)
 	{
 		left_limit--;
 		i += ((matrix->lines[left_limit]->symbols +
-			   get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+			   get_line_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	}
 	if (i > size)
 		left_limit++;
@@ -223,18 +217,24 @@ int set_matrix_limits(t_matrix *matrix)
 	return (change_limits_left_case(matrix, matrix->left_limit));
 }
 
-void get_num(t_matrix *matrix, char *str, int nbr)
+int count_digits(int nbr)
 {
 	int i;
-	int n;
 
-	n = matrix->len;
 	i = 0;
-	while (n)
+	while (nbr)
 	{
 		i++;
-		n /= 10;
+		nbr /= 10;
 	}
+	return (i);
+}
+
+void get_num(int max, char *str, int nbr)
+{
+	int i;
+
+	i = count_digits(max);
 	memset(str, 0, i + 1);
 	while (nbr)
 	{
@@ -247,6 +247,11 @@ void get_num(t_matrix *matrix, char *str, int nbr)
 		str[i - 1] = '0';
 		i--;
 	}
+}
+
+int get_line_prompt_len(int max)
+{
+	return (2 + count_digits(max));
 }
 
 void add_lines_prompt_style(void)
@@ -272,7 +277,7 @@ void add_text(t_matrix *matrix, int row, int col)
 			add_cur_line_prompt_style();
 		else
 			add_lines_prompt_style();
-		get_num(matrix, str, left + 1);
+		get_num(matrix->len, str, left + 1);
 		array_add(str, strlen(str));
 		array_add("> ", 2);
 		array_add(COLOR_DEFAULT, strlen(COLOR_DEFAULT));
@@ -280,7 +285,7 @@ void add_text(t_matrix *matrix, int row, int col)
 		if (g_w.ws_col)
 		{
 			matrix->last_offset += 1 + (matrix->lines[left]->symbols +
-					get_line_prompt_len(matrix) - 1) / g_w.ws_col;
+					get_line_prompt_len(matrix->len) - 1) / g_w.ws_col;
 			array_add("\n", 1);
 		}
 		left++;
@@ -291,7 +296,7 @@ void add_text(t_matrix *matrix, int row, int col)
 		add_lines_prompt_style();
 	if (matrix->left_limit != matrix->right_limit)
 	{
-		get_num(matrix, str, left + 1);
+		get_num(matrix->len, str, left + 1);
 		array_add(str, strlen(str));
 	}
 	array_add("> ", 2);
@@ -300,11 +305,11 @@ void add_text(t_matrix *matrix, int row, int col)
 	{
 		if (col == matrix->lines[row]->len)
 			matrix->last_offset += (matrix->lines[left]->symbols +
-					get_line_prompt_len(matrix) - 1) / g_w.ws_col;
+					get_line_prompt_len(matrix->len) - 1) / g_w.ws_col;
 		else
 			matrix->last_offset +=
 					(count_chars(matrix->lines[left]->buf, matrix->cursor->col)
-					+ get_line_prompt_len(matrix) - 1) / g_w.ws_col;
+					+ get_line_prompt_len(matrix->len) - 1) / g_w.ws_col;
 	}
 	array_add(matrix->lines[left]->buf, col);
 }

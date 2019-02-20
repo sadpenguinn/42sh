@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 18:47:08 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/20 18:51:42 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ int move_cursor_up(t_matrix *matrix);
 int move_cursor_down(t_matrix *matrix);
 int move_cursor_home(t_matrix *matrix);
 int move_cursor_end(t_matrix *matrix);
+
+int get_line_prompt_len(int max);
 
 int print_default(t_matrix *matrix);
 
