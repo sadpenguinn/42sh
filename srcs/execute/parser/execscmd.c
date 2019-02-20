@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:31:00 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 16:50:12 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/20 18:58:20 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,18 @@ char **get_alias(char *str)
 
 int		add_pipe_redir(t_list **redlst, int fd[2])
 {
-	t_redir		*redir;
+	t_redir		*redir[2];
 
-	redir = malloc(sizeof(t_redir) * 2);
-	redir[0].type = REDIRECT;
-	redir[1].type = REDIRECT;
-	redir[0].fd[0] = STDIN_FILENO;
-	redir[0].fd[1] = fd[0];
-	redir[1].fd[0] = STDOUT_FILENO;
-	redir[1].fd[1] = fd[1];
-	ft_push(redlst, (void *)redir);
-	ft_push(redlst, (void *)(redir + 1));
+	redir[0] = malloc(sizeof(t_redir));
+	redir[1] = malloc(sizeof(t_redir));
+	redir[0]->type = REDIRECT;
+	redir[1]->type = REDIRECT;
+	redir[0]->fd[0] = STDIN_FILENO;
+	redir[0]->fd[1] = fd[0];
+	redir[1]->fd[0] = STDOUT_FILENO;
+	redir[1]->fd[1] = fd[1];
+	ft_push(redlst, (void *)redir[0]);
+	ft_push(redlst, (void *)redir[1]);
 	return (0);
 }
 
@@ -114,9 +115,13 @@ int		expand_assign(t_list *assign)
 int		set_alias_arg(t_list **args)
 {
 	int		i;
+	char	*arg1;
 	char	**alias;
 
-	alias = get_alias(ft_pop(args));
+	arg1 = (char *)(*args)->data;
+	if (!(alias = get_alias(arg1)))
+		return (0);
+	free(ft_pop(args));
 	i = 0;
 	while (alias[i])
 		i++;
@@ -129,13 +134,15 @@ int		set_alias_arg(t_list **args)
 char	**get_argv(t_list *args)
 {
 	t_list	*lst;
+	char	*arg;
 	char	**argv;
 
-	set_alias_arg(&args);
 	lst = args;
 	while (lst)
 	{
-		lst->data = (char **)expandarg((char *)lst->data);
+		arg =(char *)lst->data;
+		lst->data = (char **)expandarg(arg);
+		free(arg);
 		lst = lst->next;
 	}
 	argv = (char **)args->data;
@@ -171,15 +178,14 @@ char	**get_envp(t_list *envs)
 	/* 	envp = (char **)ft_joinvect((void **)envp, (void **)g_env, 0); */
 	return (envp);
 }
-int		execute(char *path, char **argv, char **envp, t_list *redirs)
+int		execute(char **aven[2], t_list *redirs)
 {
+	char	*path;
 	t_redir	*redir;
 	pid_t	pid;
 
-	/* while (*argv) */
-	/* 	printf("#argv:%s\n", *argv++); */
-	/* while (*envp) */
-	/* 	printf("#envp:%s\n", *envp++); */
+	/* path = get_path(aven[0][0]); */
+	path = ft_strdup("/bin/ls");
 	if ((pid = fork()))
 		return (pid);
 	while (redirs)
@@ -191,9 +197,7 @@ int		execute(char *path, char **argv, char **envp, t_list *redirs)
 			close(redir->fd[0]);
 		redirs = redirs->next;
 	}
-	execve(path, argv, envp);
-
-	return (0);
+	return (execve(path, aven[0], aven[1]));
 }
 
 int	set_envs(t_list	*envs)
@@ -206,7 +210,7 @@ int	set_envs(t_list	*envs)
 		while (*val != '=')
 			val++;
 		*val++ = 0;
-		ssetenv((char *)envs->data, val);
+		/* ssetenv((char *)envs->data, val); */
 		envs = envs->next;
 	}
 	return (EXIT_SUCCESS);
@@ -218,6 +222,7 @@ static void	initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 	get_cmd_attr(root, cmd, 1);
 	add_pipe_redir(&cmd[2], fd);
 	expand_assign(cmd[1]);
+	set_alias_arg(&cmd[0]);
 	aven[0] = get_argv(cmd[0]);
 	aven[1] = get_envp(cmd[1]);
 }
@@ -243,6 +248,7 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 	ft_listdel(&cmd[1], &ft_free);
 	ft_listdel(&cmd[2], &ft_free);
 }
+
 /*
 **	cmd[0] - ARGRS
 **	cmd[1] - ASSIGNMENT
@@ -256,7 +262,6 @@ int	execscmd(t_astree *root, int fd[2], int job, int pipe)
 {
 	t_list	*cmd[3];
 	char	**aven[2];
-	char	*path;
 	pid_t	pid;
 	int		status;
 
@@ -266,16 +271,19 @@ int	execscmd(t_astree *root, int fd[2], int job, int pipe)
 	/* else if  ((root = get_function(aven[0][0]))) */
 	/* 	pid = function(root, aven[0], fd, job); */
 	/* else if ((status = get_builtin(aven[0][0])) != -1) */
-	/* 	pid = buitin(status, fd, job, args); */
-	else if ((path = sget_path(aven[0][0])))
-		pid = execute(path, aven[0], aven[1], cmd[2]);
+	/* 	pid = buitin(status, args); */
 	else
-		printf("42sh: command not found: %s\n", aven[0][0]);
-	if (!job || !pipe)
-		return (waitpid(pid, &status, 0));
+		pid = execute(aven, cmd[2]);
 	freecmd(cmd, aven);
+	if (pid == -1)
+		return (forkerror(aven[0][0]));
 	printf("***OK***\n");
-	return (pid);
+	if (job || pipe)
+		return (pid);
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (EXIT_FAILURE);
 }
 
 int main(void)
@@ -293,7 +301,8 @@ int main(void)
 
 	tree[1].type = COMMAND;
 	tree[1].left = &tree[51];
-	tree[1].right = &tree[2];
+	/* tree[1].right = &tree[2]; */
+	tree[1].right = 0;
 
 	tree[2].type = COMMAND;
 	tree[2].left = &tree[52];
@@ -318,11 +327,11 @@ int main(void)
 	tree[51].type = WORD;
 	tree[51].content = ft_strdup("ls");
 
-	tree[52].type = WORD;
-	tree[52].content = ft_strdup("/Users/bwerewol");
+	/* tree[52].type = WORD; */
+	/* tree[52].content = ft_strdup("/Users/bwerewol"); */
 
-	tree[53].type = WORD;
-	tree[53].content = ft_strdup("dir2");
+	/* tree[53].type = WORD; */
+	/* tree[53].content = ft_strdup("dir2"); */
 
 	/* tree[50].type = ASSIGMENT_WORD; */
 	/* tree[50].content = ft_strdup("A=3"); */

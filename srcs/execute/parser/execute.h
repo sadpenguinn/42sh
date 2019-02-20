@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 16:27:11 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 16:25:48 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/20 17:51:06 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_redir	*get_redir(t_astree *root);
 
 int pipeerror(void);
 int fileerror(char *file);
+int forkerror(char *cmd);
 /*
 **	<|Parser defines|>
 **

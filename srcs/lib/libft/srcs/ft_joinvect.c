@@ -6,13 +6,13 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 13:08:32 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 16:05:14 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 18:19:22 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	**ft_joinvect(void **arr1, void **arr2)
+void	**ft_joinvect(void **arr1, void **arr2, int free2)
 {
 	int		i;
 	int		j;
@@ -30,7 +30,8 @@ void	**ft_joinvect(void **arr1, void **arr2)
 	j = 0;
 	while (arr2[j])
 		arr1[i++] = arr2[j++];
-	free(arr2);
+	if (free2)
+		free(arr2);
 	arr1[len - 1] = 0;
 	return (arr1);
 }
