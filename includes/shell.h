@@ -6,16 +6,18 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 15:47:45 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 17:51:48 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHELL_H
 # define SHELL_H
 
+# include <unistd.h>
 # include <sys/stat.h>
 # include "libshell.h"
 # include "libhash.h"
+# include "vector.h"
 
 /*
 ** Global variables with env and paths hashes/arrays
@@ -25,6 +27,13 @@ extern t_hash			*g_hash_env;
 extern t_hash			*g_path;
 extern t_hash			*g_path_sums;
 extern char				**g_env;
+
+/*
+** Global variables for saving jobs and processes
+*/
+
+extern void				*g_jobs;
+extern void				*g_process;
 
 /*
 ** Defines for initialize shell environment/path
@@ -120,8 +129,12 @@ typedef struct			s_astree
 void					init(char **env);
 void					init_env(char **env);
 void					init_path(void);
+void					init_jobs(void);
+void					init_process(void);
 void					destroy(void);
 void					destroy_env(void);
 void					destroy_path(void);
+void					destroy_jobs(void);
+void					destroy_process(void);
 
 #endif

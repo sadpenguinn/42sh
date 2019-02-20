@@ -6,27 +6,34 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 17:28:39 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 16:03:33 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:45:55 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	init_read_dir(char *dir, DIR *dirp)
+static void		init_read_dir(char *dir, DIR *dirp)
 {
 	struct dirent	*cdir;
 	char			*path;
 
 	while ((cdir = readdir(dirp)))
 	{
+		if (!ft_strcmp(cdir->d_name, ".") || !ft_strcmp(cdir->d_name, ".."))
+			continue ;
 		path = ft_strjoin(dir, "/", 0);
 		path = ft_strjoin(path, cdir->d_name, 1);
+		if (access(path, X_OK) == -1)
+		{
+			ft_strdel(&path);
+			continue;
+		}
 		hash_insert(cdir->d_name, path, g_path, dir);
 		ft_strdel(&path);
 	}
 }
 
-void	init_paths(char **paths)
+static void		init_paths(char **paths)
 {
 	struct stat	stats;
 	DIR			*dirp;
@@ -54,7 +61,7 @@ void	init_paths(char **paths)
 	}
 }
 
-void	init_path(void)
+void			init_path(void)
 {
 	char	**paths;
 	t_hshtb	*cell;

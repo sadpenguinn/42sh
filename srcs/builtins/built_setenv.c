@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:27:01 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 14:35:09 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 15:51:27 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		parse_flags(char **av, char **key, char **value)
 {
-	int 	i;
+	int		i;
 
 	i = 1;
 	while (av[i])
@@ -39,10 +39,10 @@ static int		parse_flags(char **av, char **key, char **value)
 ** setenv USER pahom
 */
 
-int 			built_setenv(char **av, char **env)
+int				built_setenv(char **av, char **env)
 {
-	char 	*key;
-	char 	*value;
+	char	*key;
+	char	*value;
 
 	env = NULL;
 	if (!parse_flags(av, &key, &value))
@@ -50,5 +50,3 @@ int 			built_setenv(char **av, char **env)
 	ssetenv(key, value);
 	return (SHERR_OK);
 }
-
-

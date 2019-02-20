@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:53:51 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 14:35:50 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 15:53:17 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		print_strings(char **av, int *flags, int i)
 
 static int		parse_flags(char **av, int *flags)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (av[i])
@@ -54,7 +54,7 @@ static int		parse_flags(char **av, int *flags)
 int				built_echo(char **av, char **env)
 {
 	int		flags[2];
-	int 	i;
+	int		i;
 
 	env = NULL;
 	flags[0] = 0;
