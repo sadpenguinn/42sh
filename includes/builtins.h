@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:13:40 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 14:46:12 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 15:43:43 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		built_echo(char **av, char **env);
 ** Just prints environment. If passed arguments, env display an error
 */
 
-int 	built_env(char **av, char **env);
+int		built_env(char **av, char **env);
 
 /*
 ** Adds variable to the environment.
@@ -56,7 +56,7 @@ int 	built_env(char **av, char **env);
 ** setenv USER pahom
 */
 
-int 	built_setenv(char **av, char **env);
+int		built_setenv(char **av, char **env);
 
 /*
 ** Removes variable from the environment.
@@ -64,13 +64,13 @@ int 	built_setenv(char **av, char **env);
 ** unsetenv USER
 */
 
-int 	built_unsetenv(char **av, char **env);
+int		built_unsetenv(char **av, char **env);
 
 /*
 ** Exit
 ** Need to add handling of running processes
 */
 
-int 	built_exit(char **av, char **env);
+int		built_exit(char **av, char **env);
 
 #endif

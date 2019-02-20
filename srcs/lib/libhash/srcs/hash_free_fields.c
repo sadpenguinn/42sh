@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btree_prefix.c                                  :+:      :+:    :+:   */
+/*   hash_free_fields.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/09 18:54:44 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 10:41:32 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/20 12:14:16 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/20 12:15:07 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libhash.h"
 
-void	ft_btree_prefix(t_btree *root, void (*f)(void *data))
+/*
+** Internal function for remove hash fields
+*/
+
+void		hash_free_fileds(char *key, char *value)
 {
-	if (!root)
-		return ;
-	(*f)(root->data);
-	if (root->left)
-		ft_btree_prefix(root->left, f);
-	if (root->right)
-		ft_btree_prefix(root->right, f);
+	free(key);
+	free(value);
 }

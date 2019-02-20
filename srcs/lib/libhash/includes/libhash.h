@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 11:17:41 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 12:15:07 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ t_hshtb			*hash_find(const char *key, t_hash *hash);
 ** The function just cleans the table
 */
 
-int 			hash_clean(t_hash *hash);
+int 			hash_clean(t_hash **hash);
 
 /*
 ** Iterates the table
@@ -148,5 +148,11 @@ int 			hash_print(t_hash *hash);
 */
 
 int 			hash_test(t_hash *hash);
+
+/*
+** Internal function for remove hash fields
+*/
+
+void			hash_free_fileds(char *key, char *value);
 
 #endif

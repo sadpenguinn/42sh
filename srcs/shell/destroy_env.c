@@ -14,7 +14,6 @@
 
 void	destroy_env(void)
 {
-	hash_clean(g_hash_env);
-	g_hash_env = NULL;
+	hash_clean(&g_hash_env);
 	free_str_arr(&g_env);
 }

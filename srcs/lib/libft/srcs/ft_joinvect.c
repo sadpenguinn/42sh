@@ -6,13 +6,12 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 13:08:32 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 22:37:54 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:05:14 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdio.h>
 void	**ft_joinvect(void **arr1, void **arr2)
 {
 	int		i;
