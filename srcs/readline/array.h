@@ -25,6 +25,7 @@ typedef	struct		s_array
 }					t_array;
 
 void	array_add(const char *str, unsigned int len);
+char *array_to_string(void);
 void	array_flush(void);
 
 #endif

@@ -1,5 +1,5 @@
-SRC = ../lib/libshell/xmalloc.c\
-	  ../lib/libshell/xrealloc.c\
+SRC = ../lib/libft/srcs/xmalloc.c\
+	  ../lib/libft/srcs/xrealloc.c\
 	  ../lib/libft/srcs/ft_memset.c\
 	  readline.c main.c array.c\
 	  check_next_symbol.c term.c prompt.c\
@@ -15,4 +15,4 @@ clean:
 	rm -rf $(NAME) $(NAME).dSYM a.out a.out.dSYM $(TEST)
 
 test:
-	gcc term.c test.c -o $(NAME)
+	gcc term.c test.c -o $(TEST)

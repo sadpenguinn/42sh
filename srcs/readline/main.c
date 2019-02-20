@@ -17,17 +17,11 @@
 
 int		main(void)
 {
-	int ret;
-	t_matrix *matrix;
+	char *str;
 
-	set_term();
-	ret = 1;
-	g_mode = READLINE;
-	while (ret)
+	while ((str = readline()))
 	{
-		matrix = init_matrix();
-		ret = readline(matrix);
+		write(1, str, strlen(str));
 	}
-	unset_term();
 	return (0);
 }

@@ -46,6 +46,18 @@ void	array_add(const char *str, unsigned int len)
 		array_flush();
 }
 
+char *array_to_string(void)
+{
+	char *str;
+
+	str = (char *)xmalloc(arr->len + 1);
+	memmove(str, arr->buf, arr->len);
+	free(arr->buf);
+	free(arr);
+	arr = NULL;
+	return (str);
+}
+
 void	array_flush(void)
 {
 	write(1, arr->buf, arr->len);

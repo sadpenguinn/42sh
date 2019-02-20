@@ -84,7 +84,7 @@ typedef struct s_matrix
 int g_mode;
 struct winsize g_w;
 
-int     readline(t_matrix *);
+char *readline(void);
 void    clear_screen_down(void);
 void    save_cursor(void);
 void    restore_cursor(void);
@@ -106,7 +106,7 @@ void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cu
 void    matrix_string_insert(t_matrix *matrix, const char *str);
 void    make_string_from_symbol(char *str, t_uchar c);
 void    add_offset(int offset);
-void print_lines(t_matrix *matrix);
+void add_lines(t_matrix *matrix);
 void    auto_complete(t_matrix *matrix);
 int     readline_mode(t_matrix *matrix, char *str, t_uchar c);
 int check_buttons(t_matrix *matrix, t_uchar c);

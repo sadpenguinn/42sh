@@ -196,25 +196,28 @@ void check_cursor_limits(t_matrix *matrix)
     left_limit = matrix->cursor->row;
 	i = ((matrix->lines[left_limit]->symbols +
 		  get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
-	while (i < size && left_limit)
+	while (i <= size && left_limit)
 	{
 		left_limit--;
 		i += ((matrix->lines[left_limit]->symbols +
 			   get_line_prompt_len(matrix) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
 	}
-	if (left > matrix->left_limit)
+	if (i > size)
+		left_limit++;
+	if (left_limit > matrix->left_limit)
+		change_limits_right_case(matrix, matrix->cursor->row);
 }
 
 void set_matrix_limits(t_matrix *matrix)
 {
-
+	check_cursor_limits(matrix);
 	if (matrix->cursor->row < matrix->left_limit)
 		change_limits_left_case(matrix, matrix->cursor->row);
 	if (matrix->cursor->row > matrix->right_limit)
 		change_limits_right_case(matrix, matrix->cursor->row);
 }
 
-void print_text(t_matrix *matrix, int row, int col)
+void add_text(t_matrix *matrix, int row, int col)
 {
 	int left;
 
@@ -244,17 +247,31 @@ void print_text(t_matrix *matrix, int row, int col)
 					+ get_line_prompt_len(matrix)) / g_w.ws_col;
 	}
 	array_add(matrix->lines[left]->buf, col);
-	array_flush();
 }
 
-void print_cursor(t_matrix *matrix)
+char *matrix_to_string(t_matrix *matrix)
 {
-	print_text(matrix, matrix->cursor->row, matrix->cursor->col);
+	int i;
+
+	i = 0;
+	while (i < matrix->len - 1)
+	{
+		array_add(matrix->lines[i]->buf, matrix->lines[i]->len);
+		array_add("\n", 1);
+		i++;
+	}
+	array_add(matrix->lines[i]->buf, matrix->lines[i]->len);
+	return (array_to_string());
 }
 
-void print_lines(t_matrix *matrix)
+void add_cursor(t_matrix *matrix)
 {
-	print_text(matrix, matrix->right_limit, matrix->lines[matrix->right_limit]->len);
+	add_text(matrix, matrix->cursor->row, matrix->cursor->col);
+}
+
+void add_lines(t_matrix *matrix)
+{
+	add_text(matrix, matrix->right_limit, matrix->lines[matrix->right_limit]->len);
 }
 
 void print_default(t_matrix *matrix)
@@ -262,16 +279,17 @@ void print_default(t_matrix *matrix)
 	set_matrix_limits(matrix);
 	add_offset(matrix->last_offset);
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, 0);
-	print_lines(matrix);
+	add_lines(matrix);
 	add_offset(matrix->last_offset);
-	print_cursor(matrix);
+	add_cursor(matrix);
+	array_flush();
 }
 
 void    auto_complete(t_matrix *matrix)
 {
-	check_limits(matrix);
+	set_matrix_limits(matrix);
 	add_offset(matrix->last_offset);
-	print_lines(matrix);
+	add_lines(matrix);
 	if (matrix)
 		ft_puts ("\nmain.c  readline.c  array.c\n", 0);
 	print_prompt();
@@ -282,14 +300,15 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 	if (c == '\t' && g_comb[2] == 22)
 	{
 		auto_complete(matrix);
-		print_lines(matrix);
+		add_lines(matrix);
+		array_flush();
 		return (1);
 	}
 	if (c == '\n')
 	{
 		if (g_comb[2] != '\\')
 		{
-			if (matrix->lines[matrix->right_limit]->len != 0)
+			if (!(matrix->len == 1 && matrix->lines[0]->len == 0))
 				write(1, "\n", 1);
 			return (0);
 		}
@@ -355,20 +374,27 @@ int check_modes(t_matrix *matrix, t_uchar c)
 	return (1);
 }
 
-int     readline(t_matrix *matrix)
+char *readline(void)
 {
-	int     ret;
+	int ret;
+	t_matrix *matrix;
+	char *str;
+
 	get_term_params(&g_w);
 	print_prompt();
-	print_lines(matrix);
+	matrix = init_matrix();
+	add_lines(matrix);
+	array_flush();
+	g_mode = READLINE;
+	set_term();
 	ret = 1;
 	while (ret > 0)
 		ret = check_next_symbol(matrix);
-	if (ret == -1)
+	unset_term();
+	if (ret == 0)
 	{
-		return (0);
-/*		if check no leaks need to call exit here*/
-/*		exit(0);*/
+		str = matrix_to_string(matrix);
+		return (str);
 	}
-	return (1);
+	return (NULL);
 }
