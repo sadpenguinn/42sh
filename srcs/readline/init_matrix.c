@@ -6,8 +6,8 @@ t_matrix *init_matrix(void)
 	t_matrix *matrix;
 
 	matrix = xmalloc(sizeof(t_matrix));
-	matrix->lines = (t_line **)xmalloc(sizeof(t_line *) * MATRIX_DEFAULT);
-	matrix->size = MATRIX_DEFAULT;
+	matrix->lines = (t_line **)xmalloc(sizeof(t_line *) * MATRIX_DEFAULT_SIZE);
+	matrix->size = MATRIX_DEFAULT_SIZE;
 	matrix->len = 1;
 	matrix->lines[0] = init_line();
 	matrix->cursor = (t_cursor *)xmalloc(sizeof(t_cursor));

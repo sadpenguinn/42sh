@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   readline.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 08:44:45 by narchiba          #+#    #+#             */
-/*   Updated: 2019/02/07 08:45:56 by narchiba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef READLINE_H
 # define READLINE_H
 
@@ -45,16 +33,13 @@ enum	vi_modes
 
 enum	allocation_params
 {
-	HISTORY_SIZE = 10, LINE_SIZE = 1024, RATIO = 2
+	HISTORY_SIZE = 10, BUF_DEFAULT_SIZE = 5, RATIO = 2, MATRIX_DEFAULT_SIZE = 10
 };
 
 # define CTRL_V 026
 # define CTRL_D 004
 
 typedef unsigned long long int t_uchar;
-
-#define MATRIX_DEFAULT 10
-#define BUF_DEFAULT 5
 
 typedef struct s_cursor
 {
@@ -72,7 +57,7 @@ typedef struct  s_line
 
 typedef struct s_matrix
 {
-	int size;
+	int		size;
 	int len;
 	t_line **lines;
 	t_cursor *cursor;
