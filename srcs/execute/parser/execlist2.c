@@ -6,21 +6,23 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:43:35 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 19:52:29 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/20 14:39:18 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int		execlist2(t_astree *root, int fd[2], int flag)
+int		execlist2(t_astree *root, int fd[2], int job)
 {
-	if (root->type != LIST2 && root->type != OR_IF)
-		return (execlist3(root, fd, flag));
-	if (!root->right)
-		return (execlist3(root->left, fd, flag));
-	if (execlist3(root->left, fd, flag & ~ EX_JOB) == EXIT_SUCCESS)
+	if (!root)
 		return (EXIT_SUCCESS);
-	if (execlist2(root->right, fd, flag) == EXIT_SUCCESS)
+	if (root->type != LIST2 && root->type != OR_IF)
+		return (execlist3(root, fd, job));
+	if (!root->right)
+		return (execlist3(root->left, fd, job));
+	if (execlist3(root->left, fd, EX_NOFG) == EXIT_SUCCESS)
+		return (EXIT_SUCCESS);
+	if (execlist2(root->right, fd, job) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }

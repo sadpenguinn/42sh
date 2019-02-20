@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 10:58:25 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/19 22:35:12 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:04:15 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_list			*ft_push(t_list **begin, void *data);
 void			*ft_pop(t_list **begin);
 t_list			*ft_push_back(t_list **begin, void *data);
 t_list			*ft_listlast(t_list *begin);
+void			ft_listdel(t_list **begin, void (*f)(void *data));
 
 /*
 ** Binary tree
@@ -127,6 +128,7 @@ int				ft_isprint(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 void			*ft_memalloc(size_t size);
+void			ft_free(void *p);
 void			ft_memdel(void **ap);
 char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
@@ -165,6 +167,6 @@ unsigned long	ft_pow(int n, int pw);
 int				fatal_error(char *message, int err);
 void			*xmalloc(size_t bytes);
 void			*xrealloc(void *p, size_t newsize, size_t oldsize);
-void			**ft_joinvect(void **arr1, void **arr2);
+void			**ft_joinvect(void **arr1, void **arr2, int free2);
 
 #endif

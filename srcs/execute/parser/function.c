@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execpipecmd.c                                      :+:      :+:    :+:   */
+/*   function.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/13 16:01:57 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 13:41:56 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/20 13:02:38 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/20 14:39:56 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int		execpipecmd(t_astree *root, int fd[2], int flag, char **env)
+int		function(t_astree *func, char **argv, int fd[2], int job)
 {
-	if (!(root) || !(root->left))
-		return (-1);
-	if (root->type == NOT)
-		return (!execpipecmd(root->left, fd, flag, env));
-	if (root->left->type == REST)
-		return (execpipes(root->left, fd, flag, env));
-	if (root->left->type == COMMAND)
-		return (execcmd(root->left, fd, flag, env));
-	return (-1);
+	int		res;
+	// XXX - need set and unset $0 $1 $2 ...
+	(void)argv;
+	res = execlist1(func, fd, job);
+	(void)argv;
+	return (res);
 }
