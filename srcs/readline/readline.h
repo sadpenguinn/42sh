@@ -38,9 +38,9 @@ enum	editing_modes
 	VI = 1, READLINE = 2
 };
 
-enum	modes
+enum	vi_modes
 {
-	NORMAL_MODE = 1, VISUAL_MODE = 2, INSERT_MODE = 4
+	NORMAL_MODE = 1, VISUAL_MODE = 2, INSERT_MODE = 3
 };
 
 enum	allocation_params
@@ -108,11 +108,19 @@ void    add_offset(int offset);
 void add_lines(t_matrix *matrix);
 void    auto_complete(t_matrix *matrix);
 int     readline_mode(t_matrix *matrix, char *str, t_uchar c);
-int check_buttons(t_matrix *matrix, t_uchar c);
 int check_esc_code(t_matrix *matrix);
 int check_modes(t_matrix *matrix, t_uchar c);
 
 void    line_resize(t_line *line, int new_size, int old_size);
 void    matrix_resize(t_matrix *matrix, int new_size, int old_size);
+
+int move_cursor_left(t_matrix *matrix);
+int move_cursor_right(t_matrix *matrix);
+int move_cursor_up(t_matrix *matrix);
+int move_cursor_down(t_matrix *matrix);
+int move_cursor_home(t_matrix *matrix);
+int move_cursor_end(t_matrix *matrix);
+
+void print_default(t_matrix *matrix);
 
 #endif

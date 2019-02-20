@@ -315,51 +315,6 @@ int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 	return (1);
 }
 
-int check_buttons(t_matrix *matrix, t_uchar c)
-{
-	if (c == LEFT)
-	{
-		if (matrix->cursor->col != 0)
-			matrix->cursor->col--;
-		return (1);
-	}
-	if (c == RIGHT)
-	{
-		if (matrix->cursor->col != matrix->lines[matrix->cursor->row]->len)
-			matrix->cursor->col++;
-		return (1);
-	}
-	return (0);
-}
-
-int check_esc_code(t_matrix *matrix)
-{
-	int i;
-	time_t start;
-	time_t end;
-	t_uchar c;
-	t_uchar tmp;
-
-	i = 1;
-	c = 27;
-	while (i < 8)
-	{
-		start = time(&start);
-		tmp = get_next_symbol(sizeof(char));
-		end = time(&end);
-		if (difftime(end, start) >= 0.2)
-			return (1);
-		c += (tmp << (i * 8));
-		if (check_buttons(matrix, c))
-		{
-			print_default(matrix);
-			return (1);
-		}
-		i++;
-	}
-	return (1);
-}
-
 int check_modes(t_matrix *matrix, t_uchar c)
 {
 	char str[9];
@@ -379,13 +334,12 @@ char *readline(void)
 	char *str;
 
 	get_term_params(&g_w);
-	print_prompt();
 	matrix = init_matrix();
-	add_lines(matrix);
-	array_flush();
+	print_prompt();
+	print_default(matrix);
 	g_mode = READLINE;
-	set_term();
 	ret = 1;
+	set_term();
 	while (ret > 0)
 		ret = check_next_symbol(matrix);
 	unset_term();
