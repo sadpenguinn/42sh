@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 21:04:10 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 14:03:27 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:52:40 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,33 +98,33 @@ int main(void)
 	/* lex.word = "if"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	/* lex.type = IF; */
-	/* lex.word = "if"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = IF;
+	lex.word = "if";
+	vector_push_back(&g_tokens, &lex);
 
 	lex.type = WORD;
 	lex.word = "echo";
 	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = SEMI; */
-	/* lex.word = ";"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = SEMI;
+	lex.word = ";";
+	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = THEN; */
-	/* lex.word = "then"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = THEN;
+	lex.word = "then";
+	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = WORD; */
-	/* lex.word = "echo"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = WORD;
+	lex.word = "echo";
+	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = SEMI; */
-	/* lex.word = ";"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = SEMI;
+	lex.word = ";";
+	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = FI; */
-	/* lex.word = "fi"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = FI;
+	lex.word = "fi";
+	vector_push_back(&g_tokens, &lex);
 
 	/* lex.type = LESS; */
 	/* lex.word = "<"; */

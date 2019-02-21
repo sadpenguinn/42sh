@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 20:53:52 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 21:36:57 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:57:20 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static t_astree	*get_elif(t_astree *res)
 
 t_astree		*if_command(void)
 {
+printf("in if_command\n");
 	t_astree        *res;
 	t_astree        *root;
 
@@ -69,6 +70,7 @@ t_astree		*if_command(void)
 		return (parseerror());
 	if (!checktype(THEN))
 		return (freeastree(res), parseerror());
+printf("then\n");
 	root = xmalloc(sizeof(t_astree));
 	root->type = IF;
 	root->left = res;

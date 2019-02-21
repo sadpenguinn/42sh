@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:08:06 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 15:18:32 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:48:10 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 static t_astree	*list3_rest(void)
 {
+printf("in list3_rest\n");
 	unsigned int	curtmp;
 	t_astree		*root;
 
@@ -53,6 +54,7 @@ static t_astree	*list3_rest(void)
 
 t_astree		*list3(void)
 {
+printf("in list3\n");
 	t_astree		*root;
 	t_astree		*res[2];
 

@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 20:52:51 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:56:37 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,38 +47,38 @@
 # define OR_IF             		SHIFT + 222 /* || */
 # define LESSAND           		SHIFT + 226 /* <& */
 # define GREATAND          		SHIFT + 227 /* &> */
-# define OBRACE            		SHIFT + 212 /* { */
-# define CBRACE            		SHIFT + 213 /* } */
-# define DBL_LBRACKET      		SHIFT + 214 /* [[ */
-# define DBL_RBRACKET      		SHIFT + 215 /* ]] */
-# define DBL_LPARENTHESIS  		SHIFT + 216 /* (( */
-# define DBL_RPARENTHESIS  		SHIFT + 217 /* )) */
-# define LBRACKET          		SHIFT + 218 /* [ */
-# define RBRACKET          		SHIFT + 219 /* ] */
-# define OBRACKET	     		SHIFT + 220 /* ( */
-# define CBRACKET	      		SHIFT + 221 /* ) */
-# define SEMI              		SHIFT + 222 /* ; */
-# define SINGLE_QUOTE      		SHIFT + 223 /* ' */
-# define QUOTE             		SHIFT + 224 /* " */
-# define HASH              		SHIFT + 225 /* # */
-# define AND               		SHIFT + 242 /* & */
-# define DSEMI             		SHIFT + 243 /* ;; */
-# define NOT               		SHIFT + 245 /* ! */
-# define PIPE              		SHIFT + 246 /* | */
-# define ARITH					SHIFT + 247
-# define CMDREDIR				SHIFT + 248
-# define COND					SHIFT + 249 /* [[ ... ]] */
-# define LIST1					SHIFT + 251
-# define LIST2					SHIFT + 252
-# define LIST3					SHIFT + 253
-# define TOKEOF					SHIFT + 254
-# define PIPEAND				SHIFT + 255 /* |& */
-# define REST					SHIFT + 256
-# define PIPECMD				SHIFT + 257
-# define NUMBER					SHIFT + 258
-# define REDIRECTION			SHIFT + 259
-# define TLESS					SHIFT + 250 /* <<< */
-# define COMMAND				SHIFT + 260
-# define ASSIGMENT_WORD			SHIFT + 261
+# define OBRACE            		SHIFT + 228 /* { */
+# define CBRACE            		SHIFT + 229 /* } */
+# define DBL_LBRACKET      		SHIFT + 230 /* [[ */
+# define DBL_RBRACKET      		SHIFT + 231 /* ]] */
+# define DBL_LPARENTHESIS  		SHIFT + 232 /* (( */
+# define DBL_RPARENTHESIS  		SHIFT + 233 /* )) */
+# define LBRACKET          		SHIFT + 234 /* [ */
+# define RBRACKET          		SHIFT + 235 /* ] */
+# define OBRACKET	     		SHIFT + 236 /* ( */
+# define CBRACKET	      		SHIFT + 237 /* ) */
+# define SEMI              		SHIFT + 238 /* ; */
+# define SINGLE_QUOTE      		SHIFT + 239 /* ' */
+# define QUOTE             		SHIFT + 240 /* " */
+# define HASH              		SHIFT + 241 /* # */
+# define AND               		SHIFT + 258 /* & */
+# define DSEMI             		SHIFT + 259 /* ;; */
+# define NOT               		SHIFT + 261 /* ! */
+# define PIPE              		SHIFT + 262 /* | */
+# define ARITH					SHIFT + 263
+# define CMDREDIR				SHIFT + 264
+# define COND					SHIFT + 265 /* [[ ... ]] */
+# define LIST1					SHIFT + 267
+# define LIST2					SHIFT + 268
+# define LIST3					SHIFT + 269
+# define TOKEOF					SHIFT + 270
+# define PIPEAND				SHIFT + 271 /* |& */
+# define REST					SHIFT + 272
+# define PIPECMD				SHIFT + 273
+# define NUMBER					SHIFT + 274
+# define REDIRECTION			SHIFT + 275
+# define TLESS					SHIFT + 266 /* <<< */
+# define COMMAND				SHIFT + 276
+# define ASSIGMENT_WORD			SHIFT + 277
 
 #endif

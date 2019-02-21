@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 12:13:41 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:35:52 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@
 
 t_astree	*simple_command(void)
 {
+printf("in simple_command\n");
 	t_astree	*root;
 	t_astree	*res;
-printf("in simple_command\n");
+
 	if (!(res = simple_command_element()))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = COMMAND;
 	root->left = res;
 	root->right = simple_command();
+printf("simple root\n");
 	return (root);
 }

@@ -6,13 +6,14 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:01:59 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 14:17:16 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:25:03 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "vector.h"
 #include "shell.h"
+#include "terminals.h"
 #include <stdio.h>
 
 void	*xmalloc(size_t bytes);

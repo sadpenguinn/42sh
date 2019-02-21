@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:05 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 15:28:17 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:32:33 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_astree	*parseerror(void)
 {
 	t_lexem	*token;
 
-	if (g_parseerr)
-		return (0);
+	/* if (g_parseerr) */
+	/* 	return (0); */
 	g_parseerr = 1;
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 	{

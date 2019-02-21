@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:08:06 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 13:52:23 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:56:59 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 static t_astree	*list1_rest(void)
 {
+printf("in list1_rest\n");
 	t_type			type;
 	t_astree		*root;
 
@@ -47,17 +48,12 @@ static t_astree	*list1_rest(void)
 
 t_astree		*list1(void)
 {
-	t_type			type;
+printf("in list1\n");
 	t_astree		*root;
 	t_astree		*res[2];
 
 	if (!(res[0] = list2()))
 		return (0);
-	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return (res[0]);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != NEWLINE && type != AND && type != SEMI)
-		return (res[0]);
 	if (!(res[1] = list1_rest()))
 		return (res[0]);
 	root = xmalloc(sizeof(t_astree));
