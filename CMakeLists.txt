@@ -28,7 +28,8 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_jobs.c
 					srcs/shell/init_process.c
 					srcs/shell/destroy_jobs.c
-					srcs/shell/destroy_process.c)
+					srcs/shell/destroy_process.c
+					srcs/shell/argv_parser.c)
 
 set(READLINE_SRC	srcs/readline/readline.c
 					srcs/readline/array.c

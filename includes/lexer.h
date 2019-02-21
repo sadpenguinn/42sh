@@ -37,5 +37,6 @@ t_lexer						*lexer(char const *str, size_t len);
 int							push_token(void **lexems, char *lexem, int state);
 char						*push_symbol(char **string, char *str, size_t len);
 void						lexer_print(void *lexems);
+void						lexer_free(t_lexer *lexer);
 
 #endif

@@ -23,6 +23,13 @@ static void		print_token(void *lexem)
 	ft_putnbrendl(lex->type - SHIFT);
 }
 
+void			lexer_free(t_lexer *lexer)
+{
+	free(lexer->lexems);
+	free(lexer->symbol_table);
+	free(lexer);
+}
+
 void			lexer_print(void *lexems)
 {
 	vector_foreach(lexems, print_token);
@@ -52,7 +59,7 @@ int				push_token(void **lexems, char *lexem, int state)
 	if (state == SPACE - SHIFT || state == TAB - SHIFT || state == COMMENT - SHIFT)
 		return (0);
 	new.type = (t_type)(SHIFT + state);
-	if (state == 72 || state == 83 || state == 80)
+	if (state == 72 || state == 83 || state == 80 || state == 101 || state == 102 || state == 103)
 		new.type = WORD;
 	new.word = lexem;
 	if (!(vector_push_back(lexems, (void *)(&new))))
