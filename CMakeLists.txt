@@ -44,12 +44,12 @@ set(READLINE_SRC	srcs/readline/readline.c
 					srcs/readline/move_cursor_2.c
 					srcs/readline/check_esc_code.c)
 
-#[[set(BUILTIN_SRC		srcs/builtins/built_cd.c
+set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_echo.c
 					srcs/builtins/built_env.c
 					srcs/builtins/built_setenv.c
 					srcs/builtins/built_unsetenv.c
-					srcs/builtins/built_exit.c)]]
+					srcs/builtins/built_exit.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)
@@ -112,5 +112,5 @@ add_subdirectory(${LIBHASH_DIR})
 add_subdirectory(${VECTOR_DIR})
 add_subdirectory(${LIBSHELL_DIR})
 
-add_executable(42sh ${MAIN} #[[${BUILTIN_SRC}]] ${READLINE_SRC} ${SHELL_SRC} ${LEXER_SRC} ${PARSER_SRC} ${LIBSHELL_SRC})
+add_executable(42sh ${MAIN} ${BUILTIN_SRC} ${READLINE_SRC} ${SHELL_SRC} ${LEXER_SRC} ${PARSER_SRC} ${LIBSHELL_SRC})
 target_link_libraries(42sh ${LIBFT} ${LIBHASH} ${VECTOR} ${LIBSHELL})

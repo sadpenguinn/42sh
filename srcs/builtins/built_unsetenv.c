@@ -6,13 +6,13 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:37:30 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 15:52:52 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 11:04:27 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-static int		parse_flags(char **av, char **key, char **value)
+static int		parse_flags(char **av, char **key)
 {
 	int		i;
 
@@ -40,10 +40,9 @@ static int		parse_flags(char **av, char **key, char **value)
 int				built_unsetenv(char **av, char **env)
 {
 	char	*key;
-	char	*value;
 
 	env = NULL;
-	if (!parse_flags(av, &key, &value))
+	if (!parse_flags(av, &key))
 		return (SHERR_ERR);
 	if ((sunsetenv(key) == SHERR_ERR))
 		return (SHERR_ERR);

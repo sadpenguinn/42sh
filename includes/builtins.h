@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:13:40 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 15:43:43 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "libshell.h"
 
 /*
 ** Shell error define like a standard C errno

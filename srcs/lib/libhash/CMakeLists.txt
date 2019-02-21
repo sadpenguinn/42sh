@@ -15,7 +15,7 @@ set(SRC_LIB srcs/hash_clean.c
             srcs/hash_init.c
 			srcs/hash_get_size.c
 			srcs/hash_get_len.c
-			srcs/hash_free_fields.c main.c)
+			srcs/hash_free_fields.c)
 include_directories(${LIBFT_INC})
 include_directories(${SHELL_INC})
 

@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:15:08 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 14:36:11 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 11:02:06 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void		set_pwd(const char *str)
 {
 	char	*buf;
 
-	if (getcwd(buf))
+	buf = NULL;
+	if (getcwd(buf, 0))
 		ssetenv(str, buf);
 	else
 		ssetenv(str, "/");
@@ -49,8 +50,8 @@ int				built_cd(char **av, char **env)
 		path = home;
 	if (!ft_strcmp(av[1], "-"))
 		path = get_oldpwd(home);
-	set_oldpwd("OLDPWD");
-	if (!chdir(target))
+	set_pwd("OLDPWD");
+	if (!chdir(path))
 	{
 		set_pwd("PWD");
 		return (SHERR_OK);
