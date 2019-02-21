@@ -7,7 +7,7 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  matrix_resize.c line_resize.c\
 	  move_cursor_1.c move_cursor_2.c\
 	  check_esc_code.c matrix_string_insert.c\
-	  matrix_create_line.c\
+	  matrix_create_line.c utf.c\
 
 NAME = line
 TEST = a.test

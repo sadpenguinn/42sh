@@ -32,20 +32,6 @@ static int	is_utf(char c)
 	return (0);
 }
 
-int			get_utf_offset(unsigned char c)
-{
-	int	i;
-
-	if (c > 127)
-	{
-		i = 0;
-		while (i < 7 && ((c >> (6 - i)) & 1))
-			i++;
-		return (i);
-	}
-	return (0);
-}
-
 int			check_utf(t_matrix *matrix, t_uchar c)
 {
 	t_uchar tmp;
