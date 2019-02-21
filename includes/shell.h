@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 11:45:39 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:16:46 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "libshell.h"
 # include "libhash.h"
 # include "vector.h"
+# include "readline.h"
+# include "lexer.h"
 
 /*
 ** Global variables with env and paths hashes/arrays
@@ -121,6 +123,9 @@ typedef struct			s_astree
 	struct s_astree	*left;
 	struct s_astree	*right;
 }						t_astree;
+
+t_astree				*inputunit(void);
+void					print_astree(t_astree *root);
 
 /*
 ** Initialize and destroy shell

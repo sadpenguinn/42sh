@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 17:41:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 15:58:35 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/20 21:13:22 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ static int			g_branch_table[129][102] =
 
 static int			g_state = 1;
 
-char				*dfa(char **str, t_string *string)
+char				*dfa(char **str, char **string)
 {
 	char	*lex;
 	int		state;
@@ -182,27 +182,30 @@ char				*dfa(char **str, t_string *string)
 	return (lex);
 }
 
-void				build_lexems(char *str, void **lexems, t_string *string)
+void				build_lexems(char *str, void **lexems, char *string)
 {
 	char	*lex;
 
-	while ((lex = dfa(&str, string)))
-		push_token(lexems, lex, g_state);
+	while ((lex = dfa(&str, &string)))
+		push_token(lexems,lex,g_state);
 }
 
 t_lexer				*lexer(char const *str, size_t len)
 {
 	t_lexer		*lexer;
-	t_string	*string;
+	/*t_string	*string;*/
 	void		*lexems;
+	char 		*string;
 
 	if (!(lexems = vector_create(sizeof(t_lexem))))
 		die();
-	if (!(string = string_init((size_t)((float)len * 1.5))))
-		die();
+	/*if (!(string = string_init((size_t)((float)len * 1.5))))
+		die();*/
+	string = (char *)xmalloc(sizeof(char) * len * 2);
 	build_lexems((char *)str, &lexems, string);
 	lexer = (t_lexer *)xmalloc(sizeof(t_lexer));
 	lexer->lexems = lexems;
-	lexer->symbol_table = string->str;
+	lexer->symbol_table = string;
+	/*free(string);*/
 	return (lexer);
 }

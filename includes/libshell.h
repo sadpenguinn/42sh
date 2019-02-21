@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 16:54:25 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 11:03:37 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	sputerr(char *str);
 char	*sstrerr(int e);
 char	*check_valid_of_variable(char *str);
 
-char	*sgetenv(char *key);
-int		ssetenv(char *key, char *value);
-int		sunsetenv(char *key);
+char 	*sgetenv(const char *key);
+int 	ssetenv(const char *key, const char *value);
+int 	sunsetenv(const char *key);
 
 void	free_str_arr(char ***arr);
+void 	print_str_arr(char * const*arr);
 char	**split_env(char *str);
 
-char	*sgetpath(char *bin);
+char 	*sgetpath(const char *bin);
 
 #endif
