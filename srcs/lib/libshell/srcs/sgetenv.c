@@ -6,14 +6,14 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:28:45 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 22:08:15 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libshell.h"
 
-char 	*sgetenv(char *key)
+char 	*sgetenv(const char *key)
 {
 	t_hshtb	*cell;
 

@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 18:15:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:04:53 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		main(int ac, char **av, char **env)
 		vector_foreach(lex->lexems, print_token);
 		g_tokens = lex->lexems;
 		ast = inputunit();
-		/*print_astree(ast);*/
+		print_astree(ast);
 		ft_putendl(buf);
 		ft_strdel(&buf);
 	}

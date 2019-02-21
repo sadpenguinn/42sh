@@ -6,14 +6,14 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 11:51:37 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libshell.h"
 
-char 	*sgetpath(char *bin)
+char 	*sgetpath(const char *bin)
 {
 	struct stat	stats;
 	t_hshtb		*cell;

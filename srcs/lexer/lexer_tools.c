@@ -6,14 +6,29 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 20:24:40 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:12:47 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "lexer.h"
 
-char	*push_symbol(char **string, char *str, size_t len)
+static void		print_token(void *lexem)
+{
+	t_lexem		*lex;
+
+	lex = (void *)lexem;
+	ft_putstr(lex->word);
+	ft_putstr(" -- ");
+	ft_putnbrendl(lex->type - SHIFT);
+}
+
+void			lexer_print(void *lexems)
+{
+	vector_foreach(lexems, print_token);
+}
+
+char			*push_symbol(char **string, char *str, size_t len)
 {
 	char	*symbol;
 
@@ -30,13 +45,15 @@ char	*push_symbol(char **string, char *str, size_t len)
 	return (symbol);
 }
 
-int		push_token(void **lexems, char *lexem, int state)
+int				push_token(void **lexems, char *lexem, int state)
 {
 	t_lexem	new;
 
-	if (state == TERM_SPACE - TERM_SHIFT)
+	if (state == SPACE - SHIFT)
 		return (0);
-	new.type = (t_type)(TERM_SHIFT + state);
+	new.type = (t_type)(SHIFT + state);
+	if (state == 72 || state == 83 || state == 80)
+		new.type = WORD;
 	new.word = lexem;
 	if (!(vector_push_back(lexems, (void *)(&new))))
 		return (0);

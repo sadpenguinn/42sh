@@ -10,6 +10,7 @@ set(SRC_LIB		srcs/check_varname.c
 				srcs/match.c
 				srcs/die.c
 				srcs/free_str_arr.c
+				srcs/print_str_arr.c
 				srcs/sputerr.c
 				srcs/sstrerr.c
 				srcs/sgetenv.c
