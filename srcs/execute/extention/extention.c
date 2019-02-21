@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:56:17 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/21 19:03:14 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/21 19:10:19 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char	*get_pahom(char *str, int *i, int *len_of_expression)
 	*len_of_expression = get_len_of_dollar(str);
 	*i += *len_of_expression;
 	res = get_content_of_expression(ft_strndup(str, *len_of_expression));
+	if (!res)
+		res = ft_strdup("");
 	return (res);
 }
 
@@ -173,6 +175,6 @@ int		main(int argc, char **argv, char **env)
 	init_env(env);
 	// hash_print(g_hash_env);
 	// sgetenv("HOwqdqwME");
-	printf("Result = %s\n", extention("check '1' check"));
+	printf("Result = %s\n", extention("check$HOM check"));
 	return (0);
 }
