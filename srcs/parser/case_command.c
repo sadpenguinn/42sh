@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:11:43 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 21:03:32 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:12:37 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static t_astree	*get_caseword()
 
 t_astree		*case_command(void)
 {
+printf("in case_command");
 	t_astree	*res;
 	t_astree	*root;
 

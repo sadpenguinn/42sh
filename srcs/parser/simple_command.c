@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 14:35:52 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:17:58 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ printf("in simple_command\n");
 	root->type = COMMAND;
 	root->left = res;
 	root->right = simple_command();
-printf("simple root\n");
 	return (root);
 }

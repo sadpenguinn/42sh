@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 18:04:30 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 12:33:34 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:14:37 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static t_astree	*until_command()
 
 static t_astree	*other_commands()
 {
+printf("int other_commands\n");
 	t_type		type;
 	t_astree	*res;
 

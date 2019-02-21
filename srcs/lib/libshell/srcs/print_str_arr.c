@@ -6,13 +6,13 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:26:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 22:08:15 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:25:58 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libshell.h"
 
-void 	print_str_arr(char **arr)
+void 	print_str_arr(char * const *arr)
 {
 	int 	i;
 

@@ -6,14 +6,14 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:50:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 22:08:15 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:23:07 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libshell.h"
 
-int 	ssetenv(char *key, char *value)
+int 	ssetenv(const char *key, const char *value)
 {
 	char 	*str;
 
