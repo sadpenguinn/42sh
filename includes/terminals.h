@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 20:52:51 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 14:56:37 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:01:08 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define DLESSDASH         		SHIFT + 64 /* <<- */
 # define CLOBBER           		SHIFT + 65 /* >| */
 # define LESSGREAT         		SHIFT + 71 /* <> */
+# define SEMI              		SHIFT + 69 /* ; */
 
 # define AND_IF            		SHIFT + 221 /* && */
 # define OR_IF             		SHIFT + 222 /* || */
@@ -57,7 +58,6 @@
 # define RBRACKET          		SHIFT + 235 /* ] */
 # define OBRACKET	     		SHIFT + 236 /* ( */
 # define CBRACKET	      		SHIFT + 237 /* ) */
-# define SEMI              		SHIFT + 238 /* ; */
 # define SINGLE_QUOTE      		SHIFT + 239 /* ' */
 # define QUOTE             		SHIFT + 240 /* " */
 # define HASH              		SHIFT + 241 /* # */
