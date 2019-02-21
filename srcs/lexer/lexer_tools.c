@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 14:12:47 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:48:16 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				push_token(void **lexems, char *lexem, int state)
 {
 	t_lexem	new;
 
-	if (state == SPACE - SHIFT)
+	if (state == SPACE - SHIFT || state == TAB - SHIFT || state == COMMENT - SHIFT)
 		return (0);
 	new.type = (t_type)(SHIFT + state);
 	if (state == 72 || state == 83 || state == 80)
