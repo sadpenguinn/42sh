@@ -99,6 +99,7 @@ void        print_prompt(void);
 
 t_matrix *init_matrix(void);
 t_line *init_line(void);
+void	matrix_create_line(t_matrix *matrix, int row);
 
 int check_next_symbol(t_matrix *matrix);
 int check_utf(t_matrix *matrix, t_uchar c);
@@ -133,6 +134,5 @@ int get_line_prompt_len(int max);
 int print_default(t_matrix *matrix);
 
 int count_string_symbols(char *buf, int n);
-void    matrix_create_line(t_matrix *matrix, int row);
 
 #endif

@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "readline.h"
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <stdlib.h>
 #include <string.h>
 #include "shell.h"
-#include "readline.h"
 #include <unistd.h>
 #include "term.h"
 #include <stdio.h>
