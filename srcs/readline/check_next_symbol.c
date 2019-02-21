@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:10:56 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:10:56 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/20 19:30:44 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			check_next_symbol(t_matrix *matrix)
 	c = get_next_symbol(sizeof(char));
 	if (c == CTRL_D)
 		return (-1);
-	if (c == 27)
+	if (c == ESC)
 		return (check_esc_code(matrix));
 	if (is_utf(c))
 		return (check_utf(matrix, c));

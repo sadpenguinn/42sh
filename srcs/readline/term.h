@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   term.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 14:13:07 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 19:32:27 by sitlcead         ###   ########.fr       */
+/*   Created: 2019/02/20 14:13:00 by sitlcead          #+#    #+#             */
+/*   Updated: 2019/02/20 14:13:00 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "term.h"
-#include <fcntl.h>
+#include <termios.h>
 
-int main(void)
-{
-	unsigned char c = 0;
-	set_term();
-	read(0, &c, 1);
-	while (c != '\n')
-	{
-		printf("%d\n", c);
-		read(0, &c, 1);
-	}
-	unset_term();
-	return (0);
-}
+#ifndef TERM_H
+# define TERM_H
+
+void    set_term(void);
+void    unset_term(void);
+
+#endif

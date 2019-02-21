@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:53:30 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 13:53:30 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/20 14:14:26 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			check_esc_code(t_matrix *matrix)
 	t_uchar	tmp;
 
 	i = 1;
-	c = 27;
+	c = ESC;
 	while (i < 8)
 	{
 		start = time(&start);

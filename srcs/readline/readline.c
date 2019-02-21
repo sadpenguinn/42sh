@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 19:02:00 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/21 21:39:56 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,53 +40,19 @@ void    comb_offset(t_uchar c)
 	g_comb[3] = c;
 }
 
-void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cursor)
+int count_string_symbols(char *buf, int n)
 {
-	if (line->len + size > line->size)
-		line_resize(line, line->len + size + line->size * RATIO, line->size);
-	if (cursor->col < line->len)
-		memmove(line->buf + cursor->col + size, line->buf + cursor->col,
-				line->len - cursor->col);
-	memcpy(line->buf + cursor->col, str, size);
-	cursor->col += size;
-	line->len += size;
-}
+	int	i;
+	int	cnt;
 
-void    matrix_line_insert(t_matrix *matrix, int pos)
-{
-	if (matrix->len == matrix->size)
-		matrix_resize(matrix, matrix->size * RATIO, matrix->size);
-	if (pos < matrix->len)
-		memmove(matrix->lines + pos + 1, matrix->lines + pos,
-				(matrix->len - pos) * sizeof(t_line *));
-	matrix->lines[pos] = init_line();
-	matrix->len++;
-}
-
-void    matrix_string_insert(t_matrix *matrix, const char *str, int size)
-{
-	int		i;
-	int		j;
-	t_line	*line;
-	int		symbols;
-
-	if (size == 0)
-		return ;
-	line = matrix->lines[matrix->cursor->row];
 	i = 0;
-	while (i < size)
+	cnt = 0;
+	while (i < n)
 	{
-		symbols = 0;
-		j = 0;
-		while (str[i + j] != '\n' && i + j < size)
-		{
-			j += 1 + get_utf_offset(str[i + j]);
-			symbols++;
-		}
-		line_string_insert(line, str + i, j, matrix->cursor);
-		line->symbols += symbols;
-		i += j;
+		i += 1 + get_utf_offset(buf[i]);
+		cnt++;
 	}
+	return (cnt);
 }
 
 int	make_string_from_symbol(char *str, t_uchar c)
@@ -110,7 +76,7 @@ int	make_string_from_symbol(char *str, t_uchar c)
 	return (i);
 }
 
-void    add_offset(int offset)
+void    add_cursor_offset(int offset)
 {
 	int	i;
 
@@ -121,21 +87,6 @@ void    add_offset(int offset)
 		i++;
 	}
 	array_add(CURSOR_MOVE_LINE_START, strlen(CURSOR_MOVE_LINE_START));
-}
-
-int count_chars(char *buf, int n)
-{
-	int	i;
-	int	cnt;
-
-	i = 0;
-	cnt = 0;
-	while (i < n)
-	{
-		i += 1 + get_utf_offset(buf[i]);
-		cnt++;
-	}
-	return (cnt);
 }
 
 void reset_line_offset(t_matrix *matrix)
@@ -308,7 +259,7 @@ void add_text(t_matrix *matrix, int row, int col)
 					get_line_prompt_len(matrix->len) - 1) / g_w.ws_col;
 		else
 			matrix->last_offset +=
-					(count_chars(matrix->lines[left]->buf, matrix->cursor->col)
+					(count_string_symbols(matrix->lines[left]->buf, matrix->cursor->col)
 					+ get_line_prompt_len(matrix->len) - 1) / g_w.ws_col;
 	}
 	array_add(matrix->lines[left]->buf, col);
@@ -342,10 +293,10 @@ void add_lines(t_matrix *matrix)
 int print_default(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
-	add_offset(matrix->last_offset);
+	add_cursor_offset(matrix->last_offset);
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
 	add_lines(matrix);
-	add_offset(matrix->last_offset);
+	add_cursor_offset(matrix->last_offset);
 	add_cursor(matrix);
 	array_flush();
 	return (1);
@@ -354,7 +305,7 @@ int print_default(t_matrix *matrix)
 void print_lines(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
-	add_offset(matrix->last_offset);
+	add_cursor_offset(matrix->last_offset);
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
 	add_lines(matrix);
 	array_flush();
@@ -363,7 +314,7 @@ void print_lines(t_matrix *matrix)
 int print_autocomplete(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
-	add_offset(matrix->last_offset);
+	add_cursor_offset(matrix->last_offset);
 	add_lines(matrix);
 	if (matrix)
 		ft_puts ("\nmain.c  readline.c  array.c\n", 0);
@@ -385,9 +336,7 @@ int check_newline(t_matrix *matrix)
 	}
 	prev_col = matrix->cursor->col;
 	prev_row = matrix->cursor->row;
-	matrix->cursor->row++;
-	matrix_line_insert(matrix, matrix->cursor->row);
-	matrix->cursor->col = 0;
+	matrix_create_line(matrix, matrix->cursor->row + 1);
 	matrix_string_insert(matrix,
 		matrix->lines[prev_row]->buf + prev_col,
 		matrix->lines[prev_row]->len - prev_col);

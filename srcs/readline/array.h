@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   array.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 14:13:07 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 19:32:27 by sitlcead         ###   ########.fr       */
+/*   Created: 2019/02/20 14:10:47 by sitlcead          #+#    #+#             */
+/*   Updated: 2019/02/20 14:10:47 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "term.h"
-#include <fcntl.h>
+#ifndef ARRAY_H
+# define ARRAY_H
 
-int main(void)
+enum array_default_params
 {
-	unsigned char c = 0;
-	set_term();
-	read(0, &c, 1);
-	while (c != '\n')
-	{
-		printf("%d\n", c);
-		read(0, &c, 1);
-	}
-	unset_term();
-	return (0);
-}
+	ARRAY_DEFAULT_SIZE = 10,
+	FACTOR = 2
+};
+
+
+typedef	struct		s_array
+{
+	char			*buf;
+	unsigned int	len;
+	unsigned int	size;
+}					t_array;
+
+void	array_add(const char *str, unsigned int len);
+char	*array_to_string(void);
+void	array_flush(void);
+
+#endif
