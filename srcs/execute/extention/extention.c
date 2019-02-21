@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:56:17 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/19 22:32:49 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/21 19:03:14 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		get_len_of_name_var(char *str)
 	i = 0;
 	while (str[i] != ' ' && str[i])
 		i++;
-	return (i - 1);
+	return (i);
 }
 
 int		get_len_of_dollar(char *str)
@@ -80,11 +80,11 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 **	fuck_norm[1] - brackets
 */
 
-char	*extention(char *str)
+char	*extention_with_split(char *str)
 {
 	char	*res;
 	char	*buf;
-	int		fuck_norm[2];
+	int		fuck_norm[3];
 	int		i;
 	int		j;
 
@@ -92,17 +92,67 @@ char	*extention(char *str)
 	i = 0;
 	j = 0;
 	fuck_norm[1] = 0;
+	fuck_norm[2] = 0;
+	fuck_norm[0] = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
+		if (str[i] == '\'' && !fuck_norm[2])
 		{
 			fuck_norm[1] = (fuck_norm[1] + 1) % 2;
 			i++;
 		}
-		if (str[i] == '$' && !fuck_norm[1])
+		else if (str[i] == '\"' && !fuck_norm[1])
 		{
-			buf = get_pahom(&str[i], &i, &fuck_norm[1]);
-			res = remalloc_result_of_extention(str, res, buf, fuck_norm[1]);
+			fuck_norm[2] = (fuck_norm[2] + 1) % 2;
+			i++;
+		}
+		else if (str[i] == '$' && !fuck_norm[1])
+		{
+			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
+			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
+			j += ft_strlen(buf);
+		}
+		else
+		{
+			res[j] = str[i];
+			j++;
+			i++;
+		}
+	}
+	res[j] = '\0';
+	return (res);
+}
+
+char	*extention(char *str)
+{
+	char	*res;
+	char	*buf;
+	int		fuck_norm[3];
+	int		i;
+	int		j;
+
+	res = xmalloc(sizeof(char) * (ft_strlen(str) + 1));
+	i = 0;
+	j = 0;
+	fuck_norm[1] = 0;
+	fuck_norm[2] = 0;
+	fuck_norm[0] = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'' && !fuck_norm[2])
+		{
+			fuck_norm[1] = (fuck_norm[1] + 1) % 2;
+			i++;
+		}
+		else if (str[i] == '\"' && !fuck_norm[1])
+		{
+			fuck_norm[2] = (fuck_norm[2] + 1) % 2;
+			i++;
+		}
+		else if (str[i] == '$' && !fuck_norm[1])
+		{
+			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
+			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j += ft_strlen(buf);
 		}
 		else
@@ -123,6 +173,6 @@ int		main(int argc, char **argv, char **env)
 	init_env(env);
 	// hash_print(g_hash_env);
 	// sgetenv("HOwqdqwME");
-	printf("Result = %s\n", extention("check ${qwd:=$HOME} check"));
+	printf("Result = %s\n", extention("check '1' check"));
 	return (0);
 }
