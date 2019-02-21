@@ -6,7 +6,7 @@
 #    By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 18:43:26 by bwerewol          #+#    #+#              #
-#    Updated: 2019/02/15 15:26:38 by bwerewol         ###   ########.fr        #
+#    Updated: 2019/02/20 21:24:11 by bwerewol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,10 +63,10 @@ SRC		=	./main.c\
 OBJ		=	$(SRC:.c=.o)
 
 CC		?=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
-INCLUDES=	-I../lib/libft/includes -I../lib/vector/includes -I../../includes -I../lib/libhash/includes
+# CFLAGS	=	-Wall -Wextra -Werror
+INCLUDES=	-I../lib/libft/includes -I../lib/vector/includes -I../../includes -I../lib/libhash/includes -I../lib/libstring/includes
 CFLAGS	+=	-O0 -g
-OTHERSRC=	../lib/libft/libft.a ../lib/libshell/xmalloc.c ../lib/vector/libvector.a
+OTHERSRC=	../lib/libft/libft.a ../lib/vector/libvector.a
 
 .PHONY: all clean fclean re
 

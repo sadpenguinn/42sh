@@ -6,11 +6,12 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 21:04:10 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 20:13:36 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:03:27 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+/* #include "shell.h" */
 #include <stdio.h>
 
 unsigned int	g_curtok;
@@ -19,6 +20,16 @@ int				g_parseerr = 0;
 
 void			print_astree(t_astree *root);
 
+void	printcont(t_astree *root)
+{
+	printf(">>>");
+	if (root->content)
+		printf("content");
+	if (root->type)
+		printf("type");
+	printf("<<<");
+}
+
 int main(void)
 {
 	t_astree	*root;
@@ -26,74 +37,74 @@ int main(void)
 
 	g_tokens = vector_create(sizeof(t_lexem));
 
-	lex.type = CASE;
-	lex.word = "case";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = WORD;
-	lex.word = "A";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = IN;
-	lex.word = "in";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = OBRACKET;
-	lex.word = "(";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = WORD;
-	lex.word = "B";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = CBRACKET;
-	lex.word = ")";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = WORD;
-	lex.word = "ls";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = DSEMI;
-	lex.word = ";;";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = OBRACKET;
-	lex.word = "(";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = WORD;
-	lex.word = "D";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = CBRACKET;
-	lex.word = ")";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = WORD;
-	lex.word = "cat";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = DSEMI;
-	lex.word = ";;";
-	vector_push_back(&g_tokens, &lex);
-
-	lex.type = ESAC;
-	lex.word = "esac";
-	vector_push_back(&g_tokens, &lex);
-
-
-	/* lex.type = IF; */
-	/* lex.word = "if"; */
-	/* vector_push_back(&g_tokens, &lex); */
-
-	/* lex.type = IF; */
-	/* lex.word = "if"; */
+	/* lex.type = CASE; */
+	/* lex.word = "case"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
 	/* lex.type = WORD; */
-	/* lex.word = "echo"; */
+	/* lex.word = "A"; */
 	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = IN; */
+	/* lex.word = "in"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = OBRACKET; */
+	/* lex.word = "("; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = WORD; */
+	/* lex.word = "B"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = CBRACKET; */
+	/* lex.word = ")"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = WORD; */
+	/* lex.word = "ls"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = DSEMI; */
+	/* lex.word = ";;"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = OBRACKET; */
+	/* lex.word = "("; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = WORD; */
+	/* lex.word = "D"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = CBRACKET; */
+	/* lex.word = ")"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = WORD; */
+	/* lex.word = "cat"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = DSEMI; */
+	/* lex.word = ";;"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = ESAC; */
+	/* lex.word = "esac"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+
+	/* lex.type = IF; */
+	/* lex.word = "if"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	/* lex.type = IF; */
+	/* lex.word = "if"; */
+	/* vector_push_back(&g_tokens, &lex); */
+
+	lex.type = WORD;
+	lex.word = "echo";
+	vector_push_back(&g_tokens, &lex);
 
 	/* lex.type = SEMI; */
 	/* lex.word = ";"; */
@@ -161,6 +172,20 @@ int main(void)
 	/* root = simple_command(); */
 	printf("Result: %s\n", root ? "YES" : "NO");
 	print_astree(root);
+	/* printf("%s\n", root->content); */
+	/* printf("%d\n", root->type); */
+	/* printf("%p\n", root->right); */
+	/* printf("%p\n", root->left); */
+	/* root = root->left; */
+	/* printf("%s\n", root->content); */
+	/* printf("%d\n", root->type); */
+	/* printf("%p\n", root->right); */
+	/* printf("%p\n", root->left); */
+	/* root = root->left; */
+	/* printf("%s\n", root->content); */
+	/* printf("%d\n", root->type); */
+	/* printf("%p\n", root->right); */
+	/* printf("%p\n", root->left); */
 	freeastree(root);
 	return (0);
 }
