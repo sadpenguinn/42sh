@@ -27,6 +27,8 @@ static int	check_buttons(t_matrix *matrix, t_uchar c)
 		return (move_cursor_home(matrix));
 	if (c == END1 || c == END2)
 		return (move_cursor_end(matrix));
+	if (c == DEL)
+		return (del(matrix));
 	return (0);
 }
 

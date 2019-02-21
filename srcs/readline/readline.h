@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/21 21:39:22 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/22 00:49:37 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,10 @@ int get_line_prompt_len(int max);
 int print_default(t_matrix *matrix);
 
 int count_string_symbols(char *buf, int n);
+
+void	matrix_string_delete(t_matrix *matrix, int size);
+
+int		del(t_matrix *matrix);
+int		back_space(t_matrix *matrix);
 
 #endif

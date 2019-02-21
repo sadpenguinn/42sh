@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/21 21:39:56 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/22 00:51:36 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -347,6 +347,8 @@ int check_newline(t_matrix *matrix)
 
 int     readline_mode(t_matrix *matrix, char *str, t_uchar c)
 {
+	if (c == BS)
+		return (back_space(matrix));
 	if (c == '\t' && g_comb[2] == 22)
 		return (print_autocomplete(matrix));
 	if (c == '\n')
