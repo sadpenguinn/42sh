@@ -6,19 +6,19 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:01:12 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libshell.h"
 
-char 	*sgetpath(const char *bin)
+char	*sgetpath(const char *bin)
 {
 	struct stat	stats;
 	t_hshtb		*cell;
 	t_hshtb		*cell2;
-	char 		*str;
+	char		*str;
 
 	if (!(cell = hash_find(bin, g_path)))
 		return (NULL);

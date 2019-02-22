@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:18:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 10:48:37 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:06:30 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static size_t		g_collisions = 0;
 static t_hash		*g_hash = NULL;
 
-void				hash_collisions(char *key, char *value)
+static void			hash_collisions(char *key, char *value)
 {
 	t_hshindex	index;
 	t_hshtb		*ptr;
@@ -31,7 +31,7 @@ void				hash_collisions(char *key, char *value)
 ** Counts the number of collision
 */
 
-int 				hash_test(t_hash *hash)
+int					hash_test(t_hash *hash)
 {
 	g_hash = hash;
 	if ((hash_foreach(hash, hash_collisions)) == HSH_ERR)

@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 16:19:29 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 11:31:53 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:11:29 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** The function just cleans the table
 */
 
-int 		hash_clean(t_hash **hash)
+int		hash_clean(t_hash **hash)
 {
 	if (!hash || !*hash)
 		return (HSH_ERR);

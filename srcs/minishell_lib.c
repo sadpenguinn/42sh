@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ssetenv.c                                          :+:      :+:    :+:   */
+/*   minishell_lib.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 18:50:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/22 21:00:58 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/22 20:21:15 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/22 20:22:06 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "libshell.h"
 
-int		ssetenv(const char *key, const char *value)
+char	*ft_strvardup(char *str)
 {
-	char	*str;
+	char	*var;
 
-	if (!key)
-		return (SHERR_ERR);
-	str = ft_strjoin(key, "=", 0);
-	if (value)
-		str = ft_strjoin(str, value, 1);
-	if ((hash_insert(key, value, g_hash_env, str) == HSH_ERR))
-	{
-		free(str);
-		return (SHERR_ERR);
-	}
-	free(str);
-	return (SHERR_OK);
+	if (!ft_strcmp(str, "~") && (var = sgetenv("HOME")))
+		return (ft_strdup(var));
+	if (str[0] != '$')
+		return (ft_strdup(str));
+	if ((var = sgetenv(str + 1)))
+		return (ft_strdup(var));
+	return (ft_strnew(0));
 }

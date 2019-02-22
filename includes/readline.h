@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 09:08:15 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void        print_prompt(void);
 
 t_matrix *init_matrix(void);
 t_line *init_line(void);
+void	matrix_create_line(t_matrix *matrix, int row);
 
 int check_next_symbol(t_matrix *matrix);
 int check_utf(t_matrix *matrix, t_uchar c);
@@ -108,8 +109,7 @@ int get_utf_offset(unsigned char c);
 void	get_term_params(struct winsize	*w);
 
 void    comb_offset(t_uchar c);
-void    line_string_insert(t_line *line, const char *str, int size, t_cursor *cursor);
-void    add_offset(int offset);
+void    add_cursor_offset(int offset);
 void add_lines(t_matrix *matrix);
 int     readline_mode(t_matrix *matrix, char *str, t_uchar c);
 int check_esc_code(t_matrix *matrix);
@@ -132,5 +132,19 @@ int move_cursor_end(t_matrix *matrix);
 int get_line_prompt_len(int max);
 
 int print_default(t_matrix *matrix);
+
+int count_string_symbols(char *buf, int n);
+
+void	matrix_string_delete(t_matrix *matrix, int size);
+
+int		del(t_matrix *matrix);
+int		back_space(t_matrix *matrix);
+
+void	matrix_erase_line(t_matrix *matrix, int row);
+
+void	line_free(t_line *line);
+void	line_del(t_line **line);
+void	matrix_free(t_matrix *matrix);
+void	matrix_del(t_matrix **matrix);
 
 #endif

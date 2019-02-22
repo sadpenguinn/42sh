@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 18:10:58 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/19 22:32:01 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Iterates the table
 */
 
-int 	hash_foreach(t_hash *hash, void (f)(char *key, char *value))
+int		hash_foreach(t_hash *hash, void (f)(char *key, char *value))
 {
 	t_hshtb	*ptr;
 	size_t	size;

@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 12:15:07 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:12:40 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef unsigned long	t_hshindex;
 typedef struct	s_hshtb
 {
 	char			*key;
-	char 			*value;
+	char			*value;
 	void			*data;
 	struct s_hshtb	*next;
 }				t_hshtb;
@@ -99,13 +99,14 @@ t_hshindex		hash_index(const char *key, t_hash *hash);
 ** HSH_PERCENTS_SIZE_REALLOC
 */
 
-t_hshtb			*hash_insert(const char *key, const char *value, t_hash *hash, void *data);
+t_hshtb			*hash_insert(const char *key, const char *value,
+											t_hash *hash, void *data);
 
 /*
 ** Remove one cell from the table
 */
 
-int 			hash_delete(const char *key, t_hash *hash);
+int				hash_delete(const char *key, t_hash *hash);
 
 /*
 ** Returns a pointer if there is match or NULL
@@ -117,13 +118,13 @@ t_hshtb			*hash_find(const char *key, t_hash *hash);
 ** The function just cleans the table
 */
 
-int 			hash_clean(t_hash **hash);
+int				hash_clean(t_hash **hash);
 
 /*
 ** Iterates the table
 */
 
-int 			hash_foreach(t_hash *hash, void (f)(char *key, char *value));
+int				hash_foreach(t_hash *hash, void (f)(char *key, char *value));
 
 /*
 ** Returns size of table
@@ -141,13 +142,13 @@ size_t			hash_get_len(t_hash *hash);
 ** Just printing the table
 */
 
-int 			hash_print(t_hash *hash);
+int				hash_print(t_hash *hash);
 
 /*
 ** Counts the number of collision
 */
 
-int 			hash_test(t_hash *hash);
+int				hash_test(t_hash *hash);
 
 /*
 ** Internal function for remove hash fields

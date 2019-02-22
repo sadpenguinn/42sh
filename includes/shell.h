@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 20:55:54 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:16:07 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ extern void				*g_process;
 #  define SHERR_ERR						0
 #  define SHERR_OK						1
 #  define SHERR_ENOENT					2
+#  define SHERR_CNTFRK					3
+#  define SHERR_CMNDNTF					4
 # endif
 
 /*
@@ -95,6 +97,16 @@ void					destroy_env(void);
 void					destroy_path(void);
 void					destroy_jobs(void);
 void					destroy_process(void);
-int 					argv_parser(int ac, char **av);
+void					init_signals(void);
+int						argv_parser(int ac, char **av);
+
+/*
+** Minishell requirements
+*/
+
+extern int				g_pid;
+
+void					minishell_parser(void *lexems);
+char					*ft_strvardup(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 17:41:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 17:39:44 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 20:55:16 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,11 +144,10 @@ static int			g_branch_table[129][105] =
 				{0,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,   0,   0,   0,   0,   0,  59,   0,   0,   0,   0,   0,   0,   0,  53,   0,   0,   0,   0,  72,   0,   0,   0,   0,  72,  86,  79,  79,  81,  81,  83,  83,  85,  86,   0,   0,   0,   0,   0,  92,   0,  94,   0,   0,  53,  98,  99, 100,  53,  53,  53,   0}, /* 126. ~ */
 				{0,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,   0,   0,   0,   0,   0,  59,   0,   0,   0,   0,   0,   0,   0,  53,   0,   0,   0,   0,  72,   0,   0,   0,   0,  72,  86,  79,  79,  81,  81,  83,  83,  85,  86,   0,   0,   0,   0,   0,  92,   0,  94,   0,   0,  53,  98,  99, 100,  53,  53,  53,   0}, /* 127.   */
 				{0,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,  53,   0,   0,   0,   0,   0,  59,   0,   0,   0,   0,   0,   0,   0,  53,   0,   0,   0,   0,  72,   0,   0,   0,   0,  72,  86,  79,  79,  81,  81,  83,  83,  85,  86,   0,   0,   0,   0,   0,  92,   0,  94,   0,   0,  53,  98,  99, 100,  53,  53,  53,   0}, /* other */
-
 		};
 
 static int			g_state = 1;
-static int 			g_cnt = 0;
+static int			g_cnt = 0;
 
 char				*dfa(char **str, char **string)
 {
@@ -162,7 +161,7 @@ char				*dfa(char **str, char **string)
 	while ((*str)[i])
 	{
 	    g_state = state;
-		if (state == 94)
+		if (state == 94 || state == 100)
 		{
 			if ((*str)[i] == '(')
 			{
@@ -177,7 +176,7 @@ char				*dfa(char **str, char **string)
 				continue ;
 			}
 		}
-		if (state == 92)
+		if (state == 92 || state == 99)
 		{
 			if ((*str)[i] == '[')
 			{
@@ -207,37 +206,7 @@ char				*dfa(char **str, char **string)
 				continue ;
 			}
 		}
-		if (state == 99)
-		{
-			if ((*str)[i] == '[')
-			{
-				g_cnt++;
-				i++;
-				continue ;
-			}
-			if ((*str)[i] == ']' && g_cnt > 0)
-			{
-				g_cnt--;
-				i++;
-				continue ;
-			}
-		}
-		if (state == 100)
-		{
-			if ((*str)[i] == '(')
-			{
-				g_cnt++;
-				i++;
-				continue ;
-			}
-			if ((*str)[i] == ')' && g_cnt > 0)
-			{
-				g_cnt--;
-				i++;
-				continue ;
-			}
-		}
-	    if ((*str)[i] < 0 || (*str)[i] > 127)
+		if ((*str)[i] < 0 || (*str)[i] > 127)
 	    	state = g_branch_table[128][state];
 	    else
 			state = g_branch_table[(int)((*str)[i])][state];
@@ -264,14 +233,14 @@ void				build_lexems(char *str, void **lexems, char *string)
 	char	*lex;
 
 	while ((lex = dfa(&str, &string)))
-		push_token(lexems,lex,g_state);
+		push_token(lexems, lex, g_state);
 }
 
 t_lexer				*lexer(char const *str, size_t len)
 {
 	t_lexer		*lexer;
 	void		*lexems;
-	char 		*string;
+	char		*string;
 
 	if (!(lexems = vector_create(sizeof(t_lexem))))
 		die();

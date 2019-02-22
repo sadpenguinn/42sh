@@ -6,15 +6,15 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:26:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 15:31:58 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/22 20:59:45 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libshell.h"
 
-void 	print_str_arr(char * const*arr)
+void	print_str_arr(char *const *arr)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (arr[i])

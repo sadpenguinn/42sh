@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:30:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 20:50:18 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 20:31:47 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static int		print_help(void)
 	return (1);
 }
 
-int 			parse_input(int ac, char **av)
+static int		parse_input(int ac, char **av)
 {
-	char 	*input;
-	int 	i;
+	char	*input;
+	int		i;
 
 	i = 2;
 	input = ft_strnew(0);
@@ -45,14 +45,14 @@ int 			parse_input(int ac, char **av)
 	return (1);
 }
 
-int 			parse_files(int ac, char **av)
+static int		parse_files(int ac, char **av)
 {
 	ac = 0;
 	av = NULL;
 	return (1);
 }
 
-int 			argv_parser(int ac, char **av)
+int				argv_parser(int ac, char **av)
 {
 	if (ac == 1)
 		return (0);

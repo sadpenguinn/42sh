@@ -6,18 +6,18 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:42:14 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:01:57 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libshell.h"
 
-char 	**split_env(char *str)
+char	**split_env(char *str)
 {
-	char 	**pair;
-	char 	*tmp;
+	char	**pair;
+	char	*tmp;
 	size_t	len;
-	size_t 	i;
+	size_t	i;
 
 	len = ft_strlen(str);
 	pair = (char **)malloc(sizeof(char *) * 3);

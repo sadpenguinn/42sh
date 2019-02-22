@@ -6,13 +6,13 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 12:30:33 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:05:41 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
 
-static int 				hash_realloc(t_hash *hash, size_t new_size)
+static int				hash_realloc(t_hash *hash, size_t new_size)
 {
 	t_hash	*new_hash;
 	t_hshtb	*current;
@@ -25,7 +25,8 @@ static int 				hash_realloc(t_hash *hash, size_t new_size)
 	{
 		if (current->key)
 		{
-			if(!(hash_insert(current->key, current->value, new_hash, current->data)))
+			if (!(hash_insert(current->key, current->value,
+												new_hash, current->data)))
 			{
 				hash_clean(&hash);
 				return (0);
@@ -51,11 +52,15 @@ static size_t			hash_check_avail(t_hash *hash)
 	avail = (float)hash->size / (float)100 * (float)HSH_PERCENTS_FILLED_MAX;
 	filled = (float)hash->filled;
 	if (filled > avail)
-		return ((size_t)((float)hash->size / (float)100 * (float)HSH_PERCENTS_SIZE_REALLOC) + hash->size);
+	{
+		return ((size_t)((float)hash->size / (float)100 *
+							(float)HSH_PERCENTS_SIZE_REALLOC) + hash->size);
+	}
 	return (0);
 }
 
-static t_hshtb			*hash_insert_cell(const char *key, const char *value, t_hash *hash, t_hshindex index, void *data)
+static t_hshtb			*hash_insert_cell(const char *key, const char *value,
+											t_hash *hash, t_hshindex index, void *data)
 {
 	t_hshindex	i;
 	t_hshtb		*ptr;
@@ -97,7 +102,8 @@ static t_hshtb			*hash_insert_cell(const char *key, const char *value, t_hash *h
 ** HSH_PERCENTS_SIZE_REALLOC
 */
 
-t_hshtb					*hash_insert(const char *key, const char *value, t_hash *hash, void *data)
+t_hshtb					*hash_insert(const char *key, const char *value,
+													t_hash *hash, void *data)
 {
 	t_hshindex	index;
 	size_t		new_size;

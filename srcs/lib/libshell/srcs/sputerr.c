@@ -12,7 +12,7 @@
 
 #include "libshell.h"
 
-void 	sputerr(char *str)
+void	sputerr(char *str)
 {
 	if (str)
 		ft_putendl(str);
