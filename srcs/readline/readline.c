@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/22 07:14:36 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/22 09:15:31 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,9 +392,9 @@ char *readline(void)
 		ret = check_next_symbol(matrix);
 	unset_term();
 	if (ret == 0)
-	{
 		str = matrix_to_string(matrix);
-		return (str);
-	}
-	return (NULL);
+	else
+		str = NULL;
+	matrix_del(&matrix);
+	return (str);
 }

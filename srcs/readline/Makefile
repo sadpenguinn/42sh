@@ -10,7 +10,7 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  move_cursor_1.c move_cursor_2.c\
 	  check_esc_code.c matrix_string_insert.c\
 	  matrix_create_line.c utf.c matrix_string_delete.c\
-	  buttons1.c matrix_erase_line.c\
+	  buttons1.c matrix_erase_line.c readline_memdel.c\
 
 NAME = line
 TEST = a.test

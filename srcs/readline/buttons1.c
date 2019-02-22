@@ -7,8 +7,9 @@ int		back_space(t_matrix *matrix)
 
 	if (matrix->cursor->col == 0 && matrix->cursor->row != 0)
 	{
-		line = matrix->lines[matrix->cursor->row];
-		matrix->cursor->col = matrix->lines[--matrix->cursor->row]->len;
+		matrix->cursor->row--;
+		matrix->cursor->col = matrix->lines[matrix->cursor->row]->len;
+		line = matrix->lines[matrix->cursor->row + 1];
 		col = matrix->cursor->col;
 		matrix_string_insert(matrix, line->buf, line->len);
 		matrix_erase_line(matrix, matrix->cursor->row + 1);
