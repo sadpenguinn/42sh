@@ -5,7 +5,7 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  ../lib/libft/srcs/ft_strnum_base.c\
 	  readline.c main.c array.c\
 	  check_next_symbol.c term.c prompt.c\
-	  init_matrix.c init_line.c resize_windows.c\
+	  inits.c resize_windows.c\
 	  matrix_resize.c line_resize.c\
 	  move_cursor_1.c move_cursor_2.c\
 	  check_esc_code.c matrix_string_insert.c\

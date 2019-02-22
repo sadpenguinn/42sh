@@ -30,4 +30,3 @@ void	matrix_del(t_matrix **matrix)
 	matrix_free(*matrix);
 	*matrix = NULL;
 }
-
