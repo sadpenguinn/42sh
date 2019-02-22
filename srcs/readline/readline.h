@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/22 00:49:37 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/22 00:53:47 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,7 @@ void	matrix_string_delete(t_matrix *matrix, int size);
 
 int		del(t_matrix *matrix);
 int		back_space(t_matrix *matrix);
+
+void	matrix_erase_line(t_matrix *matrix, int row);
 
 #endif

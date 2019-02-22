@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/22 00:51:36 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/22 07:14:36 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,15 @@ int	make_string_from_symbol(char *str, t_uchar c)
 
 void    add_cursor_offset(int offset)
 {
-	int	i;
+	char	str[20];
 
-	i = 0;
-	while (i < offset)
+	if (offset)
 	{
-		array_add(CSI "1A", strlen(CSI "1A"));
-		i++;
+		memset(str, 0, 20);
+		array_add(CSI, strlen(CSI));
+		ft_strnum(str, offset);
+		array_add(str, strlen(str));
+		array_add("A", 1);
 	}
 	array_add(CURSOR_MOVE_LINE_START, strlen(CURSOR_MOVE_LINE_START));
 }

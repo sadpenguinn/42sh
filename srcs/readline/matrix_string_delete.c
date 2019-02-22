@@ -1,4 +1,5 @@
 #include "readline.h"
+#include <string.h>
 
 void	matrix_string_delete(t_matrix *matrix, int size)
 {

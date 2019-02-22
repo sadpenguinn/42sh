@@ -1,6 +1,8 @@
 SRC = ../lib/libft/srcs/xmalloc.c\
 	  ../lib/libft/srcs/xrealloc.c\
 	  ../lib/libft/srcs/ft_memset.c\
+	  ../lib/libft/srcs/ft_strnum.c\
+	  ../lib/libft/srcs/ft_strnum_base.c\
 	  readline.c main.c array.c\
 	  check_next_symbol.c term.c prompt.c\
 	  init_matrix.c init_line.c resize_windows.c\
@@ -8,7 +10,7 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  move_cursor_1.c move_cursor_2.c\
 	  check_esc_code.c matrix_string_insert.c\
 	  matrix_create_line.c utf.c matrix_string_delete.c\
-	  buttons1.c\
+	  buttons1.c matrix_erase_line.c\
 
 NAME = line
 TEST = a.test
