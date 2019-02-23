@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:42 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/19 22:33:56 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/23 20:54:27 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,6 @@ void	push_to_enviroment(char *name, char *val)
 char	*get_content_of_var(char *str)
 {
 	return (sgetenv(str));
-	// return (ft_strdup(str));
-
-	// (void)str;
-	// return (NULL);
 }
 
 char	*use_a_defalt_value(char *str)
@@ -69,7 +65,7 @@ char	*use_a_defalt_value(char *str)
 	if (res)
 		return (res);
 	tmp = (ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1));
-	free (str);
+	free(str);
 	return (tmp);
 }
 
@@ -110,7 +106,7 @@ char	*display_error_if_null_or_unset(char *str)
 	if (res)
 		return (res);
 	res = (ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1));
-	free (str);
+	free(str);
 	ft_putstr("42sh: ");
 	ft_putstr(&tmp[2]);
 	ft_putstr(": ");
@@ -134,7 +130,7 @@ char	*use_an_alternate_value(char *str)
 	if (!res)
 		return (ft_strdup(""));
 	tmp = (ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1));
-	free (str);
+	free(str);
 	return (tmp);
 }
 
@@ -190,7 +186,7 @@ char	*remove_smallest_prefix_pattern(char *str)
 		return (ft_strdup(""));
 	pattern = ft_strndup(&str[i + 1], ft_strlen(&str[i + 3]) + 1);
 	if (pattern && pattern[0] && !ft_strncmp(res, pattern, ft_strlen(pattern)))
-			return (ft_strdup(&res[ft_strlen(pattern)]));
+		return (ft_strdup(&res[ft_strlen(pattern)]));
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:56:17 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/21 19:10:19 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/23 21:03:05 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		get_len_of_name_var(char *str)
 	int i;
 
 	i = 0;
-	while (str[i] != ' ' && str[i])
+	while (str[i] != ' ' && str[i] && str[i] != '\'' && str[i] != '\"')
 		i++;
 	return (i);
 }
@@ -82,7 +82,7 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 **	fuck_norm[1] - brackets
 */
 
-char	*extention_with_split(char *str)
+char	**extention_with_split(char *str)
 {
 	char	*res;
 	char	*buf;
@@ -98,17 +98,7 @@ char	*extention_with_split(char *str)
 	fuck_norm[0] = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'' && !fuck_norm[2])
-		{
-			fuck_norm[1] = (fuck_norm[1] + 1) % 2;
-			i++;
-		}
-		else if (str[i] == '\"' && !fuck_norm[1])
-		{
-			fuck_norm[2] = (fuck_norm[2] + 1) % 2;
-			i++;
-		}
-		else if (str[i] == '$' && !fuck_norm[1])
+		if (str[i] == '$' && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
@@ -116,13 +106,17 @@ char	*extention_with_split(char *str)
 		}
 		else
 		{
+			if (str[i] == '\'' && !fuck_norm[2])
+				fuck_norm[1] = (fuck_norm[1] + 1) % 2;
+			if (str[i] == '\"' && !fuck_norm[1])
+				fuck_norm[2] = (fuck_norm[2] + 1) % 2;
 			res[j] = str[i];
 			j++;
 			i++;
 		}
 	}
 	res[j] = '\0';
-	return (res);
+	return (strsplit_for_extention(res));
 }
 
 char	*extention(char *str)
@@ -168,6 +162,18 @@ char	*extention(char *str)
 	return (res);
 }
 
+void	printmas(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		printf("str[%d] = %s\n", i, str[i]);
+		i++;
+	}
+}
+
 int		main(int argc, char **argv, char **env)
 {
 	(void)argc;
@@ -175,6 +181,7 @@ int		main(int argc, char **argv, char **env)
 	init_env(env);
 	// hash_print(g_hash_env);
 	// sgetenv("HOwqdqwME");
-	printf("Result = %s\n", extention("check$HOM check"));
+	//ssetenv("a", "a1 a2 a3 a4");
+	printmas(extention_with_split("\"$a\" 1 23"));
 	return (0);
 }

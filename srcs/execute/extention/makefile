@@ -6,7 +6,7 @@
 #    By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/15 19:55:48 by bbaelor-          #+#    #+#              #
-#    Updated: 2019/02/19 20:47:05 by bbaelor-         ###   ########.fr        #
+#    Updated: 2019/02/23 17:59:06 by bbaelor-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC_DIR	=	./
 
 SRC		=	extention.c\
 			functions_to_write.c\
+			strsplit_for_extention.c\
 			/Users/bbaelor-/42_to_commit_2/srcs/shell/init.c\
 			/Users/bbaelor-/42_to_commit_2/srcs/shell/init_env.c\
 			/Users/bbaelor-/42_to_commit_2/srcs/shell/init_path.c\
