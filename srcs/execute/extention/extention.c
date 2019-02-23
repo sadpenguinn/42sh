@@ -74,7 +74,7 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 	printf("buf = %s\n", buf);
 	ft_strcpy(res, res_to_replace);
 	ft_strcat(res, buf);
-	free(buf);
+	free(res_to_replace);
 	return (res);
 }
 

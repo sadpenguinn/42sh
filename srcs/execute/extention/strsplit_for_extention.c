@@ -130,5 +130,6 @@ char			**strsplit_for_extention(char *str)
 				i++;
 		}
 	res[j] = NULL;
+		free(str);
 	return (res);
 }
