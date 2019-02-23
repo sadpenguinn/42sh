@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 15:51:42 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 18:52:37 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:56:57 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_astree	*io_here(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != DLESS && type != DLESSDASH && type != TLESS)
+	if (type != DLESS)
 		return (0);
 	g_curtok++;
 	if (!(res = here_end()))

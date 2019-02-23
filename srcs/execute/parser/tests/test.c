@@ -19,8 +19,8 @@ extern char **environ;
 int main(int ac, char **av, char **env)
 {
 	for (int i = 0; i < ac; i++)
-		printf("av:%s\n", av[i]);
+		printf(">%s\n", av[i]);
 	for (; *env; env++)
-		printf("en:%s\n", *env);
+		printf("$%s\n", *env);
 	return (0);
 }

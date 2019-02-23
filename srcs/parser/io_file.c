@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:42:15 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 15:23:39 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:57:49 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_astree	*io_file(void)
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
 	if (type != LESS && type != LESSAND &&
 		type != GREAT && type != GREATAND &&
-		type != DGREAT && type != LESSGREAT && type != CLOBBER)
+		type != DGREAT)
 		return (0);
 	g_curtok++;
 	if (!(res = filename()))

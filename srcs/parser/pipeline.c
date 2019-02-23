@@ -33,7 +33,7 @@ static t_astree	*pipeline_rest(void)
 	t_astree	*root;
 
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != PIPE && type != PIPEAND)
+	if (type != PIPE)
 		return (0);
 	g_curtok++;
 	root = xmalloc(sizeof(t_astree));
@@ -43,7 +43,7 @@ static t_astree	*pipeline_rest(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (root);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == PIPE || type == PIPEAND)
+	if (type == PIPE)
 		if (!(root->right = pipeline_rest()))
 			return (freeastree(root));
 	return (root);

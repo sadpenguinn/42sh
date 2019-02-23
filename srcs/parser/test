@@ -1,0 +1,28 @@
+Tok count:4
+in command
+in function_def
+in shell_command
+int other_commands
+in simple_command
+type = 103
+check type:1
+in simple_command
+type = 137
+in command
+in function_def
+in shell_command
+int other_commands
+in simple_command
+type = 103
+check type:1
+in simple_command
+type = 103
+check type:1
+in simple_command
+Result: YES
+                                                                                                                                                               323                                                                                                                                                              
+                                                                                                         322                                                                                                                                                                                                                    
+                                                              326                                                              137                                                                                                                                                                                               
+                                  ls                                                                     326                                                                                                                                                                                                                    
+                                                                                            cat                326                                                                                                                                                                                                             
+                                                                                                 -e                                                                                                                                                                                                  

@@ -37,17 +37,17 @@ char **expandarg(char *str)
 	/* free(str); */
 	return (new);
 }
-char **get_alias(char *str)
-{
-	char **new;
+/* char **get_alias(char *str) */
+/* { */
+/* 	char **new; */
 
-	new = malloc(sizeof(char *) * 3);
-	new[0] = ft_strdup(str);
-	new[1] = ft_strdup("-G");
-	new[2] = 0;
-	/* free(str); */
-	return (new);
-}
+/* 	new = malloc(sizeof(char *) * 3); */
+/* 	new[0] = ft_strdup(str); */
+/* 	new[1] = ft_strdup("-G"); */
+/* 	new[2] = 0; */
+/* 	/1* free(str); *1/ */
+/* 	return (new); */
+/* } */
 
 int		add_pipe_redir(t_list **redlst, int fd[2])
 {
@@ -112,24 +112,24 @@ int		expand_assign(t_list *assign)
 	return (0);
 }
 
-int		set_alias_arg(t_list **args)
-{
-	int		i;
-	char	*arg1;
-	char	**alias;
+/* int		set_alias_arg(t_list **args) */
+/* { */
+/* 	int		i; */
+/* 	char	*arg1; */
+/* 	char	**alias; */
 
-	arg1 = (char *)(*args)->data;
-	if (!(alias = get_alias(arg1)))
-		return (0);
-	free(ft_pop(args));
-	i = 0;
-	while (alias[i])
-		i++;
-	while (--i >= 0)
-		ft_push(args, alias[i]);
-	free(alias);
-	return (0);
-}
+/* 	arg1 = (char *)(*args)->data; */
+/* 	if (!(alias = get_alias(arg1))) */
+/* 		return (0); */
+/* 	free(ft_pop(args)); */
+/* 	i = 0; */
+/* 	while (alias[i]) */
+/* 		i++; */
+/* 	while (--i >= 0) */
+/* 		ft_push(args, alias[i]); */
+/* 	free(alias); */
+/* 	return (0); */
+/* } */
 
 char	**get_argv(t_list *args)
 {
@@ -137,6 +137,8 @@ char	**get_argv(t_list *args)
 	char	*arg;
 	char	**argv;
 
+	if (!args)
+		return (0);
 	lst = args;
 	while (lst)
 	{
@@ -184,8 +186,10 @@ int		execute(char **aven[2], t_list *redirs)
 	t_redir	*redir;
 	pid_t	pid;
 
-	/* path = get_path(aven[0][0]); */
-	path = ft_strdup("/bin/ls");
+	/* if (!(path = get_cmd_path([0][0]))) */
+	/* 	return (1); */
+if (!(path = ft_strjoin("/bin/", aven[0][0], 0)))
+	return (1);
 	if ((pid = fork()))
 		return (pid);
 	while (redirs)
@@ -222,7 +226,7 @@ static void	initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 	get_cmd_attr(root, cmd, 1);
 	add_pipe_redir(&cmd[2], fd);
 	expand_assign(cmd[1]);
-	set_alias_arg(&cmd[0]);
+	/* set_alias_arg(&cmd[0]); */
 	aven[0] = get_argv(cmd[0]);
 	aven[1] = get_envp(cmd[1]);
 }
@@ -258,7 +262,7 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 **	aven[1] - envp[][]
 */
 
-int	execscmd(t_astree *root, int fd[2], int job, int pipe)
+int	execscmd(t_astree *root, int fd[2], int job, void *ppid)
 {
 	t_list	*cmd[3];
 	char	**aven[2];
@@ -266,7 +270,7 @@ int	execscmd(t_astree *root, int fd[2], int job, int pipe)
 	int		status;
 
 	initcmd(root, fd, cmd, aven);
-	if (!aven[0][0])
+	if (!aven[0])
 		return (set_envs(cmd[1]));
 	/* else if  ((root = get_function(aven[0][0]))) */
 	/* 	pid = function(root, aven[0], fd, job); */
@@ -278,83 +282,10 @@ int	execscmd(t_astree *root, int fd[2], int job, int pipe)
 	if (pid == -1)
 		return (forkerror(aven[0][0]));
 	printf("***OK***\n");
-	if (job || pipe)
+	if (job || ppid)
 		return (pid);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	return (EXIT_FAILURE);
-}
-
-int main(void)
-{
-	t_astree	tree[100];
-	int			fd[2];
-
-	fd[0] = 0;
-	fd[1] = 1;
-	bzero(tree, sizeof(t_astree) * 100);
-
-	tree[0].type = COMMAND;
-	tree[0].left = &tree[50];
-	tree[0].right = &tree[1];
-
-	tree[1].type = COMMAND;
-	tree[1].left = &tree[51];
-	/* tree[1].right = &tree[2]; */
-	tree[1].right = 0;
-
-	tree[2].type = COMMAND;
-	tree[2].left = &tree[52];
-	tree[2].right = &tree[3];
-
-	tree[3].type = COMMAND;
-	tree[3].left = &tree[53];
-	/* tree[3].right = &tree[4]; */
-	tree[3].right = 0;
-
-	/* tree[4].type = COMMAND; */
-	/* tree[4].left = &tree[54]; */
-	/* tree[4].right = &tree[5]; */
-
-	/* tree[5].type = COMMAND; */
-	/* tree[5].left = &tree[55]; */
-	/* tree[5].right = 0; */
-
-	tree[50].type = ASSIGMENT_WORD;
-	tree[50].content = ft_strdup("A=3");
-
-	tree[51].type = WORD;
-	tree[51].content = ft_strdup("ls");
-
-	/* tree[52].type = WORD; */
-	/* tree[52].content = ft_strdup("/Users/bwerewol"); */
-
-	/* tree[53].type = WORD; */
-	/* tree[53].content = ft_strdup("dir2"); */
-
-	/* tree[50].type = ASSIGMENT_WORD; */
-	/* tree[50].content = ft_strdup("A=3"); */
-
-	/* tree[51].type = WORD; */
-	/* tree[51].content = ft_strdup("ls"); */
-
-	/* tree[52].type = WORD; */
-	/* tree[52].content = ft_strdup("/"); */
-
-	/* tree[53].type = GREAT; */
-	/* tree[53].right = &tree[75]; */
-	/* tree[75].type = WORD; */
-	/* tree[75].content = ft_strdup("file"); */
-
-	/* tree[54].type = GREAT; */
-	/* tree[54].right = &tree[76]; */
-	/* tree[76].type = WORD; */
-	/* tree[76].content = ft_strdup("file2"); */
-
-	/* tree[55].type = WORD; */
-	/* tree[55].content = ft_strdup("dir2"); */
-
-	execscmd(&tree[0], fd, 0, 0);
-	return (0);
 }

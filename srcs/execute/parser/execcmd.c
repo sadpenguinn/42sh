@@ -12,27 +12,28 @@
 
 #include "execute.h"
 
-int		execcmd(t_astree *root, int fd[2], int flag)
+int		execcmd(t_astree *root, int fd[2], int job, void *ppid)
 {
-	if (root->type == FUNCTION)
-		return (execfunc(root, fd, flag));
-	if (root->type == FOR)
-		return (execfor(root, fd, flag));
-	if (root->type == CASE)
-		return (execcase(root, fd, flag));
-	if (root->type == WHILE)
-		return (execwhile(root, fd, flag));
-	if (root->type == UNTIL)
-		return (execuntil(root, fd, flag));
-	if (root->type == SELECT)
-		return (execselect(root, fd, flag));
-	if (root->type == IF)
-		return (execif(root, fd, flag));
-	if (root->type == ARITH)
-		return (execarith(root, fd, flag));
-	if (root->type == COND)
-		return (execcond(root, fd, flag));
+	/* if (root->type == FUNCTION) */
+	/* 	return (execfunc(root, fd, job)); */
+	/* if (root->type == FOR) */
+	/* 	return (execfor(root, fd, job)); */
+	/* if (root->type == CASE) */
+	/* 	return (execcase(root, fd, job)); */
+	/* if (root->type == WHILE) */
+	/* 	return (execwhile(root, fd, job)); */
+	/* if (root->type == UNTIL) */
+	/* 	return (execuntil(root, fd, job)); */
+	/* if (root->type == SELECT) */
+	/* 	return (execselect(root, fd, job)); */
+	/* if (root->type == IF) */
+	/* 	return (execif(root, fd, job)); */
+	/* if (root->type == ARITH) */
+	/* 	return (execarith(root, fd, job)); */
+	/* if (root->type == COND) */
+	/* 	return (execcond(root, fd, job)); */
 	if (root->type == COMMAND)
-		return (execsimple(root, fd, flag));
-	return (execlist1(root, fd, flag));
+		return (execscmd(root, fd, job, ppid));
+	/* return (execlist1(root, fd, job, ppid)); */
+	return (-228);
 }
