@@ -11,16 +11,18 @@ int		back_space(t_matrix *matrix)
 		matrix->cursor->col = matrix->lines[matrix->cursor->row]->len;
 		line = matrix->lines[matrix->cursor->row + 1];
 		col = matrix->cursor->col;
-		matrix_string_insert(matrix, line->buf, line->len);
+		matrix_string_insert(matrix, matrix->cursor, line->buf, line->len);
 		matrix_erase_line(matrix, matrix->cursor->row + 1);
 		matrix->cursor->col = col;
 	}
 	else if (matrix->cursor->col != 0)
 	{
 		move_cursor_left(matrix);
-		matrix_string_delete(matrix, 1);
+		line = matrix->lines[matrix->cursor->row];
+		col = matrix->cursor->col + 1 + get_utf_offset_right(line->buf[matrix->cursor->col]);
+		matrix_string_delete(matrix, matrix->cursor->row, col);
 	}
-	return (print_default(matrix));
+	return (1);
 }
 
 int		del(t_matrix *matrix)
@@ -33,10 +35,14 @@ int		del(t_matrix *matrix)
 	{
 		line = matrix->lines[matrix->cursor->row + 1];
 		col = matrix->cursor->col;
-		matrix_string_insert(matrix, line->buf, line->len);
+		matrix_string_insert(matrix, matrix->cursor, line->buf, line->len);
 		matrix_erase_line(matrix, matrix->cursor->row + 1);
 		matrix->cursor->col = col;
 	} else if (matrix->cursor->col != matrix->lines[matrix->cursor->row]->len)
-		matrix_string_delete(matrix, 1);
-	return (print_default(matrix));
+	{
+		line = matrix->lines[matrix->cursor->row];
+		col = matrix->cursor->col + 1 + get_utf_offset_right(line->buf[matrix->cursor->col]);
+		matrix_string_delete(matrix, matrix->cursor->row, col);
+	}
+	return (1);
 }

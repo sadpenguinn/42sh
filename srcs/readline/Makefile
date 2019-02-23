@@ -11,6 +11,7 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  check_esc_code.c matrix_string_insert.c\
 	  matrix_create_line.c utf.c matrix_string_delete.c\
 	  buttons1.c matrix_erase_line.c readline_memdel.c\
+	  get_next_symbol.c move_shortcuts.c\
 
 NAME = line
 TEST = a.test
