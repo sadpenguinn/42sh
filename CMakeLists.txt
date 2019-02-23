@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(42sh)
+project(42sh LANGUAGES C)
 
 set(NAME			42sh)
 set(INC				includes)
@@ -17,7 +17,8 @@ set(LIBSHELL		shell)
 set(LIBSHELL_DIR	srcs/lib/libshell)
 SET(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
-set(MAIN			srcs/shell.c)
+set(MAIN			srcs/shell.c
+					srcs/minishell_parser.c)
 
 set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_env.c
@@ -28,21 +29,31 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_jobs.c
 					srcs/shell/init_process.c
 					srcs/shell/destroy_jobs.c
-					srcs/shell/destroy_process.c)
+					srcs/shell/destroy_process.c
+					srcs/shell/signals.c
+					srcs/shell/argv_parser.c srcs/minishell_lib.c)
 
-set(READLINE_SRC	srcs/readline/readline.c
-					srcs/readline/array.c
+set(READLINE_SRC	srcs/readline/array.c
+					srcs/readline/buttons1.c
+					srcs/readline/check_esc_code.c
 					srcs/readline/check_next_symbol.c
-					srcs/readline/term.c
-					srcs/readline/prompt.c
-					srcs/readline/init_line.c
-					srcs/readline/init_matrix.c
-					srcs/readline/resize_windows.c
-					srcs/readline/matrix_resize.c
+					srcs/readline/get_next_symbol.c
+					srcs/readline/inits.c
 					srcs/readline/line_resize.c
+					srcs/readline/matrix_create_line.c
+					srcs/readline/matrix_erase_line.c
+					srcs/readline/matrix_resize.c
+					srcs/readline/matrix_string_delete.c
+					srcs/readline/matrix_string_insert.c
 					srcs/readline/move_cursor_1.c
 					srcs/readline/move_cursor_2.c
-					srcs/readline/check_esc_code.c)
+					srcs/readline/move_shortcuts.c
+					srcs/readline/prompt.c
+					srcs/readline/readline.c
+					srcs/readline/readline_memdel.c
+					srcs/readline/resize_windows.c
+					srcs/readline/term.c
+					srcs/readline/utf.c)
 
 set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_echo.c
@@ -112,5 +123,5 @@ add_subdirectory(${LIBHASH_DIR})
 add_subdirectory(${VECTOR_DIR})
 add_subdirectory(${LIBSHELL_DIR})
 
-add_executable(42sh ${MAIN} ${BUILTIN_SRC} ${READLINE_SRC} ${SHELL_SRC} ${LEXER_SRC} ${PARSER_SRC} ${LIBSHELL_SRC})
+add_executable(42sh ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC})
 target_link_libraries(42sh ${LIBFT} ${LIBHASH} ${VECTOR} ${LIBSHELL})

@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_matrix.c                                      :+:      :+:    :+:   */
+/*   matrix_create_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 14:11:21 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:11:21 by sitlcead         ###   ########.fr       */
+/*   Created: 2019/02/22 00:21:08 by sitlcead          #+#    #+#             */
+/*   Updated: 2019/02/22 00:21:08 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "shell.h"
 
-t_matrix	*init_matrix(void)
+void    matrix_create_line(t_matrix *matrix, int row)
 {
-	t_matrix	*matrix;
-
-	matrix = xmalloc(sizeof(t_matrix));
-	matrix->lines = (t_line **)xmalloc(sizeof(t_line *) * MATRIX_DEFAULT_SIZE);
-	matrix->size = MATRIX_DEFAULT_SIZE;
-	matrix->len = 1;
-	matrix->lines[0] = init_line();
-	matrix->cursor = (t_cursor *)xmalloc(sizeof(t_cursor));
-	matrix->cursor->row = 0;
+	if (matrix->len == matrix->size)
+		matrix_resize(matrix, matrix->size * RATIO, matrix->size);
+	if (row < matrix->len)
+		memmove(matrix->lines + row + 1, matrix->lines + row,
+				(matrix->len - row) * sizeof(t_line *));
+	matrix->lines[row] = init_line();
+	matrix->len++;
+	matrix->cursor->row	 = row;
 	matrix->cursor->col = 0;
-	matrix->last_offset = 0;
-	matrix->left_limit = 0;
-	matrix->right_limit = 0;
-	return (matrix);
 }

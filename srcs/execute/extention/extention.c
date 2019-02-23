@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:56:17 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/19 22:32:49 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/23 21:03:05 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int		get_len_of_name_var(char *str)
 	int i;
 
 	i = 0;
-	while (str[i] != ' ' && str[i])
+	while (str[i] != ' ' && str[i] && str[i] != '\'' && str[i] != '\"')
 		i++;
-	return (i - 1);
+	return (i);
 }
 
 int		get_len_of_dollar(char *str)
@@ -58,6 +58,8 @@ char	*get_pahom(char *str, int *i, int *len_of_expression)
 	*len_of_expression = get_len_of_dollar(str);
 	*i += *len_of_expression;
 	res = get_content_of_expression(ft_strndup(str, *len_of_expression));
+	if (!res)
+		res = ft_strdup("");
 	return (res);
 }
 
@@ -72,6 +74,7 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 	printf("buf = %s\n", buf);
 	ft_strcpy(res, res_to_replace);
 	ft_strcat(res, buf);
+	free(buf);
 	return (res);
 }
 
@@ -80,11 +83,11 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 **	fuck_norm[1] - brackets
 */
 
-char	*extention(char *str)
+char	**extention_with_split(char *str)
 {
 	char	*res;
 	char	*buf;
-	int		fuck_norm[2];
+	int		fuck_norm[3];
 	int		i;
 	int		j;
 
@@ -92,17 +95,61 @@ char	*extention(char *str)
 	i = 0;
 	j = 0;
 	fuck_norm[1] = 0;
+	fuck_norm[2] = 0;
+	fuck_norm[0] = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
+		if (str[i] == '$' && !fuck_norm[1])
+		{
+			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
+			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
+			j += ft_strlen(buf);
+		}
+		else
+		{
+			if (str[i] == '\'' && !fuck_norm[2])
+				fuck_norm[1] = (fuck_norm[1] + 1) % 2;
+			if (str[i] == '\"' && !fuck_norm[1])
+				fuck_norm[2] = (fuck_norm[2] + 1) % 2;
+			res[j] = str[i];
+			j++;
+			i++;
+		}
+	}
+	res[j] = '\0';
+	return (strsplit_for_extention(res));
+}
+
+char	*extention(char *str)
+{
+	char	*res;
+	char	*buf;
+	int		fuck_norm[3];
+	int		i;
+	int		j;
+
+	res = xmalloc(sizeof(char) * (ft_strlen(str) + 1));
+	i = 0;
+	j = 0;
+	fuck_norm[1] = 0;
+	fuck_norm[2] = 0;
+	fuck_norm[0] = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'' && !fuck_norm[2])
 		{
 			fuck_norm[1] = (fuck_norm[1] + 1) % 2;
 			i++;
 		}
-		if (str[i] == '$' && !fuck_norm[1])
+		else if (str[i] == '\"' && !fuck_norm[1])
 		{
-			buf = get_pahom(&str[i], &i, &fuck_norm[1]);
-			res = remalloc_result_of_extention(str, res, buf, fuck_norm[1]);
+			fuck_norm[2] = (fuck_norm[2] + 1) % 2;
+			i++;
+		}
+		else if (str[i] == '$' && !fuck_norm[1])
+		{
+			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
+			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j += ft_strlen(buf);
 		}
 		else
@@ -116,6 +163,18 @@ char	*extention(char *str)
 	return (res);
 }
 
+void	printmas(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		printf("str[%d] = %s\n", i, str[i]);
+		i++;
+	}
+}
+
 int		main(int argc, char **argv, char **env)
 {
 	(void)argc;
@@ -123,6 +182,7 @@ int		main(int argc, char **argv, char **env)
 	init_env(env);
 	// hash_print(g_hash_env);
 	// sgetenv("HOwqdqwME");
-	printf("Result = %s\n", extention("check ${qwd:=$HOME} check"));
+	//ssetenv("a", "a1 a2 a3 a4");
+	printmas(extention_with_split("\"$a\" 1 23"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:38:30 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 11:17:19 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:11:08 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Remove one cell from the table
 */
 
-int 	hash_delete(const char *key, t_hash *hash)
+int		hash_delete(const char *key, t_hash *hash)
 {
 	t_hshtb		*cell;
 
@@ -28,4 +28,3 @@ int 	hash_delete(const char *key, t_hash *hash)
 	hash->filled--;
 	return (HSH_OK);
 }
-

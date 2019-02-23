@@ -6,13 +6,14 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:36:44 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 10:41:32 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 10:55:31 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write(STDOUT_FILENO, &c, 1);
 }

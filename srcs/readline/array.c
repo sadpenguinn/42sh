@@ -25,7 +25,7 @@ static void	init_array(void)
 	arr->size = ARRAY_DEFAULT_SIZE;
 }
 
-void		array_add(const char *str, unsigned int len)
+void		array_add(const char *str, size_t len)
 {
 	if (str == NULL)
 		return;

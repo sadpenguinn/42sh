@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:37:30 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 11:04:27 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/23 12:17:39 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 static int		parse_flags(char **av, char **key)
 {
-	int		i;
-
-	i = 1;
-	while (av[i])
+	if (!av[1])
 	{
-		if (i == 1)
-			*key = av[i];
-		else
-		{
-			ft_putendl_fd("unsetenv: Invalud syntax", 2);
-			return (0);
-		}
-		i++;
+		sputcmderr(sstrerr(SHERR_INVSNTX), "unsetenv", "");
+		return (0);
 	}
+	if (av[2])
+	{
+		sputcmderr(sstrerr(SHERR_INVSNTX), "unsetenv", av[2]);
+		return (0);
+	}
+	*key = av[1];
 	return (1);
 }
 
@@ -45,6 +42,11 @@ int				built_unsetenv(char **av, char **env)
 	if (!parse_flags(av, &key))
 		return (SHERR_ERR);
 	if ((sunsetenv(key) == SHERR_ERR))
+	{
+		ft_putstr_fd("unsetenv: Variable '", STDERR_FILENO);
+		ft_putstr_fd(av[1], STDERR_FILENO);
+		ft_putendl_fd("' was not found", STDERR_FILENO);
 		return (SHERR_ERR);
+	}
 	return (SHERR_OK);
 }

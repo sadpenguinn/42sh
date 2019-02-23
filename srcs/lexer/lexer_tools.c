@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 15:48:16 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 20:36:14 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@ static void		print_token(void *lexem)
 {
 	t_lexem		*lex;
 
-	lex = (void *)lexem;
+	lex = lexem;
 	ft_putstr(lex->word);
 	ft_putstr(" -- ");
 	ft_putnbrendl(lex->type - SHIFT);
+}
+
+void			lexer_free(t_lexer *lexer)
+{
+	free(lexer->lexems);
+	free(lexer->symbol_table);
+	free(lexer);
 }
 
 void			lexer_print(void *lexems)
@@ -49,10 +56,12 @@ int				push_token(void **lexems, char *lexem, int state)
 {
 	t_lexem	new;
 
-	if (state == SPACE - SHIFT || state == TAB - SHIFT || state == COMMENT - SHIFT)
+	if (state == SPACE - SHIFT || state == TAB - SHIFT ||
+									state == COMMENT - SHIFT)
 		return (0);
 	new.type = (t_type)(SHIFT + state);
-	if (state == 72 || state == 83 || state == 80)
+	if (state == 72 || state == 83 || state == 80 || state == 101 ||
+										state == 102 || state == 103)
 		new.type = WORD;
 	new.word = lexem;
 	if (!(vector_push_back(lexems, (void *)(&new))))

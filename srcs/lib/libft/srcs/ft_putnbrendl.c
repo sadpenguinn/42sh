@@ -6,10 +6,11 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 18:08:22 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/20 10:41:32 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
 
@@ -33,5 +34,5 @@ void	ft_putnbrendl(int n)
 		ln = ln % pos;
 		pos = pos / 10;
 	}
-	write(1, "\n", 1);
+	write(STDOUT_FILENO, "\n", 1);
 }

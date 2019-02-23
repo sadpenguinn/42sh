@@ -6,16 +6,16 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:50:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 15:31:10 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/22 21:00:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libshell.h"
 
-int 	ssetenv(const char *key, const char *value)
+int		ssetenv(const char *key, const char *value)
 {
-	char 	*str;
+	char	*str;
 
 	if (!key)
 		return (SHERR_ERR);

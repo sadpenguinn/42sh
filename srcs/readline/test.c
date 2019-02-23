@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:13:07 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:13:07 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/20 19:32:27 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void)
 {
 	unsigned char c = 0;
 	set_term();
-		read(0, &c, 1);
+	read(0, &c, 1);
 	while (c != '\n')
 	{
 		printf("%d\n", c);

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef TERMINALS_H
-#define TERMINALS_H
+# define TERMINALS_H
 
 # define SHIFT              	50
 

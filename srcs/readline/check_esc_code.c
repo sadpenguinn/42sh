@@ -6,14 +6,14 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:53:30 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 13:53:30 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/23 00:15:08 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include "time.h"
 
-static int	check_buttons(t_matrix *matrix, t_uchar c)
+static int	check_esc_buttons(t_matrix *matrix, t_uchar c)
 {
 	if (c == LEFT)
 		return (move_cursor_left(matrix));
@@ -27,33 +27,29 @@ static int	check_buttons(t_matrix *matrix, t_uchar c)
 		return (move_cursor_home(matrix));
 	if (c == END1 || c == END2)
 		return (move_cursor_end(matrix));
+	if (c == DEL)
+		return (del(matrix));
 	return (0);
 }
 
-int			check_esc_code(t_matrix *matrix)
+int			check_esc_code(t_matrix *matrix, t_uchar c)
 {
 	int		i;
 	time_t	start;
 	time_t	end;
-	t_uchar	c;
 	t_uchar	tmp;
 
-	i = 1;
-	c = 27;
-	while (i < 8)
+	i = 0;
+	while (++i < 8)
 	{
 		start = time(&start);
 		tmp = get_next_symbol(sizeof(char));
 		end = time(&end);
 		if (difftime(end, start) >= 0.2)
-			return (1);
+			return (move_shortcuts(c));
 		c += (tmp << (i * 8));
-		if (check_buttons(matrix, c))
-		{
-			print_default(matrix);
-			return (1);
-		}
-		i++;
+		if (check_esc_buttons(matrix, c))
+			return (move_shortcuts(c));
 	}
-	return (1);
+	return (move_shortcuts(c));
 }

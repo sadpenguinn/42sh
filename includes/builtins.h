@@ -22,9 +22,12 @@
 */
 # ifndef SHERR
 #  define SHERR
-#  define SHERR_ERR 0
-#  define SHERR_OK 1
-#  define SHERR_ENOENT 2
+#  define SHERR_ERR						0
+#  define SHERR_OK						1
+#  define SHERR_ENOENT					2
+#  define SHERR_CNTFRK					3
+#  define SHERR_CMNDNTF					4
+#  define SHERR_INVSNTX					5
 # endif
 
 /*

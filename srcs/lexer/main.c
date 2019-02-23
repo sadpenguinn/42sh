@@ -20,7 +20,6 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	lex = lexer(av[1], ft_strlen(av[1]));
-	/*lex = lexer("((a(b)()()()wefemake()((wef   wef(((sfs(()ewf))wef    wef))wefwef))c))", 50);*/
 	lexer_print(lex->lexems);
 	return (0);
 }

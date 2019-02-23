@@ -6,7 +6,7 @@
 /*   By: dmorgil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 17:42:57 by dmorgil           #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/22 20:35:42 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "vector.h"
 # include "terminals.h"
 
-typedef unsigned long int	t_type;
+typedef unsigned int		t_type;
 
 typedef struct				s_lexem
 {
@@ -37,5 +37,6 @@ t_lexer						*lexer(char const *str, size_t len);
 int							push_token(void **lexems, char *lexem, int state);
 char						*push_symbol(char **string, char *str, size_t len);
 void						lexer_print(void *lexems);
+void						lexer_free(t_lexer *lexer);
 
 #endif

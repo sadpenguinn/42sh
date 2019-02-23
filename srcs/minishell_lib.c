@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_line.c                                        :+:      :+:    :+:   */
+/*   minishell_lib.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 14:11:14 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:11:14 by sitlcead         ###   ########.fr       */
+/*   Created: 2019/02/22 20:21:15 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/22 20:22:06 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "readline.h"
 #include "shell.h"
 
-t_line	*init_line(void)
+char	*ft_strvardup(char *str)
 {
-	t_line	*line;
+	char	*var;
 
-	line = (t_line *)xmalloc(sizeof(t_line));
-	line->buf = (char *)xmalloc(sizeof(char) * BUF_DEFAULT_SIZE + 1);
-	line->size = BUF_DEFAULT_SIZE;
-	line->len = 0;
-	line->symbols = 0;
-	return (line);
+	if (!ft_strcmp(str, "~") && (var = sgetenv("HOME")))
+		return (ft_strdup(var));
+	if (str[0] != '$')
+		return (ft_strdup(str));
+	if ((var = sgetenv(str + 1)))
+		return (ft_strdup(var));
+	return (ft_strnew(0));
 }

@@ -6,14 +6,14 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:13:40 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/23 11:54:12 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libshell.h"
 
-void 	sputerr(char *str)
+void	sputerr(char *err)
 {
-	if (str)
-		ft_putendl(str);
+	if (err)
+		ft_putendl_fd(err, STDERR_FILENO);
 }

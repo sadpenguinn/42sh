@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:27:01 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/23 12:15:13 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 static int		parse_flags(char **av, char **key, char **value)
 {
-	int		i;
-
-	i = 1;
-	while (av[i])
+	if (!av[1] || !av[2])
 	{
-		if (i == 1)
-			*key = av[i];
-		else if (i == 2)
-			*value = av[i];
-		else
-		{
-			ft_putendl_fd("setenv: Invalud syntax", 2);
-			return (0);
-		}
-		i++;
+		sputcmderr(sstrerr(SHERR_INVSNTX), "setenv", "");
+		return (0);
 	}
+	if (av[3])
+	{
+		sputcmderr(sstrerr(SHERR_INVSNTX), "setenv", av[3]);
+		return (0);
+	}
+	*key = av[1];
+	*value = av[2];
 	return (1);
 }
 
