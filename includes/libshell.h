@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/22 21:16:55 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/23 11:51:25 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBSHELL_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <dirent.h>
 # include "libft.h"
@@ -23,7 +24,8 @@ int		check_varname(char *var);
 int		match(char *s1, char *s2);
 int		glob(char *pattern, char *path, char ***matches, size_t *cnt);
 void	die(void);
-void	sputerr(char *str);
+void	sputerr(char *err);
+void	sputcmderr(char *err, char *cmd, char *arg);
 char	*sstrerr(int e);
 char	*check_valid_of_variable(char *str);
 
@@ -36,5 +38,6 @@ void	print_str_arr(char *const *arr);
 char	**split_env(char *str);
 
 char	*sgetpath(const char *bin);
+char	*get_cmd_path(char *str);
 
 #endif

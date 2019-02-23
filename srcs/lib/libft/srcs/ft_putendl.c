@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
 
@@ -18,5 +19,5 @@ void	ft_putendl(char const *s)
 	if (!s)
 		return ;
 	ft_putstr(s);
-	write(1, "\n", 1);
+	write(STDOUT_FILENO, "\n", 1);
 }

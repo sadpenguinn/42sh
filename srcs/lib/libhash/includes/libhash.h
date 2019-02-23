@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/22 21:12:40 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/23 13:00:14 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_hshindex		hash_index(const char *key, t_hash *hash);
 */
 
 t_hshtb			*hash_insert(const char *key, const char *value,
-											t_hash *hash, void *data);
+											t_hash *hash, const void *data);
 
 /*
 ** Remove one cell from the table
@@ -155,5 +155,11 @@ int				hash_test(t_hash *hash);
 */
 
 void			hash_free_fileds(char *key, char *value);
+
+/*
+** Internal function for realloc hash table
+*/
+
+int				hash_realloc(t_hash *hash, size_t new_size);
 
 #endif

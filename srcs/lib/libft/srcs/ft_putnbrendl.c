@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
 
@@ -33,5 +34,5 @@ void	ft_putnbrendl(int n)
 		ln = ln % pos;
 		pos = pos / 10;
 	}
-	write(1, "\n", 1);
+	write(STDOUT_FILENO, "\n", 1);
 }

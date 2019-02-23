@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:15:08 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/22 20:08:55 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/23 11:55:33 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int				built_cd(char **av, char **env)
 		set_pwd("PWD");
 		return (SHERR_OK);
 	}
-	sputerr(sstrerr(SHERR_ENOENT));
+	ft_strdel(&path);
+	sputcmderr(sstrerr(SHERR_ENOENT), "cd", av[1]);
 	return (SHERR_ERR);
 }

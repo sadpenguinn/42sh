@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strerror.c                                         :+:      :+:    :+:   */
+/*   sputcmderr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 18:15:48 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/22 16:43:09 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/23 11:49:33 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/02/23 12:08:31 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "libshell.h"
 
-char	*sstrerr(int e)
+void	sputcmderr(char *err, char *cmd, char *arg)
 {
-	if (e == SHERR_ENOENT)
-		return ("No such file or directory");
-	if (e == SHERR_CNTFRK)
-		return ("Can't fork process");
-	if (e == SHERR_CMNDNTF)
-		return ("Command not found");
-	if (e == SHERR_INVSNTX)
-		return ("Invalid syntax");
-	return (NULL);
+	if (err && cmd && arg)
+	{
+		ft_putstr_fd(cmd, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putstr_fd(err, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putendl_fd(arg, STDERR_FILENO);
+	}
 }

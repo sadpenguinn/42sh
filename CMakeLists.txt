@@ -34,10 +34,10 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/argv_parser.c srcs/minishell_lib.c)
 
 set(READLINE_SRC	srcs/readline/array.c
-					srcs/readline/array.c
 					srcs/readline/buttons1.c
 					srcs/readline/check_esc_code.c
 					srcs/readline/check_next_symbol.c
+					srcs/readline/get_next_symbol.c
 					srcs/readline/inits.c
 					srcs/readline/line_resize.c
 					srcs/readline/matrix_create_line.c
@@ -47,6 +47,7 @@ set(READLINE_SRC	srcs/readline/array.c
 					srcs/readline/matrix_string_insert.c
 					srcs/readline/move_cursor_1.c
 					srcs/readline/move_cursor_2.c
+					srcs/readline/move_shortcuts.c
 					srcs/readline/prompt.c
 					srcs/readline/readline.c
 					srcs/readline/readline_memdel.c

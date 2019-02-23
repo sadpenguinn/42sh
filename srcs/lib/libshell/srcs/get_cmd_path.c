@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/bbaelor-/42_to_commit_2/srcs/lib/libft/includes/libft.h"
+#include "libft.h"
 #include "libshell.h"
 #include <fcntl.h>
 #include <stdio.h>

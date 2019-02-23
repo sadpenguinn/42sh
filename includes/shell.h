@@ -57,6 +57,7 @@ extern void				*g_process;
 #  define SHERR_ENOENT					2
 #  define SHERR_CNTFRK					3
 #  define SHERR_CMNDNTF					4
+#  define SHERR_INVSNTX					5
 # endif
 
 /*

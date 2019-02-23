@@ -6,12 +6,13 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:34:08 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/22 20:26:13 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/23 12:44:48 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "builtins.h"
+#include "libshell.h"
 
 int				g_pid = 0;
 
@@ -82,32 +83,37 @@ static void		exec_command(void *lexems, size_t i, size_t k)
 	argv = build_argv(lexems, i, k);
 	if (search_builtin(argv))
 		;
-	else if (!(path = sgetpath(argv[0])))
-		sputerr(sstrerr(SHERR_CMNDNTF));
+	else if (!(path = get_cmd_path(argv[0])))
+		;
 	else
 		fork_command(argv, path);
+	ft_strdel(&path);
 	free_str_arr(&argv);
 }
 
 void			minishell_parser(void *lexems)
 {
 	t_lexem	*lexem;
+	int		flag;
 	size_t	len;
 	size_t	i;
 	size_t	k;
 
 	i = 0;
 	k = 0;
+	flag = 0;
 	len = vector_get_len(lexems);
 	while (i < len)
 	{
 		lexem = vector_get_elem(lexems, i);
 		if (lexem->type == SEMI)
 		{
+			flag = 1;
 			exec_command(lexems, i, k);
 			k = i + 1;
 		}
 		i++;
 	}
-	exec_command(lexems, i, k);
+	if (!flag)
+		exec_command(lexems, i, k);
 }

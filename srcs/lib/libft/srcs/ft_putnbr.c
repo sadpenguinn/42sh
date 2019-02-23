@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 #include <unistd.h>
 
@@ -17,5 +18,5 @@ void	ft_putnbr(int n)
 {
 	char	buff[12];
 
-	write(1, buff, ft_strnum_base(buff, n, 10));
+	write(STDOUT_FILENO, buff, ft_strnum_base(buff, n, 10));
 }

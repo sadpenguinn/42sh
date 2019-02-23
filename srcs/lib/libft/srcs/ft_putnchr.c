@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 #include <unistd.h>
 
 void	ft_putnchr(char ch, int n)
 {
 	while (n--)
-		write(1, &ch, 1);
+		write(STDOUT_FILENO, &ch, 1);
 }

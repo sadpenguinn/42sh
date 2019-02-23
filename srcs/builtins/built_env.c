@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:17:49 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 11:04:01 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/23 12:08:37 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@
 int		built_env(char **av, char **env)
 {
 	if (av[1])
-		ft_putendl_fd("env doesn't takes arguments", 2);
+	{
+		sputcmderr(sstrerr(SHERR_INVSNTX), "env", av[1]);
+		return (SHERR_ERR);
+	}
 	else
+	{
 		print_str_arr(env);
-	return (HSH_OK);
+		return (HSH_OK);
+	}
 }
