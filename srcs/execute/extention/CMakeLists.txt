@@ -30,6 +30,8 @@ set(INC				../../libft/includes
 					/Users/bbaelor-/42_to_commit_2/srcs/lib/libhash/includes
 					/Users/bbaelor-/42_to_commit_2/srcs/lib/libshell/includes)
 
+SET(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
+
 include_directories(${INC})
 
 add_library(libft.a SHARED IMPORTED)
