@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:56:17 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/23 21:03:05 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 19:02:49 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 	ft_strcpy(res, res_to_replace);
 	ft_strcat(res, buf);
 	free(res_to_replace);
-	free(buf);
 	return (res);
 }
 
@@ -107,6 +106,7 @@ char	**extention_with_split(char *str)
 			    return (NULL);
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j += ft_strlen(buf);
+			free(buf);
 		}
 		else
 		{
@@ -156,6 +156,7 @@ char	*extention(char *str)
                 return (NULL);
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j += ft_strlen(buf);
+			free(buf);
 		}
 		else
 		{
@@ -193,6 +194,7 @@ int		main(int argc, char **argv, char **env)
 	// sgetenv("HOwqdqwME");
 	//ssetenv("a", "a1 a2 a3 a4");
 	char *res = extention("$HOME");
+	printf("res = %s\n", res);
 	free(res);
 	//printmas(extention_with_split("\"$a\" 1 23"));
 	return (0);

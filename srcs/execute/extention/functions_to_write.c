@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:42 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/23 20:54:27 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 19:00:21 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ char 	*classic_get_env(char *str)
 	if (!res)
 		return (ft_strdup(""));
 	else
-		return (ft_strdup(str));
+		return (ft_strdup(res));
 }
 
 char	*get_content_of_expression(char *str)
@@ -234,7 +234,7 @@ char	*get_content_of_expression(char *str)
 
 	str = erase_repetitions_recursion(str);
 	if (str[1] != '(' && str[1] != '[' && str[1] != '{')
-		res = (classic_get_env(str));
+		res = (classic_get_env(&str[1]));
 	else if (ft_strstr(str, ":-"))
 		res = (use_a_default_value(str));
 	else if (ft_strstr(str, ":="))
