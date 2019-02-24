@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:27:49 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/23 19:26:52 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/24 17:18:50 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 void	shell_handler(int sig)
 {
 	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
-	{
-		if (!g_pid)
-			exit(EXIT_SUCCESS);
-		kill(g_pid, SIGINT);
-	}
+		exit(EXIT_SUCCESS);
 }
 
 void	init_signals(void)

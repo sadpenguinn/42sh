@@ -13,7 +13,7 @@
 FT_NAME =	extention
 SRC_DIR	=	./
 
-SRC		=	extention.c\
+SRC		=	expand.c\
 			functions_to_write.c\
 			strsplit_for_extention.c\
 			/Users/bbaelor-/42_to_commit_2/srcs/shell/init.c\

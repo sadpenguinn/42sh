@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functoins_to_write.c                               :+:      :+:    :+:   */
+/*   psevdo-functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/14 17:45:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/14 18:24:13 by bbaelor-         ###   ########.fr       */
+/*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/02/24 20:34:05 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "extention.h"
 
-char	*get_extension(char *str)
+char	*get_output_of_programm(char *str) ///////////////////////BUTCH
 {
 	return (ft_strdup(str));
 }
 
-int		check_bin_in_path(char *str)
+void	push_to_enviroment(char *name, char *val)
 {
-	if (ft_strchr(str, '/'))
-		return (0);
-	return (1);
+	ssetenv(name, val);
 }
 
-void	switcher_in_processing(t_table_exec *exec)
+char	*get_content_of_var(char *str)
 {
-	(void)exec;
-	return ;
-}
-
-void	configure_and_run_execv(char **env, char **argv,
-								t_table_exec **exec)
-{
-	pid_t	pid;
-
-	(void)exec;
-	pid = fork();
-	if (!pid)
-		execve("/bin/ls", argv, env);
+	return (sgetenv(str));
 }

@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/23 08:13:32 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/24 17:17:17 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ t_uchar	g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
 char	*readline(void);
 
+void     ft_puts(char *buf, int len);
+
 t_matrix	*init_matrix(void);
 t_line		*init_line(void);
 
@@ -108,13 +110,12 @@ t_uchar	get_next_symbol(size_t size);
 void	get_term_params(struct winsize	*w);
 
 int		move_shortcuts(t_uchar c);
-void	add_cursor_offset(int offset);
-void	add_lines(t_matrix *matrix);
-int	readline_mode(t_matrix *matrix, char *str, t_uchar c);
-int	check_esc_code(t_matrix *matrix, t_uchar c);
-int	check_modes(t_matrix *matrix, t_uchar c);
 
-int		make_string_from_symbol(char *str, t_uchar c);
+void	add_cursor_offset(int offset);
+
+int	readline_mode(t_matrix *matrix, t_uchar c);
+int	check_esc_code(t_matrix *matrix, t_uchar c);
+
 void	matrix_string_insert(t_matrix *matrix, t_cursor *pos, const char *str, int size);
 void	matrix_string_delete(t_matrix *matrix, int row, int col);
 
@@ -132,7 +133,9 @@ int	del(t_matrix *matrix);
 int	back_space(t_matrix *matrix);
 
 int print_default(t_matrix *matrix);
+int	print_lines(t_matrix *matrix);
 int	print_autocomplete(t_matrix *matrix);
+
 void	print_prompt(void);
 
 void	line_free(t_line *line);
@@ -143,8 +146,28 @@ void	matrix_del(t_matrix **matrix);
 int	get_utf_offset_left(char *str, int pos);
 int get_utf_offset_right(unsigned char c);
 
-int count_lines_offset(int len);
 int count_string_symbols(char *buf, int n);
-int get_line_prompt_len(int max);
+int	count_string_cols(char *buf, int symbols);
+
+int			get_lines_prompt_len(int max);
+int			get_lines_offset(int len);
+
+int newline_handling(t_matrix *matrix);
+
+void add_lines_prompt_style(void);
+void add_cur_line_prompt_style(void);
+void		add_prompt_style(void);
+
+int	symbol_to_string(t_uchar c, char *str);
+
+int			set_matrix_limits(t_matrix *matrix);
+
+char *matrix_to_string(t_matrix *matrix);
+
+void add_cursor_text(t_matrix *matrix);
+void add_lines_text(t_matrix *matrix);
+void		add_text(t_matrix *matrix, int row, int col);
+
+void		add_line_prefix(t_matrix *matrix, int cur_row);
 
 #endif

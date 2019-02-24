@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:10:56 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/23 00:25:08 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/24 16:45:06 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ static int	is_utf(char c)
 	if ((c >> 7) & 1)
 		return (1);
 	return (0);
+}
+
+static int	check_modes(t_matrix *matrix, t_uchar c)
+{
+	move_shortcuts(c);
+	if (g_mode == READLINE)
+		return (readline_mode(matrix, c));
+	if (g_mode == VI)
+		return (readline_mode(matrix, c));
+	return (1);
 }
 
 static int	check_utf(t_matrix *matrix, t_uchar c)

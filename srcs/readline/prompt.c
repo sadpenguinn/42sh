@@ -43,12 +43,6 @@ static int	get_prompt(char *cwd)
 	return (-1);
 }
 
-void		add_prompt_style(void)
-{
-	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
-	array_add(TEXT_COLOR_BLUE, strlen(TEXT_COLOR_BLUE));
-}
-
 void		add_prompt_prefix(void)
 {
 	array_add("[42sh] ", 7);
