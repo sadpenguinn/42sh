@@ -45,27 +45,38 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/signals.c
 					srcs/shell/argv_parser.c srcs/minishell_lib.c)
 
-set(READLINE_SRC	srcs/readline/array.c
-					srcs/readline/buttons1.c
-					srcs/readline/check_esc_code.c
+set(READLINE_SRC 	srcs/readline/readline.c
+					srcs/readline/main.c
+					srcs/readline/array.c
 					srcs/readline/check_next_symbol.c
-					srcs/readline/get_next_symbol.c
+					srcs/readline/term.c prompt.c
 					srcs/readline/inits.c
-					srcs/readline/line_resize.c
-					srcs/readline/matrix_create_line.c
-					srcs/readline/matrix_erase_line.c
+					srcs/readline/resize_windows.c
 					srcs/readline/matrix_resize.c
-					srcs/readline/matrix_string_delete.c
-					srcs/readline/matrix_string_insert.c
+					srcs/readline/line_resize.c
 					srcs/readline/move_cursor_1.c
 					srcs/readline/move_cursor_2.c
-					srcs/readline/move_shortcuts.c
-					srcs/readline/prompt.c
-					srcs/readline/readline.c
+					srcs/readline/check_esc_code.c
+					srcs/readline/matrix_string_insert.c
+					srcs/readline/matrix_create_line.c
+					srcs/readline/utf.c
+					srcs/readline/matrix_string_delete.c
+					srcs/readline/buttons1.c
+					srcs/readline/matrix_erase_line.c
 					srcs/readline/readline_memdel.c
-					srcs/readline/resize_windows.c
-					srcs/readline/term.c
-					srcs/readline/utf.c)
+					srcs/readline/get_next_symbol.c
+					srcs/readline/move_shortcuts.c
+					srcs/readline/newline_handling.c
+					srcs/readline/add_style.c
+					srcs/readline/add_text.c
+					srcs/readline/symbol_to_string.c
+					srcs/readline/set_matrix_limits.c
+					srcs/readline/matrix_to_string.c
+					srcs/readline/count_string_objects.c
+					srcs/readline/print.c readline_mode.c
+					srcs/readline/add_cursor_offset.c
+					srcs/readline/add_line_prefix.c
+					srcs/readline/get_lines_info.c)
 
 set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_echo.c
