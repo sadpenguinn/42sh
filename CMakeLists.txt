@@ -49,7 +49,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/main.c
 					srcs/readline/array.c
 					srcs/readline/check_next_symbol.c
-					srcs/readline/term.c prompt.c
+					srcs/readline/term.c
+					srcs/readline/prompt.c
 					srcs/readline/inits.c
 					srcs/readline/resize_windows.c
 					srcs/readline/matrix_resize.c
@@ -73,7 +74,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/set_matrix_limits.c
 					srcs/readline/matrix_to_string.c
 					srcs/readline/count_string_objects.c
-					srcs/readline/print.c readline_mode.c
+					srcs/readline/print.c
+					srcs/readline/readline_mode.c
 					srcs/readline/add_cursor_offset.c
 					srcs/readline/add_line_prefix.c
 					srcs/readline/get_lines_info.c)
