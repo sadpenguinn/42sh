@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/24 13:04:54 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/24 15:29:55 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,19 @@ int count_string_symbols(char *buf, int n)
 		cnt++;
 	}
 	return (cnt);
+}
+
+int get_col_offset(char *buf, int symbols)
+{
+	int col;
+
+	col = 0;
+	while (symbols)
+	{
+		col += 1 + get_utf_offset_right(buf[col]);
+		symbols--;
+	}
+	return (col);
 }
 
 int	make_string_from_symbol(char *str, t_uchar c)
@@ -236,7 +249,7 @@ void add_text(t_matrix *matrix, int row, int col)
 		add_line_prefix(matrix, left);
 		array_add(matrix->lines[left]->buf, matrix->lines[left]->len);
 		matrix->last_offset += 1 + (matrix->lines[left]->symbols +
-			get_line_prompt_len(matrix->len)) / g_w.ws_col;
+			get_line_prompt_len(matrix->len) - 1) / g_w.ws_col;
 		array_add("\n", 1);
 		left++;
 	}
@@ -310,8 +323,9 @@ int autocomplete(t_matrix *matrix)
 
 int newline_handling(t_matrix *matrix)
 {
-	int	prev_col;
-	int	prev_row;
+	int		prev_col;
+	int		prev_row;
+	t_line	*line;
 
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] != '\\')
 	{
@@ -322,12 +336,16 @@ int newline_handling(t_matrix *matrix)
 	}
 	prev_col = matrix->cursor->col;
 	prev_row = matrix->cursor->row;
+	line = matrix->lines[prev_row];
 	matrix_create_line(matrix, matrix->cursor->row + 1);
-	matrix_string_insert(matrix, matrix->cursor,
-		matrix->lines[prev_row]->buf + prev_col,
-		matrix->lines[prev_row]->len - prev_col);
-	matrix->lines[prev_row]->len = prev_col - 1;
-	matrix->cursor->col = 0;
+	if (prev_col != line->len)
+	{
+		matrix_string_insert(matrix, matrix->cursor,
+							 line->buf + prev_col, line->len - prev_col);
+		matrix->cursor->col = 0;
+	}
+	line->len = prev_col - 1;
+	line->symbols = count_string_symbols(line->buf, line->len);
 	return (1);
 }
 

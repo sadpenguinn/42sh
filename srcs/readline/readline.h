@@ -145,6 +145,7 @@ int get_utf_offset_right(unsigned char c);
 
 int count_lines_offset(int len);
 int count_string_symbols(char *buf, int n);
+int get_col_offset(char *buf, int symbols);
 int get_line_prompt_len(int max);
 
 #endif
