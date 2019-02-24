@@ -20,6 +20,18 @@ SET(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 set(MAIN			srcs/shell.c
 					srcs/minishell_parser.c)
 
+set(EXEC_SRC		srcs/execute/parser/errors.c
+					srcs/execute/parser/execcmd.c
+					srcs/execute/parser/execfunc.c
+					srcs/execute/parser/execlist1.c
+					srcs/execute/parser/execlist2.c
+					srcs/execute/parser/execlist3.c
+					srcs/execute/parser/execpipecmd.c
+					srcs/execute/parser/execpipes.c
+					srcs/execute/parser/execscmd.c
+					srcs/execute/parser/execute.c
+					srcs/execute/parser/getredir.c)
+
 set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_env.c
 					srcs/shell/init_path.c
@@ -123,5 +135,5 @@ add_subdirectory(${LIBHASH_DIR})
 add_subdirectory(${VECTOR_DIR})
 add_subdirectory(${LIBSHELL_DIR})
 
-add_executable(42sh ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC})
+add_executable(42sh ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC} ${EXEC_SRC})
 target_link_libraries(42sh ${LIBFT} ${LIBHASH} ${VECTOR} ${LIBSHELL})

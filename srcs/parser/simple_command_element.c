@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 20:49:39 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 14:35:25 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/24 12:07:17 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_astree	*get_word(void)
 
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	type = token->type;
-printf("type = %lu\n", type);
+printf("type = %d\n", type);
 	if (!check_word_type(type))
 		return (0);
 printf("check type:%d\n", check_word_type(type));

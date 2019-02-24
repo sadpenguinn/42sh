@@ -19,7 +19,7 @@
 # include "vector.h"
 # include "terminals.h"
 
-typedef unsigned int		t_type;
+typedef int					t_type;
 
 typedef struct				s_lexem
 {

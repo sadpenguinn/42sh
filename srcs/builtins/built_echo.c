@@ -32,9 +32,9 @@ static int		parse_flags(char **av, int *flags)
 	{
 		if (!ft_strcmp(av[i], "-n"))
 			flags[0] = 1;
-		else if (!ft_strcmp(av[i], "-e"))
+		if (!ft_strcmp(av[i], "-e"))
 			flags[0] = 1;
-		else if (!ft_strcmp(av[i], "-E"))
+		if (!ft_strcmp(av[i], "-E"))
 			flags[0] = 0;
 		else
 			return (i);
