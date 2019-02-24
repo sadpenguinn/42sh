@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.h                                        :+:      :+:    :+:   */
+/*   psevdo-functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/23 20:50:55 by bbaelor-         ###   ########.fr       */
+/*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/02/24 19:38:56 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXTENTION_H
-# define EXTENTION_H
+#include "extention.h"
 
-# include "libshell.h"
+char	*get_output_of_programm(char *str) ///////////////////////BUTCH
+{
+	return (ft_strdup(str));
+}
 
-/*
-** ${parameter:-word} 1
-** ${parameter:=word} 2
-** ${parameter:?word} 3
-** ${parameter:+word} 4
-** ${#parameter}      5
-** ${parameter%}      6
-** ${parameter%%}     7
-** ${parameter#}      8
-** ${parameter##}     9
-*/
+void	push_to_enviroment(char *name, char *val)
+{
+	ssetenv(name, val);
+}
 
-char	*get_content_of_expression(char *str);
-char	**strsplit_for_extention(char *str);
-char	*expand(char *str);
+char	*get_content_of_var(char *str)
+{
+	return (sgetenv(str));
+}
 
-#endif
