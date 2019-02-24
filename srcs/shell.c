@@ -30,6 +30,7 @@ int		main(int ac, char **av, char **env)
 	t_astree	*ast;
 
 	init(env);
+	hash_print(g_path);
 	if (argv_parser(ac, av))
 	{
 		destroy();

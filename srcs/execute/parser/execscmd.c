@@ -186,10 +186,8 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 	t_redir	*redir;
 	pid_t	pid;
 
-	/* if (!(path = get_cmd_path([0][0]))) */
-	/* 	return (1); */
-if (!(path = ft_strjoin("/bin/", aven[0][0], 0)))
-	return (1);
+	if (!(path = get_cmd_path(aven[0][0])))
+		return (1);
 	if (!isfork && (pid = fork()))
 		return (pid);
 	while (redirs)
@@ -280,7 +278,7 @@ int	execscmd(t_astree *root, int fd[2], int job, int isfork)
 	freecmd(cmd, aven);
 	if (pid == -1)
 		return (forkerror(aven[0][0]));
-	printf("***OK***\n");
+printf(">>>CMD OK<<<\n");
 	if (job || isfork)
 		return (pid);
 	waitpid(pid, &status, 0);
