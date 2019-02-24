@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:11:49 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/24 13:40:05 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/24 16:02:03 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	move_cursor_up(t_matrix *matrix)
 		matrix->cursor->row--;
 		line = matrix->lines[matrix->cursor->row];
 		symbols = (symbols < line->symbols) ? symbols : line->symbols;
-		col = get_col_offset(line->buf, symbols);
+		col = count_string_cols(line->buf, symbols);
 		matrix->cursor->col	= col;
 	}
 	return (1);
@@ -62,7 +62,7 @@ int	move_cursor_down(t_matrix *matrix)
 		matrix->cursor->row++;
 		line = matrix->lines[matrix->cursor->row];
 		symbols = (symbols < line->symbols) ? symbols : line->symbols;
-		col = get_col_offset(line->buf, symbols);
+		col = count_string_cols(line->buf, symbols);
 		matrix->cursor->col	= col;
 	}
 	return (1);
