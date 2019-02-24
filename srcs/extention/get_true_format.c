@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:42 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 19:40:00 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 21:06:08 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	*use_a_default_value(char *str)
 	if (res)
 		return (res);
 	tmp = ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1);
-	free(str);
 	return (tmp);
 }
 
@@ -63,7 +62,6 @@ char	*assign_a_default_value(char *str)
 	}
 	res = ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1);
 	push_to_enviroment(&tmp[2], res);
-	free(str);
 	return (res);
 }
 

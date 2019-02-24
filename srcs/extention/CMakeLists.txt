@@ -6,7 +6,7 @@ set(SRC				extention.c
 					strsplit_for_extention.c
 					debug_and_main.c
 					strins_sheets.c
-					psevdo-functions.c
+					psevdo_functions.c
 					configurate_of_exptention.c
 					configure_remalloc.c
 					../shell/init.c

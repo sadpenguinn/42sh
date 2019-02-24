@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:32:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 19:39:00 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 20:17:12 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*erase_repetitions_recursion(char *str)
 	return (ft_strjoin("$", expand(&str[1]), 0));
 }
 
-char 	*classic_get_env(char *str)
+char	*classic_get_env(char *str)
 {
 	char *res;
 

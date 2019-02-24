@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.h                                        :+:      :+:    :+:   */
+/*   extention.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/23 20:50:55 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 20:32:42 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*remove_smallest_prefix_pattern(char *str);
 char	*get_classic_var(char *str);
 char	*get_output_of_programm(char *str);
 char	*erase_repetitions_recursion(char *str);
-char 	*classic_get_env(char *str);
+char	*classic_get_env(char *str);
 char	*get_content_of_expression(char *str);
 int		get_len_of_name_var(char *str);
 int		get_len_of_dollar(char *str);

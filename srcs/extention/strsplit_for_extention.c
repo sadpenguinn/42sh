@@ -6,12 +6,20 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 21:11:06 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 19:49:44 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 20:56:24 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "extention.h"
 #include <stdio.h>
+
+static void		brackets_case(char *str, int *i, char c)
+{
+	(*i)++;
+	while (str[*i] && str[*i] != c)
+		(*i)++;
+	(*i)++;
+}
 
 static int		count_words(char *str)
 {
@@ -28,23 +36,12 @@ static int		count_words(char *str)
 			i++;
 		}
 		else if (str[i] == '\'')
-		{
-			i++;
-			while (str[i] && str[i] != '\'')
-				i++;
-			i++;
-		}
+			brackets_case(str, &i, '\'');
 		else if (str[i] == '\"')
-		{
-			i++;
-			while (str[i] && str[i] != '\"')
-				i++;
-			i++;
-		}
+			brackets_case(str, &i, '\"');
 		else
 			i++;
 	}
-	// printf("В ней %d строк\n", str[0] ? count : 0);
 	return (str[0] ? count : 0);
 }
 
@@ -78,7 +75,6 @@ static int		ft_strcpy_extention(char *copy_to, char *copy_from)
 	int i;
 	int j;
 
-	// printf("Пишу %s..\n", copy_from);
 	i = 0;
 	j = 0;
 	while (copy_from[i])
@@ -93,7 +89,6 @@ static int		ft_strcpy_extention(char *copy_to, char *copy_from)
 		}
 	}
 	free(copy_from);
-	// printf("...OK!\n");
 	return (i);
 }
 
@@ -103,7 +98,6 @@ char			**strsplit_for_extention(char *str)
 	int		j;
 	char	**res;
 
-	// printf("В стрсплит прилетела строка <%s>\n", str);
 	res = xmalloc(sizeof(char **) * (count_words(str) + 1));
 	i = 0;
 	j = 0;
@@ -129,6 +123,6 @@ char			**strsplit_for_extention(char *str)
 				i++;
 		}
 	res[j] = NULL;
-		free(str);
+	free(str);
 	return (res);
 }

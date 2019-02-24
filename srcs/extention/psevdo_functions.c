@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 19:38:56 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 20:34:05 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ char	*get_content_of_var(char *str)
 {
 	return (sgetenv(str));
 }
-

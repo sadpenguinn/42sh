@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:38:01 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 19:41:50 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 21:06:32 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*use_an_alternate_value(char *str)
 	if (!res)
 		return (ft_strdup(""));
 	tmp = (ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1));
-	free(str);
 	return (tmp);
 }
 
@@ -39,7 +38,6 @@ char	*get_len_of_value(char *str)
 	tmp = ft_strndup(str, ft_strlen(str) - 1);
 	res = get_content_of_var(&tmp[3]);
 	free(tmp);
-	free(str);
 	if (!res)
 		return (ft_itoa(0));
 	return (ft_itoa(ft_strlen(res)));
@@ -89,7 +87,7 @@ char	*remove_smallest_prefix_pattern(char *str)
 
 char	*get_content_of_expression(char *str)
 {
-	char 	*res;
+	char	*res;
 
 	str = erase_repetitions_recursion(str);
 	if (str[1] != '(' && str[1] != '[' && str[1] != '{')
@@ -97,21 +95,21 @@ char	*get_content_of_expression(char *str)
 	else if (ft_strstr(str, ":-"))
 		res = use_a_default_value(str);
 	else if (ft_strstr(str, ":="))
-		res = assign_a_default_value(str); //
+		res = assign_a_default_value(str);
 	else if (ft_strstr(str, ":?"))
 		res = display_error_if_null_or_unset(str);
 	else if (ft_strstr(str, ":+"))
-		res = use_an_alternate_value(str);//
+		res = use_an_alternate_value(str);
 	else if (str[2] == '#')
-		res = get_len_of_value(str); //
+		res = get_len_of_value(str);
 	else if (ft_strstr(str, "%%"))
 		res = ft_strdup("<obosralsya(%%>");
 	else if (ft_strstr(str, "%"))
-		res = remove_smallest_suffix_pattern(str); //
+		res = remove_smallest_suffix_pattern(str);
 	else if (ft_strstr(str, "##"))
 		res = ft_strdup("<obosralsya(##>");
 	else if (ft_strstr(str, "#"))
-		res = remove_smallest_prefix_pattern(str); //
+		res = remove_smallest_prefix_pattern(str);
 	else
 		res = ft_strdup("something wrong in get_content_of_expression");
 	free(str);
