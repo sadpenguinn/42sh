@@ -59,8 +59,6 @@ void		print_prompt(void)
 	char	cwd[PATH_MAX];
 	int		pos;
 
-	array_add(CURSOR_MOVE_LINE_START, strlen(CURSOR_MOVE_LINE_START));
-	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
 	add_prompt_style();
 	add_prompt_prefix();
 	pos = get_prompt(cwd);
@@ -73,5 +71,6 @@ void		print_prompt(void)
 	}
 	array_add(COLOR_DEFAULT, strlen(COLOR_DEFAULT));
 	array_add("$\n", 2);
+	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
 	array_flush();
 }

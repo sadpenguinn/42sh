@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/23 08:15:41 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/24 13:04:54 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 #include "shell.h"
 #include "array.h"
 #include <time.h>
-
 
 void     ft_puts(char *buf, int len)
 {
@@ -228,6 +227,7 @@ static void	add_line_prefix(t_matrix *matrix, int cur_row)
 void add_text(t_matrix *matrix, int row, int col)
 {
 	int	left;
+	int symbols;
 
 	left = matrix->left_limit;
 	reset_line_offset(matrix);
@@ -235,36 +235,20 @@ void add_text(t_matrix *matrix, int row, int col)
 	{
 		add_line_prefix(matrix, left);
 		array_add(matrix->lines[left]->buf, matrix->lines[left]->len);
-		if (g_w.ws_col)
-		{
-			matrix->last_offset += 1 + (matrix->lines[left]->symbols +
-					get_line_prompt_len(matrix->len) - 1) / g_w.ws_col;
-			array_add("\n", 1);
-		}
+		matrix->last_offset += 1 + (matrix->lines[left]->symbols +
+			get_line_prompt_len(matrix->len)) / g_w.ws_col;
+		array_add("\n", 1);
 		left++;
 	}
 	add_line_prefix(matrix, left);
 	array_add(matrix->lines[left]->buf, col);
-	if (g_w.ws_col)
-	{
-		if (col == matrix->lines[row]->len)
-		{
-			matrix->last_offset += (matrix->lines[left]->symbols +
-									get_line_prompt_len(matrix->len)) / g_w.ws_col;
-			if ((matrix->lines[left]->symbols
-			+ get_line_prompt_len(matrix->len)) % g_w.ws_col == 0)
-				array_add("\n", 1);
-		}
-		else
-		{
-			matrix->last_offset +=
-				(count_string_symbols(matrix->lines[left]->buf, matrix->cursor->col)
-				+ get_line_prompt_len(matrix->len)) / g_w.ws_col;
-			if ((count_string_symbols(matrix->lines[left]->buf, matrix->cursor->col)
-			+ get_line_prompt_len(matrix->len)) % g_w.ws_col == 0)
-				array_add("\n", 1);
-		}
-	}
+	symbols = (col == matrix->lines[left]->len) ?
+			  matrix->lines[left]->symbols :
+			  count_string_symbols(matrix->lines[left]->buf, col);
+	symbols += get_line_prompt_len(matrix->len);
+	matrix->last_offset += symbols / g_w.ws_col;
+	if (symbols % g_w.ws_col == 0)
+		array_add("\n", 1);
 }
 
 char *matrix_to_string(t_matrix *matrix)
