@@ -59,7 +59,7 @@ char	*get_pahom(char *str, int *i, int *len_of_expression)
 	*i += *len_of_expression;
 	res = get_content_of_expression(ft_strndup(str, *len_of_expression));
 	if (!res)
-		res = ft_strdup("");
+		return (NULL);
 	return (res);
 }
 
@@ -75,6 +75,7 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 	ft_strcpy(res, res_to_replace);
 	ft_strcat(res, buf);
 	free(res_to_replace);
+	free(buf);
 	return (res);
 }
 
@@ -102,6 +103,8 @@ char	**extention_with_split(char *str)
 		if (str[i] == '$' && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
+			if (!buf)
+			    return (NULL);
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j += ft_strlen(buf);
 		}
@@ -149,6 +152,8 @@ char	*extention(char *str)
 		else if (str[i] == '$' && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
+            if (!buf)
+                return (NULL);
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j += ft_strlen(buf);
 		}
@@ -171,18 +176,24 @@ void	printmas(char **str)
 	while (str[i])
 	{
 		printf("str[%d] = %s\n", i, str[i]);
+		free(str[i]);
 		i++;
 	}
+	free(str);
+
 }
 
 int		main(int argc, char **argv, char **env)
 {
+
 	(void)argc;
 	(void)argv;
 	init_env(env);
 	// hash_print(g_hash_env);
 	// sgetenv("HOwqdqwME");
 	//ssetenv("a", "a1 a2 a3 a4");
-	printmas(extention_with_split("\"$a\" 1 23"));
+	char *res = extention("$HOME");
+	free(res);
+	//printmas(extention_with_split("\"$a\" 1 23"));
 	return (0);
 }
