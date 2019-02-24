@@ -44,7 +44,7 @@ t_astree	*command(void)
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
 	if (type == DO || type == DONE || type == IN || type == THEN ||
-		type == FI || type == ESAC)
+		type == FI || type == ESAC || type == ELSE || type == ELIF)
 		return (0);
 	if (!g_parseerr && (res = function_def()))
 		return (res);

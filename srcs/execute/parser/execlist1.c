@@ -14,6 +14,9 @@
 
 int		execlist1(t_astree *root, int fd[2], int job, int isfork)
 {
+#ifdef EXECUTE_DEBUG
+printf("execlist1:%d\n", root->type);
+#endif
 	int		res;
 
 	if (!root)

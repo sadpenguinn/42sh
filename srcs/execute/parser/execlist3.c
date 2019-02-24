@@ -14,25 +14,19 @@
 
 int		execlist3(t_astree *root, int fd[2], int job, int isfork)
 {
-int res;
+#ifdef EXECUTE_DEBUG
+printf("execlist3:%d\n", root->type);
+#endif
 
 	if (!root)
 		return (EXIT_SUCCESS);
-printf("===type=== %d\n", root->type);
 	if (root->type != LIST3 && root->type != AND_IF)
 		return (execpipecmd(root, fd, job, isfork));
-printf("===GO L3==\n");
 	if (!root->right)
 		return (execpipecmd(root->left, fd, job, isfork));
-	if ((res = execpipecmd(root->left, fd, EX_NOFG, isfork)) != EXIT_SUCCESS)
-	{
-		printf(">>fail(list3; pcmd)<<res:%d\n", res);
+	if (execpipecmd(root->left, fd, EX_NOFG, isfork) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
-	}
-	if ((res = execlist3(root->right, fd, job, isfork)) != EXIT_SUCCESS)
-	{
-		printf(">>fail(list3; list3->r)<<res:%d\n", res);
+	if (execlist3(root->right, fd, job, isfork) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
-	}
 	return (EXIT_SUCCESS);
 }

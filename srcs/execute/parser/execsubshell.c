@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   execsubshell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/24 11:46:37 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/24 11:46:37 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/24 19:25:54 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/24 19:25:54 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**                /
+**        SUBSHELL
+**       /
+** CMPLST
+*/
+
 #include "execute.h"
 
-int		execute(t_astree *root)
+int		execsubshell(t_astree *root, int fd[2], int job, int isfork)
 {
-#ifdef EXECUTE_DEBUG
-printf("IN EXECUTE\n");
-#endif
-	int fd[2];
-	int res;
+	int pid;
+	int status;
 
-	if (!root)
-		return (EXIT_FAILURE);
-	fd[0] = STDIN_FILENO;
-	fd[1] = STDOUT_FILENO;
-	res = execlist1(root, fd, 0, 0);
-	return (res);
+	if (!isfork)
+		pid = fork();
+	if (isfork || !pid)
+		exit(execlist1(root->left, fd, job, 1));
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (EXIT_FAILURE);
 }

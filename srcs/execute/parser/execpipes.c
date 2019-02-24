@@ -37,7 +37,7 @@ int			execpipes(t_astree	*root, int fd[2], int job, int isfork)
 		if (pipe_create(fd, cmdfd, pipefd) == -1)
 			return (-1);
 		if (!(pid  = fork()))
-			execcmd(root->left, cmdfd, 0, 1);
+			exit(execcmd(root->left, cmdfd, 0, 1));
 		close(cmdfd[1]);
 		fd[0] = pipefd[0];
 		status = execpipes(root->right, fd, job, isfork);
@@ -48,11 +48,19 @@ int			execpipes(t_astree	*root, int fd[2], int job, int isfork)
 	else
 	{
 		if (!(pid  = fork()))
-			execcmd(root->left, fd, 0, 1);
+			exit(execcmd(root->left, fd, 0, 1));
+		close(fd[0]);
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 		return (228);
 	}
+	/*  SMALL PIPE FOR TESTS */
+	/* if (pipe_create(fd, cmdfd, pipefd) == -1) */
+	/* 	return (-1); */
+	/* execcmd(root->left, cmdfd, 0, 0); */
+	/* close(pipefd[1]); */
+	/* fd[0] = pipefd[0]; */
+	/* execcmd(root->right->left, fd, 0, 0); */
 	return (0);
 }

@@ -61,7 +61,7 @@ static void		init_paths(char **paths)
 			continue ;
 		}
 		ft_strdel(&str);
-		init_read_dir(cell->key, dirp);
+		init_read_dir(ft_strdup(cell->key), dirp);
 		closedir(dirp);
 		i++;
 	}

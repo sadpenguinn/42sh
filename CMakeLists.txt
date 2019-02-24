@@ -29,6 +29,9 @@ set(EXEC_SRC		srcs/execute/parser/errors.c
 					srcs/execute/parser/execpipecmd.c
 					srcs/execute/parser/execpipes.c
 					srcs/execute/parser/execscmd.c
+					srcs/execute/parser/execcase.c
+					srcs/execute/parser/execif.c
+					srcs/execute/parser/execsubshell.c
 					srcs/execute/parser/execute.c
 					srcs/execute/parser/getredir.c)
 

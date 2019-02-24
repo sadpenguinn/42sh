@@ -22,7 +22,7 @@
 
 #include "execute.h"
 
-int		execcase(t_astree *root, int fd[2], int flag)
+int		execcase(t_astree *root, int fd[2], int job, int isfork)
 {
 	char		*word;
 	t_astree	*pattern;
@@ -32,7 +32,7 @@ int		execcase(t_astree *root, int fd[2], int flag)
 	{
 		pattern = root->left;
 		if (ft_strequ(word, pattern->left->content))
-			return (execlist1(pattern->right, fd, flag));
+			return (execlist1(pattern->right, fd, job, isfork));
 	}
 	return (EXIT_SUCCESS);
 }

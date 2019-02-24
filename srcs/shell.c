@@ -22,6 +22,12 @@ int				g_parseerr = 0;
 
 #include "execute.h"
 
+
+void	fff(char *k, char *v, void *d)
+{
+	printf("%s=%s=%s\n", k, v, (char *)d);
+}
+
 int		main(int ac, char **av, char **env)
 {
 	char		*buf;
@@ -30,13 +36,29 @@ int		main(int ac, char **av, char **env)
 	t_astree	*ast;
 
 	init(env);
-	hash_print(g_path);
-	if (argv_parser(ac, av))
-	{
-		destroy();
-		return (EXIT_SUCCESS);
-	}
-	readline();
+
+
+
+	t_hshtb	*ptr;
+	size_t	size;
+	size_t	i;
+
+	i = 0;
+	size = g_path->size;
+	ptr = g_path->table;
+	/* while (i < size) */
+	/* { */
+	/* 	if (ptr->key) */
+	/* 		(fff)(ptr->key, ptr->value, ptr->data); */
+	/* 	ptr++; */
+	/* 	i++; */
+	/* } */
+
+	/* if (argv_parser(ac, av)) */
+	/* { */
+	/* 	destroy(); */
+	/* 	return (EXIT_SUCCESS); */
+	/* } */
 	while ((buf = readline()))
 	{
 		lex = lexer(buf, ft_strlen(buf));

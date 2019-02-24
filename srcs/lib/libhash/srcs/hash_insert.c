@@ -93,5 +93,5 @@ t_hshtb					*hash_insert(const char *key, const char *value,
 		if (!(hash_realloc(hash, new_size)))
 			return (NULL);
 	index = hash_index(key, hash);
-	return (hash_insert_cell(key, value, hash, index));
+	return (hash_insert_cell(key, value, hash, index, data));
 }

@@ -24,17 +24,15 @@ char *expand(char *str)
 	char *new;
 
 	new = ft_strdup(str);
-	/* free(str); */
 	return (new);
 }
-char **expandarg(char *str)
+char **expandv(char *str)
 {
 	char **new;
 
 	new = malloc(sizeof(char *) * 2);
 	new[0] = ft_strdup(str);
 	new[1] = 0;
-	/* free(str); */
 	return (new);
 }
 /* char **get_alias(char *str) */
@@ -143,7 +141,7 @@ char	**get_argv(t_list *args)
 	while (lst)
 	{
 		arg =(char *)lst->data;
-		lst->data = (char **)expandarg(arg);
+		lst->data = (char **)expandv(arg);
 		free(arg);
 		lst = lst->next;
 	}
@@ -187,9 +185,9 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 	pid_t	pid;
 
 	if (!(path = get_cmd_path(aven[0][0])))
-		return (1);
+		return (-1);
 	if (!isfork && (pid = fork()))
-		return (pid);
+		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
 	while (redirs)
 	{
 		redir = (t_redir *)redirs->data;
@@ -239,6 +237,9 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 	free(aven[0]);
 	free(aven[1]);
 	redirs = cmd[2];
+	// SKIP PIPE REDIR
+	redirs = redirs->next;
+	redirs = redirs->next;
 	while (redirs)
 	{
 		if (((t_redir *)redirs->data)->fd[1] > 2)
@@ -261,6 +262,9 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 
 int	execscmd(t_astree *root, int fd[2], int job, int isfork)
 {
+#ifdef EXECUTE_DEBUG
+printf("execscmd:%d:%d\n", root->type, isfork);
+#endif
 	t_list	*cmd[3];
 	char	**aven[2];
 	pid_t	pid;
@@ -277,8 +281,7 @@ int	execscmd(t_astree *root, int fd[2], int job, int isfork)
 		pid = execcommand(aven, cmd[2], isfork);
 	freecmd(cmd, aven);
 	if (pid == -1)
-		return (forkerror(aven[0][0]));
-printf(">>>CMD OK<<<\n");
+		return (-1);
 	if (job || isfork)
 		return (pid);
 	waitpid(pid, &status, 0);

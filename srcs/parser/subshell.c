@@ -10,6 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**                /
+**        SUBSHELL
+**       /
+** CMPLST
+*/
+
 #include "parser.h"
 
 t_astree	*subshell(void)
@@ -18,8 +25,10 @@ t_astree	*subshell(void)
 
 	if (!checktype(OBRACKET))
 		return (0);
-	if (!(root = compound_list()))
-		return (parseerror());
+	root = xmalloc(sizeof(t_astree));
+	root->type = SUBSHELL;
+	if (!(root->left = compound_list()))
+		return (freeastree(root), parseerror());
 	if (!checktype(CBRACKET))
 		return (freeastree(root), parseerror());
 	return (root);

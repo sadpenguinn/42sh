@@ -77,5 +77,6 @@
 # define REDIRECTION			SHIFT + 118
 # define COMMAND				SHIFT + 119
 # define ASSIGMENT_WORD			SHIFT + 120
+# define SUBSHELL				SHIFT + 121
 
 #endif

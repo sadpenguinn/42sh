@@ -14,7 +14,9 @@
 
 int		execlist2(t_astree *root, int fd[2], int job, int isfork)
 {
-int res;
+#ifdef EXECUTE_DEBUG
+printf("execlist1:%d\n", root->type);
+#endif
 
 	if (!root)
 		return (EXIT_SUCCESS);
@@ -22,10 +24,8 @@ int res;
 		return (execlist3(root, fd, job, isfork));
 	if (!root->right)
 		return (execlist3(root->left, fd, job, isfork));
-	if ((res = execlist3(root->left, fd, EX_NOFG, isfork)) == EXIT_SUCCESS)
-	{
+	if (execlist3(root->left, fd, EX_NOFG, isfork) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
-	}
 	if (execlist2(root->right, fd, job, isfork) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);

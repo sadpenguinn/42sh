@@ -40,7 +40,7 @@ static t_astree	*list3_rest(void)
 	newline_list();
 	root = xmalloc(sizeof(t_astree));
 	root->type = AND_IF;
-	if (!(root->left = pipeline()))
+	if (!(root->left = pipeline_command()))
 		return (savecur(curtmp), freeastree(root));
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (root);
@@ -56,7 +56,7 @@ t_astree		*list3(void)
 	t_astree		*root;
 	t_astree		*res[2];
 
-	if (!(res[0] = pipeline()))
+	if (!(res[0] = pipeline_command()))
 		return (0);
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (res[0]);

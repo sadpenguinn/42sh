@@ -14,13 +14,14 @@
 
 int		execpipecmd(t_astree *root, int fd[2], int flag, int isfork)
 {
+#ifdef EXECUTE_DEBUG
+printf("execpipecmd:%d\n", root->type);
+#endif
 	if (!(root) || !(root->left))
 		return (-1);
 	if (root->type == NOT)
 		return (!execpipecmd(root->left, fd, flag, isfork));
 	if (root->left->type == REST)
 		return (execpipes(root->left, fd, flag, isfork));
-	if (root->left->type == COMMAND)
-		return (execcmd(root->left, fd, flag, 0));
-	return (777);
+	return (execcmd(root->left, fd, flag, 0));
 }
