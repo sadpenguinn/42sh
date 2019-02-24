@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 20:52:51 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 15:51:30 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/24 12:31:31 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define TERMINALS_H
 
 # define SHIFT              	50
+
+/*
+* Internal states for lexer & parser
+*/
 
 # define DO                		SHIFT + 3 /* do */
 # define DONE              		SHIFT + 5 /* done */
@@ -32,6 +36,7 @@
 # define WHILE             		SHIFT + 52 /* while */
 # define WORD              		SHIFT + 53 /* word */
 # define NEWLINE           		SHIFT + 54 /* \n */
+# define AND               		SHIFT + 55 /* & */
 # define SPACE             		SHIFT + 56 /* sp */
 # define TAB             		SHIFT + 56 /* tab */
 # define LESS              		SHIFT + 57 /* < */
@@ -41,7 +46,7 @@
 # define DGREAT            		SHIFT + 62 /* >> */
 # define DLESSDASH         		SHIFT + 64 /* <<- */
 # define CLOBBER           		SHIFT + 65 /* >| */
-# define PIPEAND				SHIFT + 66 /* |& */
+# define OR_IF					SHIFT + 66 /* || */
 # define GREATAND          		SHIFT + 68 /* &> */
 # define SEMI              		SHIFT + 69 /* ; */
 # define AND_IF            		SHIFT + 70 /* && */
@@ -55,35 +60,22 @@
 # define CBRACE            		SHIFT + 91 /* } */
 # define COND					SHIFT + 93 /* [ ... ] */
 # define ARITH					SHIFT + 96 /* (( ... )) */
-
-# define OR_IF             		SHIFT + 222 /* || */
-# define AND               		SHIFT + 258 /* & */
-# define NOT               		SHIFT + 261 /* ! */
-# define CMDREDIR				SHIFT + 264
-# define LIST1					SHIFT + 267
-# define LIST2					SHIFT + 268
-# define LIST3					SHIFT + 269
-# define TOKEOF					SHIFT + 270
-# define REST					SHIFT + 272
-# define PIPECMD				SHIFT + 273
-# define NUMBER					SHIFT + 274
-# define REDIRECTION			SHIFT + 275
-# define TLESS					SHIFT + 266 /* <<< */
-# define COMMAND				SHIFT + 276
-# define ASSIGMENT_WORD			SHIFT + 277
+# define NOT               		SHIFT + 104 /* ! */
 
 /*
-** Unused defines
+* Internal states for parser
 */
 
-/*# define DBL_LBRACKET      		SHIFT + 230 *//* [[ *//*
-# define DBL_RBRACKET      		SHIFT + 231 *//* ]] *//*
-# define DBL_LPARENTHESIS  		SHIFT + 232 *//* (( *//*
-# define DBL_RPARENTHESIS  		SHIFT + 233 *//* )) *//*
-# define LBRACKET          		SHIFT + 234 *//* [ *//*
-# define RBRACKET          		SHIFT + 235 *//* ] *//*
-# define SINGLE_QUOTE      		SHIFT + 239 *//* ' *//*
-# define QUOTE             		SHIFT + 240 *//* " *//*
-# define HASH              		SHIFT + 241 *//* # */
+# define CMDREDIR				SHIFT + 110
+# define LIST1					SHIFT + 111
+# define LIST2					SHIFT + 112
+# define LIST3					SHIFT + 113
+# define TOKEOF					SHIFT + 114
+# define REST					SHIFT + 115
+# define PIPECMD				SHIFT + 116
+# define NUMBER					SHIFT + 117
+# define REDIRECTION			SHIFT + 118
+# define COMMAND				SHIFT + 119
+# define ASSIGMENT_WORD			SHIFT + 120
 
 #endif
