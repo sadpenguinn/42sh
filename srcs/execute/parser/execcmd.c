@@ -12,7 +12,7 @@
 
 #include "execute.h"
 
-int		execcmd(t_astree *root, int fd[2], int job, void *ppid)
+int		execcmd(t_astree *root, int fd[2], int job, int isfork)
 {
 	/* if (root->type == FUNCTION) */
 	/* 	return (execfunc(root, fd, job)); */
@@ -33,7 +33,7 @@ int		execcmd(t_astree *root, int fd[2], int job, void *ppid)
 	/* if (root->type == COND) */
 	/* 	return (execcond(root, fd, job)); */
 	if (root->type == COMMAND)
-		return (execscmd(root, fd, job, ppid));
+		return (execscmd(root, fd, job, isfork));
 	/* return (execlist1(root, fd, job, ppid)); */
 	return (-228);
 }

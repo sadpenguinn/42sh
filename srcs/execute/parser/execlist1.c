@@ -12,22 +12,23 @@
 
 #include "execute.h"
 
-int		execlist1(t_astree *root, int fd[2], int job, void *ppid)
+int		execlist1(t_astree *root, int fd[2], int job, int isfork)
 {
 	int		res;
 
 	if (!root)
 		return (EXIT_SUCCESS);
+(void)job;
 	/* if (job == EX_FG && root->type == LIST1) */
 	/* 	return (subshell(root, fd, EX_FG)); */
 	if (root->type != LIST1 && root->type != AND && root->type != SEMI &&
 		root->type != NEWLINE)
-		return (execlist2(root, fd, EX_NOFG, ppid));
+		return (execlist2(root, fd, EX_NOFG, isfork));
 	if (root->right && root->right->type == AND)
-		res = execlist2(root->left, fd, EX_FG, ppid);
+		res = execlist2(root->left, fd, EX_FG, isfork);
 	else
-		res = execlist2(root->left, fd, EX_NOFG, ppid);
+		res = execlist2(root->left, fd, EX_NOFG, isfork);
 	if (!root->right || !root->right->left)
 		return (res);
-	return (execlist1(root->right, fd, 0, ppid));
+	return (execlist1(root->right, fd, 0, isfork));
 }

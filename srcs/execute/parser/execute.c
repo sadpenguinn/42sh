@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execpipecmd.c                                      :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/13 16:01:57 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/20 13:41:56 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/24 11:46:37 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/24 11:46:37 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int		execpipecmd(t_astree *root, int fd[2], int flag, int isfork)
+int		execute(t_astree *root)
 {
-	if (!(root) || !(root->left))
-		return (-1);
-	if (root->type == NOT)
-		return (!execpipecmd(root->left, fd, flag, isfork));
-	if (root->left->type == REST)
-		return (execpipes(root->left, fd, flag, isfork));
-	if (root->left->type == COMMAND)
-		return (execcmd(root->left, fd, flag, 0));
-	return (777);
+	int fd[2];
+	int res;
+
+	fd[0] = STDIN_FILENO;
+	fd[1] = STDOUT_FILENO;
+	res = execlist1(root, fd, 0, 0);
+	return (res);
 }

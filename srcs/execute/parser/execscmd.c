@@ -180,7 +180,7 @@ char	**get_envp(t_list *envs)
 	/* 	envp = (char **)ft_joinvect((void **)envp, (void **)g_env, 0); */
 	return (envp);
 }
-int		execute(char **aven[2], t_list *redirs)
+int		execcommand(char **aven[2], t_list *redirs, int isfork)
 {
 	char	*path;
 	t_redir	*redir;
@@ -190,7 +190,7 @@ int		execute(char **aven[2], t_list *redirs)
 	/* 	return (1); */
 if (!(path = ft_strjoin("/bin/", aven[0][0], 0)))
 	return (1);
-	if ((pid = fork()))
+	if (!isfork && (pid = fork()))
 		return (pid);
 	while (redirs)
 	{
@@ -210,8 +210,7 @@ int	set_envs(t_list	*envs)
 
 	while(envs)
 	{
-		val = (char *)envs->data;
-		while (*val != '=')
+		val = (char *)envs->data; while (*val != '=')
 			val++;
 		*val++ = 0;
 		/* ssetenv((char *)envs->data, val); */
@@ -262,7 +261,7 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 **	aven[1] - envp[][]
 */
 
-int	execscmd(t_astree *root, int fd[2], int job, void *ppid)
+int	execscmd(t_astree *root, int fd[2], int job, int isfork)
 {
 	t_list	*cmd[3];
 	char	**aven[2];
@@ -277,12 +276,12 @@ int	execscmd(t_astree *root, int fd[2], int job, void *ppid)
 	/* else if ((status = get_builtin(aven[0][0])) != -1) */
 	/* 	pid = buitin(status, args); */
 	else
-		pid = execute(aven, cmd[2]);
+		pid = execcommand(aven, cmd[2], isfork);
 	freecmd(cmd, aven);
 	if (pid == -1)
 		return (forkerror(aven[0][0]));
 	printf("***OK***\n");
-	if (job || ppid)
+	if (job || isfork)
 		return (pid);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))

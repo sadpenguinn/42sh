@@ -38,21 +38,17 @@ typedef struct	s_cmd
 	int			job;
 }				t_cmd;
 
-/*
-**	compound_list -> exexlist1
-*/
-
-int		execlist1(t_astree *root, int fd[2], int job, void *ppid);
-int		execlist2(t_astree *root, int fd[2], int job, void *ppid);
-int		execlist3(t_astree *root, int fd[2], int job, void *ppid);
-int		execpipecmd(t_astree *root, int fd[2], int job, void *ppid);
-int		execpipes(t_astree	*root, int fd[2], int job, void *ppid);
-int		execcmd(t_astree *root, int fd[2], int job, void *ppid);
-int		execscmd(t_astree *root, int fd[2], int job, void *ppid);
+int		execute(t_astree *root);
+int		execlist1(t_astree *root, int fd[2], int job, int isfork);
+int		execlist2(t_astree *root, int fd[2], int job, int isfork);
+int		execlist3(t_astree *root, int fd[2], int job, int isfork);
+int		execpipecmd(t_astree *root, int fd[2], int job, int isfork);
+int		execpipes(t_astree	*root, int fd[2], int job, int isfork);
+int		execcmd(t_astree *root, int fd[2], int job, int isfork);
+int		execscmd(t_astree *root, int fd[2], int job, int isfork);
 
 int		execcase(t_astree *root, int fd[2], int job);
 int		execif(t_astree *root, int fd[2], int job);
-
 int		subshell(t_astree *root, int fd[2], int job);
 int		function(t_astree *func, char **argv, int fd[2], int job);
 

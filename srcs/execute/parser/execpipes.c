@@ -14,15 +14,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-void		*threadcmd(void *data)
-{
-	t_cmd	*cmd;
-
-	cmd = (t_cmd *)data;
-	execcmd(cmd->root, cmd->fd, cmd->job, cmd->ppid);
-	return (0);
-}
-
 static int	pipe_create(int fd[2], int cmdfd[2], int pipefd[2])
 {
 	if (pipe(pipefd) == -1)
@@ -34,34 +25,31 @@ static int	pipe_create(int fd[2], int cmdfd[2], int pipefd[2])
 	return (0);
 }
 
-int			execpipes(t_astree	*root, int fd[2], int job, void *ppid)
+int			execpipes(t_astree	*root, int fd[2], int job, int isfork)
 {
-	int			pipefd[2];
-	pthread_t	tid;
-	t_cmd		cmd;
-	void 		*res;
+	int		pipefd[2];
+	int		cmdfd[2];
+	pid_t	pid;
+	int		res;
 
-	cmd.root = root->left;
-	cmd.job = job;
-	cmd.ppid = ppid;
 	if (root->right)
 	{
-		if (pipe_create(fd, cmd.fd, pipefd) == -1)
+		if (pipe_create(fd, cmdfd, pipefd) == -1)
 			return (-1);
-		if (pthread_create(&tid, 0, threadcmd, &cmd))
-			return (threaderror());
-pthread_join(tid, &res);
+		if (!(pid  = fork()))
+			execcmd(root->left, cmdfd, 0, 1);
+		close(cmdfd[1]);
 		fd[0] = pipefd[0];
-		return (execpipes(root->right, fd, job, pipe));
-		return (0);
+		res = execpipes(root->right, fd, job, isfork);
+		waitpid(pid, 0, 0);
+		return (res);
 	}
 	else
 	{
-		ft_memmove(cmd.fd, fd, sizeof(int) * 2);
-		if (pthread_create(&tid, 0, threadcmd, &cmd))
-			return (threaderror());
-		pthread_join(tid, &res);
-		return (0);
+		if (!(pid  = fork()))
+			execcmd(root->left, fd, 0, 1);
+		waitpid(pid, 0, 0);
+		return (228);
 	}
 	return (0);
 }

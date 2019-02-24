@@ -68,7 +68,8 @@ int main(void)
 	tree[52].type = WORD;
 	tree[52].content = ft_strdup("-e");
 
-	execlist1(&tree[90], fd, 0, 0);
+	execute(&tree[90]);
+	/* execlist1(&tree[90], fd, 0, 0); */
 	/* execscmd(&tree[11], fd, 0, 0); */
 	return (0);
 }
