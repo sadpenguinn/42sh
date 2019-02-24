@@ -6,13 +6,11 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/23 13:04:54 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/24 14:23:40 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libhash.h"
-
-static void				*g_hash_data = NULL;
 
 static size_t			hash_check_avail(t_hash *hash)
 {
@@ -52,7 +50,7 @@ static t_hshtb			*hash_insert_iter(t_hash *hash, t_hshindex index,
 }
 
 static t_hshtb			*hash_insert_cell(const char *key, const char *value,
-												t_hash *hash, t_hshindex index)
+								t_hash *hash, t_hshindex index, const void *data)
 {
 	t_hshindex	i;
 	t_hshtb		*ptr;
@@ -71,7 +69,7 @@ static t_hshtb			*hash_insert_cell(const char *key, const char *value,
 	ft_strdel(&ptr->value);
 	new.key = ft_strdup(key);
 	new.value = ft_strdup(value);
-	new.data = g_hash_data;
+	new.data = (void *)data;
 	ft_memmove((void *)ptr, (void *)&new, sizeof(t_hshtb));
 	hash->filled++;
 	return (ptr);
@@ -91,7 +89,6 @@ t_hshtb					*hash_insert(const char *key, const char *value,
 
 	if (!hash || !hash->table || !key)
 		return (NULL);
-	g_hash_data = (void *)data;
 	if ((new_size = hash_check_avail(hash)))
 		if (!(hash_realloc(hash, new_size)))
 			return (NULL);
