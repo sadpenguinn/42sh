@@ -42,7 +42,6 @@ static t_astree	*get_caseword()
 
 t_astree		*case_command(void)
 {
-printf("in case_command\n");
 	t_astree	*res;
 	t_astree	*root;
 

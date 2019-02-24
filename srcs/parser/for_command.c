@@ -89,7 +89,7 @@ t_astree	*for_command(void)
 	int			type;
 	t_astree	*root;
 
-printf("in for_command\n");
+/* printf("in for_command\n"); */
 	if (!checktype(FOR))
 		return (0);
 	root = xmalloc(sizeof(t_astree));

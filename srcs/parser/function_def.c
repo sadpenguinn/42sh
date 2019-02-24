@@ -87,7 +87,7 @@ static t_astree	*function_def_3(void)
 t_astree	*function_def(void)
 {
 	t_astree	*res;
-printf("in function_def\n");
+/* printf("in function_def\n"); */
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != FUNCTION)

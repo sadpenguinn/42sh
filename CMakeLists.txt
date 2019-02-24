@@ -15,7 +15,7 @@ set(VECTOR_DIR		srcs/lib/vector)
 set(VECTOR_INC		srcs/lib/vector/includes)
 set(LIBSHELL		shell)
 set(LIBSHELL_DIR	srcs/lib/libshell)
-SET(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
+# SET(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
 set(MAIN			srcs/shell.c
 					srcs/minishell_parser.c)
@@ -96,6 +96,7 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/here_end.c
 					srcs/parser/if_command.c
 					srcs/parser/inpuntunit.c
+				srcs/parser/print_astree.c
 					srcs/parser/io_file.c
 					srcs/parser/io_here.c
 					srcs/parser/list1.c

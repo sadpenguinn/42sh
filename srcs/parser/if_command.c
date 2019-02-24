@@ -60,7 +60,7 @@ static t_astree	*get_elif(t_astree *res)
 
 t_astree		*if_command(void)
 {
-printf("in if_command\n");
+/* printf("in if_command\n"); */
 	t_astree        *res;
 	t_astree        *root;
 
@@ -70,7 +70,7 @@ printf("in if_command\n");
 		return (parseerror());
 	if (!checktype(THEN))
 		return (freeastree(res), parseerror());
-printf("then\n");
+/* printf("then\n"); */
 	root = xmalloc(sizeof(t_astree));
 	root->type = IF;
 	root->left = res;

@@ -45,9 +45,15 @@ static void		init_paths(char **paths)
 	while (paths[i])
 	{
 		if (!(dirp = opendir(paths[i])))
+		{
+			i++;
 			continue ;
+		}
 		if ((stat(paths[i], &stats) == -1))
+		{
+			i++;
 			continue ;
+		}
 		str = ft_itoa(stats.st_mtimespec.tv_sec);
 		if (!(cell = hash_insert(paths[i], str, g_path_sums, NULL)))
 		{
@@ -72,5 +78,5 @@ void			init_path(void)
 		return ;
 	paths = ft_strsplit(cell->value, ':');
 	init_paths(paths);
-	free_str_arr(&paths);
+	/* free_str_arr(&paths); */
 }

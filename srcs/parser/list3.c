@@ -30,7 +30,6 @@
 
 static t_astree	*list3_rest(void)
 {
-printf("in list3_rest\n");
 	unsigned int	curtmp;
 	t_astree		*root;
 
@@ -54,7 +53,6 @@ printf("in list3_rest\n");
 
 t_astree		*list3(void)
 {
-printf("in list3\n");
 	t_astree		*root;
 	t_astree		*res[2];
 

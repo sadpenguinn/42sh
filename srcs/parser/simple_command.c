@@ -25,7 +25,7 @@
 
 t_astree	*simple_command(void)
 {
-printf("in simple_command\n");
+/* printf("in simple_command\n"); */
 	t_astree	*root;
 	t_astree	*res;
 

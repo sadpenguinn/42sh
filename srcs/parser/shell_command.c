@@ -68,7 +68,7 @@ static t_astree	*until_command()
 
 static t_astree	*other_commands()
 {
-printf("int other_commands\n");
+/* printf("int other_commands\n"); */
 	t_type		type;
 	t_astree	*res;
 
@@ -82,7 +82,7 @@ printf("int other_commands\n");
 
 t_astree		*shell_command(void)
 {
-printf("in shell_command\n");
+/* printf("in shell_command\n"); */
 	t_type		type;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])

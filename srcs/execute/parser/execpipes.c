@@ -30,7 +30,7 @@ int			execpipes(t_astree	*root, int fd[2], int job, int isfork)
 	int		pipefd[2];
 	int		cmdfd[2];
 	pid_t	pid;
-	int		res;
+	int		status;
 
 	if (root->right)
 	{
@@ -40,15 +40,18 @@ int			execpipes(t_astree	*root, int fd[2], int job, int isfork)
 			execcmd(root->left, cmdfd, 0, 1);
 		close(cmdfd[1]);
 		fd[0] = pipefd[0];
-		res = execpipes(root->right, fd, job, isfork);
+		status = execpipes(root->right, fd, job, isfork);
+		kill(pid, SIGKILL);
 		waitpid(pid, 0, 0);
-		return (res);
+		return (status);
 	}
 	else
 	{
 		if (!(pid  = fork()))
 			execcmd(root->left, fd, 0, 1);
-		waitpid(pid, 0, 0);
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
 		return (228);
 	}
 	return (0);

@@ -27,7 +27,7 @@
 
 static t_astree	*list1_rest(void)
 {
-printf("in list1_rest\n");
+/* printf("in list1_rest\n"); */
 	t_type			type;
 	t_astree		*root;
 
@@ -48,7 +48,7 @@ printf("in list1_rest\n");
 
 t_astree		*list1(void)
 {
-printf("in list1\n");
+/* printf("in list1\n"); */
 	t_astree		*root;
 	t_astree		*res[2];
 

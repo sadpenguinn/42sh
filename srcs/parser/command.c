@@ -39,7 +39,7 @@ t_astree	*command(void)
 	t_type			type;
 	t_astree        *res;
 
-printf("in command\n");
+/* printf("in command\n"); */
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;

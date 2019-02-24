@@ -45,10 +45,10 @@ static t_astree	*get_word(void)
 
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	type = token->type;
-printf("type = %d\n", type);
+/* printf("type = %d\n", type); */
 	if (!check_word_type(type))
 		return (0);
-printf("check type:%d\n", check_word_type(type));
+/* printf("check type:%d\n", check_word_type(type)); */
 	root = xmalloc(sizeof(t_astree));
 	root->content = ft_strdup(token->word);
 	root->type = WORD;

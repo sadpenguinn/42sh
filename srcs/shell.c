@@ -35,9 +35,11 @@ int		main(int ac, char **av, char **env)
 		destroy();
 		return (EXIT_SUCCESS);
 	}
+	readline();
 	while ((buf = readline()))
 	{
 		lex = lexer(buf, ft_strlen(buf));
+		lexer_print(lex->lexems);
 		g_tokens = lex->lexems;
 		ast = inputunit();
 		execute(ast);

@@ -41,17 +41,17 @@ int main(void)
 	lex.word = "ls";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = PIPE;
-	lex.word = "|";
+	lex.type = OR_IF;
+	lex.word = "&&";
 	vector_push_back(&g_tokens, &lex);
 
 	lex.type = WORD;
 	lex.word = "cat";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = WORD;
-	lex.word = "-e";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = WORD; */
+	/* lex.word = "-e"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
 
 	/* lex.type = CASE; */
@@ -277,7 +277,7 @@ int main(void)
 	/* root = command(); */
 	/* root = simple_command(); */
 	printf("Result: %s\n", root ? "YES" : "NO");
-	print_astree(root);
+	/* print_astree(root); */
 	/* printf("%s\n", root->content); */
 	/* printf("%d\n", root->type); */
 	/* printf("%p\n", root->right); */
@@ -292,6 +292,6 @@ int main(void)
 	/* printf("%d\n", root->type); */
 	/* printf("%p\n", root->right); */
 	/* printf("%p\n", root->left); */
-	freeastree(root);
+	/* freeastree(root); */
 	return (0);
 }

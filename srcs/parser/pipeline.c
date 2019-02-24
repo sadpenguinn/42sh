@@ -60,7 +60,7 @@ t_astree		*pipeline(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (res[0]);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != PIPE && type != PIPEAND)
+	if (type != PIPE)
 		return (res[0]);
 	if (!(res[1] = pipeline_rest()))
 		return (freeastree(res[0]), parseerror());

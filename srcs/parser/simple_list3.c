@@ -65,7 +65,7 @@ t_astree		*simple_list3(void)
 		/* return (res[0]); */
 		return ((void)freeastree(res[0]), parseerror());
 	root = xmalloc(sizeof(t_astree));
-	root->type = LIST2;
+	root->type = LIST3;
 	root->left = res[0];
 	root->right = res[1];
 	return (root);
