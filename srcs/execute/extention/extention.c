@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extention.c                                        :+:      :+:    :+:   */
+/*   expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:56:17 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 19:02:49 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 19:07:16 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int		get_len_of_dollar(char *str)
 	}
 	if (counter)
 	{
-		ft_putstr("invalid syntax!\n");
-		exit(0);
+		ft_putstr_fd("42sh: invalid syntax!\n", 2);
+		return (-1);
 	}
 	return (i);
 }
@@ -56,6 +56,8 @@ char	*get_pahom(char *str, int *i, int *len_of_expression)
 	char	*res;
 
 	*len_of_expression = get_len_of_dollar(str);
+	if (*len_of_expression == -1)
+		return (NULL);
 	*i += *len_of_expression;
 	res = get_content_of_expression(ft_strndup(str, *len_of_expression));
 	if (!res)
@@ -68,10 +70,8 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 {
 	char	*res;
 
-	printf("buf = %s\n", buf);
 	res = xmalloc(sizeof(char) *
 					(ft_strlen(res_to_count) - n + ft_strlen(buf) + 1));
-	printf("buf = %s\n", buf);
 	ft_strcpy(res, res_to_replace);
 	ft_strcat(res, buf);
 	free(res_to_replace);
@@ -83,7 +83,7 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 **	fuck_norm[1] - brackets
 */
 
-char	**extention_with_split(char *str)
+char	**expand_v(char *str)
 {
 	char	*res;
 	char	*buf;
@@ -123,7 +123,7 @@ char	**extention_with_split(char *str)
 	return (strsplit_for_extention(res));
 }
 
-char	*extention(char *str)
+char	*expand(char *str)
 {
 	char	*res;
 	char	*buf;
@@ -193,9 +193,9 @@ int		main(int argc, char **argv, char **env)
 	// hash_print(g_hash_env);
 	// sgetenv("HOwqdqwME");
 	//ssetenv("a", "a1 a2 a3 a4");
-	char *res = extention("$HOME");
+	char *res = expand("$HOME");
 	printf("res = %s\n", res);
 	free(res);
-	//printmas(extention_with_split("\"$a\" 1 23"));
+	//printmas(expand_v("\"$a\" 1 23"));
 	return (0);
 }

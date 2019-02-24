@@ -214,7 +214,7 @@ char	*erase_repetitions_recursion(char *str)
 	tmp = ft_strchr(&str[1], '$');
 	if (!tmp)
 		return (str);
-	return (ft_strjoin("$", extention(&str[1]), 0));
+	return (ft_strjoin("$", expand(&str[1]), 0));
 }
 
 char 	*classic_get_env(char *str)

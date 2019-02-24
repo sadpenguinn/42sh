@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extention.h                                        :+:      :+:    :+:   */
+/*   expand.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -29,6 +29,6 @@
 
 char	*get_content_of_expression(char *str);
 char	**strsplit_for_extention(char *str);
-char	*extention(char *str);
+char	*expand(char *str);
 
 #endif
