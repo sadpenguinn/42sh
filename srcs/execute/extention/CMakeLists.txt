@@ -4,9 +4,9 @@ project(extention)
 set(SRC				extention.c
 					functions_to_write.c
 					strsplit_for_extention.c
-					/Users/bbaelor-/42_to_commit_2/srcs/shell/init.c
-					/Users/bbaelor-/42_to_commit_2/srcs/shell/init_env.c
-					/Users/bbaelor-/42_to_commit_2/srcs/shell/init_path.c
+					../../shell/init.c
+					../../shell/init_env.c
+					../../shell/init_path.c
 					../../lib/libshell/srcs/check_valid_of_variable.c
 					../../lib/libshell/srcs/check_varname.c
 					../../lib/libshell/srcs/die.c
@@ -19,32 +19,44 @@ set(SRC				extention.c
 					../../lib/libshell/srcs/sputerr.c
 					../../lib/libshell/srcs/ssetenv.c
 					../../lib/libshell/srcs/sstrerr.c
-					../../lib/libshell/srcs/sunsetenv.c)
+					../../lib/libshell/srcs/sunsetenv.c
+					../../shell/argv_parser.c
+					../../shell/destroy.c
+					../../shell/destroy_env.c
+					../../shell/destroy_jobs.c
+					../../shell/destroy_path.c
+					../../shell/destroy_process.c
+					../../shell/init.c
+					../../shell/init_env.c
+					../../shell/init_jobs.c
+					../../shell/init_path.c
+					../../shell/init_process.c
+					../../shell/signals.c)
 
 set(INC				../../libft/includes
 					../../libft/vector
 					../../../includes
-					/Users/bbaelor-/42_to_commit_2/srcs/lib/libft/includes
-					/Users/bbaelor-/42_to_commit_2/srcs/lib/vector/includes
-					/Users/bbaelor-/42_to_commit_2/srcs/lib/libstring/includes
-					/Users/bbaelor-/42_to_commit_2/srcs/lib/libhash/includes
-					/Users/bbaelor-/42_to_commit_2/srcs/lib/libshell/includes)
+					../../lib/libft/includes
+					../../lib/vector/includes
+					../../lib/libstring/includes
+					../../lib/libhash/includes
+					../../lib/libshell/includes)
 
 SET(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
 include_directories(${INC})
 
 add_library(libft.a SHARED IMPORTED)
-set_target_properties(libft.a PROPERTIES IMPORTED_LOCATION /Users/bbaelor-/42_to_commit_2/srcs/lib/libft/libft.a)
+set_target_properties(libft.a PROPERTIES IMPORTED_LOCATION ../../lib/libft/libft.a)
 
 add_library(libvector.a SHARED IMPORTED)
-set_target_properties(libvector.a PROPERTIES IMPORTED_LOCATION /Users/bbaelor-/42_to_commit_2/srcs/lib/vector/libvector.a)
+set_target_properties(libvector.a PROPERTIES IMPORTED_LOCATION ../../lib/vector/libvector.a)
 
 add_library(libhash.a SHARED IMPORTED)
-set_target_properties(libhash.a PROPERTIES IMPORTED_LOCATION /Users/bbaelor-/42_to_commit_2/srcs/lib/libhash/libhash.a)
+set_target_properties(libhash.a PROPERTIES IMPORTED_LOCATION ../../lib/libhash/libhash.a)
 
 add_library(libshell.a SHARED IMPORTED)
-set_target_properties(libshell.a PROPERTIES IMPORTED_LOCATION /Users/bbaelor-/42_to_commit_2/srcs/lib/libshell/libshell.a)
+set_target_properties(libshell.a PROPERTIES IMPORTED_LOCATION ../../lib/libshell/libshell.a)
 
 add_executable(extention ${SRC})
 target_link_libraries(extention libft.a libvector.a libshell.a libhash.a)
