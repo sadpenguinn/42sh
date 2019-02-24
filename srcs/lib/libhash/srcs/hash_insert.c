@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_insert.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/24 14:23:40 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/24 20:06:23 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ t_hshtb					*hash_insert(const char *key, const char *value,
 		if (!(hash_realloc(hash, new_size)))
 			return (NULL);
 	index = hash_index(key, hash);
-	return (hash_insert_cell(key, value, hash, index));
+	return (hash_insert_cell(key, value, hash, index, data));
 }
