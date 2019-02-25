@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:31:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 19:36:48 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/25 21:43:38 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init(char **env)
 		die();
 	init_env(env);
 	init_path();
-	/*init_jobs();
+	init_jobs();
 	init_process();
-	init_signals();*/
+	init_signals();
 }

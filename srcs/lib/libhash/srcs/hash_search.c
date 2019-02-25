@@ -29,7 +29,7 @@ static t_hshtb			*hash_bsearch(t_hash *hash, t_hshindex index,
 	return (ptr);
 }
 
-t_hshtb					*hash_search(const char *key, const char *value, t_hash *hash, t_hshindex index)
+t_hshtb					*hash_search(const char *key, t_hash *hash, t_hshindex index)
 {
 	t_hshtb		*ptr;
 

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 19:00:53 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/25 21:43:38 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_hshtb			*hash_insert_cell(const char *key, const char *value,
 	t_hshtb		*ptr;
 	t_hshtb		new;
 
-	if (!(ptr = hash_search(key, value, hash, index)))
+	if (!(ptr = hash_search(key, hash, index)))
 		return (NULL);
 	if (ptr->key && hash->overwrite != HSH_OW)
 		;

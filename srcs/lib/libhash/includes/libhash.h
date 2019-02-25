@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 18:54:58 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/25 21:43:38 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,6 @@ void			hash_free_fileds(char *key, char *value);
 
 int				hash_realloc(t_hash *hash, size_t new_size);
 
-t_hshtb					*hash_search(const char *key, const char *value, t_hash *hash, t_hshindex index);
+t_hshtb			*hash_search(const char *key, t_hash *hash, t_hshindex index);
 
 #endif

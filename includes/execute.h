@@ -17,6 +17,7 @@
 #include "pthread.h"
 extern int	g_execerr;
 
+/* #define EXECUTE_DEBUG */
 /*
 ** redir types and struct
 */
@@ -47,10 +48,10 @@ int		execpipes(t_astree	*root, int fd[2], int job, int isfork);
 int		execcmd(t_astree *root, int fd[2], int job, int isfork);
 int		execscmd(t_astree *root, int fd[2], int job, int isfork);
 
-int		execcase(t_astree *root, int fd[2], int job);
-int		execif(t_astree *root, int fd[2], int job);
-int		subshell(t_astree *root, int fd[2], int job);
-int		function(t_astree *func, char **argv, int fd[2], int job);
+int		execcase(t_astree *root, int fd[2], int job, int isfork);
+int		execif(t_astree *root, int fd[2], int job, int isfork);
+int		execsubshell(t_astree *root, int fd[2], int job, int isfork);
+int		function(t_astree *func, char **argv, int fd[2], int job, int isfork);
 
 # define EX_NOFG	0
 # define EX_FG		1
