@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/23 13:00:14 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/25 18:54:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 */
 # define HSH_ERR 0
 # define HSH_OK 1
+
+/*
+** Defines for hash_init for passing overwrite flag
+*/
+
+# define HSH_OW 1
+# define HSH_NOW 0
 
 /*
 ** Defines for hash realloc function
@@ -69,8 +76,6 @@ typedef struct	s_hshtb
 {
 	char			*key;
 	char			*value;
-	void			*data;
-	struct s_hshtb	*next;
 }				t_hshtb;
 
 typedef struct	s_hash
@@ -78,13 +83,16 @@ typedef struct	s_hash
 	t_hshtb		*table;
 	size_t		size;
 	size_t		filled;
+	int 		overwrite;
 }				t_hash;
 
 /*
-** Allocate hash table with passed size
+** Allocate hash table with passed size.
+** Overwrite flag must be passed as define HSH_OW or HSH_NOW.
+** If HSH_OW passed, hash_insert will be overwriting cells
 */
 
-t_hash			*hash_init(size_t size);
+t_hash			*hash_init(size_t size, int overwrite);
 
 /*
 ** Looks up the index of an item in a table.
@@ -100,7 +108,7 @@ t_hshindex		hash_index(const char *key, t_hash *hash);
 */
 
 t_hshtb			*hash_insert(const char *key, const char *value,
-											t_hash *hash, const void *data);
+													t_hash *hash);
 
 /*
 ** Remove one cell from the table
@@ -161,5 +169,7 @@ void			hash_free_fileds(char *key, char *value);
 */
 
 int				hash_realloc(t_hash *hash, size_t new_size);
+
+t_hshtb					*hash_search(const char *key, const char *value, t_hash *hash, t_hshindex index);
 
 #endif

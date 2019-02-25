@@ -12,6 +12,7 @@ set(SRC_LIB srcs/hash_clean.c
             srcs/hash_test.c
             srcs/hash_print.c
             srcs/hash_insert.c
+		srcs/hash_search.c
             srcs/hash_init.c
 			srcs/hash_get_size.c
 			srcs/hash_get_len.c

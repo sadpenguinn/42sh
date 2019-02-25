@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/23 12:57:01 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/23 12:57:42 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/25 18:28:03 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void		hash_realloc_fill(t_hash *hash, t_hash *new_hash)
 	hash->table = new_hash->table;
 	hash->size = new_hash->size;
 	hash->filled = new_hash->filled;
+	hash->overwrite = new_hash->overwrite;
 	free(new_hash);
 }
 
@@ -29,14 +30,13 @@ int				hash_realloc(t_hash *hash, size_t new_size)
 	size_t	i;
 
 	i = 0;
-	new_hash = hash_init(new_size);
+	new_hash = hash_init(new_size, hash->overwrite);
 	current = hash->table;
 	while (i < hash->size)
 	{
 		if (current->key)
 		{
-			if (!(hash_insert(current->key, current->value,
-					new_hash, current->data)))
+			if (!(hash_insert(current->key, current->value, new_hash)))
 			{
 				hash_clean(&hash);
 				return (0);

@@ -6,11 +6,20 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:05:27 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/25 19:36:06 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+static char 	*build_env_str(t_hshtb *ptr)
+{
+	char *str;
+
+	str = ft_strjoin(ptr->key, "=", 0);
+	str = ft_strjoin(str, ptr->value, 1);
+	return (str);
+}
 
 static void		init_arr_env(size_t size)
 {
@@ -25,7 +34,8 @@ static void		init_arr_env(size_t size)
 	{
 		if (ptr->key)
 		{
-			g_env[k] = (char *)ptr->data;
+			g_env.env[k] = build_env_str(ptr);
+			g_env.filled++;
 			k++;
 		}
 		ptr++;
@@ -34,7 +44,7 @@ static void		init_arr_env(size_t size)
 	size++;
 	while (k < size)
 	{
-		g_env[k] = NULL;
+		g_env.env[k] = NULL;
 		k++;
 	}
 }
@@ -46,15 +56,17 @@ void			init_env(char **env)
 	int		i;
 
 	i = 0;
-	g_hash_env = hash_init(INITIAL_ENV_HASH_SIZE);
+	g_hash_env = hash_init(INITIAL_ENV_HASH_SIZE, HSH_OW);
 	while (env[i])
 	{
 		pair = split_env(env[i]);
-		hash_insert(pair[0], pair[1], g_hash_env, ft_strdup(env[i]));
+		hash_insert(pair[0], pair[1], g_hash_env);
 		free_str_arr(&pair);
 		i++;
 	}
 	size = hash_get_size(g_hash_env);
-	g_env = (char **)xmalloc(sizeof(char *) * (size + 1));
+	g_env.size = size;
+	g_env.filled = 0;
+	g_env.env = (char **)xmalloc(sizeof(char *) * (size + 1));
 	init_arr_env(size);
 }

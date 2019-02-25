@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:24:55 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/24 20:06:23 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/25 19:00:53 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,51 +27,25 @@ static size_t			hash_check_avail(t_hash *hash)
 	return (0);
 }
 
-static t_hshtb			*hash_insert_iter(t_hash *hash, t_hshindex index,
-											t_hshtb *ptr, const char *key)
-{
-	t_hshindex	i;
-
-	i = 0;
-	if (index == hash->size)
-	{
-		index = i;
-		i = 0;
-		ptr = hash->table + i;
-		while (i < index && (ptr->key && ft_strcmp(ptr->key, key)))
-		{
-			ptr++;
-			i++;
-		}
-		if (i == index)
-			return (NULL);
-	}
-	return (ptr);
-}
-
 static t_hshtb			*hash_insert_cell(const char *key, const char *value,
-								t_hash *hash, t_hshindex index, const void *data)
+											t_hash *hash, t_hshindex index)
 {
-	t_hshindex	i;
 	t_hshtb		*ptr;
 	t_hshtb		new;
 
-	i = index;
-	ptr = hash->table + index;
-	while (index < hash->size && (ptr->key && ft_strcmp(ptr->key, key)))
-	{
-		ptr++;
-		index++;
-	}
-	if (!(ptr = hash_insert_iter(hash, index, ptr, key)))
+	if (!(ptr = hash_search(key, value, hash, index)))
 		return (NULL);
-	ft_strdel(&ptr->key);
-	ft_strdel(&ptr->value);
-	new.key = ft_strdup(key);
-	new.value = ft_strdup(value);
-	new.data = (void *)data;
-	ft_memmove((void *)ptr, (void *)&new, sizeof(t_hshtb));
-	hash->filled++;
+	if (ptr->key && hash->overwrite != HSH_OW)
+		;
+	else
+	{
+		ft_strdel(&ptr->key);
+		ft_strdel(&ptr->value);
+		new.key = ft_strdup(key);
+		new.value = ft_strdup(value);
+		ft_memmove((void *)ptr, (void *)&new, sizeof(t_hshtb));
+		hash->filled++;
+	}
 	return (ptr);
 }
 
@@ -82,7 +56,7 @@ static t_hshtb			*hash_insert_cell(const char *key, const char *value,
 */
 
 t_hshtb					*hash_insert(const char *key, const char *value,
-										t_hash *hash, const void *data)
+															t_hash *hash)
 {
 	t_hshindex	index;
 	size_t		new_size;
@@ -93,5 +67,5 @@ t_hshtb					*hash_insert(const char *key, const char *value,
 		if (!(hash_realloc(hash, new_size)))
 			return (NULL);
 	index = hash_index(key, hash);
-	return (hash_insert_cell(key, value, hash, index, data));
+	return (hash_insert_cell(key, value, hash, index));
 }
