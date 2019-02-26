@@ -6,12 +6,13 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 18:15:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:50:00 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:15:03 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "execute.h"
+#include "parser.h"
 
 /*
 ** Global variables for parser
@@ -28,7 +29,6 @@ int		main(int ac, char **av, char **env)
 	t_astree	*ast;
 
 	init(env);
-
 	if (argv_parser(ac, av))
 	{
 		destroy();
@@ -37,10 +37,10 @@ int		main(int ac, char **av, char **env)
 	while ((buf = readline()))
 	{
 		lex = lexer(buf, ft_strlen(buf));
-		lexer_print(lex->lexems);
 		g_tokens = lex->lexems;
 		ast = inputunit();
 		execute(ast);
+		freeastree(ast);
 		lexer_free(lex);
 		ft_strdel(&buf);
 	}

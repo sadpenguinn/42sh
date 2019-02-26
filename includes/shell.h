@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/25 21:50:02 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:32:22 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ extern void				*g_process;
 
 typedef struct			s_env
 {
-	char 				**env;
+	char				**env;
 	size_t				size;
 	size_t				filled;
 }						t_env;

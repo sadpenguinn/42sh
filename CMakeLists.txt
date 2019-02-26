@@ -45,7 +45,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/destroy_jobs.c
 					srcs/shell/destroy_process.c
 					srcs/shell/signals.c
-					srcs/shell/argv_parser.c srcs/minishell_lib.c)
+					srcs/shell/argv_parser.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/array.c

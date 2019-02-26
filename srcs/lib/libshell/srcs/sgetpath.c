@@ -6,14 +6,14 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:33:11 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:11:30 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libshell.h"
 
-static char *get_path(char *key, char *value)
+static char	*get_path(char *key, char *value)
 {
 	size_t	klen;
 	size_t	vlen;
@@ -30,34 +30,30 @@ static char *get_path(char *key, char *value)
 	return (ft_strsub(value, 0, vlen));
 }
 
+static int	free_sum(void *farg, void *sarg, int ret)
+{
+	if (farg)
+		free(farg);
+	if (sarg)
+		free(sarg);
+	return (ret);
+}
+
 static int	validate_sum(char *key, char *value)
 {
 	struct stat	stats;
-	t_hshtb		*cell;
-	char 		*path;
-	char 		*sum;
+	char		*path;
+	char		*sum;
 
 	path = get_path(key, value);
-	if (!(cell = hash_find(path, g_path_sums)))
-	{
-		ft_strdel(&path);
-		return (0);
-	}
+	if (!hash_find(path, g_path_sums))
+		return (free_sum(path, NULL, 0));
 	if ((stat(key, &stats) == -1))
-	{
-		ft_strdel(&path);
-		return (1);
-	}
+		return (free_sum(path, NULL, 1));
 	sum = ft_itoa(stats.st_mtimespec.tv_sec);
 	if (!ft_strcmp(sum, path))
-	{
-		ft_strdel(&sum);
-		ft_strdel(&path);
-		return (1);
-	}
-	ft_strdel(&sum);
-	ft_strdel(&path);
-	return (0);
+		return (free_sum(sum, path, 1));
+	return (free_sum(sum, path, 0));
 }
 
 char		*sgetpath(const char *bin)
