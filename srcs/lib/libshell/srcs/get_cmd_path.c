@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 17:41:09 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 20:24:34 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ char	*get_cmd_path(char *str)
 	if (ft_strchr(str, '/'))
 	{
 		if (!(access(str, X_OK)))
-			return (ft_strdup(str));
+			return (str);
 		if ((access(str, F_OK)))
 		{
-			ft_putstr_fd("Permission denied\n", 2);
+			ft_putstr_fd("No such file or directory\n", 2);
 			return (NULL);
 		}
-		ft_putstr_fd("No such file or directory\n", 2);
+		ft_putstr_fd("Permission denied\n", 2);
 		return (NULL);
 	}
 	else
@@ -39,6 +39,6 @@ char	*get_cmd_path(char *str)
 			ft_putstr_fd("No such command\n", 2);
 			return (NULL);
 		}
-		return (ft_strdup(tmp));
+		return (tmp);
 	}
 }

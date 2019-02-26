@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_line_prefix.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 16:35:30 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 16:36:29 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "array.h"
 
 static void	num_to_str(int max, char *str, int nbr)
 {
-	int i;
+	int	i;
 
 	i = get_lines_offset(max);
 	memset(str, 0, i + 1);
@@ -22,7 +34,7 @@ static void	num_to_str(int max, char *str, int nbr)
 
 void		add_line_prefix(t_matrix *matrix, int cur_row)
 {
-	char str[20];
+	char	str[20];
 
 	memset(str, 0, 20);
 	if (cur_row == matrix->cursor->row)
@@ -34,4 +46,3 @@ void		add_line_prefix(t_matrix *matrix, int cur_row)
 	array_add("> ", 2);
 	array_add(COLOR_DEFAULT, strlen(COLOR_DEFAULT));
 }
-

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 17:01:20 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 17:02:40 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "array.h"
 
-int print_default(t_matrix *matrix)
+int	print_default(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
 	add_cursor_offset(matrix->last_offset);
@@ -23,12 +35,13 @@ int	print_lines(t_matrix *matrix)
 	return (1);
 }
 
-int print_autocomplete(t_matrix *matrix)
+int	print_autocomplete(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
 	add_cursor_offset(matrix->last_offset);
 	add_lines_text(matrix);
-	array_add("\nmain.c  readline.c  array.c\n", strlen("\nmain.c  readline.c  array.c\n"));
+	array_add("\nmain.c  readline.c  array.c\n",
+			strlen("\nmain.c  readline.c  array.c\n"));
 	array_flush();
 	print_prompt();
 	matrix->last_offset = 0;

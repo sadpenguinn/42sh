@@ -6,13 +6,14 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 20:32:42 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:06:25 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXTENTION_H
 # define EXTENTION_H
 
+# include <pwd.h>
 # include "libshell.h"
 # include "shell.h"
 

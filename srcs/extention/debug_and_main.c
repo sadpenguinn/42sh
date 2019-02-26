@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:35:33 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 20:35:36 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:32:44 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,45 @@ void	printmas(char **str)
 
 }
 
+void	testing()
+{
+	// printf("        $HOME = %s\n", expand("test $hOME"));
+	// printf("${HOME:-word} = %s\n", expand("test ${hOME:-word}"));
+	printf("~ = %s\n", expand(" ~exam"));
+	// printf("${HOME:+word} = %s\n", expand("test ${hOME:+word}"));
+	// printf("     ${#HOME} = %s\n", expand("test ${#hsOME}"));
+	// printf("     ${HOME%%} = %s\n", expand("test ${hOME%}"));
+	// printf("    ${HOME%%%%} = %s\n", expand("test ${hOME%%}"));
+	// printf("     ${HOME#} = %s\n", expand("test ${hOME#}"));
+	// printf("    ${HOME##} = %s\n", expand("test ${hOME##}"));
+}
+
 int		main(int argc, char **argv, char **env)
 {
-	char *res;
+	// char *res;
 
 	init_env(env);
 	// hash_print(g_hash_env);
 	// sgetenv("HOwqdqwME");
 	//ssetenv("a", "a1 a2 a3 a4");
-	if (argc != 3)
-		printf("usage: %s '1/2' 'string'\n", argv[0]);
-	else
-	{
-		if (ft_atoi(argv[1]) == 1)
-		{
-			res = expand(argv[2]);
-			printf("res = %s\n", res);
-			free(res);
-		}
-		if (ft_atoi(argv[1]) == 2)
-			printmas(expand_v(argv[2]));
-	}
+	
+
+	(void)argc;
+	(void)argv;
+	testing();
+	
+	// if (argc != 3)
+	// 	printf("usage: %s '1/2' 'string'\n", argv[0]);
+	// else
+	// {
+	// 	if (ft_atoi(argv[1]) == 1)
+	// 	{
+	// 		res = expand(argv[2]);
+	// 		printf("res = %s\n", res);
+	// 		free(res);
+	// 	}
+	// 	if (ft_atoi(argv[1]) == 2)
+	// 		printmas(expand_v(argv[2]));
+	// }
 	return (0);
 }

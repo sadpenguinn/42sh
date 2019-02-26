@@ -6,13 +6,13 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:32 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:12:43 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:06:15 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <term.h>
 
-static struct	termios g_old;
+static struct termios	g_old;
 
 void	set_term(void)
 {

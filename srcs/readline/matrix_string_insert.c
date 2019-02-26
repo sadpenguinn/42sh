@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_string_insert.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 16:57:29 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 17:01:02 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
 static int	line_string_insert(t_line *line, const char *str,
@@ -29,7 +41,8 @@ static int	line_string_insert(t_line *line, const char *str,
 	return (size);
 }
 
-void		matrix_string_insert(t_matrix *matrix, t_cursor *pos, const char *str, int size)
+void		matrix_string_insert(t_matrix *matrix,
+		t_cursor *pos, const char *str, int size)
 {
 	int			i;
 	t_line		*line;

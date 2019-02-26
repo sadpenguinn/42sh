@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_cursor_offset.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 16:33:32 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 16:33:43 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "array.h"
 #include "readline.h"
 #include "libft.h"
 
-void    add_cursor_offset(int offset)
+void	add_cursor_offset(int offset)
 {
 	char	str[20];
 

@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/24 17:17:17 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:32:23 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # include <sys/ioctl.h>
 # include <string.h>
 
-enum	keys
+enum	e_keys
 {
 	UP = 0x415b1b, DOWN = 0x425b1b, CTRL_P = 0x10, CTRL_N = 0xe,
 	RIGHT = 0x435b1b, LEFT = 0x445b1b, CTRL_F = 0x6, CTRL_B = 0x2,
@@ -45,17 +45,17 @@ enum	keys
 	ESC = 0x1b
 };
 
-enum	editing_modes
+enum	e_editing_modes
 {
 	VI = 1, READLINE = 2
 };
 
-enum	vi_modes
+enum	e_vi_modes
 {
 	NORMAL_MODE = 1, VISUAL_MODE = 2, INSERT_MODE = 3
 };
 
-enum	allocation_params
+enum	e_allocation_params
 {
 	HISTORY_SIZE = 10, BUF_DEFAULT_SIZE = 5, RATIO = 2, MATRIX_DEFAULT_SIZE = 10
 };
@@ -63,111 +63,112 @@ enum	allocation_params
 # define CTRL_V 026
 # define CTRL_D 004
 
-typedef unsigned long long int t_uchar;
+typedef	unsigned long long int	t_uchar;
 
-typedef struct s_cursor
+typedef	struct	s_cursor
 {
-	int row;
-	int col;
-} t_cursor;
+	int			row;
+	int			col;
+}				t_cursor;
 
-typedef struct  s_line
+typedef	struct	s_line
 {
-	int size;
-	int len;
-	int symbols;
-	char *buf;
-}               t_line;
+	int			size;
+	int			len;
+	int			symbols;
+	char		*buf;
+}				t_line;
 
-typedef struct s_matrix
+typedef	struct	s_matrix
 {
-	int		size;
-	int len;
-	t_line **lines;
-	t_cursor *cursor;
-	int last_offset;
-	int left_limit;
-	int right_limit;
-} t_matrix;
+	int			size;
+	int			len;
+	t_line		**lines;
+	t_cursor	*cursor;
+	int			last_offset;
+	int			left_limit;
+	int			right_limit;
+}				t_matrix;
 
-int		g_mode;
-struct	winsize g_w;
-t_uchar	g_shortcuts[SHORTCUT_ARRAY_SIZE];
+int				g_mode;
+struct winsize	g_w;
+t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
-char	*readline(void);
+char			*readline(void);
 
-void     ft_puts(char *buf, int len);
+void			ft_puts(char *buf, int len);
 
-t_matrix	*init_matrix(void);
-t_line		*init_line(void);
+t_matrix		*init_matrix(void);
+t_line			*init_line(void);
 
-void		matrix_create_line(t_matrix *matrix, int row);
-void		matrix_erase_line(t_matrix *matrix, int row);
+void			matrix_create_line(t_matrix *matrix, int row);
+void			matrix_erase_line(t_matrix *matrix, int row);
 
-int		check_next_symbol(t_matrix *matrix);
-t_uchar	get_next_symbol(size_t size);
+int				check_next_symbol(t_matrix *matrix);
+t_uchar			get_next_symbol(size_t size);
 
-void	get_term_params(struct winsize	*w);
+void			get_term_params(struct winsize	*w);
 
-int		move_shortcuts(t_uchar c);
+int				move_shortcuts(t_uchar c);
 
-void	add_cursor_offset(int offset);
+void			add_cursor_offset(int offset);
 
-int	readline_mode(t_matrix *matrix, t_uchar c);
-int	check_esc_code(t_matrix *matrix, t_uchar c);
+int				readline_mode(t_matrix *matrix, t_uchar c);
+int				check_esc_code(t_matrix *matrix, t_uchar c);
 
-void	matrix_string_insert(t_matrix *matrix, t_cursor *pos, const char *str, int size);
-void	matrix_string_delete(t_matrix *matrix, int row, int col);
+void			matrix_string_insert(t_matrix *matrix, t_cursor *pos,
+		const char *str, int size);
+void			matrix_string_delete(t_matrix *matrix, int row, int col);
 
-void	line_resize(t_line *line, int new_size, int old_size);
-void	matrix_resize(t_matrix *matrix, int new_size, int old_size);
+void			line_resize(t_line *line, int new_size, int old_size);
+void			matrix_resize(t_matrix *matrix, int new_size, int old_size);
 
-int move_cursor_left(t_matrix *matrix);
-int move_cursor_right(t_matrix *matrix);
-int move_cursor_up(t_matrix *matrix);
-int move_cursor_down(t_matrix *matrix);
-int move_cursor_home(t_matrix *matrix);
-int move_cursor_end(t_matrix *matrix);
+int				move_cursor_left(t_matrix *matrix);
+int				move_cursor_right(t_matrix *matrix);
+int				move_cursor_up(t_matrix *matrix);
+int				move_cursor_down(t_matrix *matrix);
+int				move_cursor_home(t_matrix *matrix);
+int				move_cursor_end(t_matrix *matrix);
 
-int	del(t_matrix *matrix);
-int	back_space(t_matrix *matrix);
+int				del(t_matrix *matrix);
+int				back_space(t_matrix *matrix);
 
-int print_default(t_matrix *matrix);
-int	print_lines(t_matrix *matrix);
-int	print_autocomplete(t_matrix *matrix);
+int				print_default(t_matrix *matrix);
+int				print_lines(t_matrix *matrix);
+int				print_autocomplete(t_matrix *matrix);
 
-void	print_prompt(void);
+void			print_prompt(void);
 
-void	line_free(t_line *line);
-void	line_del(t_line **line);
-void	matrix_free(t_matrix *matrix);
-void	matrix_del(t_matrix **matrix);
+void			line_free(t_line *line);
+void			line_del(t_line **line);
+void			matrix_free(t_matrix *matrix);
+void			matrix_del(t_matrix **matrix);
 
-int	get_utf_offset_left(char *str, int pos);
-int get_utf_offset_right(unsigned char c);
+int				get_utf_offset_left(char *str, int pos);
+int				get_utf_offset_right(unsigned char c);
 
-int count_string_symbols(char *buf, int n);
-int	count_string_cols(char *buf, int symbols);
+int				count_string_symbols(char *buf, int n);
+int				count_string_cols(char *buf, int symbols);
 
-int			get_lines_prompt_len(int max);
-int			get_lines_offset(int len);
+int				get_lines_prompt_len(int max);
+int				get_lines_offset(int len);
 
-int newline_handling(t_matrix *matrix);
+int				newline_handling(t_matrix *matrix);
 
-void add_lines_prompt_style(void);
-void add_cur_line_prompt_style(void);
-void		add_prompt_style(void);
+void			add_lines_prompt_style(void);
+void			add_cur_line_prompt_style(void);
+void			add_prompt_style(void);
 
-int	symbol_to_string(t_uchar c, char *str);
+int				symbol_to_string(t_uchar c, char *str);
 
-int			set_matrix_limits(t_matrix *matrix);
+int				set_matrix_limits(t_matrix *matrix);
 
-char *matrix_to_string(t_matrix *matrix);
+char			*matrix_to_string(t_matrix *matrix);
 
-void add_cursor_text(t_matrix *matrix);
-void add_lines_text(t_matrix *matrix);
-void		add_text(t_matrix *matrix, int row, int col);
+void			add_cursor_text(t_matrix *matrix);
+void			add_lines_text(t_matrix *matrix);
+void			add_text(t_matrix *matrix, int row, int col);
 
-void		add_line_prefix(t_matrix *matrix, int cur_row);
+void			add_line_prefix(t_matrix *matrix, int cur_row);
 
 #endif

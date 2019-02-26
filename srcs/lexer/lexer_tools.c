@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/22 20:36:14 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/25 18:11:23 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				push_token(void **lexems, char *lexem, int state)
 									state == COMMENT - SHIFT)
 		return (0);
 	new.type = (t_type)(SHIFT + state);
-	if (state == 72 || state == 83 || state == 80 || state == 101 ||
+	if (state == 72 || state == 79 || state == 83 || state == 101 ||
 										state == 102 || state == 103)
 		new.type = WORD;
 	new.word = lexem;

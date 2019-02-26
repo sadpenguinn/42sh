@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_shortcuts.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 16:58:07 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 16:58:16 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
-int		move_shortcuts(t_uchar c)
+int	move_shortcuts(t_uchar c)
 {
 	int	i;
 
@@ -13,4 +25,3 @@ int		move_shortcuts(t_uchar c)
 	g_shortcuts[i] = c;
 	return (1);
 }
-

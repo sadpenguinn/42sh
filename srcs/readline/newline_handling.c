@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   newline_handling.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 16:56:46 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 16:57:10 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include <unistd.h>
 
-int newline_handling(t_matrix *matrix)
+int	newline_handling(t_matrix *matrix)
 {
 	int		prev_col;
 	int		prev_row;
@@ -16,7 +28,7 @@ int newline_handling(t_matrix *matrix)
 	if (prev_col != line->len)
 	{
 		matrix_string_insert(matrix, matrix->cursor,
-							 line->buf + prev_col, line->len - prev_col);
+				line->buf + prev_col, line->len - prev_col);
 		matrix->cursor->col = 0;
 	}
 	line->len = prev_col - 1;

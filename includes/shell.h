@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/22 21:16:07 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:32:22 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 extern t_hash			*g_hash_env;
 extern t_hash			*g_path;
 extern t_hash			*g_path_sums;
-extern char				**g_env;
+extern struct s_env		g_env;
 
 /*
 ** Global variables for saving jobs and processes
@@ -45,6 +45,7 @@ extern void				*g_process;
 # define INITIAL_ENV_HASH_SIZE			100
 # define INITIAL_PATH_HASH_SIZE			20
 # define INITIAL_PATH_SUMS_HASH_SIZE	20
+# define GENV_REALLOC					50
 
 /*
 ** Shell error define like a standard C errno
@@ -68,6 +69,13 @@ extern void				*g_process;
 # define SHELL_AUTHORS "Authors:\nnkertzma, bwerewol, narchiba, bbaelor-"
 # define SHELL_USAGE "Usage:\t\t42sh [option] [file]"
 # define SHELL_OPTIONS "Options:\n-c\t\tWith -c options, commands are read from string\n-h\t\tPrint help\n-v\t\tPrint version\nLong options:\n--help\t\tThe same as -h\n--version\tThe same as -v"
+
+typedef struct			s_env
+{
+	char				**env;
+	size_t				size;
+	size_t				filled;
+}						t_env;
 
 /*
 ** Struct for parser
