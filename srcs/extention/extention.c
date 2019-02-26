@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 21:17:38 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:49:35 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*expand(char *str)
 			fuck_norm[2] = (fuck_norm[2] + 1) % 2;
 			i++;
 		}
-		else if (str[i] == '$' && !fuck_norm[1])
+		else if ((str[i] == '$' || str[i] == '~') && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			if (!buf)

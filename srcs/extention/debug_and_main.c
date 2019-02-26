@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:35:33 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/26 17:40:13 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:46:00 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	testing()
 {
 	// printf("        $HOME = %s\n", expand("test $hOME"));
 	// printf("${HOME:-word} = %s\n", expand("test ${hOME:-word}"));
-	printf("${HOME:=word} = %s\n", expand("test ${hOME:=word}"));
+	printf("~ = %s\n", expand("test ~"));
 	// printf("${HOME:+word} = %s\n", expand("test ${hOME:+word}"));
-	printf("     ${#HOME} = %s\n", expand("test ${#hsOME}"));
+	// printf("     ${#HOME} = %s\n", expand("test ${#hsOME}"));
 	// printf("     ${HOME%%} = %s\n", expand("test ${hOME%}"));
 	// printf("    ${HOME%%%%} = %s\n", expand("test ${hOME%%}"));
 	// printf("     ${HOME#} = %s\n", expand("test ${hOME#}"));
