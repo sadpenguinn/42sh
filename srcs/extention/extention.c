@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 21:17:38 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:31:01 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ void	frashing_values(int *fuck_norm, int *i, int *j)
 **  fuck_norm[2] - ""
 */
 
+static int	tilda_case_check(char *str, int i)
+{
+	if (str[i] == '~')
+	{
+		if (i == 0)
+			return (1);
+		else if (str[i - 1] == ' ')
+			return (1);	
+	}
+	return (0);
+}
+
 char	**expand_v(char *str)
 {
 	char	*res;
@@ -39,7 +51,7 @@ char	**expand_v(char *str)
 	frashing_values(fuck_norm, &i, &j);
 	while (str[i])
 	{
-		if (str[i] == '$' && !fuck_norm[1])
+		if ((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			if (!buf)
@@ -85,7 +97,7 @@ char	*expand(char *str)
 			fuck_norm[2] = (fuck_norm[2] + 1) % 2;
 			i++;
 		}
-		else if (str[i] == '$' && !fuck_norm[1])
+		else if ((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			if (!buf)

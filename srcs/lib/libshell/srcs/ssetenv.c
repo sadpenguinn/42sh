@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:50:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:08:38 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:02:57 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 
 static void		genv_realloc(void)
 {
-	char 	**new;
+	char	**new;
 	size_t	new_size;
 	size_t	i;
 	size_t	k;
 
 	i = 0;
 	k = 0;
-	ft_putendl("YEE");
 	new_size = (size_t)((float)g_env.size * (float)GENV_REALLOC / (float)100);
 	new = (char **)xmalloc(sizeof(char *) * (g_env.size + new_size + 1));
 	while (i <= g_env.size)
@@ -36,8 +35,7 @@ static void		genv_realloc(void)
 	}
 	while (i <= new_size)
 	{
-		new[k] = NULL;
-		k++;
+		new[k++] = NULL;
 		i++;
 	}
 	free(g_env.env);
@@ -53,7 +51,7 @@ static void		ssetgenv(char *str)
 	g_env.filled++;
 }
 
-int		ssetenv(const char *key, const char *value)
+int				ssetenv(const char *key, const char *value)
 {
 	char	*str;
 
@@ -68,5 +66,10 @@ int		ssetenv(const char *key, const char *value)
 		return (SHERR_ERR);
 	}
 	ssetgenv(str);
+	if (!ft_strcmp(key, "PATH"))
+	{
+		destroy_path();
+		init_path();
+	}
 	return (SHERR_OK);
 }

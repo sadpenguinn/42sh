@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 17:28:39 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:43:37 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:49:39 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@ static void		init_read_dir(char *dir, DIR *dirp)
 	}
 }
 
-static void		init_paths(char **paths)
+static void		init_paths(char **paths, char *sum)
 {
 	struct stat	stats;
 	DIR			*dirp;
 	t_hshtb		*cell;
-	char		*sum;
 	int			i;
 
 	i = 0;
@@ -67,12 +66,14 @@ void			init_path(void)
 {
 	char	**paths;
 	t_hshtb	*cell;
+	char	*sum;
 
+	sum = NULL;
 	g_path_sums = hash_init(INITIAL_PATH_SUMS_HASH_SIZE, HSH_NOW);
 	g_path = hash_init(INITIAL_PATH_HASH_SIZE, HSH_NOW);
 	if (!(cell = hash_find("PATH", g_hash_env)))
 		return ;
 	paths = ft_strsplit(cell->value, ':');
-	init_paths(paths);
+	init_paths(paths, sum);
 	free_str_arr(&paths);
 }

@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:18:53 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:43:38 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:45:32 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 ** Hash functions return one if this values.
 ** If ret is a pointer, NULL will be returned in error case
 */
+
 # define HSH_ERR 0
 # define HSH_OK 1
 
@@ -34,6 +35,7 @@
 /*
 ** Defines for hash realloc function
 */
+
 # define HSH_PERCENTS_FILLED_MAX 50
 # define HSH_PERCENTS_SIZE_REALLOC 150
 
@@ -70,6 +72,7 @@
 /*
 ** Internal type for represent an index
 */
+
 typedef unsigned long	t_hshindex;
 
 typedef struct	s_hshtb
@@ -83,7 +86,7 @@ typedef struct	s_hash
 	t_hshtb		*table;
 	size_t		size;
 	size_t		filled;
-	int 		overwrite;
+	int			overwrite;
 }				t_hash;
 
 /*
@@ -169,6 +172,10 @@ void			hash_free_fileds(char *key, char *value);
 */
 
 int				hash_realloc(t_hash *hash, size_t new_size);
+
+/*
+** Internal function for search empty cell
+*/
 
 t_hshtb			*hash_search(const char *key, t_hash *hash, t_hshindex index);
 

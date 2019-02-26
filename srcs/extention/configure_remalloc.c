@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:42:41 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 20:40:55 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:13:54 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ int		get_len_of_name_var(char *str)
 	return (i);
 }
 
+int		get_len_of_path(char *str)
+{
+	int i;
+
+	i = 1;
+	if (!str[1] || str[i] == '/' || str[1] == ' ')
+		return (1);
+	while (str[i] && str[i] != '/' && str[i] != ' ')
+		i++;
+	return (i);
+}
+
 int		get_len_of_dollar(char *str)
 {
 	int		i;
@@ -29,6 +41,8 @@ int		get_len_of_dollar(char *str)
 
 	i = 1;
 	counter = 0;
+	if (str[0] == '~')
+		return (get_len_of_path(str));
 	if (!(str[i] == '{' || str[i] == '[' || str[i] == '('))
 		return (get_len_of_name_var(str));
 	while (str[i])
