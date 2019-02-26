@@ -15,15 +15,36 @@
 /* #include "parser.h" */
 #include <stdio.h>
 #include "pthread.h"
-extern int	g_execerr;
 
-/* #define EXECUTE_DEBUG */
+#define EXECUTE_DEBUG
+
+
+extern int				g_execerr;
+extern t_list			*g_redirs;
+extern unsigned int		g_redirf;
+
 /*
-** redir types and struct
+**	Flags for g_redirf
+*/
+
+# define REDIR_NO		0
+# define REDIR_IN		0b1
+# define REDIR_OUT		0b01
+# define REDIR_IO		0b11
+
+/*
+**	Flags for t_redir->type
 */
 
 # define REDIRECT		1
 # define CLOSEFD		2
+
+/*
+**	Flags for job
+*/
+
+# define EX_NOFG		0
+# define EX_FG			1
 
 typedef struct	s_redir
 {
@@ -46,6 +67,7 @@ int		execlist3(t_astree *root, int fd[2], int job, int isfork);
 int		execpipecmd(t_astree *root, int fd[2], int job, int isfork);
 int		execpipes(t_astree	*root, int fd[2], int job, int isfork);
 int		execcmd(t_astree *root, int fd[2], int job, int isfork);
+int		execshellcmd(t_astree *root, int fd[2], int job, int isfork);
 int		execscmd(t_astree *root, int fd[2], int job, int isfork);
 
 int		execcase(t_astree *root, int fd[2], int job, int isfork);
@@ -53,10 +75,9 @@ int		execif(t_astree *root, int fd[2], int job, int isfork);
 int		execsubshell(t_astree *root, int fd[2], int job, int isfork);
 int		function(t_astree *func, char **argv, int fd[2], int job, int isfork);
 
-# define EX_NOFG	0
-# define EX_FG		1
-
 t_redir	*get_redir(t_astree *root);
+void	closefds(t_list	*redirs);
+void	apply_g_redir(void);
 
 int pipeerror(void);
 int fileerror(char *file);

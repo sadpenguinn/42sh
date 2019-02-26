@@ -29,6 +29,7 @@ set(EXEC_SRC		srcs/execute/parser/errors.c
 					srcs/execute/parser/execpipecmd.c
 					srcs/execute/parser/execpipes.c
 					srcs/execute/parser/execscmd.c
+					srcs/execute/parser/execshellcmd.c
 					srcs/execute/parser/execcase.c
 					srcs/execute/parser/execif.c
 					srcs/execute/parser/execsubshell.c
@@ -49,7 +50,6 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/argv_parser.c srcs/minishell_lib.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
-					srcs/readline/main.c
 					srcs/readline/array.c
 					srcs/readline/check_next_symbol.c
 					srcs/readline/term.c

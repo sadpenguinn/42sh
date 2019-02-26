@@ -17,13 +17,15 @@ int		execute(t_astree *root)
 #ifdef EXECUTE_DEBUG
 printf("IN EXECUTE\n");
 #endif
-	int fd[2];
-	int res;
+	int		res;
+	int		fd[2];
 
 	if (!root)
 		return (EXIT_FAILURE);
-	fd[0] = STDIN_FILENO;
-	fd[1] = STDOUT_FILENO;
+	g_redirs = (t_list *)0;
+	g_redirf = REDIR_NO;
+	fd[0] = 0;
+	fd[1] = 1;
 	res = execlist1(root, fd, 0, 0);
 	return (res);
 }

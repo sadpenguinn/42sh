@@ -188,6 +188,8 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 		return (-1);
 	if (!isfork && (pid = fork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
+	apply_g_redir();
+	printf("gredirs applied\n");
 	while (redirs)
 	{
 		redir = (t_redir *)redirs->data;

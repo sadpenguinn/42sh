@@ -20,12 +20,56 @@
 **  (content)2?    filename(content)
 */
 
+t_list				*g_redirs;
+unsigned int		g_redirf;
+
 t_redir	*fileerr(char *file, t_redir *redir)
 {
 	g_execerr = 1;
 	free(redir);
 	fileerror(file);
 	return ((t_redir *)0);
+}
+
+void	closefds(t_list	*redirs)
+{
+	while (redirs)
+	{
+		if (((t_redir *)redirs->data)->fd[1] > 2)
+			close(((t_redir *)redirs->data)->fd[1]);
+		redirs = redirs->next;
+	}
+}
+
+void	apply_g_redir(void)
+{
+	t_redir	*redir;
+	t_list	*redirs;
+	t_list	*redirslist;
+
+	printf("<><>\n");
+	redirs = g_redirs;
+	printf("%p\n", g_redirs);
+	while (redirs)
+	{
+		printf("><><\n");
+		redirslist = (t_list *)redirs->data;
+		printf("%p\n", redirslist);
+		printf("%p\n", redirslist->data);
+		printf("apply:%d|%d\n", redir->fd[1], redir->fd[0]);
+		/* while (redirslist) */
+		/* { */
+			printf("apply:%d|%d\n", redir->fd[1], redir->fd[0]);
+			redir = (t_redir *)redirs->data;
+			/* if (redir->type == REDIRECT) */
+			/* 	dup2(redir->fd[1], redir->fd[0]); */
+			/* if (redir->type == CLOSEFD) */
+			/* 	close(redir->fd[0]); */
+		/* 	redirslist = redirslist->next; */
+		/* } */
+		printf("=><=\n");
+		redirs = redirslist->next;
+	}
 }
 
 t_redir	*get_redir(t_astree *root)

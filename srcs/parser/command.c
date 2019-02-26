@@ -16,12 +16,15 @@
 **     CMDREDIR
 **    /        \
 ** CMD          REDIR
+**
+**     CMD
 */
 
 static t_astree	*get_shell_command(void)
 {
 	t_astree	*res[2];
 	t_astree	*root;
+
 
 	if (!(res[0] = shell_command()))
 		return (0);

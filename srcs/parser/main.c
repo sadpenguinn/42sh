@@ -37,21 +37,25 @@ int main(void)
 
 	g_tokens = vector_create(sizeof(t_lexem));
 
-	/* lex.type = WORD; */
-	/* lex.word = "ls"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = OBRACKET;
+	lex.word = "(";
+	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = OR_IF; */
-	/* lex.word = "&&"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = WORD;
+	lex.word = "ls";
+	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = WORD; */
-	/* lex.word = "cat"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = CBRACKET;
+	lex.word = ")";
+	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = WORD; */
-	/* lex.word = "-e"; */
-	/* vector_push_back(&g_tokens, &lex); */
+	lex.type = GREAT;
+	lex.word = ">";
+	vector_push_back(&g_tokens, &lex);
+
+	lex.type = WORD;
+	lex.word = "a";
+	vector_push_back(&g_tokens, &lex);
 
 
 	/* lex.type = CASE; */
@@ -196,57 +200,57 @@ int main(void)
 	/* vector_push_back(&g_tokens, &lex); */
 
 
-	lex.type = IF;
-	lex.word = "if";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = IF; */
+	/* lex.word = "if"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = WORD;
-	lex.word = "ls";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = WORD; */
+	/* lex.word = "ls"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = SEMI;
-	lex.word = ";";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = THEN;
-	lex.word = "then";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = THEN; */
+	/* lex.word = "then"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = WORD;
-	lex.word = "echo";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = WORD; */
+	/* lex.word = "echo"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = SEMI;
-	lex.word = ";";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = ELIF;
-	lex.word = "elif";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = ELIF; */
+	/* lex.word = "elif"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = WORD;
-	lex.word = "cat";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = WORD; */
+	/* lex.word = "cat"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = SEMI;
-	lex.word = ";";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = THEN;
-	lex.word = "then";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = THEN; */
+	/* lex.word = "then"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = WORD;
-	lex.word = "echo";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = WORD; */
+	/* lex.word = "echo"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = SEMI;
-	lex.word = ";";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = SEMI; */
+	/* lex.word = ";"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = FI;
-	lex.word = "fi";
-	vector_push_back(&g_tokens, &lex);
+	/* lex.type = FI; */
+	/* lex.word = "fi"; */
+	/* vector_push_back(&g_tokens, &lex); */
 
 	/* lex.type = PIPE; */
 	/* lex.word = "|"; */
