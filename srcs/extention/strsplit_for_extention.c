@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 21:11:06 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 20:56:24 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/24 21:34:13 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,23 @@ static int		ft_strcpy_extention(char *copy_to, char *copy_from)
 	return (i);
 }
 
+static int		filling_strings(char *str, int i, int j, char **res)
+{
+	while (str[i])
+	{
+		if (str[i] != ' ')
+		{
+			res[j] = (char *)xmalloc(sizeof(char *) * count_word(&str[i]));
+			i += ft_strcpy_extention(res[j], ft_strndup(&str[i],
+										count_word(&str[i])));
+			j++;
+		}
+		else
+			i++;
+	}
+	return (j);
+}
+
 char			**strsplit_for_extention(char *str)
 {
 	int		i;
@@ -110,18 +127,7 @@ char			**strsplit_for_extention(char *str)
 		j++;
 	}
 	else
-		while (str[i])
-		{
-			if (str[i] != ' ')
-			{
-				res[j] = xmalloc(sizeof(char *) * count_word(&str[i]));
-				i += ft_strcpy_extention(res[j], ft_strndup(&str[i],
-											count_word(&str[i])));
-				j++;
-			}
-			else
-				i++;
-		}
+		j = filling_strings(str, i, j, res);
 	res[j] = NULL;
 	free(str);
 	return (res);

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:42 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 21:06:08 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:35:01 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*use_a_default_value(char *str)
 	res = get_content_of_var(&tmp[2]);
 	free(tmp);
 	if (res)
-		return (res);
+		return (ft_strdup(res));
 	tmp = ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1);
 	return (tmp);
 }
@@ -58,7 +58,7 @@ char	*assign_a_default_value(char *str)
 	if (res)
 	{
 		free(tmp);
-		return (res);
+		return (ft_strdup(res));
 	}
 	res = ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1);
 	push_to_enviroment(&tmp[2], res);
@@ -78,7 +78,7 @@ char	*display_error_if_null_or_unset(char *str)
 	res = get_content_of_var(&tmp[2]);
 	free(tmp);
 	if (res)
-		return (res);
+		return (ft_strdup(res));
 	res = (ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1));
 	free(str);
 	ft_putstr_fd("42sh: ", STDERR_FILENO);
