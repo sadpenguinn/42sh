@@ -17,8 +17,7 @@ set(LIBSHELL		shell)
 set(LIBSHELL_DIR	srcs/lib/libshell)
 set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
-set(MAIN			srcs/shell.c
-					srcs/minishell_parser.c)
+set(MAIN			srcs/shell.c)
 
 set(EXEC_SRC		srcs/execute/parser/errors.c
 					srcs/execute/parser/execcmd.c

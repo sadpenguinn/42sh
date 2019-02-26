@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:09:46 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:26:45 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/26 16:45:57 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,49 +15,50 @@
 #include "shell.h"
 #include <unistd.h>
 
-static t_array	*arr;
+static t_array	*g_arr;
 
 static void	init_array(void)
 {
-	arr = (t_array *)xmalloc(sizeof(t_array));
-	arr->buf = (char *)xmalloc(ARRAY_DEFAULT_SIZE);
-	arr->len = 0;
-	arr->size = ARRAY_DEFAULT_SIZE;
+	g_arr = (t_array *)xmalloc(sizeof(t_array));
+	g_arr->buf = (char *)xmalloc(ARRAY_DEFAULT_SIZE);
+	g_arr->len = 0;
+	g_arr->size = ARRAY_DEFAULT_SIZE;
 }
 
 void		array_add(const char *str, size_t len)
 {
 	if (str == NULL)
-		return;
-	if (arr == NULL)
+		return ;
+	if (g_arr == NULL)
 		init_array();
 	if (len == 0)
 		return ;
-	if (arr->len + len > arr->size)
+	if (g_arr->len + len > g_arr->size)
 	{
-		arr->buf = (char *)xrealloc(arr->buf, arr->size * FACTOR + len, arr->size);
-		arr->size = arr->size * FACTOR + len;
+		g_arr->buf = (char *)xrealloc(g_arr->buf,
+				g_arr->size * FACTOR + len, g_arr->size);
+		g_arr->size = g_arr->size * FACTOR + len;
 	}
-	memcpy(arr->buf + arr->len, str, len);
-	arr->len += len;
+	memcpy(g_arr->buf + g_arr->len, str, len);
+	g_arr->len += len;
 }
 
 char		*array_to_string(void)
 {
 	char	*str;
 
-	str = (char *)xmalloc(arr->len + 1);
-	memmove(str, arr->buf, arr->len);
-	free(arr->buf);
-	free(arr);
-	arr = NULL;
+	str = (char *)xmalloc(g_arr->len + 1);
+	memmove(str, g_arr->buf, g_arr->len);
+	free(g_arr->buf);
+	free(g_arr);
+	g_arr = NULL;
 	return (str);
 }
 
 void		array_flush(void)
 {
-	write(1, arr->buf, arr->len);
-	free(arr->buf);
-	free(arr);
-	arr = NULL;
+	write(1, g_arr->buf, g_arr->len);
+	free(g_arr->buf);
+	free(g_arr);
+	g_arr = NULL;
 }

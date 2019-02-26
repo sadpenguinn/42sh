@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_next_symbol.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 14:10:56 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/24 16:45:06 by sitlcead         ###   ########.fr       */
+/*   Created: 2019/02/26 16:46:57 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 16:47:46 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	check_modes(t_matrix *matrix, t_uchar c)
 static int	check_utf(t_matrix *matrix, t_uchar c)
 {
 	t_uchar tmp;
+
 	tmp = get_next_symbol(get_utf_offset_right(c));
 	c += (tmp << 8);
 	return (check_modes(matrix, c));

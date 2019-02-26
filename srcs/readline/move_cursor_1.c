@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:11:49 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/24 16:02:03 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:00:42 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	move_cursor_right(t_matrix *matrix)
 
 int	move_cursor_up(t_matrix *matrix)
 {
-	int 	col;
-	int 	symbols;
+	int		col;
+	int		symbols;
 	t_line	*line;
 
 	if (matrix->cursor->row)
@@ -44,7 +44,7 @@ int	move_cursor_up(t_matrix *matrix)
 		line = matrix->lines[matrix->cursor->row];
 		symbols = (symbols < line->symbols) ? symbols : line->symbols;
 		col = count_string_cols(line->buf, symbols);
-		matrix->cursor->col	= col;
+		matrix->cursor->col = col;
 	}
 	return (1);
 }
@@ -52,7 +52,7 @@ int	move_cursor_up(t_matrix *matrix)
 int	move_cursor_down(t_matrix *matrix)
 {
 	int		col;
-	int 	symbols;
+	int		symbols;
 	t_line	*line;
 
 	if (matrix->cursor->row != matrix->len - 1)
@@ -63,7 +63,7 @@ int	move_cursor_down(t_matrix *matrix)
 		line = matrix->lines[matrix->cursor->row];
 		symbols = (symbols < line->symbols) ? symbols : line->symbols;
 		col = count_string_cols(line->buf, symbols);
-		matrix->cursor->col	= col;
+		matrix->cursor->col = col;
 	}
 	return (1);
 }

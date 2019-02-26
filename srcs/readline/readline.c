@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/24 16:49:36 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:02:04 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include "term.h"
 
-void     ft_puts(char *buf, int len)
+void	ft_puts(char *buf, int len)
 {
 	if (len == 0)
 		len = strlen(buf);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_matrix_limits.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 17:07:24 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 17:10:14 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
 static int	change_limits_left_case(t_matrix *matrix, int new_left_limit)
@@ -9,12 +21,14 @@ static int	change_limits_left_case(t_matrix *matrix, int new_left_limit)
 	matrix->right_limit = new_left_limit;
 	size = g_w.ws_col * g_w.ws_row;
 	i = ((matrix->lines[matrix->right_limit]->symbols +
-		  get_lines_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+				get_lines_prompt_len(matrix->len) - 1) / g_w.ws_col + 1)
+		* g_w.ws_col;
 	while (i <= size && matrix->right_limit < matrix->len - 1)
 	{
 		matrix->right_limit++;
 		i += ((matrix->lines[matrix->right_limit]->symbols +
-			   get_lines_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+					get_lines_prompt_len(matrix->len) - 1) / g_w.ws_col + 1)
+			* g_w.ws_col;
 	}
 	if (i > size)
 		matrix->right_limit--;
@@ -30,12 +44,14 @@ static int	change_limits_right_case(t_matrix *matrix, int new_right_limit)
 	matrix->left_limit = new_right_limit;
 	size = g_w.ws_row * g_w.ws_col;
 	i = ((matrix->lines[matrix->left_limit]->symbols +
-		  get_lines_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+				get_lines_prompt_len(matrix->len) - 1) / g_w.ws_col + 1)
+		* g_w.ws_col;
 	while (i <= size && matrix->left_limit)
 	{
 		matrix->left_limit--;
 		i += ((matrix->lines[matrix->left_limit]->symbols +
-			   get_lines_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+					get_lines_prompt_len(matrix->len) - 1) / g_w.ws_col + 1)
+			* g_w.ws_col;
 	}
 	if (i > size)
 		matrix->left_limit++;
@@ -51,12 +67,14 @@ static void	check_cursor_limits(t_matrix *matrix)
 	size = g_w.ws_row * g_w.ws_col;
 	left_limit = matrix->cursor->row;
 	i = ((matrix->lines[left_limit]->symbols +
-		  get_lines_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+				get_lines_prompt_len(matrix->len) - 1) / g_w.ws_col + 1)
+		* g_w.ws_col;
 	while (i <= size && left_limit)
 	{
 		left_limit--;
 		i += ((matrix->lines[left_limit]->symbols +
-			   get_lines_prompt_len(matrix->len) - 1)/ g_w.ws_col + 1) * g_w.ws_col;
+					get_lines_prompt_len(matrix->len) - 1) / g_w.ws_col + 1)
+			* g_w.ws_col;
 	}
 	if (i > size)
 		left_limit++;

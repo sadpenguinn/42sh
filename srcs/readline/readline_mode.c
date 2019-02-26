@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   readline_mode.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 17:03:52 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 17:05:23 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
-int     readline_mode(t_matrix *matrix, t_uchar c)
+int	readline_mode(t_matrix *matrix, t_uchar c)
 {
 	char	str[8];
 
@@ -12,6 +24,6 @@ int     readline_mode(t_matrix *matrix, t_uchar c)
 	if (c == '\n')
 		return (newline_handling(matrix));
 	matrix_string_insert(matrix, matrix->cursor,
-						 str, symbol_to_string(c, str));
+			str, symbol_to_string(c, str));
 	return (1);
 }

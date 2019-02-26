@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_string_delete.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 16:52:49 by narchiba          #+#    #+#             */
+/*   Updated: 2019/02/26 16:56:35 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include <string.h>
 
 void	matrix_string_delete(t_matrix *matrix, int row, int col)
 {
 	t_line	*line;
-	int 	i;
-	int 	symbols;
+	int		i;
+	int		symbols;
 
 	line = matrix->lines[matrix->cursor->row];
 	if (row == matrix->cursor->row)
