@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:43:37 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:04:45 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int		check_varname(char *var);
 int		match(char *s1, char *s2);
-int		glob(char *pattern, char *path, char ***matches, size_t *cnt);
+int		xglob(char *pattern, char *path, char ***matches, size_t *cnt);
 void	die(void);
 void	sputerr(char *err);
 void	sputcmderr(char *err, char *cmd, char *arg);

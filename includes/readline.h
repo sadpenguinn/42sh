@@ -159,7 +159,7 @@ void			add_lines_prompt_style(void);
 void			add_cur_line_prompt_style(void);
 void			add_prompt_style(void);
 
-int				symbol_to_string(t_uchar c, char *str);
+int				symbol_to_string(t_matrix *matrix, t_uchar c, char *str);
 
 int				set_matrix_limits(t_matrix *matrix);
 

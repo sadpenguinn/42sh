@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:40:02 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/21 10:55:32 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:04:23 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int		read_dir(DIR *dirp, char *pattern, char ***matches, size_t *cnt)
 	return ((int)i);
 }
 
-int				glob(char *pattern, char *path, char ***matches, size_t *cnt)
+int				xglob(char *pattern, char *path, char ***matches, size_t *cnt)
 {
 	DIR				*dirp;
 	size_t			arr_len;

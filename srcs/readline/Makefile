@@ -35,6 +35,7 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  add_cursor_offset.c\
 	  add_line_prefix.c\
 	  get_lines_info.c\
+	  ../lib/libshell/srcs/glob.c\
 
 NAME = line
 TEST = a.test
