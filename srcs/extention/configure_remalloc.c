@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:42:41 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/26 17:50:34 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:13:54 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ int		get_len_of_name_var(char *str)
 	return (i);
 }
 
+int		get_len_of_path(char *str)
+{
+	int i;
+
+	i = 1;
+	if (!str[1] || str[i] == '/' || str[1] == ' ')
+		return (1);
+	while (str[i] && str[i] != '/' && str[i] != ' ')
+		i++;
+	return (i);
+}
+
 int		get_len_of_dollar(char *str)
 {
 	int		i;
@@ -29,8 +41,8 @@ int		get_len_of_dollar(char *str)
 
 	i = 1;
 	counter = 0;
-	if (str[i] == '~')
-		return (1);
+	if (str[0] == '~')
+		return (get_len_of_path(str));
 	if (!(str[i] == '{' || str[i] == '[' || str[i] == '('))
 		return (get_len_of_name_var(str));
 	while (str[i])
@@ -59,8 +71,6 @@ char	*get_pahom(char *str, int *i, int *len_of_expression)
 	if (*len_of_expression == -1)
 		return (NULL);
 	*i += *len_of_expression;
-	if (str[0] == '~')
-		return (ft_strdup(sgetenv("HOME")));
 	res = get_content_of_expression(ft_strndup(str, *len_of_expression));
 	if (!res)
 		return (NULL);

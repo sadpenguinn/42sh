@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:38:01 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 21:06:32 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:16:03 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,33 @@ char	*remove_smallest_prefix_pattern(char *str)
 	return (ft_strdup(res));
 }
 
+char	*get_ex_tilda(char *str)
+{
+	int				i;
+	char			*tmp;
+	struct passwd	*user;
+
+	if (!str[1] || str[1] == ' ' || str[1] == '/')
+		return (ft_strdup(sgetenv("HOME")));
+	i = 1;
+	while (str[i] && str[i] != '/' && str[i] != ' ')
+		i++;
+	tmp = ft_strndup(str, i);
+	if (!(user = getpwnam(&tmp[1])))
+		return (tmp);
+	free(tmp);
+	tmp = ft_strdup(user->pw_dir);
+	return (tmp);
+}
+
 char	*get_content_of_expression(char *str)
 {
 	char	*res;
 
 	str = erase_repetitions_recursion(str);
-	if (str[1] != '(' && str[1] != '[' && str[1] != '{')
+	if (str[0] == '~')
+		res = get_ex_tilda(str);
+	else if (str[1] != '(' && str[1] != '[' && str[1] != '{')
 		res = classic_get_env(&str[1]);
 	else if (ft_strstr(str, ":-"))
 		res = use_a_default_value(str);
