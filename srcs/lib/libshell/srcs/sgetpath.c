@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/27 14:43:52 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/27 21:15:18 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,22 @@ static int	find_builtin(const char *bin, void **ret)
 	else if (!ft_strcmp(bin, "unsetenv"))
 		*ret = built_unsetenv;
 	else if (!ft_strcmp(bin, "exit"))
+	{
 		*ret = built_exit;
+		return (PATH_EXIT);
+	}
 	else
-		return (0);
-	return (1);
+		return (PATH_NULL);
+	return (PATH_BUILT);
 }
 
 int			sgetpath(const char *bin, void **ret)
 {
 	t_hshtb		*cell;
+	int 		ret_built;
 
-	if (find_builtin(bin, ret))
-		return (PATH_BUILT);
+	if ((ret_built = find_builtin(bin, ret)) != PATH_NULL)
+		return (ret_built);
 	if (!(cell = hash_find(bin, g_path)))
 		return (PATH_NULL);
 	if (!validate_sum(cell->key, cell->value))
