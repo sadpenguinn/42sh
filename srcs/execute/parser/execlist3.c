@@ -14,10 +14,6 @@
 
 int		execlist3(t_astree *root, int fd[2], int job, int isfork)
 {
-#ifdef EXECUTE_DEBUG
-printf("execlist3:%d\n", root->type);
-#endif
-
 	if (!root)
 		return (EXIT_SUCCESS);
 	if (root->type != LIST3 && root->type != AND_IF)

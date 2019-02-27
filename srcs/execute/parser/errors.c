@@ -14,14 +14,14 @@
 
 int	g_execerr = 0;
 
-int pipeerror(void)
+int		pipeerror(void)
 {
 	ft_putstr("42sh: pipe create error\n");
 	g_execerr = -1;
 	return (-1);
 }
 
-int fileerror(char *file)
+int		fileerror(char *file)
 {
 	ft_putstr("42sh: can't open file : ");
 	ft_putendl(file);
@@ -29,7 +29,7 @@ int fileerror(char *file)
 	return (-1);
 }
 
-int forkerror(char *cmd)
+int		forkerror(char *cmd)
 {
 	ft_putstr("42sh: unable to fork : ");
 	ft_putendl(cmd);
@@ -37,7 +37,7 @@ int forkerror(char *cmd)
 	return (-1);
 }
 
-int threaderror(void)
+int		threaderror(void)
 {
 	ft_putstr("42sh: unable to start thred\n");
 	g_execerr = 1;

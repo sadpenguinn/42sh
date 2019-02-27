@@ -55,14 +55,14 @@ int				execcmd(t_astree *root, int fd[2], int job, int isfork)
 
 	if (root->type != CMDREDIR)
 		return (execshellcmd(root, fd, job, isfork));
-	if (!(pid = fork()))
+	if (!(pid = xfork()))
 	{
 		applycmdredir(root);
 		exit(execshellcmd(root->left, fd, job, isfork));
 	}
 	if (pid == -1)
 		return (-1);
-	waitpid(pid, &status, 0);
+	xwaitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	return (EXIT_FAILURE);

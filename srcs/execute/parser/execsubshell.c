@@ -25,10 +25,10 @@ int		execsubshell(t_astree *root, int fd[2], int job, int isfork)
 	int status;
 
 	if (!isfork)
-		pid = fork();
+		pid = xfork();
 	if (isfork || !pid)
 		exit(execlist1(root->left, fd, job, 1));
-	waitpid(pid, &status, 0);
+	xwaitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	return (EXIT_FAILURE);

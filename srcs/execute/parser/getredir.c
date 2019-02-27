@@ -28,7 +28,7 @@ t_redir	*fileerr(char *file, t_redir *redir)
 	return ((t_redir *)0);
 }
 
-void	closefds(t_list	*redirs)
+void	closefds(t_list *redirs)
 {
 	while (redirs)
 	{
@@ -54,8 +54,6 @@ t_redir	*get_redir(t_astree *root)
 		if (-1 == (redir->fd[1] = open(root->right->content,
 				O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644)))
 			return (fileerr(root->right->content, redir));
-printf(">>%s|%d|%d\n", root->right->content, redir->fd[0], redir->fd[1]);
-printf(">>p:%p\n", redir);
 	}
 	else
 	{

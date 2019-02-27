@@ -53,4 +53,3 @@ int		execif(t_astree *root, int fd[2], int job, int isfork)
 		return (execlist1(failure, fd, job, isfork));
 	return (EXIT_SUCCESS);
 }
-//if false; then echo OK; else echo NO; fi

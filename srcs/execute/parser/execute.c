@@ -14,17 +14,14 @@
 
 int		execute(t_astree *root)
 {
-#ifdef EXECUTE_DEBUG
-printf("IN EXECUTE\n");
-#endif
 	int		res;
 	int		fd[2];
 
 	if (!root)
 		return (EXIT_FAILURE);
+	g_pids = vector_create(sizeof(pid_t));
 	fd[0] = 0;
 	fd[1] = 1;
 	res = execlist1(root, fd, 0, 0);
-	printf(">>|%d|<<\n", res);
 	return (res);
 }

@@ -14,16 +14,12 @@
 
 int		execlist1(t_astree *root, int fd[2], int job, int isfork)
 {
-#ifdef EXECUTE_DEBUG
-printf("execlist1:%d\n", root->type);
-#endif
 	int		res;
 
 	if (!root)
 		return (EXIT_SUCCESS);
-(void)job;
 	/* if (job == EX_FG && root->type == LIST1) */
-	/* 	return (subshell(root, fd, EX_FG)); */
+	/* 	return (execjob(root, fd, EX_FG)); */
 	if (root->type != LIST1 && root->type != AND && root->type != SEMI &&
 		root->type != NEWLINE)
 		return (execlist2(root, fd, EX_NOFG, isfork));

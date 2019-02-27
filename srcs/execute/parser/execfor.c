@@ -16,5 +16,5 @@ int		execfor(t_astree *root, int fd[2], int flag)
 {
 	t_astree	*body;
 
-	if 
+	return (0);
 }

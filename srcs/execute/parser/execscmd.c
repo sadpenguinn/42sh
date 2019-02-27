@@ -20,34 +20,6 @@
 #include "libshell.h"
 #include "extention.h"
 
-/* char *expand(char *str) */
-/* { */
-/* 	char *new; */
-
-/* 	new = ft_strdup(str); */
-/* 	return (new); */
-/* } */
-/* char **expandv(char *str) */
-/* { */
-/* 	char **new; */
-
-/* 	new = malloc(sizeof(char *) * 2); */
-/* 	new[0] = ft_strdup(str); */
-/* 	new[1] = 0; */
-/* 	return (new); */
-/* } */
-/* char **get_alias(char *str) */
-/* { */
-/* 	char **new; */
-
-/* 	new = malloc(sizeof(char *) * 3); */
-/* 	new[0] = ft_strdup(str); */
-/* 	new[1] = ft_strdup("-G"); */
-/* 	new[2] = 0; */
-/* 	/1* free(str); *1/ */
-/* 	return (new); */
-/* } */
-
 int		add_pipe_redir(t_list **redlst, int fd[2])
 {
 	t_redir		*redir[2];
@@ -65,121 +37,6 @@ int		add_pipe_redir(t_list **redlst, int fd[2])
 	return (0);
 }
 
-
-int	get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
-{
-	int			type;
-
-	if (!root)
-		return (0);
-	type = root->left->type;
-	if (type == WORD)
-		assignment = 0;
-	if (type == ASSIGMENT_WORD && !assignment)
-		type = WORD;
-	if (type != WORD && type != ASSIGMENT_WORD)
-		ft_push_back(&cmd[2], get_redir(root->left));
-	else
-	{
-		ft_push_back((type == WORD ? &cmd[0] : &cmd[1]), root->left->content);
-		root->left->content = 0;
-	}
-	return (get_cmd_attr(root->right, cmd, assignment));
-}
-
-int		expand_assign(t_list *assign)
-{
-	char *bgn;
-	char *res;
-	char *val;
-
-	while (assign)
-	{
-		val = (char *)assign->data;
-		bgn = val;
-		res = val;
-		while (*val != '=')
-			val++;
-		val++;
-		res = val;
-		val = expand(val);
-		*res = 0;
-		res = ft_stradd(bgn, val, 1);
-		assign->data = (void *)res;
-		assign = assign->next;
-	}
-	return (0);
-}
-
-/* int		set_alias_arg(t_list **args) */
-/* { */
-/* 	int		i; */
-/* 	char	*arg1; */
-/* 	char	**alias; */
-
-/* 	arg1 = (char *)(*args)->data; */
-/* 	if (!(alias = get_alias(arg1))) */
-/* 		return (0); */
-/* 	free(ft_pop(args)); */
-/* 	i = 0; */
-/* 	while (alias[i]) */
-/* 		i++; */
-/* 	while (--i >= 0) */
-/* 		ft_push(args, alias[i]); */
-/* 	free(alias); */
-/* 	return (0); */
-/* } */
-
-char	**get_argv(t_list *args)
-{
-	t_list	*lst;
-	char	*arg;
-	char	**argv;
-
-	if (!args)
-		return (0);
-	lst = args;
-	while (lst)
-	{
-		arg =(char *)lst->data;
-		lst->data = (char **)expand_v(arg);
-		free(arg);
-		lst = lst->next;
-	}
-	argv = (char **)args->data;
-	args->data = 0;
-	while ((args = args->next))
-	{
-		argv = (char **)ft_joinvect((void **)argv, (void **)args->data, 1);
-		args->data = 0;
-	}
-	return (argv);
-}
-
-char	**get_envp(t_list *envs)
-{
-	int		i;
-	t_list	*lst;
-	char	**envp;
-
-	i = 0;
-	lst = envs;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	envp = xmalloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (envs)
-	{
-		envp[i] = (char *)envs->data;
-		envs = envs->next;
-	}
-	envp = (char **)ft_joinvect((void **)envp, (void **)g_env.env, 0);
-	return (envp);
-}
-
 int		execcommand(char **aven[2], t_list *redirs, int isfork)
 {
 	void 	*cmd;
@@ -189,7 +46,7 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 
 	if ((cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)
 		return (-1);
-	if (!isfork && (pid = fork()))
+	if (!isfork && (pid = xfork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
 	while (redirs)
 	{
@@ -207,32 +64,6 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 	return (-1);
 }
 
-int	set_envs(t_list	*envs)
-{
-	char	*val;
-
-	while(envs)
-	{
-		val = (char *)envs->data; while (*val != '=')
-			val++;
-		*val++ = 0;
-		/* ssetenv((char *)envs->data, val); */
-		envs = envs->next;
-	}
-	return (EXIT_SUCCESS);
-}
-
-static void	initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
-{
-	bzero(cmd, sizeof(t_list *) * 3);
-	get_cmd_attr(root, cmd, 1);
-	add_pipe_redir(&cmd[2], fd);
-	expand_assign(cmd[1]);
-	/* set_alias_arg(&cmd[0]); */
-	aven[0] = get_argv(cmd[0]);
-	aven[1] = get_envp(cmd[1]);
-}
-
 static void	freecmd(t_list *cmd[3], char **aven[2])
 {
 	int		i;
@@ -244,9 +75,7 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 	free(aven[0]);
 	free(aven[1]);
 	redirs = cmd[2];
-	// SKIP PIPE REDIR
-	redirs = redirs->next;
-	redirs = redirs->next;
+	redirs = redirs->next->next;
 	while (redirs)
 	{
 		if (((t_redir *)redirs->data)->fd[1] > 2)
@@ -256,6 +85,22 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 	ft_listdel(&cmd[0], &ft_free);
 	ft_listdel(&cmd[1], &ft_free);
 	ft_listdel(&cmd[2], &ft_free);
+}
+
+int		set_envs(t_list *envs)
+{
+	char	*val;
+
+	while (envs)
+	{
+		val = (char *)envs->data;
+		while (*val != '=')
+			val++;
+		*val++ = 0;
+		ssetenv((char *)envs->data, val);
+		envs = envs->next;
+	}
+	return (EXIT_SUCCESS);
 }
 
 /*
@@ -269,9 +114,6 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 
 int	execscmd(t_astree *root, int fd[2], int job, int isfork)
 {
-#ifdef EXECUTE_DEBUG
-printf("execscmd:%d:%d\n", root->type, isfork);
-#endif
 	t_list	*cmd[3];
 	char	**aven[2];
 	pid_t	pid;
@@ -287,7 +129,7 @@ printf("execscmd:%d:%d\n", root->type, isfork);
 		return (-1);
 	if (job || isfork)
 		return (pid);
-	waitpid(pid, &status, 0);
+	xwaitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	return (EXIT_FAILURE);
