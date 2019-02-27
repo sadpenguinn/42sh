@@ -22,10 +22,9 @@ printf("IN EXECUTE\n");
 
 	if (!root)
 		return (EXIT_FAILURE);
-	g_redirs = (t_list *)0;
-	g_redirf = REDIR_NO;
 	fd[0] = 0;
 	fd[1] = 1;
 	res = execlist1(root, fd, 0, 0);
+	printf(">>|%d|<<\n", res);
 	return (res);
 }

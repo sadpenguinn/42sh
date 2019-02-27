@@ -179,6 +179,7 @@ char	**get_envp(t_list *envs)
 	envp = (char **)ft_joinvect((void **)envp, (void **)g_env.env, 0);
 	return (envp);
 }
+
 int		execcommand(char **aven[2], t_list *redirs, int isfork)
 {
 	void 	*cmd;
@@ -190,8 +191,6 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 		return (-1);
 	if (!isfork && (pid = fork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
-	apply_g_redir();
-	printf("gredirs applied\n");
 	while (redirs)
 	{
 		redir = (t_redir *)redirs->data;

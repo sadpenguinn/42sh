@@ -14,14 +14,11 @@
 #include "libft.h"
 /* #include "parser.h" */
 #include <stdio.h>
-#include "pthread.h"
 
 #define EXECUTE_DEBUG
 
 
 extern int				g_execerr;
-extern t_list			*g_redirs;
-extern unsigned int		g_redirf;
 
 /*
 **	Flags for g_redirf

@@ -23,7 +23,5 @@ printf("execpipecmd:%d\n", root->type);
 		return (!execpipecmd(root->left, fd, flag, isfork));
 	if (root->left->type == REST)
 		return (execpipes(root->left, fd, flag, isfork));
-	execcmd(root->left, fd, flag, 0);
-	printf(">COMMAND OK<\n");
-	return (1);
+	return (execcmd(root->left, fd, flag, 0));
 }

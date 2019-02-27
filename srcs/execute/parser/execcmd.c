@@ -31,29 +31,39 @@
 
 #include "execute.h"
 
-int		execcmd(t_astree *root, int fd[2], int job, int isfork)
+static void		applycmdredir(t_astree *root)
 {
-	int			res;
-	int			tmp;
-	t_list		*cmdredir;
+	t_redir		*redir;
 	t_astree	*redthree;
+
+	redthree = root->right;
+	while (redthree)
+	{
+		redir = get_redir(redthree->left);
+		if (redir->type == REDIRECT)
+			dup2(redir->fd[1], redir->fd[0]);
+		if (redir->type == CLOSEFD)
+			close(redir->fd[0]);
+		redthree = redthree->right;
+	}
+}
+
+int				execcmd(t_astree *root, int fd[2], int job, int isfork)
+{
+	int			status;
+	pid_t		pid;
 
 	if (root->type != CMDREDIR)
 		return (execshellcmd(root, fd, job, isfork));
-	tmp = g_redirf;
-	g_redirf = REDIR_IO;
-	redthree = root->right;
-	cmdredir = (t_list *)0;
-	while (redthree)
+	if (!(pid = fork()))
 	{
-		ft_push_back(&cmdredir, get_redir(redthree->left));
-		redthree = redthree->right;
+		applycmdredir(root);
+		exit(execshellcmd(root->left, fd, job, isfork));
 	}
-	ft_push_back(&g_redirs, cmdredir);
-	res = execshellcmd(root->left, fd, job, isfork);
-	g_redirf = tmp;
-	cmdredir = (t_list *)ft_pop(&g_redirs);
-	closefds(cmdredir);
-	ft_listdel(&cmdredir, &ft_free);
-	return (res);
+	if (pid == -1)
+		return (-1);
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (EXIT_FAILURE);
 }
