@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 17:41:09 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/26 20:24:34 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/27 14:46:24 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,32 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-char	*get_cmd_path(char *str)
+int 	get_cmd_path(char *str, void **ret)
 {
-	char	*tmp;
+	int 	tmp;
 
 	if (ft_strchr(str, '/'))
 	{
 		if (!(access(str, X_OK)))
-			return (str);
+		{
+			*ret = str;
+			return (PATH_BIN);
+		}
 		if ((access(str, F_OK)))
 		{
 			ft_putstr_fd("No such file or directory\n", 2);
-			return (NULL);
+			return (PATH_NULL);
 		}
 		ft_putstr_fd("Permission denied\n", 2);
-		return (NULL);
+		return (PATH_NULL);
 	}
 	else
 	{
-		tmp = sgetpath(str);
-		if (!tmp)
+		tmp = sgetpath(str, ret);
+		if (tmp == PATH_NULL)
 		{
 			ft_putstr_fd("No such command\n", 2);
-			return (NULL);
+			return (PATH_NULL);
 		}
 		return (tmp);
 	}

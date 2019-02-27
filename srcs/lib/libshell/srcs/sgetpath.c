@@ -6,12 +6,13 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/26 18:11:30 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/27 14:43:52 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "libshell.h"
+#include "builtins.h"
 
 static char	*get_path(char *key, char *value)
 {
@@ -56,18 +57,40 @@ static int	validate_sum(char *key, char *value)
 	return (free_sum(sum, path, 0));
 }
 
-char		*sgetpath(const char *bin)
+static int	find_builtin(const char *bin, void **ret)
+{
+	if (!ft_strcmp(bin, "cd"))
+		*ret = built_cd;
+	else if (!ft_strcmp(bin, "echo"))
+		*ret = built_echo;
+	else if (!ft_strcmp(bin, "env"))
+		*ret = built_env;
+	else if (!ft_strcmp(bin, "setenv"))
+		*ret = built_setenv;
+	else if (!ft_strcmp(bin, "unsetenv"))
+		*ret = built_unsetenv;
+	else if (!ft_strcmp(bin, "exit"))
+		*ret = built_exit;
+	else
+		return (0);
+	return (1);
+}
+
+int			sgetpath(const char *bin, void **ret)
 {
 	t_hshtb		*cell;
 
+	if (find_builtin(bin, ret))
+		return (PATH_BUILT);
 	if (!(cell = hash_find(bin, g_path)))
-		return (NULL);
+		return (PATH_NULL);
 	if (!validate_sum(cell->key, cell->value))
 	{
 		destroy_path();
 		init_path();
 	}
 	if (!(cell = hash_find(bin, g_path)))
-		return (NULL);
-	return (cell->value);
+		return (PATH_NULL);
+	*ret = cell->value;
+	return (PATH_BIN);
 }
