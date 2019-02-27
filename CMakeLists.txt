@@ -19,22 +19,22 @@ set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
 set(MAIN			srcs/shell.c)
 
-set(EXEC_SRC		srcs/execute/parser/errors.c
-					srcs/execute/parser/execcmd.c
-					srcs/execute/parser/execfunc.c
-					srcs/execute/parser/execlist1.c
-					srcs/execute/parser/execlist2.c
-					srcs/execute/parser/execlist3.c
-					srcs/execute/parser/execpipecmd.c
-					srcs/execute/parser/execpipes.c
-					srcs/execute/parser/execscmd.c
-					srcs/execute/parser/execshellcmd.c
-					srcs/execute/parser/execcase.c
-					srcs/execute/parser/execif.c
-					srcs/execute/parser/execsubshell.c
-					srcs/execute/parser/execute.c
-					srcs/execute/parser/getredir.c
-					srcs/execute/parser/process.c)
+set(EXEC_SRC		srcs/execute/errors.c
+					srcs/execute/execcmd.c
+					srcs/execute/execlist1.c
+					srcs/execute/execlist2.c
+					srcs/execute/execlist3.c
+					srcs/execute/initcmd.c
+					srcs/execute/execpipecmd.c
+					srcs/execute/execpipes.c
+					srcs/execute/execscmd.c
+					srcs/execute/execshellcmd.c
+					srcs/execute/execcase.c
+					srcs/execute/execif.c
+					srcs/execute/execsubshell.c
+					srcs/execute/execute.c
+					srcs/execute/getredir.c
+					srcs/execute/process.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c

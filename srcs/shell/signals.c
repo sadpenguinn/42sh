@@ -6,19 +6,30 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:27:49 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/24 17:18:50 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/27 22:54:34 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	shell_handler(int sig)
+extern void		*g_pids;
+extern int 		g_parseerr;
+
+void			xkill(void *cmd)
 {
-	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
-		exit(EXIT_SUCCESS);
+	kill(SIGKILL, (int)cmd);
 }
 
-void	init_signals(void)
+void			shell_handler(int sig)
+{
+	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
+	{
+		g_parseerr = 1;
+		vector_foreach(g_pids, xkill);
+	}
+}
+
+void			init_signals(void)
 {
 	struct sigaction	action;
 	sigset_t			set;

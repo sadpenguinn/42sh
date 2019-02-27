@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execfor.c                                          :+:      :+:    :+:   */
+/*   function.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 22:10:38 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 23:21:25 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/20 13:02:38 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/27 22:45:42 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int		execfor(t_astree *root, int fd[2], int flag)
+int		function(t_astree *func, char **argv, int fd[2], int job)
 {
-	t_astree	*body;
+	int		res;
 
-	return (0);
+	(void)argv;
+	res = execlist1(func, fd, job);
+	(void)argv;
+	return (res);
 }
