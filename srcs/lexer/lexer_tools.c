@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/27 13:32:58 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/27 13:33:11 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int				push_token(void **lexems, char *lexem, int state)
 		(state >= 10 && state <= 12) ||
 		(state >= 19 && state <= 25) ||
 		(state >= 37 && state <= 39) ||
-		(state >= 40 && state <= 44) ||
+		(state >= 41 && state <= 44) ||
 		(state >= 46 && state <= 51) ||
 		(state >= 101 && state <= 103) ||
 		state == 2 || state == 4 || state == 14 || state == 16 ||
