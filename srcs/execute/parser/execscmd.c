@@ -18,23 +18,24 @@
 #include <unistd.h>
 #include "execute.h"
 #include "libshell.h"
+#include "extention.h"
 
-char *expand(char *str)
-{
-	char *new;
+/* char *expand(char *str) */
+/* { */
+/* 	char *new; */
 
-	new = ft_strdup(str);
-	return (new);
-}
-char **expandv(char *str)
-{
-	char **new;
+/* 	new = ft_strdup(str); */
+/* 	return (new); */
+/* } */
+/* char **expandv(char *str) */
+/* { */
+/* 	char **new; */
 
-	new = malloc(sizeof(char *) * 2);
-	new[0] = ft_strdup(str);
-	new[1] = 0;
-	return (new);
-}
+/* 	new = malloc(sizeof(char *) * 2); */
+/* 	new[0] = ft_strdup(str); */
+/* 	new[1] = 0; */
+/* 	return (new); */
+/* } */
 /* char **get_alias(char *str) */
 /* { */
 /* 	char **new; */
@@ -141,7 +142,7 @@ char	**get_argv(t_list *args)
 	while (lst)
 	{
 		arg =(char *)lst->data;
-		lst->data = (char **)expandv(arg);
+		lst->data = (char **)expand_v(arg);
 		free(arg);
 		lst = lst->next;
 	}
@@ -175,16 +176,17 @@ char	**get_envp(t_list *envs)
 		envp[i] = (char *)envs->data;
 		envs = envs->next;
 	}
-	/* 	envp = (char **)ft_joinvect((void **)envp, (void **)g_env, 0); */
+	envp = (char **)ft_joinvect((void **)envp, (void **)g_env.env, 0);
 	return (envp);
 }
 int		execcommand(char **aven[2], t_list *redirs, int isfork)
 {
-	char	*path;
+	void 	*cmd;
+	int		cmdtype;
 	t_redir	*redir;
 	pid_t	pid;
 
-	if (!(path = get_cmd_path(aven[0][0])))
+	if ((cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)
 		return (-1);
 	if (!isfork && (pid = fork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
@@ -199,7 +201,11 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 			close(redir->fd[0]);
 		redirs = redirs->next;
 	}
-	return (execve(path, aven[0], aven[1]));
+	if (cmdtype == PATH_BIN)
+		return (execve((char *)cmd, aven[0], aven[1]));
+	if (cmdtype == PATH_BUILT)
+		return (((int (*)(char **, char **))cmd)(aven[0], aven[1]));
+	return (-1);
 }
 
 int	set_envs(t_list	*envs)
@@ -275,10 +281,6 @@ printf("execscmd:%d:%d\n", root->type, isfork);
 	initcmd(root, fd, cmd, aven);
 	if (!aven[0])
 		return (set_envs(cmd[1]));
-	/* else if  ((root = get_function(aven[0][0]))) */
-	/* 	pid = function(root, aven[0], fd, job); */
-	/* else if ((status = get_builtin(aven[0][0])) != -1) */
-	/* 	pid = buitin(status, args); */
 	else
 		pid = execcommand(aven, cmd[2], isfork);
 	freecmd(cmd, aven);

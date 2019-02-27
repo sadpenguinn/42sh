@@ -35,6 +35,15 @@ set(EXEC_SRC		srcs/execute/parser/errors.c
 					srcs/execute/parser/execute.c
 					srcs/execute/parser/getredir.c)
 
+set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
+					srcs/extention/configure_remalloc.c
+					srcs/extention/extention.c
+					srcs/extention/get_true_format.c
+					srcs/extention/strins_sheets.c
+					srcs/extention/psevdo_functions.c
+					srcs/extention/strsplit_for_extention.c)
+
+
 set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_env.c
 					srcs/shell/init_path.c
@@ -145,11 +154,12 @@ include_directories(${PARSER_INC})
 include_directories(${LIBFT_INC})
 include_directories(${LIBHASH_INC})
 include_directories(${VECTOR_INC})
+include_directories(srcs/extention)
 
 add_subdirectory(${LIBFT_DIR})
 add_subdirectory(${LIBHASH_DIR})
 add_subdirectory(${VECTOR_DIR})
 add_subdirectory(${LIBSHELL_DIR})
 
-add_executable(42sh ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC} ${EXEC_SRC})
+add_executable(42sh ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC} ${EXEC_SRC} ${EXPAND_SRC})
 target_link_libraries(42sh ${LIBFT} ${LIBHASH} ${VECTOR} ${LIBSHELL})

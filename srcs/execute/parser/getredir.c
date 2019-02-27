@@ -44,31 +44,28 @@ void	closefds(t_list	*redirs)
 void	apply_g_redir(void)
 {
 	t_redir	*redir;
-	t_list	*redirs;
+	t_list	*l_redirs;
 	t_list	*redirslist;
 
-	printf("<><>\n");
-	redirs = g_redirs;
-	printf("%p\n", g_redirs);
-	while (redirs)
+	l_redirs = g_redirs;
+	while (l_redirs)
 	{
 		printf("><><\n");
-		redirslist = (t_list *)redirs->data;
-		printf("%p\n", redirslist);
-		printf("%p\n", redirslist->data);
-		printf("apply:%d|%d\n", redir->fd[1], redir->fd[0]);
-		/* while (redirslist) */
-		/* { */
+		redirslist = (t_list *)l_redirs->data;
+		while (redirslist)
+		{
+			printf("%p\n", redirslist->data);
+			printf("%p\n", redirslist->next);
+			redir = (t_redir *)redirslist->data;
 			printf("apply:%d|%d\n", redir->fd[1], redir->fd[0]);
-			redir = (t_redir *)redirs->data;
-			/* if (redir->type == REDIRECT) */
-			/* 	dup2(redir->fd[1], redir->fd[0]); */
-			/* if (redir->type == CLOSEFD) */
-			/* 	close(redir->fd[0]); */
-		/* 	redirslist = redirslist->next; */
-		/* } */
+			if (redir->type == REDIRECT)
+				dup2(redir->fd[1], redir->fd[0]);
+			if (redir->type == CLOSEFD)
+				close(redir->fd[0]);
+			redirslist = redirslist->next;
+		}
 		printf("=><=\n");
-		redirs = redirslist->next;
+		l_redirs = l_redirs->next;
 	}
 }
 
@@ -89,7 +86,7 @@ t_redir	*get_redir(t_astree *root)
 				O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644)))
 			return (fileerr(root->right->content, redir));
 printf(">>%s|%d|%d\n", root->right->content, redir->fd[0], redir->fd[1]);
-printf("%p\n", redir);
+printf(">>p:%p\n", redir);
 	}
 	else
 	{
