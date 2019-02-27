@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:10:37 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 18:11:23 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/27 13:32:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,17 @@ int				push_token(void **lexems, char *lexem, int state)
 									state == COMMENT - SHIFT)
 		return (0);
 	new.type = (t_type)(SHIFT + state);
-	if (state == 72 || state == 79 || state == 83 || state == 101 ||
-										state == 102 || state == 103)
+	if ((state >= 6 && state <= 8) ||
+		(state >= 10 && state <= 12) ||
+		(state >= 19 && state <= 25) ||
+		(state >= 37 && state <= 39) ||
+		(state >= 40 && state <= 44) ||
+		(state >= 46 && state <= 51) ||
+		(state >= 101 && state <= 103) ||
+		state == 2 || state == 4 || state == 14 || state == 16 ||
+		state == 17 || state == 27 || state == 29 || state == 30 ||
+		state == 33 || state == 35 || state == 72 || state == 79 ||
+		state == 81 || state == 83 || state == 85 || state == 86)
 		new.type = WORD;
 	new.word = lexem;
 	if (!(vector_push_back(lexems, (void *)(&new))))
