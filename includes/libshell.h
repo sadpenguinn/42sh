@@ -23,6 +23,7 @@
 # define PATH_NULL 0
 # define PATH_BUILT 1
 # define PATH_BIN 2
+# define PATH_EXIT 3
 
 int		check_varname(char *var);
 int		match(char *s1, char *s2);
