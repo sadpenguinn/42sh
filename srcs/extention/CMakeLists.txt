@@ -36,7 +36,10 @@ set(SRC				extention.c
 					../shell/init_jobs.c
 					../shell/init_path.c
 					../shell/init_process.c
-					../shell/signals.c)
+					../shell/signals.c
+					../shell.c
+					../execute/process.c
+					)
 
 set(INC				../libft/includes
 					../libft/vector
@@ -45,7 +48,9 @@ set(INC				../libft/includes
 					../lib/vector/includes
 					../lib/libstring/includes
 					../lib/libhash/includes
-					../lib/libshell/includes)
+					../lib/libshell/includes
+					../parser
+					)
 
 SET(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
