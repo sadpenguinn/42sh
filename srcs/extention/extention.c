@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/28 03:43:27 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/28 04:29:05 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,14 @@ int		get_result_of_glob(char **str, char *code, int n, int begin)
 	int		state;
 	char	**pre_result;
 
+	state = 0;
 	i = 0;
 	dump_path = -1;
 	while (code[i] && code[i] != ' ')
 	{
-		if (code[i] == '/')
+		if (code[i] == '*')
+			state = 1;
+		if (code[i] == '/' && !state)
 			dump_path = i;
 		i++;
 	}
