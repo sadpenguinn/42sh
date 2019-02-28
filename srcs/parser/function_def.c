@@ -30,14 +30,13 @@ static t_astree	*function_def_1(void)
 	if (!check_word_type(token->type) || !check_func_name(token->word))
 		return (0);
 	g_curtok++;
-	if (g_curtok + 1 >= ((size_t *)g_tokens)[2])
+	if (!checktype(OBRACKET))
 		return (savecur(g_curtok - 1));
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != OBRACKET ||
-		((t_lexem *)vector_get_elem(g_tokens, g_curtok + 1))->type != CBRACKET)
-		return (savecur(g_curtok - 1));
+	if (!checktype(CBRACKET))
+		return (savecur(g_curtok - 2));
 	root = xmalloc(sizeof(t_astree));
 	root->type = FUNCTION;
-	root->content = token->word;
+	root->content = ft_strdup(token->word);
 	if (!(root->right = function_body()))
 		return (freeastree(root), parseerror());
 	return (root);
@@ -53,14 +52,13 @@ static t_astree	*function_def_2(void)
 	if (!check_word_type(token->type) || !check_func_name(token->word))
 		return (savecur(g_curtok - 1));
 	g_curtok++;
-	if (g_curtok + 1 >= ((size_t *)g_tokens)[2])
-		return (parseerror());
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != OBRACKET ||
-		((t_lexem *)vector_get_elem(g_tokens, g_curtok + 1))->type != CBRACKET)
+	if (!checktype(OBRACKET))
 		return (savecur(g_curtok - 2));
+	if (!checktype(CBRACKET))
+		return (savecur(g_curtok - 3));
 	root = xmalloc(sizeof(t_astree));
 	root->type = FUNCTION;
-	root->content = token->word;
+	root->content = ft_strdup(token->word);
 	if (!(root->right = function_body()))
 		return (freeastree(root), parseerror());
 	return (root);
@@ -78,7 +76,7 @@ static t_astree	*function_def_3(void)
 	g_curtok++;
 	root = xmalloc(sizeof(t_astree));
 	root->type = FUNCTION;
-	root->content = token->word;
+	root->content = ft_strdup(token->word);
 	if (!(root->right = function_body()))
 		return (freeastree(root), parseerror());
 	return (root);
@@ -87,7 +85,7 @@ static t_astree	*function_def_3(void)
 t_astree	*function_def(void)
 {
 	t_astree	*res;
-/* printf("in function_def\n"); */
+
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != FUNCTION)

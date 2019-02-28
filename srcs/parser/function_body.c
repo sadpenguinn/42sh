@@ -28,14 +28,13 @@
 
 t_astree	*function_body(void)
 {
-	/* t_astree	*res; */
+	t_astree	*res;
 	t_astree	*root;
 
-	/* if (!(res = shell_command())) */
-	/* 	return (0); */
+	if (!(res = shell_command()))
+		return (0);
 	root = xmalloc(sizeof(t_astree));
-root->content = "BODY";
-	/* root->left = res; */
-	/* root->right = redirection_list(); */
+	root->left = res;
+	root->right = redirection_list();
 	return (root);
 }

@@ -14,38 +14,27 @@
 
 int		execshellcmd(t_astree *root, int fd[2], int job, int isfork)
 {
+	if (root->type == FUNCTION)
+		return (1);
+	if (root->type == FOR)
+		return (1);
 	if (root->type == CASE)
 		return (execcase(root, fd, job, 0));
+	if (root->type == WHILE)
+		return (1);
+	if (root->type == UNTIL)
+		return (1);
+	if (root->type == SELECT)
+		return (1);
 	if (root->type == IF)
 		return (execif(root, fd, job, 0));
+	if (root->type == ARITH)
+		return (1);
+	if (root->type == COND)
+		return (1);
 	if (root->type == SUBSHELL)
 		return (execsubshell(root, fd, job, isfork));
 	if (root->type == COMMAND)
 		return (execscmd(root, fd, job, isfork));
 	return (execlist1(root, fd, job, 0));
 }
-
-/* /\* if (root->type == FUNCTION) *\/ */
-/* /\* 	return (execfunc(root, fd, job, 0)); *\/ */
-/* /\* if (root->type == FOR) *\/ */
-/* /\* 	return (execfor(root, fd, job, 0)); *\/ */
-/* if (root->type == CASE) */
-/* 	return (execcase(root, fd, job, 0)); */
-/* /\* if (root->type == WHILE) *\/ */
-/* /\* 	return (execwhile(root, fd, job, 0)); *\/ */
-/* /\* if (root->type == UNTIL) *\/ */
-/* /\* 	return (execuntil(root, fd, job, 0)); *\/ */
-/* /\* if (root->type == SELECT) *\/ */
-/* /\* 	return (execselect(root, fd, job, 0)); *\/ */
-/* if (root->type == IF) */
-/* 	return (execif(root, fd, job, 0)); */
-/* /\* if (root->type == ARITH) *\/ */
-/* /\* 	return (execarith(root, fd, job, 0)); *\/ */
-/* /\* if (root->type == COND) *\/ */
-/* /\* 	return (execcond(root, fd, job, 0)); *\/ */
-/* if (root->type == SUBSHELL) */
-/* 	return (execsubshell(root, fd, job, isfork)); */
-/* if (root->type == COMMAND) */
-/* 	return (execscmd(root, fd, job, isfork)); */
-/* /\* return (execlist1(root, fd, job, 0)); *\/ */
-/* return (-228); */

@@ -70,12 +70,6 @@ int		check_assigment_word(const char *str)
 
 int		check_word_type(t_type type)
 {
-	/* printf("%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n", */ 
-	/* 	 WORD, IF, THEN, ELSE */
-	/* 	, ELIF, FI, FOR, WHILE */
-	/* 	, UNTIL, DO, DONE, CASE */
-	/* 	, IN, ESAC, FUNCTION, SELECT, */
-	/* 	NOT); */
 	if (type == WORD || type == IF || type == THEN || type == ELSE ||
 		type == ELIF || type == FI || type == FOR || type == WHILE ||
 		type == UNTIL || type == DO || type == DONE || type == CASE ||

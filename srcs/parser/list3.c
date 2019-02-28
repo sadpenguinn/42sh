@@ -63,8 +63,8 @@ t_astree		*list3(void)
 	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != AND_IF)
 		return (res[0]);
 	if (!(res[1] = list3_rest()))
-		/* return (res[0]); */
 		return ((void)freeastree(res[0]), parseerror());
+		/* return (res[0]); */
 	root = xmalloc(sizeof(t_astree));
 	root->type = LIST3;
 	root->left = res[0];

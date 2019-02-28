@@ -23,6 +23,5 @@ t_astree	*inputunit(void)
 	res = simple_list1();
 	if (!(simple_list_terminator()))
 		return (freeastree(res), parseerror());
-/* print_astree(res); */
 	return (res);
 }
