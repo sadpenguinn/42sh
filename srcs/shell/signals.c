@@ -13,18 +13,18 @@
 #include "shell.h"
 
 extern void		*g_pids;
-extern int 		g_parseerr;
+extern int 		g_execerr;
 
 void			xkill(void *cmd)
 {
-	kill(SIGKILL, (int)cmd);
+	kill(SIGINT, (int)cmd);
 }
 
 void			shell_handler(int sig)
 {
 	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
 	{
-		g_parseerr = 1;
+		g_execerr = 1;
 		vector_foreach(g_pids, xkill);
 	}
 }

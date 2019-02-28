@@ -22,6 +22,8 @@ int		execlist3(t_astree *root, int fd[2], int job, int isfork)
 		return (execpipecmd(root->left, fd, job, isfork));
 	if (execpipecmd(root->left, fd, EX_NOFG, isfork) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
+	if (g_execerr)
+		return (-1);
 	if (execlist3(root->right, fd, job, isfork) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

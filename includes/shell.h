@@ -65,6 +65,7 @@ extern void				*g_process;
 ** Defines for --help and --version flags
 */
 
+# define SHELL_EXIT 228
 # define SHELL_VERSION "42sh, version 0.1"
 # define SHELL_AUTHORS "Authors:\nnkertzma, bwerewol, narchiba, bbaelor-"
 # define SHELL_USAGE "Usage:\t\t42sh [option] [file]"
