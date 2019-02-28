@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execscmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:31:00 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/27 22:45:42 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:42:05 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 
 	if ((cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)
 		return (-1);
-	if (cmdtype == PATH_EXIT)
+	if (cmdtype == PATH_NOFORK)
 		return (((int (*)(char **, char **))cmd)(aven[0], aven[1]));
 	if (!isfork && (pid = xfork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
