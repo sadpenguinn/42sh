@@ -20,7 +20,9 @@
 #include "libshell.h"
 #include "extention.h"
 
-int		add_pipe_redir(t_list **redlst, int fd[2])
+static int	g_cmdtype;
+
+int			add_pipe_redir(t_list **redlst, int fd[2])
 {
 	t_redir		*redir[2];
 
@@ -37,16 +39,15 @@ int		add_pipe_redir(t_list **redlst, int fd[2])
 	return (0);
 }
 
-int		execcommand(char **aven[2], t_list *redirs, int isfork)
+int			execcommand(char **aven[2], t_list *redirs, int isfork)
 {
 	void 	*cmd;
-	int		cmdtype;
 	t_redir	*redir;
 	pid_t	pid;
 
-	if ((cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)
+	if ((g_cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)
 		return (-1);
-	if (cmdtype == PATH_NOFORK)
+	if (g_cmdtype == PATH_NOFORK)
 		return (((int (*)(char **, char **))cmd)(aven[0], aven[1]));
 	if (!isfork && (pid = xfork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
@@ -59,10 +60,10 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 			close(redir->fd[0]);
 		redirs = redirs->next;
 	}
-	if (cmdtype == PATH_BIN)
-		return (execve((char *)cmd, aven[0], aven[1]));
-	if (cmdtype == PATH_BUILT)
-		return (((int (*)(char **, char **))cmd)(aven[0], aven[1]));
+	if (g_cmdtype == PATH_BIN)
+		exit(execve((char *)cmd, aven[0], aven[1]));
+	if (g_cmdtype == PATH_BUILT)
+		exit(((int (*)(char **, char **))cmd)(aven[0], aven[1]));
 	return (-1);
 }
 
@@ -84,12 +85,11 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 			close(((t_redir *)redirs->data)->fd[1]);
 		redirs = redirs->next;
 	}
-	ft_listdel(&cmd[0], &ft_free);
-	ft_listdel(&cmd[1], &ft_free);
+	ft_listdel(&cmd[0], &ft_free); ft_listdel(&cmd[1], &ft_free);
 	ft_listdel(&cmd[2], &ft_free);
 }
 
-int		set_envs(t_list *envs)
+int			set_envs(t_list *envs)
 {
 	char	*val;
 
@@ -114,7 +114,7 @@ int		set_envs(t_list *envs)
 **	aven[1] - envp[][]
 */
 
-int	execscmd(t_astree *root, int fd[2], int job, int isfork)
+int			execscmd(t_astree *root, int fd[2], int job, int isfork)
 {
 	t_list	*cmd[3];
 	char	**aven[2];
@@ -129,6 +129,8 @@ int	execscmd(t_astree *root, int fd[2], int job, int isfork)
 	freecmd(cmd, aven);
 	if (pid == -1)
 		return (-1);
+	if (g_cmdtype == PATH_NOFORK)
+		return (pid);
 	if (job || isfork)
 		return (pid);
 	xwaitpid(pid, &status, 0);
