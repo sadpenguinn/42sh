@@ -38,8 +38,6 @@ extern struct s_env		g_env;
 extern void				*g_jobs;
 extern void				*g_process;
 
-# define SHELL_EXIT 42
-
 /*
 ** Defines for initialize shell environment/path
 */
