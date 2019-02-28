@@ -47,7 +47,7 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 	if ((cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)
 		return (-1);
 	if (cmdtype == PATH_EXIT)
-		exit(0);
+		return (((int (*)(char **, char **))cmd)(aven[0], aven[1]));
 	if (!isfork && (pid = xfork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
 	while (redirs)
