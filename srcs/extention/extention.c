@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/28 03:15:21 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/28 03:43:27 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int		get_result_of_glob(char **str, char *code, int n, int begin)
 		state = xglob(ft_strndup(code, i), ".", &pre_result, (size_t *)&dump_path);
 	else
 		state = xglob(ft_strndup(&code[dump_path + 1], i), ft_strndup(*str, dump_path + 1), &pre_result, (size_t *)&dump_path);
+	if (!pre_result || !pre_result[0])
+		return (n);
 	if (state)
 		return (n);
 	return (remalloc_result_of_glob(str, pre_result, n, begin));
