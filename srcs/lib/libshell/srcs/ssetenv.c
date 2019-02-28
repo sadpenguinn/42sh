@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:50:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/26 18:02:57 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:02:39 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ static void		ssetgenv(char *str)
 	g_env.env[g_env.filled] = str;
 	g_env.filled++;
 }
+
+/*
+** Sets new environment variable. Value may be NULL.
+** If variable already exists, it will be overwritten
+*/
 
 int				ssetenv(const char *key, const char *value)
 {

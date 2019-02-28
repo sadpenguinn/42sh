@@ -12,6 +12,10 @@
 
 #include "shell.h"
 
+/*
+** Function reproduce behavior of standard strerr with 42sh error defines
+*/
+
 char	*sstrerr(int e)
 {
 	if (e == SHERR_ENOENT)
@@ -22,5 +26,7 @@ char	*sstrerr(int e)
 		return ("Command not found");
 	if (e == SHERR_INVSNTX)
 		return ("Invalid syntax");
+	if (e == SHERR_CNTALCTMEM)
+		return ("Cannot allocate memory");
 	return (NULL);
 }

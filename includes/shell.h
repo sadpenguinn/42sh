@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/26 17:32:22 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:48:45 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,23 @@ extern void				*g_process;
 #  define SHERR_CNTFRK					3
 #  define SHERR_CMNDNTF					4
 #  define SHERR_INVSNTX					5
+#  define SHERR_CNTALCTMEM				6
 # endif
 
 /*
 ** Defines for --help and --version flags
 */
 
-# define SHELL_VERSION "42sh, version 0.1"
-# define SHELL_AUTHORS "Authors:\nnkertzma, bwerewol, narchiba, bbaelor-"
-# define SHELL_USAGE "Usage:\t\t42sh [option] [file]"
-# define SHELL_OPTIONS "Options:\n-c\t\tWith -c options, commands are read from string\n-h\t\tPrint help\n-v\t\tPrint version\nLong options:\n--help\t\tThe same as -h\n--version\tThe same as -v"
+# define SHELL_VERSION "42sh, version 0.1\n"
+# define SHELL_AUTHORS "Authors:\nnkertzma, bwerewol, narchiba, bbaelor-\n"
+# define SHELL_USAGE "Usage:\t\t42sh [option] [file]\n"
+# define SHELL_OPT "Options:\n"
+# define SHELL_OPT_C "-c\t\tWith -c options, commands are read from string\n"
+# define SHELL_OPT_H "-h\t\tPrint help\n"
+# define SHELL_OPT_V "-v\t\tPrint version\n"
+# define SHELL_LOPT "Long options:\n"
+# define SHELL_LOPT_H "--help\t\tThe same as -h\n"
+# define SHELL_LOPT_V "--version\tThe same as -v\n"
 
 typedef struct			s_env
 {

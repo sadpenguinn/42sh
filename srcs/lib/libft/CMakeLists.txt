@@ -4,6 +4,7 @@ project(libft)
 set(NAME ft)
 set(SRC_LIB srcs/fatal_error.c
         srcs/ft_atoi.c
+		srcs/ft_ltoa.c
         srcs/ft_btree_count.c
         srcs/ft_btree_del.c
         srcs/ft_btree_infix.c

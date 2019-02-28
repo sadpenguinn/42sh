@@ -6,18 +6,19 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 17:41:09 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/27 14:46:24 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:56:10 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "libshell.h"
-#include <fcntl.h>
-#include <stdio.h>
 
-int 	get_cmd_path(char *str, void **ret)
+/*
+** Extends functionality of sgetpath, handling path to binaries like '/bin/ls'
+*/
+
+int		get_cmd_path(char *str, void **ret)
 {
-	int 	tmp;
+	int		tmp;
 
 	if (ft_strchr(str, '/'))
 	{

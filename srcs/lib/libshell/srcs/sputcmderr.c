@@ -12,6 +12,10 @@
 
 #include "libshell.h"
 
+/*
+** Internal function for puts command error with arguments
+*/
+
 void	sputcmderr(char *err, char *cmd, char *arg)
 {
 	if (err && cmd && arg)

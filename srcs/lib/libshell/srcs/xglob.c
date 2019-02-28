@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:40:02 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/26 21:47:57 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/02/28 13:07:07 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int		read_dir(DIR *dirp, char *pattern, char ***matches, size_t *cnt)
 	i = 0;
 	while ((cdir = readdir(dirp)))
 	{
-		if (match(cdir->d_name, pattern))
+		if (xmatch(cdir->d_name, pattern))
 		{
 			if (!((*matches)[i] = ft_strdup(cdir->d_name)))
 			{
@@ -59,6 +59,11 @@ static int		read_dir(DIR *dirp, char *pattern, char ***matches, size_t *cnt)
 	(*matches)[i] = NULL;
 	return ((int)i);
 }
+
+/*
+** Searches by file names in folder 'path' according to the 'pattern'.
+** Matches stores in 'matches' array, size array stores in cnt
+*/
 
 int				xglob(char *pattern, char *path, char ***matches, size_t *cnt)
 {

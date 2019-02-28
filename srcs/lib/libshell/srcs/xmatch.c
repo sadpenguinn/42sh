@@ -6,7 +6,7 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:39:28 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:43:37 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 13:01:08 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,30 @@ static int	match_in_brackets(char **s1, char **s2)
 		*s1 += 1;
 		*s2 += 1;
 		free(matches);
-		return (match(*s1, *s2));
+		return (xmatch(*s1, *s2));
 	}
 	free(matches);
 	return (0);
 }
 
-int			match(char *s1, char *s2)
+/*
+** Search for the occurrence of the 's2' pattern in the 's1'
+*/
+
+int			xmatch(char *s1, char *s2)
 {
 	if (!*s1 && !*s2)
 		return (1);
 	else if (*s1 != '*' && *s1 != '?' && *s1 == *s2)
-		return (match(s1 + 1, s2 + 1));
+		return (xmatch(s1 + 1, s2 + 1));
 	else if (!*s1 && *s2 == '*')
-		return (match(s1, s2 + 1));
+		return (xmatch(s1, s2 + 1));
 	else if (!*s1 && (*s2 == '?' || *s2 == '['))
 		return (0);
 	else if (*s1 && *s2 == '*')
-		return (match(s1, s2 + 1) || match(s1 + 1, s2));
+		return (xmatch(s1, s2 + 1) || xmatch(s1 + 1, s2));
 	else if (*s1 && *s2 == '?')
-		return (match(s1 + 1, s2 + 1));
+		return (xmatch(s1 + 1, s2 + 1));
 	else if (*s1 && *s2 == '[')
 		return (match_in_brackets(&s1, &s2));
 	else

@@ -6,11 +6,15 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:42:14 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:43:37 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:11:50 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libshell.h"
+
+/*
+** Splits environment string like "key=value" into array of two cells
+*/
 
 char	**split_env(char *str)
 {

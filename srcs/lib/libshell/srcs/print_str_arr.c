@@ -12,6 +12,10 @@
 
 #include "libshell.h"
 
+/*
+** Prints two-dimensional array of strings
+*/
+
 void	print_str_arr(char *const *arr)
 {
 	int		i;

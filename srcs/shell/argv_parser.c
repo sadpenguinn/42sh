@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:30:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/22 20:31:47 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:46:16 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 static int		print_version(void)
 {
-	ft_putendl(SHELL_VERSION);
-	ft_putendl(SHELL_AUTHORS);
+	ft_putstr(SHELL_VERSION);
+	ft_putstr(SHELL_AUTHORS);
 	return (1);
 }
 
 static int		print_help(void)
 {
 	print_version();
-	ft_putendl(SHELL_USAGE);
-	ft_putendl(SHELL_OPTIONS);
+	ft_putstr(SHELL_USAGE);
+	ft_putstr(SHELL_OPT);
+	ft_putstr(SHELL_OPT_C);
+	ft_putstr(SHELL_OPT_H);
+	ft_putstr(SHELL_OPT_V);
+	ft_putstr(SHELL_LOPT);
+	ft_putstr(SHELL_LOPT_H);
+	ft_putstr(SHELL_LOPT_V);
 	return (1);
 }
 

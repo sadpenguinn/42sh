@@ -14,6 +14,6 @@
 
 void	die(void)
 {
-	write(2, "cannot allocate memory\n", 23);
+	sputerr(sstrerr(SHERR_CNTALCTMEM));
 	exit(EXIT_FAILURE);
 }

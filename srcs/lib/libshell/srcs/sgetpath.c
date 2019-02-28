@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/27 21:15:18 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:20:13 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	validate_sum(char *key, char *value)
 		return (free_sum(path, NULL, 0));
 	if ((stat(key, &stats) == -1))
 		return (free_sum(path, NULL, 1));
-	sum = ft_itoa(stats.st_mtimespec.tv_sec);
+	sum = ft_ltoa(stats.st_mtimespec.tv_sec);
 	if (!ft_strcmp(sum, path))
 		return (free_sum(sum, path, 1));
 	return (free_sum(sum, path, 0));
@@ -79,10 +79,16 @@ static int	find_builtin(const char *bin, void **ret)
 	return (PATH_BUILT);
 }
 
+/*
+** Returns define declared in libshell.h.
+** In 'ret' recorded pointer to functions (builtin) or
+** path in hash table (binary)
+*/
+
 int			sgetpath(const char *bin, void **ret)
 {
 	t_hshtb		*cell;
-	int 		ret_built;
+	int			ret_built;
 
 	if ((ret_built = find_builtin(bin, ret)) != PATH_NULL)
 		return (ret_built);

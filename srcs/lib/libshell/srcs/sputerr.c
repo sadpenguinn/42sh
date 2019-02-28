@@ -12,6 +12,10 @@
 
 #include "libshell.h"
 
+/*
+** Puts error to stderr
+*/
+
 void	sputerr(char *err)
 {
 	if (err)
