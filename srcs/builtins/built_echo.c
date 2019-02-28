@@ -6,35 +6,40 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:53:51 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 18:11:23 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:25:56 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-static void		print_strings(char **av, int *flags, int i)
+static void		print_strings(char **av, int *flags, size_t i)
 {
+	size_t	size;
+
+	size = size_str_arr(av + i);
 	while (av[i])
 	{
 		ft_putstr(av[i]);
+		if (i < size)
+			ft_putchar(' ');
 		i++;
 	}
 	if (!flags[0])
 		ft_putchar('\n');
 }
 
-static int		parse_flags(char **av, int *flags)
+static size_t		parse_flags(char **av, int *flags)
 {
-	int		i;
+	size_t	i;
 
 	i = 1;
 	while (av[i])
 	{
 		if (!ft_strcmp(av[i], "-n"))
 			flags[0] = 1;
-		if (!ft_strcmp(av[i], "-e"))
+		else if (!ft_strcmp(av[i], "-e"))
 			flags[0] = 1;
-		if (!ft_strcmp(av[i], "-E"))
+		else if (!ft_strcmp(av[i], "-E"))
 			flags[0] = 0;
 		else
 			return (i);
@@ -54,7 +59,7 @@ static int		parse_flags(char **av, int *flags)
 int				built_echo(char **av, char **env)
 {
 	int		flags[2];
-	int		i;
+	size_t	i;
 
 	env = NULL;
 	flags[0] = 0;

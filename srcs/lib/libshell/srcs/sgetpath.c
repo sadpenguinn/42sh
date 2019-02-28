@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 14:20:13 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:41:03 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,19 @@ static int	find_builtin(const char *bin, void **ret)
 	else if (!ft_strcmp(bin, "env"))
 		*ret = built_env;
 	else if (!ft_strcmp(bin, "setenv"))
+	{
 		*ret = built_setenv;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "unsetenv"))
+	{
 		*ret = built_unsetenv;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "exit"))
 	{
 		*ret = built_exit;
-		return (PATH_EXIT);
+		return (PATH_NOFORK);
 	}
 	else
 		return (PATH_NULL);
