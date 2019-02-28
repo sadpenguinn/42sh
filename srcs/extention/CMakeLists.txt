@@ -9,6 +9,7 @@ set(SRC				extention.c
 					psevdo_functions.c
 					configurate_of_exptention.c
 					configure_remalloc.c
+					stars.c
 					../shell/init.c
 					../shell/init_env.c
 					../shell/init_path.c

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/26 19:06:25 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/02/28 04:37:30 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 ** ${parameter##}     9
 */
 
+void	processing_stars(char **str);
 char	*get_last_n_symbols(char *str, int n, int freed);
 void	push_to_enviroment(char *name, char *val);
 char	*get_content_of_var(char *str);
