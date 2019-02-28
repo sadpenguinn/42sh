@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:50:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 14:02:39 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:36:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ static void		genv_realloc(void)
 
 static void		ssetgenv(char *str)
 {
+	ft_putnbrendl(g_env.filled);
+	ft_putnbrendl(g_env.size);
 	if (g_env.filled >= g_env.size)
 		genv_realloc();
-	ft_putendl(g_env.env[g_env.filled]);
 	g_env.env[g_env.filled] = str;
+	g_env.env[g_env.filled + 1] = NULL;
+	ft_putendl(g_env.env[g_env.filled]);
 	g_env.filled++;
 }
 

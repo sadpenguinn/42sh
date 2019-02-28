@@ -12,6 +12,7 @@ set(SRC_LIB		srcs/check_varname.c
 				srcs/die.c
 				srcs/free_str_arr.c
 				srcs/print_str_arr.c
+				srcs/size_str_arr.c
 				srcs/sputerr.c
 				srcs/sputcmderr.c
 				srcs/sstrerr.c

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 14:30:02 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:25:20 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define PATH_NULL 0
 # define PATH_BUILT 1
 # define PATH_BIN 2
-# define PATH_EXIT 3
+# define PATH_NOFORK 3
 
 /*
 ** Shell error define like a standard C errno
@@ -88,6 +88,7 @@ int		get_cmd_path(char *str, void **ret);
 */
 void	free_str_arr(char ***arr);
 void	print_str_arr(char *const *arr);
+size_t	size_str_arr(char *const *arr);
 char	**split_env(char *str);
 
 #endif
