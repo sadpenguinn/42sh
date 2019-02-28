@@ -17,6 +17,7 @@ int		execute(t_astree *root)
 	int		res;
 	int		fd[2];
 
+	g_execerr = 0;
 	if (!root)
 		return (EXIT_FAILURE);
 	g_pids = vector_create(sizeof(pid_t));

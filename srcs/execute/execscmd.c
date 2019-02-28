@@ -46,6 +46,8 @@ int		execcommand(char **aven[2], t_list *redirs, int isfork)
 
 	if ((cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)
 		return (-1);
+	if (cmdtype == SHELL_EXIT)
+		exit(0);
 	if (!isfork && (pid = xfork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
 	while (redirs)
@@ -132,5 +134,7 @@ int	execscmd(t_astree *root, int fd[2], int job, int isfork)
 	xwaitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (cmdexitsig(pid, WTERMSIG(status)));
 	return (EXIT_FAILURE);
 }

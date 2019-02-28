@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/28 14:48:45 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:59:35 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ extern struct s_env		g_env;
 
 extern void				*g_jobs;
 extern void				*g_process;
+
+# define SHELL_EXIT 42
 
 /*
 ** Defines for initialize shell environment/path

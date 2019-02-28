@@ -97,6 +97,7 @@ int						pipeerror(void);
 int						fileerror(char *file);
 int						forkerror(char *cmd);
 int						threaderror(void);
+int						cmdexitsig(pid_t pid, int sig);
 
 /*
 **	initcmd.c

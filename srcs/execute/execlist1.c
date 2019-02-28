@@ -30,5 +30,7 @@ int		execlist1(t_astree *root, int fd[2], int job, int isfork)
 		res = execlist2(root->left, fd, EX_NOFG, isfork);
 	if (!root->right || !root->right->left)
 		return (res);
+	if (g_execerr)
+		return (-1);
 	return (execlist1(root->right, fd, 0, isfork));
 }
