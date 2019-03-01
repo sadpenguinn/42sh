@@ -22,7 +22,6 @@
 
 t_redir	*fileerr(char *file, t_redir *redir)
 {
-	g_execerr = 1;
 	free(redir);
 	fileerror(file);
 	return ((t_redir *)0);
@@ -38,6 +37,41 @@ void	closefds(t_list *redirs)
 	}
 }
 
+static int	get_herein_doc(char *end)
+{
+	int		fd[2];
+	char	*line;
+
+	pipe(fd);
+	while ((line = readline()))
+	{
+		if (ft_strequ(line, end))
+			break;
+		ft_putstr_fd(line, fd[1]);
+		free(line);
+	}
+	free(line);
+	close(fd[1]);
+	return (fd[0]);
+}
+
+static int	get_redir_file(t_astree *root, int type)
+{
+
+	if (type == GREAT)
+		return (open(root->right->content,
+					 O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644));
+	if (type == DGREAT)
+		return (open(root->right->content,
+					 O_WRONLY | O_CREAT | O_APPEND | O_CLOEXEC, 0644));
+	if (type == LESS)
+		return (open(root->right->content,
+					 O_RDONLY | O_CLOEXEC));
+	if (type == DLESS)
+		return (get_herein_doc(root->right->content));
+	return (-1);
+}
+
 t_redir	*get_redir(t_astree *root)
 {
 	t_redir		*redir;
@@ -49,18 +83,17 @@ t_redir	*get_redir(t_astree *root)
 	redir->fd[0] = (type == LESS || type == DLESS || type == LESSAND) ? 0 : 1;
 	if (root->left)
 		redir->fd[0] = ft_atoi(root->left->content);
-	if (type != LESSAND && type != GREATAND)
+	if (type == LESSAND || type == GREATAND)
 	{
-		if (-1 == (redir->fd[1] = open(root->right->content,
-				O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644)))
-			return (fileerr(root->right->content, redir));
-	}
-	else
-	{
-		if (ft_strequ(root->right->content, "-"))
+		if (root->right->content[0] == '-')
 			redir->type = CLOSEFD;
 		else
 			redir->fd[1] = ft_atoi(root->right->content);
+	}
+	else
+	{
+		if (-1 == (redir->fd[1] = get_redir_file(root, type)))
+			return (fileerr(root->right->content, redir));
 	}
 	return (redir);
 }

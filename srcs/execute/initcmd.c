@@ -1,7 +1,7 @@
 #include "execute.h"
 #include "extention.h"
 
-int		expand_assign(t_list *assign)
+static int	expand_assign(t_list *assign)
 {
 	char *bgn;
 	char *res;
@@ -25,9 +25,10 @@ int		expand_assign(t_list *assign)
 	return (0);
 }
 
-int		get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
+static int	get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
 {
-	int			type;
+	int		type;
+	t_redir	*redir;
 
 	if (!root)
 		return (0);
@@ -37,7 +38,12 @@ int		get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
 	if (type == ASSIGMENT_WORD && !assignment)
 		type = WORD;
 	if (type != WORD && type != ASSIGMENT_WORD)
-		ft_push_back(&cmd[2], get_redir(root->left));
+	{
+		if ((redir = get_redir(root->left)))
+			ft_push_back(&cmd[2], redir);
+		else
+			return (1);
+	}
 	else
 	{
 		ft_push_back((type == WORD ? &cmd[0] : &cmd[1]), root->left->content);
@@ -46,7 +52,7 @@ int		get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
 	return (get_cmd_attr(root->right, cmd, assignment));
 }
 
-char	**get_argv(t_list *args)
+static char	**get_argv(t_list *args)
 {
 	t_list	*lst;
 	char	*arg;
@@ -72,7 +78,7 @@ char	**get_argv(t_list *args)
 	return (argv);
 }
 
-char	**get_envp(t_list *envs)
+static char	**get_envp(t_list *envs)
 {
 	int		i;
 	t_list	*lst;
@@ -96,13 +102,16 @@ char	**get_envp(t_list *envs)
 	return (envp);
 }
 
-void	initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
+int		initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 {
 	bzero(cmd, sizeof(t_list *) * 3);
-	get_cmd_attr(root, cmd, 1);
 	add_pipe_redir(&cmd[2], fd);
-	expand_assign(cmd[1]);
+	if (get_cmd_attr(root, cmd, 1))
+		return (1);
+	if (expand_assign(cmd[1]))
+		return (1);
 	/* set_alias_arg(&cmd[0]); */
 	aven[0] = get_argv(cmd[0]);
 	aven[1] = get_envp(cmd[1]);
+	return (0);
 }

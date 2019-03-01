@@ -104,7 +104,7 @@ int						cmdexitsig(pid_t pid, int sig);
 **	Init command args
 */
 
-void					initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2]);
+int						initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2]);
 int						add_pipe_redir(t_list **redlst, int fd[2]);
 
 #endif

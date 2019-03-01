@@ -34,8 +34,8 @@ int			add_pipe_redir(t_list **redlst, int fd[2])
 	redir[0]->fd[1] = fd[0];
 	redir[1]->fd[0] = STDOUT_FILENO;
 	redir[1]->fd[1] = fd[1];
-	ft_push(redlst, (void *)redir[0]);
-	ft_push(redlst, (void *)redir[1]);
+	ft_push_back(redlst, (void *)redir[0]);
+	ft_push_back(redlst, (void *)redir[1]);
 	return (0);
 }
 
@@ -67,16 +67,19 @@ int			execcommand(char **aven[2], t_list *redirs, int isfork)
 	return (-1);
 }
 
-static void	freecmd(t_list *cmd[3], char **aven[2])
+static int	freecmd(t_list *cmd[3], char **aven[2])
 {
 	int		i;
 	t_list	*redirs;
 
-	i = 0;
-	while (aven[0][i])
-		free(aven[0][i++]);
-	free(aven[0]);
-	free(aven[1]);
+	if (aven)
+	{
+		i = 0;
+		while (aven[0][i])
+			free(aven[0][i++]);
+		free(aven[0]);
+		free(aven[1]);
+	}
 	redirs = cmd[2];
 	redirs = redirs->next->next;
 	while (redirs)
@@ -85,8 +88,10 @@ static void	freecmd(t_list *cmd[3], char **aven[2])
 			close(((t_redir *)redirs->data)->fd[1]);
 		redirs = redirs->next;
 	}
-	ft_listdel(&cmd[0], &ft_free); ft_listdel(&cmd[1], &ft_free);
+	ft_listdel(&cmd[0], &ft_free);
+	ft_listdel(&cmd[1], &ft_free);
 	ft_listdel(&cmd[2], &ft_free);
+	return (0);
 }
 
 int			set_envs(t_list *envs)
@@ -121,7 +126,8 @@ int			execscmd(t_astree *root, int fd[2], int job, int isfork)
 	pid_t	pid;
 	int		status;
 
-	initcmd(root, fd, cmd, aven);
+	if (initcmd(root, fd, cmd, aven))
+		return (freecmd(cmd, 0));
 	if (!aven[0])
 		return (set_envs(cmd[1]));
 	else
