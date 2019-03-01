@@ -27,7 +27,7 @@ static char	*get_rel_dir(char *buf, int pos)
 	while (left_pos && buf[left_pos - 1] != ' ')
 		left_pos--;
 	if (left_pos == pos)
-		return (ft_strdup("."));
+		return (ft_strdup("./"));
 	return (ft_strndup(buf + left_pos, pos - left_pos + 1));
 }
 
@@ -51,12 +51,13 @@ static void	print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 	matrix->last_offset = 0;
 }
 
-static void	add_completion(t_matrix *matrix, char *match, char *pattern)
+static void	add_completion(t_matrix *matrix, char *match, char *pattern, char *prev_dir)
 {
 	size_t	left_pos;
 	size_t	right_pos;
 	char	*tmp;
 	DIR		*dir;
+	char 	*cur_dir;
 
 	left_pos = 0;
 	while (pattern[left_pos] == match[left_pos] && match[left_pos])
@@ -64,11 +65,13 @@ static void	add_completion(t_matrix *matrix, char *match, char *pattern)
 	right_pos = left_pos;
 	while (match[right_pos])
 		right_pos++;
-	if ((dir = opendir(match)))
+	cur_dir = ft_strjoin(prev_dir, match, 0);
+	if ((dir = opendir(cur_dir)))
 		tmp = ft_strjoin(match + left_pos, "/", 0);
 	else
 		tmp = ft_strjoin(match + left_pos, " ", 0);
 	closedir(dir);
+	free(cur_dir);
 	free(match);
 	matrix_string_insert(matrix, matrix->cursor, tmp, strlen(tmp));
 	free(tmp);
@@ -88,7 +91,7 @@ int			autocomplete_file_dir(t_matrix *matrix)
 	if (cnt > 1)
 		print_possibilities(matrix, matches, cnt);
 	if (cnt == 1)
-		add_completion(matrix, matches[0], pattern);
+		add_completion(matrix, matches[0], pattern, dir);
 	free(pattern);
 	free(dir);
 	free(matches);
