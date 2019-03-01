@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:27:49 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/27 22:54:34 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/01 12:39:51 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ void			shell_handler(int sig)
 {
 	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
 	{
-		g_execerr = 1;
-		vector_foreach(g_pids, xkill);
+		if (g_pids)
+		{
+			g_execerr = 1;
+			vector_foreach(g_pids, xkill);
+		}
 	}
 }
 

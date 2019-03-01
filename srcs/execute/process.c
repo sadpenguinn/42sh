@@ -1,7 +1,6 @@
 #include "vector.h"
 #include <unistd.h>
-
-void	*g_pids;
+#include "execute.h"
 
 pid_t	xfork(void)
 {

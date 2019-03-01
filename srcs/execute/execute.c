@@ -6,11 +6,13 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:46:37 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/27 22:45:42 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/01 12:37:05 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+
+void	*g_pids = NULL;
 
 int		execute(t_astree *root)
 {
