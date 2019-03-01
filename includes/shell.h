@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/28 15:10:43 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/01 17:01:23 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ extern struct s_env		g_env;
 
 extern void				*g_jobs;
 extern void				*g_process;
+extern void				*g_pids;
 
 /*
 ** Defines for initialize shell environment/path
@@ -108,12 +109,15 @@ void					init_env(char **env);
 void					init_path(void);
 void					init_jobs(void);
 void					init_process(void);
+void					init_pids(void);
 void					destroy(void);
 void					destroy_env(void);
 void					destroy_path(void);
 void					destroy_jobs(void);
 void					destroy_process(void);
+void					destroy_pids(void);
 void					init_signals(void);
+int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
 
 /*

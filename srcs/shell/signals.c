@@ -12,8 +12,7 @@
 
 #include "shell.h"
 
-extern void		*g_pids;
-extern int 		g_execerr;
+extern int		g_execerr;
 
 void			xkill(void *cmd)
 {

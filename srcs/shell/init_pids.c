@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   init_pids.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/19 18:32:08 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:56:31 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/03/01 16:31:01 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/01 16:31:55 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	destroy(void)
+void	init_pids(void)
 {
-	destroy_env();
-	destroy_path();
-	destroy_pids();
-	/*destroy_jobs();
-	destroy_process();*/
+	g_pids = vector_create(sizeof(pid_t));
 }

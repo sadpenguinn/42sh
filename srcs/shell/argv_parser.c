@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:30:20 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 14:46:16 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/01 16:58:46 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,6 @@ static int		print_help(void)
 	ft_putstr(SHELL_LOPT);
 	ft_putstr(SHELL_LOPT_H);
 	ft_putstr(SHELL_LOPT_V);
-	return (1);
-}
-
-static int		parse_input(int ac, char **av)
-{
-	char	*input;
-	int		i;
-
-	i = 2;
-	input = ft_strnew(0);
-	while (i < ac)
-	{
-		input = ft_strjoin(input, " ", 1);
-		input = ft_strjoin(input, av[i], 1);
-		i++;
-	}
-	ft_putendl(input);
-	ft_strdel(&input);
 	return (1);
 }
 

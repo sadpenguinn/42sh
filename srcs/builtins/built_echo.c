@@ -6,17 +6,19 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:53:51 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 15:25:56 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:56:25 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-static void		print_strings(char **av, int *flags, size_t i)
+static void			print_strings(char **av, const int *flags, size_t i)
 {
 	size_t	size;
 
 	size = size_str_arr(av + i);
+	if (flags[0])
+		size++;
 	while (av[i])
 	{
 		ft_putstr(av[i]);
@@ -56,7 +58,7 @@ static size_t		parse_flags(char **av, int *flags)
 ** -E -- don't interpret sequences.
 */
 
-int				built_echo(char **av, char **env)
+int					built_echo(char **av, char **env)
 {
 	int		flags[2];
 	size_t	i;

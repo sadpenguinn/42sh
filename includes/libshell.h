@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 15:25:20 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:39:55 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int		ssetenv(const char *key, const char *value);
 int		sunsetenv(const char *key);
 int		sgetpath(const char *bin, void **ret);
 int		get_cmd_path(char *str, void **ret);
+void	fill_genv(void);
 
 /*
 ** Other functions for working with two-dimensional arrays

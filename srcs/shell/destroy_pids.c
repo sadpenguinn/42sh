@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   destroy_pids.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/19 18:32:08 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:56:31 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/03/01 16:04:16 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/01 16:10:36 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	destroy(void)
+void	destroy_pids(void)
 {
-	destroy_env();
-	destroy_path();
-	destroy_pids();
-	/*destroy_jobs();
-	destroy_process();*/
+	if (g_pids)
+	{
+		free(g_pids);
+		g_pids = NULL;
+	}
 }

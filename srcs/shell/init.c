@@ -35,7 +35,8 @@ void	init(char **env)
 		die();
 	init_env(env);
 	init_path();
-	init_jobs();
-	init_process();
+	/*init_jobs();
+	init_process();*/
+	init_pids();
 	init_signals();
 }

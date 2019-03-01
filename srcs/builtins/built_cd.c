@@ -6,10 +6,11 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:15:08 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 18:11:23 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 18:37:27 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <shell.h>
 #include "builtins.h"
 
 static char		*get_oldpwd(char *def)

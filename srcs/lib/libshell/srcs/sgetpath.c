@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 15:41:03 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/01 17:17:28 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ static int	validate_sum(char *key, char *value)
 static int	find_builtin(const char *bin, void **ret)
 {
 	if (!ft_strcmp(bin, "cd"))
+	{
 		*ret = built_cd;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "echo"))
 		*ret = built_echo;
 	else if (!ft_strcmp(bin, "env"))

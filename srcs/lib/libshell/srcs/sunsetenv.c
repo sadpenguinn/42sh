@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 15:04:15 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 13:14:53 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:33:28 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@
 
 int		sunsetenv(const char *key)
 {
-	ft_putendl(key);
 	if (hash_delete(key, g_hash_env) == HSH_ERR)
 		return (SHERR_ERR);
+	free_str_arr(&g_env.env);
+	g_env.size = 0;
+	g_env.filled = 0;
+	fill_genv();
 	return (SHERR_OK);
 }
