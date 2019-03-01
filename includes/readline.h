@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/27 12:51:34 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:21:55 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,5 +170,7 @@ void			add_lines_text(t_matrix *matrix);
 void			add_text(t_matrix *matrix, int row, int col);
 
 void			add_line_prefix(t_matrix *matrix, int cur_row);
+
+int				autocomplete_file_dir(t_matrix *matrix);
 
 #endif

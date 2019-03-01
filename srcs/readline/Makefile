@@ -3,6 +3,12 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  ../lib/libft/srcs/ft_memset.c\
 	  ../lib/libft/srcs/ft_strnum.c\
 	  ../lib/libft/srcs/ft_strnum_base.c\
+	  ../lib/libft/srcs/ft_strdup.c\
+	  ../lib/libft/srcs/ft_strndup.c\
+	  ../lib/libft/srcs/ft_strjoin.c\
+	  ../lib/libft/srcs/ft_strlen.c\
+	  ../lib/libft/srcs/ft_memcpy.c\
+	  ../lib/libft/srcs/ft_strchr.c\
 	  readline.c\
 	  main.c\
 	  array.c\
@@ -35,7 +41,9 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  add_cursor_offset.c\
 	  add_line_prefix.c\
 	  get_lines_info.c\
-	  ../lib/libshell/srcs/glob.c\
+	  autocomplete_file_dir.c\
+	  ../lib/libshell/srcs/xglob.c\
+	  ../lib/libshell/srcs/xmatch.c\
 
 NAME = line
 TEST = a.test

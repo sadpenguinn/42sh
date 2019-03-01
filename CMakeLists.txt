@@ -94,7 +94,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/readline_mode.c
 					srcs/readline/add_cursor_offset.c
 					srcs/readline/add_line_prefix.c
-					srcs/readline/get_lines_info.c)
+					srcs/readline/get_lines_info.c
+					srcs/readline/autocomplete_file_dir.c)
 
 set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_echo.c
