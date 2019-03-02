@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:01:49 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 20:17:05 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 
 t_astree	*case_clause(void)
 {
-	t_astree        *res[2];
-	t_astree        *root;
+	t_astree	*res[2];
+	t_astree	*root;
 
 	res[0] = case_clause_sequence();
 	if (!(res[1] = pattern_list()))

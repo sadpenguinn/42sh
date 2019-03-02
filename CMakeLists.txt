@@ -86,6 +86,7 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/case_clause_sequence.c
 					srcs/parser/case_command.c
 					srcs/parser/check_words.c
+					srcs/parser/check_words_2.c
 					srcs/parser/command.c
 					srcs/parser/compound_list.c
 					srcs/parser/cond_command.c
@@ -129,19 +130,22 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/word_list.c)
 
 set(EXECUTE_SRC		srcs/execute/errors.c
-					srcs/execute/execcmd.c
+					srcs/execute/execute.c
 					srcs/execute/execlist1.c
 					srcs/execute/execlist2.c
 					srcs/execute/execlist3.c
-					srcs/execute/initcmd.c
 					srcs/execute/execpipecmd.c
 					srcs/execute/execpipes.c
-					srcs/execute/execscmd.c
+					srcs/execute/execcmd.c
 					srcs/execute/execshellcmd.c
+					srcs/execute/execfunction.c
+					srcs/execute/execfor.c
 					srcs/execute/execcase.c
+					srcs/execute/execuntilwhile.c
 					srcs/execute/execif.c
 					srcs/execute/execsubshell.c
-					srcs/execute/execute.c
+					srcs/execute/execscmd.c
+					srcs/execute/initcmd.c
 					srcs/execute/getredir.c
 					srcs/execute/process.c)
 

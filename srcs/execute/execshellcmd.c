@@ -15,15 +15,15 @@
 int		execshellcmd(t_astree *root, int fd[2], int job, int isfork)
 {
 	if (root->type == FUNCTION)
-		return (1);
+		return (execfunction(root));
 	if (root->type == FOR)
-		return (1);
+		return (execfor(root, fd, job, 0));
 	if (root->type == CASE)
 		return (execcase(root, fd, job, 0));
 	if (root->type == WHILE)
-		return (1);
+		return (execwhile(root, fd, job, 0));
 	if (root->type == UNTIL)
-		return (1);
+		return (execuntil(root, fd, job, 0));
 	if (root->type == SELECT)
 		return (1);
 	if (root->type == IF)

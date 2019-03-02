@@ -46,6 +46,13 @@ int		threaderror(void)
 	return (-1);
 }
 
+t_redir	*redirfileerror(char *file, t_redir *redir)
+{
+	free(redir);
+	fileerror(file);
+	return ((t_redir *)0);
+}
+
 int		cmdexitsig(pid_t pid, int sig)
 {
 	if (g_execerr)

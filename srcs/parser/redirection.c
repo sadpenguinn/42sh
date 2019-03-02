@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:39:52 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 15:24:25 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "parser.h"
 
-static t_astree        *get_io_number(void)
+static t_astree	*get_io_number(void)
 {
 	t_lexem		*elem;
 	t_astree	*root;
@@ -33,10 +33,9 @@ static t_astree        *get_io_number(void)
 	root->content = ft_strdup(elem->word);
 	g_curtok++;
 	return (root);
-
 }
 
-t_astree        *redirection(void)
+t_astree		*redirection(void)
 {
 	unsigned int	curtmp;
 	t_astree		*root;
@@ -48,7 +47,7 @@ t_astree        *redirection(void)
 	res = get_io_number();
 	if (!(root = io_file()))
 		if (!(root = io_here()))
-			return (savecur(curtmp), freeastree(res));
+			return ((t_astree *)(savecur(curtmp) | freeastree(res)));
 	root->left = res;
 	return (root);
 }

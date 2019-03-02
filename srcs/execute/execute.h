@@ -59,6 +59,12 @@ typedef struct			s_cmd
 	int			job;
 }						t_cmd;
 
+typedef struct			s_func
+{
+	char		*name;
+	t_astree	*func;
+}						t_func;
+
 int						execute(t_astree *root);
 int						execlist1(t_astree *root,
 									int fd[2], int job, int isfork);
@@ -77,18 +83,22 @@ int						execshellcmd(t_astree *root,
 int						execscmd(t_astree *root,
 									int fd[2], int job, int isfork);
 
+int						execfor(t_astree *root,
+									int fd[2], int job, int isfork);
 int						execcase(t_astree *root,
 									int fd[2], int job, int isfork);
 int						execif(t_astree *root,
 									int fd[2], int job, int isfork);
 int						execsubshell(t_astree *root,
 									int fd[2], int job, int isfork);
-int						function(t_astree *func, char **argv,
+int						execfunction(t_astree *root);
+int						execwhile(t_astree *root,
+									int fd[2], int job, int isfork);
+int						execuntil(t_astree *root,
 									int fd[2], int job, int isfork);
 
 t_redir					*get_redir(t_astree *root);
-void					closefds(t_list	*redirs);
-void					apply_g_redir(void);
+int						applyredir(t_list *redirs);
 
 pid_t					xfork(void);
 pid_t					xwaitpid(pid_t pid, int *stat_loc, int options);
@@ -98,6 +108,7 @@ int						fileerror(char *file);
 int						forkerror(char *cmd);
 int						threaderror(void);
 int						cmdexitsig(pid_t pid, int sig);
+t_redir					*redirfileerror(char *file, t_redir *redir);
 
 /*
 **	initcmd.c

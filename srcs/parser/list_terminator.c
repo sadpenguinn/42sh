@@ -6,13 +6,13 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 15:06:32 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 21:25:38 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int		list_terminator()
+int		list_terminator(void)
 {
 	t_type	type;
 

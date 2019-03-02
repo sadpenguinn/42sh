@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 16:34:20 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/09 17:33:30 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 t_astree	*pattern(void)
 {
-	t_lexem         *token;
-	t_astree        *root;
+	t_lexem			*token;
+	t_astree		*root;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
@@ -42,6 +42,6 @@ t_astree	*pattern(void)
 		return (root);
 	g_curtok++;
 	if (!(root->right = pattern()))
-		return  (parseerror());
+		return ((t_astree *)parseerror());
 	return (root);
 }

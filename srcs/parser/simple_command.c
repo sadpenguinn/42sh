@@ -6,9 +6,11 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:05:24 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 15:17:58 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 19:04:37 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "parser.h"
 
 /*
 ** SCE - Simple Command Element
@@ -21,11 +23,8 @@
 **    SCE    ...
 */
 
-#include "parser.h"
-
 t_astree	*simple_command(void)
 {
-/* printf("in simple_command\n"); */
 	t_astree	*root;
 	t_astree	*res;
 

@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 13:23:20 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 16:45:36 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 t_astree	*arith_command(void)
 {
-	t_lexem         *token;
-	t_astree        *root;
+	t_lexem		*token;
+	t_astree	*root;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return (parseerror());
+		return ((t_astree *)parseerror());
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	if (!check_word_type(token->type))
 		return (0);

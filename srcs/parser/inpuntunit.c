@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:38:43 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 15:37:35 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ t_astree	*inputunit(void)
 		return (0);
 	res = simple_list1();
 	if (!(simple_list_terminator()))
-		return (freeastree(res), parseerror());
+		return ((t_astree *)(freeastree(res) | parseerror()));
 	return (res);
 }

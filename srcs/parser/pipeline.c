@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:31:39 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/10 21:54:42 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static t_astree	*pipeline_rest(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	if (!(root->left = command()))
-		return (freeastree(root));
+		return ((t_astree *)freeastree(root));
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (root);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
 	if (type == PIPE)
 		if (!(root->right = pipeline_rest()))
-			return (freeastree(root));
+			return ((t_astree *)freeastree(root));
 	return (root);
 }
 
@@ -63,7 +63,7 @@ t_astree		*pipeline(void)
 	if (type != PIPE)
 		return (res[0]);
 	if (!(res[1] = pipeline_rest()))
-		return (freeastree(res[0]), parseerror());
+		return ((t_astree *)(freeastree(res[0]) | parseerror()));
 	root = xmalloc(sizeof(t_astree));
 	root->type = REST;
 	root->left = res[0];

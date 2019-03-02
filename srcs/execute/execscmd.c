@@ -39,10 +39,9 @@ int			add_pipe_redir(t_list **redlst, int fd[2])
 	return (0);
 }
 
-int			execcommand(char **aven[2], t_list *redirs, int isfork)
+static int	execcommand(char **aven[2], t_list *redirs, int isfork)
 {
 	void 	*cmd;
-	t_redir	*redir;
 	pid_t	pid;
 
 	if ((g_cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)
@@ -51,15 +50,7 @@ int			execcommand(char **aven[2], t_list *redirs, int isfork)
 		return (((int (*)(char **, char **))cmd)(aven[0], aven[1]));
 	if (!isfork && (pid = xfork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
-	while (redirs)
-	{
-		redir = (t_redir *)redirs->data;
-		if (redir->type == REDIRECT)
-			dup2(redir->fd[1], redir->fd[0]);
-		if (redir->type == CLOSEFD)
-			close(redir->fd[0]);
-		redirs = redirs->next;
-	}
+	applyredir(redirs);
 	if (g_cmdtype == PATH_BIN)
 		exit(execve((char *)cmd, aven[0], aven[1]));
 	if (g_cmdtype == PATH_BUILT)

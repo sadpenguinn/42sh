@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 15:51:42 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 15:56:57 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_astree	*io_here(void)
 		return (0);
 	g_curtok++;
 	if (!(res = here_end()))
-		return (parseerror());
+		return ((t_astree *)parseerror());
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	root->right = res;

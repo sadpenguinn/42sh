@@ -20,21 +20,20 @@
 **  (content)2?    filename(content)
 */
 
-t_redir	*fileerr(char *file, t_redir *redir)
+int		applyredir(t_list *redirs)
 {
-	free(redir);
-	fileerror(file);
-	return ((t_redir *)0);
-}
+	t_redir	*redir;
 
-void	closefds(t_list *redirs)
-{
 	while (redirs)
 	{
-		if (((t_redir *)redirs->data)->fd[1] > 2)
-			close(((t_redir *)redirs->data)->fd[1]);
+		redir = (t_redir *)redirs->data;
+		if (redir->type == REDIRECT)
+			dup2(redir->fd[1], redir->fd[0]);
+		if (redir->type == CLOSEFD)
+			close(redir->fd[0]);
 		redirs = redirs->next;
 	}
+	return (0);
 }
 
 static int	get_herein_doc(char *end)
@@ -93,7 +92,7 @@ t_redir	*get_redir(t_astree *root)
 	else
 	{
 		if (-1 == (redir->fd[1] = get_redir_file(root, type)))
-			return (fileerr(root->right->content, redir));
+			return (redirfileerror(root->right->content, redir));
 	}
 	return (redir);
 }

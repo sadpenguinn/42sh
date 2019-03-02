@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 12:51:53 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/15 23:21:35 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "parser.h"
 
-static t_astree	*get_word()
+static t_astree	*get_word(void)
 {
 	t_lexem		*token;
 	t_astree	*root;
@@ -31,7 +31,7 @@ static t_astree	*get_word()
 	if (!check_arith_for(token->word))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
-	root->type = WORD;
+	root->type = ARITH;
 	root->content = ft_strdup(token->word);
 	g_curtok++;
 	if (list_terminator())
@@ -39,9 +39,9 @@ static t_astree	*get_word()
 	return (root);
 }
 
-static t_astree	*get_compound_list()
+static t_astree	*get_compound_list(void)
 {
-    t_type		type;
+	t_type		type;
 	t_astree	*res;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
@@ -50,21 +50,19 @@ static t_astree	*get_compound_list()
 	if (type != DO && type != OBRACE)
 		return (0);
 	g_curtok++;
-	/* root = xmalloc(sizeof(t_astree)); */
-	/* root->type = DO; */
 	if (!(res = compound_list()))
 		return (0);
 	if (type == DO)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != DONE)
-			return (freeastree(res));
+			return ((t_astree *)freeastree(res));
 	if (type == OBRACE)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != CBRACE)
-			return (freeastree(res));
+			return ((t_astree *)freeastree(res));
 	g_curtok++;
 	return (res);
 }
 
-t_astree	*arith_for_command(void)
+t_astree		*arith_for_command(void)
 {
 	t_astree	*root;
 
@@ -76,8 +74,8 @@ t_astree	*arith_for_command(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = FOR;
 	if (!(root->left = get_word()))
-		return (savecur(g_curtok - 1));
+		return ((t_astree *)savecur(g_curtok - 1));
 	if (!(root->right = get_compound_list()))
-        return ((void)freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	return (root);
 }

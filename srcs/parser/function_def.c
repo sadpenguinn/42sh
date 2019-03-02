@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:55:26 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 12:11:49 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static t_astree	*function_def_1(void)
 		return (0);
 	g_curtok++;
 	if (!checktype(OBRACKET))
-		return (savecur(g_curtok - 1));
+		return ((t_astree *)savecur(g_curtok - 1));
 	if (!checktype(CBRACKET))
-		return (savecur(g_curtok - 2));
+		return ((t_astree *)savecur(g_curtok - 2));
 	root = xmalloc(sizeof(t_astree));
 	root->type = FUNCTION;
 	root->content = ft_strdup(token->word);
 	if (!(root->right = function_body()))
-		return (freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	return (root);
 }
 
@@ -50,17 +50,17 @@ static t_astree	*function_def_2(void)
 	g_curtok++;
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	if (!check_word_type(token->type) || !check_func_name(token->word))
-		return (savecur(g_curtok - 1));
+		return ((t_astree *)savecur(g_curtok - 1));
 	g_curtok++;
 	if (!checktype(OBRACKET))
-		return (savecur(g_curtok - 2));
+		return ((t_astree *)savecur(g_curtok - 2));
 	if (!checktype(CBRACKET))
-		return (savecur(g_curtok - 3));
+		return ((t_astree *)savecur(g_curtok - 3));
 	root = xmalloc(sizeof(t_astree));
 	root->type = FUNCTION;
 	root->content = ft_strdup(token->word);
 	if (!(root->right = function_body()))
-		return (freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	return (root);
 }
 
@@ -72,17 +72,17 @@ static t_astree	*function_def_3(void)
 	g_curtok++;
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	if (!check_word_type(token->type) || !check_func_name(token->word))
-		return (savecur(g_curtok - 1));
+		return ((t_astree *)savecur(g_curtok - 1));
 	g_curtok++;
 	root = xmalloc(sizeof(t_astree));
 	root->type = FUNCTION;
 	root->content = ft_strdup(token->word);
 	if (!(root->right = function_body()))
-		return (freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	return (root);
 }
 
-t_astree	*function_def(void)
+t_astree		*function_def(void)
 {
 	t_astree	*res;
 

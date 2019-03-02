@@ -6,12 +6,11 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 21:05:30 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/13 15:46:53 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**
 **      PIPECMD
 **     /
 ** PIPE
@@ -33,7 +32,7 @@ static t_astree	*get_pipline_bang(void)
 	root->type = NOT;
 	if (!(root->left = pipeline_command()))
 		if (!list_terminator())
-			return (freeastree(root));
+			return ((t_astree *)freeastree(root));
 	return (root);
 }
 
@@ -46,6 +45,6 @@ t_astree		*pipeline_command(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = PIPECMD;
 	if (!(root->left = pipeline()))
-		return (freeastree(root));
+		return ((t_astree *)freeastree(root));
 	return (root);
 }

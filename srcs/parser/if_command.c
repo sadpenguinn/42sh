@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 20:53:52 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 14:57:20 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_astree	*get_else(t_astree *res)
 	root->type = ELSE;
 	root->left = res;
 	if (!(root->right = compound_list()))
-		return (freeastree(root));
+		return ((t_astree *)freeastree(root));
 	return (root);
 }
 
@@ -54,35 +54,33 @@ static t_astree	*get_elif(t_astree *res)
 	root->type = ELSE;
 	root->left = res;
 	if (!(root->right = elif_clause()))
-		return (freeastree(root));
+		return ((t_astree *)freeastree(root));
 	return (root);
 }
 
 t_astree		*if_command(void)
 {
-/* printf("in if_command\n"); */
-	t_astree        *res;
-	t_astree        *root;
+	t_astree	*res;
+	t_astree	*root;
 
 	if (!checktype(IF))
 		return (0);
 	if (!(res = compound_list()))
-		return (parseerror());
+		return ((t_astree *)parseerror());
 	if (!checktype(THEN))
-		return (freeastree(res), parseerror());
-/* printf("then\n"); */
+		return ((t_astree *)(freeastree(res) | parseerror()));
 	root = xmalloc(sizeof(t_astree));
 	root->type = IF;
 	root->left = res;
 	if (!(root->right = compound_list()))
-		return (freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	if (checktype(ELSE))
 		if (!(root->right = get_else(root->right)))
-			return (freeastree(root), parseerror());
+			return ((t_astree *)(freeastree(root) | parseerror()));
 	if (checktype(ELIF))
 		if (!(root->right = get_elif(root->right)))
-			return (freeastree(root), parseerror());
+			return ((t_astree *)(freeastree(root) | parseerror()));
 	if (!checktype(FI))
-		return (freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	return (root);
 }

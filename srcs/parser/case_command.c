@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:11:43 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 16:01:53 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 #include "parser.h"
 
-static t_astree	*get_caseword()
+static t_astree	*get_caseword(void)
 {
 	t_lexem		*token;
 	t_astree	*root;
@@ -30,7 +30,7 @@ static t_astree	*get_caseword()
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	if  (!check_word_type(token->type))
+	if (!check_word_type(token->type))
 		return (0);
 	g_curtok++;
 	root = xmalloc(sizeof(t_astree));
@@ -46,17 +46,17 @@ t_astree		*case_command(void)
 	t_astree	*root;
 
 	if (!checktype(CASE))
-		return (parseerror());
+		return ((t_astree *)parseerror());
 	if (!(res = get_caseword()))
-		return (parseerror());
+		return ((t_astree *)parseerror());
 	root = xmalloc(sizeof(t_astree));
 	root->type = CASE;
 	root->left = res;
 	if (!checktype(IN))
-		return ((void)freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	root->right = case_clause();
 	newline_list();
 	if (!checktype(ESAC))
-		return ((void)freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	return (root);
 }

@@ -6,14 +6,14 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 20:53:10 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/05 20:55:58 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:59 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	*savecur(unsigned int cur)
+unsigned long int	savecur(unsigned int cur)
 {
 	g_curtok = cur;
-	return ((void *)0);
+	return (0LU);
 }

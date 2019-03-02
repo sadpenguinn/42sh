@@ -11,7 +11,6 @@ static int	expand_assign(t_list *assign)
 	{
 		val = (char *)assign->data;
 		bgn = val;
-		res = val;
 		while (*val != '=')
 			val++;
 		val++;
@@ -46,8 +45,8 @@ static int	get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
 	}
 	else
 	{
-		ft_push_back((type == WORD ? &cmd[0] : &cmd[1]), root->left->content);
-		root->left->content = 0;
+		ft_push_back((type == WORD ? &cmd[0] : &cmd[1]),
+						ft_strdup(root->left->content));
 	}
 	return (get_cmd_attr(root->right, cmd, assignment));
 }

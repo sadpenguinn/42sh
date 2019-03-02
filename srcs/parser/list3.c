@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:08:06 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 14:48:10 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,9 @@ static t_astree	*list3_rest(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = AND_IF;
 	if (!(root->left = pipeline_command()))
-		return (savecur(curtmp), freeastree(root));
+		return ((t_astree *)(savecur(curtmp) | freeastree(root)));
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (root);
-	/* if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type == AND_IF) */
-		/* if (!(root->right = list3_rest())) */
-			/* return (freeastree(root)); */
 	root->right = list3_rest();
 	return (root);
 }
@@ -63,8 +60,7 @@ t_astree		*list3(void)
 	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != AND_IF)
 		return (res[0]);
 	if (!(res[1] = list3_rest()))
-		return ((void)freeastree(res[0]), parseerror());
-		/* return (res[0]); */
+		return ((t_astree *)(freeastree(res[0]) | parseerror()));
 	root = xmalloc(sizeof(t_astree));
 	root->type = LIST3;
 	root->left = res[0];

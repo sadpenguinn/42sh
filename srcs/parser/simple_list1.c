@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:08:06 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/11 13:26:40 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/02/28 18:38:20 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_astree	*simple_list1_rest(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != AND && type != SEMI)
+	if (type != AND && type != SEMI && type != NEWLINE)
 		return (0);
 	g_curtok++;
 	root = xmalloc(sizeof(t_astree));
@@ -55,7 +55,7 @@ t_astree		*simple_list1(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (res[0]);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type != AND && type != SEMI)
+	if (type != AND && type != SEMI && type != NEWLINE)
 		return (res[0]);
 	if (!(res[1] = simple_list1_rest()))
 		return (res[0]);

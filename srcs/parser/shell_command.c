@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 18:04:30 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 15:14:37 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 #include "parser.h"
 
-static t_astree	*while_command()
+static t_astree	*while_command(void)
 {
 	t_astree	*root;
 
@@ -37,17 +37,17 @@ static t_astree	*while_command()
 	root = xmalloc(sizeof(t_astree));
 	root->type = WHILE;
 	if (!(root->left = compound_list()))
-		return (freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	if (!checktype(DO))
-		return (freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	if (!(root->right = compound_list()))
-		return (freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	if (!checktype(DONE))
-		return (freeastree(root), parseerror());
-	return  (root);
+		return ((t_astree *)(freeastree(root) | parseerror()));
+	return (root);
 }
 
-static t_astree	*until_command()
+static t_astree	*until_command(void)
 {
 	t_astree	*root;
 
@@ -56,17 +56,17 @@ static t_astree	*until_command()
 	root = xmalloc(sizeof(t_astree));
 	root->type = UNTIL;
 	if (!(root->left = compound_list()))
-		return ((void)freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	if (!checktype(DO))
-		return ((void)freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	if (!(root->right = compound_list()))
-		return ((void)freeastree(root), parseerror());
+		return ((t_astree *)(freeastree(root) | parseerror()));
 	if (!checktype(DONE))
-		return ((void)freeastree(root), parseerror());
-	return  (root);
+		return ((t_astree *)(freeastree(root) | parseerror()));
+	return (root);
 }
 
-static t_astree	*other_commands()
+static t_astree	*other_commands(void)
 {
 	t_type		type;
 	t_astree	*res;

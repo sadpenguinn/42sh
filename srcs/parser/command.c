@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:02:37 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/21 16:00:35 by bwerewol         ###   ########.fr       */
+/*   Updated: 2019/03/01 21:27:58 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static t_astree	*get_shell_command(void)
 	t_astree	*res[2];
 	t_astree	*root;
 
-
 	if (!(res[0] = shell_command()))
 		return (0);
 	if (!(res[1] = redirection_list()))
@@ -37,10 +36,10 @@ static t_astree	*get_shell_command(void)
 	return (root);
 }
 
-t_astree	*command(void)
+t_astree		*command(void)
 {
-	t_type			type;
-	t_astree        *res;
+	t_type		type;
+	t_astree	*res;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
