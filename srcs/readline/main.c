@@ -21,8 +21,8 @@ int		main(void)
 
 	while ((str = readline()))
 	{
-		write(1, str, strlen(str));
-		write(1, "\n", 1);
+/*		write(1, str, strlen(str));
+		write(1, "\n", 1);*/
 		free(str);
 	}
 	return (0);

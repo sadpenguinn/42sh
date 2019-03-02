@@ -30,12 +30,12 @@ void	add_text(t_matrix *matrix, int row, int col)
 	int symbols;
 
 	left = matrix->left_limit;
-	matrix->last_offset = 0;
+	g_history->last_offset = 0;
 	while (left < row)
 	{
 		add_line_prefix(matrix, left);
 		array_add(matrix->lines[left]->buf, matrix->lines[left]->len);
-		matrix->last_offset += 1 + (matrix->lines[left]->symbols +
+		g_history->last_offset += 1 + (matrix->lines[left]->symbols +
 				get_lines_prompt_len(matrix->len) - 1) / g_w.ws_col;
 		array_add("\n", 1);
 		left++;
@@ -46,7 +46,7 @@ void	add_text(t_matrix *matrix, int row, int col)
 		matrix->lines[left]->symbols :
 		count_string_symbols(matrix->lines[left]->buf, col);
 	symbols += get_lines_prompt_len(matrix->len);
-	matrix->last_offset += symbols / g_w.ws_col;
+	g_history->last_offset += symbols / g_w.ws_col;
 	if (symbols % g_w.ws_col == 0)
 		array_add("\n", 1);
 }

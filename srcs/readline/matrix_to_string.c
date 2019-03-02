@@ -21,7 +21,8 @@ char	*matrix_to_string(t_matrix *matrix)
 	while (i < matrix->len - 1)
 	{
 		array_add(matrix->lines[i]->buf, matrix->lines[i]->len);
-		array_add("\n", 1);
+		if (g_newline)
+			array_add("\n", 1);
 		i++;
 	}
 	array_add(matrix->lines[i]->buf, matrix->lines[i]->len);

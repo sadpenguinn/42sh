@@ -37,7 +37,6 @@ t_matrix	*init_matrix(void)
 	matrix->cursor = (t_cursor *)xmalloc(sizeof(t_cursor));
 	matrix->cursor->row = 0;
 	matrix->cursor->col = 0;
-	matrix->last_offset = 0;
 	matrix->left_limit = 0;
 	matrix->right_limit = 0;
 	return (matrix);

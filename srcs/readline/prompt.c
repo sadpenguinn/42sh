@@ -45,7 +45,7 @@ static int	get_prompt(char *cwd)
 
 void		add_prompt_prefix(void)
 {
-	array_add("[42sh] ", 7);
+	array_add(SHELL_NAME, strlen(SHELL_NAME));
 }
 
 void		print_prompt(void)
@@ -55,6 +55,7 @@ void		print_prompt(void)
 
 	add_prompt_style();
 	add_prompt_prefix();
+	array_add(" ", 1);
 	pos = get_prompt(cwd);
 	if (pos >= 0)
 	{

@@ -36,7 +36,7 @@ static void	print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 	size_t	i;
 
 	set_matrix_limits(matrix);
-	add_cursor_offset(matrix->last_offset);
+	add_cursor_offset(g_history->last_offset);
 	add_lines_text(matrix);
 	i = 0;
 	array_add("\n", 1);
@@ -48,7 +48,7 @@ static void	print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 		i++;
 	}
 	print_prompt();
-	matrix->last_offset = 0;
+	g_history->last_offset = 0;
 }
 
 static void	add_completion(t_matrix *matrix, char *match, char *pattern, char *prev_dir)

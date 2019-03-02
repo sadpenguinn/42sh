@@ -46,6 +46,8 @@ int	move_cursor_up(t_matrix *matrix)
 		col = count_string_cols(line->buf, symbols);
 		matrix->cursor->col = col;
 	}
+	else if (g_history->cur)
+		g_history->cur--;
 	return (1);
 }
 
@@ -65,5 +67,7 @@ int	move_cursor_down(t_matrix *matrix)
 		col = count_string_cols(line->buf, symbols);
 		matrix->cursor->col = col;
 	}
+	else if (g_history->cur != g_history->len - 1)
+		g_history->cur++;
 	return (1);
 }
