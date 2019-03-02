@@ -4,9 +4,7 @@ MKDIR		:= mkdir -p
 NAME		:= 42sh
 BUILD_DIR	:= build
 
-all: ./build/Makefile $(NAME)
-
-$(NAME):
+all: ./build/Makefile
 	@ $(MAKE) -C $(BUILD_DIR)
 	@ cp $(BUILD_DIR)/$(NAME) .
 
