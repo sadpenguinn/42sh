@@ -24,6 +24,14 @@ set(LIBSHELL		shell)
 set(LIBSHELL_DIR	srcs/lib/libshell)
 set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
+if (UNIX)
+	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra")
+endif()
+
+if (APPLE)
+	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
+endif()
+
 set(MAIN			srcs/shell.c)
 
 set(SHELL_SRC		srcs/shell/init.c
