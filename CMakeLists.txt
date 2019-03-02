@@ -1,7 +1,14 @@
 cmake_minimum_required(VERSION 3.13)
-project(42sh LANGUAGES C)
 
-set(NAME			42sh)
+if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
+	message(FATAL_ERROR "In-source builds not allowed. Please make a new directory" )
+endif()
+
+set(PROJECT			42sh)
+set(VERSION			1.0)
+project(${PROJECT}	VERSION ${VERSION} LANGUAGES C)
+
+set(NAME			${PROJECT})
 set(INC				includes)
 set(PARSER_INC		srcs/parser)
 set(LIBFT			ft)
@@ -18,33 +25,6 @@ set(LIBSHELL_DIR	srcs/lib/libshell)
 set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
 set(MAIN			srcs/shell.c)
-
-set(EXEC_SRC		srcs/execute/errors.c
-					srcs/execute/execcmd.c
-					srcs/execute/execlist1.c
-					srcs/execute/execlist2.c
-					srcs/execute/execlist3.c
-					srcs/execute/initcmd.c
-					srcs/execute/execpipecmd.c
-					srcs/execute/execpipes.c
-					srcs/execute/execscmd.c
-					srcs/execute/execshellcmd.c
-					srcs/execute/execcase.c
-					srcs/execute/execif.c
-					srcs/execute/execsubshell.c
-					srcs/execute/execute.c
-					srcs/execute/getredir.c
-					srcs/execute/process.c)
-
-set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
-					srcs/extention/configure_remalloc.c
-					srcs/extention/extention.c
-					srcs/extention/get_true_format.c
-					srcs/extention/strins_sheets.c
-					srcs/extention/psevdo_functions.c
-					srcs/extention/strsplit_for_extention.c
-					srcs/extention/stars.c)
-
 
 set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_env.c
@@ -97,13 +77,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/get_lines_info.c
 					srcs/readline/autocomplete_file_dir.c)
 
-set(BUILTIN_SRC		srcs/builtins/built_cd.c
-					srcs/builtins/built_echo.c
-					srcs/builtins/built_env.c
-					srcs/builtins/built_setenv.c
-					srcs/builtins/built_unsetenv.c
-					srcs/builtins/built_exit.c)
-
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)
 
@@ -155,17 +128,49 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/subshell.c
 					srcs/parser/word_list.c)
 
+set(EXECUTE_SRC		srcs/execute/errors.c
+					srcs/execute/execcmd.c
+					srcs/execute/execlist1.c
+					srcs/execute/execlist2.c
+					srcs/execute/execlist3.c
+					srcs/execute/initcmd.c
+					srcs/execute/execpipecmd.c
+					srcs/execute/execpipes.c
+					srcs/execute/execscmd.c
+					srcs/execute/execshellcmd.c
+					srcs/execute/execcase.c
+					srcs/execute/execif.c
+					srcs/execute/execsubshell.c
+					srcs/execute/execute.c
+					srcs/execute/getredir.c
+					srcs/execute/process.c)
+
+set(BUILTIN_SRC		srcs/builtins/built_cd.c
+					srcs/builtins/built_echo.c
+					srcs/builtins/built_env.c
+					srcs/builtins/built_setenv.c
+					srcs/builtins/built_unsetenv.c
+					srcs/builtins/built_exit.c)
+
+set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
+					srcs/extention/configure_remalloc.c
+					srcs/extention/extention.c
+					srcs/extention/get_true_format.c
+					srcs/extention/strins_sheets.c
+					srcs/extention/psevdo_functions.c
+					srcs/extention/strsplit_for_extention.c
+					srcs/extention/stars.c)
+
 include_directories(${INC})
 include_directories(${PARSER_INC})
 include_directories(${LIBFT_INC})
 include_directories(${LIBHASH_INC})
 include_directories(${VECTOR_INC})
-include_directories(srcs/extention)
 
 add_subdirectory(${LIBFT_DIR})
 add_subdirectory(${LIBHASH_DIR})
 add_subdirectory(${VECTOR_DIR})
 add_subdirectory(${LIBSHELL_DIR})
 
-add_executable(42sh ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC} ${EXEC_SRC} ${EXPAND_SRC})
-target_link_libraries(42sh ${LIBFT} ${LIBHASH} ${VECTOR} ${LIBSHELL})
+add_executable(${NAME} ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC} ${EXPAND_SRC})
+target_link_libraries(${NAME} ${LIBFT} ${LIBHASH} ${VECTOR} ${LIBSHELL})
