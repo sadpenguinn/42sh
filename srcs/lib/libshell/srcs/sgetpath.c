@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:40:17 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/03/01 17:17:28 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:09:42 by tony             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	validate_sum(char *key, char *value)
 		return (free_sum(path, NULL, 0));
 	if ((stat(key, &stats) == -1))
 		return (free_sum(path, NULL, 1));
-	sum = ft_ltoa(stats.st_mtimespec.tv_sec);
+	sum = ft_ltoa(STATS_TIME_SEC);
 	if (!ft_strcmp(sum, path))
 		return (free_sum(sum, path, 1));
 	return (free_sum(sum, path, 0));
