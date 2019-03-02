@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/03/01 17:01:23 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:09:56 by tony             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@
 # include "vector.h"
 # include "readline.h"
 # include "lexer.h"
+
+
+/*
+** Checking platform defines
+*/
+
+# if defined(__APPLE__) || defined(__MACH__)
+#  define STATS_TIME_SEC stats.st_mtimespec.tv_sec
+# elif defined(__linux__)
+#  define STATS_TIME_SEC stats.st_mtim.tv_sec
+# else
+#  define STATS_TIME_SEC stats.st_mtimespec.tv_sec
+# endif
 
 /*
 ** Global variables with env and paths hashes/arrays

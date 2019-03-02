@@ -6,7 +6,7 @@
 /*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 17:28:39 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/26 17:49:39 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:11:13 by tony             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		init_paths(char **paths, char *sum)
 			i++;
 			continue ;
 		}
-		sum = ft_itoa(stats.st_mtimespec.tv_sec);
+		sum = ft_itoa(STATS_TIME_SEC);
 		if (!(cell = hash_insert(paths[i], sum, g_path_sums)))
 		{
 			ft_strdel(&sum);

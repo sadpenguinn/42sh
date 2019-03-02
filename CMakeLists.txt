@@ -22,7 +22,15 @@ set(VECTOR_DIR		srcs/lib/vector)
 set(VECTOR_INC		srcs/lib/vector/includes)
 set(LIBSHELL		shell)
 set(LIBSHELL_DIR	srcs/lib/libshell)
-set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
+
+if (APPLE)
+	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
+elseif (UNIX)
+	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra")
+else ()
+	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g")
+endif()
+
 
 set(MAIN			srcs/shell.c)
 
