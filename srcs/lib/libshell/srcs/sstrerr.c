@@ -28,5 +28,7 @@ char	*sstrerr(int e)
 		return ("Invalid syntax");
 	if (e == SHERR_CNTALCTMEM)
 		return ("Cannot allocate memory");
+	if (e == SHERR_PERMDEN)
+		return ("Permission denied");
 	return (NULL);
 }

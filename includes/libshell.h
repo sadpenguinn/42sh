@@ -32,6 +32,7 @@
 # define PATH_BUILT 1
 # define PATH_BIN 2
 # define PATH_NOFORK 3
+# define PATH_FUNC 4
 
 /*
 ** Shell error define like a standard C errno
@@ -46,6 +47,7 @@
 #  define SHERR_CMNDNTF					4
 #  define SHERR_INVSNTX					5
 #  define SHERR_CNTALCTMEM				6
+#  define SHERR_PERMDEN					7
 # endif
 
 /*

@@ -75,6 +75,7 @@ extern void				*g_func;
 #  define SHERR_CMNDNTF					4
 #  define SHERR_INVSNTX					5
 #  define SHERR_CNTALCTMEM				6
+#  define SHERR_PERMDEN					7
 # endif
 
 /*
