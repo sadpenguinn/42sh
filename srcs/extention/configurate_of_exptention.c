@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:38:01 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/26 19:16:03 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 19:52:15 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,37 @@ char	*get_ex_tilda(char *str)
 	return (tmp);
 }
 
+int		get_fdnumber_of_substitution(char *str, int state);
+char	*extention_get_just_command(char *str);
+
+char	*get_small_redir(char *str)
+{
+	char	*tmp_c;
+	char	*tmp_num;
+	char	*res;
+
+	tmp_c = extention_get_just_command(str);
+	tmp_num = ft_itoa(get_fdnumber_of_substitution(tmp_c, 0));
+	res = ft_strjoin("/dev/fd/", tmp_num, 0);
+	free(tmp_c);
+	free(tmp_num);
+	return (res);
+}
+
+char	*get_grade_redir(char *str)
+{
+	char	*tmp_c;
+	char	*tmp_num;
+	char	*res;
+
+	tmp_c = extention_get_just_command(str);
+	tmp_num = ft_itoa(get_fdnumber_of_substitution(tmp_c, 1));
+	res = ft_strjoin("/dev/fd/", tmp_num, 0);
+	free(tmp_c);
+	free(tmp_num);
+	return (res);
+}
+
 char	*get_content_of_expression(char *str)
 {
 	char	*res;
@@ -111,6 +142,10 @@ char	*get_content_of_expression(char *str)
 	str = erase_repetitions_recursion(str);
 	if (str[0] == '~')
 		res = get_ex_tilda(str);
+	else if (str[0] == '<')
+		res = get_small_redir(str);
+	else if (str[0] == '>')
+		res = get_grade_redir(str);
 	else if (str[1] != '(' && str[1] != '[' && str[1] != '{')
 		res = classic_get_env(&str[1]);
 	else if (ft_strstr(str, ":-"))

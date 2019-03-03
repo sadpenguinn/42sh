@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/28 04:44:13 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:51:08 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,26 @@ static int	tilda_case_check(char *str, int i)
 	return (0);
 }
 
+int			check_process_substitution_expand(char *str)
+{
+	int		i;
+	int		brackets;
+
+	brackets = 1;
+	if ((str[0] != '<' && str[0] != '>' ) || str[1] != '(')
+		return (0);
+	i = 2;
+	while (str[i] && brackets)
+	{
+		if (str[i] == ')')
+			brackets--;
+		else if (str[i] == '(')
+			brackets++;
+		i++;
+	}
+	return ((brackets) ? 0 : 1);
+}
+
 char		**expand_v(char *str)
 {
 	char	*res;
@@ -52,7 +72,7 @@ char		**expand_v(char *str)
 	frashing_values(fuck_norm, &i, &j);
 	while (str[i])
 	{
-		if ((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1])
+		if ((str[i] == '$' || tilda_case_check(str, i) || check_process_substitution_expand(&str[i])) && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			if (!buf)
@@ -99,7 +119,7 @@ char		*expand(char *str)
 			fuck_norm[2] = (fuck_norm[2] + 1) % 2;
 			i++;
 		}
-		else if ((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1])
+		else if ((str[i] == '$' || tilda_case_check(str, i) || check_process_substitution_expand(&str[i])) && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			if (!buf)

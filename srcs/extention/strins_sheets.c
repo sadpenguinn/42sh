@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:32:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 20:17:12 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 19:03:57 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,18 @@ char	*get_last_n_symbols(char *str, int n, int freed)
 	if (freed)
 		free(str);
 	return (res);
+}
+
+char	*extention_get_just_command(char *str)
+{
+	int i;
+	int dump;
+
+	i = 1;
+	while (str[i] && (str[i] == '(' || str[i] == ' '))
+		i++;
+	dump = i;
+	while (str[i] && str[i] != ')')
+		i++;
+	return (ft_strndup(&str[dump], i - dump));
 }
