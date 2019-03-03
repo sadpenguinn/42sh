@@ -55,7 +55,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/check_next_symbol.c
 					srcs/readline/term.c
 					srcs/readline/prompt.c
-					srcs/readline/inits.c
 					srcs/readline/resize_windows.c
 					srcs/readline/matrix_resize.c
 					srcs/readline/line_resize.c
@@ -68,7 +67,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/matrix_string_delete.c
 					srcs/readline/buttons1.c
 					srcs/readline/matrix_erase_line.c
-					srcs/readline/readline_memdel.c
 					srcs/readline/get_next_symbol.c
 					srcs/readline/move_shortcuts.c
 					srcs/readline/newline_handling.c
@@ -83,7 +81,19 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/add_cursor_offset.c
 					srcs/readline/add_line_prefix.c
 					srcs/readline/get_lines_info.c
-					srcs/readline/autocomplete_file_dir.c)
+					srcs/readline/autocomplete_file_dir.c
+					srcs/readline/matrix_init.c
+					srcs/readline/line_init.c
+					srcs/readline/line_free.c
+					srcs/readline/matrix_free.c
+					srcs/readline/history_free.c
+					srcs/readline/line_del.c
+					srcs/readline/matrix_del.c
+					srcs/readline/history_del.c
+					srcs/readline/matrix_dup.c
+					srcs/readline/line_dup.c
+					srcs/readline/matrix_cmp.c)
+
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)

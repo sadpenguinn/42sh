@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:11:49 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/26 17:00:42 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:14:26 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,15 @@ int	move_cursor_up(t_matrix *matrix)
 		matrix->cursor->col = col;
 	}
 	else if (g_history->cur)
-		g_history->cur--;
+	{
+		if (g_history->cur == g_history->len - 1)
+		{
+			matrix_del(&g_history->matrix[g_history->cur]);
+			g_history->matrix[g_history->cur] = matrix_dup(g_history->tmp);
+		}
+		matrix_del(&g_history->tmp);
+		g_history->tmp = matrix_dup(g_history->matrix[--g_history->cur]);
+	}
 	return (1);
 }
 
@@ -68,6 +76,9 @@ int	move_cursor_down(t_matrix *matrix)
 		matrix->cursor->col = col;
 	}
 	else if (g_history->cur != g_history->len - 1)
-		g_history->cur++;
+	{
+		matrix_del(&g_history->tmp);
+		g_history->tmp = matrix_dup(g_history->matrix[++g_history->cur]);
+	}
 	return (1);
 }

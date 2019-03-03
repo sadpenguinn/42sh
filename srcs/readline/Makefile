@@ -4,17 +4,22 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  ../lib/libft/srcs/ft_strnum.c\
 	  ../lib/libft/srcs/ft_strnum_base.c\
 	  ../lib/libft/srcs/ft_strdup.c\
+	  ../lib/libft/srcs/ft_strcmp.c\
 	  ../lib/libft/srcs/ft_strndup.c\
 	  ../lib/libft/srcs/ft_strjoin.c\
 	  ../lib/libft/srcs/ft_strlen.c\
 	  ../lib/libft/srcs/ft_memcpy.c\
+	  ../lib/libft/srcs/ft_strcpy.c\
 	  ../lib/libft/srcs/ft_strchr.c\
+	  ../lib/libshell/srcs/xglob.c\
+	  ../lib/libshell/srcs/xmatch.c\
 	  readline.c\
 	  main.c\
 	  array.c\
 	  check_next_symbol.c\
 	  term.c prompt.c\
-	  inits.c\
+	  matrix_init.c\
+	  line_init.c\
 	  resize_windows.c\
 	  matrix_resize.c\
 	  line_resize.c\
@@ -27,7 +32,12 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  matrix_string_delete.c\
 	  buttons1.c\
 	  matrix_erase_line.c\
-	  readline_memdel.c\
+	  matrix_free.c\
+	  line_free.c\
+	  history_free.c\
+	  line_del.c\
+	  matrix_del.c\
+	  history_del.c\
 	  get_next_symbol.c\
 	  move_shortcuts.c\
 	  newline_handling.c\
@@ -42,8 +52,9 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  add_line_prefix.c\
 	  get_lines_info.c\
 	  autocomplete_file_dir.c\
-	  ../lib/libshell/srcs/xglob.c\
-	  ../lib/libshell/srcs/xmatch.c\
+	  matrix_dup.c\
+	  line_dup.c\
+	  matrix_cmp.c\
 
 NAME = line
 TEST = a.test

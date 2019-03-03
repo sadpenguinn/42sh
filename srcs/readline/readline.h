@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/26 17:21:55 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/03 02:48:41 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct	s_history
 	int 		cur;
 	int 		last_offset;
 	t_matrix	**matrix;
+	t_matrix	*tmp;
 }				t_history;
 
 t_history		*g_history;
@@ -108,10 +109,10 @@ t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
 char			*readline(void);
 
-void			ft_puts(char *buf, int len);
+void			ft_puts(char *buf);
 
-t_matrix		*init_matrix(void);
-t_line			*init_line(void);
+t_matrix		*matrix_init(void);
+t_line			*line_init(void);
 
 void			matrix_create_line(t_matrix *matrix, int row);
 void			matrix_erase_line(t_matrix *matrix, int row);
@@ -153,8 +154,10 @@ void			print_prompt(void);
 
 void			line_free(t_line *line);
 void			line_del(t_line **line);
+void			history_del(t_history **history);
 void			matrix_free(t_matrix *matrix);
 void			matrix_del(t_matrix **matrix);
+void			history_free(t_history *history);
 
 int				get_utf_offset_left(char *str, int pos);
 int				get_utf_offset_right(unsigned char c);
@@ -184,5 +187,10 @@ void			add_text(t_matrix *matrix, int row, int col);
 void			add_line_prefix(t_matrix *matrix, int cur_row);
 
 int				autocomplete_file_dir(t_matrix *matrix);
+
+t_matrix		*matrix_dup(t_matrix *src);
+t_line			*line_dup(t_line *src);
+
+int				matrix_cmp(t_matrix *matrix1, t_matrix *matrix2);
 
 #endif

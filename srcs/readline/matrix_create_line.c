@@ -19,7 +19,7 @@ void	matrix_create_line(t_matrix *matrix, int row)
 	if (row < matrix->len)
 		memmove(matrix->lines + row + 1, matrix->lines + row,
 				(matrix->len - row) * sizeof(t_line *));
-	matrix->lines[row] = init_line();
+	matrix->lines[row] = line_init();
 	matrix->len++;
 	matrix->cursor->row = row;
 	matrix->cursor->col = 0;
