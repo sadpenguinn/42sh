@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 02:48:41 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 06:25:50 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef	struct	s_matrix
 	t_cursor	*cursor;
 	int			left_limit;
 	int			right_limit;
+	int 		single_quotes;
+	int 		double_quotes;
 }				t_matrix;
 
 typedef struct	s_history
@@ -192,5 +194,8 @@ t_matrix		*matrix_dup(t_matrix *src);
 t_line			*line_dup(t_line *src);
 
 int				matrix_cmp(t_matrix *matrix1, t_matrix *matrix2);
+
+int				move_history_prev(void);
+int				move_history_next(void);
 
 #endif

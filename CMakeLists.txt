@@ -92,8 +92,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/history_del.c
 					srcs/readline/matrix_dup.c
 					srcs/readline/line_dup.c
-					srcs/readline/matrix_cmp.c)
-
+					srcs/readline/matrix_cmp.c
+					srcs/readline/history_move.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)

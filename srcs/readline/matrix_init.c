@@ -14,5 +14,7 @@ t_matrix	*matrix_init(void)
 	matrix->cursor->col = 0;
 	matrix->left_limit = 0;
 	matrix->right_limit = 0;
+	matrix->single_quotes = 0;
+	matrix->double_quotes = 0;
 	return (matrix);
 }

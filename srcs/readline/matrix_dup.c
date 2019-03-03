@@ -15,6 +15,8 @@ t_matrix	*matrix_dup(t_matrix *src)
 	dest->cursor->col = src->cursor->col;
 	dest->left_limit = src->left_limit;
 	dest->right_limit = src->right_limit;
+	dest->single_quotes = src->single_quotes;
+	dest->double_quotes = src->double_quotes;
 	i = 0;
 	while (i < src->len)
 	{

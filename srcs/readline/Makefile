@@ -55,6 +55,8 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  matrix_dup.c\
 	  line_dup.c\
 	  matrix_cmp.c\
+	  \
+	  history_move.c\
 
 NAME = line
 TEST = a.test
