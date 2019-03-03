@@ -6,14 +6,15 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:55:52 by narchiba          #+#    #+#             */
-/*   Updated: 2019/02/26 16:55:58 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/03 15:29:14 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "array.h"
+#include "libft.h"
+#include <stdio.h>
 
-char	*matrix_to_string(t_matrix *matrix)
+void	matrix_to_string(t_matrix *matrix, t_string *str)
 {
 	int	i;
 
@@ -21,10 +22,10 @@ char	*matrix_to_string(t_matrix *matrix)
 	while (i < matrix->len - 1)
 	{
 		array_add(matrix->lines[i]->buf, matrix->lines[i]->len);
-		if (g_newline)
-			array_add("\n", 1);
 		i++;
 	}
 	array_add(matrix->lines[i]->buf, matrix->lines[i]->len);
-	return (array_to_string());
+	free(str->buf);
+	str->buf = array_to_string();
+	str->len = ft_strlen(str->buf);
 }

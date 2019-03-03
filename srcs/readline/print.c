@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "array.h"
 #include "libshell.h"
 
 int		print_default(t_matrix *matrix)

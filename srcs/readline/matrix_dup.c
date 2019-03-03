@@ -6,13 +6,14 @@ t_matrix	*matrix_dup(t_matrix *src)
 	int			i;
 	t_matrix	*dest;
 
+	if (src == NULL)
+		return (NULL);
 	dest = (t_matrix *)xmalloc(sizeof(t_matrix));
-	dest->cursor = (t_cursor *)xmalloc(sizeof(t_cursor));
 	dest->size = src->size;
 	dest->lines = (t_line **)xmalloc(sizeof(t_line *) * dest->size);
+	dest->cursor = cursor_dup(src->cursor);
+	dest->str = string_dup(src->str);
 	dest->len = src->len;
-	dest->cursor->row = src->cursor->row;
-	dest->cursor->col = src->cursor->col;
 	dest->left_limit = src->left_limit;
 	dest->right_limit = src->right_limit;
 	dest->single_quotes = src->single_quotes;

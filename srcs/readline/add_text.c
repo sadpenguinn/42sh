@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "array.h"
 
 void	add_cursor_text(t_matrix *matrix)
 {

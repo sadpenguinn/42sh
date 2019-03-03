@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:11:35 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 14:11:35 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 15:07:44 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 
 int		main(void)
 {
-	char *str;
+	t_string	*str;
 
 	while ((str = readline()))
 	{
-/*		write(1, str, strlen(str));
-		write(1, "\n", 1);*/
-		free(str);
+		write(1, str->buf, str->len);
+		write(1, "\n", 1);
 	}
 	return (0);
 }

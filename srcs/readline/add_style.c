@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "array.h"
 #include "readline.h"
 
 void	add_lines_prompt_style(void)

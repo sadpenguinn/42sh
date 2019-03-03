@@ -57,6 +57,12 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  matrix_cmp.c\
 	  \
 	  history_move.c\
+	  cursor_free.c\
+	  cursor_init.c\
+	  cursor_dup.c\
+	  string_init.c\
+	  string_free.c\
+	  string_dup.c\
 
 NAME = line
 TEST = a.test

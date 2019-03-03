@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "array.h"
 #include "readline.h"
 #include <limits.h>
 #include <pwd.h>

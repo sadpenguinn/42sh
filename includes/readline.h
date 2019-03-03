@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 06:56:44 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 14:09:39 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ enum	e_vi_modes
 
 enum	e_allocation_params
 {
-	HISTORY_DEFAULT_SIZE = 10, BUF_DEFAULT_SIZE = 5, RATIO = 2, MATRIX_DEFAULT_SIZE = 10
+	HISTORY_DEFAULT_SIZE = 10, BUF_DEFAULT_SIZE = 5, RATIO = 2,
+	MATRIX_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10
 };
 
 # define CTRL_V 026
@@ -67,11 +68,24 @@ enum	e_allocation_params
 
 typedef	unsigned long long int	t_uchar;
 
+typedef	struct	s_array
+{
+	char		*buf;
+	size_t		len;
+	size_t		size;
+}				t_array;
+
 typedef	struct	s_cursor
 {
 	int			row;
 	int			col;
 }				t_cursor;
+
+typedef	struct	s_string
+{
+	int			len;
+	char		*buf;
+}				t_string;
 
 typedef	struct	s_line
 {
@@ -91,6 +105,7 @@ typedef	struct	s_matrix
 	int			right_limit;
 	int 		single_quotes;
 	int 		double_quotes;
+	t_string	*str;
 }				t_matrix;
 
 typedef struct	s_history
@@ -105,16 +120,22 @@ typedef struct	s_history
 
 t_history		*g_history;
 int				g_mode;
-int				g_newline;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
-char			*readline(void);
+t_string		*readline(void);
 
 void			ft_puts(char *buf);
 
 t_matrix		*matrix_init(void);
 t_line			*line_init(void);
+t_string		*string_init(void);
+t_cursor		*cursor_init(void);
+
+t_matrix		*matrix_dup(t_matrix *src);
+t_line			*line_dup(t_line *src);
+t_cursor		*cursor_dup(t_cursor *src);
+t_string		*string_dup(t_string *src);
 
 void			matrix_create_line(t_matrix *matrix, int row);
 void			matrix_erase_line(t_matrix *matrix, int row);
@@ -155,11 +176,14 @@ int				print_autocomplete(t_matrix *matrix);
 void			print_prompt(void);
 
 void			line_free(t_line *line);
-void			line_del(t_line **line);
-void			history_del(t_history **history);
+void			cursor_free(t_cursor *cursor);
+void			string_free(t_string *str);
 void			matrix_free(t_matrix *matrix);
-void			matrix_del(t_matrix **matrix);
 void			history_free(t_history *history);
+
+void			line_del(t_line **line);
+void			matrix_del(t_matrix **matrix);
+void			history_del(t_history **history);
 
 int				get_utf_offset_left(char *str, int pos);
 int				get_utf_offset_right(unsigned char c);
@@ -180,7 +204,7 @@ int				symbol_to_string(t_matrix *matrix, t_uchar c, char *str);
 
 int				set_matrix_limits(t_matrix *matrix);
 
-char			*matrix_to_string(t_matrix *matrix);
+void			matrix_to_string(t_matrix *matrix, t_string *str);
 
 void			add_cursor_text(t_matrix *matrix);
 void			add_lines_text(t_matrix *matrix);
@@ -190,12 +214,14 @@ void			add_line_prefix(t_matrix *matrix, int cur_row);
 
 int				autocomplete_file_dir(t_matrix *matrix);
 
-t_matrix		*matrix_dup(t_matrix *src);
-t_line			*line_dup(t_line *src);
-
 int				matrix_cmp(t_matrix *matrix1, t_matrix *matrix2);
 
 int				move_history_prev(void);
 int				move_history_next(void);
+
+void			array_add(const char *str, size_t len);
+char			*array_to_string(void);
+void			array_flush(void);
+
 
 #endif

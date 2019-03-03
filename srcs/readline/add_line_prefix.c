@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "array.h"
 
 static void	num_to_str(int max, char *str, int nbr)
 {

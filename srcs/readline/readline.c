@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 02:45:08 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 15:20:43 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,29 @@ void	write_history_on_disk(void)
 {
 }
 
-void	history_save_elem(char *str)
+int		history_save_elem(void)
 {
-	if (str[0] == '\0' ||
-			(g_history->len - 1 &&
-					matrix_cmp(g_history->tmp,
-							   g_history->matrix[g_history->len - 2]) == 0))
+	if (g_history->tmp->str->buf[0] == '\0')
 	{
 		matrix_del(&g_history->matrix[g_history->len - 1]);
 		matrix_del(&g_history->tmp);
 		g_history->len--;
-		return ;
+		return (1);
+	}
+	if (g_history->len - 1 &&
+			matrix_cmp(g_history->tmp,
+					   g_history->matrix[g_history->len - 2]) == 0)
+	{
+		matrix_del(&g_history->matrix[g_history->len - 1]);
+		matrix_del(&g_history->tmp);
+		g_history->len--;
+		return (0);
 	}
 	matrix_del(&g_history->matrix[g_history->len - 1]);
 	g_history->matrix[g_history->len - 1] = matrix_dup(g_history->tmp);
 	matrix_del(&g_history->tmp);
 	write_history_on_disk();
-	return ;
+	return (0);
 }
 
 void	init_history(void)
@@ -87,10 +93,9 @@ void	init_readline(void)
 	g_mode = READLINE;
 }
 
-char	*readline(void)
+t_string	*readline(void)
 {
 	int			ret;
-	char		*str;
 
 	print_prompt();
 	init_readline();
@@ -105,14 +110,13 @@ char	*readline(void)
 	{
 		print_lines(g_history->tmp);
 		write(1, "\n", 1);
-		str = matrix_to_string(g_history->tmp);
-		history_save_elem(str);
+		matrix_to_string(g_history->tmp, g_history->tmp->str);
+		if (history_save_elem())
+			return (readline());
+		unset_term();
+		return (g_history->matrix[g_history->len - 1]->str);
 	}
-	else
-	{
-		str = NULL;
-		history_del(&g_history);
-	}
+	history_del(&g_history);
 	unset_term();
-	return (str);
+	return (NULL);
 }

@@ -1,5 +1,4 @@
 #include "readline.h"
-#include "array.h"
 #include "libshell.h"
 
 static char	*get_pattern(char *buf, int pos)
