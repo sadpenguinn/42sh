@@ -29,6 +29,8 @@ void			*g_jobs = NULL;
 void			*g_process = NULL;
 
 void			*g_func = NULL;
+void			*g_func_args = NULL;
+int 			g_status = 0;
 
 void	init(char **env)
 {
@@ -41,5 +43,6 @@ void	init(char **env)
 	init_process();*/
 	init_pids();
 	init_functions();
+	init_function_args();
 	init_signals();
 }

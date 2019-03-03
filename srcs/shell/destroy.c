@@ -20,4 +20,5 @@ void	destroy(void)
 	/*destroy_jobs();
 	destroy_process();*/
 	destroy_functions();
+	destroy_function_args();
 }
