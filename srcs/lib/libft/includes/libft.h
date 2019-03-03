@@ -79,6 +79,7 @@ t_btree			*ft_btree_search(t_btree *root, void *data,
 int				ft_btree_count(t_btree *root);
 void			ft_btree_del(t_btree **root, void (*f)(void *data));
 
+int				ft_atoi_base(const char *str, int base);
 char			*ft_itoa_base(long int num, int base);
 char			*ft_strrev(char *s);
 int				ft_isblank(int c);

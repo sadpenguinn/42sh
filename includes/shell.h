@@ -22,7 +22,6 @@
 # include "readline.h"
 # include "lexer.h"
 
-
 /*
 ** Checking platform defines
 */
@@ -52,6 +51,10 @@ extern void				*g_jobs;
 extern void				*g_process;
 extern void				*g_pids;
 
+extern void				*g_func;
+extern void				*g_func_args;
+extern int 				g_status;
+
 /*
 ** Defines for initialize shell environment/path
 */
@@ -67,13 +70,14 @@ extern void				*g_pids;
 
 # ifndef SHERR
 #  define SHERR
-#  define SHERR_ERR						0
-#  define SHERR_OK						1
+#  define SHERR_OK						0
+#  define SHERR_ERR						1
 #  define SHERR_ENOENT					2
 #  define SHERR_CNTFRK					3
 #  define SHERR_CMNDNTF					4
 #  define SHERR_INVSNTX					5
 #  define SHERR_CNTALCTMEM				6
+#  define SHERR_PERMDEN					7
 # endif
 
 /*
@@ -123,23 +127,18 @@ void					init_path(void);
 void					init_jobs(void);
 void					init_process(void);
 void					init_pids(void);
+void 					init_functions(void);
+void 					init_function_args(void);
 void					destroy(void);
 void					destroy_env(void);
 void					destroy_path(void);
 void					destroy_jobs(void);
 void					destroy_process(void);
 void					destroy_pids(void);
+void					destroy_functions(void);
+void					destroy_function_args(void);
 void					init_signals(void);
 int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
-
-/*
-** Minishell requirements
-*/
-
-extern int				g_pid;
-
-void					minishell_parser(void *lexems);
-char					*ft_strvardup(char *str);
 
 #endif

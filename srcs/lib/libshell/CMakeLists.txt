@@ -22,7 +22,7 @@ set(SRC_LIB		srcs/check_varname.c
 				srcs/sgetpath.c
 				srcs/sunsetenv.c
 				srcs/get_cmd_path.c
-				srcs/split_env.c)
+				srcs/split_env.c srcs/octal_to_decimal.c)
 
 include_directories(${INC})
 include_directories(${LIBFT_INC})

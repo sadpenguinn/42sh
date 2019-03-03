@@ -38,15 +38,15 @@ int		applyredir(t_list *redirs)
 
 static int	get_herein_doc(char *end)
 {
-	int		fd[2];
-	char	*line;
+	int			fd[2];
+	t_string	*line;
 
 	pipe(fd);
 	while ((line = readline()))
 	{
-		if (ft_strequ(line, end))
+		if (ft_strequ(line->buf, end))
 			break;
-		ft_putstr_fd(line, fd[1]);
+		ft_putstr_fd(line->buf, fd[1]);
 		free(line);
 	}
 	free(line);

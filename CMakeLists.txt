@@ -48,7 +48,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/destroy_process.c
 					srcs/shell/signals.c
 					srcs/shell/argv_parser.c
-					srcs/shell/parse_input.c)
+					srcs/shell/parse_input.c srcs/shell/init_functions.c srcs/shell/destroy_functions.c srcs/shell/init_function_args.c srcs/shell/destroy_function_args.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/array.c
@@ -177,6 +177,7 @@ set(EXECUTE_SRC		srcs/execute/errors.c
 					srcs/execute/execscmd.c
 					srcs/execute/initcmd.c
 					srcs/execute/getredir.c
+					srcs/execute/function.c
 					srcs/execute/process.c)
 
 set(BUILTIN_SRC		srcs/builtins/built_cd.c
@@ -184,7 +185,8 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_env.c
 					srcs/builtins/built_setenv.c
 					srcs/builtins/built_unsetenv.c
-					srcs/builtins/built_exit.c)
+					srcs/builtins/built_exit.c
+					srcs/builtins/built_echo_reqmts.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c

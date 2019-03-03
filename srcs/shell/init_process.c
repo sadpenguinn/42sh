@@ -14,5 +14,5 @@
 
 void	init_process(void)
 {
-	g_process = vector_create(sizeof(g_process));
+	g_process = vector_create(sizeof(pid_t));
 }

@@ -32,6 +32,7 @@
 # define PATH_BUILT 1
 # define PATH_BIN 2
 # define PATH_NOFORK 3
+# define PATH_FUNC 4
 
 /*
 ** Shell error define like a standard C errno
@@ -39,13 +40,14 @@
 
 # ifndef SHERR
 #  define SHERR
-#  define SHERR_ERR						0
-#  define SHERR_OK						1
+#  define SHERR_OK						0
+#  define SHERR_ERR						1
 #  define SHERR_ENOENT					2
 #  define SHERR_CNTFRK					3
 #  define SHERR_CMNDNTF					4
 #  define SHERR_INVSNTX					5
 #  define SHERR_CNTALCTMEM				6
+#  define SHERR_PERMDEN					7
 # endif
 
 /*
@@ -91,5 +93,7 @@ void	free_str_arr(char ***arr);
 void	print_str_arr(char *const *arr);
 size_t	size_str_arr(char *const *arr);
 char	**split_env(char *str);
+
+int		octal_to_decimal(int oct);
 
 #endif

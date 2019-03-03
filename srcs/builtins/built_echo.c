@@ -12,6 +12,22 @@
 
 #include "builtins.h"
 
+static void			print_string(const char *str)
+{
+	int 	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != '\\')
+			ft_putchar(str[i]);
+		else
+			if ((i = handle_sequence(str, i + 1)) == -1)
+				return ;
+		i++;
+	}
+}
+
 static void			print_strings(char **av, const int *flags, size_t i)
 {
 	size_t	size;
@@ -21,7 +37,7 @@ static void			print_strings(char **av, const int *flags, size_t i)
 		size++;
 	while (av[i])
 	{
-		ft_putstr(av[i]);
+		print_string(av[i]);
 		if (i < size)
 			ft_putchar(' ');
 		i++;
@@ -65,7 +81,7 @@ int					built_echo(char **av, char **env)
 
 	env = NULL;
 	flags[0] = 0;
-	flags[1] = 0;
+	flags[1] = 1;
 	i = parse_flags(av, flags);
 	print_strings(av, flags, i);
 	return (SHERR_OK);

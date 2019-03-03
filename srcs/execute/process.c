@@ -12,11 +12,18 @@ pid_t	xfork(void)
 	return (pid);
 }
 
-pid_t	xwaitpid(pid_t pid, int *stat_loc, int options)
+int		xwaitpid(pid_t pid, int options)
 {
+	int		status;
 	pid_t	res;
 
-	res = waitpid(pid, stat_loc, options);
+	res = waitpid(pid, &status, options);
 	vector_pop_back(&g_pids);
-	return (res);
+	if (res < 0)
+		return (res);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (cmdexitsig(pid, WTERMSIG(status)));
+	return (EXIT_FAILURE);
 }

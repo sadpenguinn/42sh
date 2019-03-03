@@ -13,6 +13,8 @@
 #ifndef READLINE_H
 # define READLINE_H
 
+# define HISTORY_FILE "hist"
+
 # define CSI "\e["
 # define COLOR_DEFAULT "\e[0m"
 # define CURSOR_MOVE_LINE_START "\e[1G"

@@ -55,7 +55,9 @@ static int	execcommand(char **aven[2], t_list *redirs, int isfork)
 		exit(execve((char *)cmd, aven[0], aven[1]));
 	if (g_cmdtype == PATH_BUILT)
 		exit(((int (*)(char **, char **))cmd)(aven[0], aven[1]));
-	return (-1);
+	if (g_cmdtype == PATH_FUNC)
+		exit(function((t_astree *)cmd, aven[0], aven[1]));
+	exit(-1);
 }
 
 static int	freecmd(t_list *cmd[3], char **aven[2])
@@ -115,7 +117,6 @@ int			execscmd(t_astree *root, int fd[2], int job, int isfork)
 	t_list	*cmd[3];
 	char	**aven[2];
 	pid_t	pid;
-	int		status;
 
 	if (initcmd(root, fd, cmd, aven))
 		return (freecmd(cmd, 0));
@@ -130,10 +131,5 @@ int			execscmd(t_astree *root, int fd[2], int job, int isfork)
 		return (pid);
 	if (job || isfork)
 		return (pid);
-	xwaitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	else if (WIFSIGNALED(status))
-		return (cmdexitsig(pid, WTERMSIG(status)));
-	return (EXIT_FAILURE);
+	return (xwaitpid(pid, 0));
 }

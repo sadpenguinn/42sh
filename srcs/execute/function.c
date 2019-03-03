@@ -12,12 +12,18 @@
 
 #include "execute.h"
 
-int		function(t_astree *func, char **argv, int fd[2], int job)
+int		function(t_astree *func, char **argv, char **envp)
 {
-	int		res;
+	int		fd[2];
+	char	*arg;
 
-	(void)argv;
-	res = execlist1(func, fd, job);
-	(void)argv;
-	return (res);
+	(void)envp;
+	fd[0] = 0;
+	fd[1] = 1;
+	while (*argv)
+	{
+		arg = ft_strdup(*argv++);
+		vector_push_back(&g_func_args, &arg);
+	}
+	return (execlist1(func, fd, 0, 0));
 }

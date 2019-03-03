@@ -104,7 +104,7 @@ set(SRC_LIB srcs/fatal_error.c
         srcs/ft_toupper.c
         srcs/xmalloc.c
         srcs/xrealloc.c
-		srcs/ft_joinvect.c)
+		srcs/ft_joinvect.c srcs/ft_atoi_base.c)
 include_directories(includes)
 
 add_library(${NAME} STATIC ${SRC_LIB})

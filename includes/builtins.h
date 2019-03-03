@@ -77,4 +77,10 @@ int		built_unsetenv(char **av, char **env);
 
 int		built_exit(char **av, char **env);
 
+/*
+** Internal functions
+*/
+
+int		handle_sequence(const char *str, int i);
+
 #endif

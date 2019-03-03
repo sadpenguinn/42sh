@@ -50,7 +50,6 @@ static void		applycmdredir(t_astree *root)
 
 int				execcmd(t_astree *root, int fd[2], int job, int isfork)
 {
-	int			status;
 	pid_t		pid;
 
 	if (root->type != CMDREDIR)
@@ -62,8 +61,5 @@ int				execcmd(t_astree *root, int fd[2], int job, int isfork)
 	}
 	if (pid == -1)
 		return (-1);
-	xwaitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	return (EXIT_FAILURE);
+	return (xwaitpid(pid, 0));
 }
