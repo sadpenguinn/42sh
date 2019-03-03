@@ -14,13 +14,18 @@
 
 /*
 ** Exit
-** Need to add handling of running processes
 */
 
 int		built_exit(char **av, char **env)
 {
-	av = NULL;
+	int 	ret;
+
 	env = NULL;
 	ft_putendl("Товарищ капитан, только на меня не спускайте, блядь.");
+	if (av[1] && ft_str_is_numeric(av[1]))
+	{
+		ret = ft_atoi(av[1]);
+		exit (ret);
+	}
 	exit(EXIT_SUCCESS);
 }

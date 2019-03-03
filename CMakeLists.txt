@@ -100,7 +100,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/cursor_dup.c
 					srcs/readline/string_init.c
 					srcs/readline/string_free.c
-					srcs/readline/string_dup.c
+					srcs/readline/string_dup.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)
@@ -179,7 +179,8 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_env.c
 					srcs/builtins/built_setenv.c
 					srcs/builtins/built_unsetenv.c
-					srcs/builtins/built_exit.c)
+					srcs/builtins/built_exit.c
+					srcs/builtins/built_echo_reqmts.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c

@@ -39,8 +39,8 @@
 
 # ifndef SHERR
 #  define SHERR
-#  define SHERR_ERR						0
-#  define SHERR_OK						1
+#  define SHERR_OK						0
+#  define SHERR_ERR						1
 #  define SHERR_ENOENT					2
 #  define SHERR_CNTFRK					3
 #  define SHERR_CMNDNTF					4
@@ -91,5 +91,7 @@ void	free_str_arr(char ***arr);
 void	print_str_arr(char *const *arr);
 size_t	size_str_arr(char *const *arr);
 char	**split_env(char *str);
+
+int		octal_to_decimal(int oct);
 
 #endif

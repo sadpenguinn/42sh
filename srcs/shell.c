@@ -24,6 +24,7 @@ int				g_parseerr = 0;
 
 int		main(int ac, char **av, char **env)
 {
+	t_string	*line;
 	char		*buf;
 	t_lexer		*lex;
 	t_astree	*ast;
@@ -34,9 +35,9 @@ int		main(int ac, char **av, char **env)
 		destroy();
 		return (EXIT_SUCCESS);
 	}
-	while ((buf = readline()))
+	while ((line = readline()))
 	{
-		lex = lexer(buf, ft_strlen(buf));
+		lex = lexer(line->buf, line->len);
 		g_tokens = lex->lexems;
 		ast = inputunit();
 		execute(ast);

@@ -67,8 +67,8 @@ extern void				*g_pids;
 
 # ifndef SHERR
 #  define SHERR
-#  define SHERR_ERR						0
-#  define SHERR_OK						1
+#  define SHERR_OK						0
+#  define SHERR_ERR						1
 #  define SHERR_ENOENT					2
 #  define SHERR_CNTFRK					3
 #  define SHERR_CMNDNTF					4
@@ -132,14 +132,5 @@ void					destroy_pids(void);
 void					init_signals(void);
 int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
-
-/*
-** Minishell requirements
-*/
-
-extern int				g_pid;
-
-void					minishell_parser(void *lexems);
-char					*ft_strvardup(char *str);
 
 #endif
