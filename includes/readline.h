@@ -6,14 +6,12 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 20:23:31 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:39:06 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef READLINE_H
 # define READLINE_H
-
-# define HISTORY_FILE "hist"
 
 # define CSI "\e["
 # define COLOR_DEFAULT "\e[0m"
