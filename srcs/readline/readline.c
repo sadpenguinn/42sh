@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 15:20:43 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:15:23 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include "term.h"
 #include "libshell.h"
+#include <pwd.h>
 
 void	ft_puts(char *buf)
 {
@@ -33,8 +34,41 @@ void	history_resize(void)
 	g_history->size *= RATIO;
 }
 
-void	write_history_on_disk(void)
+void	write_history_on_disk(t_string *str)
 {
+	int				fd;
+	char			*file_name;
+	struct passwd	*pw;
+
+	pw = getpwuid(getuid());
+	file_name = ft_strjoin(pw->pw_dir, "/", 0);
+	file_name = ft_strjoin(file_name, HISTORY_FILE, 1);
+	fd = open(file_name, O_CREAT | O_WRONLY | O_APPEND, 0777);
+	write(fd, str->buf, str->len);
+	write(fd, "\n", 1);
+	close(fd);
+	free(file_name);
+}
+
+void	fill_history(int fd)
+{
+	(void)fd;
+	return ;
+}
+
+void	read_history_from_disk(void)
+{
+	int				fd;
+	char			*file_name;
+	struct passwd	*pw;
+
+	pw = getpwuid(getuid());
+	file_name = ft_strjoin(pw->pw_dir, "/", 0);
+	file_name = ft_strjoin(file_name, HISTORY_FILE, 1);
+	fd = open(file_name, O_CREAT | O_RDONLY | O_APPEND, 0777);
+	fill_history(fd);
+	close(fd);
+	free(file_name);
 }
 
 int		history_save_elem(void)
@@ -58,7 +92,7 @@ int		history_save_elem(void)
 	matrix_del(&g_history->matrix[g_history->len - 1]);
 	g_history->matrix[g_history->len - 1] = matrix_dup(g_history->tmp);
 	matrix_del(&g_history->tmp);
-	write_history_on_disk();
+	write_history_on_disk(g_history->matrix[g_history->len - 1]->str);
 	return (0);
 }
 
@@ -70,6 +104,7 @@ void	init_history(void)
 	g_history->len = 0;
 	g_history->cur = 0;
 	g_history->last_offset = 0;
+	read_history_from_disk();
 }
 
 void	history_add_new_elem(void)
