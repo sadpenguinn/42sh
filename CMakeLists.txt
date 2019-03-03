@@ -101,6 +101,11 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/string_init.c
 					srcs/readline/string_free.c
 					srcs/readline/string_dup.c
+					srcs/readline/get_cursor_pos_1.c
+					srcs/readline/get_cursor_pos_2.c
+					srcs/readline/get_cursor_pos_3.c
+					srcs/readline/move_cursor_3.c
+					srcs/readline/vi_mode.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)

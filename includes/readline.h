@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 14:09:39 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 20:23:31 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 
 # define SHORTCUT_ARRAY_SIZE 5
 
+# define HISTORY_FILE ".42sh_history"
+
 # include <sys/ioctl.h>
 # include <string.h>
 
@@ -54,13 +56,13 @@ enum	e_editing_modes
 
 enum	e_vi_modes
 {
-	NORMAL_MODE = 1, VISUAL_MODE = 2, INSERT_MODE = 3
+	INSERT_MODE = 0, NORMAL_MODE = 1, VISUAL_MODE = 2, REPLACE_MODE = 3
 };
 
 enum	e_allocation_params
 {
 	HISTORY_DEFAULT_SIZE = 10, BUF_DEFAULT_SIZE = 5, RATIO = 2,
-	MATRIX_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10
+	MATRIX_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10, READ_SIZE = 100
 };
 
 # define CTRL_V 026
@@ -120,6 +122,7 @@ typedef struct	s_history
 
 t_history		*g_history;
 int				g_mode;
+int 			g_vi_mode;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
@@ -150,6 +153,9 @@ int				move_shortcuts(t_uchar c);
 void			add_cursor_offset(int offset);
 
 int				readline_mode(t_matrix *matrix, t_uchar c);
+int				vi_mode(t_matrix *matrix, t_uchar c);
+int				check_modes(t_matrix *matrix, t_uchar c);
+
 int				check_esc_code(t_matrix *matrix, t_uchar c);
 
 void			matrix_string_insert(t_matrix *matrix, t_cursor *pos,
@@ -223,5 +229,18 @@ void			array_add(const char *str, size_t len);
 char			*array_to_string(void);
 void			array_flush(void);
 
+int				get_cursor_pos_home(t_matrix *matrix);
+int				get_cursor_pos_end(t_matrix *matrix);
+int				get_cursor_pos_left(t_matrix *matrix);
+int				get_cursor_pos_right(t_matrix *matrix);
+int				get_cursor_pos_next_word(t_matrix *matrix);
+int				get_cursor_pos_begin_word(t_matrix *matrix);
+int				get_cursor_pos_end_word(t_matrix *matrix);
+
+int				move_cursor_next_word(t_matrix *matrix);
+int				move_cursor_begin_word(t_matrix *matrix);
+int				move_cursor_end_word(t_matrix *matrix);
+
+int	check_default_shortcuts(t_matrix *matrix, t_uchar c);
 
 #endif

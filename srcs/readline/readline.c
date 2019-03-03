@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 17:15:23 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:18:59 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	init_readline(void)
 {
 	get_term_params(&g_w);
 	history_add_new_elem();
-	g_mode = READLINE;
+	g_mode = VI;
 }
 
 t_string	*readline(void)

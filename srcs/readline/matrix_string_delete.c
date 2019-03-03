@@ -6,12 +6,13 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:52:49 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/03 06:15:16 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:46:00 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include <string.h>
+#include "libft.h"
 
 void	matrix_string_delete(t_matrix *matrix, int row, int col)
 {
@@ -29,7 +30,7 @@ void	matrix_string_delete(t_matrix *matrix, int row, int col)
 			i += 1 + get_utf_offset_right(line->buf[i]);
 			symbols++;
 		}
-		memmove(line->buf + matrix->cursor->col, line->buf + i,
+		ft_memmove(line->buf + matrix->cursor->col, line->buf + i,
 			line->len - i);
 		line->len -= i - matrix->cursor->col;
 		line->symbols -= symbols;

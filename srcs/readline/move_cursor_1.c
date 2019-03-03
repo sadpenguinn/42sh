@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:11:49 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 06:43:48 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/03 18:05:28 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 int	move_cursor_left(t_matrix *matrix)
 {
-	if (matrix->cursor->col != 0)
-		matrix->cursor->col -= 1 +
-			get_utf_offset_left(matrix->lines[matrix->cursor->row]->buf,
-				matrix->cursor->col - 1);
+	matrix->cursor->col = get_cursor_pos_left(matrix);
 	return (1);
 }
 
 int	move_cursor_right(t_matrix *matrix)
 {
-	if (matrix->cursor->col != matrix->lines[matrix->cursor->row]->len)
-		matrix->cursor->col += 1 +
-			get_utf_offset_right(*(matrix->lines[matrix->cursor->row]->buf +
-				matrix->cursor->col));
+	matrix->cursor->col = get_cursor_pos_right(matrix);
 	return (1);
 }
 

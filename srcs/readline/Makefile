@@ -9,6 +9,7 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  ../lib/libft/srcs/ft_strjoin.c\
 	  ../lib/libft/srcs/ft_strlen.c\
 	  ../lib/libft/srcs/ft_memcpy.c\
+	  ../lib/libft/srcs/ft_memmove.c\
 	  ../lib/libft/srcs/ft_strcpy.c\
 	  ../lib/libft/srcs/ft_strchr.c\
 	  ../lib/libshell/srcs/xglob.c\
@@ -55,7 +56,6 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  matrix_dup.c\
 	  line_dup.c\
 	  matrix_cmp.c\
-	  \
 	  history_move.c\
 	  cursor_free.c\
 	  cursor_init.c\
@@ -63,6 +63,12 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  string_init.c\
 	  string_free.c\
 	  string_dup.c\
+	  \
+	  get_cursor_pos_1.c\
+	  get_cursor_pos_2.c\
+	  get_cursor_pos_3.c\
+	  move_cursor_3.c\
+	  vi_mode.c\
 
 NAME = line
 TEST = a.test

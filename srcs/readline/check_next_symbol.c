@@ -6,7 +6,7 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:46:57 by narchiba          #+#    #+#             */
-/*   Updated: 2019/02/26 16:47:46 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/03 20:34:18 by sitlcead         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int	is_utf(char c)
 	return (0);
 }
 
-static int	check_modes(t_matrix *matrix, t_uchar c)
+int			check_modes(t_matrix *matrix, t_uchar c)
 {
 	move_shortcuts(c);
 	if (g_mode == READLINE)
 		return (readline_mode(matrix, c));
 	if (g_mode == VI)
-		return (readline_mode(matrix, c));
+		return (vi_mode(matrix, c));
 	return (1);
 }
 
