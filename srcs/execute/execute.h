@@ -97,11 +97,13 @@ int						execwhile(t_astree *root,
 int						execuntil(t_astree *root,
 									int fd[2], int job, int isfork);
 
+int						function(t_astree *func, char **argv, char **envp);
+
 t_redir					*get_redir(t_astree *root);
 int						applyredir(t_list *redirs);
 
 pid_t					xfork(void);
-pid_t					xwaitpid(pid_t pid, int *stat_loc, int options);
+int						xwaitpid(pid_t pid, int options);
 
 int						pipeerror(void);
 int						fileerror(char *file);

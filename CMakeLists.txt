@@ -172,6 +172,7 @@ set(EXECUTE_SRC		srcs/execute/errors.c
 					srcs/execute/execscmd.c
 					srcs/execute/initcmd.c
 					srcs/execute/getredir.c
+					srcs/execute/function.c
 					srcs/execute/process.c)
 
 set(BUILTIN_SRC		srcs/builtins/built_cd.c
