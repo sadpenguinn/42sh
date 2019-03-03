@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/03 17:51:08 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 20:00:20 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ char		**expand_v(char *str)
 	frashing_values(fuck_norm, &i, &j);
 	while (str[i])
 	{
-		if ((str[i] == '$' || tilda_case_check(str, i) || check_process_substitution_expand(&str[i])) && !fuck_norm[1])
+		if ((str[i] == '$' || tilda_case_check(str, i) ||
+				check_process_substitution_expand(&str[i])) && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			if (!buf)
@@ -119,7 +120,8 @@ char		*expand(char *str)
 			fuck_norm[2] = (fuck_norm[2] + 1) % 2;
 			i++;
 		}
-		else if ((str[i] == '$' || tilda_case_check(str, i) || check_process_substitution_expand(&str[i])) && !fuck_norm[1])
+		else if ((str[i] == '$' || tilda_case_check(str, i) ||
+				check_process_substitution_expand(&str[i])) && !fuck_norm[1])
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			if (!buf)
