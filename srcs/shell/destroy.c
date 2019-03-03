@@ -19,4 +19,5 @@ void	destroy(void)
 	destroy_pids();
 	/*destroy_jobs();
 	destroy_process();*/
+	destroy_functions();
 }

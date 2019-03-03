@@ -22,7 +22,6 @@
 # include "readline.h"
 # include "lexer.h"
 
-
 /*
 ** Checking platform defines
 */
@@ -51,6 +50,8 @@ extern struct s_env		g_env;
 extern void				*g_jobs;
 extern void				*g_process;
 extern void				*g_pids;
+
+extern void				*g_func;
 
 /*
 ** Defines for initialize shell environment/path
@@ -123,12 +124,14 @@ void					init_path(void);
 void					init_jobs(void);
 void					init_process(void);
 void					init_pids(void);
+void 					init_functions(void);
 void					destroy(void);
 void					destroy_env(void);
 void					destroy_path(void);
 void					destroy_jobs(void);
 void					destroy_process(void);
 void					destroy_pids(void);
+void					destroy_functions(void);
 void					init_signals(void);
 int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
