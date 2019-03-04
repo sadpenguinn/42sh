@@ -1,5 +1,6 @@
 #include "builtins.h"
 #include "readline.h"
+#include "shell.h"
 
 static int 		built_set_usage(void)
 {
@@ -22,12 +23,19 @@ static int		built_set_parse(char **av)
 			g_mode = READLINE;
 			return (SHERR_OK);
 		}
+		else if (!ft_strcmp(av[2], "echoe"))
+		{
+			g_echoe = g_echoe == TRUE ? FALSE : TRUE;
+			return (SHERR_OK);
+		}
 		else
 		{
 			ft_putstr("vi:\t\t");
 			ft_putendl(g_mode == VI ? "on" : "off");
 			ft_putstr("emacs:\t\t");
 			ft_putendl(g_mode == READLINE ? "on" : "off");
+			ft_putstr("echoe:\t\t");
+			ft_putendl(g_echoe == TRUE ? "on" : "off");
 			return (SHERR_OK);
 		}
 	}

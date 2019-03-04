@@ -32,6 +32,12 @@ void			*g_func = NULL;
 void			*g_func_args = NULL;
 int 			g_status = 0;
 
+/*
+** Defines for 'set' builtin witch modify the shell behavior
+*/
+
+int 			g_echoe = TRUE;
+
 void	init(char **env)
 {
 	if (INITIAL_ENV_HASH_SIZE <= 0 || INITIAL_PATH_HASH_SIZE <= 0 ||
