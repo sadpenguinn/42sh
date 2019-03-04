@@ -1,3 +1,5 @@
+#!~/.brew/bin/python3
+
 import sys
 import re
 

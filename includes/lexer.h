@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include "libft.h"
+# include "libshell.h"
 # include "vector.h"
 # include "terminals.h"
 
