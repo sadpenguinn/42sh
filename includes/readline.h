@@ -172,6 +172,9 @@ int				del_end_word(t_matrix *matrix);
 int				del_end(t_matrix *matrix);
 int				del_home(t_matrix *matrix);
 int				del_string(t_matrix *matrix);
+int				del_begin_alnum(t_matrix *matrix);
+int				del_next_alnum(t_matrix *matrix);
+int				del_end_alnum(t_matrix *matrix);
 
 int				yank_begin_word(t_matrix *matrix);
 int				yank_next_word(t_matrix *matrix);
@@ -179,6 +182,9 @@ int				yank_end_word(t_matrix *matrix);
 int				yank_end(t_matrix *matrix);
 int				yank_home(t_matrix *matrix);
 int				yank_string(t_matrix *matrix);
+int				yank_begin_alnum(t_matrix *matrix);
+int 			yank_next_alnum(t_matrix *matrix);
+int				yank_end_alnum(t_matrix *matrix);
 
 void			matrix_string_insert(t_matrix *matrix, t_cursor *pos,
 		const char *str, int size);
@@ -198,6 +204,9 @@ int				move_cursor_next_word(t_matrix *matrix);
 int				move_cursor_begin_word(t_matrix *matrix);
 int				move_cursor_end_word(t_matrix *matrix);
 int				move_cursor_begin(t_matrix *matrix);
+int				move_cursor_next_alnum(t_matrix *matrix);
+int				move_cursor_end_alnum(t_matrix *matrix);
+int				move_cursor_begin_alnum(t_matrix *matrix);
 
 int				del(t_matrix *matrix);
 int				back_space(t_matrix *matrix);
@@ -265,6 +274,9 @@ int				get_cursor_pos_right(t_matrix *matrix);
 int				get_cursor_pos_next_word(t_matrix *matrix);
 int				get_cursor_pos_begin_word(t_matrix *matrix);
 int				get_cursor_pos_end_word(t_matrix *matrix);
+int				get_cursor_pos_next_alnum(t_matrix *matrix);
+int				get_cursor_pos_begin_alnum(t_matrix *matrix);
+int				get_cursor_pos_end_alnum(t_matrix *matrix);
 
 int				are_default_shortcuts(t_matrix *matrix, t_uchar c);
 
