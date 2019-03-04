@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:38:01 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/03 19:52:15 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/04 17:27:46 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ char	*get_ex_tilda(char *str)
 
 int		get_fdnumber_of_substitution(char *str, int state);
 char	*extention_get_just_command(char *str);
+char	*get_argvector_of_program(int i);
 
 char	*get_small_redir(char *str)
 {
@@ -135,6 +136,16 @@ char	*get_grade_redir(char *str)
 	return (res);
 }
 
+char	*get_numeric_argv_extention(char *str)
+{
+	int		real_num;
+	char	*res;
+
+	real_num = ft_atoi(str);
+	res = get_argvector_of_program(real_num);
+	return (res);
+}
+
 char	*get_content_of_expression(char *str)
 {
 	char	*res;
@@ -146,6 +157,8 @@ char	*get_content_of_expression(char *str)
 		res = get_small_redir(str);
 	else if (str[0] == '>')
 		res = get_grade_redir(str);
+	else if (str[1] >= '0' && str[1] <= '9')
+		res = get_numeric_argv_extention(&str[1]);
 	else if (str[1] != '(' && str[1] != '[' && str[1] != '{')
 		res = classic_get_env(&str[1]);
 	else if (ft_strstr(str, ":-"))

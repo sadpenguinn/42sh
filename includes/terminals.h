@@ -79,4 +79,29 @@
 # define ASSIGMENT_WORD			SHIFT + 120
 # define SUBSHELL				SHIFT + 121
 
+/*
+** Expr terminals
+*/
+
+# define EXPR_DVAR				SHIFT + 3 /* $VAR */
+# define EXPR_DNUM				SHIFT + 4 /* $123 */
+# define EXPR_VAR				SHIFT + 5 /* VAR  */
+# define EXPR_NUM				SHIFT + 6 /* 123  */
+# define EXPR_PLUS				SHIFT + 7 /*   +  */
+# define EXPR_PPLUS				SHIFT + 8 /*  ++  */
+# define EXPR_MINUS				SHIFT + 9 /*   -  */
+# define EXPR_MMINUS			SHIFT + 10 /* --  */
+# define EXPR_MULT				SHIFT + 11 /*  *  */
+# define EXPR_DIV				SHIFT + 12 /*  /  */
+# define EXPR_MOD				SHIFT + 13 /*  %  */
+# define EXPR_GREAT				SHIFT + 14 /*  >  */
+# define EXPR_GREATEQ			SHIFT + 15 /*  >= */
+# define EXPR_LESS				SHIFT + 16 /*  <  */
+# define EXPR_LESSEQ			SHIFT + 17 /*  <= */
+# define EXPR_NOTEQ				SHIFT + 19 /*  != */
+# define EXPR_EQ				SHIFT + 21 /*  == */
+# define EXPR_AND				SHIFT + 23 /*  && */
+# define EXPR_OR				SHIFT + 25 /*  || */
+
+
 #endif

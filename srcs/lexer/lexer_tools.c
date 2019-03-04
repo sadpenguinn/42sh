@@ -13,7 +13,7 @@
 #include "shell.h"
 #include "lexer.h"
 
-static void		print_token(void *lexem)
+void			print_token(void *lexem)
 {
 	t_lexem		*lex;
 

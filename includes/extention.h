@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/03 19:47:17 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/04 17:13:53 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ char	*expand(char *str);
 char	**strsplit_for_extention(char *str);
 int		get_fdnumber_of_substitution(char *str, int state);
 char	*extention_get_just_command(char *str);
+char	*get_argvector_of_program(int i);
 
 #endif
