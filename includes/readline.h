@@ -160,6 +160,8 @@ int				modes_handling(t_matrix *matrix, t_uchar c);
 int				esc_code_handling(t_matrix *matrix, t_uchar c);
 
 int				normal_mode(t_matrix *matrix, t_uchar c);
+int				insert_mode(t_matrix *matrix, t_uchar c);
+int				replace_mode(t_matrix *matrix, t_uchar c);
 
 void			paste_before(t_matrix *matrix);
 void			paste_after(t_matrix *matrix);

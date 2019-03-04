@@ -41,11 +41,7 @@ int	move_cursor_up(t_matrix *matrix)
 		matrix->cursor->col = col;
 	}
 	else
-	{
-		move_history_prev();
-		g_history->tmp->cursor->row = 0;
-		g_history->tmp->cursor->col = 0;
-	}
+		return (move_history_prev());
 	return (1);
 }
 

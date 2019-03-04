@@ -1,4 +1,5 @@
 #include "readline.h"
+#include "libft.h"
 
 static int	normal_mode_del(t_matrix *matrix, t_uchar c)
 {
@@ -100,7 +101,32 @@ static int	are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c)
 		return (del_end(matrix));
 	if (c == 'Y')
 		return (yank_string(matrix));
+	if (c == BS)
+		return (move_cursor_left(matrix));
+	if (c == 'p')
+		paste_after(matrix);
+	if (c == 'P')
+		paste_before(matrix);
 	return (0);
+}
+
+static int	replace_symbol(t_matrix *matrix, t_uchar c)
+{
+	char	str[sizeof(t_uchar)];
+
+	if (c == LEFT || c == RIGHT ||
+		c == DOWN || c == UP ||
+		c == HOME1 || c == HOME2 ||
+		c == END1 || c == END2 ||
+		c == DEL || c == BS)
+		return (1);
+	del(matrix);
+	ft_memset(str, 0, sizeof(t_uchar));
+	matrix_string_insert(matrix, matrix->cursor,
+						 str, symbol_to_string(matrix, c, str));
+	matrix->cursor->col = get_cursor_pos_left(matrix);
+	g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
+	return (1);
 }
 
 int normal_mode(t_matrix *matrix, t_uchar c)
@@ -109,19 +135,17 @@ int normal_mode(t_matrix *matrix, t_uchar c)
 		return (normal_mode_del(matrix, c));
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'y')
 		return (normal_mode_yank(matrix, c));
-	if (are_default_shortcuts(matrix, c))
-		return (1);
+	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'r')
+		return (replace_symbol(matrix, c));
 	if (is_insert_mode(matrix, c))
 		return (1);
 	if (are_default_shortcuts(matrix, c))
 		return (1);
 	if (are_default_normal_mode_shortcuts(matrix, c))
 		return (1);
-	if (c == 'p')
-		paste_after(matrix);
-	if (c == 'P')
-		paste_before(matrix);
 	if (c == '\n')
 		return (newline_handling(matrix));
+	if (c == 'R')
+		g_vi_mode = REPLACE_MODE;
 	return (1);
 }
