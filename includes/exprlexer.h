@@ -15,4 +15,6 @@
 
 # include "lexer.h"
 
+t_lexer		*exprlexer(char *str, size_t len);
+
 #endif

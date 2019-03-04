@@ -59,7 +59,8 @@ extern int 				g_status;
 ** Defines for 'set' builtin witch modify the shell behavior
 */
 
-int 					g_echoe;
+extern int 				g_echoe;
+extern int 				g_dontexec;
 
 /*
 ** Bool defines, used in builtins
