@@ -169,12 +169,14 @@ int				del_next_word(t_matrix *matrix);
 int				del_end_word(t_matrix *matrix);
 int				del_end(t_matrix *matrix);
 int				del_home(t_matrix *matrix);
+int				del_string(t_matrix *matrix);
 
 int				yank_begin_word(t_matrix *matrix);
 int				yank_next_word(t_matrix *matrix);
 int				yank_end_word(t_matrix *matrix);
 int				yank_end(t_matrix *matrix);
 int				yank_home(t_matrix *matrix);
+int				yank_string(t_matrix *matrix);
 
 void			matrix_string_insert(t_matrix *matrix, t_cursor *pos,
 		const char *str, int size);

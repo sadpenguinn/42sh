@@ -39,8 +39,7 @@ int			check_next_symbol(t_matrix *matrix)
 		return (-1);
 	if (c == ESC)
 		return (esc_code_handling(matrix, c));
-	else if (is_utf(c))
+	if (is_utf(c))
 		return (utf_handling(matrix, c));
-	else
-		return (modes_handling(matrix, c));
+	return (modes_handling(matrix, c));
 }
