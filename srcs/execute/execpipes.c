@@ -42,15 +42,10 @@ int			execpipes(t_astree *root, int fd[2], int job, int isfork)
 	pid_t	pid;
 
 	if (root->right)
-	{
 		return (pipe_create(root, fd, job, isfork));
-	}
-	else
-	{
-		if (!(pid = xfork()))
-			exit(execcmd(root->left, fd, 0, 1));
-		close(fd[0]);
-		return (xwaitpid(pid, 0));
-	}
+	if (!(pid = xfork()))
+		exit(execcmd(root->left, fd, 0, 1));
+	close(fd[0]);
+	return (xwaitpid(pid, 0));
 	return (0);
 }

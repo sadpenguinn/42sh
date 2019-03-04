@@ -23,7 +23,7 @@ int		xwaitpid(pid_t pid, int options)
 		return (res);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
-	else if (WIFSIGNALED(status))
+	if (WIFSIGNALED(status))
 		return (cmdexitsig(pid, WTERMSIG(status)));
 	return (EXIT_FAILURE);
 }
