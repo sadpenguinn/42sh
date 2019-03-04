@@ -20,7 +20,7 @@ t_astree	*operand_1(void)
 	if (!(res = expr()))
 		return (0);
 	if (g_curtok <= ((size_t *)g_tokens)[2])
-		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->type == CBRACKET)
+		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->type == EX_CBRACKET)
 			return (res);
 	/* ft_free_node(res); /1* XXX - FREE ALL RES *1/ */
 	return (0);
@@ -32,7 +32,7 @@ t_astree	*operand_2(void)
 
 	if (!(leaf = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	leaf->type = NUM;
+	leaf->type = EX_NUM;
 	if ((leaf->content = ft_strdup(((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->word)))
 		return (leaf);
 	free(leaf);
@@ -46,9 +46,9 @@ t_astree	*operand(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == OBRACKET)
+	if (type == EX_OBRACKET)
 		return (operand_1());
-	else if (type == NUM)
+	else if (type == EX_NUM)
 		return (operand_2());
 	return (variable());
 }

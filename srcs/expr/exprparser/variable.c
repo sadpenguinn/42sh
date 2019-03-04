@@ -13,7 +13,7 @@
 #include "expr.h"
 
 /*
-**        VAR
+**        EX_VAR
 **       /   \
 **  INDEX     SUBS
 */
@@ -35,7 +35,7 @@ t_astree	*variable_2(void)
 
 	if (!(root = expr()))
 		return (0);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != CARRAY)
+	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != EX_CARRAY)
 		/*  XXX - Need free root */
 		return (0);
 	g_curtok++;
@@ -50,19 +50,19 @@ t_astree	*variable(void)
 	res = substitution();
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != VAR)
+	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != EX_VAR)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
 	root->right = res;
-	root->type = VAR;
+	root->type = EX_VAR;
 	root->content =
 		ft_strdup(((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->word);
 	if (g_curtok + 2 >= ((size_t *)g_tokens)[2] ||
-		((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != OARRAY)
+		((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != EX_OARRAY)
 		return (root);
 	g_curtok++;
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type == MUL)
+	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type == EX_MUL)
 		root->left = variable_1();
 	else
 		root->left = variable_2();

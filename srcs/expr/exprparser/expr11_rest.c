@@ -21,7 +21,7 @@ t_astree	*expr11_rest_1(void)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = LSH;
+	root->type = EX_LSH;
 	root->left = res;
 	root->right = expr11_rest();
 	return (root);
@@ -36,7 +36,7 @@ t_astree	*expr11_rest_2(void)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = RSH;
+	root->type = EX_RSH;
 	root->left = res;
 	root->right = expr11_rest();
 	return (root);
@@ -49,9 +49,9 @@ t_astree	*expr11_rest(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == LSH && ++g_curtok)
+	if (type == EX_LSH && ++g_curtok)
 		return (expr11_rest_1());
-	else if (type == RSH && ++g_curtok)
+	else if (type == EX_RSH && ++g_curtok)
 		return (expr11_rest_2());
 	return (0);
 }

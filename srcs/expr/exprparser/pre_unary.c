@@ -19,7 +19,7 @@ t_astree	*pre_unary_1(uint64_t type)
 	g_curtok++;
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = (type == PLUS) ? UPLUS : UMINUS;
+	root->type = (type == PLUS) ? EX_UPLUS : EX_UMINUS;
 	/* XXX - PLUS maybe other def? */
 	if (!(root->left = pre_unary()))
 	{
@@ -36,7 +36,7 @@ t_astree	*pre_unary_2(uint64_t type)
 	g_curtok++;
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = (type == NOT) ? LNOT : BNOT;
+	root->type = (type == NOT) ? EX_LNOT : EX_BNOT;
 	/* XXX - NOT maybe other def? */
 	if (!(root->left = pre_unary()))
 	{
@@ -56,7 +56,7 @@ t_astree	*pre_unary(void)
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
 	if (type == PLUS || type == MINUS)
 		return (pre_unary_1(type));
-	if (type == NOT || type == BNOT)
+	if (type == NOT || type == EX_BNOT)
 		return (pre_unary_2(type));
 	if ((root = preincdec()))
 		return (root);

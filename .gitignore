@@ -67,3 +67,4 @@ cmake-build-debug
 
 # Other files
 42sh
+*.autosave

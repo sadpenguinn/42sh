@@ -21,7 +21,7 @@ t_astree	*expr10_rest_1(void)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = GT;
+	root->type = EX_GT;
 	root->left = res;
 	root->right = expr10_rest();
 	return (root);
@@ -36,7 +36,7 @@ t_astree	*expr10_rest_2(void)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = GEQ;
+	root->type = EX_GEQ;
 	root->left = res;
 	root->right = expr10_rest();
 	return (root);
@@ -51,7 +51,7 @@ t_astree	*expr10_rest_3(void)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = LT;
+	root->type = EX_LT;
 	root->left = res;
 	root->right = expr10_rest();
 	return (root);
@@ -66,7 +66,7 @@ t_astree	*expr10_rest_4(void)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = LEQ;
+	root->type = EX_LEQ;
 	root->left = res;
 	root->right = expr10_rest();
 	return (root);
@@ -79,13 +79,13 @@ t_astree	*expr10_rest(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == GT && ++g_curtok)
+	if (type == EX_GT && ++g_curtok)
 		return (expr10_rest_1());
-	else if (type == GEQ && ++g_curtok)
+	else if (type == EX_GEQ && ++g_curtok)
 		return (expr10_rest_2());
-	else if (type == LT && ++g_curtok)
+	else if (type == EX_LT && ++g_curtok)
 		return (expr10_rest_3());
-	else if (type == LEQ && ++g_curtok)
+	else if (type == EX_LEQ && ++g_curtok)
 		return (expr10_rest_4());
 	return (0);
 }

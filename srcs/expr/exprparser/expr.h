@@ -19,170 +19,188 @@
 # include "terminals.h"
 
 /*
- **
- ** 123		NUM
- ** var		VAR
- ** (1+2)	EXPR
- **
- **		/ ***
- **		UNARY OPERATORS
- **		/ ***
- **
- ** ++	POSTINC
- ** --	POSTDEC
- ** []	ARRAY
- ** [	OARRAY
- ** ]	CARRAY
- ** )	OBRACKET
- ** (	CBRACKET
- **
- ** ++	PREINC
- ** --	PREDEC
- ** +	UPLUS
- ** -	UMINUS
- ** !	LNOT
- ** ~	BNOT
- **
- **		/ ***
- **		BINARY AND TERNARY OPERATORS
- **		/ ***
- **
- ** **	POWER		---1---
- **
- ** *	MUL			---2---
- ** /	DIV
- ** %	MOD
- **
- ** +	ADD			---3---
- ** -	SUB
- **
- ** <<	LSH			---4---
- ** >>	RSH
- **
- ** <	GT			---5---
- ** <=	GEQ
- ** >	LT
- ** >=	LEQ
- **
- **	==	EQ			---6---
- **	!=	NEQ
- **
- ** &	BAND		---7---
- **
- ** ^	BXOR		---8---
- **
- ** |	BOR			---9---
- **
- ** &&	LAND		---10---
- **
- ** ||	LOR			---11---
- **
- ** ?:	COND		---13---
- ** '?'	QUES
- ** ':'	COL
- **
- ** =	ASSIGN		---14---
- ** +=	ADDASGN
- ** -=	SUBASGN
- ** *=	MULASGN
- ** /=	DIVASGN
- ** %=	MODASGN
- ** <<=	LSHASGN
- ** >>=	RSHASGN
- ** &=	ANDASGN
- ** ^=	XORASGN
- ** |=	ORASGN
- **
- ** ,	COMMA		---15---
- **
+**	TYPES FOR LEXER
+**
+**	123	EX_NUM
+**	var	EX_VAR
+**	**	EX_POW
+**	*	EX_MUL
+**	/	EX_DIV
+**	%	EX_MOD
+**	+	EX_ADD
+**	-	EX_SUB
+**	<<	EX_LSH
+**	>>	EX_RSH
+**	<	EX_GT
+**	<=	EX_GEQ
+**	>	EX_LT
+**	>=	EX_LEQ
+**	==	EX_EQ
+**	!=	EX_NEQ
+**	&	EX_BAND
+**	^	EX_XOR
+**	|	EX_BOR
+**	&&	EX_LAND
+**	||	EX_LOR
+**	?	EX_QUES
+**	:	EX_COL
+**	=	EX_ASSIGN
+**	+=	EX_ADDASN
+**	-=	EX_SUBASN
+**	*=	EX_MULASN
+**	/=	EX_DIVASN
+**	%=	EX_MODASN
+**	<<=	EX_LSHASN
+**	>>=	EX_RSHASN
+**	&=	EX_ANDASN
+**	^=	EX_XORASN
+**	|=	EX_ORASN
+**	,	EX_COMMA
+**	[	EX_OARRAY
+**	]	EX_CARRAY
+**	)	EX_OBRACKET
+**	(	EX_CBRACKET
+**	++	EX_INC
+**	--	EX_DEC
+**	+	EX_PLUS
+**	-	EX_UMINUS
+**	!	EX_LNOT
+**	~	EX_BNOT
 */
 
-# define VAR 10
-# define NUM 11
-# define EXPR 12
+/*
+**
+**	TYPES FOR PARSER
+**
+**	123		EX_NUM
+**	var		EX_VAR
+**	(1+2)	EX_EXPR
+**
+**		/ ***
+**		UNARY OPERATORS
+**		/ ***
+**
+**	++	EX_POSTINC
+**	--	EX_POSTDEC
+**	[]	ARRAY
+**
+**	++	EX_PREINC
+**	--	EX_PREDEC
+**	+	EX_UPLUS
+**	-	EX_UMINUS
+**	!	EX_LNOT
+**	~	EX_BNOT
+**
+**		/ ***
+**		BINARY AND TERNARY OPERATORS
+**		/ ***
+**
+**	**	EX_POW		---1---
+**
+**	*	EX_MUL		---2---
+**	/	EX_DIV
+**	%	EX_MOD
+**
+**	+	EX_ADD		---3---
+**	-	EX_SUB
+**
+**	<<	EX_LSH		---4---
+**	>>	EX_RSH
+**
+**	<	EX_GT		---5---
+**	<=	EX_GEQ
+**	>	EX_LT
+**	>=	EX_LEQ
+**
+**	==	EX_EQ		---6---
+**	!=	EX_NEQ
+**
+**	&	EX_BAND		---7---
+**
+**	^	EX_XOR		---8---
+**
+**	|	EX_BOR		---9---
+**
+**	&&	EX_LAND		---10---
+**
+**	||	EX_LOR		---11---
+**
+**	?:	EX_COND		---13---
+**	'?'	EX_QUES
+**	':'	EX_COL
+**
+**	=	EX_ASSIGN	---14---
+**	+=	EX_ADDASN
+**	-=	EX_SUBASN
+**	*=	EX_MULASN
+**	/=	EX_DIVASN
+**	%=	EX_MODASN
+**	<<=	EX_LSHASN
+**	>>=	EX_RSHASN
+**	&=	EX_ANDASN
+**	^=	EX_XORASN
+**	|=	EX_ORASN
+**
+**	,	EX_COMMA	---15---
+**
+*/
+
+
+# define EX_VAR 10
+# define EX_NUM 11
+# define EX_EXPR 12
 
 # define OPSHIFT		15
 
-# define ADD			OPSHIFT + 0
-# define SUB			OPSHIFT + 1
-# define DIV			OPSHIFT + 2
-# define MOD			OPSHIFT + 3
-# define POWER			OPSHIFT + 4
-# define MUL			OPSHIFT + 5
-# define LSH			OPSHIFT + 6
-# define RSH			OPSHIFT + 7
-# define GT				OPSHIFT + 8
-# define GEQ			OPSHIFT + 9
-# define LT				OPSHIFT + 10
-# define LEQ			OPSHIFT + 11
-# define EQ				OPSHIFT + 12
-# define NEQ			OPSHIFT + 13
-# define BAND			OPSHIFT + 14
-# define BXOR			OPSHIFT + 15
-# define BOR			OPSHIFT + 16
-# define LAND			OPSHIFT + 17
-# define LOR 			OPSHIFT + 18
-# define COND 			OPSHIFT + 19
-# define QUES 			OPSHIFT + 20
-# define COL			OPSHIFT + 21
-# define ASSIGN			OPSHIFT + 22
-# define ADDASGN		OPSHIFT + 23
-# define SUBASGN		OPSHIFT + 24
-# define MULASGN		OPSHIFT + 25
-# define DIVASGN		OPSHIFT + 26
-# define MODASGN		OPSHIFT + 27
-# define LSHASGN		OPSHIFT + 28
-# define RSHASGN		OPSHIFT + 29
-# define ANDASGN		OPSHIFT + 30
-# define XORASGN		OPSHIFT + 31
-# define ORASGN			OPSHIFT + 32
-# define COMMA			OPSHIFT + 33
+# define EX_ADD			OPSHIFT + 0
+# define EX_SUB			OPSHIFT + 1
+# define EX_DIV			OPSHIFT + 2
+# define EX_MOD			OPSHIFT + 3
+# define EX_POW			OPSHIFT + 4
+# define EX_MUL			OPSHIFT + 5
+# define EX_LSH			OPSHIFT + 6
+# define EX_RSH			OPSHIFT + 7
+# define EX_GT			OPSHIFT + 8
+# define EX_GEQ			OPSHIFT + 9
+# define EX_LT			OPSHIFT + 10
+# define EX_LEQ			OPSHIFT + 11
+# define EX_EQ			OPSHIFT + 12
+# define EX_NEQ			OPSHIFT + 13
+# define EX_BAND		OPSHIFT + 14
+# define EX_XOR			OPSHIFT + 15
+# define EX_BOR			OPSHIFT + 16
+# define EX_LAND		OPSHIFT + 17
+# define EX_LOR 		OPSHIFT + 18
+# define EX_COND		OPSHIFT + 19
+# define EX_QUES		OPSHIFT + 20
+# define EX_COL			OPSHIFT + 21
+# define EX_ASSIG		OPSHIFT + 22
+# define EX_ADDAS		OPSHIFT + 23
+# define EX_SUBAS		OPSHIFT + 24
+# define EX_MULAS		OPSHIFT + 25
+# define EX_DIVAS		OPSHIFT + 26
+# define EX_MODAS		OPSHIFT + 27
+# define EX_LSHAS		OPSHIFT + 28
+# define EX_RSHAS		OPSHIFT + 29
+# define EX_ANDAS		OPSHIFT + 30
+# define EX_XORAS		OPSHIFT + 31
+# define EX_ORASN		OPSHIFT + 32
+# define EX_COMMA		OPSHIFT + 33
+# define EX_OBRACKET	OPSHIFT + 34
+# define EX_CBRACKET	OPSHIFT + 35
+# define EX_OARRAY		OPSHIFT + 36
+# define EX_CARRAY		OPSHIFT + 37
 
-# define ARRAY			OPSHIFT + 34
-# define POSTINC		OPSHIFT + 35
-# define POSTDEC		OPSHIFT + 36
-# define OBRACKET		OPSHIFT + 37
-# define CBRACKET		OPSHIFT + 38
-# define OARRAY			OPSHIFT + 39
-# define CARRAY			OPSHIFT + 40
-# define PREINC			OPSHIFT + 41
-# define PREDEC			OPSHIFT + 42
-# define UMINUS			OPSHIFT + 43
-# define UPLUS			OPSHIFT + 44
-# define LNOT			OPSHIFT + 45
-# define BNOT			OPSHIFT + 46
-
-# define INC			OPSHIFT + 47 // ++
-# define DEC			OPSHIFT + 48 // --
-# define NOT			OPSHIFT + 50 // !
-# define PLUS			OPSHIFT + 51 // +
-# define MINUS			OPSHIFT + 52 // -
-# define HASH			OPSHIFT + 53 // #
-# define ALLINDEX		OPSHIFT + 54 // * in array index
-
-/*
-** Expr terminals
-*/
-
-# define VAR				SHIFT + 3 /* $VAR */
-# define VAR				SHIFT + 4 /* $123 */
-# define VAR				SHIFT + 5 /* VAR  */
-# define NUM				SHIFT + 6 /* 123  */
-# define ADD				SHIFT + 7 /*   +  */
-# define PREINC				SHIFT + 8 /*  ++  */
-# define SUB				SHIFT + 9 /*   -  */
-# define PREDEC				SHIFT + 10 /* --  */
-# define MUL				SHIFT + 11 /*  *  */
-# define DIV				SHIFT + 12 /*  /  */
-# define MOD				SHIFT + 13 /*  %  */
-# define GT					SHIFT + 14 /*  >  */
-# define GEQ				SHIFT + 15 /*  >= */
-# define LT					SHIFT + 16 /*  <  */
-# define LEQ				SHIFT + 17 /*  <= */
-# define NEQ				SHIFT + 19 /*  != */
-# define EQ					SHIFT + 21 /*  == */
-# define LAND				SHIFT + 23 /*  && */
-# define LOR				SHIFT + 25 /*  || */
+# define EX_POSTINC		OPSHIFT + 35
+# define EX_POSTDEC		OPSHIFT + 36
+# define EX_PREINC		OPSHIFT + 41
+# define EX_PREDEC		OPSHIFT + 42
+# define EX_UMINUS		OPSHIFT + 43
+# define EX_UPLUS		OPSHIFT + 44
+# define EX_LNOT		OPSHIFT + 45
+# define EX_BNOT		OPSHIFT + 46
+# define EX_INC			OPSHIFT + 47 // ++
+# define EX_DEC			OPSHIFT + 48 // --
 
 typedef struct			s_astree
 {
