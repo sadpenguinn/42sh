@@ -25,7 +25,6 @@ int				g_parseerr = 0;
 int		main(int ac, char **av, char **env)
 {
 	t_string	*line;
-	char		*buf;
 	t_lexer		*lex;
 	t_astree	*ast;
 
@@ -43,7 +42,6 @@ int		main(int ac, char **av, char **env)
 		execute(ast);
 		freeastree(ast);
 		lexer_free(lex);
-		ft_strdel(&buf);
 	}
 	destroy();
 	return (EXIT_SUCCESS);

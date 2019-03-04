@@ -83,6 +83,11 @@ static int	find_builtin(const char *bin, void **ret)
 		*ret = built_exit;
 		return (PATH_NOFORK);
 	}
+	else if (!ft_strcmp(bin, "set"))
+	{
+		*ret = built_set;
+		return (PATH_NOFORK);
+	}
 	else
 		return (PATH_NULL);
 	return (PATH_BUILT);

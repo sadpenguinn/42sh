@@ -26,6 +26,6 @@ int		built_env(char **av, char **env)
 	else
 	{
 		print_str_arr(env);
-		return (HSH_OK);
+		return (SHERR_OK);
 	}
 }

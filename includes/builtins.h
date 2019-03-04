@@ -77,6 +77,8 @@ int		built_unsetenv(char **av, char **env);
 
 int		built_exit(char **av, char **env);
 
+int		built_set(char **av, char **env);
+
 /*
 ** Internal functions
 */
