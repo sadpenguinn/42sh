@@ -15,7 +15,7 @@ static int	normal_mode_del(t_matrix *matrix, t_uchar c)
 		return (del_home(matrix));
 	if (c == 'd')
 	{
-		g_vi_mode = NORMAL_MODE;
+		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
 		return (del_string(matrix));
 	}
 	return (1);
@@ -33,41 +33,34 @@ static int	normal_mode_yank(t_matrix *matrix, t_uchar c)
 		return (yank_end(matrix));
 	if (c == '|' || c == '0')
 		return (yank_home(matrix));
+	if (c == 'y')
+	{
+		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
+		return (yank_string(matrix));
+	}
 	return (1);
 }
 
 static int	is_insert_mode(t_matrix *matrix, t_uchar c)
 {
+	g_vi_mode = INSERT_MODE;
 	if (c == 'i')
-	{
-		g_vi_mode = INSERT_MODE;
 		return (1);
-	}
-	if (c == 'a')
-	{
-		g_vi_mode = INSERT_MODE;
-		return (move_cursor_right(matrix));
-	}
 	if (c == 'I')
-	{
-		g_vi_mode = INSERT_MODE;
 		return (move_cursor_home(matrix));
-	}
+	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'c')
+		return (normal_mode_del(matrix, c));
+	if (c == 'C')
+		return (del_end(matrix));
+	if (c == 'a')
+		return (move_cursor_right(matrix));
 	if (c == 'A')
-	{
-		g_vi_mode = INSERT_MODE;
 		return (move_cursor_end(matrix));
-	}
 	if (c == 's')
-	{
-		g_vi_mode = INSERT_MODE;
 		return (del(matrix));
-	}
 	if (c == 'S')
-	{
-		g_vi_mode = INSERT_MODE;
 		return (del_string(matrix));
-	}
+	g_vi_mode = NORMAL_MODE;
 	return (0);
 }
 
