@@ -69,8 +69,13 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  vi_mode.c\
 	  readline_buffer.c\
 	  add_shortcut.c\
-	  \
 	  check_modes.c\
+	  normal_mode.c\
+	  paste_text.c\
+	  del_text_1.c\
+	  yank_text_1.c\
+	  are_default_shortcuts.c\
+	  matrix_string_yank.c\
 
 NAME = line
 TEST = a.test

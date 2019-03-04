@@ -35,6 +35,8 @@
 
 # define SHORTCUT_ARRAY_SIZE 5
 
+# define PREV_SHORTCUT SHORTCUT_ARRAY_SIZE - 2
+
 # define HISTORY_FILE ".42sh_history"
 
 # include <sys/ioctl.h>
@@ -105,17 +107,17 @@ typedef	struct	s_matrix
 	t_cursor	*cursor;
 	int			left_limit;
 	int			right_limit;
-	int 		single_quotes;
-	int 		double_quotes;
+	int			single_quotes;
+	int			double_quotes;
 	t_string	*str;
 }				t_matrix;
 
 typedef struct	s_history
 {
 	int			size;
-	int 		len;
-	int 		cur;
-	int 		last_offset;
+	int			len;
+	int			cur;
+	int			last_offset;
 	t_matrix	**matrix;
 	t_matrix	*tmp;
 	t_string	*str;
@@ -123,7 +125,7 @@ typedef struct	s_history
 
 t_history		*g_history;
 int				g_mode;
-int 			g_vi_mode;
+int				g_vi_mode;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
@@ -155,13 +157,30 @@ void			add_cursor_offset(int offset);
 
 int				readline_mode(t_matrix *matrix, t_uchar c);
 int				vi_mode(t_matrix *matrix, t_uchar c);
-int				check_modes(t_matrix *matrix, t_uchar c);
+int				modes_handling(t_matrix *matrix, t_uchar c);
+int				esc_code_handling(t_matrix *matrix, t_uchar c);
 
-int				check_esc_code(t_matrix *matrix, t_uchar c);
+int				normal_mode(t_matrix *matrix, t_uchar c);
+
+void			paste_before(t_matrix *matrix);
+void			paste_after(t_matrix *matrix);
+
+int				del_begin_word(t_matrix *matrix);
+int				del_next_word(t_matrix *matrix);
+int				del_end_word(t_matrix *matrix);
+int				del_end(t_matrix *matrix);
+int				del_home(t_matrix *matrix);
+
+int				yank_begin_word(t_matrix *matrix);
+int				yank_next_word(t_matrix *matrix);
+int				yank_end_word(t_matrix *matrix);
+int				yank_end(t_matrix *matrix);
+int				yank_home(t_matrix *matrix);
 
 void			matrix_string_insert(t_matrix *matrix, t_cursor *pos,
 		const char *str, int size);
 void			matrix_string_delete(t_matrix *matrix, int row, int col);
+void			matrix_string_yank(t_matrix *matrix, int row, int col);
 
 void			line_resize(t_line *line, int new_size, int old_size);
 void			matrix_resize(t_matrix *matrix, int new_size, int old_size);
@@ -243,10 +262,11 @@ int				move_cursor_next_word(t_matrix *matrix);
 int				move_cursor_begin_word(t_matrix *matrix);
 int				move_cursor_end_word(t_matrix *matrix);
 
-int				check_default_shortcuts(t_matrix *matrix, t_uchar c);
+int				are_default_shortcuts(t_matrix *matrix, t_uchar c);
+
 void			buffer_add(const char *str, int size);
-void	buffer_free(void);
-char	*get_buffer_content(void);
-int		get_buffer_len(void);
+void			buffer_free(void);
+char			*get_buffer_content(void);
+int				get_buffer_len(void);
 
 #endif

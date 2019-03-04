@@ -1,6 +1,6 @@
 #include "readline.h"
 
-int			check_modes(t_matrix *matrix, t_uchar c)
+int			modes_handling(t_matrix *matrix, t_uchar c)
 {
 	add_shortcut(c);
 	if (g_mode == READLINE)

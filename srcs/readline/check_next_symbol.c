@@ -21,13 +21,13 @@ static int	is_utf(char c)
 	return (0);
 }
 
-static int	check_utf(t_matrix *matrix, t_uchar c)
+static int	utf_handling(t_matrix *matrix, t_uchar c)
 {
 	t_uchar tmp;
 
 	tmp = get_next_symbol(get_utf_offset_right(c));
 	c += (tmp << 8);
-	return (check_modes(matrix, c));
+	return (modes_handling(matrix, c));
 }
 
 int			check_next_symbol(t_matrix *matrix)
@@ -38,9 +38,9 @@ int			check_next_symbol(t_matrix *matrix)
 	if (c == CTRL_D)
 		return (-1);
 	if (c == ESC)
-		return (check_esc_code(matrix, c));
+		return (esc_code_handling(matrix, c));
 	else if (is_utf(c))
-		return (check_utf(matrix, c));
+		return (utf_handling(matrix, c));
 	else
-		return (check_modes(matrix, c));
+		return (modes_handling(matrix, c));
 }

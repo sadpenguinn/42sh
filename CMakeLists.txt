@@ -106,7 +106,14 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/move_cursor_3.c
 					srcs/readline/vi_mode.c
 					srcs/readline/readline_buffer.c
-					srcs/readline/add_shortcut.c)
+					srcs/readline/add_shortcut.c
+					srcs/readline/check_modes.c
+					srcs/readline/normal_mode.c
+					srcs/readline/paste_text.c
+					srcs/readline/del_text_1.c
+					srcs/readline/yank_text_1.c
+					srcs/readline/are_default_shortcuts.c
+					srcs/readline/matrix_string_yank.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)
