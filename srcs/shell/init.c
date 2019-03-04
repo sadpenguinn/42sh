@@ -37,6 +37,7 @@ int 			g_status = 0;
 */
 
 int 			g_echoe = TRUE;
+int 			g_dontexec = FALSE;
 
 void	init(char **env)
 {

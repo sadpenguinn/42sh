@@ -15,7 +15,6 @@ static int		built_set_parse(char **av)
 		if (!ft_strcmp(av[2], "vi"))
 		{
 			g_mode = VI;
-			g_vi_mode = INSERT_MODE;
 			return (SHERR_OK);
 		}
 		else if (!ft_strcmp(av[2], "emacs"))
@@ -25,7 +24,7 @@ static int		built_set_parse(char **av)
 		}
 		else if (!ft_strcmp(av[2], "echoe"))
 		{
-			g_echoe = g_echoe == TRUE ? FALSE : TRUE;
+			g_echoe = TRUE;
 			return (SHERR_OK);
 		}
 		else
@@ -38,6 +37,11 @@ static int		built_set_parse(char **av)
 			ft_putendl(g_echoe == TRUE ? "on" : "off");
 			return (SHERR_OK);
 		}
+	}
+	if (!ft_strcmp(av[1], "-n"))
+	{
+		g_dontexec = TRUE;
+		return (SHERR_OK);
 	}
 	else
 		return (built_set_usage());
