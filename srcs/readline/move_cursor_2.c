@@ -29,4 +29,3 @@ int	move_cursor_begin(t_matrix *matrix)
 	matrix->cursor->col = get_cursor_pos_begin(matrix);
 	return (1);
 }
-

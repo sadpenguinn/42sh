@@ -20,7 +20,7 @@
 # include "libhash.h"
 # include "vector.h"
 # include "readline.h"
-# include "lexer.h"
+# include "exprlexer.h"
 
 /*
 ** Checking platform defines

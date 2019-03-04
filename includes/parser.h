@@ -13,7 +13,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "lexer.h"
+# include "exprlexer.h"
 # include "vector.h"
 # include "shell.h"
 # include "terminals.h"
