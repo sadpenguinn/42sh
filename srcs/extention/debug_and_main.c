@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:35:33 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/03 19:34:45 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/04 20:09:50 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 void			*g_tokens = NULL;
 unsigned int	g_curtok = 0;
 int				g_parseerr = 0;
+
 void	printmas(char **str)
 {
 	int i;
@@ -34,7 +35,6 @@ void	printmas(char **str)
 		i++;
 	}
 	free(str);
-
 }
 
 void	testing()
