@@ -19,7 +19,7 @@ void				*g_tokens;
 int main(void)
 {
 	t_astree	*root;
-	t_lexem	lex;
+	t_lexem		lex;
 
 	g_tokens = vector_create(sizeof(t_lexem));
 	lex.type = NUM;
