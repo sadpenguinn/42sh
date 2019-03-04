@@ -42,13 +42,13 @@ int			check_esc_code(t_matrix *matrix, t_uchar c)
 		if (difftime(end, start) >= 1)
 		{
 			if (g_mode == VI)
-				return (vi_mode(matrix, ESC));
+				return (check_modes(matrix, ESC));
 			return (1);
 		}
 		if (tmp == ESC)
 		{
 			if (g_mode == VI)
-				vi_mode(matrix, ESC);
+				check_modes(matrix, ESC);
 			return (check_esc_code(matrix, ESC));
 		}
 		c += (tmp << (i * 8));
@@ -56,6 +56,6 @@ int			check_esc_code(t_matrix *matrix, t_uchar c)
 			return (check_modes(matrix, c));
 	}
 	if (g_mode == VI)
-		vi_mode(matrix, ESC);
+		check_modes(matrix, ESC);
 	return (1);
 }

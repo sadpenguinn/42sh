@@ -23,7 +23,7 @@ static int	is_utf(char c)
 
 int			check_modes(t_matrix *matrix, t_uchar c)
 {
-	move_shortcuts(c);
+	add_shortcut(c);
 	if (g_mode == READLINE)
 		return (readline_mode(matrix, c));
 	if (g_mode == VI)

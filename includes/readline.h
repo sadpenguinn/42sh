@@ -118,6 +118,7 @@ typedef struct	s_history
 	int 		last_offset;
 	t_matrix	**matrix;
 	t_matrix	*tmp;
+	t_string	*str;
 }				t_history;
 
 t_history		*g_history;
@@ -148,7 +149,7 @@ t_uchar			get_next_symbol(size_t size);
 
 void			get_term_params(struct winsize	*w);
 
-int				move_shortcuts(t_uchar c);
+int				add_shortcut(t_uchar c);
 
 void			add_cursor_offset(int offset);
 
@@ -188,6 +189,7 @@ void			matrix_free(t_matrix *matrix);
 void			history_free(t_history *history);
 
 void			line_del(t_line **line);
+void			string_del(t_string **str);
 void			matrix_del(t_matrix **matrix);
 void			history_del(t_history **history);
 
@@ -241,6 +243,10 @@ int				move_cursor_next_word(t_matrix *matrix);
 int				move_cursor_begin_word(t_matrix *matrix);
 int				move_cursor_end_word(t_matrix *matrix);
 
-int	check_default_shortcuts(t_matrix *matrix, t_uchar c);
+int				check_default_shortcuts(t_matrix *matrix, t_uchar c);
+void			buffer_add(const char *str, int size);
+void	buffer_free(void);
+char	*get_buffer_content(void);
+int		get_buffer_len(void);
 
 #endif

@@ -104,6 +104,7 @@ void	init_history(void)
 	g_history->len = 0;
 	g_history->cur = 0;
 	g_history->last_offset = 0;
+	g_history->str = string_init();
 	read_history_from_disk();
 }
 

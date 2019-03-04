@@ -40,7 +40,6 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  matrix_del.c\
 	  history_del.c\
 	  get_next_symbol.c\
-	  move_shortcuts.c\
 	  newline_handling.c\
 	  add_style.c\
 	  add_text.c\
@@ -63,12 +62,14 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  string_init.c\
 	  string_free.c\
 	  string_dup.c\
-	  \
 	  get_cursor_pos_1.c\
 	  get_cursor_pos_2.c\
 	  get_cursor_pos_3.c\
 	  move_cursor_3.c\
 	  vi_mode.c\
+	  \
+	  readline_buffer.c\
+	  add_shortcut.c\
 
 NAME = line
 TEST = a.test

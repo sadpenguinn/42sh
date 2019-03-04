@@ -12,7 +12,7 @@
 
 #include "readline.h"
 
-int	move_shortcuts(t_uchar c)
+int	add_shortcut(t_uchar c)
 {
 	int	i;
 

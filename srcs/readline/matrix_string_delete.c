@@ -30,6 +30,9 @@ void	matrix_string_delete(t_matrix *matrix, int row, int col)
 			i += 1 + get_utf_offset_right(line->buf[i]);
 			symbols++;
 		}
+		buffer_free();
+		buffer_add(line->buf + matrix->cursor->col,
+				   col - matrix->cursor->col);
 		ft_memmove(line->buf + matrix->cursor->col, line->buf + i,
 			line->len - i);
 		line->len -= i - matrix->cursor->col;
