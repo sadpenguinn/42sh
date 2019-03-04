@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:42:41 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/03 17:54:19 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/04 17:23:53 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ int		get_len_of_path(char *str)
 	return (i);
 }
 
+int		get_len_of_argvnum(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+		i++;
+	return (i + 1);
+}
+
 int		get_len_of_dollar(char *str)
 {
 	int		i;
@@ -45,6 +55,8 @@ int		get_len_of_dollar(char *str)
 		return (get_len_of_path(str));
 	if (!(str[i] == '{' || str[i] == '[' || str[i] == '('))
 		return (get_len_of_name_var(str));
+	if (str[1] >= '0' && str[1] <= '9')
+		return (get_len_of_argvnum(&str[1]));
 	while (str[i])
 	{
 		if (str[i] == '{' || str[i] == '[' || str[i] == '(')
