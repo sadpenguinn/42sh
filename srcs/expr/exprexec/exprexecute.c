@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "exprexecute.h"
 
 /*
 * Missing COND, QUES, COL, all ASSIGNments
@@ -19,7 +19,7 @@
 
 int			g_sherror = 0;
 
-intmax_t	execute(t_astree *root)
+intmax_t	exprexecute(t_astree *root)
 {
 	if (root->type == NUM)
 		return (ft_atoi(root->content));

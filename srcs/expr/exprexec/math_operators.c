@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "sh.h"
-#include "execute.h"
+#include "exprexecute.h"
 
 intmax_t	op_power(intmax_t operator, t_astree *node)
 {

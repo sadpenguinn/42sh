@@ -16,6 +16,7 @@
 # include <stdint.h>
 # include <stdio.h>
 # include "exprlexer.h"
+# include "terminals.h"
 
 /*
  **
@@ -159,6 +160,30 @@
 # define HASH			OPSHIFT + 53 // #
 # define ALLINDEX		OPSHIFT + 54 // * in array index
 
+/*
+** Expr terminals
+*/
+
+# define VAR				SHIFT + 3 /* $VAR */
+# define VAR				SHIFT + 4 /* $123 */
+# define VAR				SHIFT + 5 /* VAR  */
+# define NUM				SHIFT + 6 /* 123  */
+# define ADD				SHIFT + 7 /*   +  */
+# define PREINC				SHIFT + 8 /*  ++  */
+# define SUB				SHIFT + 9 /*   -  */
+# define PREDEC				SHIFT + 10 /* --  */
+# define MUL				SHIFT + 11 /*  *  */
+# define DIV				SHIFT + 12 /*  /  */
+# define MOD				SHIFT + 13 /*  %  */
+# define GT					SHIFT + 14 /*  >  */
+# define GEQ				SHIFT + 15 /*  >= */
+# define LT					SHIFT + 16 /*  <  */
+# define LEQ				SHIFT + 17 /*  <= */
+# define NEQ				SHIFT + 19 /*  != */
+# define EQ					SHIFT + 21 /*  == */
+# define LAND				SHIFT + 23 /*  && */
+# define LOR				SHIFT + 25 /*  || */
+
 typedef struct			s_astree
 {
 	int				type;
@@ -169,6 +194,9 @@ typedef struct			s_astree
 
 extern unsigned int		g_curtok;
 extern void				*g_tokens;
+
+extern unsigned int		g_excurtok;
+extern void				*g_extokens;
 
 t_astree				*expr(void);
 t_astree				*expr_rest(void);
