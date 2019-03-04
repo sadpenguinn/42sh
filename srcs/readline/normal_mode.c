@@ -12,6 +12,11 @@ static int	normal_mode_del(t_matrix *matrix, t_uchar c)
 		return (del_end(matrix));
 	if (c == '|' || c == '0')
 		return (del_home(matrix));
+	if (c == 'd')
+	{
+		g_vi_mode = NORMAL_MODE;
+		return (del_string(matrix));
+	}
 	return (1);
 }
 
@@ -57,6 +62,11 @@ static int	is_insert_mode(t_matrix *matrix, t_uchar c)
 		g_vi_mode = INSERT_MODE;
 		return (del(matrix));
 	}
+	if (c == 'S')
+	{
+		g_vi_mode = INSERT_MODE;
+		return (del_string(matrix));
+	}
 	return (0);
 }
 
@@ -88,6 +98,8 @@ static int	are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c)
 		return (back_space(matrix));
 	if (c == 'D')
 		return (del_end(matrix));
+	if (c == 'Y')
+		return (yank_string(matrix));
 	return (0);
 }
 

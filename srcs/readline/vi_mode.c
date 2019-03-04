@@ -18,7 +18,7 @@ int insert_mode(t_matrix *matrix, t_uchar c)
 	if (c == ESC)
 	{
 		g_vi_mode = NORMAL_MODE;
-		return (move_cursor_left(matrix));
+		return (1);
 	}
 	matrix_string_insert(matrix, matrix->cursor,
 						 str, symbol_to_string(matrix, c, str));

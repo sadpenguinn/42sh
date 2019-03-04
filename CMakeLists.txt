@@ -111,7 +111,9 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/normal_mode.c
 					srcs/readline/paste_text.c
 					srcs/readline/del_text_1.c
+					srcs/readline/del_text_2.c
 					srcs/readline/yank_text_1.c
+					srcs/readline/yank_text_2.c
 					srcs/readline/are_default_shortcuts.c
 					srcs/readline/matrix_string_yank.c)
 

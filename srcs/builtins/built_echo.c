@@ -11,6 +11,18 @@
 /* ************************************************************************** */
 
 #include "builtins.h"
+#include "shell.h"
+
+static int 			built_echo_usage(char c)
+{
+	char arg[3];
+
+	arg[0] = '-';
+	arg[1] = c;
+	arg[2] = '\0';
+	sputcmderr(sstrerr(SHERR_INVSNTX), "echo", arg);
+	return (-1);
+}
 
 static void			print_string(const char *str)
 {
@@ -37,7 +49,10 @@ static void			print_strings(char **av, const int *flags, size_t i)
 		size++;
 	while (av[i])
 	{
-		print_string(av[i]);
+		if (flags[1])
+			print_string(av[i]);
+		else
+			ft_putstr(av[i]);
 		if (i < size)
 			ft_putchar(' ');
 		i++;
@@ -46,19 +61,30 @@ static void			print_strings(char **av, const int *flags, size_t i)
 		ft_putchar('\n');
 }
 
-static size_t		parse_flags(char **av, int *flags)
+static int		parse_flags(char **av, int *flags)
 {
-	size_t	i;
+	int		i;
+	int 	k;
 
 	i = 1;
 	while (av[i])
 	{
-		if (!ft_strcmp(av[i], "-n"))
-			flags[0] = 1;
-		else if (!ft_strcmp(av[i], "-e"))
-			flags[0] = 1;
-		else if (!ft_strcmp(av[i], "-E"))
-			flags[0] = 0;
+		if (av[i][0] == '-')
+		{
+			k = 1;
+			while (av[i][k])
+			{
+				if (av[i][k] == 'n')
+					flags[0] = 1;
+				else if (av[i][k] == 'e')
+					flags[1] = 1;
+				else if (av[i][k] == 'E')
+					flags[1] = 0;
+				else
+					return (built_echo_usage(av[i][k]));
+				k++;
+			}
+		}
 		else
 			return (i);
 		i++;
@@ -77,12 +103,13 @@ static size_t		parse_flags(char **av, int *flags)
 int					built_echo(char **av, char **env)
 {
 	int		flags[2];
-	size_t	i;
+	int 	i;
 
 	env = NULL;
 	flags[0] = 0;
-	flags[1] = 1;
-	i = parse_flags(av, flags);
-	print_strings(av, flags, i);
+	flags[1] = g_echoe == TRUE ? 1 : 0;
+	if ((i = parse_flags(av, flags)) == -1)
+		return (SHERR_ERR);
+	print_strings(av, flags, (size_t)i);
 	return (SHERR_OK);
 }

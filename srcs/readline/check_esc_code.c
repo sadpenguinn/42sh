@@ -24,8 +24,11 @@ static int	check_esc_buttons(t_uchar c, int i)
 		c == DEL)
 		return (1);
 	tmp = 0;
-	while (i--)
+	while (i >= 0)
+	{
 		tmp = (tmp << 8) + 0xFF;
+		i--;
+	}
 	c &= tmp;
 	if (c == (LEFT & tmp) || c == (RIGHT & tmp )||
 		c == (DOWN & tmp )|| c == (UP & tmp) ||
@@ -36,21 +39,11 @@ static int	check_esc_buttons(t_uchar c, int i)
 	return (0);
 }
 
-static t_uchar	erase_esc_code(t_uchar c, int i)
-{
-	t_uchar	tmp;
-
-	tmp = 0;
-	while (i--)
-		tmp = (tmp << 8) + 0xFF;
-	return (c & tmp);
-}
-
-static int		no_esc_code(t_matrix *matrix, t_uchar c, int i)
+static int		no_esc_code(t_matrix *matrix, t_uchar c)
 {
 	if (g_mode == VI)
 		modes_handling(matrix, ESC);
-	modes_handling(matrix, erase_esc_code(c, i));
+	modes_handling(matrix, c >> 8);
 	return (1);
 }
 
@@ -77,14 +70,14 @@ int			esc_code_handling(t_matrix *matrix, t_uchar c)
 		end = time(&end);
 		c += (tmp << (i * 8));
 		if (difftime(end, start) >= 1)
-			return (no_esc_code(matrix, c, i));
+			return (no_esc_code(matrix, c));
 		if (tmp == ESC)
 			return (new_esc_code(matrix));
 		ret = check_esc_buttons(c, i);
 		if (ret == 0)
-			return (no_esc_code(matrix, c, i));
+			return (no_esc_code(matrix, c));
 		if (ret == 1)
 			return (modes_handling(matrix, c));
 	}
-	return (no_esc_code(matrix, c, i));
+	return (c >> 8);
 }

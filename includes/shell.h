@@ -56,6 +56,19 @@ extern void				*g_func_args;
 extern int 				g_status;
 
 /*
+** Defines for 'set' builtin witch modify the shell behavior
+*/
+
+int 					g_echoe;
+
+/*
+** Bool defines, used in builtins
+*/
+
+# define TRUE 1
+# define FALSE 0
+
+/*
 ** Defines for initialize shell environment/path
 */
 
