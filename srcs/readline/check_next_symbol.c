@@ -21,16 +21,6 @@ static int	is_utf(char c)
 	return (0);
 }
 
-int			check_modes(t_matrix *matrix, t_uchar c)
-{
-	add_shortcut(c);
-	if (g_mode == READLINE)
-		return (readline_mode(matrix, c));
-	if (g_mode == VI)
-		return (vi_mode(matrix, c));
-	return (1);
-}
-
 static int	check_utf(t_matrix *matrix, t_uchar c)
 {
 	t_uchar tmp;

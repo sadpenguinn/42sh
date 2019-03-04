@@ -69,6 +69,8 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  vi_mode.c\
 	  readline_buffer.c\
 	  add_shortcut.c\
+	  \
+	  check_modes.c\
 
 NAME = line
 TEST = a.test
@@ -80,4 +82,4 @@ clean:
 	rm -rf $(NAME) $(NAME).dSYM a.out a.out.dSYM $(TEST)
 
 test:
-	gcc term.c test.c -o $(TEST)
+	gcc term.c test.c -I ../../includes  -o $(TEST)

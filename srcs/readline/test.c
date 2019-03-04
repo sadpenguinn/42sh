@@ -25,13 +25,30 @@ void	ft_puts(char *buf, int len)
 
 int		main(void)
 {
+//	char a = 32;
+//	char b = 112;
+//	char c = 123;
+//	char d = 57;
+//
+//	int i;
+//	int j;
+//
+//	i = a;
+//	j = a;
+//	i = (i << 8) + b;
+//	j = (j << 8) + c;
+//	if ((i & (0xFF << 8)) == (j & (0xFF << 8)))
+//		printf("equal\n");
+//	else
+//		printf("not equal\n");
+
 	unsigned long long int c;
 	set_term();
 	while (c != '\n')
 	{
 		c = 0;
-		read(0, &c, 8);
-		printf("\nnbr = %llx\n", c);
+		read(0, &c, 1);
+		printf("\nnbr = %lld\n", c);
 	}
 	unset_term();
 	return (0);
