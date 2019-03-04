@@ -19,7 +19,7 @@ t_astree	*postincdec_rest_1(uint64_t type)
 	g_curtok++;
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = (type == INC) ? POSTINC : POSTDEC;
+	root->type = (type == EX_INC) ? EX_POSTINC : EX_POSTDEC;
 	root->left = postincdec_rest();
 	return (root);
 }
@@ -31,7 +31,7 @@ t_astree	*postincdec_rest(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == INC || type == DEC)
+	if (type == EX_INC || type == EX_DEC)
 		return (postincdec_rest_1(type));
 	return (0);
 }

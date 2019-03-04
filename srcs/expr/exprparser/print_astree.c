@@ -61,7 +61,7 @@ static t_list	*print_level(t_list **queue, size_t level, int max_len, size_t hei
 		if (!tree)
 			printf("    ");
 		else
-			tree->type == NUM ? printf("%s", tree->content) : printf("%4d", tree->type);
+			tree->type == EX_NUM ? printf("%s", tree->content) : printf("%4d", tree->type);
 		if (level < height - 1)
 		{
 			ft_push_back(&tmp, tree ? tree->left : 0);

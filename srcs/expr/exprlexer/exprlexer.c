@@ -205,7 +205,7 @@ int 	main(void)
 {
 	t_lexer		*lexer;
 
-	lexer = exprlexer("5+2-VAR", 3);
+	lexer = exprlexer("5+2-EX_VAR", 3);
 	vector_foreach(lexer->lexems, print);
 	return (0);
 }*/

@@ -21,7 +21,7 @@ t_astree	*expr5_rest_1(void)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = LAND;
+	root->type = EX_LAND;
 	root->left = res;
 	root->right = expr5_rest();
 	return (root);
@@ -34,7 +34,7 @@ t_astree	*expr5_rest(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == LAND && ++g_curtok)
+	if (type == EX_LAND && ++g_curtok)
 		return (expr5_rest_1());
 	return (0);
 }

@@ -21,7 +21,7 @@ t_astree	*expr7_rest_1(void)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = BXOR;
+	root->type = EX_XOR;
 	root->left = res;
 	root->right = expr7_rest();
 	return (root);
@@ -34,7 +34,7 @@ t_astree	*expr7_rest(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == BXOR && ++g_curtok)
+	if (type == EX_XOR && ++g_curtok)
 		return (expr7_rest_1());
 	return (0);
 }

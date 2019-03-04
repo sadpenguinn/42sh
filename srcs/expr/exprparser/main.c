@@ -19,38 +19,38 @@ void				*g_tokens;
 int main(void)
 {
 	t_astree	*root;
-	t_lexem	lex;
+	t_lexem		lex;
 
 	g_tokens = vector_create(sizeof(t_lexem));
-	lex.type = NUM;
+	lex.type = EX_NUM;
 	lex.word = "8";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = ADD;
+	lex.type = EX_ADD;
 	lex.word = "**";
 	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = OBRACKET; */
+	/* lex.type = EX_OBRACKET; */
 	/* lex.word = "("; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	lex.type = NUM;
+	lex.type = EX_NUM;
 	lex.word = "2";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = ADD;
+	lex.type = EX_ADD;
 	lex.word = ",";
 	vector_push_back(&g_tokens, &lex);
 
-	lex.type = NUM;
+	lex.type = EX_NUM;
 	lex.word = "3";
 	vector_push_back(&g_tokens, &lex);
 
-	/* lex.type = ADD; */
+	/* lex.type = EX_ADD; */
 	/* lex.word = "+"; */
 	/* vector_push_back(&g_tokens, &lex); */
 
-	/* lex.type = NUM; */
+	/* lex.type = EX_NUM; */
 	/* lex.word = "10"; */
 	/* vector_push_back(&g_tokens, &lex); */
 

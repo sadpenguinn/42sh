@@ -23,7 +23,7 @@ t_astree	*expr14(void)
 		return (res[0]);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
-	root->type = EXPR;
+	root->type = EX_EXPR;
 	root->left = res[0];
 	root->right = res[1];
 	return (root);

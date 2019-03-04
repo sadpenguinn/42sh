@@ -68,6 +68,11 @@ static int	find_builtin(const char *bin, void **ret)
 		*ret = built_echo;
 	else if (!ft_strcmp(bin, "env"))
 		*ret = built_env;
+	else if (!ft_strcmp(bin, "hash"))
+	{
+		*ret = built_hash;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "setenv"))
 	{
 		*ret = built_setenv;

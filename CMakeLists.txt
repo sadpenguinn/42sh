@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.13)
 
-if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
+#[[if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 	message(FATAL_ERROR "In-source builds not allowed. Please make a new directory" )
-endif()
+endif()]]
 
 set(PROJECT			42sh)
 set(VERSION			1.0)
@@ -173,7 +173,7 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/word_list.c)
 
 set(EXECUTE_SRC		srcs/execute/errors.c
-					srcs/execute/execute.c
+		srcs/execute/exprexecute.c
 					srcs/execute/execlist1.c
 					srcs/execute/execlist2.c
 					srcs/execute/execlist3.c
@@ -199,7 +199,7 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_setenv.c
 					srcs/builtins/built_unsetenv.c
 					srcs/builtins/built_exit.c
-					srcs/builtins/built_echo_reqmts.c srcs/builtins/built_set.c)
+					srcs/builtins/built_echo_reqmts.c srcs/builtins/built_set.c srcs/builtins/built_hash.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
