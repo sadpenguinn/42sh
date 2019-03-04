@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   function.c                                         :+:      :+:    :+:   */
+/*   autocomplite.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 13:02:38 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/03/04 18:52:44 by bbaelor-         ###   ########.fr       */
+/*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/04 18:30:10 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#ifndef AUTOCOMPLITE_H
+# define AUTOCOMPLITE_H
 
-int		function(t_astree *func, char **argv, char **envp)
-{
-	int		fd[2];
-	char	*arg;
+# include "readline.h"
+# include <stdio.h>
 
-	(void)envp;
-	fd[0] = 0;
-	fd[1] = 1;
-	while (*argv)
-	{
-		arg = ft_strdup(*argv++);
-		vector_push_back(&g_func_args, arg);
-	}
-	return (execlist1(func, fd, 0, 0));
-}
+# define ERROR_AUTOCOMLITE				-1
+# define ENV_AUTOCOMLITE				1
+# define DIR_AUTOCOMLITE				2
+# define EXECUTE_OR_FILE_AUTOCOMLITE	3
+
+#endif

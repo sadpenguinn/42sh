@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:38:01 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/04 17:27:46 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/04 18:47:53 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ char	*get_numeric_argv_extention(char *str)
 	char	*res;
 
 	real_num = ft_atoi(str);
-	res = get_argvector_of_program(real_num);
+	res = ft_strdup((char *)vector_get_elem(g_func_args, real_num));
 	return (res);
 }
 

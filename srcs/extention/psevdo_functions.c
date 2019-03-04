@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/04 17:13:40 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/04 18:46:26 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,4 @@ int		get_fdnumber_of_substitution(char *str, int state)
 	(void)str;
 	state++;
 	return (282);
-}
-
-char	*get_argvector_of_program(int i)
-{
-	return (ft_strjoin(ft_strdup("argv"), ft_itoa(i), 1));
 }
