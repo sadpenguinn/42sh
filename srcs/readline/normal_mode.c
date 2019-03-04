@@ -10,7 +10,7 @@ static int	normal_mode_del(t_matrix *matrix, t_uchar c)
 		return (del_end_word(matrix));
 	if (c == '$')
 		return (del_end(matrix));
-	if (c == '^')
+	if (c == '|' || c == '0')
 		return (del_home(matrix));
 	return (1);
 }
@@ -25,7 +25,7 @@ static int	normal_mode_yank(t_matrix *matrix, t_uchar c)
 		return (yank_end_word(matrix));
 	if (c == '$')
 		return (yank_end(matrix));
-	if (c == '^')
+	if (c == '|' || c == '0')
 		return (yank_home(matrix));
 	return (1);
 }
@@ -52,6 +52,11 @@ static int	is_insert_mode(t_matrix *matrix, t_uchar c)
 		g_vi_mode = INSERT_MODE;
 		return (move_cursor_end(matrix));
 	}
+	if (c == 's')
+	{
+		g_vi_mode = INSERT_MODE;
+		return (del(matrix));
+	}
 	return (0);
 }
 
@@ -65,8 +70,10 @@ static int	are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c)
 		return (move_cursor_end_word(matrix));
 	if (c == '$')
 		return (move_cursor_end(matrix));
-	if (c == '^')
+	if (c == '|' || c == '0')
 		return (move_cursor_home(matrix));
+	if (c == '^')
+		return (move_cursor_begin(matrix));
 	if (c == 'h')
 		return (move_cursor_left(matrix));
 	if (c == 'l')
@@ -75,6 +82,12 @@ static int	are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c)
 		return (move_cursor_up(matrix));
 	if (c == 'j')
 		return (move_cursor_down(matrix));
+	if (c == 'x')
+		return (del(matrix));
+	if (c == 'X')
+		return (back_space(matrix));
+	if (c == 'D')
+		return (del_end(matrix));
 	return (0);
 }
 

@@ -66,10 +66,12 @@ static void	add_completion(t_matrix *matrix, char *match, char *pattern, char *p
 		right_pos++;
 	cur_dir = ft_strjoin(prev_dir, match, 0);
 	if ((dir = opendir(cur_dir)))
+	{
 		tmp = ft_strjoin(match + left_pos, "/", 0);
+		closedir(dir);
+	}
 	else
 		tmp = ft_strjoin(match + left_pos, " ", 0);
-	closedir(dir);
 	free(cur_dir);
 	free(match);
 	matrix_string_insert(matrix, matrix->cursor, tmp, strlen(tmp));
@@ -96,4 +98,3 @@ int			autocomplete_file_dir(t_matrix *matrix)
 	free(matches);
 	return (1);
 }
-

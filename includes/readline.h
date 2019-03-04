@@ -33,9 +33,7 @@
 
 # define SHELL_NAME "[42sh]"
 
-# define SHORTCUT_ARRAY_SIZE 5
-
-# define PREV_SHORTCUT SHORTCUT_ARRAY_SIZE - 2
+# define SHORTCUT_ARRAY_SIZE 10
 
 # define HISTORY_FILE ".42sh_history"
 
@@ -128,6 +126,7 @@ int				g_mode;
 int				g_vi_mode;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
+t_uchar			g_shortcut_nbr;
 
 t_string		*readline(void);
 
@@ -191,6 +190,10 @@ int				move_cursor_up(t_matrix *matrix);
 int				move_cursor_down(t_matrix *matrix);
 int				move_cursor_home(t_matrix *matrix);
 int				move_cursor_end(t_matrix *matrix);
+int				move_cursor_next_word(t_matrix *matrix);
+int				move_cursor_begin_word(t_matrix *matrix);
+int				move_cursor_end_word(t_matrix *matrix);
+int				move_cursor_begin(t_matrix *matrix);
 
 int				del(t_matrix *matrix);
 int				back_space(t_matrix *matrix);
@@ -251,16 +254,13 @@ char			*array_to_string(void);
 void			array_flush(void);
 
 int				get_cursor_pos_home(t_matrix *matrix);
+int				get_cursor_pos_begin(t_matrix *matrix);
 int				get_cursor_pos_end(t_matrix *matrix);
 int				get_cursor_pos_left(t_matrix *matrix);
 int				get_cursor_pos_right(t_matrix *matrix);
 int				get_cursor_pos_next_word(t_matrix *matrix);
 int				get_cursor_pos_begin_word(t_matrix *matrix);
 int				get_cursor_pos_end_word(t_matrix *matrix);
-
-int				move_cursor_next_word(t_matrix *matrix);
-int				move_cursor_begin_word(t_matrix *matrix);
-int				move_cursor_end_word(t_matrix *matrix);
 
 int				are_default_shortcuts(t_matrix *matrix, t_uchar c);
 

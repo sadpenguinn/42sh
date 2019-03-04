@@ -6,6 +6,18 @@ int	get_cursor_pos_home(t_matrix *matrix)
 	return (0);
 }
 
+int get_cursor_pos_begin(t_matrix *matrix)
+{
+	int		col;
+	t_line	*line;
+
+	line = matrix->lines[matrix->cursor->row];
+	col = 0;
+	while (line->buf[col] == ' ' && col < line->len)
+		col += 1 + get_utf_offset_right(line->buf[col]);
+	return (col);
+}
+
 int	get_cursor_pos_end(t_matrix *matrix)
 {
 	return (matrix->lines[matrix->cursor->row]->len);
