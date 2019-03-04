@@ -68,7 +68,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/buttons1.c
 					srcs/readline/matrix_erase_line.c
 					srcs/readline/get_next_symbol.c
-					srcs/readline/move_shortcuts.c
 					srcs/readline/newline_handling.c
 					srcs/readline/add_style.c
 					srcs/readline/add_text.c
@@ -105,7 +104,9 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/get_cursor_pos_2.c
 					srcs/readline/get_cursor_pos_3.c
 					srcs/readline/move_cursor_3.c
-					srcs/readline/vi_mode.c)
+					srcs/readline/vi_mode.c
+					srcs/readline/readline_buffer.c
+					srcs/readline/add_shortcut.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c)

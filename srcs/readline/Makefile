@@ -67,7 +67,6 @@ SRC = ../lib/libft/srcs/xmalloc.c\
 	  get_cursor_pos_3.c\
 	  move_cursor_3.c\
 	  vi_mode.c\
-	  \
 	  readline_buffer.c\
 	  add_shortcut.c\
 
