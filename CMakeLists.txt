@@ -58,8 +58,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/resize_windows.c
 					srcs/readline/matrix_resize.c
 					srcs/readline/line_resize.c
-					srcs/readline/move_cursor_1.c
-					srcs/readline/move_cursor_2.c
 					srcs/readline/check_esc_code.c
 					srcs/readline/matrix_string_insert.c
 					srcs/readline/matrix_create_line.c
@@ -103,7 +101,10 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/get_cursor_pos_1.c
 					srcs/readline/get_cursor_pos_2.c
 					srcs/readline/get_cursor_pos_3.c
+					srcs/readline/move_cursor_1.c
+					srcs/readline/move_cursor_2.c
 					srcs/readline/move_cursor_3.c
+					srcs/readline/move_cursor_4.c
 					srcs/readline/vi_mode.c
 					srcs/readline/readline_buffer.c
 					srcs/readline/add_shortcut.c

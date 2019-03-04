@@ -9,6 +9,12 @@ static int	normal_mode_del(t_matrix *matrix, t_uchar c)
 		return (del_next_word(matrix));
 	if (c == 'E')
 		return (del_end_word(matrix));
+	if (c == 'b')
+		return (del_begin_alnum(matrix));
+	if (c == 'w')
+		return (del_next_alnum(matrix));
+	if (c == 'e')
+		return (del_end_alnum(matrix));
 	if (c == '$')
 		return (del_end(matrix));
 	if (c == '|' || c == '0')
@@ -29,6 +35,12 @@ static int	normal_mode_yank(t_matrix *matrix, t_uchar c)
 		return (yank_end_word(matrix));
 	if (c == 'E')
 		return (yank_end_word(matrix));
+	if (c == 'b')
+		return (yank_begin_alnum(matrix));
+	if (c == 'w')
+		return (yank_end_alnum(matrix));
+	if (c == 'e')
+		return (yank_end_alnum(matrix));
 	if (c == '$')
 		return (yank_end(matrix));
 	if (c == '|' || c == '0')
@@ -72,6 +84,12 @@ static int	are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c)
 		return (move_cursor_begin_word(matrix));
 	if (c == 'E')
 		return (move_cursor_end_word(matrix));
+	if (c == 'w')
+		return (move_cursor_next_alnum(matrix));
+	if (c == 'b')
+		return (move_cursor_begin_alnum(matrix));
+	if (c == 'e')
+		return (move_cursor_end_alnum(matrix));
 	if (c == '$')
 		return (move_cursor_end(matrix));
 	if (c == '|' || c == '0')
