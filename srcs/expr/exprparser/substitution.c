@@ -16,7 +16,7 @@ t_astree	*substitution()
 {
 	t_astree	*leaf;
 
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != HASH)
+	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type != HASH)
 		return (0);
 	if (!(leaf = ft_memalloc(sizeof(t_astree))))
 		return (0);

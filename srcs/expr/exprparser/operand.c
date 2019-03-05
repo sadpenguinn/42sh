@@ -16,11 +16,11 @@ t_astree	*operand_1(void)
 {
 	t_astree	*res;
 
-	g_curtok++;
+	g_excurtok++;
 	if (!(res = expr()))
 		return (0);
-	if (g_curtok <= ((size_t *)g_tokens)[2])
-		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->type == EX_CBRACKET)
+	if (g_excurtok <= ((size_t *)g_extokens)[2])
+		if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->type == EX_CBRACKET)
 			return (res);
 	/* ft_free_node(res); /1* XXX - FREE ALL RES *1/ */
 	return (0);
@@ -33,7 +33,7 @@ t_astree	*operand_2(void)
 	if (!(leaf = ft_memalloc(sizeof(t_astree))))
 		return (0);
 	leaf->type = EX_NUM;
-	if ((leaf->content = ft_strdup(((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->word)))
+	if ((leaf->content = ft_strdup(((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->word)))
 		return (leaf);
 	free(leaf);
 	return (0);
@@ -43,9 +43,9 @@ t_astree	*operand(void)
 {
 	uint64_t	type;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
+	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
 	if (type == EX_OBRACKET)
 		return (operand_1());
 	else if (type == EX_NUM)

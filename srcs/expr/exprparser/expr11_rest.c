@@ -46,12 +46,12 @@ t_astree	*expr11_rest(void)
 {
 	uint64_t	type;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == EX_LSH && ++g_curtok)
+	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
+	if (type == EX_LSH && ++g_excurtok)
 		return (expr11_rest_1());
-	else if (type == EX_RSH && ++g_curtok)
+	else if (type == EX_RSH && ++g_excurtok)
 		return (expr11_rest_2());
 	return (0);
 }

@@ -31,10 +31,10 @@ t_astree	*expr8_rest(void)
 {
 	uint64_t	type;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
-	if (type == EX_BAND && ++g_curtok)
+	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
+	if (type == EX_BAND && ++g_excurtok)
 		return (expr8_rest_1());
 	return (0);
 }

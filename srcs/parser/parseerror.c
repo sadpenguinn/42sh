@@ -21,12 +21,12 @@ unsigned long int	parseerror(void)
 	g_parseerr = 1;
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 	{
-		ft_putstr_fd("\e[0;31m42h: parse error near `EOF'\e[0m\n",
+		ft_putstr_fd("\e[0;31m42sh: parse error near `EOF'\e[0m\n",
 						STDERR_FILENO);
 		return (0LU);
 	}
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	ft_putstr_fd("\e[0;31m42h: parse error near `", STDERR_FILENO);
+	ft_putstr_fd("\e[0;31m42sh: parse error near `", STDERR_FILENO);
 	ft_putstr_fd(token->word, STDERR_FILENO);
 	ft_putstr_fd("'\e[0m\n", STDERR_FILENO);
 	return (0LU);

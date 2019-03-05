@@ -15,6 +15,7 @@
 
 # include <stdint.h>
 # include <stdio.h>
+# include "expression.h"
 # include "exprlexer.h"
 # include "terminals.h"
 
@@ -147,19 +148,7 @@
 
 
 
-typedef struct			s_astree
-{
-	int				type;
-	char			*content;
-	struct s_astree	*left;
-	struct s_astree	*right;
-}						t_astree;
 
-extern unsigned int		g_curtok;
-extern void				*g_tokens;
-
-extern unsigned int		g_excurtok;
-extern void				*g_extokens;
 
 t_astree				*expr(void);
 t_astree				*expr_rest(void);
@@ -195,6 +184,7 @@ t_astree				*operand(void);
 t_astree				*variable(void);
 t_astree				*array(void);
 t_astree				*substitution();
-void					print_astree(t_astree *root);
+
+void		print_astree(t_astree *root);
 
 #endif

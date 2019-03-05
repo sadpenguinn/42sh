@@ -27,12 +27,12 @@ t_astree	*expr3(void)
 
 	if (!(res[0] = expr4()))
 		return (0);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != EX_QUES)
+	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type != EX_QUES)
 		return (res[0]);
-	g_curtok++;
+	g_excurtok++;
 	if (!(res[1] = expr3()))
 		return (0);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->type != EX_COL)
+	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->type != EX_COL)
 		return (0);
 	if (!(res[2] = expr3()))
 		return (0);

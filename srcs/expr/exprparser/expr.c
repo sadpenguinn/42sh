@@ -28,13 +28,3 @@ t_astree	*expr(void)
 	root->right = res[1];
 	return (root);
 }
-
-int s_astree::getType() const
-{
-	return type;
-}
-
-void s_astree::setType(int value)
-{
-	type = value;
-}

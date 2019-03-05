@@ -16,7 +16,7 @@ t_astree	*preincdec_1(uint64_t type)
 {
 	t_astree	*root;
 
-	g_curtok++;
+	g_excurtok++;
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
 	root->type = (type == EX_INC) ? EX_PREINC : EX_PREDEC;
@@ -34,9 +34,9 @@ t_astree	*preincdec(void)
 	t_astree	*root;
 	uint64_t	type;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
+	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
 	if (type == EX_INC|| type == EX_DEC)
 		return (preincdec_1(type));
 	if ((root = postincdec()))

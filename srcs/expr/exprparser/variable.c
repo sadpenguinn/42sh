@@ -22,7 +22,7 @@ t_astree	*variable_1(void)
 {
 	t_astree	*leaf;
 
-	g_curtok++;
+	g_excurtok++;
 	if (!(leaf = ft_memalloc(sizeof(t_astree))))
 		return (0);
 	leaf->type = ALLINDEX;
@@ -35,10 +35,10 @@ t_astree	*variable_2(void)
 
 	if (!(root = expr()))
 		return (0);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != EX_CARRAY)
+	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type != EX_CARRAY)
 		/*  XXX - Need free root */
 		return (0);
-	g_curtok++;
+	g_excurtok++;
 	return (root);
 }
 
@@ -48,21 +48,21 @@ t_astree	*variable(void)
 	t_astree	*res;
 
 	res = substitution();
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (0);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != EX_VAR)
+	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type != EX_VAR)
 		return (0);
 	if (!(root = ft_memalloc(sizeof(t_astree))))
 		return (0);
 	root->right = res;
 	root->type = EX_VAR;
 	root->content =
-		ft_strdup(((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->word);
-	if (g_curtok + 2 >= ((size_t *)g_tokens)[2] ||
-		((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != EX_OARRAY)
+		ft_strdup(((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->word);
+	if (g_excurtok + 2 >= ((size_t *)g_extokens)[2] ||
+		((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type != EX_OARRAY)
 		return (root);
-	g_curtok++;
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type == EX_MUL)
+	g_excurtok++;
+	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type == EX_MUL)
 		root->left = variable_1();
 	else
 		root->left = variable_2();

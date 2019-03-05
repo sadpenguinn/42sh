@@ -30,11 +30,11 @@ t_astree	*expr2_1(void)
 		return (0);
 	root[0]->type = EX_VAR;
 	root[0]->content =
-		ft_strdup(((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->word);
+		ft_strdup(((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->word);
 	root[1]->type = EX_EXPR;
 	root[1]->left = root[0];
 	root[1]->right = root[2];
-	root[2]->type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok++))->type;
+	root[2]->type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->type;
 	if (!(root[2]->left = expr2()))
 		return (0);
 	return (root[1]);
@@ -44,12 +44,12 @@ t_astree	*expr2(void)
 {
 	int		type;
 
-	if (g_curtok >= ((size_t *)g_tokens)[2])
+	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (0);
-	if (((type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type) != EX_VAR)
-		|| g_curtok + 1 >= ((size_t *)g_tokens)[2])
+	if (((type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type) != EX_VAR)
+		|| g_excurtok + 1 >= ((size_t *)g_extokens)[2])
 		return (expr3());
-	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok + 1))->type;
+	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok + 1))->type;
 	if (type == EX_ASSIGN || type == EX_ADDASN || type == EX_SUBASN ||
 		type == EX_MULASN || type == EX_DIVASN || type == EX_MODASN ||
 		type == EX_LSHASN || type == EX_RSHASN || type == EX_ANDASN ||

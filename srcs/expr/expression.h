@@ -18,4 +18,20 @@
 # include "exprlexer.h"
 # include "terminals.h"
 
+typedef struct			s_astree
+{
+	int				type;
+	char			*content;
+	struct s_astree	*left;
+	struct s_astree	*right;
+}						t_astree;
+
+extern unsigned int		g_excurtok;
+extern void				*g_extokens;
+
+t_astree				*expr(void);
+intmax_t				epxrexecute(t_astree *root);
+
+void		print_astree(t_astree *root);
+
 #endif
