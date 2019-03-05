@@ -106,6 +106,7 @@ void	init_history(void)
 	g_history->last_offset = 0;
 	g_history->str = string_init();
 	read_history_from_disk();
+	g_mode = READLINE;
 }
 
 void	history_add_new_elem(void)
@@ -126,7 +127,6 @@ void	init_readline(void)
 {
 	get_term_params(&g_w);
 	history_add_new_elem();
-	g_mode = VI;
 }
 
 t_string	*readline(void)
