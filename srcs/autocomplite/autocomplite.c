@@ -78,6 +78,7 @@ char	**get_mas_env_autocompl(char *str)
 
 	i = 0;
 	j = 0;
+	123.123
 	counter = get_mas_env_autocompl_len(str);
 	res = xmalloc(sizeof(char **) * (counter + 1));
 	while (g_env.env[i])
