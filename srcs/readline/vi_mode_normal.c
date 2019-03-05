@@ -6,13 +6,13 @@ static int	normal_mode_del(t_matrix *matrix, t_uchar c)
 	if (c == 'B')
 		return (del_begin_word(matrix));
 	if (c == 'W')
-		return (del_next_word(matrix));
+		return (del_end_word(matrix));
 	if (c == 'E')
 		return (del_end_word(matrix));
 	if (c == 'b')
 		return (del_begin_alnum(matrix));
 	if (c == 'w')
-		return (del_next_alnum(matrix));
+		return (del_end_alnum(matrix));
 	if (c == 'e')
 		return (del_end_alnum(matrix));
 	if (c == '$')
@@ -133,7 +133,7 @@ static int	replace_symbol(t_matrix *matrix, t_uchar c)
 		return (1);
 	del(matrix);
 	ft_memset(str, 0, sizeof(t_uchar));
-	matrix_string_insert(matrix, matrix->cursor,
+	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
 						 str, symbol_to_string(matrix, c, str));
 	matrix->cursor->col = get_cursor_pos_left(matrix);
 	g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;

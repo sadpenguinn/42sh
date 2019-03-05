@@ -57,20 +57,14 @@ static int		new_esc_code(t_matrix *matrix)
 int			esc_code_handling(t_matrix *matrix, t_uchar c)
 {
 	size_t	i;
-	time_t	start;
-	time_t	end;
 	t_uchar	tmp;
 	int		ret;
 
 	i = 0;
 	while (++i < sizeof(t_uchar))
 	{
-		start = time(&start);
 		tmp = get_next_symbol(sizeof(char));
-		end = time(&end);
 		c += (tmp << (i * 8));
-		if (difftime(end, start) >= 1)
-			return (no_esc_code(matrix, c));
 		if (tmp == ESC)
 			return (new_esc_code(matrix));
 		ret = check_esc_buttons(c, i);

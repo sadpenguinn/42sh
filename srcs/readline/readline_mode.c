@@ -26,7 +26,7 @@ int	readline_mode(t_matrix *matrix, t_uchar c)
 		return (print_autocomplete(matrix));
 	if (c == '\n')
 		return (newline_handling(matrix));
-	matrix_string_insert(matrix, matrix->cursor,
+	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
 			str, symbol_to_string(matrix, c, str));
 	return (1);
 }

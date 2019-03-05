@@ -13,29 +13,49 @@
 #include "readline.h"
 #include <string.h>
 #include "libft.h"
+#include <stdio.h>
 
-void	matrix_string_delete(t_matrix *matrix, int row, int col)
+static void	check_swap(t_cursor *start, t_cursor *end)
 {
-	t_line	*line;
-	int		i;
-	int		symbols;
+	t_cursor	tmp;
 
-	line = matrix->lines[matrix->cursor->row];
-	if (row == matrix->cursor->row)
+	if (start->row > end->row ||
+		(start->row == end->row && start->col > end->col))
 	{
-		i = matrix->cursor->col;
+		tmp.row = start->row;
+		tmp.col = start->col;
+		start->row = end->row;
+		start->col = end->col;
+		end->row = tmp.row;
+		end->col = tmp.col;
+	}
+}
+
+void	matrix_string_delete(t_cursor left, t_cursor right)
+{
+	t_line		*line;
+	int			i;
+	int			symbols;
+	t_matrix	*matrix;
+
+	check_swap(&left, &right);
+	matrix = g_history->tmp;
+	line = matrix->lines[left.row];
+	if (left.row == right.row)
+	{
+		i = left.col;
 		symbols = 0;
-		while (i < col)
+		while (i < right.col)
 		{
 			i += 1 + get_utf_offset_right(line->buf[i]);
 			symbols++;
 		}
 		buffer_free();
-		buffer_add(line->buf + matrix->cursor->col,
-				   col - matrix->cursor->col);
-		ft_memmove(line->buf + matrix->cursor->col, line->buf + i,
+		buffer_add(line->buf + left.col,
+				   right.col - left.col);
+		ft_memmove(line->buf + left.col, line->buf + i,
 			line->len - i);
-		line->len -= i - matrix->cursor->col;
+		line->len -= i - left.col;
 		line->symbols -= symbols;
 	}
 }

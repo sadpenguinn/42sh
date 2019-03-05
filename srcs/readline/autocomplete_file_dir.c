@@ -74,7 +74,7 @@ static void	add_completion(t_matrix *matrix, char *match, char *pattern, char *p
 		tmp = ft_strjoin(match + left_pos, " ", 0);
 	free(cur_dir);
 	free(match);
-	matrix_string_insert(matrix, matrix->cursor, tmp, strlen(tmp));
+	matrix_string_insert(matrix, *matrix->cursor, tmp, strlen(tmp));
 	free(tmp);
 }
 

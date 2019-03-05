@@ -54,7 +54,7 @@ enum	e_editing_modes
 	VI = 1, READLINE = 2
 };
 
-enum	e_vi_modes
+enum	e_vi_mode_editing_modes
 {
 	INSERT_MODE = 0, NORMAL_MODE = 1, VISUAL_MODE = 2, REPLACE_MODE = 3
 };
@@ -186,9 +186,9 @@ int				yank_begin_alnum(t_matrix *matrix);
 int 			yank_next_alnum(t_matrix *matrix);
 int				yank_end_alnum(t_matrix *matrix);
 
-void			matrix_string_insert(t_matrix *matrix, t_cursor *pos,
+t_cursor		matrix_string_insert(t_matrix *matrix, t_cursor pos,
 		const char *str, int size);
-void			matrix_string_delete(t_matrix *matrix, int row, int col);
+void			matrix_string_delete(t_cursor left, t_cursor right);
 void			matrix_string_yank(t_matrix *matrix, int row, int col);
 
 void			line_resize(t_line *line, int new_size, int old_size);

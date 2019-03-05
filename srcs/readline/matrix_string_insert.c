@@ -41,31 +41,30 @@ static int	line_string_insert(t_line *line, const char *str,
 	return (size);
 }
 
-void		matrix_string_insert(t_matrix *matrix,
-		t_cursor *pos, const char *str, int size)
+t_cursor	matrix_string_insert(t_matrix *matrix, t_cursor pos, const char *str, int size)
 {
 	int			i;
 	t_line		*line;
 	t_cursor	cursor;
 	int			len;
 
-	if (pos->col == 0 && str[size - 1] == '\n')
-		matrix_create_line(matrix, pos->row);
-	line = matrix->lines[pos->row];
-	i = line_string_insert(line, str, matrix->cursor, size);
+//	check_swap(&start, &end);
+	line = matrix->lines[pos.row];
+	i = line_string_insert(line, str, &pos, size);
 	if (i == size)
-		return ;
-	cursor.row = pos->row;
-	cursor.col = pos->col;
+		return (pos);
+	cursor.row = pos.row;
+	cursor.col = pos.col;
 	len = line->len;
 	line->len = cursor.col;
 	line->symbols = count_string_symbols(line->buf, line->len);
 	while (i < size)
 	{
-		matrix_create_line(matrix, pos->row);
-		line = matrix->lines[pos->row];
-		i += line_string_insert(line, str + i, matrix->cursor, size);
+		matrix_create_line(matrix, pos.row);
+		line = matrix->lines[pos.row];
+		i += line_string_insert(line, str + i, &pos, size);
 	}
 	line_string_insert(line, matrix->lines[cursor.row]->buf + cursor.col,
-		matrix->cursor, len - cursor.col);
+		&pos, len - cursor.col);
+	return (pos);
 }
