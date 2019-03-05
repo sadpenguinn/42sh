@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/04 20:19:08 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/05 17:12:25 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 # include <stdio.h>
 
 # define ERROR_AUTOCOMLITE	0
-# define ENV_AUTOCOMLITE	1
-# define OTHER_AUTOCOMLITE	2
+# define ENV_AUTOCOMLITE	1 // autosuggetions ${} etc
+# define FLAGS_AUTOCOMLITE  2
+# define OTHER_AUTOCOMLITE	3
 
-char    **autocomplite(t_line *line_info, int pos);
+char			**autocomplite(t_line *line_info, int pos);
+extern char		*g_built_in_lists[];
 
 #endif
