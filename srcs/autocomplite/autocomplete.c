@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/05 19:37:32 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/05 19:49:28 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 	pos--;
 	while (pos >= 0)
 	{
-		if (line_info->buf[pos] == '$' || line_info->buf[pos] == '{')
+		if (line_info->buf[pos] == '$' ||
+			(line_info->buf[pos] == '{' && pos > 0
+				&& line_info->buf[pos - 1] == '$'))
 		{
 			*pos_start = pos;
 			return (ENV_AUTOCOMLITE);
@@ -327,7 +329,7 @@ char    **autocomplete(t_line *line_info, int pos)
 		return (NULL);
 	// printf("пришёл тип %d\n", type);
 	word_to_acmlt = ft_strndup(&line_info->buf[pos_start], pos - pos_start);
-	printf("получается, что слово для дополнения - |%s|..\n", word_to_acmlt);
+	// printf("получается, что слово для дополнения - |%s|..\n", word_to_acmlt);
 	res = get_mas_of_suggetions(word_to_acmlt, type);
 	if (!res || !res[0])
 		return (NULL);
