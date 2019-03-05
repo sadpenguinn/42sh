@@ -23,6 +23,11 @@
 void	get_term_params(struct winsize	*w)
 {
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, w);
+	if (w->ws_col == 0 || w->ws_col == 0)
+	{
+		w->ws_col = 80;
+		w->ws_row = 120;
+	}
 }
 
 void	sig_handler(int signal)

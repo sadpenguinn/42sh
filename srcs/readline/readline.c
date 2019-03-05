@@ -73,25 +73,25 @@ void	read_history_from_disk(void)
 
 int		history_save_elem(void)
 {
-	if (g_history->tmp->str->buf[0] == '\0')
+	if (g_history->cur_matrix->str->buf[0] == '\0')
 	{
 		matrix_del(&g_history->matrix[g_history->len - 1]);
-		matrix_del(&g_history->tmp);
+		matrix_del(&g_history->cur_matrix);
 		g_history->len--;
 		return (1);
 	}
 	if (g_history->len - 1 &&
-			matrix_cmp(g_history->tmp,
+			matrix_cmp(g_history->cur_matrix,
 					   g_history->matrix[g_history->len - 2]) == 0)
 	{
 		matrix_del(&g_history->matrix[g_history->len - 1]);
-		matrix_del(&g_history->tmp);
+		matrix_del(&g_history->cur_matrix);
 		g_history->len--;
 		return (0);
 	}
 	matrix_del(&g_history->matrix[g_history->len - 1]);
-	g_history->matrix[g_history->len - 1] = matrix_dup(g_history->tmp);
-	matrix_del(&g_history->tmp);
+	g_history->matrix[g_history->len - 1] = matrix_dup(g_history->cur_matrix);
+	matrix_del(&g_history->cur_matrix);
 	write_history_on_disk(g_history->matrix[g_history->len - 1]->str);
 	return (0);
 }
@@ -118,9 +118,9 @@ void	history_add_new_elem(void)
 	g_history->len++;
 	g_history->cur = g_history->len - 1;
 	g_history->last_offset = 0;
-	g_history->tmp = matrix_init();
-	matrix_create_line(g_history->tmp, 0);
-	g_history->matrix[g_history->cur] = matrix_dup(g_history->tmp);
+	g_history->cur_matrix = matrix_init();
+	matrix_create_line(g_history->cur_matrix, 0);
+	g_history->matrix[g_history->cur] = matrix_dup(g_history->cur_matrix);
 }
 
 void	init_readline(void)
@@ -139,14 +139,14 @@ t_string	*readline(void)
 	ret = 1;
 	while (ret > 0)
 	{
-		print_default(g_history->tmp);
-		ret = check_next_symbol(g_history->tmp);
+		print_default(g_history->cur_matrix);
+		ret = check_next_symbol(g_history->cur_matrix);
 	}
 	if (ret == 0)
 	{
-		print_lines(g_history->tmp);
+		print_lines(g_history->cur_matrix);
 		write(1, "\n", 1);
-		matrix_to_string(g_history->tmp, g_history->tmp->str);
+		matrix_to_string(g_history->cur_matrix, g_history->cur_matrix->str);
 		if (history_save_elem())
 			return (readline());
 		unset_term();

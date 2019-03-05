@@ -117,7 +117,7 @@ typedef struct	s_history
 	int			cur;
 	int			last_offset;
 	t_matrix	**matrix;
-	t_matrix	*tmp;
+	t_matrix	*cur_matrix;
 	t_string	*str;
 }				t_history;
 

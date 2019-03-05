@@ -39,7 +39,7 @@ void	matrix_string_delete(t_cursor left, t_cursor right)
 	t_matrix	*matrix;
 
 	check_swap(&left, &right);
-	matrix = g_history->tmp;
+	matrix = g_history->cur_matrix;
 	line = matrix->lines[left.row];
 	if (left.row == right.row)
 	{
