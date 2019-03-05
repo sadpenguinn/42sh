@@ -146,61 +146,6 @@
 */
 
 
-# define EX_VAR 10
-# define EX_NUM 11
-# define EX_EXPR 12
-
-# define OPSHIFT		15
-
-# define EX_ADD			OPSHIFT + 0
-# define EX_SUB			OPSHIFT + 1
-# define EX_DIV			OPSHIFT + 2
-# define EX_MOD			OPSHIFT + 3
-# define EX_POW			OPSHIFT + 4
-# define EX_MUL			OPSHIFT + 5
-# define EX_LSH			OPSHIFT + 6
-# define EX_RSH			OPSHIFT + 7
-# define EX_GT			OPSHIFT + 8
-# define EX_GEQ			OPSHIFT + 9
-# define EX_LT			OPSHIFT + 10
-# define EX_LEQ			OPSHIFT + 11
-# define EX_EQ			OPSHIFT + 12
-# define EX_NEQ			OPSHIFT + 13
-# define EX_BAND		OPSHIFT + 14
-# define EX_XOR			OPSHIFT + 15
-# define EX_BOR			OPSHIFT + 16
-# define EX_LAND		OPSHIFT + 17
-# define EX_LOR 		OPSHIFT + 18
-# define EX_COND		OPSHIFT + 19
-# define EX_QUES		OPSHIFT + 20
-# define EX_COL			OPSHIFT + 21
-# define EX_ASSIG		OPSHIFT + 22
-# define EX_ADDAS		OPSHIFT + 23
-# define EX_SUBAS		OPSHIFT + 24
-# define EX_MULAS		OPSHIFT + 25
-# define EX_DIVAS		OPSHIFT + 26
-# define EX_MODAS		OPSHIFT + 27
-# define EX_LSHAS		OPSHIFT + 28
-# define EX_RSHAS		OPSHIFT + 29
-# define EX_ANDAS		OPSHIFT + 30
-# define EX_XORAS		OPSHIFT + 31
-# define EX_ORASN		OPSHIFT + 32
-# define EX_COMMA		OPSHIFT + 33
-# define EX_OBRACKET	OPSHIFT + 34
-# define EX_CBRACKET	OPSHIFT + 35
-# define EX_OARRAY		OPSHIFT + 36
-# define EX_CARRAY		OPSHIFT + 37
-
-# define EX_POSTINC		OPSHIFT + 35
-# define EX_POSTDEC		OPSHIFT + 36
-# define EX_PREINC		OPSHIFT + 41
-# define EX_PREDEC		OPSHIFT + 42
-# define EX_UMINUS		OPSHIFT + 43
-# define EX_UPLUS		OPSHIFT + 44
-# define EX_LNOT		OPSHIFT + 45
-# define EX_BNOT		OPSHIFT + 46
-# define EX_INC			OPSHIFT + 47 // ++
-# define EX_DEC			OPSHIFT + 48 // --
 
 typedef struct			s_astree
 {
