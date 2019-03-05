@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/05 19:33:28 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/05 19:37:32 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 				line_info->buf[pos] == '(' ||
 				line_info->buf[pos] == ';')
 		{
-			*pos_start = ((line_info->buf[pos] == ' ') ? pos + 1 : pos);
+			*pos_start = ((line_info->buf[pos] == ' ' ||
+							line_info->buf[pos] == '(') ? pos + 1 : pos);
 			return (OTHER_AUTOCOMLITE);
 		}
 		pos--;
@@ -313,6 +314,8 @@ char	**sugg_delete_repeats(char **str)
 	return (res);
 }
 
+
+
 char    **autocomplete(t_line *line_info, int pos)
 {
     int		type;
@@ -324,7 +327,7 @@ char    **autocomplete(t_line *line_info, int pos)
 		return (NULL);
 	// printf("пришёл тип %d\n", type);
 	word_to_acmlt = ft_strndup(&line_info->buf[pos_start], pos - pos_start);
-	// printf("получается, что слово для дополнения - |%s|..\n", word_to_acmlt);
+	printf("получается, что слово для дополнения - |%s|..\n", word_to_acmlt);
 	res = get_mas_of_suggetions(word_to_acmlt, type);
 	if (!res || !res[0])
 		return (NULL);
