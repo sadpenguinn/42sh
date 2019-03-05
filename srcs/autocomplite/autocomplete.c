@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   autocomplite.c                                     :+:      :+:    :+:   */
+/*   autocomplete.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/05 18:45:56 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/05 19:33:28 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,27 @@ char    *g_built_in_lists[] = {"cd", "echo", "env", "exit", "hash", "set",
 int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 {
 	// printf("get str = |%s|\n", line_info->buf);
-	if (pos < 0 || line_info->buf[pos] == ' ' || line_info->buf[pos] == ';')
+	if (pos < 0)
 		return (ERROR_AUTOCOMLITE);
+	pos--;
 	while (pos >= 0)
 	{
-		if (line_info->buf[pos] == '$')
+		if (line_info->buf[pos] == '$' || line_info->buf[pos] == '{')
 		{
 			*pos_start = pos;
 			return (ENV_AUTOCOMLITE);
-		}
-		else if (line_info->buf[pos] == ' ' || !pos)
-		{
-			*pos_start = ((line_info->buf[pos] == ' ') ? pos + 1 : pos);
-			return (OTHER_AUTOCOMLITE);
 		}
 		else if (line_info->buf[pos] == '-')
 		{
 			*pos_start = pos;
 			return (FLAGS_AUTOCOMLITE);
+		}
+		else if (line_info->buf[pos] == ' ' || !pos ||
+				line_info->buf[pos] == '(' ||
+				line_info->buf[pos] == ';')
+		{
+			*pos_start = ((line_info->buf[pos] == ' ') ? pos + 1 : pos);
+			return (OTHER_AUTOCOMLITE);
 		}
 		pos--;
 	}
@@ -93,7 +96,8 @@ char	**get_mas_env_autocompl(char *str)
 	{
 		if (!(ft_strncmp(g_env.env[i], str, ft_strlen(str))))
 		{
-			res[j] = ft_strdup(g_env.env[i]);
+			res[j] = ft_strndup(g_env.env[i], ft_strchr(g_env.env[i], '=')
+								- g_env.env[i]);
 			j++;
 		}
 		i++;

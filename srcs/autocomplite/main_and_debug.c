@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:07:25 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/05 18:46:19 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/05 19:30:33 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ char    **autocomplete(t_line *line_info, int pos);
 int     main(int argc, char **argv, char **env)
 {
 	char	**res;
+	char	*test;
 	t_line	*line_info;
 
 	argc++;
+	test = ft_strdup("$H");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));
-	line_info->buf = ft_strdup("ec");
-	res = autocomplete(line_info, 3);
+	line_info->buf = test;
+	res = autocomplete(line_info, ft_strlen(test));
 	printmas(res);
 	return (0);
 }
