@@ -25,7 +25,7 @@
 # define FLAGS_AUTOCOMLITE  2
 # define OTHER_AUTOCOMLITE	3
 
-char			**autocomplite(t_line *line_info, int pos);
+char			**autocomplete(t_line *line_info, int pos);
 extern char		*g_built_in_lists[];
 
 #endif

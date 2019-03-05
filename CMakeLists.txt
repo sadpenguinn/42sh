@@ -50,7 +50,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/argv_parser.c
 					srcs/shell/parse_input.c srcs/shell/init_functions.c srcs/shell/destroy_functions.c srcs/shell/init_function_args.c srcs/shell/destroy_function_args.c)
 
-set(AUTOCOMPLI_SRC	srcs/autocomplite/autocomplite.c)
+set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/array.c
@@ -225,5 +225,8 @@ add_subdirectory(${LIBHASH_DIR})
 add_subdirectory(${VECTOR_DIR})
 add_subdirectory(${LIBSHELL_DIR})
 
-add_executable(${NAME} ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC} ${EXPAND_SRC} ${EXPRLEXER})
+add_executable(${NAME} ${MAIN} ${SHELL_SRC}
+		${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC}
+		${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC}
+		${EXPAND_SRC} ${EXPRLEXER} ${AUTOCOMPLI_SRC})
 target_link_libraries(${NAME} ${LIBFT} ${LIBHASH} ${VECTOR} ${LIBSHELL})
