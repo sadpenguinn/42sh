@@ -105,7 +105,7 @@ char	**get_mas_env_autocompl(char *str)
 		}
 		i++;
 	}
-	res[i] = NULL;
+	res[j] = NULL;
 	return (res);
 }
 

@@ -48,7 +48,7 @@ int     main(int argc, char **argv, char **env)
 	t_line	*line_info;
 
 	argc++;
-	test = ft_strdup("{");
+	test = ft_strdup("$HO");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));
