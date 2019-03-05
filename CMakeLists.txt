@@ -50,6 +50,8 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/argv_parser.c
 					srcs/shell/parse_input.c srcs/shell/init_functions.c srcs/shell/destroy_functions.c srcs/shell/init_function_args.c srcs/shell/destroy_function_args.c)
 
+set(AUTOCOMPLI_SRC	srcs/autocomplite/autocomplite.c)
+
 set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/array.c
 					srcs/readline/check_next_symbol.c
