@@ -1,3 +1,5 @@
+#include <string.h>
+
 static char	g_rlexer[129][54] =
 {
 		{0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, /*  0.   */
@@ -154,7 +156,7 @@ int 		rdfa(const char *str, size_t len)
 	return (state);
 }
 
-int 		rlexer(const char *str, size_t len)
+int 		lex_check_bash_word(const char *str, size_t len)
 {
 	int 	ret;
 

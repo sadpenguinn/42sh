@@ -13,14 +13,6 @@
 #include "readline.h"
 #include "libft.h"
 
-int 	check_word(const char *buf, size_t len)
-{
-	(void)buf;
-	if (len > 1000)
-		return (1);
-	return (0);
-}
-
 int		get_space_left_pos(char *buf, int pos)
 {
 	while (pos && buf[pos - 1] != '\t' && buf[pos - 1] != ' ')
@@ -52,7 +44,7 @@ static void	add_line(t_line	*line, int start, int end)
 		start = pos;
 		left = get_space_left_pos(line->buf, start);
 		right = get_space_right_pos(line->buf, start, line->len);
-		if (check_word(line->buf + left, right - left))
+		if (lex_check_bash_word(line->buf + left, right - left))
 			array_add(TEXT_COLOR_YELLOW, strlen(TEXT_COLOR_YELLOW));
 		while (pos < end && line->buf[pos] != ' ')
 			pos++;

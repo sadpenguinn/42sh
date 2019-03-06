@@ -15,6 +15,7 @@
 
 # define CSI "\e["
 # define COLOR_DEFAULT "\e[0m"
+# define DEFAULT_TERM_COLORS "\e[0m\e[39;49m"
 # define CURSOR_MOVE_LINE_START "\e[1G"
 # define CURSOR_CLEAR_TO_END_SCREEN "\e[0J"
 # define CURSOR_CLEAR_TO_START_SCREEN "\e[1J"
@@ -28,6 +29,9 @@
 # define TEXT_COLOR_MAGENTA "\e[35m"
 # define TEXT_COLOR_CYAN "\e[36m"
 # define TEXT_COLOR_WHITE "\e[37m"
+# define TEXT_REVERSE_VIDEO "\e[7m"
+# define TURN_ON_CURSOR "\e[?25h"
+# define TURN_OF_CURSOR "\e[?25l"
 
 # define TEXT_BOLD "\e[1m"
 
@@ -242,6 +246,7 @@ int				newline_handling(t_matrix *matrix);
 void			add_lines_prompt_style(void);
 void			add_cur_line_prompt_style(void);
 void			add_prompt_style(void);
+void			add_shell_name_style(void);
 
 int				symbol_to_string(t_matrix *matrix, t_uchar c, char *str);
 
@@ -284,5 +289,7 @@ void			buffer_add(const char *str, int size);
 void			buffer_free(void);
 char			*get_buffer_content(void);
 int				get_buffer_len(void);
+
+int 			lex_check_bash_word(const char *str, size_t len);
 
 #endif
