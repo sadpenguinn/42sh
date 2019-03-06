@@ -12,6 +12,10 @@
 
 #include "builtins.h"
 
+#include "shell.h"
+
+// Delete g_roenv.env
+
 /*
 ** Just prints environment. If passed arguments, env display an error
 */
@@ -20,6 +24,7 @@ int		built_env(char **av, char **env)
 {
 	if (av[1])
 	{
+		print_str_arr(g_roenv.env);
 		sputcmderr(sstrerr(SHERR_INVSNTX), "env", av[1]);
 		return (SHERR_ERR);
 	}

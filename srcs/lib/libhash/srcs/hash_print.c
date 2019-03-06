@@ -17,7 +17,8 @@ static void		hash_print_cell(char *key, char *value)
 {
 	ft_putstr(key);
 	ft_putchar('=');
-	ft_putendl(value);
+	ft_putstr(value);
+	ft_putchar('\n');
 }
 
 /*

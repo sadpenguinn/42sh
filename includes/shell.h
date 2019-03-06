@@ -39,10 +39,11 @@
 */
 
 extern t_hash			*g_hash_env;
+extern t_hash			*g_hash_roenv;
 extern t_hash			*g_path;
 extern t_hash			*g_path_sums;
-extern struct s_env		g_env;
-
+extern t_env			g_env;
+extern t_env			g_roenv;
 /*
 ** Global variables for saving jobs and processes
 */
@@ -108,13 +109,6 @@ extern int 				g_dontexec;
 # define SHELL_LOPT "Long options:\n"
 # define SHELL_LOPT_H "--help\t\tThe same as -h\n"
 # define SHELL_LOPT_V "--version\tThe same as -v\n"
-
-typedef struct			s_env
-{
-	char				**env;
-	size_t				size;
-	size_t				filled;
-}						t_env;
 
 /*
 ** Struct for parser

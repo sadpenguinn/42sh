@@ -97,7 +97,7 @@ int			set_envs(t_list *envs)
 		while (*val != '=')
 			val++;
 		*val++ = 0;
-		ssetenv((char *)envs->data, val);
+		ssetenv((char *)envs->data, val, ENV_RO);
 		envs = envs->next;
 	}
 	return (EXIT_SUCCESS);

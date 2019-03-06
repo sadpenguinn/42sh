@@ -92,7 +92,7 @@ char	*get_ex_tilda(char *str)
 	struct passwd	*user;
 
 	if (!str[1] || str[1] == ' ' || str[1] == '/')
-		return (ft_strdup(sgetenv("HOME")));
+		return (ft_strdup(sgetenv("HOME", ENV_ALL)));
 	i = 1;
 	while (str[i] && str[i] != '/' && str[i] != ' ')
 		i++;

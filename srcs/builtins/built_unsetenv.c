@@ -41,7 +41,7 @@ int				built_unsetenv(char **av, char **env)
 	env = NULL;
 	if (!parse_flags(av, &key))
 		return (SHERR_ERR);
-	if ((sunsetenv(key) == SHERR_ERR))
+	if ((sunsetenv(key, ENV_EXP) == SHERR_ERR))
 	{
 		ft_putstr_fd("unsetenv: Variable '", STDERR_FILENO);
 		ft_putstr_fd(av[1], STDERR_FILENO);

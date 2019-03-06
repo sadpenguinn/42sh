@@ -81,6 +81,8 @@ int		built_set(char **av, char **env);
 
 int		built_hash(char **av, char **env);
 
+int		built_export(char **av, char **env);
+
 /*
 ** Internal functions
 */

@@ -17,7 +17,7 @@ static char		*get_oldpwd(char *def)
 {
 	char	*oldpwd;
 
-	oldpwd = sgetenv("OLDPWD");
+	oldpwd = sgetenv("OLDPWD", ENV_ALL);
 	return (oldpwd ? oldpwd : def);
 }
 
@@ -29,9 +29,9 @@ static void		set_pwd(const char *str)
 	size = 100;
 	buf = (char *)xmalloc(sizeof(char) * size);
 	if (getcwd(buf, size))
-		ssetenv(str, buf);
+		ssetenv(str, buf, ENV_EXP);
 	else
-		ssetenv(str, "/");
+		ssetenv(str, "/", ENV_EXP);
 	ft_strdel(&buf);
 }
 
@@ -47,7 +47,7 @@ int				built_cd(char **av, char **env)
 	char	*home;
 
 	env = NULL;
-	if (!(home = sgetenv("HOME")))
+	if (!(home = sgetenv("HOME", ENV_ALL)))
 		home = "/";
 	if (!av[1])
 		path = ft_strdup(home);

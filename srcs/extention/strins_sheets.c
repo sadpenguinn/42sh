@@ -37,7 +37,7 @@ char	*classic_get_env(char *str)
 {
 	char *res;
 
-	res = sgetenv(str);
+	res = sgetenv(str, ENV_ALL);
 	if (!res)
 		return (ft_strdup(""));
 	else

@@ -88,6 +88,11 @@ static int	find_builtin(const char *bin, void **ret)
 		*ret = built_exit;
 		return (PATH_NOFORK);
 	}
+	else if (!ft_strcmp(bin, "export"))
+	{
+		*ret = built_export;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "set"))
 	{
 		*ret = built_set;

@@ -18,11 +18,12 @@ static char		*build_env_str(t_hshtb *ptr)
 	char *str;
 
 	str = ft_strjoin(ptr->key, "=", 0);
-	str = ft_strjoin(str, ptr->value, 1);
+	if (ptr->value)
+		str = ft_strjoin(str, ptr->value, 1);
 	return (str);
 }
 
-static void		init_arr_env(size_t size)
+static void		init_arr_env(t_env *env, t_hash *hash_env, size_t size)
 {
 	t_hshtb	*ptr;
 	size_t	i;
@@ -30,13 +31,13 @@ static void		init_arr_env(size_t size)
 
 	i = 0;
 	k = 0;
-	ptr = g_hash_env->table;
+	ptr = hash_env->table;
 	while (i < size)
 	{
 		if (ptr->key)
 		{
-			g_env.env[k] = build_env_str(ptr);
-			g_env.filled++;
+			env->env[k] = build_env_str(ptr);
+			env->filled++;
 			k++;
 		}
 		ptr++;
@@ -45,22 +46,22 @@ static void		init_arr_env(size_t size)
 	size++;
 	while (k < size)
 	{
-		g_env.env[k] = NULL;
+		env->env[k] = NULL;
 		k++;
 	}
 }
 
 /*
-** Fills two-dimensional array with string implement environment
+** Fills two-dimensional array with string implements environment
 */
 
-void			fill_genv(void)
+void			fill_genv(t_env *env, t_hash *hash_env)
 {
 	size_t	size;
 
-	size = hash_get_size(g_hash_env);
-	g_env.size = size;
-	g_env.filled = 0;
-	g_env.env = (char **)xmalloc(sizeof(char *) * (size + 1));
-	init_arr_env(size);
+	size = hash_get_size(hash_env);
+	env->size = size;
+	env->filled = 0;
+	env->env = (char **)xmalloc(sizeof(char *) * (size + 1));
+	init_arr_env(env, hash_env, size);
 }

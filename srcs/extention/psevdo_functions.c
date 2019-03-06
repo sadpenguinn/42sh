@@ -19,12 +19,12 @@ char	*get_output_of_programm(char *str) ///////////////////////BUTCH Тут до
 
 void	push_to_enviroment(char *name, char *val)
 {
-	ssetenv(name, val);
+	ssetenv(name, val, ENV_RO);
 }
 
 char	*get_content_of_var(char *str)
 {
-	return (sgetenv(str));
+	return (sgetenv(str, ENV_ALL));
 }
 
 /*

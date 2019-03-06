@@ -19,6 +19,7 @@ void			init_env(char **env)
 
 	i = 0;
 	g_hash_env = hash_init(INITIAL_ENV_HASH_SIZE, HSH_OW);
+	g_hash_roenv = hash_init(INITIAL_ENV_HASH_SIZE, HSH_OW);
 	while (env[i])
 	{
 		pair = split_env(env[i]);
@@ -26,5 +27,6 @@ void			init_env(char **env)
 		free_str_arr(&pair);
 		i++;
 	}
-	fill_genv();
+	fill_genv(&g_env, g_hash_env);
+	fill_genv(&g_roenv, g_hash_roenv);
 }
