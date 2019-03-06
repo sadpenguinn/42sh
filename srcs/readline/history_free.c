@@ -12,5 +12,6 @@ void	history_free(t_history *history)
 	while (i < history->len)
 		matrix_free(history->matrix[i++]);
 	free(history->matrix);
+	string_free(history->str);
 	free(history);
 }
