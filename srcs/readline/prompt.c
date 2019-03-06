@@ -42,8 +42,9 @@ static int	get_prompt(char *cwd)
 	return (-1);
 }
 
-void		add_prompt_prefix(void)
+void		add_shell_name(void)
 {
+	add_shell_name_style();
 	array_add(SHELL_NAME, strlen(SHELL_NAME));
 }
 
@@ -52,8 +53,8 @@ void		print_prompt(void)
 	char	cwd[PATH_MAX];
 	int		pos;
 
+	add_shell_name();
 	add_prompt_style();
-	add_prompt_prefix();
 	array_add(" ", 1);
 	pos = get_prompt(cwd);
 	if (pos >= 0)
