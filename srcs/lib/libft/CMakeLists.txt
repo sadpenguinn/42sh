@@ -104,7 +104,21 @@ set(SRC_LIB srcs/fatal_error.c
         srcs/ft_toupper.c
         srcs/xmalloc.c
         srcs/xrealloc.c
-		srcs/ft_joinvect.c srcs/ft_atoi_base.c)
+		srcs/ft_rb_tree_delete.c
+		srcs/ft_rb_tree_find.c
+		srcs/ft_rb_tree_insert.c
+		srcs/ft_rb_tree_maximum.c
+		srcs/ft_rb_tree_minimum.c
+		srcs/ft_rb_tree_rotate_left.c
+		srcs/ft_rb_tree_rotate_right.c
+		srcs/ft_rb_tree_traversal_inorder.c
+		srcs/ft_rb_tree_traversal_postorder.c
+		srcs/ft_rb_tree_traversal_preorder.c
+		srcs/ft_joinvect.c
+		srcs/get_next_line.c
+		srcs/ft_atoi_base.c)
 include_directories(includes)
+include_directories(../vector/includes)
+
 
 add_library(${NAME} STATIC ${SRC_LIB})

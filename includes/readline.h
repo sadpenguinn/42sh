@@ -123,10 +123,12 @@ typedef struct	s_history
 	t_matrix	**matrix;
 	t_matrix	*cur_matrix;
 	t_string	*str;
+	t_line		*line_search;
 }				t_history;
 
 t_history		*g_history;
 int				g_mode;
+int				g_search_mode;
 int				g_vi_mode;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];

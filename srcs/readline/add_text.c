@@ -13,14 +13,14 @@
 #include "readline.h"
 #include "libft.h"
 
-int		get_space_left_pos(char *buf, int pos)
+int		get_space_left_pos(const char *buf, int pos)
 {
 	while (pos && buf[pos - 1] != '\t' && buf[pos - 1] != ' ')
 		pos--;
 	return (pos);
 }
 
-int 	get_space_right_pos(char *buf, int pos, int len)
+int 	get_space_right_pos(const char *buf, int pos, int len)
 {
 	while (pos < len && buf[pos] != '\t' && buf[pos] != ' ')
 		pos++;
@@ -33,6 +33,7 @@ static void	add_line(t_line	*line, int start, int end)
 	int	right;
 	int	pos;
 
+	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
 	array_add(DEFAULT_TERM_COLORS, strlen(DEFAULT_TERM_COLORS));
 	array_add(TURN_ON_CURSOR, strlen(TURN_ON_CURSOR));
 	while (start < end)

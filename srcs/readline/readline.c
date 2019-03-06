@@ -16,6 +16,7 @@
 #include "term.h"
 #include "libshell.h"
 #include <pwd.h>
+#include "get_next_line.h"
 
 void	ft_puts(char *buf)
 {
@@ -52,7 +53,13 @@ void	write_history_on_disk(t_string *str)
 
 void	fill_history(int fd)
 {
-	(void)fd;
+	char *str;
+
+	str = NULL;
+	get_next_line(fd, &str);
+	printf("\n%s\n\n", str);
+	char c;
+	read(0, &c, 1);
 	return ;
 }
 
