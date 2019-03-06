@@ -57,9 +57,7 @@ void	fill_history(int fd)
 
 	str = NULL;
 	get_next_line(fd, &str);
-	printf("\n%s\n\n", str);
-	char c;
-	read(0, &c, 1);
+	free(str);
 	return ;
 }
 
