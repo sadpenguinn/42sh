@@ -52,6 +52,7 @@ static void	init_history(void)
 	g_history->cur = 0;
 	g_history->last_offset = 0;
 	g_history->str = string_init();
+	g_history->search_line = line_init();
 	read_history_from_disk();
 	g_mode = VI;
 }

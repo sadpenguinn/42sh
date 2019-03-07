@@ -12,26 +12,14 @@
 
 #include "readline.h"
 
-int	symbol_to_string(t_matrix *matrix, t_uchar c, char *str)
+int	symbol_to_string(t_uchar c, char *str)
 {
 	int			i;
 	int			n;
-	t_line		*line;
-	t_cursor	pos;
 
 	i = 0;
 	if (c == '\t')
-	{
-		line = matrix->lines[matrix->cursor->row];
-		pos.col = matrix->cursor->col;
-		pos.row = matrix->cursor->row;
-		matrix->cursor->col -= 1 +
-				get_utf_offset_left(line->buf, matrix->cursor->col - 1);
-		matrix_string_delete(*matrix->cursor, pos);
-		while (i < 4)
-			str[i++] = ' ';
-		return (i);
-	}
+		c = ' ';
 	n = get_utf_offset_right(*((char *)&c));
 	while (i <= n)
 	{

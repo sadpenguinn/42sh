@@ -17,7 +17,11 @@ int	readline_mode(t_matrix *matrix, t_uchar c)
 {
 	char	str[sizeof(t_uchar)];
 
-	ft_memset(str, 0, sizeof(t_uchar));
+	if (c == CTRL_R)
+	{
+		g_search_mode = 1;
+		return (1);
+	}
 	if (are_default_shortcuts(matrix, c))
 		return (1);
 	if (c == BS)
@@ -26,7 +30,8 @@ int	readline_mode(t_matrix *matrix, t_uchar c)
 		return (print_autocomplete(matrix));
 	if (c == '\n')
 		return (newline_handling(matrix));
+	ft_memset(str, 0, sizeof(t_uchar));
 	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
-			str, symbol_to_string(matrix, c, str));
+			str, symbol_to_string(c, str));
 	return (1);
 }

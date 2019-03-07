@@ -128,6 +128,11 @@ def handling_pair(state, pair):
     if pair[0] == '\\n':
         pair[0] = '\n'
         write_statement(state, pair, ord('\n'))
+    elif len(pair) > 2:
+        pair[0] = ':'
+        pair[1] = pair[2]
+        pair.pop(2)
+        write_statement(state, pair, ord(':'))
     elif pair[0] == '\\t':
         pair[0] = '\t'
         write_statement(state, pair, ord('\t'))

@@ -27,14 +27,14 @@ int 	get_space_right_pos(const char *buf, int pos, int len)
 	return (pos);
 }
 
-static void	add_line(t_line	*line, int start, int end)
+void	add_line(t_line	*line, int start, int end)
 {
 	int	left;
 	int	right;
 	int	pos;
 
 	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
-	array_add(DEFAULT_TERM_COLORS, strlen(DEFAULT_TERM_COLORS));
+	array_add(DEFAULT_TEXT_COLORS, strlen(DEFAULT_TEXT_COLORS));
 	array_add(TURN_ON_CURSOR, strlen(TURN_ON_CURSOR));
 	while (start < end)
 	{
@@ -50,7 +50,7 @@ static void	add_line(t_line	*line, int start, int end)
 		while (pos < end && line->buf[pos] != ' ')
 			pos++;
 		array_add(line->buf + start, pos - start);
-		array_add(DEFAULT_TERM_COLORS, strlen(DEFAULT_TERM_COLORS));
+		array_add(DEFAULT_TEXT_COLORS, strlen(DEFAULT_TEXT_COLORS));
 		start = pos;
 	}
 }
