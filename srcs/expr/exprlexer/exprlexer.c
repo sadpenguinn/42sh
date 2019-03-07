@@ -136,6 +136,32 @@ static int			g_exprbranch_table[129][106] =
 
 static int			g_exprstate = 1;
 
+void			exprprint_token(void *lexem)
+{
+	t_lexem		*lex;
+
+	lex = lexem;
+	ft_putstr(lex->word);
+	ft_putstr(" -- ");
+	ft_putnbrendl(lex->type - OPSHIFT);
+}
+
+void			exprlexer_print(void *lexems)
+{
+	vector_foreach(lexems, exprprint_token);
+}
+
+int				exprpush_token(void **lexems, char *lexem, int state)
+{
+	t_lexem	new;
+
+	new.type = (t_type)(OPSHIFT + state);
+	new.word = lexem;
+	if (!(vector_push_back(lexems, (void *)(&new))))
+		return (0);
+	return (1);
+}
+
 char	*exprdfa(char **str, char **string)
 {
 	char	*lex;
@@ -175,7 +201,7 @@ void	build_exprlexems(char *str, void **lexems, char *string)
 	char	*lex;
 
 	while ((lex = exprdfa(&str, &string)))
-		push_token(lexems, lex, g_exprstate);
+		exprpush_token(lexems, lex, g_exprstate);
 }
 
 t_lexer	*exprlexer(char *str, size_t len)
@@ -192,12 +218,4 @@ t_lexer	*exprlexer(char *str, size_t len)
 	lexer->lexems = lexems;
 	lexer->symbol_table = string;
 	return (lexer);
-}
-
-void 	print(void *lex)
-{
-	t_lexem		*lexem;
-
-	lexem = (t_lexem *)lex;
-	ft_putendl(lexem->word);
 }
