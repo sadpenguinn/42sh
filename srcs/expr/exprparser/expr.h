@@ -158,6 +158,7 @@
 
 
 t_astree				*expr(void);
+t_astree				*expr1(void);
 t_astree				*expr2(void);
 t_astree				*expr3(void);
 t_astree				*expr4(void);
