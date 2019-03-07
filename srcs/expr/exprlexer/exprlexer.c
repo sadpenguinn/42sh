@@ -155,6 +155,8 @@ int				exprpush_token(void **lexems, char *lexem, int state)
 {
 	t_lexem	new;
 
+	if (state == EX_SPACE - OPSHIFT || state == EX_TAB - OPSHIFT ||
+		state == EX_NEWLINE - OPSHIFT)
 	new.type = (t_type)(OPSHIFT + state);
 	new.word = lexem;
 	if (!(vector_push_back(lexems, (void *)(&new))))
