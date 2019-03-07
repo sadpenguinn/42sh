@@ -10,7 +10,7 @@ long int	expression(char *arg)
 	t_astree	*root;
 
 	lexer = exprlexer(arg, ft_strlen(arg));
-	lexer_print(lexer->lexems);
+	exprlexer_print(lexer->lexems);
 	g_extokens = lexer->lexems;
 	g_excurtok = 0;
 	g_exprerr = 0;
@@ -22,5 +22,5 @@ long int	expression(char *arg)
 
 int main(int ac, char **av)
 {
-	expression(av[ac-1]);
+	expression("5+2");
 }
