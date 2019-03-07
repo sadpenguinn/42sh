@@ -38,10 +38,9 @@ t_astree	*pattern(void)
 	root->content = ft_strdup(token->word);
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (root);
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != PIPE)
+	if (!checktype(PIPE))
 		return (root);
-	g_curtok++;
 	if (!(root->right = pattern()))
-		return ((t_astree *)parseerror());
+		return (parseerror(0));
 	return (root);
 }

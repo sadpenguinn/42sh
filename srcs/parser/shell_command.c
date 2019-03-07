@@ -37,13 +37,13 @@ static t_astree	*while_command(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = WHILE;
 	if (!(root->left = compound_list()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	if (!checktype(DO))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	if (!(root->right = compound_list()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	if (!checktype(DONE))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	return (root);
 }
 
@@ -56,13 +56,13 @@ static t_astree	*until_command(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = UNTIL;
 	if (!(root->left = compound_list()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	if (!checktype(DO))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	if (!(root->right = compound_list()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	if (!checktype(DONE))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	return (root);
 }
 

@@ -21,8 +21,8 @@ t_astree	*subshell(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = SUBSHELL;
 	if (!(root->left = compound_list()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	if (!checktype(CBRACKET))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	return (root);
 }

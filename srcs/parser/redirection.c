@@ -47,7 +47,7 @@ t_astree		*redirection(void)
 	res = get_io_number();
 	if (!(root = io_file()))
 		if (!(root = io_here()))
-			return ((t_astree *)(savecur(curtmp) | freeastree(res)));
+			return (savecur(curtmp, res));
 	root->left = res;
 	return (root);
 }

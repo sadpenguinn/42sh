@@ -33,7 +33,7 @@ t_astree	*io_here(void)
 		return (0);
 	g_curtok++;
 	if (!(res = here_end()))
-		return ((t_astree *)parseerror());
+		return (parseerror(0));
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	root->right = res;

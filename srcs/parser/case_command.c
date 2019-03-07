@@ -46,17 +46,17 @@ t_astree		*case_command(void)
 	t_astree	*root;
 
 	if (!checktype(CASE))
-		return ((t_astree *)parseerror());
+		return (parseerror(0));
 	if (!(res = get_caseword()))
-		return ((t_astree *)parseerror());
+		return (parseerror(0));
 	root = xmalloc(sizeof(t_astree));
 	root->type = CASE;
 	root->left = res;
 	if (!checktype(IN))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	root->right = case_clause();
 	newline_list();
 	if (!checktype(ESAC))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	return (root);
 }

@@ -42,7 +42,7 @@ static t_astree	*get_else(t_astree *res)
 	root->type = ELSE;
 	root->left = res;
 	if (!(root->right = compound_list()))
-		return ((t_astree *)freeastree(root));
+		return (freeastree(root));
 	return (root);
 }
 
@@ -54,7 +54,7 @@ static t_astree	*get_elif(t_astree *res)
 	root->type = ELSE;
 	root->left = res;
 	if (!(root->right = elif_clause()))
-		return ((t_astree *)freeastree(root));
+		return (freeastree(root));
 	return (root);
 }
 
@@ -64,18 +64,18 @@ t_astree		*elif_clause(void)
 	t_astree	*root;
 
 	if (!(res = compound_list()))
-		return ((t_astree *)parseerror());
+		return (parseerror(0));
 	if (!checktype(THEN))
-		return ((t_astree *)freeastree(res));
+		return (freeastree(res));
 	root = xmalloc(sizeof(t_astree));
 	root->type = IF;
 	root->left = res;
 	if (!(root->right = compound_list()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	if (checktype(ELSE))
 		root->right = get_else(root->right);
 	if (checktype(ELIF))
 		if (!(root->right = get_elif(root->right)))
-			return ((t_astree *)(freeastree(root) | parseerror()));
+			return (parseerror(root));
 	return (root);
 }

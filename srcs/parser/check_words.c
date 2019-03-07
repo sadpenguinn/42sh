@@ -12,8 +12,6 @@
 
 #include "parser.h"
 
-/// 	* ->  arithmetic
-///		((*))
 int		check_arith_word(char *str)
 {
 	if (ft_strchr(str, '+'))

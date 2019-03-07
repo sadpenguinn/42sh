@@ -41,7 +41,7 @@ static t_astree	*list3_rest(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = AND_IF;
 	if (!(root->left = pipeline_command()))
-		return ((t_astree *)(savecur(curtmp) | freeastree(root)));
+		return (savecur(curtmp, root));
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (root);
 	root->right = list3_rest();
@@ -60,7 +60,7 @@ t_astree		*list3(void)
 	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != AND_IF)
 		return (res[0]);
 	if (!(res[1] = list3_rest()))
-		return ((t_astree *)(freeastree(res[0]) | parseerror()));
+		return (parseerror(res[0]));
 	root = xmalloc(sizeof(t_astree));
 	root->type = LIST3;
 	root->left = res[0];

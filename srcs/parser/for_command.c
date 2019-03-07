@@ -54,7 +54,7 @@ static t_astree	*get_wordlist(t_astree *left)
 		return (left);
 	left->right = word_list();
 	if (!list_terminator())
-		return ((t_astree *)freeastree(left));
+		return (freeastree(left));
 	newline_list();
 	return (left);
 }
@@ -74,10 +74,10 @@ static t_astree	*get_compound_list(void)
 		return (0);
 	if (type == DO)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != DONE)
-			return ((t_astree *)freeastree(res));
+			return (freeastree(res));
 	if (type == OBRACE)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != CBRACE)
-			return ((t_astree *)freeastree(res));
+			return (freeastree(res));
 	g_curtok++;
 	return (res);
 }
@@ -94,15 +94,15 @@ t_astree		*for_command(void)
 	root->type = FOR;
 	root->left->type = IN;
 	if (!(root->left->left = get_word()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	type = ((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type;
 	if (type == SEMI)
 		g_curtok++;
 	newline_list();
 	if (type != SEMI)
 		if (!(root->left = get_wordlist(root->left)))
-			return ((t_astree *)parseerror());
+			return (parseerror(0));
 	if (!(root->right = get_compound_list()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	return (root);
 }

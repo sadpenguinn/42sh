@@ -19,8 +19,8 @@ t_astree	*group_command(void)
 	if (!checktype(OBRACE))
 		return (0);
 	if (!(root = compound_list()))
-		return ((t_astree *)parseerror());
+		return (parseerror(0));
 	if (!checktype(CBRACE))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	return (root);
 }

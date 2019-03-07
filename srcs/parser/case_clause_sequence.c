@@ -36,7 +36,7 @@ t_astree	*case_clause_sequence(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
 	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != DSEMI)
-		return ((t_astree *)(freeastree(res) | savecur(curtmp)));
+		return (savecur(curtmp, res));
 	g_curtok++;
 	root = xmalloc(sizeof(t_astree));
 	root->type = DSEMI;

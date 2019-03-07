@@ -32,10 +32,9 @@ t_astree	*pattern_list(void)
 	newline_list();
 	checktype(OBRACKET);
 	if (!(root->left = pattern()))
-		return ((t_astree *)savecur(curtmp));
-	if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != CBRACKET)
-		return ((t_astree *)savecur(curtmp));
-	g_curtok++;
+		return (savecur(curtmp, 0));
+	if (!checktype(CBRACKET))
+		return (savecur(curtmp, 0));
 	if (!(root->right = compound_list()))
 		newline_list();
 	return (root);

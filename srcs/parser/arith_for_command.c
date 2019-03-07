@@ -54,10 +54,10 @@ static t_astree	*get_compound_list(void)
 		return (0);
 	if (type == DO)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != DONE)
-			return ((t_astree *)freeastree(res));
+			return (freeastree(res));
 	if (type == OBRACE)
 		if (((t_lexem *)vector_get_elem(g_tokens, g_curtok))->type != CBRACE)
-			return ((t_astree *)freeastree(res));
+			return (freeastree(res));
 	g_curtok++;
 	return (res);
 }
@@ -74,8 +74,8 @@ t_astree		*arith_for_command(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = FOR;
 	if (!(root->left = get_word()))
-		return ((t_astree *)savecur(g_curtok - 1));
+		return (savecur(g_curtok - 1, 0));
 	if (!(root->right = get_compound_list()))
-		return ((t_astree *)(freeastree(root) | parseerror()));
+		return (parseerror(root));
 	return (root);
 }

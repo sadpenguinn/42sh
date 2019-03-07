@@ -20,6 +20,6 @@ t_astree		*compound_list(void)
 	curtmp = g_curtok;
 	newline_list();
 	if (!(res = list1()))
-		return ((t_astree *)savecur(curtmp));
+		return (savecur(curtmp, 0));
 	return (res);
 }

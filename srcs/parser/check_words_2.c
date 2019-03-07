@@ -38,8 +38,6 @@ int			check_select_word(char *str)
 	return (0);
 }
 
-/// 	* ->  arithmetic
-///		((*;*;*))
 int			check_arith_for(char *str)
 {
 	int		len;

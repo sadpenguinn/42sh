@@ -18,7 +18,7 @@ t_astree	*filename(void)
 	t_astree	*root;
 
 	if (g_curtok >= ((size_t *)g_tokens)[2])
-		return ((t_astree *)parseerror());
+		return (parseerror(0));
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	if (!check_word_type(token->type))
 		return (0);

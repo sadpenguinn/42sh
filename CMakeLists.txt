@@ -150,7 +150,6 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/elif_clause.c
 					srcs/parser/filename.c
 					srcs/parser/for_command.c
-					srcs/parser/freeastree.c
 					srcs/parser/function_body.c
 					srcs/parser/function_def.c
 					srcs/parser/group_command.c
@@ -166,7 +165,6 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/list_terminator.c
 					srcs/parser/newline_list.c
 					srcs/parser/otherfunc.c
-					srcs/parser/parseerror.c
 					srcs/parser/pattern.c
 					srcs/parser/pattern_list.c
 					srcs/parser/pipeline.c
@@ -174,7 +172,6 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/print_astree.c
 					srcs/parser/redirection.c
 					srcs/parser/redirection_list.c
-					srcs/parser/savecur.c
 					srcs/parser/select_command.c
 					srcs/parser/shell_command.c
 					srcs/parser/simple_command.c

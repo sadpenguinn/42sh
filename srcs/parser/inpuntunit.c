@@ -22,6 +22,6 @@ t_astree	*inputunit(void)
 		return (0);
 	res = simple_list1();
 	if (!(simple_list_terminator()))
-		return ((t_astree *)(freeastree(res) | parseerror()));
+		return (parseerror(res));
 	return (res);
 }

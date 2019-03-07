@@ -32,7 +32,7 @@ static t_astree	*get_pipline_bang(void)
 	root->type = NOT;
 	if (!(root->left = pipeline_command()))
 		if (!list_terminator())
-			return ((t_astree *)freeastree(root));
+			return (freeastree(root));
 	return (root);
 }
 
@@ -45,6 +45,6 @@ t_astree		*pipeline_command(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = PIPECMD;
 	if (!(root->left = pipeline()))
-		return ((t_astree *)freeastree(root));
+		return (freeastree(root));
 	return (root);
 }
