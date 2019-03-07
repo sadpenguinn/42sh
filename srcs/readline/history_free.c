@@ -13,5 +13,6 @@ void	history_free(t_history *history)
 		matrix_free(history->matrix[i++]);
 	free(history->matrix);
 	string_free(history->str);
+	line_free(g_history->search_line);
 	free(history);
 }

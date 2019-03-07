@@ -34,7 +34,27 @@ int		print_lines(t_matrix *matrix)
 	add_lines_text(matrix);
 	array_flush();
 	return (1);
+}
 
+int 	print_search(t_matrix *matrix)
+{
+	t_line	*line;
+	int 	symbols;
+
+	set_matrix_limits(matrix);
+	add_cursor_offset();
+	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
+	add_lines_text(matrix);
+	array_add("\n", 1);
+	line = g_history->search_line;
+	array_add(SEARCH_PROMPT, strlen(SEARCH_PROMPT));
+	add_line(line, 0, line->len);
+	symbols = line->symbols + strlen(SEARCH_PROMPT);
+	g_history->last_offset += 1 + symbols / g_w.ws_col;
+	if (symbols % g_w.ws_col == 0)
+		array_add("\n", 1);
+	array_flush();
+	return (1);
 }
 
 static int print_possibilities(t_matrix *matrix, char **matches, size_t cnt)

@@ -39,7 +39,10 @@ t_string	*readline(void)
 	ret = 1;
 	while (ret > 0)
 	{
-		print_default(g_history->cur_matrix);
+		if (g_search_mode)
+			print_search(g_history->cur_matrix);
+		else
+			print_default(g_history->cur_matrix);
 		ret = check_next_symbol();
 	}
 	if (ret == 0)
