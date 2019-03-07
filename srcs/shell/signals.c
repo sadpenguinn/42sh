@@ -21,6 +21,8 @@ void			xkill(void *cmd)
 
 void			shell_handler(int sig)
 {
+	if (sig == SIGINT)
+		dup2(0, -1);
 	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
 	{
 		if (g_pids)

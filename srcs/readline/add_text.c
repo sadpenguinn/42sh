@@ -61,7 +61,6 @@ void	add_text(t_matrix *matrix, int row, int col)
 	int symbols;
 
 	left = matrix->left_limit;
-	g_history->last_offset = 0;
 	while (left < row)
 	{
 		add_line_prefix(matrix, left);

@@ -151,19 +151,20 @@ t_string		*string_dup(t_string *src);
 void			matrix_create_line(t_matrix *matrix, int row);
 void			matrix_erase_line(t_matrix *matrix, int row);
 
-int				check_next_symbol(t_matrix *matrix);
+int				check_next_symbol(void);
 t_uchar			get_next_symbol(size_t size);
 
 void			get_term_params(struct winsize	*w);
 
 int				add_shortcut(t_uchar c);
 
-void			add_cursor_offset(int offset);
+void			add_cursor_offset(void);
+void			reset_last_offset(void);
 
 int				readline_mode(t_matrix *matrix, t_uchar c);
 int				vi_mode(t_matrix *matrix, t_uchar c);
 int				modes_handling(t_matrix *matrix, t_uchar c);
-int				esc_code_handling(t_matrix *matrix, t_uchar c);
+int				esc_code_handling(t_uchar c);
 
 int				normal_mode(t_matrix *matrix, t_uchar c);
 int				insert_mode(t_matrix *matrix, t_uchar c);

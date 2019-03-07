@@ -17,10 +17,10 @@
 int		print_default(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
-	add_cursor_offset(g_history->last_offset);
+	add_cursor_offset();
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
 	add_lines_text(matrix);
-	add_cursor_offset(g_history->last_offset);
+	add_cursor_offset();
 	add_cursor_text(matrix);
 	array_flush();
 	return (1);
@@ -29,7 +29,7 @@ int		print_default(t_matrix *matrix)
 int		print_lines(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
-	add_cursor_offset(g_history->last_offset);
+	add_cursor_offset();
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
 	add_lines_text(matrix);
 	array_flush();
@@ -42,7 +42,7 @@ static int print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 	size_t	i;
 
 	set_matrix_limits(matrix);
-	add_cursor_offset(g_history->last_offset);
+	add_cursor_offset();
 	add_lines_text(matrix);
 	i = 0;
 	array_add("\n", 1);
@@ -54,7 +54,7 @@ static int print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 		i++;
 	}
 	print_prompt();
-	g_history->last_offset = 0;
+	reset_last_offset();
 	free(matches);
 	return (1);
 }
