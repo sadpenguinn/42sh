@@ -48,7 +48,6 @@ t_cursor	matrix_string_insert(t_matrix *matrix, t_cursor pos, const char *str, i
 	t_cursor	cursor;
 	int			len;
 
-//	check_swap(&start, &end);
 	line = matrix->lines[pos.row];
 	i = line_string_insert(line, str, &pos, size);
 	if (i == size)

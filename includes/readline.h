@@ -89,7 +89,7 @@ typedef	struct	s_cursor
 
 typedef	struct	s_string
 {
-	int			len;
+	size_t		len;
 	char		*buf;
 }				t_string;
 
@@ -147,6 +147,8 @@ t_matrix		*matrix_dup(t_matrix *src);
 t_line			*line_dup(t_line *src);
 t_cursor		*cursor_dup(t_cursor *src);
 t_string		*string_dup(t_string *src);
+
+void			string_fill(t_string *str, char *buf, int len);
 
 void			matrix_create_line(t_matrix *matrix, int row);
 void			matrix_erase_line(t_matrix *matrix, int row);
@@ -294,5 +296,9 @@ char			*get_buffer_content(void);
 int				get_buffer_len(void);
 
 int 			lex_check_bash_word(const char *str, size_t len);
+
+int				history_save_elem(void);
+void	history_resize(t_history *history);
+void		history_fill(void);
 
 #endif

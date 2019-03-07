@@ -55,6 +55,9 @@ set(SHELL_SRC		srcs/shell/init.c
 set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
+					srcs/readline/history_save.c
+					srcs/readline/history_fill.c
+					srcs/readline/history_resize.c
 					srcs/readline/array.c
 					srcs/readline/check_next_symbol.c
 					srcs/readline/term.c
@@ -103,6 +106,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/string_init.c
 					srcs/readline/string_free.c
 					srcs/readline/string_dup.c
+					srcs/readline/string_fill.c
 					srcs/readline/get_cursor_pos_1.c
 					srcs/readline/get_cursor_pos_2.c
 					srcs/readline/get_cursor_pos_3.c
