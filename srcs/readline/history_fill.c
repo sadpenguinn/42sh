@@ -23,7 +23,7 @@ static void read_history_from_file(int fd)
 		g_history->matrix[g_history->len - 1] = matrix_init();
 		matrix_create_line(g_history->matrix[g_history->len - 1], 0);
 		matrix_string_insert(g_history->matrix[g_history->len - 1], pos, str, len);
-		string_fill(g_history->matrix[g_history->len - 1]->str, str, len);
+		string_fill(g_history->matrix[g_history->len - 1]->str_history, str, len);
 		free(str);
 	}
 }
@@ -59,8 +59,8 @@ static void	init_history(void)
 
 void		history_fill(void)
 {
-	if (g_history == NULL)
-		init_history();
+	history_del(&g_history);
+	init_history();
 	if (g_history->size == g_history->len)
 		history_resize(g_history);
 	g_history->len++;

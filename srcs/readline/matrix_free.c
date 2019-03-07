@@ -8,7 +8,7 @@ void	matrix_free(t_matrix *matrix)
 	if (matrix == NULL)
 		return ;
 	cursor_free(matrix->cursor);
-	string_free(matrix->str);
+	string_free(matrix->str_history);
 	i = 0;
 	while (i < matrix->len)
 		line_free(matrix->lines[i++]);

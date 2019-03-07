@@ -23,7 +23,7 @@ static void	write_history_on_disk(t_string *str)
 
 int			history_save_elem(void)
 {
-	if (g_history->cur_matrix->str->buf[0] == '\0')
+	if (g_history->cur_matrix->str_history->buf[0] == '\0')
 	{
 		matrix_del(&g_history->matrix[g_history->len - 1]);
 		matrix_del(&g_history->cur_matrix);
@@ -42,6 +42,6 @@ int			history_save_elem(void)
 	matrix_del(&g_history->matrix[g_history->len - 1]);
 	g_history->matrix[g_history->len - 1] = matrix_dup(g_history->cur_matrix);
 	matrix_del(&g_history->cur_matrix);
-	write_history_on_disk(g_history->matrix[g_history->len - 1]->str);
+	write_history_on_disk(g_history->matrix[g_history->len - 1]->str_history);
 	return (0);
 }

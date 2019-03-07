@@ -15,6 +15,7 @@
 #include <pwd.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include "libshell.h"
 
 #ifndef PATH_MAX
 # define PATH_MAX 4096
@@ -37,6 +38,7 @@ static int	get_prompt(char *cwd)
 	struct passwd	*pw;
 
 	pw = getpwuid(getuid());
+//	char *str = sgetenv("HOME", ENV_ALL);
 	if (getcwd(cwd, PATH_MAX) != NULL)
 		return (get_pos(cwd, pw->pw_dir));
 	return (-1);

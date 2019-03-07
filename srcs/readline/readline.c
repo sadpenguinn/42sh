@@ -49,11 +49,11 @@ t_string	*readline(void)
 	{
 		print_lines(g_history->cur_matrix);
 		write(1, "\n", 1);
-		matrix_to_string(g_history->cur_matrix, g_history->cur_matrix->str);
+		matrix_to_string(g_history->cur_matrix, g_history->cur_matrix->str_history);
 		if (history_save_elem())
 			return (readline());
 		unset_term();
-		return (g_history->matrix[g_history->len - 1]->str);
+		return (g_history->matrix[g_history->len - 1]->str_history);
 	}
 	history_del(&g_history);
 	unset_term();
