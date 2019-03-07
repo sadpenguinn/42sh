@@ -21,6 +21,17 @@
 # include "libft.h"
 # include "libhash.h"
 
+typedef struct			s_env
+{
+	char				**env;
+	size_t				size;
+	size_t				filled;
+}						t_env;
+
+# define ENV_EXP 1
+# define ENV_RO 2
+# define ENV_ALL 3
+
 /*
 ** Defines for sgetpath and get_cmd_path.
 ** PATH_NULL means there is no command, PATH_BUILT - builtin
@@ -79,12 +90,12 @@ char	*sstrerr(int e);
 ** environment and binaries
 */
 
-char	*sgetenv(const char *key);
-int		ssetenv(const char *key, const char *value);
-int		sunsetenv(const char *key);
+char	*sgetenv(const char *key, int local);
+int		ssetenv(const char *key, const char *value, int local);
+int		sunsetenv(const char *key, int local);
 int		sgetpath(const char *bin, void **ret);
 int		get_cmd_path(char *str, void **ret);
-void	fill_genv(void);
+void	fill_genv(t_env *env, t_hash *hash_env);
 
 /*
 ** Other functions for working with two-dimensional arrays

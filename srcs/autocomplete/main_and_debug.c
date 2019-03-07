@@ -6,11 +6,11 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:07:25 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/04 20:52:42 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/06 19:24:10 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "autocomplite.h"
+#include "autocomplete.h"
 
 /*
 ** Global variables for parser
@@ -39,17 +39,21 @@ void	printmas(char **str)
 	free(str);
 }
 
+char    **autocomplete(t_line *line_info, int pos);
+
 int     main(int argc, char **argv, char **env)
 {
 	char	**res;
+	char	*test;
 	t_line	*line_info;
 
 	argc++;
+	test = ft_strdup("$HOM");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));
-	line_info->buf = ft_strdup("$HO");
-	res = autocomplite(line_info, 2);
+	line_info->buf = test;
+	res = autocomplete(line_info, ft_strlen(test));
 	printmas(res);
 	return (0);
 }

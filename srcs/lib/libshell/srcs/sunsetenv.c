@@ -18,13 +18,35 @@
 ** SHERR_OK will be returned, else - SHERR_ERR
 */
 
-int		sunsetenv(const char *key)
+static void		sunsetenv_sample(t_env *env, t_hash *hash_env)
 {
-	if (hash_delete(key, g_hash_env) == HSH_ERR)
-		return (SHERR_ERR);
-	free_str_arr(&g_env.env);
-	g_env.size = 0;
-	g_env.filled = 0;
-	fill_genv();
+	free_str_arr(&env->env);
+	env->size = 0;
+	env->filled = 0;
+	fill_genv(env, hash_env);
+}
+
+int				sunsetenv(const char *key, int local)
+{
+	if (local == ENV_EXP)
+	{
+		if (hash_delete(key, g_hash_env) == HSH_ERR)
+			return (SHERR_ERR);
+		sunsetenv_sample(&g_env, g_hash_env);
+	}
+	else if (local == ENV_RO)
+	{
+		if (hash_delete(key, g_hash_roenv) == HSH_ERR)
+			return (SHERR_ERR);
+		sunsetenv_sample(&g_roenv, g_hash_roenv);
+	}
+	else
+	{
+		if (hash_delete(key, g_hash_env) == HSH_ERR &&
+			hash_delete(key, g_hash_roenv) == HSH_ERR)
+			return (SHERR_ERR);
+		sunsetenv_sample(&g_env, g_hash_env);
+		sunsetenv_sample(&g_roenv, g_hash_roenv);
+	}
 	return (SHERR_OK);
 }

@@ -1,7 +1,7 @@
 #include "readline.h"
 #include "libft.h"
 
-int insert_mode(t_matrix *matrix, t_uchar c)
+int replace_mode(t_matrix *matrix, t_uchar c)
 {
 	char	str[sizeof(t_uchar)];
 
@@ -18,8 +18,9 @@ int insert_mode(t_matrix *matrix, t_uchar c)
 		g_vi_mode = NORMAL_MODE;
 		return (1);
 	}
+	del(matrix);
 	ft_memset(str, 0, sizeof(t_uchar));
-	matrix_string_insert(matrix, matrix->cursor,
+	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
 						 str, symbol_to_string(matrix, c, str));
 	return (1);
 }

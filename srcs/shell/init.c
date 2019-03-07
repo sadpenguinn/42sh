@@ -17,9 +17,11 @@
 */
 
 t_hash			*g_hash_env = NULL;
+t_hash			*g_hash_roenv = NULL;
 t_hash			*g_path = NULL;
 t_hash			*g_path_sums = NULL;
 t_env			g_env;
+t_env			g_roenv;
 
 /*
 ** Global variables for saving jobs and processes

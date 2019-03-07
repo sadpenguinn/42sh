@@ -28,3 +28,9 @@ void	add_prompt_style(void)
 	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
 	array_add(TEXT_COLOR_BLUE, strlen(TEXT_COLOR_BLUE));
 }
+
+void	add_shell_name_style(void)
+{
+	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
+	array_add(TEXT_COLOR_GREEN, strlen(TEXT_COLOR_GREEN));
+}

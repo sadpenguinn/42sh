@@ -43,6 +43,6 @@ int				built_setenv(char **av, char **env)
 	env = NULL;
 	if (!parse_flags(av, &key, &value))
 		return (SHERR_ERR);
-	ssetenv(key, value);
+	ssetenv(key, value, ENV_EXP);
 	return (SHERR_OK);
 }

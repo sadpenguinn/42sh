@@ -58,6 +58,11 @@ int			get_cmd_path(char *str, void **ret)
 {
 	int		tmp;
 
+	if (!str)
+	{
+		*ret = NULL;
+		return (PATH_NULL);
+	}
 	if (ft_strchr(str, '/'))
 		return (find_abs_bin(str, ret));
 	else if ((tmp = find_function(str, ret)) != PATH_NULL)

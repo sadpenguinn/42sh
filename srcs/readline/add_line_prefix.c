@@ -43,5 +43,5 @@ void		add_line_prefix(t_matrix *matrix, int cur_row)
 	num_to_str(matrix->len, str, cur_row + 1);
 	array_add(str, strlen(str));
 	array_add("> ", 2);
-	array_add(COLOR_DEFAULT, strlen(COLOR_DEFAULT));
+	array_add(DEFAULT_TERM_COLORS, strlen(DEFAULT_TERM_COLORS));
 }

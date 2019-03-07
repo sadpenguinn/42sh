@@ -23,13 +23,15 @@ set(VECTOR_INC		srcs/lib/vector/includes)
 set(LIBSHELL		shell)
 set(LIBSHELL_DIR	srcs/lib/libshell)
 
-if (APPLE)
+#[[if (APPLE)
 	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 elseif (UNIX)
 	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra")
 else ()
 	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g")
-endif()
+endif()]]
+
+set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
 
 
 set(MAIN			srcs/shell.c)
@@ -50,9 +52,12 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/argv_parser.c
 					srcs/shell/parse_input.c srcs/shell/init_functions.c srcs/shell/destroy_functions.c srcs/shell/init_function_args.c srcs/shell/destroy_function_args.c)
 
-set(AUTOCOMPLI_SRC	srcs/autocomplite/autocomplite.c)
+set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
+					srcs/readline/history_save.c
+					srcs/readline/history_fill.c
+					srcs/readline/history_resize.c
 					srcs/readline/array.c
 					srcs/readline/check_next_symbol.c
 					srcs/readline/term.c
@@ -78,6 +83,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/print.c
 					srcs/readline/readline_mode.c
 					srcs/readline/add_cursor_offset.c
+					srcs/readline/reset_last_offset.c
 					srcs/readline/add_line_prefix.c
 					srcs/readline/get_lines_info.c
 					srcs/readline/autocomplete_file_dir.c
@@ -100,6 +106,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/string_init.c
 					srcs/readline/string_free.c
 					srcs/readline/string_dup.c
+					srcs/readline/string_fill.c
 					srcs/readline/get_cursor_pos_1.c
 					srcs/readline/get_cursor_pos_2.c
 					srcs/readline/get_cursor_pos_3.c
@@ -111,15 +118,16 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/readline_buffer.c
 					srcs/readline/add_shortcut.c
 					srcs/readline/check_modes.c
-					srcs/readline/normal_mode.c
-					srcs/readline/insert_mode.c
-					srcs/readline/replace_mode.c
+					srcs/readline/vi_mode_normal.c
+					srcs/readline/vi_mode_insert.c
+					srcs/readline/vi_mode_replace.c
 					srcs/readline/paste_text.c
 					srcs/readline/del_text_1.c
 					srcs/readline/del_text_2.c
 					srcs/readline/yank_text_1.c
 					srcs/readline/yank_text_2.c
 					srcs/readline/are_default_shortcuts.c
+					srcs/readline/lex_check_bash_word.c
 					srcs/readline/matrix_string_yank.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
@@ -201,7 +209,7 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_setenv.c
 					srcs/builtins/built_unsetenv.c
 					srcs/builtins/built_exit.c
-					srcs/builtins/built_echo_reqmts.c srcs/builtins/built_set.c srcs/builtins/built_hash.c)
+					srcs/builtins/built_echo_reqmts.c srcs/builtins/built_set.c srcs/builtins/built_hash.c srcs/builtins/built_export.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
@@ -225,5 +233,8 @@ add_subdirectory(${LIBHASH_DIR})
 add_subdirectory(${VECTOR_DIR})
 add_subdirectory(${LIBSHELL_DIR})
 
-add_executable(${NAME} ${MAIN} ${SHELL_SRC} ${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC} ${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC} ${EXPAND_SRC} ${EXPRLEXER})
+add_executable(${NAME} ${MAIN} ${SHELL_SRC}
+		${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC}
+		${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC}
+		${EXPAND_SRC} ${EXPRLEXER} ${AUTOCOMPLI_SRC})
 target_link_libraries(${NAME} ${LIBFT} ${LIBHASH} ${VECTOR} ${LIBSHELL})

@@ -77,7 +77,7 @@ int			newline_handling(t_matrix *matrix)
 	matrix_create_line(matrix, matrix->cursor->row + 1);
 	if (prev_col != line->len)
 	{
-		matrix_string_insert(matrix, matrix->cursor,
+		matrix_string_insert(matrix, *matrix->cursor,
 				line->buf + prev_col, line->len - prev_col);
 		matrix->cursor->col = 0;
 	}

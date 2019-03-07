@@ -13,10 +13,12 @@
 #include "readline.h"
 #include "libft.h"
 
-void	add_cursor_offset(int offset)
+void	add_cursor_offset(void)
 {
 	char	str[20];
+	int 	offset;
 
+	offset =  g_history->last_offset;
 	if (offset)
 	{
 		memset(str, 0, 20);
@@ -26,4 +28,5 @@ void	add_cursor_offset(int offset)
 		array_add("A", 1);
 	}
 	array_add(CURSOR_MOVE_LINE_START, strlen(CURSOR_MOVE_LINE_START));
+	reset_last_offset();
 }

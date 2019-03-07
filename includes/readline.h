@@ -15,6 +15,7 @@
 
 # define CSI "\e["
 # define COLOR_DEFAULT "\e[0m"
+# define DEFAULT_TERM_COLORS "\e[0m\e[39;49m"
 # define CURSOR_MOVE_LINE_START "\e[1G"
 # define CURSOR_CLEAR_TO_END_SCREEN "\e[0J"
 # define CURSOR_CLEAR_TO_START_SCREEN "\e[1J"
@@ -28,6 +29,9 @@
 # define TEXT_COLOR_MAGENTA "\e[35m"
 # define TEXT_COLOR_CYAN "\e[36m"
 # define TEXT_COLOR_WHITE "\e[37m"
+# define TEXT_REVERSE_VIDEO "\e[7m"
+# define TURN_ON_CURSOR "\e[?25h"
+# define TURN_OF_CURSOR "\e[?25l"
 
 # define TEXT_BOLD "\e[1m"
 
@@ -54,7 +58,7 @@ enum	e_editing_modes
 	VI = 1, READLINE = 2
 };
 
-enum	e_vi_modes
+enum	e_vi_mode_editing_modes
 {
 	INSERT_MODE = 0, NORMAL_MODE = 1, VISUAL_MODE = 2, REPLACE_MODE = 3
 };
@@ -85,7 +89,7 @@ typedef	struct	s_cursor
 
 typedef	struct	s_string
 {
-	int			len;
+	size_t		len;
 	char		*buf;
 }				t_string;
 
@@ -117,12 +121,14 @@ typedef struct	s_history
 	int			cur;
 	int			last_offset;
 	t_matrix	**matrix;
-	t_matrix	*tmp;
+	t_matrix	*cur_matrix;
 	t_string	*str;
+	t_line		*line_search;
 }				t_history;
 
 t_history		*g_history;
 int				g_mode;
+int				g_search_mode;
 int				g_vi_mode;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
@@ -142,22 +148,25 @@ t_line			*line_dup(t_line *src);
 t_cursor		*cursor_dup(t_cursor *src);
 t_string		*string_dup(t_string *src);
 
+void			string_fill(t_string *str, char *buf, int len);
+
 void			matrix_create_line(t_matrix *matrix, int row);
 void			matrix_erase_line(t_matrix *matrix, int row);
 
-int				check_next_symbol(t_matrix *matrix);
+int				check_next_symbol(void);
 t_uchar			get_next_symbol(size_t size);
 
 void			get_term_params(struct winsize	*w);
 
 int				add_shortcut(t_uchar c);
 
-void			add_cursor_offset(int offset);
+void			add_cursor_offset(void);
+void			reset_last_offset(void);
 
 int				readline_mode(t_matrix *matrix, t_uchar c);
 int				vi_mode(t_matrix *matrix, t_uchar c);
 int				modes_handling(t_matrix *matrix, t_uchar c);
-int				esc_code_handling(t_matrix *matrix, t_uchar c);
+int				esc_code_handling(t_uchar c);
 
 int				normal_mode(t_matrix *matrix, t_uchar c);
 int				insert_mode(t_matrix *matrix, t_uchar c);
@@ -186,9 +195,9 @@ int				yank_begin_alnum(t_matrix *matrix);
 int 			yank_next_alnum(t_matrix *matrix);
 int				yank_end_alnum(t_matrix *matrix);
 
-void			matrix_string_insert(t_matrix *matrix, t_cursor *pos,
+t_cursor		matrix_string_insert(t_matrix *matrix, t_cursor pos,
 		const char *str, int size);
-void			matrix_string_delete(t_matrix *matrix, int row, int col);
+void			matrix_string_delete(t_cursor left, t_cursor right);
 void			matrix_string_yank(t_matrix *matrix, int row, int col);
 
 void			line_resize(t_line *line, int new_size, int old_size);
@@ -242,6 +251,7 @@ int				newline_handling(t_matrix *matrix);
 void			add_lines_prompt_style(void);
 void			add_cur_line_prompt_style(void);
 void			add_prompt_style(void);
+void			add_shell_name_style(void);
 
 int				symbol_to_string(t_matrix *matrix, t_uchar c, char *str);
 
@@ -284,5 +294,11 @@ void			buffer_add(const char *str, int size);
 void			buffer_free(void);
 char			*get_buffer_content(void);
 int				get_buffer_len(void);
+
+int 			lex_check_bash_word(const char *str, size_t len);
+
+int				history_save_elem(void);
+void	history_resize(t_history *history);
+void		history_fill(void);
 
 #endif

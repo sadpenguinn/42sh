@@ -18,11 +18,25 @@
 ** If there is no variable, NULL will be returned
 */
 
-char	*sgetenv(const char *key)
+char	*sgetenv(const char *key, int local)
 {
 	t_hshtb	*cell;
 
-	if (!(cell = hash_find(key, g_hash_env)))
-		return (NULL);
+	if (local == ENV_EXP)
+	{
+		if (!(cell = hash_find(key, g_hash_env)))
+			return (NULL);
+	}
+	else if (local == ENV_RO)
+	{
+		if (!(cell = hash_find(key, g_hash_roenv)))
+			return (NULL);
+	}
+	else
+	{
+		if (!(cell = hash_find(key, g_hash_env)) &&
+			!(cell = hash_find(key, g_hash_roenv)))
+			return (NULL);
+	}
 	return (cell->value);
 }

@@ -88,7 +88,7 @@ int			execfor(t_astree *root, int fd[2], int job, int isfork)
 	root = root->left->right;
 	while (root)
 	{
-		ssetenv(var, root->content);
+		ssetenv(var, root->content, ENV_RO);
 		res = execlist1(body, fd, job, isfork);
 		root = root->right;
 	}

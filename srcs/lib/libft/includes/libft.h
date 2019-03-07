@@ -39,6 +39,8 @@
 # define BACKG_MAGENTA	45
 # define BACKG_CYAN		46
 # define BACKG_WHITE	47
+# define RED 1
+# define BLACK 0
 
 /*
 ** Lists
@@ -67,6 +69,17 @@ typedef struct	s_btree
 	struct s_btree	*left;
 	struct s_btree	*right;
 }				t_btree;
+
+typedef	struct				s_rb_tree_node
+{
+	struct s_rb_tree_node	*parent;
+	struct s_rb_tree_node	*left;
+	struct s_rb_tree_node	*right;
+	int						color;
+	void					*data;
+	size_t					data_size;
+}							t_rb_tree_node;
+
 
 t_btree			*ft_btree_new(void *data);
 t_btree			*ft_btree_ins(t_btree **root, void *data,
@@ -170,5 +183,24 @@ int				fatal_error(char *message, int err);
 void			*xmalloc(size_t bytes);
 void			*xrealloc(void *p, size_t newsize, size_t oldsize);
 void			**ft_joinvect(void **arr1, void **arr2, int free2);
+t_rb_tree_node	*ft_rb_tree_find(const void *data,
+								   t_rb_tree_node *node, int (*cmp)(const void *data1, const void *data2));
+void			ft_rb_tree_delete(t_rb_tree_node *node,
+											  t_rb_tree_node **root);
+t_rb_tree_node	*ft_rb_tree_minimum(t_rb_tree_node *node);
+t_rb_tree_node	*ft_rb_tree_maximum(t_rb_tree_node *node);
+void			ft_rb_tree_traversal_postorder(t_rb_tree_node *root,
+											   void (*f)(t_rb_tree_node *node));
+void			ft_rb_tree_traversal_inorder(t_rb_tree_node *root,
+											 void (*f)(t_rb_tree_node *node));
+void			ft_rb_tree_traversal_preorder(t_rb_tree_node *root,
+											  void (*f)(t_rb_tree_node *ndoe));
+t_rb_tree_node	*ft_rb_tree_insert(const void *data,
+		size_t size, t_rb_tree_node **root,
+		int (*cmp)(const void *data1, const void *data2));
+void			ft_rb_tree_rotate_right(t_rb_tree_node *x,
+		t_rb_tree_node **root);
+void			ft_rb_tree_rotate_left(t_rb_tree_node *x,
+									   t_rb_tree_node **root);
 
 #endif
