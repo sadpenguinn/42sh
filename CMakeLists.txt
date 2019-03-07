@@ -82,6 +82,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/count_string_objects.c
 					srcs/readline/print.c
 					srcs/readline/readline_mode.c
+					srcs/readline/search_mode.c
 					srcs/readline/add_cursor_offset.c
 					srcs/readline/reset_last_offset.c
 					srcs/readline/add_line_prefix.c

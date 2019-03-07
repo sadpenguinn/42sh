@@ -134,7 +134,7 @@ static int	replace_symbol(t_matrix *matrix, t_uchar c)
 	del(matrix);
 	ft_memset(str, 0, sizeof(t_uchar));
 	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
-						 str, symbol_to_string(matrix, c, str));
+						 str, symbol_to_string(c, str));
 	matrix->cursor->col = get_cursor_pos_left(matrix);
 	g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
 	return (1);
@@ -142,6 +142,11 @@ static int	replace_symbol(t_matrix *matrix, t_uchar c)
 
 int normal_mode(t_matrix *matrix, t_uchar c)
 {
+	if (c == CTRL_R)
+	{
+		g_search_mode = 1;
+		return (1);
+	}
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'd')
 		return (normal_mode_del(matrix, c));
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'y')

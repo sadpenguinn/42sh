@@ -21,10 +21,11 @@ void	set_term(void)
 	tcgetattr(0, &g_old);
 	new = g_old;
 	new.c_lflag &= ~(ICANON | ECHO);
-	new.c_cc[VLNEXT] = 022;
-	new.c_cc[VEOF] = 04;
-	new.c_cc[VREPRINT] = 022;
-	new.c_cc[VQUIT] = 034;
+	new.c_cc[VEOF] = 17;
+	new.c_cc[VLNEXT] = 26;
+	new.c_cc[VEOF] = 4;
+	new.c_cc[VREPRINT] = 22;
+	new.c_cc[VQUIT] = 34;
 	tcsetattr(0, TCSANOW, &new);
 }
 
