@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 /*
-**        (root0)EX_EXPR
+**        (root0)EX_QUES(?)
 **              /       \
-** (cond)EX_EXPR        ?:(root1)
+** (cond)EX_EXPR        EX_COL(:)(root1)
 **                     /  \
 **       (expr3)EX_EXPR    EX_EXPR(expr3)
 */
@@ -30,10 +30,10 @@ t_astree	*expr3(void)
 	if (!checktype(EX_QUES))
 		return (res);
 	root = xmalloc(sizeof(t_astree));
-	root->type = EX_EXPR;
+	root->type = EX_QUES;
 	root->left = res;
 	root->right = xmalloc(sizeof(t_astree));
-	root->right->type = EX_COND;
+	root->right->type = EX_COL;
 	if (!(root->right->left = expr3()))
 		return (parseerror(root));
 	if (!checktype(EX_COL))

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 /*
-**      (root0)EX_EXPR
+**      (root0)EX_ASSIGN
 **            /       \
 **	(res)PREID         x=(root1)
 **                    / \
@@ -26,7 +26,7 @@ static t_astree	*expr2_1(t_astree *res, t_type type)
 
 	root[0] = xmalloc(sizeof(t_astree));
 	root[1] = xmalloc(sizeof(t_astree));
-	root[0]->type = EX_EXPR_ASN;
+	root[0]->type = EX_ASSIGN;
 	root[0]->left = res;
 	root[0]->right = root[1];
 	root[1]->type = type;

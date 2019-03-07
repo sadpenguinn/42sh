@@ -10,26 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exprexecute.h"
+#include "calc.h"
 
 /*
 * Missing EX_COND, EX_QUES, EX_COL, all ASSIGNments
 * g_sherror must be declared in 42sh.c
 */
 
-int			g_sherror = 0;
+int			g_calcerr = 0;
 
-intmax_t	exprexecute(t_astree *root)
+intmax_t	calc(t_astree *root)
 {
 	if (root->type == EX_NUM)
 		return (ft_atoi(root->content));
-	if (root->type == EX_VAR)
-		return (get_var(root->content));
-	if (root->type == EX_PREINC || root->type == EX_PREDEC ||
-		root->type == EX_UPLUS || root->type EX_UMINUS ||
-		root->type == EX_LNOT || root->type EX_BNOT)
-		return (get_prefix(root));
+	/* if (root->type == EX_VAR) */
+	/* 	return (get_var(root->content)); */
 	if (root->type == EX_EXPR)
-		return (operators[root->right->type - OPSHIFT](execute(root->left), root->right));
+		return (operators[root->right->type - OPSHIFT](calc(root->left), root->right));
 	return (0);
 }

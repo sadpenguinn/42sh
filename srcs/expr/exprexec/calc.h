@@ -16,9 +16,14 @@
 # include <inttypes.h>
 # include "expression.h"
 
-extern intmax_t	(*operators[500])(intmax_t operator, t_astree *node);
+# define CL_DIVZERO 1
 
-intmax_t		epxrexecute(t_astree *root);
+extern intmax_t	(*operators[100])(intmax_t operator, t_astree *node);
+extern int		g_calcerr;
+
+intmax_t		calc(t_astree *root);
+intmax_t		calcerror(int err);
+
 intmax_t		op_add(intmax_t operator, t_astree *node);
 intmax_t		op_sub(intmax_t operator, t_astree *node);
 intmax_t		op_div(intmax_t operator, t_astree *node);
@@ -40,3 +45,15 @@ intmax_t		op_land(intmax_t operator, t_astree *node);
 intmax_t		op_lor(intmax_t operator, t_astree *node);
 
 #endif
+
+/*
+**	     ROOT
+**      /    \
+**	LEFT      RIGHT
+**
+**	LEFT: EX_NUM, EX_VAR, EX_EXPR, EX_QUES, EX_ASSIGN
+**	LEFT: EX_ADD, EX_SUB, EX_LNOT, EX_BNOT
+**	LEFT: EX_INC, EX_DEC
+**
+**	RIGHT: special
+*/

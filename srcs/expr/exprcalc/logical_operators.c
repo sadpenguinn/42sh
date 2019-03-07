@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exprexecute.h"
+#include "calc.h"
 
 intmax_t	op_lor(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator || execute(node->left);
+	tmp = operator || calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -26,7 +26,7 @@ intmax_t	op_land(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator && execute(node->left);
+	tmp = operator && calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -36,7 +36,7 @@ intmax_t	op_neq(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator != execute(node->left);
+	tmp = operator != calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -46,7 +46,7 @@ intmax_t	op_eq(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator == execute(node->left);
+	tmp = operator == calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -56,7 +56,7 @@ intmax_t	op_leq(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator <= execute(node->left);
+	tmp = operator <= calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -66,7 +66,7 @@ intmax_t	op_lt(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator < execute(node->left);
+	tmp = operator < calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -76,7 +76,7 @@ intmax_t	op_geq(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator >= execute(node->left);
+	tmp = operator >= calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -86,7 +86,7 @@ intmax_t	op_gt(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator > execute(node->left);
+	tmp = operator > calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);

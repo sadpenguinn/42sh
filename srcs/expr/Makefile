@@ -41,13 +41,20 @@ SRC		+= ./expression.c
 
 SRC		+= ./exprlexer/exprlexer.c
 
+SRC		+= ./exprcalc/calc.c\
+				 ./exprcalc/calcerror.c\
+				 ./exprcalc/math_operators.c\
+				 ./exprcalc/logical_operators.c\
+				 ./exprcalc/bits_operators.c\
+				 ./exprcalc/calcarray.c
+
 OTHERSRC=	../lib/libft/libft.a ../lib/vector/libvector.a ../lib/libshell/libshell.a ../lexer/lexer_tools.c
 
 OBJ		=	$(SRC:.c=.o)
 
 CC		?=	gcc
 # CFLAGS	=	-Wall -Wextra -Werror
-INCLUDES=	-I../lib/libft/includes -I../lib/vector/includes -I../../includes -I../lib/libhash/includes -I../lib/libstring/includes -I.
+INCLUDES=	-I../lib/libft/includes -I../lib/vector/includes -I../../includes -I../lib/libhash/includes -I../lib/libstring/includes -I./ -I./exprcalc -I./exprlexer -I./exprparser
 CFLAGS	+=	-O0 -g
 
 .PHONY: all clean fclean re

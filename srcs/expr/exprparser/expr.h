@@ -28,8 +28,7 @@
 **	*	EX_MUL
 **	/	EX_DIV
 **	%	EX_MOD
-**	+	EX_ADD
-**	-	EX_SUB
+**	+	EX_ADD **	-	EX_SUB
 **	<<	EX_LSH
 **	>>	EX_RSH
 **	<	EX_GT

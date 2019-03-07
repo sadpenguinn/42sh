@@ -30,7 +30,7 @@ extern void				*g_extokens;
 extern int				g_exprerr;
 
 t_astree				*expr(void);
-intmax_t				epxrexecute(t_astree *root);
+intmax_t				calc(t_astree *root);
 
 void		print_astree(t_astree *root);
 

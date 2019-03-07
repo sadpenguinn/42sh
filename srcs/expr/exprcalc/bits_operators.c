@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exprexecute.h"
+#include "calc.h"
 
 
 intmax_t	op_bor(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator | exprexecute(node->left);
+	tmp = operator | calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -27,7 +27,7 @@ intmax_t	op_bxor(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator ^ exprexecute(node->left);
+	tmp = operator ^ calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -37,7 +37,7 @@ intmax_t	op_band(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator & exprexecute(node->left);
+	tmp = operator & calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -47,7 +47,7 @@ intmax_t	op_rsh(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator >> exprexecute(node->left);
+	tmp = operator >> calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
@@ -57,7 +57,7 @@ intmax_t	op_lsh(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator << exprexecute(node->left);
+	tmp = operator << calc(node->left);
 	if (node->right)
 		return (operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);

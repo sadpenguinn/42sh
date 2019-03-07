@@ -6,6 +6,7 @@ int					g_exprerr;
 
 void			exprlexer_print(void *lexems);
 
+
 long int	expression(char *arg)
 {
 	t_lexer		*lexer;
@@ -18,6 +19,7 @@ long int	expression(char *arg)
 	g_exprerr = 0;
 	root = expr();
 	print_astree(root);
+	printf("res:%ld\n", calc(root));
 	/* return (exprexecute(ast)); */
 	return (0);
 }
