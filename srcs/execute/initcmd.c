@@ -58,7 +58,7 @@ static char	**get_argv(t_list *args)
 	char	**argv;
 
 	if (!args)
-		return (0);
+		return (xmalloc(sizeof(char *)));
 	lst = args;
 	while (lst)
 	{

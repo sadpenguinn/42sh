@@ -120,12 +120,13 @@ int			execscmd(t_astree *root, int fd[2], int job, int isfork)
 
 	if (initcmd(root, fd, cmd, aven))
 		return (freecmd(cmd, 0));
-	if (!aven[0])
-		return (set_envs(cmd[1]));
-	pid = execcommand(aven, cmd[2], isfork);
+	if (!aven[0] || !aven[0][0])
+		pid = set_envs(cmd[1]);
+	else
+		pid = execcommand(aven, cmd[2], isfork);
 	freecmd(cmd, aven);
-	if (pid == -1)
-		return (-1);
+	if (pid == -1 || pid == 0)
+		return (pid);
 	if (g_cmdtype == PATH_NOFORK)
 		return (pid);
 	if (job || isfork)
