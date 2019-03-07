@@ -242,6 +242,7 @@ t_lexer				*lexer(char const *str, size_t len)
 	t_lexer		*lexer;
 	void		*lexems;
 	char		*string;
+	ft_putendl(str);
 
 	if (!(lexems = vector_create(sizeof(t_lexem))))
 		die();

@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -12,19 +13,12 @@
 
 #include "expr.h"
 
-t_astree	*expr(void)
+t_astree		*expr(void)
 {
 	t_astree	*root;
-	t_astree	*res[2];
 
-	if (!(res[0] = expr2()))
-		return (0);
-	if (!(res[1] = expr_rest()))
-		return (res[0]);
-	if (!(root = ft_memalloc(sizeof(t_astree))))
-		return (0);
-	root->type = EX_EXPR;
-	root->left = res[0];
-	root->right = res[1];
+	root = expr1();
+	if (!checktype(TOKEOF))
+		return (parseerror(root));
 	return (root);
 }

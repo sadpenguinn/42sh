@@ -12,8 +12,6 @@
 
 #include "execute.h"
 
-void	*g_pids = NULL;
-
 int		execute(t_astree *root)
 {
 	int		res;
@@ -22,7 +20,6 @@ int		execute(t_astree *root)
 	g_execerr = 0;
 	if (!root)
 		return (EXIT_FAILURE);
-	g_pids = vector_create(sizeof(pid_t));
 	fd[0] = 0;
 	fd[1] = 1;
 	res = execlist1(root, fd, 0, 0);

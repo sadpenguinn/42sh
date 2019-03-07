@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr4_rest.c                                       :+:      :+:    :+:   */
+/*   expr.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 19:27:16 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/20 19:35:32 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/01/18 18:39:53 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/20 15:19:50 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expr.h"
 
-t_astree	*expr4_rest_1(void)
+static t_astree	*expr1_rest(void)
 {
 	t_astree	*root;
-	t_astree	*res;
 
-	if (!(res = expr5()))
+	if (!(checktype(EX_COMMA)))
 		return (0);
-	if (!(root = ft_memalloc(sizeof(t_astree))))
-		return (0);
-	root->type = EX_LOR;
-	root->left = res;
-	root->right = expr4_rest();
+	root = xmalloc(sizeof(t_astree));
+	root->type = EX_COMMA;
+	if (!(root->left = expr2()))
+		return (freeastree(root));
+	root->right = expr1_rest();
 	return (root);
 }
 
-t_astree	*expr4_rest(void)
+t_astree		*expr1(void)
 {
-	uint64_t	type;
+	t_astree	*root;
+	t_astree	*res[2];
 
-	if (g_excurtok >= ((size_t *)g_extokens)[2])
+	if (!(res[0] = expr2()))
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
-	if (type == EX_LOR && ++g_excurtok)
-		return (expr4_rest_1());
-	return (0);
+	if (!(res[1] = expr1_rest()))
+		return (res[0]);
+	root = xmalloc(sizeof(t_astree));
+	root->type = EX_EXPR;
+	root->left = res[0];
+	root->right = res[1];
+	return (root);
 }

@@ -1,9 +1,71 @@
-all:
-	gcc *.c */*.c ../lexer/lexer_tools.c ../lib/libft/libft.a ../lib/libshell/libshell.a ../lib/libhash/libhash.a ../lib/vector/libvector.a -I ../../includes -I ../lib/libft/includes -I ../lib/libhash/includes -I ../lib/vector/includes -I .
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/29 18:43:26 by bwerewol          #+#    #+#              #
+#    Updated: 2019/02/20 21:24:11 by bwerewol         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FT_NAME =	expression.out
+SRC_DIR	=	./
+
+SRC		=	./exprparser/expr.c\
+				./exprparser/expr1.c\
+				./exprparser/expr2.c\
+				./exprparser/expr3.c\
+				./exprparser/expr4.c\
+				./exprparser/expr5.c\
+				./exprparser/expr6.c\
+				./exprparser/expr7.c\
+				./exprparser/expr8.c\
+				./exprparser/expr9.c\
+				./exprparser/expr10.c\
+				./exprparser/expr11.c\
+				./exprparser/expr12.c\
+				./exprparser/expr13.c\
+				./exprparser/expr14.c\
+				./exprparser/preunary.c\
+				./exprparser/operand.c\
+				./exprparser/preincdec.c\
+				./exprparser/postincdec.c\
+				./exprparser/variable.c\
+				./exprparser/otherfunc.c\
+				./exprparser/print_astree.c
+
+SRC		+= ./expression.c
+
+SRC		+= ./exprlexer/exprlexer.c
+
+OTHERSRC=	../lib/libft/libft.a ../lib/vector/libvector.a ../lib/libshell/libshell.a ../lexer/lexer_tools.c
+
+OBJ		=	$(SRC:.c=.o)
+
+CC		?=	gcc
+# CFLAGS	=	-Wall -Wextra -Werror
+INCLUDES=	-I../lib/libft/includes -I../lib/vector/includes -I../../includes -I../lib/libhash/includes -I../lib/libstring/includes -I.
+CFLAGS	+=	-O0 -g
+
+.PHONY: all clean fclean re
+
+all: $(FT_NAME)
+
+%.o:$(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+$(FT_NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(OTHERSRC) $(INCLUDES) -o $(FT_NAME)
 
 clean:
-	rm -rf a.out
+	rm -rf $(OBJ)
 
 fclean: clean
+	rm -f $(FT_NAME)
 
-re: fclean all
+re:
+	@$(MAKE) fclean --no-print-directory
+	@$(MAKE) all --no-print-directory

@@ -4,17 +4,17 @@
 					|	/* empty */
 					;
 
-<expr2>	::= 			VAR '=' <expr2>
-					|	VAR '+=' <expr2>
-					|	VAR '-=' <expr2>
-					|	VAR '*=' <expr2>
-					|	VAR '/=' <expr2>
-					|	VAR '%=' <expr2>
-					|	VAR '<<=' <expr2>
-					|	VAR '>>=' <expr2>
-					|	VAR '&=' <expr2>
-					|	VAR '^=' <expr2>
-					|	VAR '|=' <expr2>
+<expr2>	::= 			<preincdec> '=' <expr2>
+					|	<preincdec> '+=' <expr2>
+					|	<preincdec> '-=' <expr2>
+					|	<preincdec> '*=' <expr2>
+					|	<preincdec> '/=' <expr2>
+					|	<preincdec> '%=' <expr2>
+					|	<preincdec> '<<=' <expr2>
+					|	<preincdec> '>>=' <expr2>
+					|	<preincdec> '&=' <expr2>
+					|	<preincdec> '^=' <expr2>
+					|	<preincdec> '|=' <expr2>
 					|	<expr3>
 					;
 
@@ -90,17 +90,19 @@
 					|	/* Nothing */
 					;
 
-
-<expr14>	::=			<operand> <expr14_rest>
+<expr14>	::=			<preunary> <expr14_rest>
 					;
-<expr14_rest>	::=		POWER <operand> <expr14_rest>
+<expr14_rest>	::=		POWER <preunary> <expr14_rest>
 					|	/* Nothing */
 					;
 
-<pre_unary>	::=			('-' | '+') <pre_unary>
-					|	('!' | '~') <pre_unary>
-					|	<preincdec>
+<preunary>	::=			('-' | '+' | '!' | '~') <preunary>
 					|	<operand>
+					;
+
+<operand>	::=			'(' <expr> ')'
+					|	NUM
+					|	<preincdec>
 					;
 
 <preincdec>	::=			('++' | '--') <preincdec>
@@ -113,19 +115,9 @@
 					|	/* empty */
 					;
 
-<operand>	::=			'(' <expr> ')'
-					|	NUM
-					|	<variable>
-					;
-
-<variable>	::=			<array>
-					|	<substitution> VAR
-					|	<substitution> VAR '[' '*' ']'
-					|	<substitution> VAR '[' <expr> ']'
-					;
-
-<substitution>	::=		'#'
-					|	/* empty */
+-----------------------------------------------------------------
+<variable>	::=			VAR
+					|	VAR '[' <expr> ']'
 					;
 
 2 + - ++--a++

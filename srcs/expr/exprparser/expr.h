@@ -148,42 +148,40 @@
 
 
 
+/*
+**	      EX_EXPR
+**	     /       \
+**	EXPR5         EX_(operator)
+**	             /      \
+**	        EXPR5       EX_(operator)
+*/
 
 
 t_astree				*expr(void);
-t_astree				*expr_rest(void);
+t_astree				*expr1(void);
 t_astree				*expr2(void);
 t_astree				*expr3(void);
 t_astree				*expr4(void);
-t_astree				*expr4_rest(void);
 t_astree				*expr5(void);
-t_astree				*expr5_rest(void);
 t_astree				*expr6(void);
-t_astree				*expr6_rest(void);
 t_astree				*expr7(void);
-t_astree				*expr7_rest(void);
 t_astree				*expr8(void);
-t_astree				*expr8_rest(void);
 t_astree				*expr9(void);
-t_astree				*expr9_rest(void);
 t_astree				*expr10(void);
-t_astree				*expr10_rest(void);
 t_astree				*expr11(void);
-t_astree				*expr11_rest(void);
 t_astree				*expr12(void);
-t_astree				*expr12_rest(void);
 t_astree				*expr13(void);
-t_astree				*expr13_rest(void);
 t_astree				*expr14(void);
-t_astree				*expr14_rest(void);
-t_astree				*pre_unary(void);
+t_astree				*preunary(void);
+t_astree				*operand(void);
 t_astree				*preincdec(void);
 t_astree				*postincdec(void);
-t_astree				*postincdec_rest(void);
-t_astree				*operand(void);
 t_astree				*variable(void);
-t_astree				*array(void);
-t_astree				*substitution();
+
+int						checktype(t_type type);
+t_astree				*freeastree(t_astree *root);
+t_astree				*savecur(unsigned int cur, t_astree *root);
+t_astree				*parseerror(t_astree *root);
 
 void		print_astree(t_astree *root);
 

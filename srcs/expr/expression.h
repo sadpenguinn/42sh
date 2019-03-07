@@ -15,19 +15,19 @@
 
 # include <stdint.h>
 # include <stdio.h>
-# include "exprlexer.h"
-# include "terminals.h"
+# include "shell.h"
 
-typedef struct			s_astree
-{
-	int				type;
-	char			*content;
-	struct s_astree	*left;
-	struct s_astree	*right;
-}						t_astree;
+/* typedef struct			s_astree */
+/* { */
+/* 	int				type; */
+/* 	char			*content; */
+/* 	struct s_astree	*left; */
+/* 	struct s_astree	*right; */
+/* }						t_astree; */
 
 extern unsigned int		g_excurtok;
 extern void				*g_extokens;
+extern int				g_exprerr;
 
 t_astree				*expr(void);
 intmax_t				epxrexecute(t_astree *root);

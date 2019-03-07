@@ -20,5 +20,6 @@ clean:
 
 fclean: clean
 	@ $(RM) $(NAME)
+	@ $(RM) $(NAME).dSYM
 
 re: fclean all
