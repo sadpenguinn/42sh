@@ -12,7 +12,7 @@ t_matrix	*matrix_dup(t_matrix *src)
 	dest->size = src->size;
 	dest->lines = (t_line **)xmalloc(sizeof(t_line *) * dest->size);
 	dest->cursor = cursor_dup(src->cursor);
-	dest->str = string_dup(src->str);
+	dest->str_history = string_dup(src->str_history);
 	dest->len = src->len;
 	dest->left_limit = src->left_limit;
 	dest->right_limit = src->right_limit;

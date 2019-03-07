@@ -42,7 +42,7 @@
 
 # define HISTORY_FILE ".42sh_history"
 
-# define SEARCH_PROMPT "search :"
+# define SEARCH_PROMPT "search : "
 
 # include <sys/ioctl.h>
 # include <string.h>
@@ -115,7 +115,7 @@ typedef	struct	s_matrix
 	int			right_limit;
 	int			single_quotes;
 	int			double_quotes;
-	t_string	*str;
+	t_string	*str_history;
 }				t_matrix;
 
 typedef struct	s_history
