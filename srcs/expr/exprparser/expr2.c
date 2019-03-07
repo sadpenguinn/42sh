@@ -57,7 +57,8 @@ t_astree		*expr2(void)
 		savecur(curtmp, res);
 		return (expr3());
 	}
+	g_excurtok++;
 	if (!(root = expr2_1(res, type)))
-		return (parseerror(res));
+		return (parseerror(0));
 	return (root);
 }

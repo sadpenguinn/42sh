@@ -112,7 +112,7 @@
 # define EX_COND				OPSHIFT + 555524
 # define EX_QUES				OPSHIFT + 36
 # define EX_COL					OPSHIFT + 37
-# define EX_ASSIG				OPSHIFT + 20
+# define EX_ASSIGN				OPSHIFT + 20
 # define EX_ADDASN				OPSHIFT + 44
 # define EX_SUBASN				OPSHIFT + 26
 # define EX_MULASN				OPSHIFT + 27
@@ -133,6 +133,5 @@
 # define EX_LNOT				OPSHIFT + 555549
 # define EX_BNOT				OPSHIFT + 555545
 # define EX_EXPR_ASN			OPSHIFT + 55552342
-# define EX_ASSIGN				OPSHIFT + 55542423
 
 #endif

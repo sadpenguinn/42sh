@@ -25,35 +25,47 @@ int main(void)
 	g_extokens = vector_create(sizeof(t_lexem));
 	g_excurtok = 0;
 
+	/* lex.type = EX_VAR; */
+	/* lex.word = "3"; */
+	/* vector_push_back(&g_extokens, &lex); */
+	/* printf("%s->%d\n", lex.word, lex.type); */
+
+	/* lex.type = EX_QUES; */
+	/* lex.word = "?"; */
+	/* vector_push_back(&g_extokens, &lex); */
+	/* printf("%s->%d\n", lex.word, lex.type); */
+
+	/* lex.type = EX_NUM; */
+	/* lex.word = "7"; */
+	/* vector_push_back(&g_extokens, &lex); */
+	/* printf("%s->%d\n", lex.word, lex.type); */
+
+	/* lex.type = EX_COL; */
+	/* lex.word = ":"; */
+	/* vector_push_back(&g_extokens, &lex); */
+	/* printf("%s->%d\n", lex.word, lex.type); */
+
+	/* lex.type = EX_NUM; */
+	/* lex.word = "9"; */
+	/* vector_push_back(&g_extokens, &lex); */
+	/* printf("%s->%d\n", lex.word, lex.type); */
+
+
+
 	lex.type = EX_VAR;
 	lex.word = "V";
 	vector_push_back(&g_extokens, &lex);
 	printf("%s->%d\n", lex.word, lex.type);
 
-	lex.type = EX_QUES;
-	lex.word = "?";
+	lex.type = EX_ASSIGN;
+	lex.word = "=";
 	vector_push_back(&g_extokens, &lex);
 	printf("%s->%d\n", lex.word, lex.type);
 
 	lex.type = EX_NUM;
-	lex.word = "7";
+	lex.word = "5";
 	vector_push_back(&g_extokens, &lex);
 	printf("%s->%d\n", lex.word, lex.type);
-
-	lex.type = EX_COL;
-	lex.word = ":";
-	vector_push_back(&g_extokens, &lex);
-	printf("%s->%d\n", lex.word, lex.type);
-
-	lex.type = EX_NUM;
-	lex.word = "7";
-	vector_push_back(&g_extokens, &lex);
-	printf("%s->%d\n", lex.word, lex.type);
-
-	/* lex.type = EX_NUM; */
-	/* lex.word = "3"; */
-	/* vector_push_back(&g_extokens, &lex); */
-
 
 	printf("Tok count:%lu\n", ((size_t *)g_extokens)[2]);
 

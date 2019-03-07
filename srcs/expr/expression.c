@@ -4,6 +4,8 @@ unsigned int		g_excurtok;
 void				*g_extokens = NULL;
 int					g_exprerr;
 
+void			exprlexer_print(void *lexems);
+
 long int	expression(char *arg)
 {
 	t_lexer		*lexer;
@@ -22,5 +24,5 @@ long int	expression(char *arg)
 
 int main(int ac, char **av)
 {
-	expression("5+2");
+	expression(av[ac-1]);
 }
