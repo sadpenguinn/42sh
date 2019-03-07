@@ -29,6 +29,7 @@ t_env			g_roenv;
 
 void			*g_jobs = NULL;
 void			*g_process = NULL;
+void			*g_pids = NULL;
 
 void			*g_func = NULL;
 void			*g_func_args = NULL;

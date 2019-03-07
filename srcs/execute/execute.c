@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   substitution.c                                     :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/21 17:43:57 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/21 17:52:46 by bwerewol         ###   ########.fr       */
+/*   Created: 2019/02/24 11:46:37 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/03/01 12:37:05 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expr.h"
+#include "execute.h"
 
-t_astree	*substitution()
+int		execute(t_astree *root)
 {
-	t_astree	*leaf;
+	int		res;
+	int		fd[2];
 
-	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type != HASH)
-		return (0);
-	if (!(leaf = xmalloc(sizeof(t_astree))))
-		return (0);
-	leaf->type = HASH;
-	return (leaf);
+	g_execerr = 0;
+	if (!root)
+		return (EXIT_FAILURE);
+	fd[0] = 0;
+	fd[1] = 1;
+	res = execlist1(root, fd, 0, 0);
+	return (res);
 }

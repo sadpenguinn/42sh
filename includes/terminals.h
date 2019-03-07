@@ -132,6 +132,7 @@
 # define EX_UPLUS				OPSHIFT + 555548
 # define EX_LNOT				OPSHIFT + 555549
 # define EX_BNOT				OPSHIFT + 555545
-
+# define EX_EXPR_ASN			OPSHIFT + 55552342
+# define EX_ASSIGN				OPSHIFT + 55542423
 
 #endif
