@@ -87,60 +87,52 @@
 
 # define EX_VAR					OPSHIFT + 0
 # define EX_NUM					OPSHIFT + 1
-# define EX_EXPR				OPSHIFT + 2
-# define EX_INC					OPSHIFT + 3 // ++
-# define EX_DEC					OPSHIFT + 4 // --
-# define EX_ADD					OPSHIFT + 5
-# define EX_SUB					OPSHIFT + 6
-# define EX_DIV					OPSHIFT + 7
-# define EX_MOD					OPSHIFT + 8
-# define EX_POW					OPSHIFT + 9
-# define EX_MUL					OPSHIFT + 10
-# define EX_LSH					OPSHIFT + 11
-# define EX_RSH					OPSHIFT + 12
-# define EX_GT					OPSHIFT + 13
-# define EX_GEQ					OPSHIFT + 14
-# define EX_LT					OPSHIFT + 15
-# define EX_LEQ					OPSHIFT + 16
-# define EX_EQ					OPSHIFT + 17
-# define EX_NEQ					OPSHIFT + 18
-# define EX_BAND				OPSHIFT + 19
-# define EX_XOR					OPSHIFT + 20
-# define EX_BOR					OPSHIFT + 21
-# define EX_LAND				OPSHIFT + 22
-# define EX_LOR 				OPSHIFT + 23
-# define EX_COND				OPSHIFT + 24
-# define EX_QUES				OPSHIFT + 25
-# define EX_COL					OPSHIFT + 26
-# define EX_ASSIG				OPSHIFT + 27
-# define EX_ADDASN				OPSHIFT + 28
-# define EX_SUBASN				OPSHIFT + 29
-# define EX_MULASN				OPSHIFT + 30
-# define EX_DIVASN				OPSHIFT + 31
-# define EX_MODASN				OPSHIFT + 32
-# define EX_LSHASN				OPSHIFT + 33
-# define EX_RSHASN				OPSHIFT + 34
-# define EX_ANDASN				OPSHIFT + 35
-# define EX_XORASN				OPSHIFT + 36
-# define EX_ORASN				OPSHIFT + 37
-# define EX_COMMA				OPSHIFT + 38
-# define EX_OBRACKET			OPSHIFT + 39
-# define EX_CBRACKET			OPSHIFT + 40
-# define EX_OARRAY				OPSHIFT + 41
-# define EX_CARRAY				OPSHIFT + 42
-
-/*
-**	only for expression parser and execute
-*/
-
-# define EX_POSTINC				OPSHIFT + 43
-# define EX_POSTDEC				OPSHIFT + 44
-# define EX_PREINC				OPSHIFT + 45
-# define EX_PREDEC				OPSHIFT + 46
-# define EX_UMINUS				OPSHIFT + 47
-# define EX_UPLUS				OPSHIFT + 48
-# define EX_LNOT				OPSHIFT + 49
+# define EX_INC					OPSHIFT + 2 // ++
+# define EX_DEC					OPSHIFT + 3 // --
+# define EX_ADD					OPSHIFT + 4
+# define EX_SUB					OPSHIFT + 5
+# define EX_DIV					OPSHIFT + 6
+# define EX_MOD					OPSHIFT + 7
+# define EX_POW					OPSHIFT + 8
+# define EX_MUL					OPSHIFT + 9
+# define EX_LSH					OPSHIFT + 10
+# define EX_RSH					OPSHIFT + 11
+# define EX_GT					OPSHIFT + 12
+# define EX_GEQ					OPSHIFT + 13
+# define EX_LT					OPSHIFT + 14
+# define EX_LEQ					OPSHIFT + 15
+# define EX_EQ					OPSHIFT + 16
+# define EX_NEQ					OPSHIFT + 17
+# define EX_BAND				OPSHIFT + 18
+# define EX_XOR					OPSHIFT + 19
+# define EX_BOR					OPSHIFT + 20
+# define EX_LAND				OPSHIFT + 21
+# define EX_LOR 				OPSHIFT + 22
+# define EX_COND				OPSHIFT + 23
+# define EX_QUES				OPSHIFT + 24
+# define EX_COL					OPSHIFT + 25
+# define EX_ASSIGN				OPSHIFT + 26
+# define EX_ADDASN				OPSHIFT + 27
+# define EX_SUBASN				OPSHIFT + 28
+# define EX_MULASN				OPSHIFT + 29
+# define EX_DIVASN				OPSHIFT + 30
+# define EX_MODASN				OPSHIFT + 31
+# define EX_LSHASN				OPSHIFT + 32
+# define EX_RSHASN				OPSHIFT + 33
+# define EX_ANDASN				OPSHIFT + 34
+# define EX_XORASN				OPSHIFT + 35
+# define EX_ORASN				OPSHIFT + 36
+# define EX_COMMA				OPSHIFT + 37
+# define EX_OBRACKET			OPSHIFT + 38
+# define EX_CBRACKET			OPSHIFT + 39
+# define EX_OARRAY				OPSHIFT + 40
+# define EX_CARRAY				OPSHIFT + 41
+# define EX_UMINUS				OPSHIFT + 42
+# define EX_UPLUS				OPSHIFT + 43
+# define EX_LNOT				OPSHIFT + 44
 # define EX_BNOT				OPSHIFT + 45
+# define EX_EXPR				OPSHIFT + 46
+# define EX_EXPR_ASN			OPSHIFT + 47
 
 
 #endif

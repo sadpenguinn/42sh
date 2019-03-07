@@ -11,39 +11,34 @@
 /* ************************************************************************** */
 
 /*
-**     (root0)EX_EXPR
-**           /    \
-** (cond)EX_EXPR      ?:(root1)
-**                /  \
-**     (expr3)EX_EXPR    EX_EXPR(expr3)
+**        (root0)EX_EXPR
+**              /       \
+** (cond)EX_EXPR        ?:(root1)
+**                     /  \
+**       (expr3)EX_EXPR    EX_EXPR(expr3)
 */
 
 #include "expr.h"
 
 t_astree	*expr3(void)
 {
-	t_astree	*root[2];
-	t_astree	*res[3];
+	t_astree	*root;
+	t_astree	*res;
 
-	if (!(res[0] = expr4()))
+	if (!(res = expr4()))
 		return (0);
-	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type != EX_QUES)
-		return (res[0]);
-	g_excurtok++;
-	if (!(res[1] = expr3()))
-		return (0);
-	if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->type != EX_COL)
-		return (0);
-	if (!(res[2] = expr3()))
-		return (0);
-	if (!(root[0] = ft_memalloc(sizeof(t_astree))) ||
-		!(root[1] = ft_memalloc(sizeof(t_astree))))
-		return (0);
-	root[0]->left = res[0];
-	root[0]->type = EX_EXPR;
-	root[0]->right = root[1];
-	root[1]->left = res[1];
-	root[1]->type = EX_COND;
-	root[1]->right = res[2];
-	return (root[0]);
+	if (!checktype(EX_QUES))
+		return (res);
+	root = xmalloc(sizeof(t_astree));
+	root->type = EX_EXPR;
+	root->left = res;
+	root->right = xmalloc(sizeof(t_astree));
+	root->right->type = EX_COND;
+	if (!(root->right->left = expr3()))
+		return (parseerror(root));
+	if (!checktype(EX_COL))
+		return (parseerror(root));
+	if (!(root->right->right = expr3()))
+		return (parseerror(root));
+	return (root);
 }

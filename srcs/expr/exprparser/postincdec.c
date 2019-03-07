@@ -10,9 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	      VAR
+**	     /
+**	   --
+**	  /
+**	--
+*/
+
 #include "expr.h"
 
-t_astree	*postincdec(void)
+static t_astree	*postincdec_rest(void)
+{
+	t_type		type;
+	t_astree	*root;
+
+	if (g_excurtok >= ((size_t *)g_extokens)[2])
+		return (0);
+	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
+	if (type != EX_INC && type != EX_DEC)
+		return (0);
+	g_excurtok++;
+	root = xmalloc(sizeof(t_astree));
+	root->type = type;
+	root->left = postincdec_rest();
+	return (root);
+}
+
+t_astree		*postincdec(void)
 {
 	t_astree	*root;
 

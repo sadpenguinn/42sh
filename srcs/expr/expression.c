@@ -1,7 +1,8 @@
 #include "expression.h"
 
-unsigned int		g_excurtok = 0;
+unsigned int		g_excurtok;
 void				*g_extokens = NULL;
+int					g_exprerr;
 
 long int	expression(char *arg)
 {
@@ -11,6 +12,7 @@ long int	expression(char *arg)
 	lexer = exprlexer(arg, ft_strlen(arg));
 	g_extokens = lexer->lexems;
 	g_excurtok = 0;
+	g_exprerr = 0;
 	root = expr();
 	print_astree(root);
 	/* return (exprexecute(ast)); */

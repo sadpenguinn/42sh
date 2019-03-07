@@ -12,7 +12,21 @@
 
 #include "expr.h"
 
-t_astree	*expr(void)
+static t_astree	*expr_rest(void)
+{
+	t_astree	*root;
+
+	if (!(checktype(EX_COMMA)))
+		return (0);
+	root = xmalloc(sizeof(t_astree));
+	root->type = EX_COMMA;
+	if (!(root->left = expr2()))
+		return (freeastree(root));
+	root->right = expr_rest();
+	return (root);
+}
+
+t_astree		*expr(void)
 {
 	t_astree	*root;
 	t_astree	*res[2];
@@ -21,8 +35,7 @@ t_astree	*expr(void)
 		return (0);
 	if (!(res[1] = expr_rest()))
 		return (res[0]);
-	if (!(root = ft_memalloc(sizeof(t_astree))))
-		return (0);
+	root = xmalloc(sizeof(t_astree));
 	root->type = EX_EXPR;
 	root->left = res[0];
 	root->right = res[1];

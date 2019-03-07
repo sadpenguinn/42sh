@@ -6,14 +6,16 @@
 /*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:25:13 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/01/22 20:03:45 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:15:32 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <math.h>
 #include "libft.h"
-#include "expr.h"
+#include "parser.h"
+#include "vector.h"
+/* #include "shell.h" */
 
 static size_t	find_tree_height(t_astree *root)
 {
@@ -48,20 +50,19 @@ static int		get_space(int max_len, int level)
 static t_list	*print_level(t_list **queue, size_t level, int max_len, size_t height)
 {
 	t_list	*tmp;
-	t_list	*elem;
 	t_astree *tree;
 	int		space;
 
 	tmp = NULL;
 	space = get_space(max_len, level);
 	print_space(space);
-	while ((elem = ft_pop(queue)))
+	while (*queue)
 	{
-		tree = (t_astree *)(elem->data);
+		tree = ft_pop(queue);
 		if (!tree)
 			printf("    ");
 		else
-			tree->type == EX_NUM ? printf("%s", tree->content) : printf("%4d", tree->type);
+			tree->content ? printf("%4s", tree->content) : printf("%4d", tree->type);
 		if (level < height - 1)
 		{
 			ft_push_back(&tmp, tree ? tree->left : 0);

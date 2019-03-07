@@ -10,45 +10,51 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	  OPERAND
+*/
+
 #include "expr.h"
 
-t_astree	*operand_1(void)
+static t_astree	*operand_bracket(void)
 {
 	t_astree	*res;
 
-	g_excurtok++;
+	if (!(checktype(EX_OBRACKET)))
+		return (0);
 	if (!(res = expr()))
-		return (0);
-	if (g_excurtok <= ((size_t *)g_extokens)[2])
-		if (((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->type == EX_CBRACKET)
-			return (res);
-	/* ft_free_node(res); /1* XXX - FREE ALL RES *1/ */
-	return (0);
+		return (parseerror(0));
+	if (!checktype(EX_CBRACKET))
+		return (parseerror(res));
+	return (res);
 }
 
-t_astree	*operand_2(void)
+static t_astree	*operand_number(void)
 {
-	t_astree	*leaf;
-
-	if (!(leaf = ft_memalloc(sizeof(t_astree))))
-		return (0);
-	leaf->type = EX_NUM;
-	if ((leaf->content = ft_strdup(((t_lexem *)vector_get_elem(g_extokens, g_excurtok++))->word)))
-		return (leaf);
-	free(leaf);
-	return (0);
-}
-
-t_astree	*operand(void)
-{
-	uint64_t	type;
+	t_lexem		*token;
+	t_astree	*root;
 
 	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (0);
-	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
-	if (type == EX_OBRACKET)
-		return (operand_1());
-	else if (type == EX_NUM)
-		return (operand_2());
-	return (variable());
+	token = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok));
+	if (token->type != EX_NUM)
+		return (0);
+	g_excurtok++;
+	root = xmalloc(sizeof(t_astree));
+	root->type = EX_NUM;
+	root->content = ft_strdup(token->word);
+	return (root);
+}
+
+t_astree		*operand(void)
+{
+	t_astree	*res;
+
+	if (!g_exprerr && (res = operand_bracket()))
+		return (res);
+	if (!g_exprerr && (res = operand_number()))
+		return (res);
+	if (!g_exprerr && (res = preincdec()))
+		return (res);
+	return (0);
 }

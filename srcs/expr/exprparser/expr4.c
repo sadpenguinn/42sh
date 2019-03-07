@@ -10,9 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	      EX_EXPR
+**	     /       \
+**	EXPR5         EX_(operator)
+**	             /      \
+**	        EXPR5       EX_(operator)
+*/
+
 #include "expr.h"
 
-t_astree	*expr4(void)
+static t_astree	*expr4_rest(void)
+{
+	t_astree	*root;
+	t_astree	*res;
+
+	if (!checktype(EX_LOR))
+		return (0);
+	if (!(res = expr5()))
+		return (parseerror(0));
+	root = xmalloc(sizeof(t_astree));
+	root->type = EX_LOR;
+	root->left = res;
+	root->right = expr4_rest();
+	return (root);
+}
+
+t_astree		*expr4(void)
 {
 	t_astree	*root;
 	t_astree	*res[2];
@@ -21,8 +45,7 @@ t_astree	*expr4(void)
 		return (0);
 	if (!(res[1] = expr4_rest()))
 		return (res[0]);
-	if (!(root = ft_memalloc(sizeof(t_astree))))
-		return (0);
+	root = xmalloc(sizeof(t_astree));
 	root->type = EX_EXPR;
 	root->left = res[0];
 	root->right = res[1];
