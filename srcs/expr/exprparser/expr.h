@@ -19,6 +19,34 @@
 # include "exprlexer.h"
 # include "terminals.h"
 
+t_astree				*expr(void);
+t_astree				*expr1(void);
+t_astree				*expr2(void);
+t_astree				*expr3(void);
+t_astree				*expr4(void);
+t_astree				*expr5(void);
+t_astree				*expr6(void);
+t_astree				*expr7(void);
+t_astree				*expr8(void);
+t_astree				*expr9(void);
+t_astree				*expr10(void);
+t_astree				*expr11(void);
+t_astree				*expr12(void);
+t_astree				*expr13(void);
+t_astree				*expr14(void);
+t_astree				*preunary(void);
+t_astree				*operand(void);
+t_astree				*preincdec(void);
+t_astree				*postincdec(void);
+t_astree				*variable(void);
+
+int						checktype(t_type type);
+t_astree				*freeastree(t_astree *root);
+t_astree				*savecur(unsigned int cur, t_astree *root);
+t_astree				*parseerror(t_astree *root);
+
+void					print_astree(t_astree *root);
+
 /*
 **	TYPES FOR LEXER
 **
@@ -28,7 +56,8 @@
 **	*	EX_MUL
 **	/	EX_DIV
 **	%	EX_MOD
-**	+	EX_ADD **	-	EX_SUB
+**	+	EX_ADD
+**	-	EX_SUB
 **	<<	EX_LSH
 **	>>	EX_RSH
 **	<	EX_GT
@@ -69,7 +98,6 @@
 */
 
 /*
-**
 **	TYPES FOR PARSER
 **
 **	123		EX_NUM
@@ -142,10 +170,7 @@
 **	|=	EX_ORASN
 **
 **	,	EX_COMMA	---15---
-**
 */
-
-
 
 /*
 **	      EX_EXPR
@@ -154,34 +179,5 @@
 **	             /      \
 **	        EXPR5       EX_(operator)
 */
-
-
-t_astree				*expr(void);
-t_astree				*expr1(void);
-t_astree				*expr2(void);
-t_astree				*expr3(void);
-t_astree				*expr4(void);
-t_astree				*expr5(void);
-t_astree				*expr6(void);
-t_astree				*expr7(void);
-t_astree				*expr8(void);
-t_astree				*expr9(void);
-t_astree				*expr10(void);
-t_astree				*expr11(void);
-t_astree				*expr12(void);
-t_astree				*expr13(void);
-t_astree				*expr14(void);
-t_astree				*preunary(void);
-t_astree				*operand(void);
-t_astree				*preincdec(void);
-t_astree				*postincdec(void);
-t_astree				*variable(void);
-
-int						checktype(t_type type);
-t_astree				*freeastree(t_astree *root);
-t_astree				*savecur(unsigned int cur, t_astree *root);
-t_astree				*parseerror(t_astree *root);
-
-void		print_astree(t_astree *root);
 
 #endif

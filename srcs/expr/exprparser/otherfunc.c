@@ -13,7 +13,7 @@
 #include "expr.h"
 #include "expression.h"
 
-int		checktype(t_type type)
+int			checktype(t_type type)
 {
 	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (type == TOKEOF ? 1 : 0);
@@ -54,12 +54,13 @@ t_astree	*parseerror(t_astree *root)
 	g_exprerr = 1;
 	if (g_excurtok >= ((size_t *)g_extokens)[2])
 	{
-		ft_putstr_fd("\e[0;31m42sh: parse error near `EOF'\e[0m\n",
-					 STDERR_FILENO);
+		ft_putstr_fd(
+				"\e[0;31mExpression: error near `expresson end'\e[0m\n",
+				STDERR_FILENO);
 		return (0LU);
 	}
 	token = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok));
-	ft_putstr_fd("\e[0;31m42sh: parse error near `", STDERR_FILENO);
+	ft_putstr_fd("\e[0;31mExpression: error near `", STDERR_FILENO);
 	ft_putstr_fd(token->word, STDERR_FILENO);
 	ft_putstr_fd("'\e[0m\n", STDERR_FILENO);
 	return (0LU);

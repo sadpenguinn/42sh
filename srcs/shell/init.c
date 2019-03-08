@@ -13,7 +13,8 @@
 #include "shell.h"
 
 /*
-** Global variables with env and paths hashes/arrays
+** Global variables with env and paths hashes/arrays.
+** 'roenv' arrays stores only read-only variables
 */
 
 t_hash			*g_hash_env = NULL;
@@ -24,23 +25,33 @@ t_env			g_env;
 t_env			g_roenv;
 
 /*
-** Global variables for saving jobs and processes
+** Global variables for saving jobs, processes and pids
+** of running processes to kill them
 */
 
 void			*g_jobs = NULL;
 void			*g_process = NULL;
 void			*g_pids = NULL;
 
+/*
+** Vectors which stores functions trees and them arguments
+*/
+
 void			*g_func = NULL;
 void			*g_func_args = NULL;
-int 			g_status = 0;
+
+/*
+** Global variables with status of previous operation - $?
+*/
+
+int				g_status = 0;
 
 /*
 ** Defines for 'set' builtin witch modify the shell behavior
 */
 
-int 			g_echoe = TRUE;
-int 			g_dontexec = FALSE;
+int				g_echoe = TRUE;
+int				g_dontexec = FALSE;
 
 void	init(char **env)
 {

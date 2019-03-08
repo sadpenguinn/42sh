@@ -14,6 +14,9 @@
 
 void	destroy_process(void)
 {
-	free(g_process);
-	g_process = NULL;
+	if (g_process)
+	{
+		free(g_process);
+		g_process = NULL;
+	}
 }

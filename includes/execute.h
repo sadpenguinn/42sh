@@ -16,6 +16,7 @@
 # include "shell.h"
 # include "libft.h"
 # include <stdio.h>
+# include "exprlexer.h"
 
 # define EXECUTE_RELEASE
 
@@ -117,7 +118,8 @@ t_redir					*redirfileerror(char *file, t_redir *redir);
 **	Init command args
 */
 
-int						initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2]);
+int						initcmd(t_astree *root,
+									int fd[2], t_list *cmd[3], char **aven[2]);
 int						add_pipe_redir(t_list **redlst, int fd[2]);
 
 #endif

@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "execute.h"
+#include "readline.h"
+#include "lexer.h"
 #include "parser.h"
+#include "execute.h"
 
 /*
 ** Global variables for parser

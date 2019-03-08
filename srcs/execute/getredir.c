@@ -20,7 +20,7 @@
 **  (content)2?    filename(content)
 */
 
-int		applyredir(t_list *redirs)
+int			applyredir(t_list *redirs)
 {
 	t_redir	*redir;
 
@@ -45,7 +45,7 @@ static int	get_herein_doc(char *end)
 	while ((line = readline()))
 	{
 		if (ft_strequ(line->buf, end))
-			break;
+			break ;
 		ft_putstr_fd(line->buf, fd[1]);
 		free(line);
 	}
@@ -56,22 +56,21 @@ static int	get_herein_doc(char *end)
 
 static int	get_redir_file(t_astree *root, int type)
 {
-
 	if (type == GREAT)
 		return (open(root->right->content,
-					 O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644));
-	if (type == DGREAT)
+					O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644));
+		if (type == DGREAT)
 		return (open(root->right->content,
-					 O_WRONLY | O_CREAT | O_APPEND | O_CLOEXEC, 0644));
-	if (type == LESS)
+					O_WRONLY | O_CREAT | O_APPEND | O_CLOEXEC, 0644));
+		if (type == LESS)
 		return (open(root->right->content,
-					 O_RDONLY | O_CLOEXEC));
-	if (type == DLESS)
+					O_RDONLY | O_CLOEXEC));
+		if (type == DLESS)
 		return (get_herein_doc(root->right->content));
 	return (-1);
 }
 
-t_redir	*get_redir(t_astree *root)
+t_redir		*get_redir(t_astree *root)
 {
 	t_redir		*redir;
 	int			type;

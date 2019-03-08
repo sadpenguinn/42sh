@@ -14,6 +14,9 @@
 
 void	destroy_jobs(void)
 {
-	free(g_jobs);
-	g_jobs = NULL;
+	if (g_jobs)
+	{
+		free(g_jobs);
+		g_jobs = NULL;
+	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expr.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/07 14:08:43 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/22 21:34:09 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execute.h"
 #include "extention.h"
 
@@ -101,7 +113,11 @@ static char	**get_envp(t_list *envs)
 	return (envp);
 }
 
-int		initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
+/*
+** set_alias_arg(&cmd[0]);
+*/
+
+int			initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 {
 	bzero(cmd, sizeof(t_list *) * 3);
 	add_pipe_redir(&cmd[2], fd);
@@ -109,7 +125,6 @@ int		initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 		return (1);
 	if (expand_assign(cmd[1]))
 		return (1);
-	/* set_alias_arg(&cmd[0]); */
 	aven[0] = get_argv(cmd[0]);
 	aven[1] = get_envp(cmd[1]);
 	return (0);
