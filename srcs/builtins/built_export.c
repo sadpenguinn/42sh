@@ -1,9 +1,21 @@
-#include <shell.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_export.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:31:23 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/08 13:31:25 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "shell.h"
 #include "builtins.h"
 
 static int		built_export_delete(char **av)
 {
-	int 	i;
+	int		i;
 
 	i = 2;
 	while (av[i])
@@ -16,8 +28,8 @@ static int		built_export_delete(char **av)
 
 static int		built_export_assignment(char **av)
 {
-	char 	**pair;
-	int 	i;
+	char	**pair;
+	int		i;
 
 	i = 1;
 	while (av[i])
@@ -49,7 +61,7 @@ static int		built_export_parse(char **av, char **env)
 		return (built_export_assignment(av));
 }
 
-int 			built_export(char **av, char **env)
+int				built_export(char **av, char **env)
 {
 	if (av[1])
 		return (built_export_parse(av, env));

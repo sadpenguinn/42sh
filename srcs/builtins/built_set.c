@@ -1,11 +1,29 @@
-#include "builtins.h"
-#include "readline.h"
-#include "shell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_set.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:31:41 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/08 13:31:42 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int 		built_set_usage(void)
+#include "shell.h"
+#include "readline.h"
+#include "builtins.h"
+
+static int		built_set_usage(void)
 {
 	ft_putendl("Huita");
 	return (SHERR_ERR);
+}
+
+static int		built_set_gvar(int *var, int val)
+{
+	*var = val;
+	return (SHERR_OK);
 }
 
 static int		built_set_parse(char **av)
@@ -13,25 +31,13 @@ static int		built_set_parse(char **av)
 	if (!ft_strcmp(av[1], "-o"))
 	{
 		if (!ft_strcmp(av[2], "vi"))
-		{
-			g_mode = VI;
-			return (SHERR_OK);
-		}
+			return (built_set_gvar(&g_mode, VI));
 		else if (!ft_strcmp(av[2], "emacs"))
-		{
-			g_mode = READLINE;
-			return (SHERR_OK);
-		}
+			return (built_set_gvar(&g_mode, READLINE));
 		else if (!ft_strcmp(av[2], "echoe"))
-		{
-			g_echoe = TRUE;
-			return (SHERR_OK);
-		}
+			return (built_set_gvar(&g_echoe, TRUE));
 		else if (!ft_strcmp(av[2], "highlight"))
-		{
-			g_syntax = SYNTAX_ON;
-			return  (SHERR_OK);
-		}
+			return (built_set_gvar(&g_syntax, SYNTAX_ON));
 		else
 		{
 			ft_putstr("vi:\t\t");
@@ -44,13 +50,15 @@ static int		built_set_parse(char **av)
 		}
 	}
 	if (!ft_strcmp(av[1], "-n"))
-	{
-		g_dontexec = TRUE;
-		return (SHERR_OK);
-	}
+		return (built_set_gvar(&g_dontexec, TRUE));
 	else
 		return (built_set_usage());
 }
+
+/*
+** Standard builtin 'set' with flags '-n' and '-o'
+** for modifying shell behavior
+*/
 
 int				built_set(char **av, char **env)
 {

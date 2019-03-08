@@ -1,9 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_echo_reqmts.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:31:06 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/08 13:31:07 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtins.h"
 
-static int 	hex_sequence(const char *str, int i)
+/*
+** Internal functions for echo
+*/
+
+int			built_echo_switch(char **av, int i, int *flags)
 {
-	char 	stack[4];
-	int 	k;
+	int		k;
+
+	k = 1;
+	while (av[i][k])
+	{
+		if (av[i][k] == 'n')
+			flags[0] = 1;
+		else if (av[i][k] == 'e')
+			flags[1] = 1;
+		else if (av[i][k] == 'E')
+			flags[1] = 0;
+		else
+		{
+			built_echo_usage(av[i][k]);
+			return (0);
+		}
+		(k)++;
+	}
+	return (1);
+}
+
+static int	hex_sequence(const char *str, int i)
+{
+	char	stack[4];
+	int		k;
 
 	i++;
 	k = 0;
@@ -18,10 +57,10 @@ static int 	hex_sequence(const char *str, int i)
 	return (--i);
 }
 
-static int 	octal_sequence(const char *str, int i)
+static int	octal_sequence(const char *str, int i)
 {
-	char 	stack[4];
-	int 	k;
+	char	stack[4];
+	int		k;
 
 	i++;
 	k = 0;
@@ -36,7 +75,7 @@ static int 	octal_sequence(const char *str, int i)
 	return (--i);
 }
 
-static int 	simple_sequence(char c)
+static int	simple_sequence(char c)
 {
 	if (c == 'a')
 		ft_putchar('\a');

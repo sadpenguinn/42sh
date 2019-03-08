@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
 #include "shell.h"
+#include "builtins.h"
 
-static int 			built_echo_usage(char c)
+int					built_echo_usage(char c)
 {
-	char arg[3];
+	char	arg[3];
 
 	arg[0] = '-';
 	arg[1] = c;
@@ -26,7 +26,7 @@ static int 			built_echo_usage(char c)
 
 static void			print_string(const char *str)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (str[i])
@@ -34,8 +34,10 @@ static void			print_string(const char *str)
 		if (str[i] != '\\')
 			ft_putchar(str[i]);
 		else
+		{
 			if ((i = handle_sequence(str, i + 1)) == -1)
 				return ;
+		}
 		i++;
 	}
 }
@@ -61,29 +63,17 @@ static void			print_strings(char **av, const int *flags, size_t i)
 		ft_putchar('\n');
 }
 
-static int		parse_flags(char **av, int *flags)
+static int			parse_flags(char **av, int *flags)
 {
 	int		i;
-	int 	k;
 
 	i = 1;
 	while (av[i])
 	{
 		if (av[i][0] == '-')
 		{
-			k = 1;
-			while (av[i][k])
-			{
-				if (av[i][k] == 'n')
-					flags[0] = 1;
-				else if (av[i][k] == 'e')
-					flags[1] = 1;
-				else if (av[i][k] == 'E')
-					flags[1] = 0;
-				else
-					return (built_echo_usage(av[i][k]));
-				k++;
-			}
+			if (!built_echo_switch(av, i, flags))
+				return (-1);
 		}
 		else
 			return (i);
@@ -103,7 +93,7 @@ static int		parse_flags(char **av, int *flags)
 int					built_echo(char **av, char **env)
 {
 	int		flags[2];
-	int 	i;
+	int		i;
 
 	env = NULL;
 	flags[0] = 0;

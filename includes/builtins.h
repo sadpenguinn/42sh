@@ -13,13 +13,14 @@
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include "libshell.h"
 
 /*
 ** Shell error define like a standard C errno
 */
+
 # ifndef SHERR
 #  define SHERR
 #  define SHERR_ERR						0
@@ -72,10 +73,14 @@ int		built_unsetenv(char **av, char **env);
 
 /*
 ** Exit
-** Need to add handling of running processes
 */
 
 int		built_exit(char **av, char **env);
+
+/*
+** Standard builtin 'set' with flags '-n' and '-o'
+** for modifying shell behavior
+*/
 
 int		built_set(char **av, char **env);
 
@@ -84,9 +89,21 @@ int		built_hash(char **av, char **env);
 int		built_export(char **av, char **env);
 
 /*
-** Internal functions
+** Internal function for echo
 */
 
 int		handle_sequence(const char *str, int i);
+int		built_echo_switch(char **av, int i, int *flags);
+int		built_echo_usage(char c);
+
+/*
+** Internal function for hash
+*/
+
+void	print_bin(char *key, char *value);
+void	built_hash_parg(char **av);
+void	built_hash_darg(char **av);
+void	built_hash_targ(char **av);
+void	built_hash_larg(char **av);
 
 #endif

@@ -1,7 +1,19 @@
-#include "builtins.h"
-#include "shell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_hash.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:31:55 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/08 13:31:56 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	print_bin(char *key, char *value)
+#include "shell.h"
+#include "builtins.h"
+
+void			print_bin(char *key, char *value)
 {
 	ft_putstr(key);
 	ft_putchar('=');
@@ -10,76 +22,24 @@ void	print_bin(char *key, char *value)
 
 static void		build_hash_parse(char **av)
 {
-	t_hshtb	*cell;
-	char 	*path;
-	int 	i;
-
 	if (!ft_strcmp(av[1], "-p"))
-	{
-		if (av[2] && av[3])
-		{
-			path = ft_strjoin(av[2], "/", 0);
-			path = ft_strjoin(path, av[3], 1);
-			if (access(path, X_OK) == -1)
-			{
-				ft_strdel(&path);
-				return ;
-			}
-			hash_delete(av[3], g_path);
-			hash_insert(av[3], av[2], g_path);
-			ft_strdel(&path);
-		}
-		else
-			return ;
-	}
+		built_hash_parg(av);
 	else if (!ft_strcmp(av[1], "-R"))
 	{
 		destroy_path();
 		init_path();
 	}
 	else if (!ft_strcmp(av[1], "-d"))
-	{
-		if (!av[2])
-			return ;
-		i = 2;
-		while (av[i])
-		{
-			hash_delete(av[i], g_path);
-			i++;
-		}
-	}
+		built_hash_darg(av);
 	else if (!ft_strcmp(av[1], "-t"))
-	{
-		if (!av[2])
-			return ;
-		i = 2;
-		while (av[i])
-		{
-			if ((cell = hash_find(av[i], g_path)))
-				print_bin(cell->key, cell->value);
-			i++;
-		}
-	}
+		built_hash_targ(av);
 	else if (!ft_strcmp(av[1], "-l"))
-	{
-		if (!av[2])
-			hash_foreach(g_path, print_bin);
-		else
-		{
-			i = 2;
-			while (av[i])
-			{
-				if ((cell = hash_find(av[i], g_path)))
-					print_bin(cell->key, cell->value);
-				i++;
-			}
-		}
-	}
+		built_hash_larg(av);
 	else
 		return ;
 }
 
-int		built_hash(char **av, char **env)
+int				built_hash(char **av, char **env)
 {
 	env = NULL;
 	if (!av[1])

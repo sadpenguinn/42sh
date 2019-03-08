@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <shell.h>
+#include "shell.h"
 #include "builtins.h"
 
 static char		*get_oldpwd(char *def)
