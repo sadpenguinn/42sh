@@ -12,6 +12,7 @@
 
 #include <signal.h>
 #include "shell.h"
+#include "readline.h"
 
 extern int		g_execerr;
 

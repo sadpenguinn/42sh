@@ -23,6 +23,8 @@ t_uchar		get_next_symbol(size_t size)
 	if (size > sizeof(t_uchar))
 		size = sizeof(t_uchar);
 	ret = read(0, &c, size);
+	if (ret == -1 && g_heredoc)
+		return ('\n');
 	while (ret == -1)
 	{
 		print_end(g_history->matrix[g_history->cur]);
