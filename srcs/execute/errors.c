@@ -42,7 +42,8 @@ int		forkerror(char *cmd)
 t_redir	*redirfileerror(char *file, t_redir *redir)
 {
 	free(redir);
-	fileerror(file);
+	if (!g_execerr)
+		fileerror(file);
 	return ((t_redir *)0);
 }
 

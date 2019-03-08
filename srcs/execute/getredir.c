@@ -44,15 +44,17 @@ static int	get_herein_doc(char *end)
 	pipe(fd);
 	while ((line = heredoc()))
 	{
-		if (ft_strequ(line->buf, end))
+		if (g_execerr || ft_strequ(line->buf, end))
 			break ;
 		ft_putstr_fd(line->buf, fd[1]);
 		ft_putstr_fd("\n", fd[1]);
 		string_free(line);
 	}
+	if (g_execerr)
+		close(fd[0]);
 	string_free(line);
 	close(fd[1]);
-	return (fd[0]);
+	return (g_execerr ? -1 : fd[0]);
 }
 
 static int	get_redir_file(t_astree *root, int type)
