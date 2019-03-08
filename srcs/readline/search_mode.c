@@ -75,7 +75,10 @@ int		search_mode(t_uchar c)
 		return (search_next(line));
 	ft_memset(str, 0, 8);
 	if (c == BS)
-		line_string_delete(line, line->len - 1, 1);
+	{
+		int ret = get_utf_offset_left(line->buf, line->len - 1);
+		line_string_delete(line, line->len - ret - 1, ret + 1);
+	}
 	else
 		line_string_insert(line, line->len, str, symbol_to_string(c, str));
 	search_in_history(line);
