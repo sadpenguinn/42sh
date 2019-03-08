@@ -41,7 +41,7 @@ int			add_pipe_redir(t_list **redlst, int fd[2])
 
 static int	execcommand(char **aven[2], t_list *redirs, int isfork)
 {
-	void 	*cmd;
+	void	*cmd;
 	pid_t	pid;
 
 	if ((g_cmdtype = get_cmd_path(aven[0][0], &cmd)) == PATH_NULL)

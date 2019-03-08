@@ -48,13 +48,13 @@
 
 #include "execute.h"
 
-int		for_check(char *arith)
+int			for_check(char *arith)
 {
 	(void)arith;
 	return (0);
 }
 
-int		for_init(char *arith)
+int			for_init(char *arith)
 {
 	(void)arith;
 	return (0);

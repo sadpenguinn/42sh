@@ -39,13 +39,6 @@ int		forkerror(char *cmd)
 	return (-1);
 }
 
-int		threaderror(void)
-{
-	ft_putstr_fd("42sh: unable to start thred\n", STDERR_FILENO);
-	g_execerr = 1;
-	return (-1);
-}
-
 t_redir	*redirfileerror(char *file, t_redir *redir)
 {
 	free(redir);

@@ -14,9 +14,6 @@
 
 int		execpipecmd(t_astree *root, int fd[2], int flag, int isfork)
 {
-#ifdef EXECUTE_DEBUG
-printf("execpipecmd:%d\n", root->type);
-#endif
 	if (!(root) || !(root->left))
 		return (-1);
 	if (root->type == NOT)
