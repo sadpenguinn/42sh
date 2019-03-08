@@ -6,14 +6,16 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 01:14:15 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 01:54:05 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-char	*g_built_in_lists[] = {"cd", "echo", "env", "exit", "hash", "set",
-		"setenv", "unsetenv", NULL};
+char	*g_built_in_lists[] =
+{
+	"cd", "echo", "env", "exit", "hash", "set", "setenv", "unsetenv", NULL
+};
 
 char	*get_pattern(char *buf, int pos)
 {
@@ -44,6 +46,20 @@ char	*get_rel_dir(char *buf, int pos)
 	return (ft_strndup(buf + left_pos, pos - left_pos + 1));
 }
 
+int		check_env_a_case(char c, char cb, int pos)
+{
+	if (c == '$' || (c == '{' && pos > 0 && cb == '$'))
+		return (1);
+	return (0);
+}
+
+int		check_oth_a_case(char c, int pos)
+{
+	if (c == ' ' || !pos || c == '(' || c == ';')
+		return (1);
+	return (0);
+}
+
 int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 {
 	if (pos < 0)
@@ -51,9 +67,7 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 	pos--;
 	while (pos >= 0)
 	{
-		if (line_info->buf[pos] == '$' ||
-			(line_info->buf[pos] == '{' && pos > 0
-				&& line_info->buf[pos - 1] == '$'))
+		if (check_env_a_case(line_info->buf[pos], line_info->buf[pos - 1], pos))
 		{
 			*pos_start = pos;
 			return (ENV_AUTOCOMLITE);
@@ -63,9 +77,7 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 			*pos_start = pos;
 			return (FLAGS_AUTOCOMLITE);
 		}
-		else if (line_info->buf[pos] == ' ' || !pos ||
-				line_info->buf[pos] == '(' ||
-				line_info->buf[pos] == ';')
+		else if (check_oth_a_case(line_info->buf[pos], pos))
 		{
 			*pos_start = ((line_info->buf[pos] == ' ' ||
 							line_info->buf[pos] == '(') ? pos + 1 : pos);
@@ -92,12 +104,25 @@ char	*ft_strendchr(char *str, char c)
 	return (res);
 }
 
+char	*dir_or_file_case(const char *str, const char *word)
+{
+	DIR	*dirp;
+
+	if (!(dirp = opendir(str)))
+	{
+		free(word);
+		return (ft_strdup(" "));
+	}
+	closedir(dirp);
+	free(word);
+	return (ft_strdup("/"));
+}
+
 char	*cut_begin_in_unique_suggetion(char *str, char *word)
 {
 	int		i;
 	int		j;
 	char	*buf;
-	DIR		*dirp;
 
 	j = 0;
 	i = 0;
@@ -105,16 +130,7 @@ char	*cut_begin_in_unique_suggetion(char *str, char *word)
 		str = &str[1];
 	buf = ft_strendchr(str, '/');
 	if ((buf && !ft_strcmp(buf + 1, word)) || !ft_strcmp(str, word))
-	{
-		if (!(dirp = opendir(str)))
-		{
-			free(word);
-			return (ft_strdup(" "));
-		}
-		closedir(dirp);
-		free(word);
-		return (ft_strdup("/"));
-	}
+		return (dir_or_file_case(str, word));
 	if (buf)
 		str = buf + 1;
 	while (str[i] && word[i] && str[i] == word[i])
@@ -431,7 +447,7 @@ int		sugg_check_repeats_in_all_mass(char **str, int pos, char *c)
 	return (1);
 }
 
-char	**sugg_free_and_set_one(char **str, int	pos)
+char	**sugg_free_and_set_one(char **str, int pos)
 {
 	char	*key_word;
 	char	**res;
@@ -465,18 +481,16 @@ char	**sugg_get_common_repeat(char **str, int pos_start)
 	return (str);
 }
 
-char    **autocomplete(t_line *line_info, int pos)
+char	**autocomplete(t_line *line_info, int pos)
 {
-    int		type;
+	int		type;
 	int		pos_start;
 	char	*word_to_acmlt;
 	char	**res;
 
-    if (!(type = get_autocomplite_type(line_info, pos, &pos_start)))
+	if (!(type = get_autocomplite_type(line_info, pos, &pos_start)))
 		return (NULL);
-	// printf("пришёл тип %d\n", type);
 	word_to_acmlt = ft_strndup(&line_info->buf[pos_start], pos - pos_start);
-	// printf("получается, что слово для дополнения - |%s|..\n", word_to_acmlt);
 	res = get_mas_of_suggetions(word_to_acmlt, type);
 	if (!res || !res[0])
 		return (NULL);
