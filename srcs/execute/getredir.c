@@ -42,11 +42,12 @@ static int	get_herein_doc(char *end)
 	t_string	*line;
 
 	pipe(fd);
-	while ((line = readline()))
+	while ((line = heredoc()))
 	{
 		if (ft_strequ(line->buf, end))
 			break ;
 		ft_putstr_fd(line->buf, fd[1]);
+		ft_putstr_fd("\n", fd[1]);
 		free(line);
 	}
 	free(line);
