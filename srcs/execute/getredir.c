@@ -48,9 +48,9 @@ static int	get_herein_doc(char *end)
 			break ;
 		ft_putstr_fd(line->buf, fd[1]);
 		ft_putstr_fd("\n", fd[1]);
-		free(line);
+		string_free(line);
 	}
-	free(line);
+	string_free(line);
 	close(fd[1]);
 	return (fd[0]);
 }

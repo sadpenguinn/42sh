@@ -25,7 +25,6 @@ t_uchar		get_next_symbol(size_t size)
 	ret = read(0, &c, size);
 	while (ret == -1)
 	{
-		dup2(-1, 0);
 		print_end(g_history->matrix[g_history->cur]);
 		print_prompt();
 		g_history->cur = g_history->len - 1;
