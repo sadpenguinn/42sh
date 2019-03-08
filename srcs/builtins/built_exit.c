@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "shell.h"
 #include "builtins.h"
 
 /*
@@ -25,7 +26,9 @@ int		built_exit(char **av, char **env)
 	if (av[1] && ft_str_is_numeric(av[1]))
 	{
 		ret = ft_atoi(av[1]);
+		destroy();
 		exit(ret);
 	}
+	destroy();
 	exit(EXIT_SUCCESS);
 }

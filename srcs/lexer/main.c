@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "exprlexer.h"
+#include "lexer.h"
 
 int		main(int ac, char **av)
 {

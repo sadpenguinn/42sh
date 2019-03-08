@@ -140,7 +140,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/matrix_string_yank.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
-					srcs/lexer/lexer_tools.c)
+					srcs/lexer/lexer_tools.c srcs/lexer/dfa_tools.c)
 
 set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/arith_for_command.c
