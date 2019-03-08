@@ -13,7 +13,7 @@
 #include "readline.h"
 #include "libft.h"
 
-void	search_in_history(t_line *line)
+static void	search_in_history(t_line *line)
 {
 	int		cur;
 	char	*substr;
@@ -29,7 +29,7 @@ void	search_in_history(t_line *line)
 	free(substr);
 }
 
-int		search_next(t_line *line)
+static int	search_next(t_line *line)
 {
 	int		cur;
 	char	*substr;
@@ -53,10 +53,28 @@ int		search_next(t_line *line)
 	return (1);
 }
 
-int		search_mode(t_uchar c)
+static int	search_line_modification(t_line *line, t_uchar c)
+{
+	char	str[8];
+	int		offset;
+
+	if (c == BS)
+	{
+		offset = get_utf_offset_left(line->buf, line->len - 1);
+		line_string_delete(line, line->len - offset - 1, offset + 1);
+	}
+	else
+	{
+		ft_memset(str, 0, 8);
+		line_string_insert(line, line->len, str, symbol_to_string(c, str));
+	}
+	search_in_history(line);
+	return (1);
+}
+
+int			search_mode(t_uchar c)
 {
 	t_line		*line;
-	char		str[8];
 
 	line = g_history->search_line;
 	if (c == CTRL_B || c == LEFT || c == CTRL_F || c == RIGHT ||
@@ -69,15 +87,9 @@ int		search_mode(t_uchar c)
 		move_cursor_end(g_history->matrix[g_history->cur]);
 		if (c == '\n')
 			return (newline_handling(g_history->matrix[g_history->cur]));
-		return (1);
+		return (modes_handling(c));
 	}
 	if (c == CTRL_R)
 		return (search_next(line));
-	ft_memset(str, 0, 8);
-	if (c == BS)
-		line_string_delete(line, line->len - 1, 1);
-	else
-		line_string_insert(line, line->len, str, symbol_to_string(c, str));
-	search_in_history(line);
-	return (1);
+	return (search_line_modification(line, c));
 }
