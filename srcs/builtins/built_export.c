@@ -36,7 +36,6 @@ static int		built_export_assignment(char **av)
 	{
 		pair = split_env(av[i]);
 		ssetenv(pair[0], pair[1], ENV_EXP);
-		hash_print(g_hash_env);
 		free_str_arr(&pair);
 		i++;
 	}

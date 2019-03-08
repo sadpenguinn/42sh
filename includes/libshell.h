@@ -21,12 +21,12 @@
 # include "libft.h"
 # include "libhash.h"
 
-typedef struct			s_env
+typedef struct	s_env
 {
-	char				**env;
-	size_t				size;
-	size_t				filled;
-}						t_env;
+	char		**env;
+	size_t		size;
+	size_t		filled;
+}				t_env;
 
 # define ENV_EXP 1
 # define ENV_RO 2
@@ -65,44 +65,45 @@ typedef struct			s_env
 ** Variable names verification
 */
 
-int		check_varname(char *var);
-char	*check_valid_of_variable(char *str);
+int				check_varname(char *var);
+char			*check_valid_of_variable(char *str);
 
 /*
 ** Implementation of UNIX standard functions glob and match
 */
 
-int		xglob(char *pattern, char *path, char ***matches, size_t *cnt);
-int		xmatch(char *s1, char *s2);
+int				xglob(char *pattern, char *path, char ***matches, size_t *cnt);
+int				xmatch(char *s1, char *s2);
 
 /*
 ** Functions for prints errors.
 ** Defines for those declared in shell.h
 */
 
-void	die(void);
-void	sputerr(char *err);
-void	sputcmderr(char *err, char *cmd, char *arg);
-char	*sstrerr(int e);
+void			die(void);
+void			sputerr(char *err);
+void			sputcmderr(char *err, char *cmd, char *arg);
+char			*sstrerr(int e);
 
 /*
 ** Functions for working with hash tables that represents
 ** environment and binaries
 */
 
-char	*sgetenv(const char *key, int local);
-int		ssetenv(const char *key, const char *value, int local);
-int		sunsetenv(const char *key, int local);
-int		sgetpath(const char *bin, void **ret);
-int		get_cmd_path(char *str, void **ret);
-void	fill_genv(t_env *env, t_hash *hash_env);
+char			*sgetenv(const char *key, int local);
+int				ssetenv(const char *key, const char *value, int local);
+int				sunsetenv(const char *key, int local);
+int				sgetpath(const char *bin, void **ret);
+int				get_cmd_path(char *str, void **ret);
+void			fill_genv(t_env *env, t_hash *hash_env);
 
 /*
 ** Other functions for working with two-dimensional arrays
 */
-void	free_str_arr(char ***arr);
-void	print_str_arr(char *const *arr);
-size_t	size_str_arr(char *const *arr);
-char	**split_env(char *str);
+
+void			free_str_arr(char ***arr);
+void			print_str_arr(char *const *arr);
+size_t			size_str_arr(char *const *arr);
+char			**split_env(char *str);
 
 #endif
