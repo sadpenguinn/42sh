@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:07:25 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/06 19:24:10 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/08 23:32:55 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int     main(int argc, char **argv, char **env)
 	t_line	*line_info;
 
 	argc++;
-	test = ft_strdup("$HOM");
+	test = ft_strdup("srcs/extention");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));

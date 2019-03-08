@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/06 19:39:26 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/08 23:49:26 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,39 @@
 
 char    *g_built_in_lists[] = {"cd", "echo", "env", "exit", "hash", "set",
                                 "setenv", "unsetenv", NULL};
+
+char	*get_pattern(char *buf, int pos)
+{
+	char 	*pattern;
+	int 	left_pos;
+
+	left_pos = pos;
+	while (left_pos && buf[left_pos - 1] != ' ' && buf[left_pos - 1] != '/')
+		left_pos--;
+	pattern = ft_strndup(buf + left_pos, pos - left_pos);
+	pattern = ft_strjoin(pattern, "*", 1);
+	return (pattern);
+}
+
+char	*get_rel_dir(char *buf, int pos)
+{
+	int	left_pos;
+
+	if (pos)
+		pos--;
+	while (pos && buf[pos] != '/' && buf[pos - 1] != ' ')
+		pos--;
+	left_pos = pos;
+	while (left_pos && buf[left_pos - 1] != ' ')
+		left_pos--;
+	if (left_pos == pos)
+		{
+			// printf("dir = |./|\n");
+			return (ft_strdup("./"));
+		}
+	// printf("dir = %s\n", ft_strndup(buf + left_pos, pos - left_pos + 1));
+	return (ft_strndup(buf + left_pos, pos - left_pos + 1));
+}
 
 int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 {
@@ -49,15 +82,47 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 	return (ERROR_AUTOCOMLITE);
 }
 
+char	*ft_strendchr(char *str, char c)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	res = NULL;
+	while (str[i])
+	{
+		if (str[i] == c)
+			res = &str[i];
+		i++;
+	}
+	return (res);
+}
+
 char	*cut_begin_in_unique_suggetion(char *str, char *word)
 {
 	int		i;
 	int		j;
+	char	*buf;
+	DIR		*dirp;
 
 	j = 0;
 	i = 0;
 	if (str[0] == '$')
 		str = &str[1];
+	buf = ft_strendchr(str, '/');
+	if ((buf && !ft_strcmp(buf + 1, word)) || !ft_strcmp(str, word))
+	{
+		if (!(dirp = opendir(str)))
+		{
+			free(word);
+			return (ft_strdup(" "));
+		}
+		closedir(dirp);
+		free(word);
+		return (ft_strdup("/"));
+	}
+	if (buf)
+		str = buf + 1;
 	while (str[i] && word[i] && str[i] == word[i])
 		i++;
 	while (word[i])
@@ -67,7 +132,7 @@ char	*cut_begin_in_unique_suggetion(char *str, char *word)
 		i++;
 	}
 	word[j] = 0;
-	return (str);
+	return (word);
 }
 
 int		get_mas_env_autocompl_len(char *str)
@@ -260,6 +325,43 @@ char	**get_autocomplite_functions_mas(char *str, char **res, int *c)
 	return (res);
 }
 
+int		get_autocomplite_files_dir_len(char *str)
+{
+	int		len;
+	int		res_len;
+	char	**res; // УТЕЧКА
+
+	len = ft_strlen(str);
+	if (xglob(get_pattern(str, len), get_rel_dir(str, len), &res, (size_t *)&res_len))
+		return (0);
+	// printf("res_len = %d\n", res_len);
+	return (res_len);
+}
+
+char	**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
+{
+	int		i;
+	int		len;
+	char	**out_glob;
+	char	*pattern;
+	char	*real_dir;
+
+	i = 0;
+	len = ft_strlen(str);
+	pattern = get_pattern(str, len);
+	real_dir = get_rel_dir(str, len);
+	if (xglob(pattern, real_dir, &out_glob, (size_t *)&len))
+		return (res);
+	while (out_glob[i])
+	{
+		res[*c] = out_glob[i];
+		i++;
+		(*c)++;
+	}
+	res[*c] = NULL;
+	return (res);
+}
+
 char	**get_mas_other_autocompile(char *str)
 {
 	int		len;
@@ -269,10 +371,12 @@ char	**get_mas_other_autocompile(char *str)
 	iter = 0;
 	len =	autocomplite_hash_find_len(g_path, str) +
 			get_autocomplite_built_in_mas_len(str)	+
-			get_autocomplite_functions_mas_len(str);
+			get_autocomplite_functions_mas_len(str)	+
+			get_autocomplite_files_dir_len(str)		;
 	res = xmalloc(sizeof(char *) * (len + 1));
 	res = autocomplite_hash_find(g_path, str, res, &iter);
 	res = get_autocomplite_built_in_mas(str, res, &iter);
+	res = get_autocomplite_files_dir_mas(str, res, &iter);
 	res = get_autocomplite_functions_mas(str, res, &iter);
 	return (res);
 }
@@ -392,6 +496,6 @@ char    **autocomplete(t_line *line_info, int pos)
 	res = sugg_get_common_repeat(res, ft_strlen(word_to_acmlt) -
 								((word_to_acmlt[0] == '$') ? 1 : 0));
 	if (res[0] && !res[1])
-		cut_begin_in_unique_suggetion(word_to_acmlt, res[0]);
+		res[0] = cut_begin_in_unique_suggetion(word_to_acmlt, res[0]);
 	return (res);
 }
