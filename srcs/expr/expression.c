@@ -1,4 +1,6 @@
 #include "expression.h"
+#include "lexer.h"
+#include "exprlexer.h"
 
 unsigned int		g_excurtok;
 void				*g_extokens = NULL;
