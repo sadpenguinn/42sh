@@ -65,8 +65,8 @@ static int	print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 	set_matrix_limits(matrix);
 	add_cursor_offset();
 	add_lines_text(matrix);
-	i = 0;
 	array_add("\n", 1);
+	i = 0;
 	while (i < cnt)
 	{
 		array_add(matches[i], strlen(matches[i]));
@@ -74,6 +74,7 @@ static int	print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 		array_add("\n", 1);
 		i++;
 	}
+	array_flush();
 	print_prompt();
 	reset_last_offset();
 	free(matches);
@@ -96,5 +97,7 @@ int			print_autocomplete(t_matrix *matrix)
 		return (print_possibilities(matrix, matches, cnt));
 	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
 			matches[0], strlen(matches[0]));
+	free(matches[0]);
+	free(matches);
 	return (1);
 }
