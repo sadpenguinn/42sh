@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:10 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 17:18:59 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/08 13:23:54 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <string.h>
 #include "term.h"
 
-void	init_readline(void)
+void		init_readline(void)
 {
 	get_term_params(&g_w);
 	set_term();
-	g_heredoc = 1;
+	g_heredoc = 0;
 	print_prompt();
 	history_fill();
 }

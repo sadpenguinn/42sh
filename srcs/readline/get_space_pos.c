@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_free.c                                        :+:      :+:    :+:   */
+/*   get_space_pos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/08 13:11:17 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/08 13:11:21 by narchiba         ###   ########.fr       */
+/*   Created: 2019/03/08 12:38:46 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 12:39:14 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "readline.h"
-#include <stdlib.h>
-
-void	line_free(t_line *line)
+int		get_space_left_pos(const char *buf, int pos)
 {
-	if (line == NULL)
-		return ;
-	free(line->buf);
-	free(line);
+	while (pos && buf[pos - 1] != '\t' && buf[pos - 1] != ' ')
+		pos--;
+	return (pos);
+}
+
+int		get_space_right_pos(const char *buf, int pos, int len)
+{
+	while (pos < len && buf[pos] != '\t' && buf[pos] != ' ')
+		pos++;
+	return (pos);
 }

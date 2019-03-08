@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 12:59:08 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 12:59:30 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include <string.h>
 #include "term.h"
 
-void	init_haredoc(void)
+void		init_haredoc(void)
 {
 	get_term_params(&g_w);
 	set_term();

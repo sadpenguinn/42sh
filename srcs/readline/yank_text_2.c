@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   yank_text_2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:29:11 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 13:29:26 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
-int yank_string(t_matrix *matrix)
+int	yank_string(t_matrix *matrix)
 {
 	int col1;
 	int col2;
@@ -13,7 +25,7 @@ int yank_string(t_matrix *matrix)
 	return (1);
 }
 
-int yank_begin_alnum(t_matrix *matrix)
+int	yank_begin_alnum(t_matrix *matrix)
 {
 	int col;
 
@@ -22,7 +34,7 @@ int yank_begin_alnum(t_matrix *matrix)
 	return (1);
 }
 
-int yank_next_alnum(t_matrix *matrix)
+int	yank_next_alnum(t_matrix *matrix)
 {
 	int col;
 
@@ -31,7 +43,7 @@ int yank_next_alnum(t_matrix *matrix)
 	return (1);
 }
 
-int yank_end_alnum(t_matrix *matrix)
+int	yank_end_alnum(t_matrix *matrix)
 {
 	int col;
 

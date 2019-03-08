@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   search_mode.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:25:13 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 13:25:46 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "libft.h"
 
@@ -11,7 +23,7 @@ void	search_in_history(t_line *line)
 	cur = g_history->len;
 	while (--cur >= 0)
 		if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
-			break;
+			break ;
 	if (cur >= 0)
 		g_history->cur = cur;
 	free(substr);
@@ -19,7 +31,7 @@ void	search_in_history(t_line *line)
 
 int		search_next(t_line *line)
 {
-	int 	cur;
+	int		cur;
 	char	*substr;
 
 	substr = (char *)xmalloc(sizeof(char) * line->len + 1);
@@ -27,13 +39,13 @@ int		search_next(t_line *line)
 	cur = g_history->cur;
 	while (--cur >= 0)
 		if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
-			break;
+			break ;
 	if (cur < 0)
 	{
 		cur = g_history->len;
 		while (--cur > g_history->cur)
 			if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
-				break;
+				break ;
 	}
 	if (cur != g_history->cur)
 		g_history->cur = cur;

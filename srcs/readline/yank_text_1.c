@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   yank_text_1.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:28:39 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 13:29:07 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
-int yank_begin_word(t_matrix *matrix)
+int	yank_begin_word(t_matrix *matrix)
 {
 	int col;
 
@@ -9,7 +21,7 @@ int yank_begin_word(t_matrix *matrix)
 	return (1);
 }
 
-int yank_next_word(t_matrix *matrix)
+int	yank_next_word(t_matrix *matrix)
 {
 	int col;
 
@@ -18,7 +30,7 @@ int yank_next_word(t_matrix *matrix)
 	return (1);
 }
 
-int yank_end_word(t_matrix *matrix)
+int	yank_end_word(t_matrix *matrix)
 {
 	int col;
 
@@ -27,7 +39,7 @@ int yank_end_word(t_matrix *matrix)
 	return (1);
 }
 
-int yank_end(t_matrix *matrix)
+int	yank_end(t_matrix *matrix)
 {
 	int col;
 
@@ -36,7 +48,7 @@ int yank_end(t_matrix *matrix)
 	return (1);
 }
 
-int yank_home(t_matrix *matrix)
+int	yank_home(t_matrix *matrix)
 {
 	int col;
 

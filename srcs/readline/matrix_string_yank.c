@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_string_yank.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:17:14 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 13:17:25 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
 void	matrix_string_yank(t_matrix *matrix, int row, int col)
@@ -19,6 +31,6 @@ void	matrix_string_yank(t_matrix *matrix, int row, int col)
 		line = matrix->lines[cursor.row];
 		buffer_free();
 		buffer_add(line->buf + cursor.col,
-				   col - cursor.col);
+				col - cursor.col);
 	}
 }

@@ -118,6 +118,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/get_cursor_pos_1.c
 					srcs/readline/get_cursor_pos_2.c
 					srcs/readline/get_cursor_pos_3.c
+					srcs/readline/get_space_pos.c
 					srcs/readline/move_cursor_1.c
 					srcs/readline/move_cursor_2.c
 					srcs/readline/move_cursor_3.c
@@ -126,7 +127,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/readline_buffer.c
 					srcs/readline/add_shortcut.c
 					srcs/readline/modes_handling.c
-					srcs/readline/ft_puts.c
 					srcs/readline/vi_mode_normal.c
 					srcs/readline/vi_mode_insert.c
 					srcs/readline/vi_mode_replace.c

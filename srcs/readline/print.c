@@ -6,7 +6,7 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 17:01:20 by narchiba          #+#    #+#             */
-/*   Updated: 2019/02/26 17:02:40 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/08 13:23:13 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libshell.h"
 #include "autocomplete.h"
 
-int		print_default(t_matrix *matrix)
+int			print_default(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
 	add_cursor_offset();
@@ -26,7 +26,7 @@ int		print_default(t_matrix *matrix)
 	return (1);
 }
 
-int		print_end(t_matrix *matrix)
+int			print_end(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
 	add_cursor_offset();
@@ -37,10 +37,10 @@ int		print_end(t_matrix *matrix)
 	return (1);
 }
 
-int 	print_search(t_matrix *matrix)
+int			print_search(t_matrix *matrix)
 {
 	t_line	*line;
-	int 	symbols;
+	int		symbols;
 
 	set_matrix_limits(matrix);
 	add_cursor_offset();
@@ -58,7 +58,7 @@ int 	print_search(t_matrix *matrix)
 	return (1);
 }
 
-static int print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
+static int	print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 {
 	size_t	i;
 
@@ -80,19 +80,21 @@ static int print_possibilities(t_matrix *matrix, char **matches, size_t cnt)
 	return (1);
 }
 
-int		print_autocomplete(t_matrix *matrix)
+int			print_autocomplete(t_matrix *matrix)
 {
 	char	**matches;
 	size_t	cnt;
 
-	matches = autocomplete(matrix->lines[matrix->cursor->row], matrix->cursor->col);
+	matches =
+		autocomplete(matrix->lines[matrix->cursor->row], matrix->cursor->col);
 	if (matches == NULL)
 		return (1);
 	cnt = 0;
 	while (matches[cnt])
 		cnt++;
 	if (cnt > 1)
-		return print_possibilities(matrix, matches, cnt);
-	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor, matches[0], strlen(matches[0]));
+		return (print_possibilities(matrix, matches, cnt));
+	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
+			matches[0], strlen(matches[0]));
 	return (1);
 }

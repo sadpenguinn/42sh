@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vi_mode_replace.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:28:11 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 13:28:23 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "libft.h"
 
-int replace_mode(t_matrix *matrix, t_uchar c)
+int	replace_mode(t_matrix *matrix, t_uchar c)
 {
 	char	str[sizeof(t_uchar)];
 
@@ -26,6 +38,6 @@ int replace_mode(t_matrix *matrix, t_uchar c)
 	del(matrix);
 	ft_memset(str, 0, sizeof(t_uchar));
 	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
-						 str, symbol_to_string(c, str));
+			str, symbol_to_string(c, str));
 	return (1);
 }

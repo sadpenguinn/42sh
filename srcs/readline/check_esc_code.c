@@ -6,14 +6,14 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:53:30 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 20:45:34 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/08 12:49:32 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include <time.h>
 
-static int	check_esc_buttons(t_uchar c, int i)
+static int		check_esc_buttons(t_uchar c, int i)
 {
 	t_uchar	tmp;
 
@@ -30,8 +30,8 @@ static int	check_esc_buttons(t_uchar c, int i)
 		i--;
 	}
 	c &= tmp;
-	if (c == (LEFT & tmp) || c == (RIGHT & tmp )||
-		c == (DOWN & tmp )|| c == (UP & tmp) ||
+	if (c == (LEFT & tmp) || c == (RIGHT & tmp) ||
+		c == (DOWN & tmp) || c == (UP & tmp) ||
 		c == (HOME1 & tmp) || c == (HOME2 & tmp) ||
 		c == (END1 & tmp) || c == (END2 & tmp) ||
 		c == (DEL & tmp))
@@ -54,7 +54,7 @@ static int		new_esc_code(void)
 	return (esc_code_handling(ESC));
 }
 
-int			esc_code_handling(t_uchar c)
+int				esc_code_handling(t_uchar c)
 {
 	size_t	i;
 	t_uchar	tmp;

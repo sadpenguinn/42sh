@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_cursor_pos_2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 12:56:53 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 12:57:08 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
 int	get_cursor_pos_next_word(t_matrix *matrix)
@@ -14,7 +26,7 @@ int	get_cursor_pos_next_word(t_matrix *matrix)
 	return (col);
 }
 
-int get_cursor_pos_begin_word(t_matrix *matrix)
+int	get_cursor_pos_begin_word(t_matrix *matrix)
 {
 	int		col;
 	t_line	*line;
@@ -32,7 +44,7 @@ int get_cursor_pos_begin_word(t_matrix *matrix)
 	return (col);
 }
 
-int get_cursor_pos_end_word(t_matrix *matrix)
+int	get_cursor_pos_end_word(t_matrix *matrix)
 {
 	int		col;
 	t_line	*line;

@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:09:46 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/03 13:42:42 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/08 13:30:48 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		array_add(const char *str, size_t len)
 	g_arr->len += len;
 }
 
-char	*array_to_string(void)
+char		*array_to_string(void)
 {
 	char	*str;
 

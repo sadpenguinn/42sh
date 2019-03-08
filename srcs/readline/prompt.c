@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:03 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/02/20 18:55:26 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/08 13:23:35 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	get_prompt(char *cwd)
 	struct passwd	*pw;
 
 	pw = getpwuid(getuid());
-//	char *str = sgetenv("HOME", ENV_ALL);
 	if (getcwd(cwd, PATH_MAX) != NULL)
 		return (get_pos(cwd, pw->pw_dir));
 	return (-1);

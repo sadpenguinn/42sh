@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   history_save.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:08:09 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 13:10:45 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include <pwd.h>
 #include <unistd.h>
@@ -26,7 +38,7 @@ int			history_save(t_string **str)
 	int ret;
 
 	matrix_to_string(g_history->matrix[g_history->cur],
-					 g_history->matrix[g_history->cur]->str_history);
+			g_history->matrix[g_history->cur]->str_history);
 	if (g_history->matrix[g_history->cur]->str_history->buf[0] == '\0')
 	{
 		string_del(str);
@@ -36,8 +48,9 @@ int			history_save(t_string **str)
 	{
 		if (!(g_history->len - 1 &&
 			matrix_cmp(g_history->matrix[g_history->cur],
-					   g_history->last_hst_matrix) == 0))
-			write_history_on_disk(g_history->matrix[g_history->cur]->str_history);
+				g_history->last_hst_matrix) == 0))
+			write_history_on_disk(g_history->matrix[g_history->cur]->
+					str_history);
 		matrix_to_string(g_history->matrix[g_history->cur], *str);
 		ret = 0;
 	}

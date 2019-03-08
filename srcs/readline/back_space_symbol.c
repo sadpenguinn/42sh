@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   back_space_symbol.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 12:30:45 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 12:48:17 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
 int		back_space(t_matrix *matrix)
@@ -11,7 +23,8 @@ int		back_space(t_matrix *matrix)
 		matrix->cursor->col = matrix->lines[matrix->cursor->row]->len;
 		line = matrix->lines[matrix->cursor->row + 1];
 		pos.col = matrix->cursor->col;
-		*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor, line->buf, line->len);
+		*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
+				line->buf, line->len);
 		matrix_erase_line(matrix, matrix->cursor->row + 1);
 		matrix->cursor->col = pos.col;
 	}
@@ -20,7 +33,7 @@ int		back_space(t_matrix *matrix)
 		move_cursor_left(matrix);
 		line = matrix->lines[matrix->cursor->row];
 		pos.col = matrix->cursor->col +
-				  1 + get_utf_offset_right(line->buf[matrix->cursor->col]);
+			1 + get_utf_offset_right(line->buf[matrix->cursor->col]);
 		pos.row = matrix->cursor->row;
 		matrix_string_delete(*matrix->cursor, pos);
 	}

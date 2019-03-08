@@ -127,7 +127,7 @@ typedef struct	s_history
 	int			last_offset;
 	t_matrix	**matrix;
 	t_matrix	*last_hst_matrix;
-	t_string	*str;
+	t_string	*buffer;
 	t_line		*search_line;
 }				t_history;
 
@@ -301,7 +301,11 @@ int				get_cursor_pos_next_alnum(t_matrix *matrix);
 int				get_cursor_pos_begin_alnum(t_matrix *matrix);
 int				get_cursor_pos_end_alnum(t_matrix *matrix);
 
+int				get_space_left_pos(const char *buf, int pos);
+int				get_space_right_pos(const char *buf, int pos, int len);
+
 int				are_default_shortcuts(t_matrix *matrix, t_uchar c);
+int				are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c);
 
 void			buffer_add(const char *str, int size);
 void			buffer_free(void);

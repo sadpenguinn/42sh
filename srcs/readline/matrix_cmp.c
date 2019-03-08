@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_cmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:12:15 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/08 13:12:59 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "libshell.h"
 
-int 	matrix_cmp(t_matrix *matrix1, t_matrix *matrix2)
+int	matrix_cmp(t_matrix *matrix1, t_matrix *matrix2)
 {
 	int	i;
 

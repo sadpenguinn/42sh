@@ -6,7 +6,7 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:52:49 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/03 17:46:00 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/08 13:15:46 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int			line_string_delete(t_line *line, int pos, int size)
 	buffer_add(line->buf + pos, size);
 	line->symbols -= count_string_symbols(line->buf + pos, size);
 	ft_memmove(line->buf + pos, line->buf + pos + size,
-			   line->len - pos - size);
+			line->len - pos - size);
 	line->len -= size;
 	return (pos);
 }
 
-void	matrix_string_delete(t_cursor left, t_cursor right)
+void		matrix_string_delete(t_cursor left, t_cursor right)
 {
 	t_line		*line;
 	t_matrix	*matrix;

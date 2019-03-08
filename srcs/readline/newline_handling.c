@@ -6,7 +6,7 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:56:46 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/03 06:35:05 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/08 13:19:38 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	count_quotes(t_matrix *matrix, char *buf, int len)
 	}
 }
 
-static int check_quotes(t_matrix *matrix)
+static int	check_quotes(t_matrix *matrix)
 {
 	int i;
 

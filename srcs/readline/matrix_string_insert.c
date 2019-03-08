@@ -6,14 +6,14 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:57:29 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/03 06:16:14 by sitlcead         ###   ########.fr       */
+/*   Updated: 2019/03/08 13:16:50 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include "libft.h"
 
-int	line_string_insert(t_line *line, int pos, const char *str, int size)
+int			line_string_insert(t_line *line, int pos, const char *str, int size)
 {
 	if (size <= 0)
 		return (pos);
@@ -24,12 +24,12 @@ int	line_string_insert(t_line *line, int pos, const char *str, int size)
 				line->len - pos);
 	ft_memcpy(line->buf + pos, str, size);
 	line->len += size;
-
 	line->symbols += count_string_symbols(str, size);
 	return (pos + size);
 }
 
-t_cursor	matrix_string_insert(t_matrix *matrix, t_cursor pos, const char *str, int size)
+t_cursor	matrix_string_insert(t_matrix *matrix,
+		t_cursor pos, const char *str, int size)
 {
 	t_line		*line;
 

@@ -6,28 +6,14 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:36:43 by narchiba          #+#    #+#             */
-/*   Updated: 2019/02/26 16:46:17 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/08 12:38:43 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include "libft.h"
 
-int		get_space_left_pos(const char *buf, int pos)
-{
-	while (pos && buf[pos - 1] != '\t' && buf[pos - 1] != ' ')
-		pos--;
-	return (pos);
-}
-
-int 	get_space_right_pos(const char *buf, int pos, int len)
-{
-	while (pos < len && buf[pos] != '\t' && buf[pos] != ' ')
-		pos++;
-	return (pos);
-}
-
-void	add_line(t_line	*line, int start, int end)
+void	add_line(t_line *line, int start, int end)
 {
 	int	left;
 	int	right;
@@ -89,5 +75,5 @@ void	add_cursor_text(t_matrix *matrix)
 void	add_lines_text(t_matrix *matrix)
 {
 	add_text(matrix, matrix->right_limit,
-			 matrix->lines[matrix->right_limit]->len);
+			matrix->lines[matrix->right_limit]->len);
 }
