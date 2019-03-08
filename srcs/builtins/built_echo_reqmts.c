@@ -53,7 +53,7 @@ static int	hex_sequence(const char *str, int i)
 		i++;
 	}
 	stack[k] = '\0';
-	ft_putchar(ft_atoi_base(stack, 16));
+	ft_putchar(ft_atoi_base(stack, "16"));
 	return (--i);
 }
 
@@ -71,7 +71,7 @@ static int	octal_sequence(const char *str, int i)
 		i++;
 	}
 	stack[k] = '\0';
-	ft_putchar(ft_atoi_base(stack, 8));
+	ft_putchar(ft_atoi_base(stack, "8"));
 	return (--i);
 }
 
