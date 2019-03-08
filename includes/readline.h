@@ -15,6 +15,7 @@
 
 # define CSI "\e["
 # define COLOR_DEFAULT "\e[0m"
+
 # define DEFAULT_TERM_COLORS "\e[0m\e[39;49m"
 # define DEFAULT_TEXT_COLORS "\e[0m\e[39m"
 # define CURSOR_MOVE_LINE_START "\e[1G"
@@ -69,7 +70,7 @@ enum	e_vi_mode_editing_modes
 enum	e_allocation_params
 {
 	HISTORY_DEFAULT_SIZE = 10, BUF_DEFAULT_SIZE = 5, RATIO = 2,
-	MATRIX_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10, READ_SIZE = 100
+	MATRIX_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10
 };
 
 # define CTRL_V 026
@@ -125,7 +126,7 @@ typedef struct	s_history
 	int			cur;
 	int			last_offset;
 	t_matrix	**matrix;
-	t_matrix	*cur_matrix;
+	t_matrix	*last_hst_matrix;
 	t_string	*str;
 	t_line		*search_line;
 }				t_history;
@@ -166,10 +167,10 @@ int				add_shortcut(t_uchar c);
 void			add_cursor_offset(void);
 void			reset_last_offset(void);
 
-int				readline_mode(t_matrix *matrix, t_uchar c);
-int				search_mode(t_matrix *matrix, t_uchar c);
-int				vi_mode(t_matrix *matrix, t_uchar c);
-int				modes_handling(t_matrix *matrix, t_uchar c);
+int				readline_mode(t_uchar c);
+int				search_mode(t_uchar c);
+int				vi_mode(t_uchar c);
+int				modes_handling(t_uchar c);
 int				esc_code_handling(t_uchar c);
 
 int				normal_mode(t_matrix *matrix, t_uchar c);
@@ -223,6 +224,7 @@ int				move_cursor_begin(t_matrix *matrix);
 int				move_cursor_next_alnum(t_matrix *matrix);
 int				move_cursor_end_alnum(t_matrix *matrix);
 int				move_cursor_begin_alnum(t_matrix *matrix);
+int				move_cursor_end_matrix(t_matrix *matrix);
 
 int				del(t_matrix *matrix);
 int				back_space(t_matrix *matrix);
@@ -306,7 +308,7 @@ int				get_buffer_len(void);
 
 int 			lex_check_bash_word(const char *str, size_t len);
 
-int				history_save_elem(void);
+int				history_save_elem(t_string *str);
 void	history_resize(t_history *history);
 void		history_fill(void);
 

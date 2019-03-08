@@ -110,6 +110,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/cursor_dup.c
 					srcs/readline/string_init.c
 					srcs/readline/string_free.c
+					srcs/readline/string_del.c
 					srcs/readline/string_dup.c
 					srcs/readline/string_fill.c
 					srcs/readline/get_cursor_pos_1.c

@@ -13,15 +13,17 @@
 #include "readline.h"
 #include "libft.h"
 
-int	readline_mode(t_matrix *matrix, t_uchar c)
+int	readline_mode(t_uchar c)
 {
-	char	str[sizeof(t_uchar)];
+	char		str[sizeof(t_uchar)];
+	t_matrix	*matrix;
 
 	if (c == CTRL_R)
 	{
 		g_search_mode = 1;
 		return (1);
 	}
+	matrix = g_history->matrix[g_history->cur];
 	if (are_default_shortcuts(matrix, c))
 		return (1);
 	if (c == BS)

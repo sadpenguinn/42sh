@@ -11,16 +11,17 @@
 /* ************************************************************************** */
 
 #include "readline.h"
+#include "libft.h"
 
 static void	num_to_str(int max, char *str, int nbr)
 {
 	int	i;
 
 	i = get_lines_offset(max);
-	memset(str, 0, i + 1);
+	ft_memset(str, 0, i + 1);
 	while (nbr && i)
 	{
-		str[i - 1] = '0' + nbr % 10;
+		str[i - 1] = (char)('0' + nbr % 10);
 		i--;
 		nbr /= 10;
 	}
@@ -35,7 +36,7 @@ void		add_line_prefix(t_matrix *matrix, int cur_row)
 {
 	char	str[20];
 
-	memset(str, 0, 20);
+	ft_memset(str, 0, 20);
 	if (cur_row == matrix->cursor->row)
 		add_cur_line_prompt_style();
 	else

@@ -6,24 +6,15 @@ void	search_in_history(t_line *line)
 	int		cur;
 	char	*substr;
 
-	cur = g_history->len - 1;
 	substr = (char *)xmalloc(sizeof(char) * line->len + 1);
 	ft_memcpy(substr, line->buf, line->len);
-	while (cur >= 0)
-	{
+	cur = g_history->len;
+	while (--cur >= 0)
 		if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
 			break;
-		cur--;
-	}
 	if (cur >= 0)
-	{
-		matrix_del(&g_history->cur_matrix);
-		g_history->cur_matrix = matrix_dup(g_history->matrix[cur]);
-		g_history->cur_matrix->cursor->row = g_history->cur_matrix->len - 1;
-		g_history->cur_matrix->cursor->col =
-				g_history->cur_matrix->lines[g_history->cur_matrix->len - 1]->len;
 		g_history->cur = cur;
-	}
+	free(substr);
 }
 
 int		search_next(t_line *line)
@@ -31,41 +22,29 @@ int		search_next(t_line *line)
 	int 	cur;
 	char	*substr;
 
-	cur = g_history->cur - 1;
 	substr = (char *)xmalloc(sizeof(char) * line->len + 1);
 	ft_memcpy(substr, line->buf, line->len);
-	while (cur >= 0)
-	{
+	cur = g_history->cur;
+	while (--cur >= 0)
 		if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
 			break;
-		cur--;
-	}
 	if (cur < 0)
 	{
-		cur = g_history->len - 1;
-		while (cur > g_history->cur)
-		{
+		cur = g_history->len;
+		while (--cur > g_history->cur)
 			if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
 				break;
-			cur--;
-		}
 	}
 	if (cur != g_history->cur)
-	{
-		matrix_del(&g_history->cur_matrix);
-		g_history->cur_matrix = matrix_dup(g_history->matrix[cur]);
-		g_history->cur_matrix->cursor->row = g_history->cur_matrix->len - 1;
-		g_history->cur_matrix->cursor->col =
-				g_history->cur_matrix->lines[g_history->cur_matrix->len - 1]->len;
 		g_history->cur = cur;
-	}
+	free(substr);
 	return (1);
 }
 
-int		search_mode(t_matrix *matrix, t_uchar c)
+int		search_mode(t_uchar c)
 {
-	t_line	*line;
-	char 	str[8];
+	t_line		*line;
+	char		str[8];
 
 	line = g_history->search_line;
 	if (c == CTRL_B || c == LEFT || c == CTRL_F || c == RIGHT ||
@@ -75,8 +54,9 @@ int		search_mode(t_matrix *matrix, t_uchar c)
 	{
 		g_search_mode = 0;
 		line->len = 0;
+		move_cursor_end(g_history->matrix[g_history->cur]);
 		if (c == '\n')
-			return (newline_handling(matrix));
+			return (newline_handling(g_history->matrix[g_history->cur]));
 		return (1);
 	}
 	if (c == CTRL_R)

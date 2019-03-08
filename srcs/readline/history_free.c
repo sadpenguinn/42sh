@@ -7,7 +7,7 @@ void	history_free(t_history *history)
 
 	if (history == NULL)
 		return ;
-	matrix_free(history->cur_matrix);
+	matrix_free(history->last_hst_matrix);
 	i = 0;
 	while (i < history->len)
 		matrix_free(history->matrix[i++]);

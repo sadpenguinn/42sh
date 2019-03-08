@@ -16,14 +16,12 @@
 void	add_cursor_offset(void)
 {
 	char	str[20];
-	int 	offset;
 
-	offset =  g_history->last_offset;
-	if (offset)
+	if (g_history->last_offset)
 	{
 		memset(str, 0, 20);
 		array_add(CSI, strlen(CSI));
-		ft_strnum(str, offset);
+		ft_strnum(str, g_history->last_offset);
 		array_add(str, strlen(str));
 		array_add("A", 1);
 	}

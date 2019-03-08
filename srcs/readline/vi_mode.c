@@ -1,7 +1,10 @@
 #include "readline.h"
 
-int	vi_mode(t_matrix *matrix, t_uchar c)
+int	vi_mode(t_uchar c)
 {
+	t_matrix	*matrix;
+
+	matrix = g_history->matrix[g_history->cur];
 	if (g_vi_mode == INSERT_MODE)
 		return (insert_mode(matrix, c));
 	if (g_vi_mode == NORMAL_MODE)

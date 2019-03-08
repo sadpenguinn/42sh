@@ -39,18 +39,18 @@ static int	check_esc_buttons(t_uchar c, int i)
 	return (0);
 }
 
-static int		no_esc_code(t_matrix *matrix, t_uchar c)
+static int		no_esc_code(t_uchar c)
 {
 	if (g_mode == VI)
-		modes_handling(matrix, ESC);
-	modes_handling(matrix, c >> 8);
+		modes_handling(ESC);
+	modes_handling(c >> 8);
 	return (1);
 }
 
-static int		new_esc_code(t_matrix *matrix)
+static int		new_esc_code(void)
 {
 	if (g_mode == VI)
-		modes_handling(matrix, ESC);
+		modes_handling(ESC);
 	return (esc_code_handling(ESC));
 }
 
@@ -66,12 +66,12 @@ int			esc_code_handling(t_uchar c)
 		tmp = get_next_symbol(sizeof(char));
 		c += (tmp << (i * 8));
 		if (tmp == ESC)
-			return (new_esc_code(g_history->cur_matrix));
+			return (new_esc_code());
 		ret = check_esc_buttons(c, i);
 		if (ret == 0)
-			return (no_esc_code(g_history->cur_matrix, c));
+			return (no_esc_code(c));
 		if (ret == 1)
-			return (modes_handling(g_history->cur_matrix, c));
+			return (modes_handling(c));
 	}
 	return (c >> 8);
 }

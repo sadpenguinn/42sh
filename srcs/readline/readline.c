@@ -32,6 +32,7 @@ void	init_readline(void)
 t_string	*readline(void)
 {
 	int			ret;
+	t_string	*str;
 
 	print_prompt();
 	init_readline();
@@ -40,20 +41,23 @@ t_string	*readline(void)
 	while (ret > 0)
 	{
 		if (g_search_mode)
-			print_search(g_history->cur_matrix);
+			print_search(g_history->matrix[g_history->cur]);
 		else
-			print_default(g_history->cur_matrix);
+			print_default(g_history->matrix[g_history->cur]);
 		ret = check_next_symbol();
 	}
 	if (ret == 0)
 	{
-		print_lines(g_history->cur_matrix);
+		print_lines(g_history->matrix[g_history->cur]);
 		write(1, "\n", 1);
-		matrix_to_string(g_history->cur_matrix, g_history->cur_matrix->str_history);
-		if (history_save_elem())
+		str = string_init();
+		if (history_save_elem(str))
+		{
+			string_del(&str);
 			return (readline());
+		}
 		unset_term();
-		return (g_history->matrix[g_history->len - 1]->str_history);
+		return (str);
 	}
 	history_del(&g_history);
 	unset_term();

@@ -59,14 +59,13 @@ static void	init_history(void)
 
 void		history_fill(void)
 {
-	history_del(&g_history);
 	init_history();
+	if (g_history->len)
+		g_history->last_hst_matrix = matrix_dup(g_history->matrix[g_history->len - 1]);
 	if (g_history->size == g_history->len)
 		history_resize(g_history);
 	g_history->len++;
 	g_history->cur = g_history->len - 1;
-	g_history->last_offset = 0;
-	g_history->cur_matrix = matrix_init();
-	matrix_create_line(g_history->cur_matrix, 0);
-	g_history->matrix[g_history->cur] = matrix_dup(g_history->cur_matrix);
+	g_history->matrix[g_history->cur] = matrix_init();
+	matrix_create_line(g_history->matrix[g_history->cur], 0);
 }
