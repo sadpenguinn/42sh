@@ -134,11 +134,13 @@ typedef struct	s_history
 t_history		*g_history;
 int				g_mode;
 int				g_search_mode;
+int				g_heredoc;
 int				g_vi_mode;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
 t_string		*readline(void);
+t_string		*heredoc(void);
 
 void			ft_puts(char *buf);
 
@@ -230,7 +232,7 @@ int				del(t_matrix *matrix);
 int				back_space(t_matrix *matrix);
 
 int				print_default(t_matrix *matrix);
-int				print_lines(t_matrix *matrix);
+int				print_end(t_matrix *matrix);
 int 			print_search(t_matrix *matrix);
 int				print_autocomplete(t_matrix *matrix);
 
@@ -308,7 +310,7 @@ int				get_buffer_len(void);
 
 int 			lex_check_bash_word(const char *str, size_t len);
 
-int				history_save_elem(t_string *str);
+int				history_save(t_string **str);
 void	history_resize(t_history *history);
 void		history_fill(void);
 

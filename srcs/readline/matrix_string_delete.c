@@ -39,7 +39,7 @@ int			line_string_delete(t_line *line, int pos, int size)
 		size = line->len - pos;
 	buffer_free();
 	buffer_add(line->buf + pos, size);
-	line->symbols -= count_string_symbols(line->buf, size);
+	line->symbols -= count_string_symbols(line->buf + pos, size);
 	ft_memmove(line->buf + pos, line->buf + pos + size,
 			   line->len - pos - size);
 	line->len -= size;

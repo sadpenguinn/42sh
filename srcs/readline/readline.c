@@ -13,19 +13,13 @@
 #include "readline.h"
 #include <string.h>
 #include "term.h"
-#include <unistd.h>
-
-void	ft_puts(char *buf)
-{
-	int	len;
-
-	len = strlen(buf);
-	write(1, buf, len);
-}
 
 void	init_readline(void)
 {
 	get_term_params(&g_w);
+	set_term();
+	g_heredoc = 1;
+	print_prompt();
 	history_fill();
 }
 
@@ -34,9 +28,7 @@ t_string	*readline(void)
 	int			ret;
 	t_string	*str;
 
-	print_prompt();
 	init_readline();
-	set_term();
 	ret = 1;
 	while (ret > 0)
 	{
@@ -48,14 +40,10 @@ t_string	*readline(void)
 	}
 	if (ret == 0)
 	{
-		print_lines(g_history->matrix[g_history->cur]);
-		write(1, "\n", 1);
+		print_end(g_history->matrix[g_history->cur]);
 		str = string_init();
-		if (history_save_elem(str))
-		{
-			string_del(&str);
+		if (history_save(&str))
 			return (readline());
-		}
 		unset_term();
 		return (str);
 	}

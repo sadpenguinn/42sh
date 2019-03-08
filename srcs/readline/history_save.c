@@ -21,21 +21,24 @@ static void	write_history_on_disk(t_string *str)
 	free(file_name);
 }
 
-int			history_save_elem(t_string *str)
+int			history_save(t_string **str)
 {
 	int ret;
 
 	matrix_to_string(g_history->matrix[g_history->cur],
 					 g_history->matrix[g_history->cur]->str_history);
 	if (g_history->matrix[g_history->cur]->str_history->buf[0] == '\0')
+	{
+		string_del(str);
 		ret = 1;
+	}
 	else
 	{
 		if (!(g_history->len - 1 &&
 			matrix_cmp(g_history->matrix[g_history->cur],
 					   g_history->last_hst_matrix) == 0))
 			write_history_on_disk(g_history->matrix[g_history->cur]->str_history);
-		matrix_to_string(g_history->matrix[g_history->cur], str);
+		matrix_to_string(g_history->matrix[g_history->cur], *str);
 		ret = 0;
 	}
 	history_del(&g_history);

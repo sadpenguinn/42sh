@@ -59,6 +59,7 @@ set(SHELL_SRC		srcs/shell/init.c
 set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
+					srcs/readline/heredoc.c
 					srcs/readline/history_save.c
 					srcs/readline/history_fill.c
 					srcs/readline/history_resize.c
@@ -74,7 +75,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/matrix_create_line.c
 					srcs/readline/utf.c
 					srcs/readline/matrix_string_delete.c
-					srcs/readline/buttons1.c
+					srcs/readline/back_space_symbol.c
+					srcs/readline/del_symbol.c
 					srcs/readline/matrix_erase_line.c
 					srcs/readline/get_next_symbol.c
 					srcs/readline/newline_handling.c
@@ -123,7 +125,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/vi_mode.c
 					srcs/readline/readline_buffer.c
 					srcs/readline/add_shortcut.c
-					srcs/readline/check_modes.c
+					srcs/readline/modes_handling.c
+					srcs/readline/ft_puts.c
 					srcs/readline/vi_mode_normal.c
 					srcs/readline/vi_mode_insert.c
 					srcs/readline/vi_mode_replace.c

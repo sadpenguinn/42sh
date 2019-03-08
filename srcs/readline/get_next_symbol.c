@@ -26,8 +26,7 @@ t_uchar		get_next_symbol(size_t size)
 	while (ret == -1)
 	{
 		dup2(-1, 0);
-		print_lines(g_history->matrix[g_history->cur]);
-		write(1, "\n", 1);
+		print_end(g_history->matrix[g_history->cur]);
 		print_prompt();
 		g_history->cur = g_history->len - 1;
 		matrix_del(&g_history->matrix[g_history->cur]);
