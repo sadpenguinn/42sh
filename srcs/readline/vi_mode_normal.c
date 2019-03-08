@@ -6,13 +6,13 @@ static int	normal_mode_del(t_matrix *matrix, t_uchar c)
 	if (c == 'B')
 		return (del_begin_word(matrix));
 	if (c == 'W')
-		return (del_end_word(matrix));
+		return (del_next_word(matrix));
 	if (c == 'E')
 		return (del_end_word(matrix));
 	if (c == 'b')
 		return (del_begin_alnum(matrix));
 	if (c == 'w')
-		return (del_end_alnum(matrix));
+		return (del_next_alnum(matrix));
 	if (c == 'e')
 		return (del_end_alnum(matrix));
 	if (c == '$')
@@ -32,13 +32,13 @@ static int	normal_mode_yank(t_matrix *matrix, t_uchar c)
 	if (c == 'B')
 		return (yank_begin_word(matrix));
 	if (c == 'W')
-		return (yank_end_word(matrix));
+		return (yank_next_word(matrix));
 	if (c == 'E')
 		return (yank_end_word(matrix));
 	if (c == 'b')
 		return (yank_begin_alnum(matrix));
 	if (c == 'w')
-		return (yank_end_alnum(matrix));
+		return (yank_next_alnum(matrix));
 	if (c == 'e')
 		return (yank_end_alnum(matrix));
 	if (c == '$')

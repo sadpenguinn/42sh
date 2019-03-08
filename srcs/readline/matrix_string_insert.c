@@ -15,7 +15,6 @@
 
 int	line_string_insert(t_line *line, int pos, const char *str, int size)
 {
-
 	if (size <= 0)
 		return (pos);
 	if (line->len + size > line->size)
@@ -25,6 +24,7 @@ int	line_string_insert(t_line *line, int pos, const char *str, int size)
 				line->len - pos);
 	ft_memcpy(line->buf + pos, str, size);
 	line->len += size;
+
 	line->symbols += count_string_symbols(str, size);
 	return (pos + size);
 }

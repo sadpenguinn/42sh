@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/stat.h>
 #include "shell.h"
 
 static void		init_read_dir(char *dir, DIR *dirp)

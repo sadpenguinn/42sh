@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "execute.h"
+#include "readline.h"
+#include "lexer.h"
 #include "parser.h"
+#include "execute.h"
 
 /*
 ** Global variables for parser
@@ -37,6 +39,7 @@ int		main(int ac, char **av, char **env)
 	while ((line = readline()))
 	{
 		lex = lexer(line->buf, line->len);
+		string_del(&line);
 		g_tokens = lex->lexems;
 		ast = inputunit();
 		if (g_dontexec == FALSE)

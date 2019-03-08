@@ -55,6 +55,8 @@ void		print_prompt(void)
 	char	cwd[PATH_MAX];
 	int		pos;
 
+	if (g_heredoc)
+		return ;
 	array_add(DEFAULT_TERM_COLORS, strlen(DEFAULT_TERM_COLORS));
 	array_add(TURN_ON_CURSOR, strlen(TURN_ON_CURSOR));
 	add_shell_name();

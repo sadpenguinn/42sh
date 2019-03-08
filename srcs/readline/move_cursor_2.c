@@ -29,3 +29,10 @@ int	move_cursor_begin(t_matrix *matrix)
 	matrix->cursor->col = get_cursor_pos_begin(matrix);
 	return (1);
 }
+
+int	move_cursor_end_matrix(t_matrix *matrix)
+{
+	matrix->cursor->row = matrix->len - 1;
+	matrix->cursor->col = matrix->lines[matrix->len - 1]->len;
+	return (1);
+}

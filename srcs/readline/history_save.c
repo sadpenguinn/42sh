@@ -21,27 +21,26 @@ static void	write_history_on_disk(t_string *str)
 	free(file_name);
 }
 
-int			history_save_elem(void)
+int			history_save(t_string **str)
 {
-	if (g_history->cur_matrix->str_history->buf[0] == '\0')
+	int ret;
+
+	matrix_to_string(g_history->matrix[g_history->cur],
+					 g_history->matrix[g_history->cur]->str_history);
+	if (g_history->matrix[g_history->cur]->str_history->buf[0] == '\0')
 	{
-		matrix_del(&g_history->matrix[g_history->len - 1]);
-		matrix_del(&g_history->cur_matrix);
-		g_history->len--;
-		return (1);
+		string_del(str);
+		ret = 1;
 	}
-	if (g_history->len - 1 &&
-		matrix_cmp(g_history->cur_matrix,
-				   g_history->matrix[g_history->len - 2]) == 0)
+	else
 	{
-		matrix_del(&g_history->matrix[g_history->len - 1]);
-		matrix_del(&g_history->cur_matrix);
-		g_history->len--;
-		return (0);
+		if (!(g_history->len - 1 &&
+			matrix_cmp(g_history->matrix[g_history->cur],
+					   g_history->last_hst_matrix) == 0))
+			write_history_on_disk(g_history->matrix[g_history->cur]->str_history);
+		matrix_to_string(g_history->matrix[g_history->cur], *str);
+		ret = 0;
 	}
-	matrix_del(&g_history->matrix[g_history->len - 1]);
-	g_history->matrix[g_history->len - 1] = matrix_dup(g_history->cur_matrix);
-	matrix_del(&g_history->cur_matrix);
-	write_history_on_disk(g_history->matrix[g_history->len - 1]->str_history);
-	return (0);
+	history_del(&g_history);
+	return (ret);
 }

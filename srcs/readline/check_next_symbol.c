@@ -27,7 +27,7 @@ static int	utf_handling(t_uchar c)
 
 	tmp = get_next_symbol(get_utf_offset_right(c));
 	c += (tmp << 8);
-	return (modes_handling(g_history->cur_matrix, c));
+	return (modes_handling(c));
 }
 
 int			check_next_symbol(void)
@@ -37,9 +37,14 @@ int			check_next_symbol(void)
 	c = get_next_symbol(sizeof(char));
 	if (c == CTRL_D)
 		return (-1);
+	if (c == CTRL_V)
+	{
+		add_shortcut(c);
+		return (1);
+	}
 	if (c == ESC)
 		return (esc_code_handling(c));
 	if (is_utf(c))
 		return (utf_handling(c));
-	return (modes_handling(g_history->cur_matrix, c));
+	return (modes_handling(c));
 }

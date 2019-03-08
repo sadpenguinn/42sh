@@ -26,12 +26,13 @@ int		print_default(t_matrix *matrix)
 	return (1);
 }
 
-int		print_lines(t_matrix *matrix)
+int		print_end(t_matrix *matrix)
 {
 	set_matrix_limits(matrix);
 	add_cursor_offset();
 	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
 	add_lines_text(matrix);
+	array_add("\n", 1);
 	array_flush();
 	return (1);
 }
