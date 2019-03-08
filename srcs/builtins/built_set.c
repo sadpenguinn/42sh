@@ -27,6 +27,11 @@ static int		built_set_parse(char **av)
 			g_echoe = TRUE;
 			return (SHERR_OK);
 		}
+		else if (!ft_strcmp(av[2], "highlight"))
+		{
+			g_syntax = SYNTAX_ON;
+			return  (SHERR_OK);
+		}
 		else
 		{
 			ft_putstr("vi:\t\t");

@@ -16,6 +16,7 @@
 # include "shell.h"
 # include "libft.h"
 # include <stdio.h>
+# include "exprlexer.h"
 
 # define EXECUTE_RELEASE
 

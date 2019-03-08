@@ -45,6 +45,9 @@
 
 # define SEARCH_PROMPT "search : "
 
+# define SYNTAX_ON 1
+# define SYNTAX_OFF 0
+
 # include <sys/ioctl.h>
 # include <string.h>
 
@@ -136,6 +139,7 @@ int				g_mode;
 int				g_search_mode;
 int				g_heredoc;
 int				g_vi_mode;
+int 			g_syntax;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 

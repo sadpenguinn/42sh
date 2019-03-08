@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/stat.h>
 #include "shell.h"
 #include "libshell.h"
 #include "builtins.h"

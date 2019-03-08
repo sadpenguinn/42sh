@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "execute.h"
+#include "lexer.h"
 #include "parser.h"
+#include "execute.h"
 
 static void		exec_input(char *input)
 {

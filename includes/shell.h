@@ -14,13 +14,9 @@
 # define SHELL_H
 
 # include <unistd.h>
-# include <sys/stat.h>
-# include <signal.h>
 # include "libshell.h"
 # include "libhash.h"
 # include "vector.h"
-# include "readline.h"
-# include "exprlexer.h"
 
 /*
 ** Checking platform defines
@@ -35,7 +31,8 @@
 # endif
 
 /*
-** Global variables with env and paths hashes/arrays
+** Global variables with env and paths hashes/arrays.
+** 'roenv' arrays stores only read-only variables
 */
 
 extern t_hash			*g_hash_env;
@@ -44,24 +41,41 @@ extern t_hash			*g_path;
 extern t_hash			*g_path_sums;
 extern t_env			g_env;
 extern t_env			g_roenv;
+
 /*
-** Global variables for saving jobs and processes
+** Global variables for saving jobs, processes and pids
+** of running processes to kill them
 */
 
 extern void				*g_jobs;
 extern void				*g_process;
 extern void				*g_pids;
 
+/*
+** Vectors which stores functions trees and them arguments
+*/
+
 extern void				*g_func;
 extern void				*g_func_args;
-extern int 				g_status;
+
+/*
+** Global variables with status of previous operation - $?
+*/
+
+extern int				g_status;
 
 /*
 ** Defines for 'set' builtin witch modify the shell behavior
 */
 
-extern int 				g_echoe;
-extern int 				g_dontexec;
+extern int				g_echoe;
+extern int				g_dontexec;
+
+/*
+** Default path to 42 shell
+*/
+
+# define SHELL_PATH "/bin/42sh"
 
 /*
 ** Bool defines, used in builtins
@@ -111,7 +125,7 @@ extern int 				g_dontexec;
 # define SHELL_LOPT_V "--version\tThe same as -v\n"
 
 /*
-** Struct for parser
+** Struct for parser which implement abstract syntax tree
 */
 
 typedef struct			s_astree
@@ -122,11 +136,16 @@ typedef struct			s_astree
 	struct s_astree	*right;
 }						t_astree;
 
+/*
+** Defines for shell parser
+*/
+
 t_astree				*inputunit(void);
 void					print_astree(t_astree *root);
 
 /*
-** Initialize and destroy shell
+** Initialize and destroy shell, also prototypes for parsing
+** input and arguments, prototype for init signal handler
 */
 
 void					init(char **env);
@@ -135,8 +154,8 @@ void					init_path(void);
 void					init_jobs(void);
 void					init_process(void);
 void					init_pids(void);
-void 					init_functions(void);
-void 					init_function_args(void);
+void					init_functions(void);
+void					init_function_args(void);
 void					destroy(void);
 void					destroy_env(void);
 void					destroy_path(void);
