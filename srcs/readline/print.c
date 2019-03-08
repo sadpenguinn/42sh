@@ -40,7 +40,7 @@ int			print_end(t_matrix *matrix)
 int			print_search(t_matrix *matrix)
 {
 	t_line	*line;
-	int		symbols;
+	size_t	symbols;
 
 	set_matrix_limits(matrix);
 	add_cursor_offset();

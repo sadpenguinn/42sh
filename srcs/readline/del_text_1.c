@@ -15,7 +15,7 @@
 int	del_begin_word(t_matrix *matrix)
 {
 	t_cursor	pos;
-	int			col;
+	size_t		col;
 
 	col = matrix->cursor->col;
 	matrix->cursor->col = get_cursor_pos_begin_word(matrix);
@@ -39,7 +39,7 @@ int	del_next_word(t_matrix *matrix)
 int	del_end_word(t_matrix *matrix)
 {
 	t_cursor	pos;
-	int			col;
+	size_t		col;
 
 	col = matrix->cursor->col;
 	matrix->cursor->col = get_cursor_pos_end_word(matrix);

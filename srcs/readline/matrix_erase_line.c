@@ -14,8 +14,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-void	matrix_erase_line(t_matrix *matrix, int row)
+void	matrix_erase_line(t_matrix *matrix, size_t row)
 {
+	if (matrix->len == 0)
+		return ;
 	line_del(&matrix->lines[row]);
 	matrix->len--;
 	if (row != matrix->len)

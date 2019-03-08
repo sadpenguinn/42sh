@@ -17,7 +17,7 @@
 t_uchar		get_next_symbol(size_t size)
 {
 	t_uchar	c;
-	int		ret;
+	ssize_t	ret;
 
 	c = 0;
 	if (size > sizeof(t_uchar))

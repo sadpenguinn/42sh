@@ -6,16 +6,17 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 13:53:30 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/08 12:49:32 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/08 18:53:53 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include <time.h>
 
-static int		check_esc_buttons(t_uchar c, int i)
+static int		check_esc_buttons(t_uchar c, size_t nbr)
 {
 	t_uchar	tmp;
+	size_t	i;
 
 	if (c == LEFT || c == RIGHT ||
 		c == DOWN || c == UP ||
@@ -24,10 +25,11 @@ static int		check_esc_buttons(t_uchar c, int i)
 		c == DEL)
 		return (1);
 	tmp = 0;
-	while (i >= 0)
+	i = 0;
+	while (i <= nbr)
 	{
 		tmp = (tmp << 8) + 0xFF;
-		i--;
+		i++;
 	}
 	c &= tmp;
 	if (c == (LEFT & tmp) || c == (RIGHT & tmp) ||
@@ -59,9 +61,11 @@ int				esc_code_handling(t_uchar c)
 	size_t	i;
 	t_uchar	tmp;
 	int		ret;
+	size_t	size;
 
 	i = 0;
-	while (++i < sizeof(t_uchar))
+	size = sizeof(t_uchar);
+	while (++i < size)
 	{
 		tmp = get_next_symbol(sizeof(char));
 		c += (tmp << (i * 8));
@@ -73,5 +77,5 @@ int				esc_code_handling(t_uchar c)
 		if (ret == 1)
 			return (modes_handling(c));
 	}
-	return (c >> 8);
+	return (no_esc_code(c));
 }

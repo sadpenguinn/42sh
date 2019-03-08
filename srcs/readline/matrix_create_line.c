@@ -12,7 +12,7 @@
 
 #include "readline.h"
 
-void	matrix_create_line(t_matrix *matrix, int row)
+void	matrix_create_line(t_matrix *matrix, size_t row)
 {
 	if (matrix->len == matrix->size)
 		matrix_resize(matrix, matrix->size * RATIO, matrix->size);

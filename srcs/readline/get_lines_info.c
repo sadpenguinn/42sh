@@ -12,9 +12,9 @@
 
 #include "readline.h"
 
-int	get_lines_offset(int len)
+size_t	get_lines_offset(size_t len)
 {
-	int i;
+	size_t i;
 
 	if (len == 1 || len == 0)
 		return (0);
@@ -27,7 +27,7 @@ int	get_lines_offset(int len)
 	return (i);
 }
 
-int	get_lines_prompt_len(int max)
+size_t	get_lines_prompt_len(size_t max)
 {
 	return (2 + get_lines_offset(max));
 }

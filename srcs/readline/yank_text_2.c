@@ -14,8 +14,8 @@
 
 int	yank_string(t_matrix *matrix)
 {
-	int col1;
-	int col2;
+	size_t col1;
+	size_t col2;
 
 	col1 = get_cursor_pos_end(matrix);
 	col2 = matrix->cursor->col;
@@ -27,7 +27,7 @@ int	yank_string(t_matrix *matrix)
 
 int	yank_begin_alnum(t_matrix *matrix)
 {
-	int col;
+	size_t col;
 
 	col = get_cursor_pos_begin_alnum(matrix);
 	matrix_string_yank(matrix, matrix->cursor->row, col);
@@ -36,7 +36,7 @@ int	yank_begin_alnum(t_matrix *matrix)
 
 int	yank_next_alnum(t_matrix *matrix)
 {
-	int col;
+	size_t col;
 
 	col = get_cursor_pos_next_alnum(matrix);
 	matrix_string_yank(matrix, matrix->cursor->row, col);
@@ -45,7 +45,7 @@ int	yank_next_alnum(t_matrix *matrix)
 
 int	yank_end_alnum(t_matrix *matrix)
 {
-	int col;
+	size_t col;
 
 	col = get_cursor_pos_end_alnum(matrix);
 	matrix_string_yank(matrix, matrix->cursor->row, col);

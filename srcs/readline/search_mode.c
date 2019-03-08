@@ -15,40 +15,44 @@
 
 static void	search_in_history(t_line *line)
 {
-	int		cur;
+	size_t	cur;
 	char	*substr;
 
 	substr = (char *)xmalloc(sizeof(char) * line->len + 1);
 	ft_memcpy(substr, line->buf, line->len);
 	cur = g_history->len;
-	while (--cur >= 0)
+	while (cur--)
 		if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
+		{
+			g_history->cur = cur;
 			break ;
-	if (cur >= 0)
-		g_history->cur = cur;
+		}
 	free(substr);
 }
 
 static int	search_next(t_line *line)
 {
-	int		cur;
+	size_t	cur;
 	char	*substr;
 
 	substr = (char *)xmalloc(sizeof(char) * line->len + 1);
 	ft_memcpy(substr, line->buf, line->len);
 	cur = g_history->cur;
-	while (--cur >= 0)
+	while (cur--)
 		if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
-			break ;
-	if (cur < 0)
-	{
-		cur = g_history->len;
-		while (--cur > g_history->cur)
-			if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
-				break ;
-	}
-	if (cur != g_history->cur)
-		g_history->cur = cur;
+		{
+			g_history->cur = cur;
+			free(substr);
+			return (1);
+		}
+	cur = g_history->len;
+	while (cur-- > g_history->cur)
+		if (ft_strstr(g_history->matrix[cur]->str_history->buf, substr))
+		{
+			g_history->cur = cur;
+			free(substr);
+			return (1);
+		}
 	free(substr);
 	return (1);
 }
@@ -56,12 +60,15 @@ static int	search_next(t_line *line)
 static int	search_line_modification(t_line *line, t_uchar c)
 {
 	char	str[8];
-	int		offset;
+	size_t	offset;
 
 	if (c == BS)
 	{
-		offset = get_utf_offset_left(line->buf, line->len - 1);
-		line_string_delete(line, line->len - offset - 1, offset + 1);
+		if (line->len != 0)
+		{
+			offset = get_utf_offset_left(line->buf, line->len - 1);
+			line_string_delete(line, line->len - offset - 1, offset + 1);
+		}
 	}
 	else
 	{

@@ -26,8 +26,8 @@ int	move_cursor_right(t_matrix *matrix)
 
 int	move_cursor_up(t_matrix *matrix)
 {
-	int		col;
-	int		symbols;
+	size_t	col;
+	size_t	symbols;
 	t_line	*line;
 
 	if (matrix->cursor->row)
@@ -47,8 +47,8 @@ int	move_cursor_up(t_matrix *matrix)
 
 int	move_cursor_down(t_matrix *matrix)
 {
-	int		col;
-	int		symbols;
+	size_t	col;
+	size_t	symbols;
 	t_line	*line;
 
 	if (matrix->cursor->row != matrix->len - 1)

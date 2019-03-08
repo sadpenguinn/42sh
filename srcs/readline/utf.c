@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	is_yet_utf(unsigned char c)
+#include <string.h>
+
+static int	is_yet_utf(char c)
 {
 	if (((c >> 7) & 1) && ((c >> 6) & 1) == 0)
 		return (1);
 	return (0);
 }
 
-int			get_utf_offset_left(char *str, int pos)
+size_t		get_utf_offset_left(char *str, size_t pos)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (pos > 0 && is_yet_utf(str[pos]))
@@ -30,9 +32,9 @@ int			get_utf_offset_left(char *str, int pos)
 	return (i);
 }
 
-int			get_utf_offset_right(unsigned char c)
+size_t		get_utf_offset_right(char c)
 {
-	int	i;
+	size_t	i;
 
 	if (c > 127)
 	{

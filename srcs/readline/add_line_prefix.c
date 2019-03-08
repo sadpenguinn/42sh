@@ -13,9 +13,9 @@
 #include "readline.h"
 #include "libft.h"
 
-static void	num_to_str(int max, char *str, int nbr)
+static void	num_to_str(size_t max, char *str, size_t nbr)
 {
-	int	i;
+	size_t	i;
 
 	i = get_lines_offset(max);
 	ft_memset(str, 0, i + 1);
@@ -32,7 +32,7 @@ static void	num_to_str(int max, char *str, int nbr)
 	}
 }
 
-void		add_line_prefix(t_matrix *matrix, int cur_row)
+void		add_line_prefix(t_matrix *matrix, size_t cur_row)
 {
 	char	str[20];
 

@@ -6,18 +6,18 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:36:43 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/08 12:38:43 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/08 18:53:37 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include "libft.h"
 
-void	add_line(t_line *line, int start, int end)
+void	add_line(t_line *line, size_t start, size_t end)
 {
-	int	left;
-	int	right;
-	int	pos;
+	size_t	left;
+	size_t	right;
+	size_t	pos;
 
 	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
 	array_add(DEFAULT_TEXT_COLORS, strlen(DEFAULT_TEXT_COLORS));
@@ -41,10 +41,10 @@ void	add_line(t_line *line, int start, int end)
 	}
 }
 
-void	add_text(t_matrix *matrix, int row, int col)
+void	add_text(t_matrix *matrix, size_t row, size_t col)
 {
-	int	left;
-	int symbols;
+	size_t	left;
+	size_t	symbols;
 
 	left = matrix->left_limit;
 	while (left < row)

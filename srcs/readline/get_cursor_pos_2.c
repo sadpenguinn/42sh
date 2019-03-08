@@ -12,9 +12,9 @@
 
 #include "readline.h"
 
-int	get_cursor_pos_next_word(t_matrix *matrix)
+size_t	get_cursor_pos_next_word(t_matrix *matrix)
 {
-	int		col;
+	size_t	col;
 	t_line	*line;
 
 	col = matrix->cursor->col;
@@ -26,9 +26,9 @@ int	get_cursor_pos_next_word(t_matrix *matrix)
 	return (col);
 }
 
-int	get_cursor_pos_begin_word(t_matrix *matrix)
+size_t	get_cursor_pos_begin_word(t_matrix *matrix)
 {
-	int		col;
+	size_t	col;
 	t_line	*line;
 
 	col = matrix->cursor->col;
@@ -44,9 +44,9 @@ int	get_cursor_pos_begin_word(t_matrix *matrix)
 	return (col);
 }
 
-int	get_cursor_pos_end_word(t_matrix *matrix)
+size_t	get_cursor_pos_end_word(t_matrix *matrix)
 {
-	int		col;
+	size_t	col;
 	t_line	*line;
 
 	col = matrix->cursor->col;

@@ -21,7 +21,7 @@ static void	read_history_from_file(int fd)
 {
 	int			ret;
 	char		*str;
-	int			len;
+	size_t		len;
 	t_cursor	pos;
 
 	pos.row = 0;
@@ -69,7 +69,6 @@ static void	init_history(void)
 	g_history->buffer = string_init();
 	g_history->search_line = line_init();
 	read_history_from_disk();
-	g_mode = VI;
 }
 
 void		history_fill(void)

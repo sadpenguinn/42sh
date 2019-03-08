@@ -14,7 +14,7 @@
 
 int	add_shortcut(t_uchar c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < SHORTCUT_ARRAY_SIZE - 1)

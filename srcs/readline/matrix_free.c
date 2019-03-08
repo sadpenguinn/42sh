@@ -15,7 +15,7 @@
 
 void	matrix_free(t_matrix *matrix)
 {
-	int i;
+	size_t i;
 
 	if (matrix == NULL)
 		return ;

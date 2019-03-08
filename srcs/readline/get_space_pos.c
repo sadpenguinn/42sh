@@ -10,14 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		get_space_left_pos(const char *buf, int pos)
+#include <string.h>
+
+size_t	get_space_left_pos(const char *buf, size_t pos)
 {
 	while (pos && buf[pos - 1] != '\t' && buf[pos - 1] != ' ')
 		pos--;
 	return (pos);
 }
 
-int		get_space_right_pos(const char *buf, int pos, int len)
+size_t	get_space_right_pos(const char *buf, size_t pos, size_t len)
 {
 	while (pos < len && buf[pos] != '\t' && buf[pos] != ' ')
 		pos++;

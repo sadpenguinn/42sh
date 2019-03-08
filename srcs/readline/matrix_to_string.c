@@ -16,7 +16,7 @@
 
 void	matrix_to_string(t_matrix *matrix, t_string *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < matrix->len - 1)

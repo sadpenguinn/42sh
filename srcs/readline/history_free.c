@@ -15,7 +15,7 @@
 
 void	history_free(t_history *history)
 {
-	int	i;
+	size_t	i;
 
 	if (history == NULL)
 		return ;

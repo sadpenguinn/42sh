@@ -15,7 +15,7 @@
 
 t_matrix	*matrix_dup(t_matrix *src)
 {
-	int			i;
+	size_t		i;
 	t_matrix	*dest;
 
 	if (src == NULL)

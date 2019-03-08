@@ -93,7 +93,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/reset_last_offset.c
 					srcs/readline/add_line_prefix.c
 					srcs/readline/get_lines_info.c
-					srcs/readline/autocomplete_file_dir.c
 					srcs/readline/matrix_init.c
 					srcs/readline/line_init.c
 					srcs/readline/line_free.c

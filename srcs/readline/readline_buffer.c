@@ -18,7 +18,7 @@ char	*get_buffer_content(void)
 	return (g_history->buffer->buf);
 }
 
-int		get_buffer_len(void)
+size_t	get_buffer_len(void)
 {
 	return (g_history->buffer->len);
 }
@@ -29,7 +29,7 @@ void	buffer_free(void)
 	g_history->buffer->len = 0;
 }
 
-void	buffer_add(const char *str, int size)
+void	buffer_add(const char *str, size_t size)
 {
 	g_history->buffer->buf = (char *)xmalloc(sizeof(char) * size);
 	g_history->buffer->len = size;

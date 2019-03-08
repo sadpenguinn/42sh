@@ -15,7 +15,7 @@
 
 int	matrix_cmp(t_matrix *matrix1, t_matrix *matrix2)
 {
-	int	i;
+	size_t	i;
 
 	if (matrix1->len != matrix2->len)
 		return (1);

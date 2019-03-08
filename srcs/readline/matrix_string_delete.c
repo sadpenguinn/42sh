@@ -31,9 +31,9 @@ static void	check_swap(t_cursor *start, t_cursor *end)
 	}
 }
 
-int			line_string_delete(t_line *line, int pos, int size)
+size_t		line_string_delete(t_line *line, size_t pos, size_t size)
 {
-	if (size <= 0 || pos < 0)
+	if (size == 0)
 		return (pos);
 	if (size > line->len - pos)
 		size = line->len - pos;

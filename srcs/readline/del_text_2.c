@@ -26,7 +26,7 @@ int	del_string(t_matrix *matrix)
 int	del_begin_alnum(t_matrix *matrix)
 {
 	t_cursor	pos;
-	int			col;
+	size_t		col;
 
 	col = matrix->cursor->col;
 	matrix->cursor->col = get_cursor_pos_begin_alnum(matrix);
@@ -50,7 +50,7 @@ int	del_next_alnum(t_matrix *matrix)
 int	del_end_alnum(t_matrix *matrix)
 {
 	t_cursor	pos;
-	int			col;
+	size_t		col;
 
 	col = matrix->cursor->col;
 	matrix->cursor->col = get_cursor_pos_end_alnum(matrix);

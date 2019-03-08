@@ -12,15 +12,15 @@
 
 #include "readline.h"
 
-int	get_cursor_pos_home(t_matrix *matrix)
+size_t	get_cursor_pos_home(t_matrix *matrix)
 {
 	(void)matrix;
 	return (0);
 }
 
-int	get_cursor_pos_begin(t_matrix *matrix)
+size_t	get_cursor_pos_begin(t_matrix *matrix)
 {
-	int		col;
+	size_t	col;
 	t_line	*line;
 
 	line = matrix->lines[matrix->cursor->row];
@@ -30,12 +30,12 @@ int	get_cursor_pos_begin(t_matrix *matrix)
 	return (col);
 }
 
-int	get_cursor_pos_end(t_matrix *matrix)
+size_t	get_cursor_pos_end(t_matrix *matrix)
 {
 	return (matrix->lines[matrix->cursor->row]->len);
 }
 
-int	get_cursor_pos_left(t_matrix *matrix)
+size_t	get_cursor_pos_left(t_matrix *matrix)
 {
 	if (matrix->cursor->col)
 		return (matrix->cursor->col - (1 +
@@ -44,7 +44,7 @@ int	get_cursor_pos_left(t_matrix *matrix)
 		return (0);
 }
 
-int	get_cursor_pos_right(t_matrix *matrix)
+size_t	get_cursor_pos_right(t_matrix *matrix)
 {
 	if (matrix->cursor->col != matrix->lines[matrix->cursor->row]->len)
 		return (matrix->cursor->col + 1 +

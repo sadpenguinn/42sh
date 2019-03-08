@@ -13,9 +13,9 @@
 #include "readline.h"
 #include <unistd.h>
 
-static void	count_quotes(t_matrix *matrix, char *buf, int len)
+static void	count_quotes(t_matrix *matrix, char *buf, size_t len)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < len)
@@ -40,7 +40,7 @@ static void	count_quotes(t_matrix *matrix, char *buf, int len)
 
 static int	check_quotes(t_matrix *matrix)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	matrix->single_quotes = 0;
@@ -65,8 +65,8 @@ static int	quotes_handling(t_matrix *matrix)
 
 int			newline_handling(t_matrix *matrix)
 {
-	int		prev_col;
-	int		prev_row;
+	size_t	prev_col;
+	size_t	prev_row;
 	t_line	*line;
 
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] != '\\')

@@ -13,7 +13,7 @@
 #include "readline.h"
 #include "libft.h"
 
-void	string_fill(t_string *str, char *buf, int len)
+void	string_fill(t_string *str, char *buf, size_t len)
 {
 	str->buf = (char *)xmalloc(sizeof(char) * (len + 1));
 	str->len = len;

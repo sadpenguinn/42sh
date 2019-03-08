@@ -12,7 +12,7 @@
 
 #include "readline.h"
 
-void	matrix_string_yank(t_matrix *matrix, int row, int col)
+void	matrix_string_yank(t_matrix *matrix, size_t row, size_t col)
 {
 	t_line		*line;
 	t_cursor	cursor;
