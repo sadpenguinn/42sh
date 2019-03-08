@@ -33,7 +33,7 @@ static int	find_abs_bin(char *name, void **ret)
 	return (PATH_NULL);
 }
 
-static int 	find_function(char *name, void **ret)
+static int	find_function(char *name, void **ret)
 {
 	t_func	*function;
 	size_t	size;

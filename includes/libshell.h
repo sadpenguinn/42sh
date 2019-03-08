@@ -105,6 +105,4 @@ void	print_str_arr(char *const *arr);
 size_t	size_str_arr(char *const *arr);
 char	**split_env(char *str);
 
-int		octal_to_decimal(int oct);
-
 #endif

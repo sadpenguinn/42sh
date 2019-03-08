@@ -46,11 +46,11 @@
 ** Lists
 */
 
-typedef struct	s_list
+typedef struct				s_list
 {
-	void			*data;
-	struct s_list	*next;
-}				t_list;
+	void					*data;
+	struct s_list			*next;
+}							t_list;
 
 t_list			*ft_listnew(void *data);
 t_list			*ft_push(t_list **begin, void *data);
@@ -63,12 +63,12 @@ void			ft_listdel(t_list **begin, void (*f)(void *data));
 ** Binary tree
 */
 
-typedef struct	s_btree
+typedef struct				s_btree
 {
-	void			*data;
-	struct s_btree	*left;
-	struct s_btree	*right;
-}				t_btree;
+	void					*data;
+	struct s_btree			*left;
+	struct s_btree			*right;
+}							t_btree;
 
 typedef	struct				s_rb_tree_node
 {
@@ -79,7 +79,6 @@ typedef	struct				s_rb_tree_node
 	void					*data;
 	size_t					data_size;
 }							t_rb_tree_node;
-
 
 t_btree			*ft_btree_new(void *data);
 t_btree			*ft_btree_ins(t_btree **root, void *data,
@@ -184,23 +183,26 @@ void			*xmalloc(size_t bytes);
 void			*xrealloc(void *p, size_t newsize, size_t oldsize);
 void			**ft_joinvect(void **arr1, void **arr2, int free2);
 t_rb_tree_node	*ft_rb_tree_find(const void *data,
-								   t_rb_tree_node *node, int (*cmp)(const void *data1, const void *data2));
+									t_rb_tree_node *node,
+									int (*cmp)(const void *data1,
+									const void *data2));
 void			ft_rb_tree_delete(t_rb_tree_node *node,
-											  t_rb_tree_node **root);
+									t_rb_tree_node **root);
 t_rb_tree_node	*ft_rb_tree_minimum(t_rb_tree_node *node);
 t_rb_tree_node	*ft_rb_tree_maximum(t_rb_tree_node *node);
 void			ft_rb_tree_traversal_postorder(t_rb_tree_node *root,
-											   void (*f)(t_rb_tree_node *node));
+									void (*f)(t_rb_tree_node *node));
 void			ft_rb_tree_traversal_inorder(t_rb_tree_node *root,
-											 void (*f)(t_rb_tree_node *node));
+									void (*f)(t_rb_tree_node *node));
 void			ft_rb_tree_traversal_preorder(t_rb_tree_node *root,
-											  void (*f)(t_rb_tree_node *ndoe));
+									void (*f)(t_rb_tree_node *ndoe));
 t_rb_tree_node	*ft_rb_tree_insert(const void *data,
-		size_t size, t_rb_tree_node **root,
-		int (*cmp)(const void *data1, const void *data2));
+									size_t size, t_rb_tree_node **root,
+									int (*cmp)(const void *data1,
+												const void *data2));
 void			ft_rb_tree_rotate_right(t_rb_tree_node *x,
-		t_rb_tree_node **root);
+											t_rb_tree_node **root);
 void			ft_rb_tree_rotate_left(t_rb_tree_node *x,
-									   t_rb_tree_node **root);
+										t_rb_tree_node **root);
 
 #endif
