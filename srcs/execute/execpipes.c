@@ -13,6 +13,7 @@
 #include "execute.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <signal.h>
 
 static int	pipe_create(t_astree *root, int fd[2], int job, int isfork)
 {
