@@ -6,19 +6,19 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/08 23:49:26 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 01:14:15 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-char    *g_built_in_lists[] = {"cd", "echo", "env", "exit", "hash", "set",
-                                "setenv", "unsetenv", NULL};
+char	*g_built_in_lists[] = {"cd", "echo", "env", "exit", "hash", "set",
+		"setenv", "unsetenv", NULL};
 
 char	*get_pattern(char *buf, int pos)
 {
-	char 	*pattern;
-	int 	left_pos;
+	char	*pattern;
+	int		left_pos;
 
 	left_pos = pos;
 	while (left_pos && buf[left_pos - 1] != ' ' && buf[left_pos - 1] != '/')
@@ -40,17 +40,12 @@ char	*get_rel_dir(char *buf, int pos)
 	while (left_pos && buf[left_pos - 1] != ' ')
 		left_pos--;
 	if (left_pos == pos)
-		{
-			// printf("dir = |./|\n");
-			return (ft_strdup("./"));
-		}
-	// printf("dir = %s\n", ft_strndup(buf + left_pos, pos - left_pos + 1));
+		return (ft_strdup("./"));
 	return (ft_strndup(buf + left_pos, pos - left_pos + 1));
 }
 
 int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 {
-	// printf("get str = |%s|\n", line_info->buf);
 	if (pos < 0)
 		return (ERROR_AUTOCOMLITE);
 	pos--;
@@ -78,7 +73,6 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 		}
 		pos--;
 	}
-	// printf("Этот тип автодополнения ещё не предусмотрен\n");
 	return (ERROR_AUTOCOMLITE);
 }
 
@@ -329,12 +323,12 @@ int		get_autocomplite_files_dir_len(char *str)
 {
 	int		len;
 	int		res_len;
-	char	**res; // УТЕЧКА
+	char	**res;
 
 	len = ft_strlen(str);
-	if (xglob(get_pattern(str, len), get_rel_dir(str, len), &res, (size_t *)&res_len))
+	if (xglob(get_pattern(str, len), get_rel_dir(str, len), &res,
+		(size_t *)&res_len))
 		return (0);
-	// printf("res_len = %d\n", res_len);
 	return (res_len);
 }
 
@@ -369,10 +363,10 @@ char	**get_mas_other_autocompile(char *str)
 	char	**res;
 
 	iter = 0;
-	len =	autocomplite_hash_find_len(g_path, str) +
-			get_autocomplite_built_in_mas_len(str)	+
-			get_autocomplite_functions_mas_len(str)	+
-			get_autocomplite_files_dir_len(str)		;
+	len = autocomplite_hash_find_len(g_path, str) +
+			get_autocomplite_built_in_mas_len(str) +
+			get_autocomplite_functions_mas_len(str) +
+			get_autocomplite_files_dir_len(str);
 	res = xmalloc(sizeof(char *) * (len + 1));
 	res = autocomplite_hash_find(g_path, str, res, &iter);
 	res = get_autocomplite_built_in_mas(str, res, &iter);
@@ -388,14 +382,9 @@ char	**get_mas_of_suggetions(char *word, int type)
 	if (type == ENV_AUTOCOMLITE)
 		res = get_mas_env_autocompl(&word[1]);
 	else if (type == OTHER_AUTOCOMLITE)
-	{
 		res = get_mas_other_autocompile(word);
-	}
 	else
-	{
-		// printf("This type is not relized yet\n");
 		return (NULL);
-	}
 	return (res);
 }
 
@@ -432,7 +421,6 @@ int		sugg_check_repeats_in_all_mass(char **str, int pos, char *c)
 	*c = tmp;
 	if (!tmp)
 		return (0);
-	// printf("check %c...\n", tmp);
 	while (str[i])
 	{
 		if (str[i][pos] == tmp)
