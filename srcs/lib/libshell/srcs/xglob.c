@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   glob.c                                             :+:      :+:    :+:   */
+/*   xglob.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:40:02 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 13:07:07 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/09 03:30:35 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static size_t	get_files_count(char *path)
 	return (count);
 }
 
-static void		glob_free(char ***matches, int i)
+void			glob_free(char ***matches, int i)
 {
 	while (i >= 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:07:25 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/08 23:32:55 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 03:51:27 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ void	printmas(char **str)
 	free(str);
 }
 
-char    **autocomplete(t_line *line_info, int pos);
-
-int     main(int argc, char **argv, char **env)
+int		main(int argc, char **argv, char **env)
 {
 	char	**res;
 	char	*test;
 	t_line	*line_info;
 
 	argc++;
-	test = ft_strdup("srcs/extention");
+	test = ft_strdup(" ");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));
 	line_info->buf = test;
 	res = autocomplete(line_info, ft_strlen(test));
 	printmas(res);
+	free(test);
+	free(line_info);
 	return (0);
 }

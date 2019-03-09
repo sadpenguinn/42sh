@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   autocomplite_lib.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/09 03:49:55 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/09 03:50:42 by bbaelor-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "autocomplete.h"
 
 char	*ft_strendchr(char *str, char c)
@@ -19,13 +31,15 @@ char	*ft_strendchr(char *str, char c)
 char	*atcml_get_pattern(char *buf, int pos)
 {
 	char	*pattern;
+	char	*tmp;
 	int		left_pos;
 
 	left_pos = pos;
 	while (left_pos && buf[left_pos - 1] != ' ' && buf[left_pos - 1] != '/')
 		left_pos--;
-	pattern = ft_strndup(buf + left_pos, pos - left_pos);
-	pattern = ft_strjoin(pattern, "*", 1);
+	tmp = ft_strndup(buf + left_pos, pos - left_pos);
+	pattern = ft_strjoin(tmp, "*", 0);
+	free(tmp);
 	return (pattern);
 }
 
