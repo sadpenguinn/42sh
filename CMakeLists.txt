@@ -162,7 +162,6 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/case_clause_sequence.c
 					srcs/parser/case_command.c
 					srcs/parser/check_words.c
-					srcs/parser/check_words_2.c
 					srcs/parser/command.c
 					srcs/parser/compound_list.c
 					srcs/parser/cond_command.c

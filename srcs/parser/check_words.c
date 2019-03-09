@@ -12,11 +12,9 @@
 
 #include "parser.h"
 
-int			check_arith_for(char *str)
+int			check_arith_word(char *str)
 {
 	int		len;
-	char	**words;
-	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -25,19 +23,6 @@ int			check_arith_for(char *str)
 	len = ft_strlen(str);
 	if (str[len - 1] != ')' || str[len - 2] != ')')
 		return (0);
-	tmp = ft_strndup(&str[2], len - 4);
-	words = ft_strsplit(tmp, ';');
-	while (words[i])
-	{
-		if (!check_arith_word(words[i]))
-			return (0);
-		free(words[i]);
-		i++;
-		if (i > 3)
-			return (0);
-	}
-	free(words);
-	free(tmp);
 	return (1);
 }
 
@@ -66,4 +51,9 @@ int		check_word_type(t_type type)
 		type == NOT)
 		return (1);
 	return (0);
+}
+
+int			check_redir_num(char *str)
+{
+	return (ft_str_is_numeric(str));
 }
