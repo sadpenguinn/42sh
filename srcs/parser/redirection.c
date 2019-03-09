@@ -25,8 +25,10 @@ static t_astree	*get_io_number(void)
 	t_lexem		*elem;
 	t_astree	*root;
 
+	if (g_curtok >= ((size_t *)g_tokens)[2])
+		return (0);
 	elem = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	if (!check_redir_num(elem->word))
+	if (!ft_str_is_numeric(elem->word))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = NUMBER;

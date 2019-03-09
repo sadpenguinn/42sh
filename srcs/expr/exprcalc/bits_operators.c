@@ -23,7 +23,7 @@ intmax_t	op_bor(intmax_t operator, t_astree *node)
 	return (tmp);
 }
 
-intmax_t	op_bxor(intmax_t operator, t_astree *node)
+intmax_t	op_xor(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 

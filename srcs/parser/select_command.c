@@ -38,7 +38,7 @@ static t_astree	*get_word(void)
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
 	if (!check_word_type(token->type))
 		return (0);
-	if (!check_select_word(token->word))
+	if (!check_varname(token->word))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = WORD;

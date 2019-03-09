@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   spec_cases.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/24 11:46:37 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/03/01 12:37:05 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/03/09 19:23:35 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/09 19:27:48 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
-
-int		execute(t_astree *root)
+void		extention_brackets_case(char *str, int *i, char c)
 {
-	int		res;
-	int		fd[2];
-
-	g_execerr = 0;
-	if (!root)
-		return (EXIT_FAILURE);
-	fd[0] = 0;
-	fd[1] = 1;
-	res = execlist1(root, fd, 0);
-	return (res);
+	(*i)++;
+	while (str[*i] && str[*i] != c)
+		(*i)++;
+	(*i)++;
 }

@@ -6,20 +6,11 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 21:11:06 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/24 21:34:13 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 20:58:53 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "extention.h"
-#include <stdio.h>
-
-static void		brackets_case(char *str, int *i, char c)
-{
-	(*i)++;
-	while (str[*i] && str[*i] != c)
-		(*i)++;
-	(*i)++;
-}
 
 static int		count_words(char *str)
 {
@@ -36,9 +27,9 @@ static int		count_words(char *str)
 			i++;
 		}
 		else if (str[i] == '\'')
-			brackets_case(str, &i, '\'');
+			brackets_case_in_strsplit(str, &i, '\'');
 		else if (str[i] == '\"')
-			brackets_case(str, &i, '\"');
+			brackets_case_in_strsplit(str, &i, '\"');
 		else
 			i++;
 	}

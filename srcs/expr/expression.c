@@ -20,9 +20,12 @@ long int	expression(char *arg)
 	g_excurtok = 0;
 	g_exprerr = 0;
 	root = expr();
-	print_astree(root);
-	printf("res:%ld\n", calc(root));
-	/* return (exprexecute(ast)); */
+	if (!g_exprerr)
+	{
+		print_astree(root);
+		printf("res:%ld\n", calc(root));
+		/* return (exprexecute(ast)); */
+	}
 	return (0);
 }
 

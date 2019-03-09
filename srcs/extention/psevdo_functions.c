@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/04 18:46:26 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 20:11:33 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,4 @@ void	push_to_enviroment(char *name, char *val)
 char	*get_content_of_var(char *str)
 {
 	return (sgetenv(str, ENV_ALL));
-}
-
-int		get_fdnumber_of_substitution(char *str, int state)
-{
-	(void)str;
-	state++;
-	return (282);
 }

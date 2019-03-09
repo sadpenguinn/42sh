@@ -18,9 +18,9 @@ int		execlist2(t_astree *root, int fd[2], int job, int isfork)
 		return (EXIT_SUCCESS);
 	if (root->type != LIST2 && root->type != OR_IF)
 		return (execlist3(root, fd, job, isfork));
-	if (!root->right)
-		return (execlist3(root->left, fd, job, isfork));
-	if (execlist3(root->left, fd, EX_NOFG, isfork) == EXIT_SUCCESS)
+	if (!root->right && job)
+		return (execlist3(root->left, fd, EC_FG, isfork));
+	if (execlist3(root->left, fd, EC_NOFG, isfork) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
 	if (g_execerr)
 		return (-1);

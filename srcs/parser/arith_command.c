@@ -20,7 +20,7 @@ t_astree	*arith_command(void)
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (parseerror(0));
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	if (!check_word_type(token->type))
+	if (token->type != ARITH)
 		return (0);
 	if (!check_arith_word(token->word))
 		return (0);

@@ -34,22 +34,22 @@
 
 #include "execute.h"
 
-int		execif(t_astree *root, int fd[2], int job, int isfork)
+int		execif(t_astree *root, int fd[2], int isfork)
 {
 	int			res;
 	t_astree	*if_true;
 	t_astree	*failure;
 
-	res = execlist1(root->left, fd, job, isfork);
+	res = execlist1(root->left, fd, isfork);
 	if (!root->right)
 		return (EXIT_SUCCESS);
 	if_true = (root->right->type == ELSE) ? root->right->left : root->right;
 	failure = (root->right->type == ELSE) ? root->right->right : 0;
 	if (res == EXIT_SUCCESS)
-		return (execlist1(if_true, fd, job, isfork));
+		return (execlist1(if_true, fd, isfork));
 	if (root->right->type == ELSE && root->right->right->type == IF)
-		return (execif(failure, fd, job, isfork));
+		return (execif(failure, fd, isfork));
 	if (root->right->type == ELSE)
-		return (execlist1(failure, fd, job, isfork));
+		return (execlist1(failure, fd, isfork));
 	return (EXIT_SUCCESS);
 }

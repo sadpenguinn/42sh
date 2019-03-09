@@ -19,13 +19,13 @@
 
 #include "execute.h"
 
-int		execsubshell(t_astree *root, int fd[2], int job, int isfork)
+int		execsubshell(t_astree *root, int fd[2], int isfork)
 {
 	int pid;
 
 	if (!isfork)
 		pid = xfork();
 	if (isfork || !pid)
-		exit(execlist1(root->left, fd, job, 1));
+		exit(execlist1(root->left, fd, 1));
 	return (xwaitpid(pid, 0));
 }
