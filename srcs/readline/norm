@@ -10,15 +10,19 @@ Norme: ./add_cursor_offset.c
 Norme: ./add_shortcut.c
 Norme: ./add_style.c
 Norme: ./add_line_prefix.c
-Norme: ./add_text.c
 Norme: ./are_quotes.c
-Norme: ./are_default_shortcuts.c
 Norme: ./back_space_symbol.c
-Norme: ./array.c
+Norme: ./add_text.c
 Norme: ./bang_handling.c
+Norme: ./are_default_shortcuts.c
+Norme: ./array.c
 Norme: ./check_esc_code.c
 Norme: ./count_string_objects.c
 Norme: ./bang_cases.c
+Error: global scope bad aligned
+Error (line 34): must begin only by tabulations
+Error (line 79): must begin only by tabulations
+Error (line 108): must begin only by tabulations
 Norme: ./cursor_free.c
 Norme: ./check_cursor_swap.c
 Norme: ./check_next_symbol.c
@@ -7243,10 +7247,10 @@ Norme: ./matrix_string_delete.c
 Norme: ./matrix_string_yank.c
 Norme: ./modes_handling.c
 Norme: ./move_cursor_2.c
-Norme: ./move_cursor_1.c
 Norme: ./move_cursor_4.c
-Norme: ./move_cursor_3.c
+Norme: ./move_cursor_1.c
 Norme: ./paste_text.c
+Norme: ./move_cursor_3.c
 Norme: ./print_2.c
 Norme: ./newline_handling.c
 Norme: ./readline.c
@@ -7263,8 +7267,8 @@ Norme: ./search_mode.c
 Norme: ./string_init.c
 Norme: ./set_matrix_limits.c
 Norme: ./string_dup.c
-Norme: ./term.c
 Norme: ./string_free.c
+Norme: ./term.c
 Norme: ./test_default_valgrind.c
 Norme: ./symbol_to_string.c
 Norme: ./vi_mode.c

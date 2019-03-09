@@ -20,6 +20,7 @@ size_t		line_string_insert(t_line *line, size_t pos,
 		return (pos);
 	if (line->len + size > line->size)
 		line_resize(line, line->len + size + line->size * RATIO, line->size);
+	ft_memset(line->buf + line->len, 0, size);
 	if (pos < line->len)
 		ft_memmove(line->buf + pos + size, line->buf + pos,
 				line->len - pos);

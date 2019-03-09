@@ -41,7 +41,7 @@ int			history_save(t_string **str)
 		|| g_history->is_replace)
 	{
 		if (g_history->is_replace)
-			print_event_mesasage();
+			print_event_message();
 		string_del(str);
 		ret = 1;
 	}

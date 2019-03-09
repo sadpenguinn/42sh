@@ -48,7 +48,7 @@
 # define SYNTAX_ON 1
 # define SYNTAX_OFF 0
 
-# define EVENT_MESSAGE ": Event not found"
+# define EVENT_MESSAGE "event not found"
 
 # include <sys/ioctl.h>
 # include <string.h>
@@ -140,6 +140,7 @@ typedef struct	s_history
 	t_string	*buffer;
 	t_line		*search_line;
 	int			is_replace;
+	t_string	*event;
 }				t_history;
 
 extern t_history		*g_history;
@@ -249,7 +250,7 @@ int				print_default(t_matrix *matrix);
 int				print_end(t_matrix *matrix);
 int				print_search(t_matrix *matrix);
 int				print_autocomplete(t_matrix *matrix);
-int				print_event_mesasage(void);
+int				print_event_message(void);
 
 void			print_prompt(void);
 
