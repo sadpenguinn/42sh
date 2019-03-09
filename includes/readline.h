@@ -264,10 +264,11 @@ void			string_del(t_string **str);
 void			matrix_del(t_matrix **matrix);
 void			history_del(t_history **history);
 
-size_t			get_utf_offset_left(char *str, size_t pos);
+size_t			get_utf_offset_left(const char *str, size_t pos);
 size_t			get_utf_offset_right(char c);
 
-size_t			count_string_symbols(const char *buf, size_t n);
+size_t			count_string_symbols(const char *buf,
+		size_t left_limit, size_t right_limit);
 size_t			count_string_cols(const char *buf, size_t symbols);
 
 size_t			get_lines_prompt_len(size_t max);

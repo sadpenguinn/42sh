@@ -12,16 +12,15 @@
 
 #include "readline.h"
 
-size_t	count_string_symbols(const char *buf, size_t col)
+size_t	count_string_symbols(const char *buf,
+		size_t left_limit, size_t right_limit)
 {
-	size_t	i;
 	size_t	symbols;
 
-	i = 0;
 	symbols = 0;
-	while (i < col)
+	while (left_limit < right_limit)
 	{
-		i += 1 + get_utf_offset_right(buf[i]);
+		left_limit += 1 + get_utf_offset_right(buf[left_limit]);
 		symbols++;
 	}
 	return (symbols);

@@ -33,7 +33,7 @@ int	move_cursor_up(t_matrix *matrix)
 	if (matrix->cursor->row)
 	{
 		line = matrix->lines[matrix->cursor->row];
-		symbols = count_string_symbols(line->buf, matrix->cursor->col);
+		symbols = count_string_symbols(line->buf, 0, matrix->cursor->col);
 		matrix->cursor->row--;
 		line = matrix->lines[matrix->cursor->row];
 		symbols = (symbols < line->symbols) ? symbols : line->symbols;
@@ -54,7 +54,7 @@ int	move_cursor_down(t_matrix *matrix)
 	if (matrix->cursor->row != matrix->len - 1)
 	{
 		line = matrix->lines[matrix->cursor->row];
-		symbols = count_string_symbols(line->buf, matrix->cursor->col);
+		symbols = count_string_symbols(line->buf, 0, matrix->cursor->col);
 		matrix->cursor->row++;
 		line = matrix->lines[matrix->cursor->row];
 		symbols = (symbols < line->symbols) ? symbols : line->symbols;

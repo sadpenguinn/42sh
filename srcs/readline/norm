@@ -11,10 +11,10 @@ Norme: ./add_shortcut.c
 Norme: ./add_style.c
 Norme: ./add_line_prefix.c
 Norme: ./add_text.c
-Norme: ./are_quotes.c
 Norme: ./are_default_shortcuts.c
-Norme: ./back_space_symbol.c
+Norme: ./are_quotes.c
 Norme: ./array.c
+Norme: ./back_space_symbol.c
 Norme: ./bang_handling.c
 Norme: ./check_next_symbol.c
 Norme: ./cursor_dup.c
@@ -28,12 +28,12 @@ Norme: ./del_text_1.c
 Norme: ./del_text_2.c
 Norme: ./get_cursor_pos_1.c
 Norme: ./get_cursor_pos_2.c
-Norme: ./get_lines_info.c
 Norme: ./get_cursor_pos_3.c
+Norme: ./get_lines_info.c
 Norme: ./get_space_pos.c
 Norme: ./history_del.c
-Norme: ./history_free.c
 Norme: ./get_next_symbol.c
+Norme: ./history_free.c
 Norme: ./history_resize.c
 Norme: ./heredoc.c
 Norme: ./history_fill.c
@@ -7234,8 +7234,8 @@ Norme: ./matrix_del.c
 Norme: ./matrix_dup.c
 Norme: ./matrix_erase_line.c
 Norme: ./matrix_free.c
-Norme: ./matrix_resize.c
 Norme: ./matrix_init.c
+Norme: ./matrix_resize.c
 Norme: ./matrix_string_insert.c
 Norme: ./matrix_to_string.c
 Norme: ./matrix_string_delete.c

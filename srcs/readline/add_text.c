@@ -60,7 +60,7 @@ void	add_text(t_matrix *matrix, size_t row, size_t col)
 	add_line(matrix->lines[left], 0, col);
 	symbols = (col == matrix->lines[left]->len) ?
 		matrix->lines[left]->symbols :
-		count_string_symbols(matrix->lines[left]->buf, col);
+		count_string_symbols(matrix->lines[left]->buf, 0, col);
 	symbols += get_lines_prompt_len(matrix->len);
 	g_history->last_offset += symbols / g_w.ws_col;
 	if (symbols % g_w.ws_col == 0)

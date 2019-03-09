@@ -25,7 +25,7 @@ size_t		line_string_insert(t_line *line, size_t pos,
 				line->len - pos);
 	ft_memcpy(line->buf + pos, str, size);
 	line->len += size;
-	line->symbols += count_string_symbols(str, size);
+	line->symbols += count_string_symbols(str, 0, size);
 	return (pos + size);
 }
 

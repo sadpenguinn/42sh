@@ -48,6 +48,6 @@ int			newline_handling(t_matrix *matrix)
 		matrix->cursor->col = 0;
 	}
 	line->len = prev_col - 1;
-	line->symbols = count_string_symbols(line->buf, line->len);
+	line->symbols = count_string_symbols(line->buf, 0, line->len);
 	return (1);
 }

@@ -19,7 +19,7 @@ static int	is_yet_utf(char c)
 	return (0);
 }
 
-size_t		get_utf_offset_left(char *str, size_t pos)
+size_t		get_utf_offset_left(const char *str, size_t pos)
 {
 	size_t	i;
 
@@ -36,7 +36,7 @@ size_t		get_utf_offset_right(char c)
 {
 	size_t	i;
 
-	if (c > 127)
+	if ((c >> 7) & 1)
 	{
 		i = 0;
 		while (i < 7 && ((c >> (6 - i)) & 1))
