@@ -12,11 +12,10 @@
 
 #include "execute.h"
 
-int		execlist1(t_astree *root, int fd[2], int job, int isfork)
+int		execlist1(t_astree *root, int fd[2], int isfork)
 {
 	int		res;
 
-	(void)job;
 	if (!root)
 		return (EXIT_SUCCESS);
 	if (root->type != LIST1 && root->type != AND && root->type != SEMI &&
