@@ -23,7 +23,7 @@ int		execlist1(t_astree *root, int fd[2], int job, int isfork)
 		root->type != NEWLINE)
 		return (execlist2(root, fd, EC_NOFG, isfork));
 	if (root->right && root->right->type == AND)
-		res = execlist2(root->left, fd, EC_FG, isfork);
+		res = execlist2(root->left, fd, EC_NOFG, isfork);
 	else
 		res = execlist2(root->left, fd, EC_NOFG, isfork);
 	if (!root->right || !root->right->left)
