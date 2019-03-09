@@ -33,7 +33,7 @@ static void	read_history_from_file(int fd)
 			history_resize(g_history);
 		g_history->len++;
 		g_history->matrix[g_history->len - 1] = matrix_init();
-		matrix_create_line(g_history->matrix[g_history->len - 1], 0);
+		matrix_insert_line(g_history->matrix[g_history->len - 1], 0);
 		matrix_string_insert(g_history->matrix[g_history->len - 1],
 				pos, str, len);
 		string_fill(g_history->matrix[g_history->len - 1]->str_history,
@@ -83,5 +83,5 @@ void		history_fill(void)
 	g_history->len++;
 	g_history->cur = g_history->len - 1;
 	g_history->matrix[g_history->cur] = matrix_init();
-	matrix_create_line(g_history->matrix[g_history->cur], 0);
+	matrix_insert_line(g_history->matrix[g_history->cur], 0);
 }

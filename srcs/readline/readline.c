@@ -14,7 +14,16 @@
 #include <string.h>
 #include "term.h"
 
-void		init_readline(void)
+t_history		*g_history;
+int				g_mode;
+int				g_search_mode;
+int				g_heredoc;
+int				g_vi_mode;
+int				g_syntax;
+struct winsize	g_w;
+t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
+
+void			init_readline(void)
 {
 	get_term_params(&g_w);
 	set_term();
@@ -23,7 +32,7 @@ void		init_readline(void)
 	history_fill();
 }
 
-t_string	*readline(void)
+t_string		*readline(void)
 {
 	int			ret;
 	t_string	*str;

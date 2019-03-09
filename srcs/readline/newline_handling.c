@@ -20,7 +20,7 @@ static int	end_handling(t_matrix *matrix)
 	matrix_to_string(matrix, matrix->str_history);
 	if (are_quotes(matrix->str_history->buf, matrix->str_history->len))
 	{
-		matrix_create_line(matrix, matrix->len);
+		matrix_insert_line(matrix, matrix->len);
 		return (1);
 	}
 	ret = bang_handling(matrix);
@@ -40,7 +40,7 @@ int			newline_handling(t_matrix *matrix)
 	prev_col = matrix->cursor->col;
 	prev_row = matrix->cursor->row;
 	line = matrix->lines[prev_row];
-	matrix_create_line(matrix, matrix->cursor->row + 1);
+	matrix_insert_line(matrix, matrix->cursor->row + 1);
 	if (prev_col != line->len)
 	{
 		matrix_string_insert(matrix, *matrix->cursor,

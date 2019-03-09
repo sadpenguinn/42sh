@@ -91,10 +91,10 @@ int			search_mode(t_uchar c)
 	{
 		g_search_mode = 0;
 		line->len = 0;
-		move_cursor_end(g_history->matrix[g_history->cur]);
+		move_cursor_end_matrix(g_history->matrix[g_history->cur]);
 		if (c == '\n')
 			return (newline_handling(g_history->matrix[g_history->cur]));
-		return (modes_handling(c));
+		return (1);
 	}
 	if (c == CTRL_R)
 		return (search_next(line));

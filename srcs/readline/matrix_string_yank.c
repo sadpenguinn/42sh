@@ -12,25 +12,23 @@
 
 #include "readline.h"
 
-void	matrix_string_yank(t_matrix *matrix, size_t row, size_t col)
+size_t	line_string_yank(t_line *line, size_t pos, size_t size)
+{
+	if (size == 0)
+		return (pos);
+	buffer_free();
+	buffer_add(line->buf + pos, size);
+	return (pos + size);
+}
+
+void	matrix_string_yank(t_cursor left, t_cursor right)
 {
 	t_line		*line;
-	t_cursor	cursor;
+	t_matrix	*matrix;
 
-	cursor.row = matrix->cursor->row;
-	cursor.col = matrix->cursor->col;
-	if (cursor.row > row || (cursor.row == row && cursor.col > col))
-	{
-		cursor.row = row;
-		cursor.col = col;
-		row = matrix->cursor->row;
-		col = matrix->cursor->col;
-	}
-	if (cursor.row == row)
-	{
-		line = matrix->lines[cursor.row];
-		buffer_free();
-		buffer_add(line->buf + cursor.col,
-				col - cursor.col);
-	}
+	check_swap(&left, &right);
+	matrix = g_history->matrix[g_history->cur];
+	line = matrix->lines[left.row];
+	if (left.row == right.row)
+		line_string_yank(line, left.col, right.col - left.col);
 }

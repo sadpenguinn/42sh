@@ -15,22 +15,6 @@
 #include "libft.h"
 #include <stdio.h>
 
-static void	check_swap(t_cursor *start, t_cursor *end)
-{
-	t_cursor	tmp;
-
-	if (start->row > end->row ||
-		(start->row == end->row && start->col > end->col))
-	{
-		tmp.row = start->row;
-		tmp.col = start->col;
-		start->row = end->row;
-		start->col = end->col;
-		end->row = tmp.row;
-		end->col = tmp.col;
-	}
-}
-
 size_t		line_string_delete(t_line *line, size_t pos, size_t size)
 {
 	if (size == 0)

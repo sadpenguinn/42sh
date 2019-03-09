@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:17 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/08 18:56:33 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/09 13:11:00 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 
 enum	e_bang
 {
-	NO_BANGS = 0, BANG_REPLACED = 1 ,BANG_ERROR = 2
+	NO_BANGS = 0, BANG_REPLACED = 1, BANG_ERROR = 2
 };
 
 enum	e_keys
@@ -139,17 +139,17 @@ typedef struct	s_history
 	t_matrix	*last_hst_matrix;
 	t_string	*buffer;
 	t_line		*search_line;
-	int 		is_replace;
+	int			is_replace;
 }				t_history;
 
-t_history		*g_history;
-int				g_mode;
-int				g_search_mode;
-int				g_heredoc;
-int				g_vi_mode;
-int				g_syntax;
-struct winsize	g_w;
-t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
+extern t_history		*g_history;
+extern int				g_mode;
+extern int				g_search_mode;
+extern int				g_heredoc;
+extern int				g_vi_mode;
+extern int				g_syntax;
+extern struct winsize	g_w;
+extern t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
 t_string		*readline(void);
 t_string		*heredoc(void);
@@ -168,7 +168,7 @@ t_string		*string_dup(t_string *src);
 
 void			string_fill(t_string *str, char *buf, size_t len);
 
-void			matrix_create_line(t_matrix *matrix, size_t row);
+void			matrix_insert_line(t_matrix *matrix, size_t row);
 void			matrix_erase_line(t_matrix *matrix, size_t row);
 
 int				check_next_symbol(void);
@@ -217,7 +217,7 @@ int				yank_end_alnum(t_matrix *matrix);
 t_cursor		matrix_string_insert(t_matrix *matrix, t_cursor pos,
 		const char *str, size_t size);
 void			matrix_string_delete(t_cursor left, t_cursor right);
-void			matrix_string_yank(t_matrix *matrix, size_t row, size_t col);
+void			matrix_string_yank(t_cursor left, t_cursor right);
 
 size_t			line_string_delete(t_line *line, size_t pos, size_t size);
 size_t			line_string_insert(t_line *line, size_t pos,
@@ -343,5 +343,7 @@ int				bang_case(t_line *line, size_t pos);
 int				word_case(t_line *line, size_t pos);
 int				minus_case(t_line *line, size_t pos);
 int				plus_case(t_line *line, size_t pos, int plus_flag);
+
+void			check_swap(t_cursor *start, t_cursor *end);
 
 #endif

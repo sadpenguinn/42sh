@@ -83,7 +83,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/matrix_string_insert.c
 					srcs/readline/matrix_string_delete.c
 					srcs/readline/matrix_string_yank.c
-					srcs/readline/matrix_create_line.c
+					srcs/readline/matrix_insert_line.c
 					srcs/readline/utf.c
 					srcs/readline/back_space_symbol.c
 					srcs/readline/del_symbol.c
@@ -150,7 +150,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/are_quotes.c
 					srcs/readline/bang_handling.c
 					srcs/readline/bang_cases.c
-					srcs/readline/set_backslash.c)
+					srcs/readline/set_backslash.c
+					srcs/readline/check_cursor_swap.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c srcs/lexer/dfa_tools.c)

@@ -33,7 +33,7 @@ t_uchar		get_next_symbol(size_t size)
 		g_history->cur = g_history->len - 1;
 		matrix_del(&g_history->matrix[g_history->cur]);
 		g_history->matrix[g_history->cur] = matrix_init();
-		matrix_create_line(g_history->matrix[g_history->cur], 0);
+		matrix_insert_line(g_history->matrix[g_history->cur], 0);
 		print_default(g_history->matrix[g_history->cur]);
 		ret = read(0, &c, size);
 	}
