@@ -128,7 +128,10 @@ int			normal_mode(t_matrix *matrix, t_uchar c)
 		return (1);
 	if (c == '\n')
 		return (newline_handling(matrix));
-	if (c == 'R')
-		g_vi_mode = REPLACE_MODE;
+	if (c == 'v')
+	{
+		matrix->point = *matrix->cursor;
+		g_vi_mode = VISUAL_MODE;
+	}
 	return (1);
 }

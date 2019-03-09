@@ -57,6 +57,7 @@ void		print_prompt(void)
 	if (g_heredoc)
 		return ;
 	array_add(DEFAULT_TERM_COLORS, ft_strlen(DEFAULT_TERM_COLORS));
+	array_add(TEXT_BOLD, ft_strlen(TEXT_BOLD));
 	array_add(TURN_ON_CURSOR, ft_strlen(TURN_ON_CURSOR));
 	add_shell_name();
 	add_prompt_style();

@@ -16,8 +16,8 @@
 # define CSI "\e["
 # define COLOR_DEFAULT "\e[0m"
 
-# define DEFAULT_TERM_COLORS "\e[0m\e[39;49m"
-# define DEFAULT_TEXT_COLORS "\e[0m\e[39m"
+# define DEFAULT_TERM_COLORS "\e[39;49m"
+# define DEFAULT_TEXT_COLORS "\e[39m"
 
 # define CURSOR_MOVE_LINE_START "\e[1G"
 
@@ -34,14 +34,15 @@
 # define TEXT_COLOR_CYAN "\e[36m"
 # define TEXT_COLOR_WHITE "\e[37m"
 
-# define BACKGROUND_COLOR_BLACK "\e[40m"
-# define BACKGROUND_COLOR_RED "\e[41m"
-# define BACKGROUND_COLOR_GREEN "\e[42m"
-# define BACKGROUND_COLOR_YELLOW "\e[43m"
-# define BACKGROUND_COLOR_BLUE "\e[44m"
-# define BACKGROUND_COLOR_MAGENTA "\e[45m"
-# define BACKGROUND_COLOR_CYAN "\e[46m"
-# define BACKGROUND_COLOR_WHITE "\e[47m"
+# define BG_DEFAULT_COLOR "\e[49m"
+# define BG_COLOR_BLACK "\e[40m"
+# define BG_COLOR_RED "\e[41m"
+# define BG_COLOR_GREEN "\e[42m"
+# define BG_COLOR_YELLOW "\e[43m"
+# define BG_COLOR_BLUE "\e[44m"
+# define BG_COLOR_MAGENTA "\e[45m"
+# define BG_COLOR_CYAN "\e[46m"
+# define BG_COLOR_WHITE "\e[47m"
 
 # define TEXT_REVERSE_VIDEO "\e[7m"
 
@@ -49,6 +50,7 @@
 # define TURN_OF_CURSOR "\e[?25l"
 
 # define TEXT_BOLD "\e[1m"
+# define TEXT_UNBOLD "\e[22m"
 
 # define SHELL_NAME "[42sh]"
 
@@ -62,6 +64,8 @@
 # define SYNTAX_OFF 0
 
 # define EVENT_MESSAGE "event not found"
+
+# define TAB_LEN 4
 
 # include <sys/ioctl.h>
 # include <string.h>
@@ -140,6 +144,7 @@ typedef	struct	s_matrix
 	size_t		left_limit;
 	size_t		right_limit;
 	t_string	*str_history;
+	t_cursor	point;
 }				t_matrix;
 
 typedef struct	s_history
@@ -204,9 +209,10 @@ int				esc_code_handling(t_uchar c);
 int				normal_mode(t_matrix *matrix, t_uchar c);
 int				insert_mode(t_matrix *matrix, t_uchar c);
 int				replace_mode(t_matrix *matrix, t_uchar c);
+int				visual_mode(t_matrix *matrix, t_uchar c);
 
-void			paste_before(t_matrix *matrix);
-void			paste_after(t_matrix *matrix);
+int				paste_before(t_matrix *matrix);
+int				paste_after(t_matrix *matrix);
 
 int				del_begin_word(t_matrix *matrix);
 int				del_next_word(t_matrix *matrix);
@@ -304,7 +310,8 @@ void			matrix_to_string(t_matrix *matrix, t_string *str);
 void			add_cursor_text(t_matrix *matrix);
 void			add_lines_text(t_matrix *matrix);
 void			add_text(t_matrix *matrix, size_t row, size_t col);
-void			add_line(t_line	*line, size_t start, size_t end);
+void			add_line(t_line	*line, size_t start, size_t end,
+		size_t row);
 
 void			add_line_prefix(t_matrix *matrix, size_t cur_row);
 
