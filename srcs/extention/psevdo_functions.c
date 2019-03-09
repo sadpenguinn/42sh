@@ -12,7 +12,7 @@
 
 #include "extention.h"
 
-char	*get_output_of_programm(char *str) ///////////////////////BUTCH Тут должна быть функция буча, которая принимает на вход программу и подставляет её вывод, но буч не пишет её уже неделю, поэтому тут будет этот ужасный коммент, пока буч не напишет функцию
+char	*get_output_of_programm(char *str)
 {
 	return (ft_strdup(str));
 }
@@ -27,13 +27,8 @@ char	*get_content_of_var(char *str)
 	return (sgetenv(str, ENV_ALL));
 }
 
-/*
-**		state 1 = <()
-**		state 2 = >()
-*/
 int		get_fdnumber_of_substitution(char *str, int state)
 {
-	// printf("command = |%s|\n", str);
 	(void)str;
 	state++;
 	return (282);
