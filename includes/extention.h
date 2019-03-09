@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/04 17:13:53 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 20:52:11 by nkertzma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 ** ${parameter##}     9
 */
 
+void	brackets_case_in_strsplit(char *str, int *i, char c);
 void	processing_stars(char **str);
 char	*get_last_n_symbols(char *str, int n, int freed);
 void	push_to_enviroment(char *name, char *val);
@@ -53,8 +54,15 @@ char	*remalloc_result_of_extention(char *res_to_count, char *res_to_replace,
 char	**expand_v(char *str);
 char	*expand(char *str);
 char	**strsplit_for_extention(char *str);
-int		get_fdnumber_of_substitution(char *str, int state);
-char	*extention_get_just_command(char *str);
-char	*get_argvector_of_program(int i);
+char	*remove_smallest_suffix_pattern(char *str);
+char	*remove_smallest_prefix_pattern(char *str);
+void	iterator_for_expand(char *str, char *res, int *i, int *j);
+void	brackets_case_in_expand_v(const char *str, int *fuck_norm, int i);
+int		brackets_case_in_expand(const char *str, int *f_n, int i);
+char	*pre_processing_in_expand(int *f_n, char **str, int *i, int *j);
+int		fuck_you_fucking_norm(char *buf, int j);
+void	frashing_values(int *fuck_norm, int *i, int *j);
+char	*get_last_n_symbols(char *str, int n, int freed);
+char	*get_content_of_var(char *str);
 
 #endif

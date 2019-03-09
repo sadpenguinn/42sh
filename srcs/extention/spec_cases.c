@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psevdo_functions.c                                 :+:      :+:    :+:   */
+/*   spec_cases.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 20:11:33 by bbaelor-         ###   ########.fr       */
+/*   Created: 2019/03/09 19:23:35 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/09 19:27:48 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "extention.h"
-
-char	*get_output_of_programm(char *str)
+void		extention_brackets_case(char *str, int *i, char c)
 {
-	return (ft_strdup(str));
-}
-
-void	push_to_enviroment(char *name, char *val)
-{
-	ssetenv(name, val, ENV_RO);
-}
-
-char	*get_content_of_var(char *str)
-{
-	return (sgetenv(str, ENV_ALL));
+	(*i)++;
+	while (str[*i] && str[*i] != c)
+		(*i)++;
+	(*i)++;
 }
