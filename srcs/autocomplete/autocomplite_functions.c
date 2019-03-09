@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:26:35 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 03:49:48 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 06:42:08 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		get_autocomplite_functions_mas_len(char *str)
 {
-	int	counter;
-	int	i;
-	int	n;
-	int	len;
+	int		counter;
+	size_t	i;
+	size_t	n;
+	size_t	len;
 
 	len = ft_strlen(str);
 	n = vector_get_len(g_func);
@@ -35,9 +35,9 @@ int		get_autocomplite_functions_mas_len(char *str)
 
 char	**get_autocomplite_functions_mas(char *str, char **res, int *c)
 {
-	int	i;
-	int	n;
-	int	len;
+	size_t	i;
+	size_t	n;
+	size_t	len;
 
 	len = ft_strlen(str);
 	n = vector_get_len(g_func);

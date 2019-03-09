@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 01:56:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 05:27:06 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 06:41:22 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**sugg_delete_repeats(char **str)
 	return (res);
 }
 
-int		sugg_check_repeats_in_all_mass(char **str, int pos, char *c)
+int		sugg_check_repeats_in_all_mass(char **str, size_t pos, char *c)
 {
 	int		i;
 	char	tmp;
@@ -56,7 +56,7 @@ int		sugg_check_repeats_in_all_mass(char **str, int pos, char *c)
 	return (1);
 }
 
-char	**sugg_free_and_set_one(char **str, int pos)
+char	**sugg_free_and_set_one(char **str, size_t pos)
 {
 	char	*key_word;
 	char	**res;
@@ -78,9 +78,9 @@ char	**sugg_free_and_set_one(char **str, int pos)
 
 char	**sugg_get_common_repeat(char **str, char *sugg_word)
 {
-	int		len;
+	size_t	len;
 	char	tmp;
-	int		pos_start;
+	size_t	pos_start;
 	char	*buf;
 
 	buf = ft_strendchr(sugg_word, '/');

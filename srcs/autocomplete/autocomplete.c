@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 05:24:00 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 06:44:57 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	**autocomplete(t_line *line_info, int pos)
 
 	if (!(type = get_autocomplite_type(line_info, pos, &pos_start)))
 		return (NULL);
-	word_to_acmlt = ft_strndup(&line_info->buf[pos_start], pos - pos_start);
+	word_to_acmlt = ft_strndup(&line_info->buf[pos_start],
+								(size_t)pos - pos_start);
 	res = get_mas_of_suggetions(word_to_acmlt, type);
 	if (!res || !res[0])
 	{

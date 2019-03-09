@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:27:22 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 02:27:38 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 06:41:39 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		get_autocomplite_built_in_mas_len(char *str)
 {
-	int i;
-	int	len_word;
-	int	counter;
+	int		i;
+	size_t	len_word;
+	int		counter;
 
 	counter = 0;
 	len_word = ft_strlen(str);
@@ -32,8 +32,8 @@ int		get_autocomplite_built_in_mas_len(char *str)
 
 char	**get_autocomplite_built_in_mas(char *str, char **res, int *c)
 {
-	int i;
-	int	len_word;
+	int		i;
+	size_t	len_word;
 
 	len_word = ft_strlen(str);
 	i = 0;

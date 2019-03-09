@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 05:17:35 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 06:41:51 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		get_autocomplite_files_dir_len(char *str)
 {
-	int		len;
+	size_t	len;
 	int		res_len;
 	char	**res;
 	char	*pattern;
@@ -38,7 +38,7 @@ int		get_autocomplite_files_dir_len(char *str)
 char	**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 {
 	int		i;
-	int		len;
+	size_t	len;
 	char	**out_glob;
 	char	*pattern;
 	char	*real_dir;
@@ -47,7 +47,7 @@ char	**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 	len = ft_strlen(str);
 	pattern = atcml_get_pattern(str, len);
 	real_dir = atcml_get_rel_dir(str, len);
-	if (xglob(pattern, real_dir, &out_glob, (size_t *)&len))
+	if (xglob(pattern, real_dir, &out_glob, &len))
 		return (res);
 	free(pattern);
 	free(real_dir);

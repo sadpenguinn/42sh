@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:29:40 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 02:29:52 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 06:47:38 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ char	**get_mas_env_autocompl(char *str)
 
 	i = 0;
 	j = 0;
-	counter = get_mas_env_autocompl_len(str);
+	if (!(counter = get_mas_env_autocompl_len(str)))
+		return (NULL);
 	res = xmalloc(sizeof(char **) * (counter + 1));
 	while (g_env.env[i])
 	{
