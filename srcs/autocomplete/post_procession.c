@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 01:56:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 05:10:01 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 05:27:06 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	**sugg_delete_repeats(char **str)
 	res = xmalloc(sizeof(char *) * 2);
 	res[0] = ft_strdup(str[0]);
 	res[1] = NULL;
-	while (!ft_strcmp(str[i], str[i + 1]))
+	i = 0;
+	while (str[i])
 	{
 		free(str[i]);
 		i++;
