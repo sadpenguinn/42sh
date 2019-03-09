@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:28:16 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 02:28:40 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 05:35:06 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		autocomplite_hash_find_len(t_hash *hash, char *str)
 		ptr++;
 		i++;
 	}
-	return (counter + 1);
+	return (counter);
 }
 
 char	**autocomplite_hash_find(t_hash *hash, char *str, char **res, int *c)

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 03:14:31 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 05:37:28 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	**get_mas_other_autocompile(char *str)
 			get_autocomplite_built_in_mas_len(str) +
 			get_autocomplite_functions_mas_len(str) +
 			get_autocomplite_files_dir_len(str);
+	if (!len)
+		return (NULL);
 	res = xmalloc(sizeof(char *) * (len + 1));
 	res = autocomplite_hash_find(g_path, str, res, &iter);
 	res = get_autocomplite_built_in_mas(str, res, &iter);
