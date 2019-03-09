@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 06:44:57 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 19:13:59 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,24 @@ char	*g_built_in_lists[] =
 {
 	"cd", "echo", "env", "exit", "hash", "set", "setenv", "unsetenv", NULL
 };
+
+char	*ft_erase_spases_in_begin(char *str, int *type)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	while (str[i] == ' ' || str[i] == ';')
+	{
+		if (str[i] == ';')
+			*type = OTHER_AUTOCOMLITE;
+		i++;
+	}
+	res = xmalloc(sizeof(char) * ft_strlen(&str[i]));
+	ft_strcpy(res, &str[i]);
+	free(str);
+	return (res);
+}
 
 char	**autocomplete(t_line *line_info, int pos)
 {
@@ -28,6 +46,7 @@ char	**autocomplete(t_line *line_info, int pos)
 		return (NULL);
 	word_to_acmlt = ft_strndup(&line_info->buf[pos_start],
 								(size_t)pos - pos_start);
+	word_to_acmlt = ft_erase_spases_in_begin(word_to_acmlt, &type);
 	res = get_mas_of_suggetions(word_to_acmlt, type);
 	if (!res || !res[0])
 	{
