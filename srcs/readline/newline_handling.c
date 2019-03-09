@@ -29,13 +29,27 @@ static int	end_handling(t_matrix *matrix)
 	return (1);
 }
 
+static int	back_slash_handling(t_matrix *matrix)
+{
+	int		backslash;
+	size_t	i;
+	t_line	*line;
+
+	line = matrix->lines[matrix->cursor->row];
+	backslash = 0;
+	i = 0;
+	while (i < matrix->cursor->col)
+		set_backslash(line->buf, i++, &backslash);
+	return (1 - backslash);
+}
+
 int			newline_handling(t_matrix *matrix)
 {
 	size_t	prev_col;
 	size_t	prev_row;
 	t_line	*line;
 
-	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] != '\\')
+	if (back_slash_handling(matrix))
 		return (end_handling(matrix));
 	prev_col = matrix->cursor->col;
 	prev_row = matrix->cursor->row;

@@ -15,7 +15,7 @@
 
 static int	replace_bang(t_line *line, size_t pos)
 {
-	if (pos == line->len || line->buf[pos] == ' ')
+	if (pos == line->len || line->buf[pos] == ' ' || line->buf[pos] == '\t')
 		return (NO_BANGS);
 	if (line->buf[pos] == '-')
 		return (minus_case(line, pos + 1));

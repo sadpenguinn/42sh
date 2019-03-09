@@ -31,7 +31,7 @@ void	add_line(t_line *line, size_t start, size_t end)
 		start = pos;
 		left = get_space_left_pos(line->buf, start);
 		right = get_space_right_pos(line->buf, start, line->len);
-		if (lex_check_bash_word(line->buf + left, right - left))
+		if (lex_check_bash_word(line->buf + left, right - left) && g_syntax)
 			array_add(TEXT_COLOR_YELLOW, ft_strlen(TEXT_COLOR_YELLOW));
 		while (pos < end && line->buf[pos] != ' ')
 			pos++;
