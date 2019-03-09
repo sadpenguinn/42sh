@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 03:49:37 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 05:12:19 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ int		get_autocomplite_files_dir_len(char *str)
 	pattern = atcml_get_pattern(str, len);
 	real_dir = atcml_get_rel_dir(str, len);
 	if (xglob(pattern, real_dir, &res, (size_t *)&res_len))
+	{
+		free(pattern);
+	    free(real_dir);
 		return (0);
+	}
 	free(pattern);
-	free(real_dir);
+    free(real_dir);
 	glob_free(&res, res_len);
 	return (res_len);
 }
