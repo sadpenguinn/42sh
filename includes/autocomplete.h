@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 05:57:36 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 18:40:03 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,18 @@
 **	flags == other
 */
 
-# define ERROR_AUTOCOMLITE	0
-# define ENV_AUTOCOMLITE	1
-# define FLAGS_AUTOCOMLITE	3
-# define OTHER_AUTOCOMLITE	3
+# define ERROR_AUTOCOMLITE			0
+# define ENV_AUTOCOMLITE			1
+# define FLAGS_AUTOCOMLITE			3
+# define OTHER_AUTOCOMLITE			3
+# define ONLY_FI_DIR_AUTOCOMLITE	4
 
 char			**autocomplete(t_line *line_info, int pos);
 extern char		*g_built_in_lists[];
 char			*atcml_get_pattern(char *buf, size_t pos);
 char			*atcml_get_rel_dir(char *buf, size_t pos);
 int				check_env_a_case(char c, char cb, int pos);
-int				check_oth_a_case(char c, int pos);
+int				check_oth_a_case(t_line *line_info, int pos);
 int				get_autocomplite_type(t_line *line_info,
 				int pos, int *pos_start);
 char			*ft_strendchr(char *str, char c);

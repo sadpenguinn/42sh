@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:31:59 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 03:50:48 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 18:59:25 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,21 @@ int		check_env_a_case(char c, char cb, int pos)
 	return (0);
 }
 
-int		check_oth_a_case(char c, int pos)
+int		check_oth_a_case(t_line *line_info, int pos)
 {
-	if (c == ' ' || !pos || c == '(' || c == ';')
+	if (pos && line_info->buf[pos - 1] == ';')
 		return (1);
+	if (line_info->buf[pos] == ' ' || !pos || line_info->buf[pos] == '(')
+	{
+		if (!pos || !pos - 1)
+			return (1);
+		while (pos - 1)
+		{
+			if (line_info->buf[pos] != ' ')
+				return (0);
+			pos--;
+		}
+	}
 	return (0);
 }
 
