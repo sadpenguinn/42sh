@@ -56,7 +56,16 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_function_args.c
 					srcs/shell/destroy_function_args.c)
 
-set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c)
+set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
+					srcs/autocomplete/autocomplite_builtins.c
+					srcs/autocomplete/autocomplite_env.c
+					srcs/autocomplete/autocomplite_files_and_dirs.c
+					srcs/autocomplete/autocomplite_functions.c
+					srcs/autocomplete/autocomplite_in_hash.c
+					srcs/autocomplete/autocomplite_lib.c
+					srcs/autocomplete/autocomplite_specific_cases.c
+					srcs/autocomplete/post_procession.c
+					srcs/autocomplete/pre_procession.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/heredoc.c

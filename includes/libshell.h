@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/28 15:39:55 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/09 03:31:29 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char			*check_valid_of_variable(char *str);
 */
 
 int				xglob(char *pattern, char *path, char ***matches, size_t *cnt);
+void			glob_free(char ***matches, int i);
 int				xmatch(char *s1, char *s2);
 
 /*
