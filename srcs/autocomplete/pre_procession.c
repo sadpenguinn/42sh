@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 05:37:28 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 06:09:01 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 		{
 			*pos_start = pos;
 			return (ENV_AUTOCOMLITE);
-		}
-		else if (line_info->buf[pos] == '-')
-		{
-			*pos_start = pos;
-			return (FLAGS_AUTOCOMLITE);
 		}
 		else if (check_oth_a_case(line_info->buf[pos], pos))
 		{

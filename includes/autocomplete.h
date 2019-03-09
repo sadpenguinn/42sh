@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 04:03:14 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 05:57:36 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@
 # include "parser.h"
 # include <stdio.h>
 
+/*
+**	support of flags_autocomlite not realized yes, so it's reason, why 
+**	flags == other
+*/
+
 # define ERROR_AUTOCOMLITE	0
-# define ENV_AUTOCOMLITE	1 // autosuggetions ${} etc
-# define FLAGS_AUTOCOMLITE	2
+# define ENV_AUTOCOMLITE	1
+# define FLAGS_AUTOCOMLITE	3
 # define OTHER_AUTOCOMLITE	3
 
 char			**autocomplete(t_line *line_info, int pos);
