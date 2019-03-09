@@ -31,6 +31,7 @@ t_astree	*preunary(void)
 	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
 	if (type != EX_ADD && type != EX_SUB && type != EX_LNOT && type != EX_BNOT)
 		return (operand());
+	g_excurtok++;
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	if (!(root->left = preunary()))

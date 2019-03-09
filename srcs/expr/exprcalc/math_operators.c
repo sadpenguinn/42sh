@@ -12,7 +12,7 @@
 
 #include "calc.h"
 
-intmax_t	op_power(intmax_t operator, t_astree *node)
+intmax_t	op_pow(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 

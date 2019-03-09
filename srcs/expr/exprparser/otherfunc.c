@@ -52,16 +52,12 @@ t_astree	*parseerror(t_astree *root)
 	if (g_exprerr)
 		return (0LU);
 	g_exprerr = 1;
-	if (g_excurtok >= ((size_t *)g_extokens)[2])
-	{
-		ft_putstr_fd(
-				"\e[0;31mExpression: error near `expresson end'\e[0m\n",
-				STDERR_FILENO);
-		return (0LU);
-	}
-	token = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok));
-	ft_putstr_fd("\e[0;31mExpression: error near `", STDERR_FILENO);
-	ft_putstr_fd(token->word, STDERR_FILENO);
+	ft_putstr_fd("\e[0;31m", STDERR_FILENO);
+	ft_putstr_fd("42sh: ", STDERR_FILENO);
+	ft_putstr_fd("bad math expression: error near `", STDERR_FILENO);
+	token = (g_excurtok >= ((size_t *)g_extokens)[2]) ?
+				0 : ((t_lexem *)vector_get_elem(g_extokens, g_excurtok));
+	ft_putstr_fd((token ? token->word : "END OF STRING"), STDERR_FILENO);
 	ft_putstr_fd("'\e[0m\n", STDERR_FILENO);
 	return (0LU);
 }

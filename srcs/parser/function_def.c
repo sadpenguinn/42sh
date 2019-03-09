@@ -27,7 +27,7 @@ static t_astree	*function_def_1(void)
 	t_astree	*root;
 
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	if (!check_word_type(token->type) || !check_func_name(token->word))
+	if (!check_word_type(token->type) || !check_varname(token->word))
 		return (0);
 	g_curtok++;
 	if (!checktype(OBRACKET))
@@ -49,7 +49,7 @@ static t_astree	*function_def_2(void)
 
 	g_curtok++;
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	if (!check_word_type(token->type) || !check_func_name(token->word))
+	if (!check_word_type(token->type) || !check_varname(token->word))
 		return (savecur(g_curtok - 1, 0));
 	g_curtok++;
 	if (!checktype(OBRACKET))
@@ -71,7 +71,7 @@ static t_astree	*function_def_3(void)
 
 	g_curtok++;
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	if (!check_word_type(token->type) || !check_func_name(token->word))
+	if (!check_word_type(token->type) || !check_varname(token->word))
 		return (savecur(g_curtok - 1, 0));
 	g_curtok++;
 	root = xmalloc(sizeof(t_astree));

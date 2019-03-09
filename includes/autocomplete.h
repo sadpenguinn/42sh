@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AUTOCOMPLITE_H
-# define AUTOCOMPLITE_H
+#ifndef AUTOCOMPLETE_H
+# define AUTOCOMPLETE_H
 
 # include "readline.h"
 # include "libft.h"
@@ -21,8 +21,8 @@
 # include <stdio.h>
 
 /*
-**	support of flags_autocomlite not realized yes, so it's reason, why 
-**	flags == other
+** support of flags_autocomlite not realized yes, so it's reason, why
+** flags == other
 */
 
 # define ERROR_AUTOCOMLITE			0

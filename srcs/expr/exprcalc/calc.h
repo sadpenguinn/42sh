@@ -15,6 +15,7 @@
 
 # include <inttypes.h>
 # include "expression.h"
+# include "terminals.h"
 
 # define CL_DIVZERO 1
 
@@ -28,7 +29,7 @@ intmax_t		op_sub(intmax_t operator, t_astree *node);
 intmax_t		op_div(intmax_t operator, t_astree *node);
 intmax_t		op_mod(intmax_t operator, t_astree *node);
 intmax_t		op_mul(intmax_t operator, t_astree *node);
-intmax_t		op_power(intmax_t operator, t_astree *node);
+intmax_t		op_pow(intmax_t operator, t_astree *node);
 intmax_t		op_lsh(intmax_t operator, t_astree *node);
 intmax_t		op_rsh(intmax_t operator, t_astree *node);
 intmax_t		op_gt(intmax_t operator, t_astree *node);
@@ -38,7 +39,7 @@ intmax_t		op_leq(intmax_t operator, t_astree *node);
 intmax_t		op_eq(intmax_t operator, t_astree *node);
 intmax_t		op_neq(intmax_t operator, t_astree *node);
 intmax_t		op_band(intmax_t operator, t_astree *node);
-intmax_t		op_bxor(intmax_t operator, t_astree *node);
+intmax_t		op_xor(intmax_t operator, t_astree *node);
 intmax_t		op_bor(intmax_t operator, t_astree *node);
 intmax_t		op_land(intmax_t operator, t_astree *node);
 intmax_t		op_lor(intmax_t operator, t_astree *node);

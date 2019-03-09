@@ -26,9 +26,9 @@ static t_astree	*get_word(void)
 	t_astree	*root;
 
 	token = ((t_lexem *)vector_get_elem(g_tokens, g_curtok));
-	if (!check_word_type(token->type))
+	if (token->type != ARITH)
 		return (0);
-	if (!check_arith_for(token->word))
+	if (!check_arith_word(token->word))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = ARITH;

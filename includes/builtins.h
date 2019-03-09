@@ -106,4 +106,13 @@ void	built_hash_darg(char **av);
 void	built_hash_targ(char **av);
 void	built_hash_larg(char **av);
 
+/*
+** Internal function for set
+*/
+
+int		built_set_usage(void);
+int		built_set_toggle(int *var, int fval, int sval);
+int		built_set_gvar(int *var, int val);
+void	built_set_print(void);
+
 #endif

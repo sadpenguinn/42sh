@@ -44,8 +44,8 @@ extern void				*g_pids;
 **	Flags for job
 */
 
-# define EX_NOFG		0
-# define EX_FG			1
+# define EC_NOFG		0
+# define EC_FG			1
 
 typedef struct			s_redir
 {
@@ -69,7 +69,7 @@ typedef struct			s_func
 
 int						execute(t_astree *root);
 int						execlist1(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execlist2(t_astree *root,
 									int fd[2], int job, int isfork);
 int						execlist3(t_astree *root,

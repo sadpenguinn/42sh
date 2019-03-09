@@ -12,14 +12,21 @@
 
 #include "parser.h"
 
-int		check_arith_word(char *str)
+int	check_arith_word(char *str)
 {
-	if (ft_strchr(str, '+'))
-		return (1);
-	return (0);
+	int		len;
+	int		i;
+
+	i = 0;
+	if (str[0] != '(' || str[1] != '(')
+		return (0);
+	len = ft_strlen(str);
+	if (str[len - 1] != ')' || str[len - 2] != ')')
+		return (0);
+	return (1);
 }
 
-int		check_assigment_word(const char *str)
+int	check_assigment_word(const char *str)
 {
 	int i;
 
@@ -35,7 +42,7 @@ int		check_assigment_word(const char *str)
 	return (0);
 }
 
-int		check_word_type(t_type type)
+int	check_word_type(t_type type)
 {
 	if (type == WORD || type == IF || type == THEN || type == ELSE ||
 		type == ELIF || type == FI || type == FOR || type == WHILE ||
@@ -44,4 +51,9 @@ int		check_word_type(t_type type)
 		type == NOT)
 		return (1);
 	return (0);
+}
+
+int	check_redir_num(char *str)
+{
+	return (ft_str_is_numeric(str));
 }

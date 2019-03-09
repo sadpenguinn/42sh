@@ -14,27 +14,6 @@
 #include "readline.h"
 #include "builtins.h"
 
-static int		built_set_usage(void)
-{
-	ft_putendl("Huita");
-	return (SHERR_ERR);
-}
-
-static int		built_set_toggle(int *var, int fval, int sval)
-{
-	if (*var == fval)
-		*var = sval;
-	else
-		*var = fval;
-	return (SHERR_OK);
-}
-
-static int		built_set_gvar(int *var, int val)
-{
-	*var = val;
-	return (SHERR_OK);
-}
-
 static int		built_set_parse(char **av)
 {
 	if (!ft_strcmp(av[1], "-o"))
@@ -49,14 +28,7 @@ static int		built_set_parse(char **av)
 			return (built_set_toggle(&g_syntax, SYNTAX_ON, SYNTAX_OFF));
 		else
 		{
-			ft_putstr("vi:\t\t");
-			ft_putendl(g_mode == VI ? "on" : "off");
-			ft_putstr("emacs:\t\t");
-			ft_putendl(g_mode == READLINE ? "on" : "off");
-			ft_putstr("echoe:\t\t");
-			ft_putendl(g_echoe == TRUE ? "on" : "off");
-			ft_putstr("syntax:\t\t");
-			ft_putendl(g_syntax == SYNTAX_ON ? "on" : "off");
+			built_set_print();
 			return (SHERR_OK);
 		}
 	}

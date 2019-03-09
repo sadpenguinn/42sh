@@ -162,7 +162,6 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/case_clause_sequence.c
 					srcs/parser/case_command.c
 					srcs/parser/check_words.c
-					srcs/parser/check_words_2.c
 					srcs/parser/command.c
 					srcs/parser/compound_list.c
 					srcs/parser/cond_command.c
@@ -232,7 +231,8 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_echo_reqmts.c
 					srcs/builtins/built_set.c
 					srcs/builtins/built_hash.c
-					srcs/builtins/built_export.c srcs/builtins/built_hash_reqmts.c)
+					srcs/builtins/built_export.c srcs/builtins/built_hash_reqmts.c
+					srcs/builtins/built_set_rqmts.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
