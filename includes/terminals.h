@@ -47,7 +47,7 @@
 # define DLESSDASH         		SHIFT + 64 /* <<- */
 # define CLOBBER           		SHIFT + 65 /* >| */
 # define OR_IF					SHIFT + 66 /* || */
-# define ANDGREAT          		SHIFT + 68 /* &> */
+# define GREATAND          		SHIFT + 68 /* >& */
 # define SEMI              		SHIFT + 69 /* ; */
 # define AND_IF            		SHIFT + 70 /* && */
 # define LESSGREAT         		SHIFT + 71 /* <> */
@@ -61,7 +61,6 @@
 # define COND					SHIFT + 93 /* [ ... ] */
 # define ARITH					SHIFT + 96 /* (( ... )) */
 # define NOT               		SHIFT + 104 /* ! */
-# define GREATAND          		SHIFT + 105 /* >& */
 
 /*
 **	Internal states for parser
