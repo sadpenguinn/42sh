@@ -86,18 +86,18 @@ int						execscmd(t_astree *root,
 									int fd[2], int job, int isfork);
 
 int						execfor(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execcase(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execif(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execsubshell(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execfunction(t_astree *root);
 int						execwhile(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execuntil(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 
 int						function(t_astree *func, char **argv, char **envp);
 

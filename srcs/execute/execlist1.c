@@ -29,5 +29,5 @@ int		execlist1(t_astree *root, int fd[2], int isfork)
 		return (res);
 	if (g_execerr)
 		return (-1);
-	return (execlist1(root->right, fd, 0, isfork));
+	return (execlist1(root->right, fd, isfork));
 }

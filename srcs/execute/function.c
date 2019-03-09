@@ -25,5 +25,5 @@ int		function(t_astree *func, char **argv, char **envp)
 		arg = ft_strdup(*argv++);
 		vector_push_back(&g_func_args, arg);
 	}
-	return (execlist1(func, fd, 0, 0));
+	return (execlist1(func, fd, 0));
 }

@@ -22,6 +22,6 @@ int		execute(t_astree *root)
 		return (EXIT_FAILURE);
 	fd[0] = 0;
 	fd[1] = 1;
-	res = execlist1(root, fd, 0, 0);
+	res = execlist1(root, fd, 0);
 	return (res);
 }

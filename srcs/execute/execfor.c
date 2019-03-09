@@ -60,7 +60,7 @@ int			for_init(char *arith)
 	return (0);
 }
 
-static int	execarithfor(t_astree *root, int fd[2], int job, int isfork)
+static int	execarithfor(t_astree *root, int fd[2], int isfork)
 {
 	int			res;
 	char		*arith;
@@ -70,18 +70,18 @@ static int	execarithfor(t_astree *root, int fd[2], int job, int isfork)
 	body = root->right;
 	for_init(arith);
 	while (for_check(arith))
-		res = execlist1(body, fd, job, isfork);
+		res = execlist1(body, fd, isfork);
 	return (res);
 }
 
-int			execfor(t_astree *root, int fd[2], int job, int isfork)
+int			execfor(t_astree *root, int fd[2], int isfork)
 {
 	int			res;
 	char		*var;
 	t_astree	*body;
 
 	if (root->left->type == ARITH)
-		return (execarithfor(root, fd, job, isfork));
+		return (execarithfor(root, fd, isfork));
 	res = 0;
 	body = root->right;
 	var = root->left->left->content;
@@ -89,7 +89,7 @@ int			execfor(t_astree *root, int fd[2], int job, int isfork)
 	while (root)
 	{
 		ssetenv(var, root->content, ENV_RO);
-		res = execlist1(body, fd, job, isfork);
+		res = execlist1(body, fd, isfork);
 		root = root->right;
 	}
 	return (res);
