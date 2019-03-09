@@ -104,10 +104,6 @@ char	*get_ex_tilda(char *str)
 	return (tmp);
 }
 
-int		get_fdnumber_of_substitution(char *str, int state);
-char	*extention_get_just_command(char *str);
-char	*get_argvector_of_program(int i);
-
 char	*get_small_redir(char *str)
 {
 	char	*tmp_c;
