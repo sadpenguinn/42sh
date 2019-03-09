@@ -18,7 +18,9 @@
 
 # define DEFAULT_TERM_COLORS "\e[0m\e[39;49m"
 # define DEFAULT_TEXT_COLORS "\e[0m\e[39m"
+
 # define CURSOR_MOVE_LINE_START "\e[1G"
+
 # define CURSOR_CLEAR_TO_END_SCREEN "\e[0J"
 # define CURSOR_CLEAR_TO_START_SCREEN "\e[1J"
 # define CURSOR_CLEAR_SCREEN "\ec"
@@ -31,7 +33,18 @@
 # define TEXT_COLOR_MAGENTA "\e[35m"
 # define TEXT_COLOR_CYAN "\e[36m"
 # define TEXT_COLOR_WHITE "\e[37m"
+
+# define BACKGROUND_COLOR_BLACK "\e[40m"
+# define BACKGROUND_COLOR_RED "\e[41m"
+# define BACKGROUND_COLOR_GREEN "\e[42m"
+# define BACKGROUND_COLOR_YELLOW "\e[43m"
+# define BACKGROUND_COLOR_BLUE "\e[44m"
+# define BACKGROUND_COLOR_MAGENTA "\e[45m"
+# define BACKGROUND_COLOR_CYAN "\e[46m"
+# define BACKGROUND_COLOR_WHITE "\e[47m"
+
 # define TEXT_REVERSE_VIDEO "\e[7m"
+
 # define TURN_ON_CURSOR "\e[?25h"
 # define TURN_OF_CURSOR "\e[?25l"
 
