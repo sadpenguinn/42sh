@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "readline.h"
+#include "libft.h"
 
 void	matrix_create_line(t_matrix *matrix, size_t row)
 {
 	if (matrix->len == matrix->size)
 		matrix_resize(matrix, matrix->size * RATIO, matrix->size);
 	if (row < matrix->len)
-		memmove(matrix->lines + row + 1, matrix->lines + row,
+		ft_memmove(matrix->lines + row + 1, matrix->lines + row,
 				(matrix->len - row) * sizeof(t_line *));
 	matrix->lines[row] = line_init();
 	matrix->len++;

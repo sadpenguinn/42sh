@@ -6,60 +6,26 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:56:46 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/08 13:19:38 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/09 11:02:04 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include <unistd.h>
 
-static void	count_quotes(t_matrix *matrix, char *buf, size_t len)
+static int	end_handling(t_matrix *matrix)
 {
-	size_t	i;
+	int	ret;
 
-	i = 0;
-	while (i < len)
+	matrix_to_string(matrix, matrix->str_history);
+	if (are_quotes(matrix->str_history->buf, matrix->str_history->len))
 	{
-		if (buf[i] == '\'')
-		{
-			if (matrix->single_quotes == 1)
-				matrix->single_quotes = 0;
-			else if (matrix->double_quotes == 0)
-				matrix->single_quotes = 1;
-		}
-		if (buf[i] == '"')
-		{
-			if (matrix->double_quotes == 1)
-				matrix->double_quotes = 0;
-			else if (matrix->single_quotes == 0)
-				matrix->double_quotes = 1;
-		}
-		i++;
+		matrix_create_line(matrix, matrix->len);
+		return (1);
 	}
-}
-
-static int	check_quotes(t_matrix *matrix)
-{
-	size_t i;
-
-	i = 0;
-	matrix->single_quotes = 0;
-	matrix->double_quotes = 0;
-	while (i < matrix->len)
-	{
-		count_quotes(matrix, matrix->lines[i]->buf, matrix->lines[i]->len);
-		i++;
-	}
-	if (matrix->single_quotes || matrix->double_quotes)
+	ret = bang_handling(matrix);
+	if (ret == NO_BANGS || ret == BANG_ERROR)
 		return (0);
-	return (1);
-}
-
-static int	quotes_handling(t_matrix *matrix)
-{
-	if (check_quotes(matrix))
-		return (0);
-	matrix_create_line(matrix, matrix->len);
 	return (1);
 }
 
@@ -70,7 +36,7 @@ int			newline_handling(t_matrix *matrix)
 	t_line	*line;
 
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] != '\\')
-		return (quotes_handling(matrix));
+		return (end_handling(matrix));
 	prev_col = matrix->cursor->col;
 	prev_row = matrix->cursor->row;
 	line = matrix->lines[prev_row];

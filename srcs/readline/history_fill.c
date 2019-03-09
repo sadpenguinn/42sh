@@ -65,6 +65,7 @@ static void	init_history(void)
 	g_history->size = HISTORY_DEFAULT_SIZE;
 	g_history->len = 0;
 	g_history->cur = 0;
+	g_history->is_replace = 0;
 	g_history->last_offset = 0;
 	g_history->buffer = string_init();
 	g_history->search_line = line_init();

@@ -19,9 +19,9 @@ void	add_line(t_line *line, size_t start, size_t end)
 	size_t	right;
 	size_t	pos;
 
-	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
-	array_add(DEFAULT_TEXT_COLORS, strlen(DEFAULT_TEXT_COLORS));
-	array_add(TURN_ON_CURSOR, strlen(TURN_ON_CURSOR));
+	array_add(TEXT_BOLD, ft_strlen(TEXT_BOLD));
+	array_add(DEFAULT_TEXT_COLORS, ft_strlen(DEFAULT_TEXT_COLORS));
+	array_add(TURN_ON_CURSOR, ft_strlen(TURN_ON_CURSOR));
 	while (start < end)
 	{
 		pos = start;
@@ -32,11 +32,11 @@ void	add_line(t_line *line, size_t start, size_t end)
 		left = get_space_left_pos(line->buf, start);
 		right = get_space_right_pos(line->buf, start, line->len);
 		if (lex_check_bash_word(line->buf + left, right - left))
-			array_add(TEXT_COLOR_YELLOW, strlen(TEXT_COLOR_YELLOW));
+			array_add(TEXT_COLOR_YELLOW, ft_strlen(TEXT_COLOR_YELLOW));
 		while (pos < end && line->buf[pos] != ' ')
 			pos++;
 		array_add(line->buf + start, pos - start);
-		array_add(DEFAULT_TEXT_COLORS, strlen(DEFAULT_TEXT_COLORS));
+		array_add(DEFAULT_TEXT_COLORS, ft_strlen(DEFAULT_TEXT_COLORS));
 		start = pos;
 	}
 }

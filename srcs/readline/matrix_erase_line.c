@@ -13,6 +13,7 @@
 #include "readline.h"
 #include <string.h>
 #include <stdlib.h>
+#include "libft.h"
 
 void	matrix_erase_line(t_matrix *matrix, size_t row)
 {
@@ -21,6 +22,6 @@ void	matrix_erase_line(t_matrix *matrix, size_t row)
 	line_del(&matrix->lines[row]);
 	matrix->len--;
 	if (row != matrix->len)
-		memmove(matrix->lines + row, matrix->lines + row + 1,
+		ft_memmove(matrix->lines + row, matrix->lines + row + 1,
 				(matrix->len - row) * sizeof(t_line *));
 }

@@ -18,7 +18,7 @@ static void	search_in_history(t_line *line)
 	size_t	cur;
 	char	*substr;
 
-	substr = (char *)xmalloc(sizeof(char) * line->len + 1);
+	substr = (char *)xmalloc(sizeof(char) * (line->len + 1));
 	ft_memcpy(substr, line->buf, line->len);
 	cur = g_history->len;
 	while (cur--)
@@ -35,7 +35,7 @@ static int	search_next(t_line *line)
 	size_t	cur;
 	char	*substr;
 
-	substr = (char *)xmalloc(sizeof(char) * line->len + 1);
+	substr = (char *)xmalloc(sizeof(char) * (line->len + 1));
 	ft_memcpy(substr, line->buf, line->len);
 	cur = g_history->cur;
 	while (cur--)

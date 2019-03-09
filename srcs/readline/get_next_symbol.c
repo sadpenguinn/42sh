@@ -13,6 +13,7 @@
 #include "readline.h"
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 t_uchar		get_next_symbol(size_t size)
 {

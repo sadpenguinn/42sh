@@ -42,6 +42,7 @@ size_t		line_string_delete(t_line *line, size_t pos, size_t size)
 	line->symbols -= count_string_symbols(line->buf + pos, size);
 	ft_memmove(line->buf + pos, line->buf + pos + size,
 			line->len - pos - size);
+	ft_memset(line->buf + line->len - size, 0, size);
 	line->len -= size;
 	return (pos);
 }

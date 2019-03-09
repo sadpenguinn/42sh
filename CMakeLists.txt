@@ -72,9 +72,10 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/line_resize.c
 					srcs/readline/check_esc_code.c
 					srcs/readline/matrix_string_insert.c
+					srcs/readline/matrix_string_delete.c
+					srcs/readline/matrix_string_yank.c
 					srcs/readline/matrix_create_line.c
 					srcs/readline/utf.c
-					srcs/readline/matrix_string_delete.c
 					srcs/readline/back_space_symbol.c
 					srcs/readline/del_symbol.c
 					srcs/readline/matrix_erase_line.c
@@ -86,7 +87,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/set_matrix_limits.c
 					srcs/readline/matrix_to_string.c
 					srcs/readline/count_string_objects.c
-					srcs/readline/print.c
+					srcs/readline/print_1.c
+					srcs/readline/print_2.c
 					srcs/readline/readline_mode.c
 					srcs/readline/search_mode.c
 					srcs/readline/add_cursor_offset.c
@@ -136,7 +138,10 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/yank_text_2.c
 					srcs/readline/are_default_shortcuts.c
 					srcs/readline/lex_check_bash_word.c
-					srcs/readline/matrix_string_yank.c)
+					srcs/readline/are_quotes.c
+					srcs/readline/bang_handling.c
+					srcs/readline/bang_cases.c
+					srcs/readline/set_backslash.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
 					srcs/lexer/lexer_tools.c srcs/lexer/dfa_tools.c)

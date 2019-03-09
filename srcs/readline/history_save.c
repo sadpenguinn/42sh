@@ -37,10 +37,11 @@ int			history_save(t_string **str)
 {
 	int ret;
 
-	matrix_to_string(g_history->matrix[g_history->cur],
-			g_history->matrix[g_history->cur]->str_history);
-	if (g_history->matrix[g_history->cur]->str_history->buf[0] == '\0')
+	if (g_history->matrix[g_history->cur]->str_history->buf[0] == '\0'
+		|| g_history->is_replace)
 	{
+		if (g_history->is_replace)
+			print_event_mesasage();
 		string_del(str);
 		ret = 1;
 	}

@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   print_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 17:10:27 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/09 11:04:50 by narchiba         ###   ########.fr       */
+/*   Created: 2019/03/09 11:01:49 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/09 11:01:51 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "term.h"
-#include <fcntl.h>
-#include <string.h>
+#include "readline.h"
+#include "libft.h"
 
-void	ft_puts(char *buf, int len)
+int		print_event_mesasage(void)
 {
-	if (len == 0)
-		len = strlen(buf);
-	write(1, buf, len);
-}
-
-int		main(void)
-{
-	unsigned long long int	c;
-	int						ret;
-
-	set_term();
-	while (c != '\n')
-	{
-		c = 0;
-		ret = read(0, &c, 1);
-		printf("\nnbr = %lld\n", c);
-		printf("\nret = %d\n", ret);
-	}
-	unset_term();
-	return (0);
+	array_add(SHELL_NAME, ft_strlen(SHELL_NAME));
+	array_add(EVENT_MESSAGE, ft_strlen(EVENT_MESSAGE));
+	array_add("\n", 1);
+	array_flush();
+	return (1);
 }

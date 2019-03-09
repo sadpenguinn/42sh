@@ -32,6 +32,10 @@ int			are_default_shortcuts(t_matrix *matrix, t_uchar c)
 		return (move_cursor_up(matrix));
 	if (c == DOWN)
 		return (move_cursor_down(matrix));
+	if (c == CTRL_H)
+		return (move_cursor_begin_word(matrix));
+	if (c == CTRL_L)
+		return (move_cursor_end_word(matrix));
 	return (0);
 }
 

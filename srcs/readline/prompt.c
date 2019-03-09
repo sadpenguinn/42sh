@@ -6,7 +6,7 @@
 /*   By: sitlcead <sitlcead@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:12:03 by sitlcead          #+#    #+#             */
-/*   Updated: 2019/03/08 13:23:35 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/09 11:19:09 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	get_prompt(char *cwd)
 void		add_shell_name(void)
 {
 	add_shell_name_style();
-	array_add(SHELL_NAME, strlen(SHELL_NAME));
+	array_add(SHELL_NAME, ft_strlen(SHELL_NAME));
 }
 
 void		print_prompt(void)
@@ -56,8 +56,8 @@ void		print_prompt(void)
 
 	if (g_heredoc)
 		return ;
-	array_add(DEFAULT_TERM_COLORS, strlen(DEFAULT_TERM_COLORS));
-	array_add(TURN_ON_CURSOR, strlen(TURN_ON_CURSOR));
+	array_add(DEFAULT_TERM_COLORS, ft_strlen(DEFAULT_TERM_COLORS));
+	array_add(TURN_ON_CURSOR, ft_strlen(TURN_ON_CURSOR));
 	add_shell_name();
 	add_prompt_style();
 	array_add(" ", 1);
@@ -66,11 +66,12 @@ void		print_prompt(void)
 	{
 		if (pos != 0)
 			array_add("~", 1);
-		array_add(cwd + pos, strlen(cwd + pos));
+		array_add(cwd + pos, ft_strlen(cwd + pos));
 		array_add("/", 1);
 	}
-	array_add(COLOR_DEFAULT, strlen(COLOR_DEFAULT));
+	array_add(COLOR_DEFAULT, ft_strlen(COLOR_DEFAULT));
 	array_add("$\n", 2);
-	array_add(CURSOR_CLEAR_TO_END_SCREEN, strlen(CURSOR_CLEAR_TO_END_SCREEN));
+	array_add(CURSOR_CLEAR_TO_END_SCREEN,
+			ft_strlen(CURSOR_CLEAR_TO_END_SCREEN));
 	array_flush();
 }

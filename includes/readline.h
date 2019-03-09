@@ -48,8 +48,15 @@
 # define SYNTAX_ON 1
 # define SYNTAX_OFF 0
 
+# define EVENT_MESSAGE ": Event not found"
+
 # include <sys/ioctl.h>
 # include <string.h>
+
+enum	e_bang
+{
+	NO_BANGS = 0, BANG_REPLACED = 1 ,BANG_ERROR = 2
+};
 
 enum	e_keys
 {
@@ -119,8 +126,6 @@ typedef	struct	s_matrix
 	t_cursor	*cursor;
 	size_t		left_limit;
 	size_t		right_limit;
-	int			single_quotes;
-	int			double_quotes;
 	t_string	*str_history;
 }				t_matrix;
 
@@ -134,6 +139,7 @@ typedef struct	s_history
 	t_matrix	*last_hst_matrix;
 	t_string	*buffer;
 	t_line		*search_line;
+	int 		is_replace;
 }				t_history;
 
 t_history		*g_history;
@@ -243,6 +249,7 @@ int				print_default(t_matrix *matrix);
 int				print_end(t_matrix *matrix);
 int				print_search(t_matrix *matrix);
 int				print_autocomplete(t_matrix *matrix);
+int				print_event_mesasage(void);
 
 void			print_prompt(void);
 
@@ -325,5 +332,15 @@ int				lex_check_bash_word(const char *str, size_t len);
 int				history_save(t_string **str);
 void			history_resize(t_history *history);
 void			history_fill(void);
+
+int				are_quotes(char *buf, size_t len);
+int				bang_handling(t_matrix *matrix);
+
+void			set_backslash(char *buf, size_t pos, int *backslash);
+
+int				bang_case(t_line *line, size_t pos);
+int				word_case(t_line *line, size_t pos);
+int				minus_case(t_line *line, size_t pos);
+int				plus_case(t_line *line, size_t pos, int plus_flag);
 
 #endif

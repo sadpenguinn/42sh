@@ -24,10 +24,6 @@ int	readline_mode(t_uchar c)
 		return (1);
 	}
 	matrix = g_history->matrix[g_history->cur];
-	if (c == CTRL_H)
-		return (move_cursor_begin_word(matrix));
-	if (c == CTRL_L)
-		return (move_cursor_end_word(matrix));
 	if (are_default_shortcuts(matrix, c))
 		return (1);
 	if (c == BS)

@@ -11,26 +11,27 @@
 /* ************************************************************************** */
 
 #include "readline.h"
+#include "libft.h"
 
 void	add_lines_prompt_style(void)
 {
-	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
+	array_add(TEXT_BOLD, ft_strlen(TEXT_BOLD));
 }
 
 void	add_cur_line_prompt_style(void)
 {
-	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
-	array_add(TEXT_COLOR_RED, strlen(TEXT_COLOR_RED));
+	array_add(TEXT_BOLD, ft_strlen(TEXT_BOLD));
+	array_add(TEXT_COLOR_RED, ft_strlen(TEXT_COLOR_RED));
 }
 
 void	add_prompt_style(void)
 {
-	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
-	array_add(TEXT_COLOR_BLUE, strlen(TEXT_COLOR_BLUE));
+	array_add(TEXT_BOLD, ft_strlen(TEXT_BOLD));
+	array_add(TEXT_COLOR_BLUE, ft_strlen(TEXT_COLOR_BLUE));
 }
 
 void	add_shell_name_style(void)
 {
-	array_add(TEXT_BOLD, strlen(TEXT_BOLD));
-	array_add(TEXT_COLOR_GREEN, strlen(TEXT_COLOR_GREEN));
+	array_add(TEXT_BOLD, ft_strlen(TEXT_BOLD));
+	array_add(TEXT_COLOR_GREEN, ft_strlen(TEXT_COLOR_GREEN));
 }

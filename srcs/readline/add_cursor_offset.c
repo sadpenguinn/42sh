@@ -19,12 +19,12 @@ void	add_cursor_offset(void)
 
 	if (g_history->last_offset)
 	{
-		memset(str, 0, 20);
-		array_add(CSI, strlen(CSI));
+		ft_memset(str, 0, 20);
+		array_add(CSI, ft_strlen(CSI));
 		ft_strnum(str, g_history->last_offset);
-		array_add(str, strlen(str));
+		array_add(str, ft_strlen(str));
 		array_add("A", 1);
 	}
-	array_add(CURSOR_MOVE_LINE_START, strlen(CURSOR_MOVE_LINE_START));
+	array_add(CURSOR_MOVE_LINE_START, ft_strlen(CURSOR_MOVE_LINE_START));
 	reset_last_offset();
 }
