@@ -14,7 +14,7 @@
 # define READLINE_H
 
 # define CSI "\e["
-# define COLOR_DEFAULT "\e[0m"
+# define CSI_DEFAULT "\e[0m"
 
 # define DEFAULT_TERM_COLORS "\e[39;49m"
 # define DEFAULT_TEXT_COLORS "\e[39m"

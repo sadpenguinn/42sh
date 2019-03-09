@@ -19,7 +19,7 @@ static void		set_points(t_cursor *point1, t_cursor *point2)
 
 	matrix = g_history->matrix[g_history->cur];
 	(*point1).row = matrix->cursor->row;
-	(*point2).row = (*point2).row;
+	(*point2).row = (*point1).row;
 	if (matrix->cursor->col > matrix->point.col)
 	{
 		(*point1).col = matrix->point.col;
@@ -41,7 +41,6 @@ static size_t	add_spaces(t_line *line, size_t start, size_t end, size_t row)
 	t_cursor	point2;
 
 	set_points(&point1, &point2);
-	check_swap(&point1, &point2);
 	pos = start;
 	while (pos < end && line->buf[pos] == ' ' &&
 		   point1.col != pos && point2.col != pos)
@@ -49,7 +48,7 @@ static size_t	add_spaces(t_line *line, size_t start, size_t end, size_t row)
 	array_add(line->buf + start, pos - start);
 	start = pos;
 	if (point1.row == row && g_vi_mode == VISUAL_MODE && pos == point1.col)
-			array_add(BG_COLOR_MAGENTA, ft_strlen(BG_COLOR_MAGENTA));
+			array_add(BG_COLOR_RED, ft_strlen(BG_COLOR_RED));
 	while (pos < end && line->buf[pos] == ' ' && point2.col != pos)
 		pos++;
 	array_add(line->buf + start, pos - start);
@@ -70,7 +69,6 @@ static size_t	add_non_spaces(t_line *line, size_t start, size_t end,
 	t_cursor	point2;
 
 	set_points(&point1, &point2);
-	check_swap(&point1, &point2);
 	pos = start;
 	while (pos < end && line->buf[pos] != ' ' &&
 		   point1.col != pos && point2.col != pos)
@@ -78,7 +76,7 @@ static size_t	add_non_spaces(t_line *line, size_t start, size_t end,
 	array_add(line->buf + start, pos - start);
 	start = pos;
 	if (point1.row == row && g_vi_mode == VISUAL_MODE && pos == point1.col)
-		array_add(BG_COLOR_MAGENTA, ft_strlen(BG_COLOR_MAGENTA));
+		array_add(BG_COLOR_RED, ft_strlen(BG_COLOR_RED));
 	while (pos < end && line->buf[pos] != ' ' && point2.col != pos)
 		pos++;
 	array_add(line->buf + start, pos - start);
@@ -107,8 +105,9 @@ void	add_line(t_line *line, size_t start, size_t end, size_t row)
 		if (lex_check_bash_word(line->buf + left, right - left) && g_syntax)
 			array_add(TEXT_COLOR_YELLOW, ft_strlen(TEXT_COLOR_YELLOW));
 		start = add_non_spaces(line, start, end, row);
+		array_add(DEFAULT_TEXT_COLORS, ft_strlen(DEFAULT_TEXT_COLORS));
 	}
-	array_add(COLOR_DEFAULT, ft_strlen(COLOR_DEFAULT));
+	array_add(CSI_DEFAULT, ft_strlen(CSI_DEFAULT));
 	array_add(DEFAULT_TERM_COLORS, ft_strlen(DEFAULT_TERM_COLORS));
 }
 
@@ -136,7 +135,7 @@ void	add_text(t_matrix *matrix, size_t row, size_t col)
 	g_history->last_offset += symbols / g_w.ws_col;
 	if (symbols % g_w.ws_col == 0)
 		array_add("\n", 1);
-	array_add(COLOR_DEFAULT, ft_strlen(COLOR_DEFAULT));
+	array_add(CSI_DEFAULT, ft_strlen(CSI_DEFAULT));
 	array_add(DEFAULT_TERM_COLORS, ft_strlen(DEFAULT_TERM_COLORS));
 }
 

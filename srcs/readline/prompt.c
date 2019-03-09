@@ -70,7 +70,7 @@ void		print_prompt(void)
 		array_add(cwd + pos, ft_strlen(cwd + pos));
 		array_add("/", 1);
 	}
-	array_add(COLOR_DEFAULT, ft_strlen(COLOR_DEFAULT));
+	array_add(CSI_DEFAULT, ft_strlen(CSI_DEFAULT));
 	array_add("$\n", 2);
 	array_add(CURSOR_CLEAR_TO_END_SCREEN,
 			ft_strlen(CURSOR_CLEAR_TO_END_SCREEN));
