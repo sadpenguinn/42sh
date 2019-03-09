@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 02:38:54 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 04:03:14 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ char			**get_mas_of_suggetions(char *word, int type);
 char			**sugg_delete_repeats(char **str);
 int				sugg_check_repeats_in_all_mass(char **str, int pos, char *c);
 char			**sugg_free_and_set_one(char **str, int pos);
-char			**sugg_get_common_repeat(char **str, int pos_start);
+char			**sugg_get_common_repeat(char **str, char *sugg_word);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 01:56:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 02:34:58 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 04:02:53 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,17 @@ char	**sugg_free_and_set_one(char **str, int pos)
 	return (res);
 }
 
-char	**sugg_get_common_repeat(char **str, int pos_start)
+char	**sugg_get_common_repeat(char **str, char *sugg_word)
 {
 	int		len;
 	char	tmp;
+	int		pos_start;
+	char	*buf;
 
+	buf = ft_strendchr(sugg_word, '/');
+	if (buf)
+		sugg_word = buf + 1;
+	pos_start = ft_strlen(sugg_word) - ((sugg_word[0] == '$') ? 1 : 0);
 	len = 0;
 	tmp = 'a';
 	while (sugg_check_repeats_in_all_mass(str, pos_start + len, &tmp))

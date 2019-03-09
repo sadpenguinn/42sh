@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 03:02:01 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 04:00:56 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ char	**autocomplete(t_line *line_info, int pos)
 		return (NULL);
 	}
 	res = sugg_delete_repeats(res);
-	res = sugg_get_common_repeat(res, ft_strlen(word_to_acmlt) -
-								((word_to_acmlt[0] == '$') ? 1 : 0));
+	res = sugg_get_common_repeat(res, word_to_acmlt);
 	if (res[0] && !res[1])
 		res[0] = cut_begin_in_unique_suggetion(word_to_acmlt, res[0]);
 	free(word_to_acmlt);
