@@ -20,6 +20,15 @@ static int		built_set_usage(void)
 	return (SHERR_ERR);
 }
 
+static int		built_set_toggle(int *var, int fval, int sval)
+{
+	if (*var == fval)
+		*var = sval;
+	else
+		*var = fval;
+	return (SHERR_OK);
+}
+
 static int		built_set_gvar(int *var, int val)
 {
 	*var = val;
@@ -35,9 +44,9 @@ static int		built_set_parse(char **av)
 		else if (!ft_strcmp(av[2], "emacs"))
 			return (built_set_gvar(&g_mode, READLINE));
 		else if (!ft_strcmp(av[2], "echoe"))
-			return (built_set_gvar(&g_echoe, TRUE));
-		else if (!ft_strcmp(av[2], "highlight"))
-			return (built_set_gvar(&g_syntax, SYNTAX_ON));
+			return (built_set_toggle(&g_echoe, TRUE, FALSE));
+		else if (!ft_strcmp(av[2], "syntax"))
+			return (built_set_toggle(&g_syntax, SYNTAX_ON, SYNTAX_OFF));
 		else
 		{
 			ft_putstr("vi:\t\t");
@@ -46,6 +55,8 @@ static int		built_set_parse(char **av)
 			ft_putendl(g_mode == READLINE ? "on" : "off");
 			ft_putstr("echoe:\t\t");
 			ft_putendl(g_echoe == TRUE ? "on" : "off");
+			ft_putstr("syntax:\t\t");
+			ft_putendl(g_syntax == SYNTAX_ON ? "on" : "off");
 			return (SHERR_OK);
 		}
 	}

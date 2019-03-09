@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
+#include "readline.h"
 
 /*
 ** Global variables with env and paths hashes/arrays.
@@ -52,6 +53,7 @@ int				g_status = 0;
 
 int				g_echoe = TRUE;
 int				g_dontexec = FALSE;
+int				g_syntax = SYNTAX_ON;
 
 void	init(char **env)
 {
