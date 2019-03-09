@@ -79,6 +79,7 @@
 # define COMMAND				SHIFT + 119
 # define ASSIGMENT_WORD			SHIFT + 120
 # define SUBSHELL				SHIFT + 121
+# define AND_REDIR				SHIFT + 122
 
 /*
 **	Types for expression

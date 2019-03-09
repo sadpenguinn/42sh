@@ -47,23 +47,23 @@ intmax_t	get_ques(t_astree *root)
 **      (expr2)EX_EXPR   NULL
 */
 
-static char	*arith_var(char *var)
-{
-	char	*content;
+/* static char	*arith_var(char *var) */
+/* { */
+/* 	char	*content; */
 
-	content = sgetenv(var, ENV_ALL);
-	if ()
-}
+/* 	content = sgetenv(var, ENV_ALL); */
+/* 	if () */
+/* } */
 
-intmax_t	get_assign(t_astree *root)
-{
-	intmax_t	tmp;
+/* intmax_t	get_assign(t_astree *root) */
+/* { */
+/* 	intmax_t	tmp; */
 
-	tmp = calc(root->right->left);
-	if (root->right->type == EX_ASSIGN)
+/* 	tmp = calc(root->right->left); */
+/* 	if (root->right->type == EX_ASSIGN) */
 		
-	return (0);
-}
+/* 	return (0); */
+/* } */
 
 intmax_t	calc(t_astree *root)
 {
@@ -75,8 +75,8 @@ intmax_t	calc(t_astree *root)
 	/* 	return (get_var(root->content)); */
 	if (root->type == EX_QUES)
 		return (get_ques(root));
-	if (root->type == EX_ASSIGN)
-		return (get_assign(root));
+	/* if (root->type == EX_ASSIGN) */
+	/* 	return (get_assign(root)); */
 	if (root->type == EX_ADD || root->type == EX_SUB || root->type == EX_LNOT ||
 		root->type == EX_BNOT)
 		return (applay_unary(root));

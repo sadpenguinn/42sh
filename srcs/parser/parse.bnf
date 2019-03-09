@@ -260,8 +260,10 @@ _COMPOUND__________________________________________________________________
 
 <redirection>	::=								       <io_file>
 											|	NUMBER <io_file>
+											|	'&'    <io_file>
 											|	       <io_here>
 											|	NUMBER <io_here>
+											|	'&'    <io_here>
 											;
 
 <io_file> 	::=									'<'  <filename>
