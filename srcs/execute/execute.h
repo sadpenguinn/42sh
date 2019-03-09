@@ -44,8 +44,8 @@ extern void				*g_pids;
 **	Flags for job
 */
 
-# define EX_NOFG		0
-# define EX_FG			1
+# define EC_NOFG		0
+# define EC_FG			1
 
 typedef struct			s_redir
 {

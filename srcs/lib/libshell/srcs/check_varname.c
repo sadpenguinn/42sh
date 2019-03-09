@@ -1,43 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_varname.c                                    :+:      :+:    :+:   */
+/*   check_valid_of_variable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 20:36:36 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:43:37 by nkertzma         ###   ########.fr       */
+/*   Created: 2019/02/10 00:50:03 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/09 16:36:39 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libshell.h"
+#define LIMIT_OF_OPEN_FD 8192
 
-/*
-** Function to check name of the variable for correctness
-*/
-
-int		check_varname(char *var)
+int		check_ulimit_n_nbr_valid(char *str)
 {
-	int	st_start;
-	int	st_end;
+	int			i;
+	long long	nbr;
 
-	st_start = 1;
-	st_end = 0;
-	while (*var)
+	nbr = 0;
+	i = 0;
+	if (!str || !str[0])
+		return (0);
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (st_start && (ft_isalpha(*var) || *var == '_'))
-		{
-			st_start = 0;
-			st_end = 1;
-		}
-		else if (st_end && (ft_isalpha(*var) || ft_isdigit(*var)
-														|| *var == '_'))
-			st_end = 1;
-		else
-			return (0);
-		var++;
+		nbr = nbr * 10 + (str[i] - '0');
+		i++;
 	}
-	if (!*var)
+	if (!str[i] && nbr < LIMIT_OF_OPEN_FD)
 		return (1);
 	return (0);
+}
+
+/*
+**	  |  Takes the string in format "PATH=qwer" and
+**	 \|/ return "qwer" if sting is valid, else NULL
+*/
+
+char	*check_varname(char *str)
+{
+	int i;
+
+	i = 0;
+	if (!str || !str[0] || (str[0] <= '9' && str[0] >= '0') || str[0] == '=')
+		return ((void *)0);
+	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'A' &&
+			str[i] <= 'Z') || (str[i] == '_') ||
+			(str[i] >= 'a' && str[i] <= 'z'))
+		i++;
+	if (str[i] == '=')
+		return (str + i + 1);
+	return ((void *)0);
 }
