@@ -1,0 +1,1 @@
+-s -n : -d[alternate config file]:config file:_files -f[force, no confirmation] -h[display help] -p[plain mode, no colours] -v[verbose mode, confirmation messages] -V[display version etc.] 1:command:->commands *:arguments:->arguments

@@ -1,0 +1,1 @@
+: -l[use a login shell] -s[run the specified shell]:shell:->shell -c[pass command to shell]:command string:->command 1:user name:_users *:sh arguments:->rest

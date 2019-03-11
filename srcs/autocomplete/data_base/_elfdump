@@ -1,0 +1,1 @@
+-s -c[dump section header information] -d[dump .dynamic section] -e[dump file header] -G[dump .got (global offset table) section] -h[dump .hash section] -i[dump .interp (interpreter) section] -n[dump .note sections] (-w)-p[dump program headers] -r[dump relocation sections] -s[dump symbol table sections] (-p)-w[write contents of matched sections to file]:file:_files

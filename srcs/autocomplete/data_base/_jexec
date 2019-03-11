@@ -1,0 +1,1 @@
+-s -w -A -* : (-U)-u[host environment user whom command runs as]:host user:_users (-u)-U[jail environment user whom command runs as]:jail user:_users 1:jail:_jails *:: : _jexec_normal

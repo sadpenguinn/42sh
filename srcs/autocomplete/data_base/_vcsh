@@ -1,0 +1,1 @@
+-C -c[source <file> prior to other configuration files]:config files:_path_files -d[enable debug mode] -v[enable verbose mode] *:: :->subcommand_or_options_or_repo

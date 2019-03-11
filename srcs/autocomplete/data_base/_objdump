@@ -1,0 +1,1 @@
+-- *:object file:_files -g "*(-.e,_objdump_object_file,)"

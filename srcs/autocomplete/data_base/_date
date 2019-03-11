@@ -1,0 +1,1 @@
+-u[display or set time in UTC] : :_guard "^--*" "format or date" -n[only set time on current machine] -d:daylight saving time value -j[do not try to set date] -t:minutes west of GMT -f:parsing format -v:adjustment value

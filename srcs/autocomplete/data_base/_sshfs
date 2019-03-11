@@ -1,0 +1,1 @@
+-C -V[version] -p:tcp port: -C[compression] -o:options:->options -d[debug] -f[foreground] -s[disable multithreaded operation] -r[mount read-only] -h[help] :remote directory:_user_at_host -S: :mountpoint:_files -/

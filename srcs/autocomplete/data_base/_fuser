@@ -1,0 +1,1 @@
+-s -u[append the user name of the process owner to each PID] (-f)-c[list all processes accessing files on the filesystem specified by name] (-c)-f[list all processes accessing named files] *:file:_files

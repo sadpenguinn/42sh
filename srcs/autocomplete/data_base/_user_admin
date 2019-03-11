@@ -1,0 +1,1 @@
+-A -* -s -g+[gid]:gid -o[allow non unique gid] -n[specify new group name]:new group name :group:_groups

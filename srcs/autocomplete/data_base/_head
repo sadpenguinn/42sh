@@ -1,0 +1,1 @@
+-C -s -S -A -* : (-c)-n+[display the first specified lines]:number of lines (-n)-c+[display the first specified bytes]:number of bytes *:file:_files

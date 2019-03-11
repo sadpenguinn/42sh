@@ -1,0 +1,1 @@
+-C -s -f[remove existing destination files] -s[create symbolic links instead of hard links] -F[remove existing destination directories] -h[do not dereference destination] -n[do not dereference destination] -i[prompt before removing destination files] -v[print name of each linked file] :link target:_files *:: :->files

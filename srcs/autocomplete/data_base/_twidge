@@ -1,0 +1,1 @@
+(-c --config)-c[config file]:file:_files (-c --config)--config[config file]:file:_files (-d --debug)-d[enable debugging output] (-d --debug)--debug[enable debugging output] (-): :_twidge_command (-)*:: :_twidge_args

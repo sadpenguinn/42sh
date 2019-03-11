@@ -1,0 +1,1 @@
+-C --help[display help information] --version[display version information] --pythonpath=[directory to add to the Python path]:directory:_directories -W / -P / --settings=[python path to settings module]:settings --traceback[print traceback on exception] :subcommand:->subcommand *::options:->options

@@ -1,0 +1,1 @@
+-C (-l)-f[specify code set of input file]:code set:->codeset (-l)-t[specify code set for output]:code set:->codeset (-l)-c[omit invalid characters from output] (-l)-s[suppress warnings] (- 1)-l[list all character code sets] 1:file:_files

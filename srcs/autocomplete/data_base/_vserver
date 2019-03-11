@@ -1,0 +1,1 @@
+-C (-)--help[print help information] (- *)--version[print client version information] 1: :->vsnames 2: :->cmds *:: :->args

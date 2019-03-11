@@ -1,0 +1,3 @@
+:rrdtool command:(create update updatev graph dump restore
+                   last lastupdate first help info fetch tune
+		   resize xport) *::subcmd:->subcmd
