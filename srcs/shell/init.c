@@ -14,7 +14,7 @@
 #include "readline.h"
 
 /*
-** Global variables with env and paths hashes/arrays.
+** Global variables with env, aliases and paths hashes/arrays.
 ** 'roenv' arrays stores only read-only variables
 */
 
@@ -22,6 +22,7 @@ t_hash			*g_hash_env = NULL;
 t_hash			*g_hash_roenv = NULL;
 t_hash			*g_path = NULL;
 t_hash			*g_path_sums = NULL;
+t_alias			*g_aliases = NULL;
 t_env			g_env;
 t_env			g_roenv;
 
@@ -63,6 +64,7 @@ void	init(char **env)
 	init_path();
 	init_jobs();
 	init_pids();
+	init_aliases();
 	init_functions();
 	init_function_args();
 	init_signals();

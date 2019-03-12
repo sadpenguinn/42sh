@@ -17,6 +17,9 @@ set(LIBFT_INC		srcs/lib/libft/includes)
 set(LIBHASH			hash)
 set(LIBHASH_DIR		srcs/lib/libhash)
 set(LIBHASH_INC		srcs/lib/libhash/includes)
+set(LIBALIAS		alias)
+set(LIBALIAS_DIR	srcs/lib/libalias)
+set(LIBALIAS_INC	srcs/lib/libalias/includes)
 set(VECTOR			vector)
 set(VECTOR_DIR		srcs/lib/vector)
 set(VECTOR_INC		srcs/lib/vector/includes)
@@ -52,7 +55,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_functions.c
 					srcs/shell/destroy_functions.c
 					srcs/shell/init_function_args.c
-					srcs/shell/destroy_function_args.c)
+					srcs/shell/destroy_function_args.c srcs/shell/init_aliases.c srcs/shell/destroy_aliases.c)
 
 set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/autocomplite_builtins.c
@@ -243,7 +246,7 @@ set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/spec_cases.c
 					srcs/extention/stars.c
 					srcs/extention/strins_sheets.c
-					srcs/extention/strsplit_for_extention.c)
+					srcs/extention/strsplit_for_extention.c srcs/lib/libalias/includes/libalias.h)
 
 set(EXPR_LEXER		srcs/expr/exprlexer/exprlexer.c)
 
@@ -251,10 +254,12 @@ include_directories(${INC})
 include_directories(${PARSER_INC})
 include_directories(${LIBFT_INC})
 include_directories(${LIBHASH_INC})
+include_directories(${LIBALIAS_INC})
 include_directories(${VECTOR_INC})
 
 add_subdirectory(${LIBFT_DIR})
 add_subdirectory(${LIBHASH_DIR})
+add_subdirectory(${LIBALIAS_DIR})
 add_subdirectory(${VECTOR_DIR})
 add_subdirectory(${LIBSHELL_DIR})
 
@@ -263,4 +268,4 @@ add_executable(			${NAME} ${MAIN} ${SHELL_SRC}
 						${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC}
 						${EXPAND_SRC} ${EXPRLEXER} ${AUTOCOMPLI_SRC})
 target_link_libraries(	${NAME} ${LIBFT} ${LIBHASH}
-						${VECTOR} ${LIBSHELL})
+						${VECTOR} ${LIBSHELL} ${LIBALIAS})

@@ -14,8 +14,9 @@
 # define SHELL_H
 
 # include <unistd.h>
+#include "libhash.h"
+#include "libalias.h"
 # include "libshell.h"
-# include "libhash.h"
 # include "vector.h"
 
 /*
@@ -31,7 +32,7 @@
 # endif
 
 /*
-** Global variables with env and paths hashes/arrays.
+** Global variables with env, aliases and paths hashes/arrays.
 ** 'roenv' arrays stores only read-only variables
 */
 
@@ -39,6 +40,7 @@ extern t_hash			*g_hash_env;
 extern t_hash			*g_hash_roenv;
 extern t_hash			*g_path;
 extern t_hash			*g_path_sums;
+extern t_alias			*g_aliases;
 extern t_env			g_env;
 extern t_env			g_roenv;
 
@@ -84,12 +86,13 @@ extern int				g_dontexec;
 # define FALSE 0
 
 /*
-** Defines for initialize shell environment/path
+** Defines for initialize shell environment/path/aliases
 */
 
 # define INITIAL_ENV_HASH_SIZE			100
 # define INITIAL_PATH_HASH_SIZE			20
 # define INITIAL_PATH_SUMS_HASH_SIZE	20
+# define INITIAL_ALIASES_SIZE			100
 # define GENV_REALLOC					50
 
 /*
@@ -155,12 +158,14 @@ void					init_process(void);
 void					init_pids(void);
 void					init_functions(void);
 void					init_function_args(void);
+void					init_aliases(void);
 void					destroy(void);
 void					destroy_env(void);
 void					destroy_path(void);
 void					destroy_jobs(void);
 void					destroy_process(void);
 void					destroy_pids(void);
+void					destroy_aliases(void);
 void					destroy_functions(void);
 void					destroy_function_args(void);
 void					init_signals(void);

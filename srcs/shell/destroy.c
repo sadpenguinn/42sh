@@ -18,6 +18,7 @@ void	destroy(void)
 	destroy_path();
 	destroy_pids();
 	destroy_jobs();
+	destroy_aliases();
 	destroy_functions();
 	destroy_function_args();
 }
