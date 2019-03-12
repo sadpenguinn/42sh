@@ -31,7 +31,7 @@ int		xwaiterr(pid_t pid)
 	waitpid(pid, &status, WUNTRACED);
 	if (!WIFSTOPPED(status))
 		return (1);
-	printf("[%lu] + %d suspended\n", vector_get_len(g_jobs) + 1, pid);
+	printf("[%lu] + %d suspended\n", vector_get_len(g_jobs), pid);
 	return (1);
 }
 
@@ -41,7 +41,6 @@ int		xwaitpid(pid_t pid, int options)
 	pid_t	res;
 
 	res = waitpid(pid, &status, options);
-	printf("Proc end\n>>>%d\n", res);
 	if (res < 0)
 		return (xwaiterr(pid));
 	vector_pop_back(&g_pids);

@@ -12,6 +12,17 @@
 
 #include "execute.h"
 
+static int execjob(t_astree *root, int fd[2], int isfork)
+{
+	pid_t	pid;
+
+	if (!(pid = fork()))
+		exit (execlist2(root, fd, EC_FG, isfork));
+	printf("[%lu] %d\n", vector_get_len(g_jobs) + 1, pid);
+	vector_push_back(&g_jobs, &pid);
+	return (0);
+}
+
 int		execlist1(t_astree *root, int fd[2], int isfork)
 {
 	int		res;
@@ -22,7 +33,7 @@ int		execlist1(t_astree *root, int fd[2], int isfork)
 		root->type != NEWLINE)
 		return (execlist2(root, fd, EC_NOFG, isfork));
 	if (root->right && root->right->type == AND)
-		res = execlist2(root->left, fd, EC_NOFG, isfork);
+		res = execjob(root->left, fd, isfork);
 	else
 		res = execlist2(root->left, fd, EC_NOFG, isfork);
 	if (!root->right || !root->right->left)
