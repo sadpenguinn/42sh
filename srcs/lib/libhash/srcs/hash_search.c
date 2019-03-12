@@ -18,8 +18,7 @@ static t_hshtb			*hash_bsearch(t_hash *hash, t_hshindex index,
 	t_hshindex	i;
 
 	i = 0;
-	index = i;
-	ptr = hash->table + i;
+	ptr = hash->table;
 	while (i < index && (ptr->key && ft_strcmp(ptr->key, key)))
 	{
 		ptr++;
