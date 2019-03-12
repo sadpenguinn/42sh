@@ -16,13 +16,39 @@
 
 extern int		g_execerr;
 
-void			xkill(void *cmd)
+static int		g_signal;
+
+void			vkill(void *cmd)
 {
-	kill(SIGINT, (int)cmd);
+	kill(g_signal, (int)cmd);
+}
+
+void			sigtstp(void)
+{
+	pid_t	*pid;
+
+	/* if (g_pids) */
+	/* 	vector_foreach(g_pids, vkill); */
+
+	/* while ((pid = vector_pop_back(&g_pids))) */
+	/* { */
+	/* 	kill(pid, SIGSTOP); */
+	/* 	vector_push_back(&g_jobs, &pid); */
+	/* } */
+
+	if (!vector_get_len(g_pids))
+		return ;
+	pid = vector_back(g_pids);
+	vector_push_back(&g_jobs, pid);
+	vector_pop_back(&g_pids);
+	/* kill(*pid, SIGSTOP); */
 }
 
 void			shell_handler(int sig)
 {
+	g_signal = sig;
+	if (sig == SIGTSTP)
+		sigtstp();
 	if (sig == SIGINT)
 		dup2(0, 0);
 	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
@@ -30,7 +56,7 @@ void			shell_handler(int sig)
 		if (g_pids)
 		{
 			g_execerr = 1;
-			vector_foreach(g_pids, xkill);
+			vector_foreach(g_pids, vkill);
 		}
 	}
 }

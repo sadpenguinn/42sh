@@ -50,7 +50,8 @@ t_redir	*redirfileerror(char *file, t_redir *redir)
 int		cmdexitsig(pid_t pid, int sig)
 {
 	if (g_execerr)
-		return (-1);
+		return (1);
+	printf(">>S\n");
 	ft_putnbr_fd(pid, STDERR_FILENO);
 	if (sig == SIGSEGV)
 		ft_putstr_fd("\tSegmentation fault\n", STDERR_FILENO);
@@ -60,11 +61,13 @@ int		cmdexitsig(pid_t pid, int sig)
 		ft_putstr_fd("\tBus error\n", STDERR_FILENO);
 	else if (sig == SIGFPE)
 		ft_putstr_fd("\tFloating-point exception\n", STDERR_FILENO);
+	else if (sig == SIGTSTP)
+		ft_putstr_fd("\tsuspended\n", STDERR_FILENO);
 	else
 	{
 		ft_putstr_fd("\tkilled\t(", STDERR_FILENO);
 		ft_putnbr_fd(sig, STDERR_FILENO);
 		ft_putstr_fd(")\n", STDERR_FILENO);
 	}
-	return (-1);
+	return (1);
 }

@@ -24,15 +24,27 @@ pid_t	xfork(void)
 	return (pid);
 }
 
+int		xwaiterr(pid_t pid)
+{
+	int		status;
+
+	waitpid(pid, &status, WUNTRACED);
+	if (!WIFSTOPPED(status))
+		return (1);
+	printf("[%lu] + %d suspended\n", vector_get_len(g_jobs) + 1, pid);
+	return (1);
+}
+
 int		xwaitpid(pid_t pid, int options)
 {
 	int		status;
 	pid_t	res;
 
 	res = waitpid(pid, &status, options);
-	vector_pop_back(&g_pids);
+	printf("Proc end\n>>>%d\n", res);
 	if (res < 0)
-		return (res);
+		return (xwaiterr(pid));
+	vector_pop_back(&g_pids);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
