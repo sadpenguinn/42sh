@@ -43,7 +43,7 @@ int		b_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -60,7 +60,7 @@ int		c_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -86,7 +86,7 @@ int		f_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -103,7 +103,7 @@ int		g_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -120,7 +120,7 @@ int		bl_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -137,7 +137,7 @@ int		p_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -154,7 +154,7 @@ int		r_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -171,7 +171,7 @@ int		bs_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -188,7 +188,7 @@ int		s_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -205,7 +205,7 @@ int		u_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -222,7 +222,7 @@ int		w_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
@@ -239,7 +239,7 @@ int		x_conditions(char *str)
 	struct stat	*buff;
 	int			res;
 
-	buff = xmalloc(sizeof(struct stat *));
+	buff = xmalloc(sizeof(struct stat));
 	res = 0;
 	if (stat(str, buff) == -1)
 		return (0);
