@@ -17,8 +17,7 @@ void	destroy(void)
 	destroy_env();
 	destroy_path();
 	destroy_pids();
-	/*destroy_jobs();
-	destroy_process();*/
+	destroy_jobs();
 	destroy_functions();
 	destroy_function_args();
 }

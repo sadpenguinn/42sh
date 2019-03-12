@@ -26,12 +26,11 @@ t_env			g_env;
 t_env			g_roenv;
 
 /*
-** Global variables for saving jobs, processes and pids
+** Global variables for saving jobs and pids
 ** of running processes to kill them
 */
 
 void			*g_jobs = NULL;
-void			*g_process = NULL;
 void			*g_pids = NULL;
 
 /*
@@ -62,8 +61,7 @@ void	init(char **env)
 		die();
 	init_env(env);
 	init_path();
-	/*init_jobs();
-	init_process();*/
+	init_jobs();
 	init_pids();
 	init_functions();
 	init_function_args();

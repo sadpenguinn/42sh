@@ -88,6 +88,8 @@ int		built_hash(char **av, char **env);
 
 int		built_export(char **av, char **env);
 
+int		built_jobs(char **av, char **env);
+
 /*
 ** Internal function for echo
 */

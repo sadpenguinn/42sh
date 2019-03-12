@@ -43,12 +43,11 @@ extern t_env			g_env;
 extern t_env			g_roenv;
 
 /*
-** Global variables for saving jobs, processes and pids
+** Global variables for saving jobs and pids
 ** of running processes to kill them
 */
 
 extern void				*g_jobs;
-extern void				*g_process;
 extern void				*g_pids;
 
 /*

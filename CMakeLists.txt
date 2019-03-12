@@ -45,9 +45,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/destroy_pids.c
 					srcs/shell/init_pids.c
 					srcs/shell/init_jobs.c
-					srcs/shell/init_process.c
 					srcs/shell/destroy_jobs.c
-					srcs/shell/destroy_process.c
 					srcs/shell/signals.c
 					srcs/shell/argv_parser.c
 					srcs/shell/parse_input.c
@@ -233,7 +231,7 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_set.c
 					srcs/builtins/built_hash.c
 					srcs/builtins/built_export.c srcs/builtins/built_hash_reqmts.c
-					srcs/builtins/built_set_rqmts.c)
+					srcs/builtins/built_set_rqmts.c srcs/builtins/built_jobs.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
