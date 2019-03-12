@@ -1,0 +1,1 @@
+-s -C[change directory first]:directory:->dir -I[include directory for makefiles]:directory:->dir -f[specify makefile]:makefile:->file -o[specify file not to remake]:file not to remake:->file -W[pretend file was modified]:file to treat as modified:->file *:make target:->target

@@ -1,0 +1,1 @@
+-s -a[all processes] -c[show contract memberships] -z[show processes in zone]:zone:_zones *: : _alternative "users:logged-in user:_users_on" "pids:pid:_pids"

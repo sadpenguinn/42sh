@@ -52,7 +52,7 @@ int			print_search(t_matrix *matrix)
 	array_add("\n", 1);
 	line = g_history->search_line;
 	array_add(SEARCH_PROMPT, ft_strlen(SEARCH_PROMPT));
-	add_line(line, 0, line->len);
+	add_line(line, 0, line->len, 0);
 	symbols = line->symbols + ft_strlen(SEARCH_PROMPT);
 	g_history->last_offset += 1 + symbols / g_w.ws_col;
 	if (symbols % g_w.ws_col == 0)

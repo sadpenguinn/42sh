@@ -61,18 +61,18 @@ static int	are_default_normal_mode_basic_shortcuts(t_matrix *matrix, t_uchar c)
 		return (move_cursor_up(matrix));
 	if (c == 'j')
 		return (move_cursor_down(matrix));
+	if (c == '$')
+		return (move_cursor_end(matrix));
+	if (c == '^')
+		return (move_cursor_begin(matrix));
 	return (0);
 }
 
 static int	are_default_normal_mode_advanced_shortcuts(t_matrix *matrix,
 		t_uchar c)
 {
-	if (c == '$')
-		return (move_cursor_end(matrix));
 	if (c == '|' || c == '0')
 		return (move_cursor_home(matrix));
-	if (c == '^')
-		return (move_cursor_begin(matrix));
 	if (c == 'x')
 		return (del(matrix));
 	if (c == 'X')
@@ -84,9 +84,14 @@ static int	are_default_normal_mode_advanced_shortcuts(t_matrix *matrix,
 	if (c == BS)
 		return (move_cursor_left(matrix));
 	if (c == 'p')
-		paste_after(matrix);
+		return (paste_after(matrix));
 	if (c == 'P')
-		paste_before(matrix);
+		return (paste_before(matrix));
+	if (c == 'R')
+	{
+		g_vi_mode = REPLACE_MODE;
+		return (1);
+	}
 	return (0);
 }
 

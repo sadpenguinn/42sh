@@ -1,0 +1,1 @@
+-s -S -A -* (-c --bytes)-c[print byte counts] (-C -m --chars)-m[print character counts] (-w --words)-w[print word counts] (-l --lines)-l[print line counts] *:file:_files

@@ -1,0 +1,1 @@
+-C : (- *)-k[search keyword]:keyword (-k -g -w *)-p[start web server on specified port]:port number (-)-w[write out HTML in current directory] (-)*: :->lookup (- *)-g[start gui]

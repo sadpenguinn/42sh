@@ -1,0 +1,1 @@
+1:subcmd:compadd -a subcmds :other: _alternative "options:option:compadd -- $(cabal $words[2] --list-options)" "files:file:_files"

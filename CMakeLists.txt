@@ -140,6 +140,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/vi_mode_normal.c
 					srcs/readline/vi_mode_insert.c
 					srcs/readline/vi_mode_replace.c
+					srcs/readline/vi_mode_visual.c
 					srcs/readline/paste_text.c
 					srcs/readline/del_text_1.c
 					srcs/readline/del_text_2.c
@@ -238,10 +239,13 @@ set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
 					srcs/extention/extention.c
 					srcs/extention/get_true_format.c
-					srcs/extention/strins_sheets.c
+					srcs/extention/norma_fucking_sheet.c
 					srcs/extention/psevdo_functions.c
-					srcs/extention/strsplit_for_extention.c
-					srcs/extention/stars.c)
+					srcs/extention/remove_suffix_prefix_patterns.c
+					srcs/extention/spec_cases.c
+					srcs/extention/stars.c
+					srcs/extention/strins_sheets.c
+					srcs/extention/strsplit_for_extention.c)
 
 set(EXPR_LEXER		srcs/expr/exprlexer/exprlexer.c)
 

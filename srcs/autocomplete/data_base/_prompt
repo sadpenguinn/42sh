@@ -1,0 +1,1 @@
+-s -l[list themes]:*: -c[show selected theme]:*: -h[help]::prompt theme:():*: -p[preview theme(s)]:*:prompt theme:() -s[set and save theme]:prompt theme:():*: :prompt theme:()

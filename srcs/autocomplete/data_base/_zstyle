@@ -1,0 +1,1 @@
+-C (-)-L[output in form of zstyle commands] (: -)-d[delete style definitions]:context pattern:->patterns:*:styles:->pstyles (-)-e[value is evaluated when style is looked up] :context:->contexts :style:->styles *:argument:->style-arg

@@ -1,0 +1,1 @@
+-e[exit if configuration failed after a certain time] -p[port to transmit to / listen on]:_ports -d[force to run in foreground] :interface:_net_interfaces

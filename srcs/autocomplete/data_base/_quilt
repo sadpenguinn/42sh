@@ -1,0 +1,3 @@
+(- : *)-h[show help information] --trace[run the command in bash trace mode] --quiltrc=[use the specified configuration file]:files:_files --version[print the version number and exit] :quilt command:(add annotate applied delete diff edit files fold fork graph
+    grep header import mail new next patches pop previous push refresh remove
+    rename revert series setup snapshot top unapplied upgrade) *:: :->subcmd

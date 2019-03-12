@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:07:25 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 19:08:36 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/10 18:55:15 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		main(int argc, char **argv, char **env)
 	t_line	*line_info;
 
 	argc++;
-	test = ft_strdup("; cd   ;");
+	test = ft_strdup("cd CM");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));

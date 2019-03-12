@@ -19,7 +19,11 @@ size_t	symbol_to_string(t_uchar c, char *str)
 
 	i = 0;
 	if (c == '\t')
-		c = ' ';
+	{
+		while (i < TAB_LEN)
+			str[i++] = ' ';
+		return (TAB_LEN);
+	}
 	n = get_utf_offset_right(*((char *)&c));
 	while (i <= n)
 	{

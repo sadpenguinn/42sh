@@ -1,0 +1,1 @@
+-C -A -* (-currentHost)-host:host:_hosts (-host)-currentHost *::command:->subcmd

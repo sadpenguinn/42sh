@@ -29,7 +29,7 @@ char	*ft_erase_spases_in_begin(char *str, int *type)
 			*type = OTHER_AUTOCOMLITE;
 		i++;
 	}
-	res = xmalloc(sizeof(char) * ft_strlen(&str[i]));
+	res = xmalloc(sizeof(char) * (ft_strlen(&str[i]) + 1));
 	ft_strcpy(res, &str[i]);
 	free(str);
 	return (res);

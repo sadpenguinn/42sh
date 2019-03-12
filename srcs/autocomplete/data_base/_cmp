@@ -1,0 +1,1 @@
+-s (-s)-l[output all differences] (-l)-s[silent: return status alone signifies differences] 1:file 1:_files 2:file 2:_files ::byte offset ::byte offset

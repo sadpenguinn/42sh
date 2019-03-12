@@ -1,0 +1,1 @@
+-C -s (-m --mode)-m[set permission mode]:numeric mode (-p --parents)-p[make parent directories as needed] (-)*: :->directories

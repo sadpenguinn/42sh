@@ -1,0 +1,1 @@
+-C -s -l[display device information for named device]:device:->device -v[display vital product data for physical devices]

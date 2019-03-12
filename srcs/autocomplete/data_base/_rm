@@ -1,0 +1,1 @@
+-C -s (-f --force)-f[ignore nonexistent files, never prompt] (-I --interactive)-i[prompt before every removal] (-r -R --recursive)-r[remove directories and their contents recursively] (-r -R --recursive)-R[remove directories and their contents recursively] *::files:->file

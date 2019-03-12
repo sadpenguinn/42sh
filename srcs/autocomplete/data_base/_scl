@@ -1,0 +1,1 @@
+-C (- 1)-l[list installed software collections or packages within a collection] (- 1)--list[list installed software collections or packages within a collection] (-l --list)1:action:(enable register deregister) (-)*:collections:->collections

@@ -6,11 +6,19 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:32:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/03 19:03:57 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/09 20:05:13 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "extention.h"
+
+void	brackets_case_in_strsplit(char *str, int *i, char c)
+{
+	(*i)++;
+	while (str[*i] && str[*i] != c)
+		(*i)++;
+	(*i)++;
+}
 
 char	*get_classic_var(char *str)
 {
@@ -54,18 +62,4 @@ char	*get_last_n_symbols(char *str, int n, int freed)
 	if (freed)
 		free(str);
 	return (res);
-}
-
-char	*extention_get_just_command(char *str)
-{
-	int i;
-	int dump;
-
-	i = 1;
-	while (str[i] && (str[i] == '(' || str[i] == ' '))
-		i++;
-	dump = i;
-	while (str[i] && str[i] != ')')
-		i++;
-	return (ft_strndup(&str[dump], i - dump));
 }

@@ -1,0 +1,1 @@
+--format[specify the format of song display]:format string --no-status[prevent printing song status on completion] *::xmms2 command:_xmms2_command

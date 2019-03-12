@@ -23,5 +23,7 @@ int	vi_mode(t_uchar c)
 		return (normal_mode(matrix, c));
 	if (g_vi_mode == REPLACE_MODE)
 		return (replace_mode(matrix, c));
+	if (g_vi_mode == VISUAL_MODE)
+		return (visual_mode(matrix, c));
 	return (1);
 }

@@ -1,0 +1,1 @@
+-s (-c -e -f)-c[output a context diff] (-c -e -f)-e[output an ed script] (-c -e -f)-f[output a reversed ed script] -b[skip trailing white spaces] -r[recursively compare subdirectories]

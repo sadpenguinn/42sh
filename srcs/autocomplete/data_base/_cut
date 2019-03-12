@@ -1,0 +1,1 @@
+-b[select only specified bytes]:list -c[select only specified characters]:list (-w)-d[use alternate field delimiter]:delimiter -f[select only specified fields]:list -n[do not split multi-byte characters] -s[suppress lines with no delimiters] *:file:_files
