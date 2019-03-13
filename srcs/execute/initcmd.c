@@ -125,6 +125,7 @@ int			initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 		return (1);
 	if (expand_assign(cmd[1]))
 		return (1);
+	set_alias_arg(&cmd[0]);
 	aven[0] = get_argv(cmd[0]);
 	aven[1] = get_envp(cmd[1]);
 	return (0);
