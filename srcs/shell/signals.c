@@ -50,7 +50,10 @@ void			shell_handler(int sig)
 	if (sig == SIGTSTP)
 		sigtstp();
 	if (sig == SIGINT)
+	{
+		g_vi_mode = INSERT_MODE;
 		dup2(0, 0);
+	}
 	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
 	{
 		if (g_pids)

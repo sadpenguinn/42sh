@@ -123,10 +123,7 @@ static int	replace_symbol(t_matrix *matrix, t_uchar c)
 int			normal_mode(t_matrix *matrix, t_uchar c)
 {
 	if (c == CTRL_R)
-	{
-		g_search_mode = 1;
 		return (1);
-	}
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'd')
 		return (normal_mode_del(matrix, c));
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'y')

@@ -173,8 +173,6 @@ extern t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 t_string		*readline(void);
 t_string		*heredoc(void);
 
-void			ft_puts(char *buf);
-
 t_matrix		*matrix_init(void);
 t_line			*line_init(void);
 t_string		*string_init(void);
@@ -238,7 +236,7 @@ int				yank_end_alnum(t_matrix *matrix);
 
 t_cursor		matrix_string_insert(t_matrix *matrix, t_cursor pos,
 		const char *str, size_t size);
-void			matrix_string_delete(t_cursor left, t_cursor right);
+t_cursor		matrix_string_delete(t_cursor left, t_cursor right);
 void			matrix_string_yank(t_cursor left, t_cursor right);
 
 size_t			line_string_delete(t_line *line, size_t pos, size_t size);
@@ -316,8 +314,6 @@ void			add_line(t_line	*line, size_t start, size_t end,
 		size_t row);
 
 void			add_line_prefix(t_matrix *matrix, size_t cur_row);
-
-int				autocomplete_file_dir(t_matrix *matrix);
 
 int				matrix_cmp(t_matrix *matrix1, t_matrix *matrix2);
 
