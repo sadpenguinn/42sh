@@ -224,7 +224,8 @@ set(EXECUTE_SRC		srcs/execute/errors.c
 					srcs/execute/initcmd.c
 					srcs/execute/getredir.c
 					srcs/execute/function.c
-					srcs/execute/process.c)
+					srcs/execute/process.c
+					srcs/execute/alias.c)
 
 set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_echo.c

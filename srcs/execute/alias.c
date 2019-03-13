@@ -19,7 +19,7 @@ int		set_alias_arg(t_list **args)
 	char	**alias;
 
 	arg1 = (char *)(*args)->data;
-	if (!(alias = get_alias(arg1)))
+	if (!(alias = alias_get_arr(arg1, g_aliases)))
 		return (0);
 	free(ft_pop(args));
 	i = 0;

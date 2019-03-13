@@ -116,5 +116,6 @@ t_aliastb		*alias_search(const char *key, t_alias *alias, t_aindex index);
 void			alias_free_arr(char ***arr);
 size_t			alias_len_arr(char **arr);
 char			**alias_cpy_arr(char **arr);
+char			**alias_get_arr(const char *key, t_alias *alias);
 
 #endif

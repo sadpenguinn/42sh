@@ -46,3 +46,11 @@ char	**alias_cpy_arr(char **arr)
 	arr[i] = NULL;
 	return (new);
 }
+
+char	**alias_get_arr(const char *key, t_alias *alias)
+{
+	t_aliastb	*table;
+
+	table = alias_find(key, alias);
+	return (table->value);
+}
