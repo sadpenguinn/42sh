@@ -99,8 +99,22 @@ static int	find_builtin(const char *bin, void **ret)
 		*ret = built_set;
 		return (PATH_NOFORK);
 	}
+	else if (!ft_strcmp(bin, "alias"))
+	{
+		*ret = built_alias;
+		return (PATH_NOFORK);
+	}
+	else if (!ft_strcmp(bin, "unalias"))
+	{
+		*ret = built_unalias;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "jobs"))
 		*ret = built_jobs;
+	else if (!ft_strcmp(bin, "bg"))
+		*ret = built_bg;
+	else if (!ft_strcmp(bin, "fg"))
+		*ret = built_fg;
 	else
 		return (PATH_NULL);
 	return (PATH_BUILT);

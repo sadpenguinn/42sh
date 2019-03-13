@@ -30,5 +30,9 @@ char	*sstrerr(int e)
 		return ("Cannot allocate memory");
 	if (e == SHERR_PERMDEN)
 		return ("Permission denied");
+	if (e == SHERR_NSE)
+		return ("No such element");
+	if (e == SHERR_CNTOPF)
+		return ("Cannot open file");
 	return (NULL);
 }

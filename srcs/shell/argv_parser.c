@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "shell.h"
+#include "lexer.h"
+#include "parser.h"
+#include "execute.h"
 
 static int		print_version(void)
 {
@@ -33,10 +36,26 @@ static int		print_help(void)
 	return (1);
 }
 
-static int		parse_files(int ac, char **av)
+static int		parse_files(char **av)
 {
-	ac = 0;
-	av = NULL;
+	char		*script;
+	t_lexer		*lex;
+	t_astree	*ast;
+	size_t		len;
+	int			fd;
+
+	len = get_file_size(av[1]);
+	script = (char *)xmalloc((sizeof(char) * (len + 1)));
+	fd = open(av[1], 'r');
+	read(fd, script, len + 1);
+	close(fd);
+	lex = lexer(script, len);
+	ft_strdel(&script);
+	g_tokens = lex->lexems;
+	ast = inputunit();
+	execute(ast);
+	freeastree(ast);
+	lexer_free(lex);
 	return (1);
 }
 
@@ -51,5 +70,5 @@ int				argv_parser(int ac, char **av)
 	else if (!ft_strcmp(av[1], "-c"))
 		return (parse_input(ac, av));
 	else
-		return (parse_files(ac, av));
+		return (parse_files(av));
 }

@@ -80,6 +80,12 @@ t_aliastb		*alias_find(const char *key, t_alias *alias);
 int				alias_clean(t_alias **alias);
 
 /*
+** Prints aliases
+*/
+
+int				alias_print(t_alias *alias);
+
+/*
 ** Iterates the table
 */
 
@@ -108,5 +114,7 @@ t_aliastb		*alias_search(const char *key, t_alias *alias, t_aindex index);
 */
 
 void			alias_free_arr(char ***arr);
+size_t			alias_len_arr(char **arr);
+char			**alias_cpy_arr(char **arr);
 
 #endif

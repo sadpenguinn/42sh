@@ -26,7 +26,7 @@ static t_aliastb		*alias_insert_cell(const char *key, char **value,
 	ft_strdel(&ptr->key);
 	alias_free_arr(&ptr->value);
 	new.key = ft_strdup(key);
-	new.value = value;
+	new.value = alias_cpy_arr(value);
 	ft_memmove((void *)ptr, (void *)&new, sizeof(t_aliastb));
 	alias->filled++;
 	return (ptr);

@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libshell.h"
+# include "libalias.h"
 
 /*
 ** Shell error define like a standard C errno
@@ -93,6 +94,10 @@ int		built_jobs(char **av, char **env);
 int		built_bg(char **av, char **env);
 
 int		built_fg(char **av, char **env);
+
+int		built_alias(char **av, char **env);
+
+int		built_unalias(char **av, char **env);
 
 /*
 ** Internal function for echo

@@ -24,7 +24,7 @@ static t_aliastb		*alias_bsearch(t_alias *alias, t_aindex index,
 t_aliastb				*alias_search(const char *key, t_alias *alias,
 										t_aindex index)
 {
-	t_aliastb		*ptr;
+	t_aliastb	*ptr;
 
 	ptr = alias->table + index;
 	while (index < alias->size && (ptr->key && ft_strcmp(ptr->key, key)))

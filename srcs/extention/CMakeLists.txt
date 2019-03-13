@@ -21,7 +21,7 @@ set(SRC				extention.c
 					../lib/libshell/srcs/match.c
 					../lib/libshell/srcs/print_str_arr.c
 					../lib/libshell/srcs/sgetenv.c
-					../lib/libshell/srcs/split_env.c
+        ../lib/libshell/srcs/split_assignments.c
 					../lib/libshell/srcs/sputerr.c
 					../lib/libshell/srcs/ssetenv.c
 					../lib/libshell/srcs/sstrerr.c

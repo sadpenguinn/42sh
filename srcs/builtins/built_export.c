@@ -34,7 +34,7 @@ static int		built_export_assignment(char **av)
 	i = 1;
 	while (av[i])
 	{
-		pair = split_env(av[i]);
+		pair = split_assignments(av[i]);
 		ssetenv(pair[0], pair[1], ENV_EXP);
 		free_str_arr(&pair);
 		i++;
