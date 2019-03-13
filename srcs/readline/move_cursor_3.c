@@ -29,3 +29,15 @@ int	move_cursor_end_word(t_matrix *matrix)
 	matrix->cursor->col = get_cursor_pos_end_word(matrix);
 	return (1);
 }
+
+int move_cursor_next_char(t_matrix *matrix)
+{
+	matrix->cursor->col = get_cursor_pos_next_char(matrix);
+	return (1);
+}
+
+int move_cursor_back_char(t_matrix *matrix)
+{
+	matrix->cursor->col = get_cursor_pos_back_char(matrix);
+	return (1);
+}

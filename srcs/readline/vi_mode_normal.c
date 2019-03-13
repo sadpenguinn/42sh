@@ -101,6 +101,25 @@ static int	is_insert_mode(t_matrix *matrix, t_uchar c)
 	return (0);
 }
 
+static int	is_find_char(t_matrix *matrix, t_uchar c)
+{
+	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'f')
+	{
+		g_history->find_char = (char)c;
+		return (move_cursor_next_char(matrix));
+	}
+	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'F')
+	{
+		g_history->find_char = (char)c;
+		return (move_cursor_back_char(matrix));
+	}
+	if (c == ';')
+		return (move_cursor_back_char(matrix));
+	if (c == ',')
+		return (move_cursor_next_char(matrix));
+	return (0);
+}
+
 static int	replace_symbol(t_matrix *matrix, t_uchar c)
 {
 	char	str[sizeof(t_uchar)];
@@ -130,6 +149,8 @@ int			normal_mode(t_matrix *matrix, t_uchar c)
 		return (normal_mode_yank(matrix, c));
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'r')
 		return (replace_symbol(matrix, c));
+	if (is_find_char(matrix, c))
+		return (1);
 	if (is_insert_mode(matrix, c))
 		return (1);
 	if (are_default_normal_mode_shortcuts(matrix, c))
