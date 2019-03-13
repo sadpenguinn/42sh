@@ -90,6 +90,10 @@ int		built_export(char **av, char **env);
 
 int		built_jobs(char **av, char **env);
 
+int		built_bg(char **av, char **env);
+
+int		built_fg(char **av, char **env);
+
 /*
 ** Internal function for echo
 */
