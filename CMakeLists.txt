@@ -139,6 +139,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/add_shortcut.c
 					srcs/readline/modes_handling.c
 					srcs/readline/vi_mode_normal.c
+					srcs/readline/vi_mode_normal_del.c
+					srcs/readline/vi_mode_normal_yank.c
 					srcs/readline/vi_mode_insert.c
 					srcs/readline/vi_mode_replace.c
 					srcs/readline/vi_mode_visual.c
@@ -147,7 +149,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/del_text_2.c
 					srcs/readline/yank_text_1.c
 					srcs/readline/yank_text_2.c
-					srcs/readline/are_default_shortcuts.c
 					srcs/readline/lex_check_bash_word.c
 					srcs/readline/are_quotes.c
 					srcs/readline/bang_handling.c

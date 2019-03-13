@@ -207,6 +207,8 @@ int				modes_handling(t_uchar c);
 int				esc_code_handling(t_uchar c);
 
 int				normal_mode(t_matrix *matrix, t_uchar c);
+int				normal_mode_del(t_matrix *matrix, t_uchar c);
+int				normal_mode_yank(t_matrix *matrix, t_uchar c);
 int				insert_mode(t_matrix *matrix, t_uchar c);
 int				replace_mode(t_matrix *matrix, t_uchar c);
 int				visual_mode(t_matrix *matrix, t_uchar c);
@@ -340,9 +342,6 @@ size_t			get_cursor_pos_end_alnum(t_matrix *matrix);
 
 size_t			get_space_left_pos(const char *buf, size_t pos);
 size_t			get_space_right_pos(const char *buf, size_t pos, size_t len);
-
-int				are_default_shortcuts(t_matrix *matrix, t_uchar c);
-int				are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c);
 
 void			buffer_add(const char *str, size_t size);
 void			buffer_free(void);
