@@ -32,11 +32,17 @@ static int	utf_handling(t_uchar c)
 
 int			check_next_symbol(void)
 {
-	t_uchar	c;
+	t_uchar		c;
+	t_matrix	*matrix;
 
 	c = get_next_symbol(sizeof(char));
 	if (c == CTRL_D)
-		return (-1);
+	{
+		matrix = g_history->matrix[g_history->cur];
+		if (matrix->len == 1 && matrix->lines[0]->len == 0)
+			return (-1);
+		return (1);
+	}
 	if (c == CTRL_V)
 	{
 		add_shortcut(c);

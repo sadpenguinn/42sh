@@ -13,6 +13,7 @@
 #include "readline.h"
 #include <string.h>
 #include "term.h"
+#include <unistd.h>
 
 t_history		*g_history;
 int				g_mode;
@@ -25,6 +26,7 @@ t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
 void			init_readline(void)
 {
+	dup2(0, 0);
 	get_term_params(&g_w);
 	set_term();
 	g_heredoc = 0;
