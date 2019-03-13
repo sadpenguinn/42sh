@@ -42,6 +42,22 @@ int	check_assigment_word(const char *str)
 	return (0);
 }
 
+int check_varname(const char *str)
+{
+	int i;
+
+	i = 0;
+	if (!str || !str[0] || (str[0] <= '9' && str[0] >= '0') || str[0] == '=')
+		return (0);
+	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'A' &&
+			str[i] <= 'Z') || (str[i] == '_') ||
+			(str[i] >= 'a' && str[i] <= 'z'))
+		i++;
+	if (!str[i])
+		return (1);
+	return (0);
+}
+
 int	check_word_type(t_type type)
 {
 	if (type == WORD || type == IF || type == THEN || type == ELSE ||
@@ -51,9 +67,4 @@ int	check_word_type(t_type type)
 		type == NOT)
 		return (1);
 	return (0);
-}
-
-int	check_redir_num(char *str)
-{
-	return (ft_str_is_numeric(str));
 }

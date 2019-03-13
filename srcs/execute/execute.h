@@ -104,6 +104,8 @@ int						function(t_astree *func, char **argv, char **envp);
 t_redir					*get_redir(t_astree *root);
 int						applyredir(t_list *redirs);
 
+int						set_alias_arg(t_list **args);
+
 pid_t					xfork(void);
 int						xwaitpid(pid_t pid, int options);
 

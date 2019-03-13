@@ -64,13 +64,10 @@ t_astree			*filename(void);
 t_astree			*io_here(void);
 t_astree			*here_end(void);
 
-int					check_select_word(char *str);
+int					check_varname(const char *str);
 int					check_arith_for(char *str);
 int					check_arith_word(char *str);
 int					check_word_type(t_type type);
-int					check_for_word(char *str);
-int					check_func_name(char *str);
-int					check_redir_num(char *str);
 int					check_assigment_word(const char *str);
 int					checktype(t_type type);
 t_astree			*savecur(unsigned int cur, t_astree *root);

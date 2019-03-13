@@ -36,19 +36,27 @@ void			sigtstp(void)
 	/* 	vector_push_back(&g_jobs, &pid); */
 	/* } */
 
+	printf("IN sigtstp\n");
 	if (!vector_get_len(g_pids))
 		return ;
-	pid = vector_back(g_pids);
-	vector_push_back(&g_jobs, pid);
-	vector_pop_back(&g_pids);
-	/* kill(*pid, SIGSTOP); */
+	while ((pid = vector_back(g_pids)))
+	{
+		vector_push_back(&g_jobs, pid);
+		printf("sleep:%d\n", *pid);
+		kill(*pid, SIGTSTP);
+		vector_pop_back(&g_pids);
+		/* dup2(0, 0); */
+	}
 }
 
 void			shell_handler(int sig)
 {
 	g_signal = sig;
 	if (sig == SIGTSTP)
+	{
 		sigtstp();
+		return ;
+	}
 	if (sig == SIGINT)
 		dup2(0, 0);
 	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)

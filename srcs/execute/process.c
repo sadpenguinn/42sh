@@ -32,6 +32,7 @@ int		xwaiterr(pid_t pid)
 	if (!WIFSTOPPED(status))
 		return (1);
 	printf("[%lu] + %d suspended\n", vector_get_len(g_jobs), pid);
+	printf("%d\n", WSTOPSIG(status));
 	return (1);
 }
 

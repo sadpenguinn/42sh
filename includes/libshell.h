@@ -62,13 +62,6 @@ typedef struct	s_env
 # endif
 
 /*
-** Variable names verification
-*/
-
-int				check_varname(char *var);
-char			*check_valid_of_variable(char *str);
-
-/*
 ** Implementation of UNIX standard functions glob and match
 */
 
