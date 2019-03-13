@@ -26,7 +26,6 @@ int		set_alias_arg(t_list **args)
 	while (alias[i])
 		i++;
 	while (--i >= 0)
-		ft_push(args, alias[i]);
-	free(alias);
+		ft_push(args, ft_strdup(alias[i]));
 	return (0);
 }

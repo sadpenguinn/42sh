@@ -51,6 +51,7 @@ char	**alias_get_arr(const char *key, t_alias *alias)
 {
 	t_aliastb	*table;
 
-	table = alias_find(key, alias);
+	if (!(table = alias_find(key, alias)))
+		return (NULL);
 	return (table->value);
 }
