@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
-	message(FATAL_ERROR "In-source builds not allowed. Please make a new directory" )
+	message(FATAL_ERROR "In source builds not allowed. Please make a new directory" )
 endif()
 
 set(PROJECT			42sh)
@@ -25,6 +25,7 @@ set(VECTOR_DIR		srcs/lib/vector)
 set(VECTOR_INC		srcs/lib/vector/includes)
 set(LIBSHELL		shell)
 set(LIBSHELL_DIR	srcs/lib/libshell)
+set(MATH_LIB		m)
 
 if (APPLE)
 	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
@@ -33,9 +34,6 @@ elseif (UNIX)
 else ()
 	set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g")
 endif()
-
-set(CMAKE_C_FLAGS 	"${CMAKE_C_FLAGS} -g -Wall -Wextra -Werror")
-
 
 set(MAIN			srcs/shell.c)
 
@@ -55,7 +53,9 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_functions.c
 					srcs/shell/destroy_functions.c
 					srcs/shell/init_function_args.c
-					srcs/shell/destroy_function_args.c srcs/shell/init_aliases.c srcs/shell/destroy_aliases.c)
+					srcs/shell/destroy_function_args.c
+					srcs/shell/init_aliases.c
+					srcs/shell/destroy_aliases.c)
 
 set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/autocomplite_builtins.c
@@ -156,7 +156,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/check_cursor_swap.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c
-					srcs/lexer/lexer_tools.c srcs/lexer/dfa_tools.c)
+					srcs/lexer/lexer_tools.c
+					srcs/lexer/dfa_tools.c)
 
 set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/arith_for_command.c
@@ -233,8 +234,10 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_echo_reqmts.c
 					srcs/builtins/built_set.c
 					srcs/builtins/built_hash.c
-					srcs/builtins/built_export.c srcs/builtins/built_hash_reqmts.c
-					srcs/builtins/built_set_rqmts.c srcs/builtins/built_jobs.c)
+					srcs/builtins/built_export.c
+					srcs/builtins/built_hash_reqmts.c
+					srcs/builtins/built_set_rqmts.c
+					srcs/builtins/built_jobs.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
@@ -246,7 +249,7 @@ set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/spec_cases.c
 					srcs/extention/stars.c
 					srcs/extention/strins_sheets.c
-					srcs/extention/strsplit_for_extention.c srcs/lib/libalias/includes/libalias.h)
+					srcs/extention/strsplit_for_extention.c)
 
 set(EXPR_LEXER		srcs/expr/exprlexer/exprlexer.c)
 
@@ -267,5 +270,5 @@ add_executable(			${NAME} ${MAIN} ${SHELL_SRC}
 						${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC}
 						${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC}
 						${EXPAND_SRC} ${EXPRLEXER} ${AUTOCOMPLI_SRC})
-target_link_libraries(	${NAME} ${LIBFT} ${LIBHASH}
-						${VECTOR} ${LIBSHELL} ${LIBALIAS})
+target_link_libraries(	${NAME} ${LIBSHELL} ${LIBFT} ${LIBHASH}
+						${VECTOR} ${LIBALIAS} ${MATH_LIB})

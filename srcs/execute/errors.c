@@ -6,10 +6,11 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:20:46 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/27 22:45:42 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/13 11:14:16 by tony             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <signal.h>
 #include "execute.h"
 
 int	g_execerr = 0;
