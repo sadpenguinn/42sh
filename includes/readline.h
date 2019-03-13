@@ -173,8 +173,6 @@ extern t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 t_string		*readline(void);
 t_string		*heredoc(void);
 
-void			ft_puts(char *buf);
-
 t_matrix		*matrix_init(void);
 t_line			*line_init(void);
 t_string		*string_init(void);
@@ -207,6 +205,8 @@ int				modes_handling(t_uchar c);
 int				esc_code_handling(t_uchar c);
 
 int				normal_mode(t_matrix *matrix, t_uchar c);
+int				normal_mode_del(t_matrix *matrix, t_uchar c);
+int				normal_mode_yank(t_matrix *matrix, t_uchar c);
 int				insert_mode(t_matrix *matrix, t_uchar c);
 int				replace_mode(t_matrix *matrix, t_uchar c);
 int				visual_mode(t_matrix *matrix, t_uchar c);
@@ -236,7 +236,7 @@ int				yank_end_alnum(t_matrix *matrix);
 
 t_cursor		matrix_string_insert(t_matrix *matrix, t_cursor pos,
 		const char *str, size_t size);
-void			matrix_string_delete(t_cursor left, t_cursor right);
+t_cursor		matrix_string_delete(t_cursor left, t_cursor right);
 void			matrix_string_yank(t_cursor left, t_cursor right);
 
 size_t			line_string_delete(t_line *line, size_t pos, size_t size);
@@ -315,8 +315,6 @@ void			add_line(t_line	*line, size_t start, size_t end,
 
 void			add_line_prefix(t_matrix *matrix, size_t cur_row);
 
-int				autocomplete_file_dir(t_matrix *matrix);
-
 int				matrix_cmp(t_matrix *matrix1, t_matrix *matrix2);
 
 int				move_history_prev(void);
@@ -340,9 +338,6 @@ size_t			get_cursor_pos_end_alnum(t_matrix *matrix);
 
 size_t			get_space_left_pos(const char *buf, size_t pos);
 size_t			get_space_right_pos(const char *buf, size_t pos, size_t len);
-
-int				are_default_shortcuts(t_matrix *matrix, t_uchar c);
-int				are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c);
 
 void			buffer_add(const char *str, size_t size);
 void			buffer_free(void);

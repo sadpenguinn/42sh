@@ -59,6 +59,8 @@ typedef struct	s_env
 #  define SHERR_INVSNTX					5
 #  define SHERR_CNTALCTMEM				6
 #  define SHERR_PERMDEN					7
+#  define SHERR_NSE						8
+#  define SHERR_CNTOPF					9
 # endif
 
 /*
@@ -98,6 +100,8 @@ void			fill_genv(t_env *env, t_hash *hash_env);
 void			free_str_arr(char ***arr);
 void			print_str_arr(char *const *arr);
 size_t			size_str_arr(char *const *arr);
-char			**split_env(char *str);
+char			**split_assignments(char *str);
+
+size_t  		get_file_size(const char *file);
 
 #endif

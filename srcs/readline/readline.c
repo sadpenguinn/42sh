@@ -42,7 +42,6 @@ t_string		*readline(void)
 	ret = 1;
 	while (ret > 0)
 	{
-		dup2(0, 0);
 		if (g_search_mode)
 			print_search(g_history->matrix[g_history->cur]);
 		else

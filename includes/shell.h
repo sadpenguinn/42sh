@@ -109,6 +109,8 @@ extern int				g_dontexec;
 #  define SHERR_INVSNTX					5
 #  define SHERR_CNTALCTMEM				6
 #  define SHERR_PERMDEN					7
+#  define SHERR_NSE						8
+#  define SHERR_CNTOPF					9
 # endif
 
 /*

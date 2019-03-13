@@ -31,7 +31,7 @@ size_t		line_string_delete(t_line *line, size_t pos, size_t size)
 	return (pos);
 }
 
-void		matrix_string_delete(t_cursor left, t_cursor right)
+t_cursor	matrix_string_delete(t_cursor left, t_cursor right)
 {
 	t_line		*line;
 	t_matrix	*matrix;
@@ -40,5 +40,9 @@ void		matrix_string_delete(t_cursor left, t_cursor right)
 	matrix = g_history->matrix[g_history->cur];
 	line = matrix->lines[left.row];
 	if (left.row == right.row)
+	{
 		line_string_delete(line, left.col, right.col - left.col);
+		return (left);
+	}
+	return (left);
 }

@@ -14,7 +14,7 @@ set(SRC_LIB srcs/alias_clean.c
             srcs/alias_init.c
             srcs/alias_realloc.c
             srcs/alias_free_fields.c
-            srcs/alias_tools.c)
+            srcs/alias_tools.c srcs/alias_print.c)
 include_directories(${LIBFT_INC})
 include_directories(${SHELL_INC})
 

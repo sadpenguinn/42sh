@@ -15,5 +15,4 @@
 void	init_pids(void)
 {
 	g_pids = vector_create(sizeof(pid_t));
-	g_jobs = vector_create(sizeof(pid_t));
 }

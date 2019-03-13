@@ -16,7 +16,7 @@
 ** Splits environment string like "key=value" into array of two cells
 */
 
-char	**split_env(char *str)
+char	**split_assignments(char *str)
 {
 	char	**pair;
 	char	*tmp;
@@ -24,7 +24,7 @@ char	**split_env(char *str)
 	size_t	i;
 
 	len = ft_strlen(str);
-	pair = (char **)malloc(sizeof(char *) * 3);
+	pair = (char **)xmalloc(sizeof(char *) * 3);
 	if ((tmp = ft_strchr(str, '=')))
 	{
 		i = tmp - str;

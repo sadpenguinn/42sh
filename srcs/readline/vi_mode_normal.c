@@ -13,56 +13,69 @@
 #include "readline.h"
 #include "libft.h"
 
-static int	normal_mode_del(t_matrix *matrix, t_uchar c)
+static int	are_default_normal_mode_basic_shortcuts(t_matrix *matrix, t_uchar c)
 {
-	if (c == 'B')
-		return (del_begin_word(matrix));
 	if (c == 'W')
-		return (del_next_word(matrix));
+		return (move_cursor_next_word(matrix));
+	if (c == 'B')
+		return (move_cursor_begin_word(matrix));
 	if (c == 'E')
-		return (del_end_word(matrix));
-	if (c == 'b')
-		return (del_begin_alnum(matrix));
+		return (move_cursor_end_word(matrix));
 	if (c == 'w')
-		return (del_next_alnum(matrix));
+		return (move_cursor_next_alnum(matrix));
+	if (c == 'b')
+		return (move_cursor_begin_alnum(matrix));
 	if (c == 'e')
-		return (del_end_alnum(matrix));
-	if (c == '$')
-		return (del_end(matrix));
-	if (c == '|' || c == '0')
-		return (del_home(matrix));
-	if (c == 'd')
-	{
-		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
-		return (del_string(matrix));
-	}
-	return (1);
+		return (move_cursor_end_alnum(matrix));
+	if (c == 'h' || c == LEFT || c == CTRL_B || c == BS)
+		return (move_cursor_left(matrix));
+	if (c == 'l' || c == RIGHT || c == CTRL_F)
+		return (move_cursor_right(matrix));
+	if (c == 'k' || c == UP)
+		return (move_cursor_up(matrix));
+	if (c == 'j' || c == DOWN)
+		return (move_cursor_down(matrix));
+	if (c == '$' || c == END1 || c == END2)
+		return (move_cursor_end(matrix));
+	if (c == '^')
+		return (move_cursor_begin(matrix));
+	return (0);
 }
 
-static int	normal_mode_yank(t_matrix *matrix, t_uchar c)
+static int	are_default_normal_mode_advanced_shortcuts(t_matrix *matrix,
+														 t_uchar c)
 {
-	if (c == 'B')
-		return (yank_begin_word(matrix));
-	if (c == 'W')
-		return (yank_next_word(matrix));
-	if (c == 'E')
-		return (yank_end_word(matrix));
-	if (c == 'b')
-		return (yank_begin_alnum(matrix));
-	if (c == 'w')
-		return (yank_next_alnum(matrix));
-	if (c == 'e')
-		return (yank_end_alnum(matrix));
-	if (c == '$')
-		return (yank_end(matrix));
-	if (c == '|' || c == '0')
-		return (yank_home(matrix));
-	if (c == 'y')
-	{
-		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
+	if (c == '|' || c == '0' || c == HOME1 || c == HOME2)
+		return (move_cursor_home(matrix));
+	if (c == 'x' || c == DEL)
+		return (del(matrix));
+	if (c == 'X')
+		return (back_space(matrix));
+	if (c == 'D')
+		return (del_end(matrix));
+	if (c == 'Y')
 		return (yank_string(matrix));
+	if (c == 'p')
+		return (paste_after(matrix));
+	if (c == 'P')
+		return (paste_before(matrix));
+	if (c == CTRL_P)
+		return (move_history_prev());
+	if (c == CTRL_N)
+		return (move_history_next());
+	if (c == 'R')
+	{
+		g_vi_mode = REPLACE_MODE;
+		return (1);
 	}
-	return (1);
+	return (0);
+}
+
+static int	are_default_normal_mode_shortcuts(t_matrix *matrix, t_uchar c)
+{
+	if (are_default_normal_mode_basic_shortcuts(matrix, c))
+		return (1);
+	return (are_default_normal_mode_advanced_shortcuts(matrix, c));
 }
 
 static int	is_insert_mode(t_matrix *matrix, t_uchar c)
@@ -110,10 +123,7 @@ static int	replace_symbol(t_matrix *matrix, t_uchar c)
 int			normal_mode(t_matrix *matrix, t_uchar c)
 {
 	if (c == CTRL_R)
-	{
-		g_search_mode = 1;
 		return (1);
-	}
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'd')
 		return (normal_mode_del(matrix, c));
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'y')
@@ -121,8 +131,6 @@ int			normal_mode(t_matrix *matrix, t_uchar c)
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'r')
 		return (replace_symbol(matrix, c));
 	if (is_insert_mode(matrix, c))
-		return (1);
-	if (are_default_shortcuts(matrix, c))
 		return (1);
 	if (are_default_normal_mode_shortcuts(matrix, c))
 		return (1);
