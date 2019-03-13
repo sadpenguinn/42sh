@@ -367,4 +367,6 @@ int				plus_case(t_line *line, size_t pos, int plus_flag);
 
 void			check_swap(t_cursor *start, t_cursor *end);
 
+void			set_points(t_cursor *point1, t_cursor *point2);
+
 #endif

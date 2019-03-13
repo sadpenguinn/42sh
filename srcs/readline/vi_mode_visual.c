@@ -2,6 +2,9 @@
 
 int		visual_mode(t_matrix *matrix, t_uchar c)
 {
+	t_cursor	point1;
+	t_cursor	point2;
+
 	if (c == CTRL_R)
 	{
 		g_search_mode = 1;
@@ -28,5 +31,12 @@ int		visual_mode(t_matrix *matrix, t_uchar c)
 		return (move_cursor_begin_alnum(matrix));
 	if (c == 'e')
 		return (move_cursor_end_alnum(matrix));
+	if (c == 'y')
+	{
+		set_points(&point1, &point2);
+		matrix_string_yank(point1, point2);
+		g_vi_mode = NORMAL_MODE;
+		return (1);
+	}
 	return (1);
 }

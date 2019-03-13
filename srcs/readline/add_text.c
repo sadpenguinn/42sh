@@ -13,7 +13,7 @@
 #include "readline.h"
 #include "libft.h"
 
-static void		set_points(t_cursor *point1, t_cursor *point2)
+void			set_points(t_cursor *point1, t_cursor *point2)
 {
 	t_matrix	*matrix;
 
