@@ -17,6 +17,8 @@ void	*vector_back(void *vector)
 	size_t	*arr;
 
 	arr = (size_t *)vector;
+	if (arr[2] == 0)
+		return (NULL);
 	arr = (size_t *)((char *)(arr + 3) + arr[0] * (arr[2] - 1));
 	return ((void *)arr);
 }

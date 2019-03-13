@@ -23,11 +23,11 @@ int		vector_push_back(void **vector, const void *data)
 	if (arr[1] == arr[2])
 	{
 		if (!(tmp = (size_t *)malloc(sizeof(size_t) * 3 +
-						arr[0] * ft_floorl(arr[1] * A))))
+						arr[0] * (size_t)ft_floorl(arr[1] * A))))
 			return (0);
 		ft_memcpy((void *)tmp, (void *)arr, arr[0] * arr[2] +
 				sizeof(size_t) * 3);
-		tmp[1] = ft_floorl(tmp[1] * A);
+		tmp[1] = (size_t)ft_floorl(tmp[1] * A);
 		vector_free(vector);
 		arr = tmp;
 		*vector = arr;
