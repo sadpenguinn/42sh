@@ -55,6 +55,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_function_args.c
 					srcs/shell/destroy_function_args.c
 					srcs/shell/init_aliases.c
+					srcs/shell/substitution.c
 					srcs/shell/destroy_aliases.c)
 
 set(CONDITIONS_SRC	srcs/conditions/b_to_g_conditions.c

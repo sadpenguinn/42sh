@@ -175,4 +175,11 @@ void					init_signals(void);
 int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
 
+/*
+**	Execute command and return READONLY descriptor with result
+**	If parser or execute error returns -1
+*/
+
+int						substitution(char *cmd);
+
 #endif
