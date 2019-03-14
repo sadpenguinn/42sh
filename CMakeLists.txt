@@ -57,6 +57,8 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_aliases.c
 					srcs/shell/destroy_aliases.c)
 
+set(CONDITIONS_SRC	srcs/conditions/conditions.c)
+
 set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/autocomplite_builtins.c
 					srcs/autocomplete/autocomplite_env.c
@@ -241,7 +243,9 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_set_rqmts.c
 					srcs/builtins/built_jobs.c
 					srcs/builtins/built_bg.c
-					srcs/builtins/built_fg.c srcs/builtins/built_alias.c srcs/builtins/built_unalias.c)
+					srcs/builtins/built_fg.c
+					srcs/builtins/built_alias.c
+					srcs/builtins/built_unalias.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
@@ -273,6 +277,8 @@ add_subdirectory(${LIBSHELL_DIR})
 add_executable(			${NAME} ${MAIN} ${SHELL_SRC}
 						${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC}
 						${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC}
-						${EXPAND_SRC} ${EXPRLEXER} ${AUTOCOMPLI_SRC})
+						${EXPAND_SRC} ${EXPRLEXER} ${AUTOCOMPLI_SRC}
+						${CONDITIONS_SRC})
+
 target_link_libraries(	${NAME} ${LIBSHELL} ${LIBFT} ${LIBHASH}
 						${VECTOR} ${LIBALIAS} ${MATH_LIB})
