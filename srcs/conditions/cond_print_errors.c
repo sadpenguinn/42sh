@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_and_debug.c                                   :+:      :+:    :+:   */
+/*   cond_print_errors.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/12 17:50:20 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 17:52:58 by bbaelor-         ###   ########.fr       */
+/*   Created: 2019/03/14 17:43:35 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/14 17:53:13 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conditions.h"
 
-/*
-** Global variables for parser
-*/
-
-void			*g_tokens = NULL;
-unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
-
-int		main(int argc, char **argv)
+int		conditions_print_error_syntax_message(char *str)
 {
-	argv[argc] = NULL;
-	printf("res = %d\n", conditions(&argv[1]));
+	ft_putstr_fd("42sh: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": invalid syntax\n", 2);
+	return (0);
+}
+
+int		conditions_print_error_syntax(void)
+{
+	ft_putstr_fd("42sh: invalid syntax\n", 2);
 	return (0);
 }

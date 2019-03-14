@@ -57,7 +57,15 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_aliases.c
 					srcs/shell/destroy_aliases.c)
 
-set(CONDITIONS_SRC	srcs/conditions/conditions.c)
+set(CONDITIONS_SRC	srcs/conditions/b_to_g_conditions.c
+					srcs/conditions/cond_flags_switcher.c
+					srcs/conditions/cond_print_errors.c
+					srcs/conditions/cond_string_sheets.c
+					srcs/conditions/conditions.c
+					srcs/conditions/l_to_s_conditions.c
+					srcs/conditions/num_conditions.c
+					srcs/conditions/strings_conditions.c
+					srcs/conditions/u_to_x_conditions.c)
 
 set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/autocomplite_builtins.c
