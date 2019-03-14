@@ -36,6 +36,6 @@ t_astree	*preincdec(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	if (!(root->left = preincdec()))
-		return (parseerror(root));
+		return (exparseerror(root));
 	return (root);
 }

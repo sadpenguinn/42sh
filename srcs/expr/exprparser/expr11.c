@@ -33,7 +33,7 @@ static t_astree	*expr11_rest(void)
 		return (0);
 	g_excurtok++;
 	if (!(res = expr12()))
-		return (parseerror(0));
+		return (exparseerror(0));
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	root->left = res;

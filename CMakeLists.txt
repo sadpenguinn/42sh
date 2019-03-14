@@ -55,6 +55,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_function_args.c
 					srcs/shell/destroy_function_args.c
 					srcs/shell/init_aliases.c
+					srcs/shell/substitution.c
 					srcs/shell/destroy_aliases.c)
 
 set(CONDITIONS_SRC	srcs/conditions/b_to_g_conditions.c
@@ -126,7 +127,6 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/matrix_dup.c
 					srcs/readline/line_dup.c
 					srcs/readline/matrix_cmp.c
-					srcs/readline/history_move.c
 					srcs/readline/history_move.c
 					srcs/readline/cursor_free.c
 					srcs/readline/cursor_init.c
@@ -253,7 +253,7 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_bg.c
 					srcs/builtins/built_fg.c
 					srcs/builtins/built_alias.c
-					srcs/builtins/built_unalias.c)
+					srcs/builtins/built_unalias.c srcs/builtins/built_type.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
@@ -268,7 +268,41 @@ set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/strsplit_for_extention.c
 					srcs/extention/pre_processings.c)
 
+set(EXPR			srcs/expr/expression.c)
+
 set(EXPR_LEXER		srcs/expr/exprlexer/exprlexer.c)
+
+set(EXPR_PARSER		srcs/expr/exprparser/expr.c
+					srcs/expr/exprparser/expr1.c
+					srcs/expr/exprparser/expr2.c
+					srcs/expr/exprparser/expr3.c
+					srcs/expr/exprparser/expr4.c
+					srcs/expr/exprparser/expr5.c
+					srcs/expr/exprparser/expr6.c
+					srcs/expr/exprparser/expr7.c
+					srcs/expr/exprparser/expr8.c
+					srcs/expr/exprparser/expr9.c
+					srcs/expr/exprparser/expr10.c
+					srcs/expr/exprparser/expr11.c
+					srcs/expr/exprparser/expr12.c
+					srcs/expr/exprparser/expr13.c
+					srcs/expr/exprparser/expr14.c
+					srcs/expr/exprparser/operand.c
+					srcs/expr/exprparser/otherfunc.c
+					srcs/expr/exprparser/postincdec.c
+					srcs/expr/exprparser/preincdec.c
+					srcs/expr/exprparser/preunary.c
+					srcs/expr/exprparser/variable.c
+					)
+
+set(EXPR_CALC		srcs/expr/exprcalc/calc.c
+					srcs/expr/exprcalc/bits_operators.c
+					srcs/expr/exprcalc/calcarray.c
+					srcs/expr/exprcalc/calcerror.c
+					srcs/expr/exprcalc/logical_operators.c
+					srcs/expr/exprcalc/math_operators.c
+					srcs/expr/exprcalc/variable.c
+					)
 
 include_directories(${INC})
 include_directories(${PARSER_INC})
@@ -286,8 +320,8 @@ add_subdirectory(${LIBSHELL_DIR})
 add_executable(			${NAME} ${MAIN} ${SHELL_SRC}
 						${LIBSHELL_SRC} ${BUILTIN_SRC} ${READLINE_SRC}
 						${LEXER_SRC} ${PARSER_SRC} ${EXECUTE_SRC}
-						${EXPAND_SRC} ${EXPRLEXER} ${AUTOCOMPLI_SRC}
-						${CONDITIONS_SRC})
+						${EXPAND_SRC} ${EXPR} ${EXPR_LEXER} ${EXPR_PARSER}
+						${EXPR_CALC} ${AUTOCOMPLI_SRC} ${CONDITIONS_SRC})
 
 target_link_libraries(	${NAME} ${LIBSHELL} ${LIBFT} ${LIBHASH}
 						${VECTOR} ${LIBALIAS} ${MATH_LIB})

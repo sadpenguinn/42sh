@@ -64,7 +64,6 @@ t_astree			*filename(void);
 t_astree			*io_here(void);
 t_astree			*here_end(void);
 
-int					check_varname(const char *str);
 int					check_arith_for(char *str);
 int					check_arith_word(char *str);
 int					check_word_type(t_type type);

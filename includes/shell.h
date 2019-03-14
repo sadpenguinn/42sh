@@ -32,6 +32,18 @@
 # endif
 
 /*
+** Struct for parser which implement abstract syntax tree
+*/
+
+typedef struct			s_astree
+{
+	int				type;
+	char			*content;
+	struct s_astree	*left;
+	struct s_astree	*right;
+}						t_astree;
+
+/*
 ** Global variables with env, aliases and paths hashes/arrays.
 ** 'roenv' arrays stores only read-only variables
 */
@@ -72,11 +84,14 @@ extern int				g_status;
 extern int				g_echoe;
 extern int				g_dontexec;
 
+extern int				g_last;
+
 /*
 ** Default path to 42 shell
 */
 
-# define SHELL_PATH "/bin/42sh"
+# define SHELL_DEFAULT_PATH "/bin/42sh"
+# define SHELL_DEFAULT_HOME "/"
 
 /*
 ** Bool defines, used in builtins
@@ -129,18 +144,6 @@ extern int				g_dontexec;
 # define SHELL_LOPT_V "--version\tThe same as -v\n"
 
 /*
-** Struct for parser which implement abstract syntax tree
-*/
-
-typedef struct			s_astree
-{
-	int				type;
-	char			*content;
-	struct s_astree	*left;
-	struct s_astree	*right;
-}						t_astree;
-
-/*
 ** Defines for shell parser
 */
 
@@ -173,5 +176,12 @@ void					destroy_function_args(void);
 void					init_signals(void);
 int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
+
+/*
+**	Execute command and return READONLY descriptor with result
+**	If parser or execute error returns -1
+*/
+
+int						substitution(char *cmd);
 
 #endif

@@ -32,11 +32,11 @@ t_astree	*variable(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = EX_VAR;
 	root->content = ft_strdup(token->word);
-	if (!checktype(EX_OARRAY))
+	if (!exchecktype(EX_OARRAY))
 		return (root);
 	if (!(root->right = expr()))
-		return (parseerror(root));
-	if (!checktype(EX_CARRAY))
-		return (parseerror(root));
+		return (exparseerror(root));
+	if (!exchecktype(EX_CARRAY))
+		return (exparseerror(root));
 	return (root);
 }

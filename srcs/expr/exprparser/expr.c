@@ -12,12 +12,16 @@
 
 #include "expr.h"
 
+unsigned int		g_excurtok;
+void				*g_extokens;
+int					g_exprerr;
+
 t_astree		*expr(void)
 {
 	t_astree	*root;
 
 	root = expr1();
-	if (!checktype(TOKEOF))
-		return (parseerror(root));
+	if (!exchecktype(TOKEOF))
+		return (exparseerror(root));
 	return (root);
 }

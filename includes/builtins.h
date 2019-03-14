@@ -33,7 +33,7 @@
 # endif
 
 /*
-** Builtin 'cd' that supports working with 'OLDPWD' / 'PWD' variables.
+** Builtin 'cd' that supports working with 'OLDPWD' / 'PWD' / 'CDPATH' variables.
 ** It also supports moving to the previous directory with '-' flag, but without
 ** handling stack like '-3', '-10', etc.
 */
@@ -99,13 +99,15 @@ int		built_alias(char **av, char **env);
 
 int		built_unalias(char **av, char **env);
 
+int		built_type(char **av, char **env);
+
 /*
 ** Internal function for echo
 */
 
-int		handle_sequence(const char *str, int i);
-int		built_echo_switch(char **av, int i, int *flags);
-int		built_echo_usage(char c);
+int		echo_handle_sequence(const char *str, int i);
+int		echo_switch(char **av, int i, int *flags);
+int		echo_usage(char c);
 
 /*
 ** Internal function for hash

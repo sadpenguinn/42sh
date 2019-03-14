@@ -16,12 +16,12 @@ static t_astree	*expr1_rest(void)
 {
 	t_astree	*root;
 
-	if (!(checktype(EX_COMMA)))
+	if (!(exchecktype(EX_COMMA)))
 		return (0);
 	root = xmalloc(sizeof(t_astree));
 	root->type = EX_COMMA;
 	if (!(root->left = expr2()))
-		return (freeastree(root));
+		return (exfreeastree(root));
 	root->right = expr1_rest();
 	return (root);
 }

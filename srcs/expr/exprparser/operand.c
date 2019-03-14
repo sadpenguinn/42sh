@@ -20,12 +20,12 @@ static t_astree	*operand_bracket(void)
 {
 	t_astree	*res;
 
-	if (!(checktype(EX_OBRACKET)))
+	if (!(exchecktype(EX_OBRACKET)))
 		return (0);
-	if (!(res = expr()))
-		return (parseerror(0));
-	if (!checktype(EX_CBRACKET))
-		return (parseerror(res));
+	if (!(res = expr1()))
+		return (exparseerror(0));
+	if (!exchecktype(EX_CBRACKET))
+		return (exparseerror(res));
 	return (res);
 }
 

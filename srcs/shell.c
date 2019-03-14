@@ -40,11 +40,12 @@ int		main(int ac, char **av, char **env)
 	while ((line = readline()))
 	{
 		lex = lexer(line->buf, line->len);
+		lexer_print(lex->lexems);
 		string_del(&line);
 		g_tokens = lex->lexems;
 		ast = inputunit();
 		if (g_dontexec == FALSE)
-			execute(ast);
+			g_last = execute(ast);
 		freeastree(ast);
 		lexer_free(lex);
 	}

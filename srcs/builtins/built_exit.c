@@ -30,5 +30,5 @@ int		built_exit(char **av, char **env)
 		exit(ret);
 	}
 	destroy();
-	exit(EXIT_SUCCESS);
+	exit(g_last);
 }

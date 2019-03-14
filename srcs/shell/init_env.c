@@ -27,7 +27,7 @@ void			init_env(char **env)
 		free_str_arr(&pair);
 		i++;
 	}
-	hash_insert("SHELL", SHELL_PATH, g_hash_env);
+	hash_insert("42SH", SHELL_DEFAULT_PATH, g_hash_env);
 	fill_genv(&g_env, g_hash_env);
 	fill_genv(&g_roenv, g_hash_roenv);
 }
