@@ -33,7 +33,7 @@
 # endif
 
 /*
-** Builtin 'cd' that supports working with 'OLDPWD' / 'PWD' variables.
+** Builtin 'cd' that supports working with 'OLDPWD' / 'PWD' / 'CDPATH' variables.
 ** It also supports moving to the previous directory with '-' flag, but without
 ** handling stack like '-3', '-10', etc.
 */

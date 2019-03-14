@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_and_debug.c                                   :+:      :+:    :+:   */
+/*   cond_string_sheets.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/12 17:50:20 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 17:52:58 by bbaelor-         ###   ########.fr       */
+/*   Created: 2019/03/14 17:43:00 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/14 17:53:09 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conditions.h"
 
-/*
-** Global variables for parser
-*/
-
-void			*g_tokens = NULL;
-unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
-
-int		main(int argc, char **argv)
+int		ft_tab_len(char **str)
 {
-	argv[argc] = NULL;
-	printf("res = %d\n", conditions(&argv[1]));
-	return (0);
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

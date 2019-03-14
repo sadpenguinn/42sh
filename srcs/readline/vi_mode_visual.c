@@ -25,20 +25,12 @@ static int	are_default_vi_mode_visual_shortcuts(t_matrix *matrix, t_uchar c)
 	return (0);
 }
 
-static int	is_normal_mode(t_matrix *matrix, t_uchar c)
+static int	del_yank(t_matrix *matrix, t_uchar c)
 {
 	t_cursor	point1;
 	t_cursor	point2;
 
 	g_vi_mode = NORMAL_MODE;
-	if (c == CTRL_P)
-		return (move_history_prev());
-	if (c == CTRL_N)
-		return (move_history_next());
-	if (c == UP)
-		return (move_cursor_up(matrix));
-	if (c == DOWN)
-		return (move_cursor_down(matrix));
 	if (c == 'd' || c == DEL)
 	{
 		set_points(&point1, &point2);
@@ -53,6 +45,20 @@ static int	is_normal_mode(t_matrix *matrix, t_uchar c)
 		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
 		return (1);
 	}
+	return (1);
+}
+
+static int	is_normal_mode(t_matrix *matrix, t_uchar c)
+{
+	g_vi_mode = NORMAL_MODE;
+	if (c == CTRL_P)
+		return (move_history_prev());
+	if (c == CTRL_N)
+		return (move_history_next());
+	if (c == UP || c == 'k')
+		return (move_cursor_up(matrix));
+	if (c == DOWN || c == 'j')
+		return (move_cursor_down(matrix));
 	g_vi_mode = VISUAL_MODE;
 	return (0);
 }
@@ -66,6 +72,8 @@ int		visual_mode(t_matrix *matrix, t_uchar c)
 		g_vi_mode = NORMAL_MODE;
 		return (1);
 	}
+	if (c == 'y' || c == 'd' || c == DEL)
+		return (del_yank(matrix, c));
 	if (are_default_vi_mode_visual_shortcuts(matrix, c))
 		return (1);
 	if (is_normal_mode(matrix, c))

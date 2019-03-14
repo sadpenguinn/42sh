@@ -159,6 +159,7 @@ typedef struct	s_history
 	t_line		*search_line;
 	int			is_replace;
 	t_string	*event;
+	char		find_char;
 }				t_history;
 
 extern t_history		*g_history;
@@ -261,6 +262,8 @@ int				move_cursor_next_alnum(t_matrix *matrix);
 int				move_cursor_end_alnum(t_matrix *matrix);
 int				move_cursor_begin_alnum(t_matrix *matrix);
 int				move_cursor_end_matrix(t_matrix *matrix);
+int				move_cursor_next_char(t_matrix *matrix);
+int				move_cursor_back_char(t_matrix *matrix);
 
 int				del(t_matrix *matrix);
 int				back_space(t_matrix *matrix);
@@ -335,6 +338,8 @@ size_t			get_cursor_pos_end_word(t_matrix *matrix);
 size_t			get_cursor_pos_next_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_begin_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_end_alnum(t_matrix *matrix);
+size_t			get_cursor_pos_back_char(t_matrix *matrix);
+size_t			get_cursor_pos_next_char(t_matrix *matrix);
 
 size_t			get_space_left_pos(const char *buf, size_t pos);
 size_t			get_space_right_pos(const char *buf, size_t pos, size_t len);

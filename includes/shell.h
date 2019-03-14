@@ -88,7 +88,8 @@ extern int				g_dontexec;
 ** Default path to 42 shell
 */
 
-# define SHELL_PATH "/bin/42sh"
+# define SHELL_DEFAULT_PATH "/bin/42sh"
+# define SHELL_DEFAULT_HOME "/"
 
 /*
 ** Bool defines, used in builtins

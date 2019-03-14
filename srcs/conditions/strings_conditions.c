@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_and_debug.c                                   :+:      :+:    :+:   */
+/*   strings_conditions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/12 17:50:20 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 17:52:58 by bbaelor-         ###   ########.fr       */
+/*   Created: 2019/03/14 17:49:59 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/14 17:52:44 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conditions.h"
 
-/*
-** Global variables for parser
-*/
-
-void			*g_tokens = NULL;
-unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
-
-int		main(int argc, char **argv)
+int		z_conditions(char *str)
 {
-	argv[argc] = NULL;
-	printf("res = %d\n", conditions(&argv[1]));
+	if ((!str) || (!str[0]))
+		return (1);
+	return (0);
+}
+
+int		equal_str_conditions(char *str1, char *str2)
+{
+	if (!ft_strcmp(str1, str2))
+		return (1);
+	return (0);
+}
+
+int		not_equal_str_conditions(char *str1, char *str2)
+{
+	if (ft_strcmp(str1, str2) != 0)
+		return (1);
 	return (0);
 }
