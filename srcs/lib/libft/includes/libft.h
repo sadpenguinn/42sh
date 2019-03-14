@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 10:58:25 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/27 12:51:35 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/14 21:58:21 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,5 +216,6 @@ void						ft_rb_tree_rotate_right(t_rb_tree_node *x,
 											t_rb_tree_node **root);
 void						ft_rb_tree_rotate_left(t_rb_tree_node *x,
 										t_rb_tree_node **root);
+int							ft_strchrc(char *str, char c);
 
 #endif

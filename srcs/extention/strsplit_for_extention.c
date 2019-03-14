@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 21:11:06 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/01 20:58:53 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/14 22:02:57 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int		count_words(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1])
+		if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1]
+									&& i && str[i - 1] != '\\')
 		{
 			count++;
 			i++;
@@ -41,7 +42,7 @@ static int		count_word(char *str)
 	int i;
 
 	i = 0;
-	while (str[i] != ' ' && str[i])
+	while (str[i] && !(str[i] == ' ' && i && str[i - 1] != '\\'))
 	{
 		if (str[i] == '\'')
 		{
@@ -87,7 +88,7 @@ static int		filling_strings(char *str, int i, int j, char **res)
 {
 	while (str[i])
 	{
-		if (str[i] != ' ')
+		if (!(str[i] == ' ' && i && str[i - 1] != '\\'))
 		{
 			res[j] = (char *)xmalloc(sizeof(char *) * count_word(&str[i]));
 			i += ft_strcpy_extention(res[j], ft_strndup(&str[i],
@@ -111,10 +112,12 @@ char			**strsplit_for_extention(char *str)
 	j = 0;
 	if (count_words(str) == 1)
 	{
-		while (str[i] && str[i] == ' ')
+		while (str[i] && ((!i && str[i] == ' ') || (i && str[i] == ' '
+												&& str[i - 1] != '\\')))
 			i++;
 		res[j] = xmalloc(sizeof(char *) * count_word(&str[i]));
 		i += ft_strcpy_extention(res[j], ft_strdup(&str[i]));
+		expand_backslash_handling(&res[j], 1);
 		j++;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/01 20:52:11 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/14 22:02:46 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ int		fuck_you_fucking_norm(char *buf, int j);
 void	frashing_values(int *fuck_norm, int *i, int *j);
 char	*get_last_n_symbols(char *str, int n, int freed);
 char	*get_content_of_var(char *str);
+char	*pre_processing_in_expand_v(int *f_n, char **str, int *i, int *j);
+void	expand_backslash_handling(char **str, int is_free);
 
 #endif

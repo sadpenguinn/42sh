@@ -116,7 +116,8 @@ set(SRC_LIB srcs/fatal_error.c
 		srcs/ft_rb_tree_traversal_preorder.c
 		srcs/ft_joinvect.c
 		srcs/get_next_line.c
-		srcs/ft_atoi_base.c)
+        srcs/ft_atoi_base.c
+        srcs/ft_strchrc.c)
 include_directories(includes)
 include_directories(../vector/includes)
 

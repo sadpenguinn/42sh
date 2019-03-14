@@ -265,7 +265,8 @@ set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/spec_cases.c
 					srcs/extention/stars.c
 					srcs/extention/strins_sheets.c
-					srcs/extention/strsplit_for_extention.c)
+					srcs/extention/strsplit_for_extention.c
+					srcs/extention/pre_processings.c)
 
 set(EXPR_LEXER		srcs/expr/exprlexer/exprlexer.c)
 

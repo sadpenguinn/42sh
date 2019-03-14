@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/01 20:38:08 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/14 20:44:31 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		**expand_v(char *str)
 	int		i;
 	int		j;
 
-	res = pre_processing_in_expand(fuck_norm, &str, &i, &j);
+	res = pre_processing_in_expand_v(fuck_norm, &str, &i, &j);
 	while (str[i])
 	{
 		if ((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1])

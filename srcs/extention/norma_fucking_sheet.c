@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:33:03 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/01 20:34:50 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/14 22:05:32 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@ int			brackets_case_in_expand(const char *str, int *f_n, int i)
 		i++;
 	}
 	return (i);
-}
-
-char		*pre_processing_in_expand(int *f_n, char **str, int *i, int *j)
-{
-	processing_stars(str);
-	frashing_values(f_n, i, j);
-	return (xmalloc(sizeof(char) * (ft_strlen(*str) + 1)));
 }
 
 int			fuck_you_fucking_norm(char *buf, int j)
