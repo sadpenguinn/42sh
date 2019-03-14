@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/10 18:54:40 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/14 23:57:14 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	**get_slashes_and_spases_lile_dirs(char **res, char *str)
 	DIR		*dirp;
 	char	*buff;
 	char	*tmp[2];
-	
+
 	i = 0;
 	(void)str;
 	tmp[0] = atcml_get_rel_dir(str, ft_strlen(str));
@@ -64,6 +64,44 @@ static char	**get_slashes_and_spases_lile_dirs(char **res, char *str)
 	return (res);
 }
 
+char		*autocomplite_backsl_str(char *str)
+{
+	char	*res;
+	int		i;
+	int		j;
+
+	j = 0;
+	i = 0;
+	res = xmalloc(sizeof(char) * (ft_strlen(str) + 1 + ft_strchrc(str, ' ')));
+	while (str[i])
+	{
+		if (str[i] == ' ')
+		{
+			res[j] = '\\';
+			j++;
+		}
+		res[j] = str[i];
+		i++;
+		j++;
+	}
+	free(str);
+	return (res);
+}
+
+char		**autocomplite_get_backslashing(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_strchr(str[i], ' '))
+			str[i] = autocomplite_backsl_str(str[i]);
+		i++;
+	}
+	return (str);
+}
+
 char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 {
 	int		i;
@@ -78,6 +116,7 @@ char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 	real_dir = atcml_get_rel_dir(str, len);
 	if (xglob(pattern, real_dir, &out_glob, &len))
 		return (res);
+	out_glob = autocomplite_get_backslashing(out_glob);
 	out_glob = get_slashes_and_spases_lile_dirs(out_glob, str);
 	free(pattern);
 	free(real_dir);
@@ -89,6 +128,5 @@ char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 	}
 	free(out_glob);
 	res[*c] = NULL;
-
 	return (res);
 }
