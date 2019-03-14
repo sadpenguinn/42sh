@@ -115,6 +115,8 @@ static int	find_builtin(const char *bin, void **ret)
 		*ret = built_bg;
 	else if (!ft_strcmp(bin, "fg"))
 		*ret = built_fg;
+	else if (!ft_strcmp(bin, "type"))
+		*ret = built_type;
 	else
 		return (PATH_NULL);
 	return (PATH_BUILT);

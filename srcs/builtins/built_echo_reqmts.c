@@ -16,7 +16,7 @@
 ** Internal functions for echo
 */
 
-int			built_echo_switch(char **av, int i, int *flags)
+int			echo_switch(char **av, int i, int *flags)
 {
 	int		k;
 
@@ -31,7 +31,7 @@ int			built_echo_switch(char **av, int i, int *flags)
 			flags[1] = 0;
 		else
 		{
-			built_echo_usage(av[i][k]);
+			echo_usage(av[i][k]);
 			return (0);
 		}
 		(k)++;
@@ -39,7 +39,7 @@ int			built_echo_switch(char **av, int i, int *flags)
 	return (1);
 }
 
-static int	hex_sequence(const char *str, int i)
+static int	echo_hex_sequence(const char *str, int i)
 {
 	char	stack[4];
 	int		k;
@@ -57,7 +57,7 @@ static int	hex_sequence(const char *str, int i)
 	return (--i);
 }
 
-static int	octal_sequence(const char *str, int i)
+static int	echo_octal_sequence(const char *str, int i)
 {
 	char	stack[4];
 	int		k;
@@ -75,7 +75,7 @@ static int	octal_sequence(const char *str, int i)
 	return (--i);
 }
 
-static int	simple_sequence(char c)
+static int	echo_simple_sequence(char c)
 {
 	if (c == 'a')
 		ft_putchar('\a');
@@ -100,18 +100,18 @@ static int	simple_sequence(char c)
 	return (1);
 }
 
-int			handle_sequence(const char *str, int i)
+int			echo_handle_sequence(const char *str, int i)
 {
 	if (!str[i])
 		return (i);
-	else if (simple_sequence(str[i]))
+	else if (echo_simple_sequence(str[i]))
 		return (i);
 	else if (str[i] == 'c')
 		return (-1);
 	else if (str[i] == '0')
-		return (octal_sequence(str, i));
+		return (echo_octal_sequence(str, i));
 	else if (str[i] == 'x')
-		return (hex_sequence(str, i));
+		return (echo_hex_sequence(str, i));
 	else
 	{
 		ft_putchar(str[i]);

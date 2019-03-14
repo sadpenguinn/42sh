@@ -13,7 +13,7 @@
 #include "shell.h"
 #include "builtins.h"
 
-int					built_echo_usage(char c)
+int					echo_usage(char c)
 {
 	char	arg[3];
 
@@ -24,7 +24,7 @@ int					built_echo_usage(char c)
 	return (-1);
 }
 
-static void			print_string(const char *str)
+static void			echo_print_string(const char *str)
 {
 	int		i;
 
@@ -35,14 +35,14 @@ static void			print_string(const char *str)
 			ft_putchar(str[i]);
 		else
 		{
-			if ((i = handle_sequence(str, i + 1)) == -1)
+			if ((i = echo_handle_sequence(str, i + 1)) == -1)
 				return ;
 		}
 		i++;
 	}
 }
 
-static void			print_strings(char **av, const int *flags, size_t i)
+static void			echo_print_strings(char **av, const int *flags, size_t i)
 {
 	size_t	size;
 
@@ -52,7 +52,7 @@ static void			print_strings(char **av, const int *flags, size_t i)
 	while (av[i])
 	{
 		if (flags[1])
-			print_string(av[i]);
+			echo_print_string(av[i]);
 		else
 			ft_putstr(av[i]);
 		if (i < size)
@@ -63,7 +63,7 @@ static void			print_strings(char **av, const int *flags, size_t i)
 		ft_putchar('\n');
 }
 
-static int			parse_flags(char **av, int *flags)
+static int			echo_parse_flags(char **av, int *flags)
 {
 	int		i;
 
@@ -72,7 +72,7 @@ static int			parse_flags(char **av, int *flags)
 	{
 		if (av[i][0] == '-')
 		{
-			if (!built_echo_switch(av, i, flags))
+			if (!echo_switch(av, i, flags))
 				return (-1);
 		}
 		else
@@ -98,8 +98,8 @@ int					built_echo(char **av, char **env)
 	env = NULL;
 	flags[0] = 0;
 	flags[1] = g_echoe == TRUE ? 1 : 0;
-	if ((i = parse_flags(av, flags)) == -1)
+	if ((i = echo_parse_flags(av, flags)) == -1)
 		return (SHERR_ERR);
-	print_strings(av, flags, (size_t)i);
+	echo_print_strings(av, flags, (size_t)i);
 	return (SHERR_OK);
 }

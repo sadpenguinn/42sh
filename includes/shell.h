@@ -84,6 +84,8 @@ extern int				g_status;
 extern int				g_echoe;
 extern int				g_dontexec;
 
+extern int				g_last;
+
 /*
 ** Default path to 42 shell
 */

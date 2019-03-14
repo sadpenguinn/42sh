@@ -6,8 +6,7 @@ set(INC			../../../includes)
 set(LIBFT_INC	../libft/includes)
 set(LIBHASH_INC	../libhash/includes)
 set(VECTOR_INC	../vector/includes)
-set(SRC_LIB		srcs/check_varname.c
-				srcs/xglob.c
+set(SRC_LIB		srcs/xglob.c
 				srcs/xmatch.c
 				srcs/die.c
 				srcs/free_str_arr.c

@@ -45,7 +45,7 @@ int		main(int ac, char **av, char **env)
 		g_tokens = lex->lexems;
 		ast = inputunit();
 		if (g_dontexec == FALSE)
-			execute(ast);
+			g_last = execute(ast);
 		freeastree(ast);
 		lexer_free(lex);
 	}
