@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 20:44:31 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/14 22:38:08 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ char		**expand_v(char *str)
 	res = pre_processing_in_expand_v(fuck_norm, &str, &i, &j);
 	while (str[i])
 	{
-		if ((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1])
+		if (((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1]) 
+				|| check_process_substitution_expand(&str[i]))
 		{
 			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
 			if (!buf)
@@ -81,7 +82,8 @@ char		*expand(char *str)
 	{
 		if ((str[i] == '\'' && !f_n[2]) || (str[i] == '\"' && !f_n[1]))
 			i = brackets_case_in_expand(str, f_n, i);
-		else if ((str[i] == '$' || tilda_case_check(str, i)) && !f_n[1])
+		else if (((str[i] == '$' || tilda_case_check(str, i)) && !f_n[1])
+						|| check_process_substitution_expand(&str[i]))
 		{
 			buf = get_pahom(&str[i], &i, &f_n[0]);
 			if (!buf)
