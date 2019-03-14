@@ -69,3 +69,4 @@ cmake-build-debug
 42sh
 *.autosave
 .#*
+.DS_Store
