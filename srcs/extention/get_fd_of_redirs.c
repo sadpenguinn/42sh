@@ -6,13 +6,13 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 22:30:31 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 22:34:11 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/14 22:55:33 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "extention.h"
 
-char	*extention_get_just_command(char *str)
+char		*extention_get_just_command(char *str)
 {
 	int i;
 	int dump;
@@ -32,7 +32,7 @@ int			check_process_substitution_expand(char *str)
 	int		brackets;
 
 	brackets = 1;
-	if ((str[0] != '<' && str[0] != '>' ) || str[1] != '(')
+	if ((str[0] != '<' && str[0] != '>') || str[1] != '(')
 		return (0);
 	i = 2;
 	while (str[i] && brackets)
@@ -46,7 +46,7 @@ int			check_process_substitution_expand(char *str)
 	return ((brackets) ? 0 : 1);
 }
 
-char	*get_small_redir(char *str)
+char		*get_small_redir(char *str)
 {
 	char	*tmp_c;
 	char	*tmp_num;
@@ -60,7 +60,7 @@ char	*get_small_redir(char *str)
 	return (res);
 }
 
-char	*get_grade_redir(char *str)
+char		*get_grade_redir(char *str)
 {
 	char	*tmp_c;
 	char	*tmp_num;

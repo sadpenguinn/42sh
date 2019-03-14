@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 22:38:08 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/14 22:58:38 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ char		**expand_v(char *str)
 	res = pre_processing_in_expand_v(fuck_norm, &str, &i, &j);
 	while (str[i])
 	{
-		if (((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1]) 
+		if (((str[i] == '$' || tilda_case_check(str, i)) && !fuck_norm[1])
 				|| check_process_substitution_expand(&str[i]))
 		{
-			buf = get_pahom(&str[i], &i, &fuck_norm[0]);
-			if (!buf)
+			if (!(buf = get_pahom(&str[i], &i, &fuck_norm[0])))
 				return (NULL);
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j = fuck_you_fucking_norm(buf, j);
@@ -85,8 +84,7 @@ char		*expand(char *str)
 		else if (((str[i] == '$' || tilda_case_check(str, i)) && !f_n[1])
 						|| check_process_substitution_expand(&str[i]))
 		{
-			buf = get_pahom(&str[i], &i, &f_n[0]);
-			if (!buf)
+			if (!(buf = get_pahom(&str[i], &i, &f_n[0])))
 				return (NULL);
 			res = remalloc_result_of_extention(str, res, buf, f_n[0]);
 			j += ft_strlen(buf);

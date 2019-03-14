@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 22:41:15 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/14 22:59:26 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ char	*get_content_of_var(char *str)
 
 int		get_fdnumber_of_substitution(char *str, int state)
 {
-	// printf("command = |%s|, state = %d\n", str, state);
 	(void)str;
 	state++;
 	return (282);
-} 
+}
