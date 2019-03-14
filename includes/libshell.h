@@ -104,4 +104,6 @@ char			**split_assignments(char *str);
 
 size_t  		get_file_size(const char *file);
 
+int				check_varname(const char *str);
+
 #endif

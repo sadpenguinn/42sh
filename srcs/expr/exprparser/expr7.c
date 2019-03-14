@@ -25,10 +25,10 @@ static t_astree	*expr7_rest(void)
 	t_astree	*root;
 	t_astree	*res;
 
-	if (!checktype(EX_XOR))
+	if (!exchecktype(EX_XOR))
 		return (0);
 	if (!(res = expr8()))
-		return (parseerror(0));
+		return (exparseerror(0));
 	root = xmalloc(sizeof(t_astree));
 	root->type = EX_XOR;
 	root->left = res;

@@ -50,7 +50,7 @@ static t_astree	*expr2_1(t_astree *res, t_type type)
 	root[0]->right = root[1];
 	root[1]->type = type;
 	if (!(root[1]->left = expr2()))
-		return (parseerror(root[0]));
+		return (exparseerror(root[0]));
 	return (root[0]);
 }
 
@@ -64,17 +64,17 @@ t_astree		*expr2(void)
 	curtmp = g_excurtok;
 	if (!(res = preincdec()) || g_excurtok >= ((size_t *)g_extokens)[2])
 	{
-		savecur(curtmp, res);
+		exsavecur(curtmp, res);
 		return (expr3());
 	}
 	type = ((t_lexem *)vector_get_elem(g_extokens, g_excurtok))->type;
 	if ((type = get_type(type)) == -1)
 	{
-		savecur(curtmp, res);
+		exsavecur(curtmp, res);
 		return (expr3());
 	}
 	g_excurtok++;
 	if (!(root = expr2_1(res, type)))
-		return (parseerror(0));
+		return (exparseerror(0));
 	return (root);
 }

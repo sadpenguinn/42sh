@@ -25,10 +25,10 @@ static t_astree	*expr14_rest(void)
 	t_astree	*root;
 	t_astree	*res;
 
-	if (!checktype(EX_POW))
+	if (!exchecktype(EX_POW))
 		return (0);
 	if (!(res = preunary()))
-		return (parseerror(0));
+		return (exparseerror(0));
 	root = xmalloc(sizeof(t_astree));
 	root->type = EX_POW;
 	root->left = res;

@@ -13,9 +13,6 @@
 #include "expr.h"
 #include "execute.h"
 
-unsigned int		g_excurtok;
-void				*g_extokens;
-int					g_exprerr;
 
 int main(void)
 {

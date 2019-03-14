@@ -13,7 +13,7 @@
 #include "expr.h"
 #include "expression.h"
 
-int			checktype(t_type type)
+int			exchecktype(t_type type)
 {
 	if (g_excurtok >= ((size_t *)g_extokens)[2])
 		return (type == TOKEOF ? 1 : 0);
@@ -23,32 +23,32 @@ int			checktype(t_type type)
 	return (1);
 }
 
-t_astree	*freeastree(t_astree *root)
+t_astree	*exfreeastree(t_astree *root)
 {
 	if (!root)
 		return (0);
 	if (root->content)
 		free(root->content);
 	if (root->left)
-		freeastree(root->left);
+		exfreeastree(root->left);
 	if (root->right)
-		freeastree(root->right);
+		exfreeastree(root->right);
 	free(root);
 	return (0);
 }
 
-t_astree	*savecur(unsigned int cur, t_astree *root)
+t_astree	*exsavecur(unsigned int cur, t_astree *root)
 {
-	freeastree(root);
+	exfreeastree(root);
 	g_excurtok = cur;
 	return (0LU);
 }
 
-t_astree	*parseerror(t_astree *root)
+t_astree	*exparseerror(t_astree *root)
 {
 	t_lexem	*token;
 
-	freeastree(root);
+	exfreeastree(root);
 	if (g_exprerr)
 		return (0LU);
 	g_exprerr = 1;

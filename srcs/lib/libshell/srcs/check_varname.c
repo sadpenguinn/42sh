@@ -9,3 +9,19 @@
 /*   Updated: 2019/03/09 16:36:39 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int check_varname(const char *str)
+{
+	int i;
+
+	i = 0;
+	if (!str || !str[0] || (str[0] <= '9' && str[0] >= '0') || str[0] == '=')
+		return (0);
+	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'A' &&
+												str[i] <= 'Z') || (str[i] == '_') ||
+		   (str[i] >= 'a' && str[i] <= 'z'))
+		i++;
+	if (!str[i])
+		return (1);
+	return (0);
+}

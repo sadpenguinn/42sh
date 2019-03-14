@@ -35,6 +35,6 @@ t_astree	*preunary(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = type;
 	if (!(root->left = preunary()))
-		return (parseerror(root));
+		return (exparseerror(root));
 	return (root);
 }

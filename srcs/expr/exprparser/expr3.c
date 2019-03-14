@@ -27,7 +27,7 @@ t_astree	*expr3(void)
 
 	if (!(res = expr4()))
 		return (0);
-	if (!checktype(EX_QUES))
+	if (!exchecktype(EX_QUES))
 		return (res);
 	root = xmalloc(sizeof(t_astree));
 	root->type = EX_QUES;
@@ -35,10 +35,10 @@ t_astree	*expr3(void)
 	root->right = xmalloc(sizeof(t_astree));
 	root->right->type = EX_COL;
 	if (!(root->right->left = expr3()))
-		return (parseerror(root));
-	if (!checktype(EX_COL))
-		return (parseerror(root));
+		return (exparseerror(root));
+	if (!exchecktype(EX_COL))
+		return (exparseerror(root));
 	if (!(root->right->right = expr3()))
-		return (parseerror(root));
+		return (exparseerror(root));
 	return (root);
 }
