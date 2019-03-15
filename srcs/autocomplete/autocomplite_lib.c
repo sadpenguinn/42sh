@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 03:49:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 06:41:07 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/15 22:04:02 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*atcml_get_pattern(char *buf, size_t pos)
 char	*atcml_get_rel_dir(char *buf, size_t pos)
 {
 	size_t	left_pos;
+	char	*tmp;
 
 	if (!(ft_strchr(buf, '/')))
 		return (ft_strdup("./"));
@@ -56,7 +57,9 @@ char	*atcml_get_rel_dir(char *buf, size_t pos)
 	left_pos = pos;
 	while (left_pos && buf[left_pos - 1] != ' ')
 		left_pos--;
-	return (ft_strndup(buf + left_pos, pos - left_pos + 1));
+	tmp = ft_strndup(buf + left_pos, pos - left_pos + 1);
+	expand_backslash_handling(&tmp, 1);
+	return (tmp);
 }
 
 char	**tab_cat(char **to_str, char **from_str)

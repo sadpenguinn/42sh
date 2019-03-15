@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 19:29:32 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/15 21:16:22 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AUTOCOMPLETE_H
 
 # include "readline.h"
+# include "extention.h"
 # include "libft.h"
 # include "shell.h"
 # include "execute.h"

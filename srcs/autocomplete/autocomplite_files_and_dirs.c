@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 23:57:14 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/15 22:08:19 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			get_autocomplite_files_dir_len(char *str)
 	len = ft_strlen(str);
 	pattern = atcml_get_pattern(str, len);
 	real_dir = atcml_get_rel_dir(str, len);
+	// printf("\npattern = |%s|\ndir = |%s|\n", pattern, real_dir);
 	if (xglob(pattern, real_dir, &res, (size_t *)&res_len))
 	{
 		free(pattern);
@@ -90,12 +91,13 @@ char		*autocomplite_backsl_str(char *str)
 
 char		**autocomplite_get_backslashing(char **str)
 {
-	int i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (str[i])
 	{
-		if (ft_strchr(str[i], ' '))
+		if ((tmp = ft_strchr(str[i], ' ')) && tmp[1])
 			str[i] = autocomplite_backsl_str(str[i]);
 		i++;
 	}
@@ -116,8 +118,8 @@ char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 	real_dir = atcml_get_rel_dir(str, len);
 	if (xglob(pattern, real_dir, &out_glob, &len))
 		return (res);
-	out_glob = autocomplite_get_backslashing(out_glob);
 	out_glob = get_slashes_and_spases_lile_dirs(out_glob, str);
+	out_glob = autocomplite_get_backslashing(out_glob);
 	free(pattern);
 	free(real_dir);
 	while (out_glob[i])

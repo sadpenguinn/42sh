@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 19:14:26 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/15 22:08:07 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 int		check_onlyfd_case(t_line *line_info, int pos)
 {
-	int res;
-
-	res = 0;
-	if (pos && (pos - 1) && line_info->buf[pos] == ' ')
+	// printf("line = |%s|, symb = |%s|\n", line_info->buf, &(line_info->buf[pos]));
+	if (pos && (pos - 1) && line_info->buf[pos] == ' ' &&
+												line_info->buf[pos - 1] != '\\')
 		while (pos - 1)
 		{
 			if (line_info->buf[pos] == ';' || line_info->buf[pos - 1] == ';')
 				return (0);
-			if (line_info->buf[pos - 1] != ' ')
+			if (line_info->buf[pos - 1] != ' ' && line_info->buf[pos - 1 != '\\'])
 				return (1);
 			pos--;
 		}
