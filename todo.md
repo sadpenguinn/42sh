@@ -33,6 +33,7 @@
 [−] Built-in jobs<br>
 [−] Built-in fg<br>
 [−] Built-in bg<br>
+[−] Built-in test<br>
 [−] &<br>
 
 [−] Correct monitoring of signals<br>
@@ -43,14 +44,14 @@
 [−] Glob: * ? [] ! \ <br>
 
 [✓] ~<br>
-[−] ${parameter:-word}<br>
-[−] ${parameter:=word}<br>
-[−] ${parameter:?word}<br>
-[−] ${parameter:+word}<br>
-[−] ${#parameter}<br>
-[−] ${parameter%}<br>
+[✓] ${parameter:-word}<br>
+[✓] ${parameter:=word}<br>
+[✓] ${parameter:?word}<br>
+[✓] ${parameter:+word}<br>
+[✓] ${#parameter}<br>
+[✓] ${parameter%}<br>
 [−] ${parameter%%}<br>
-[−] ${parameter#}<br>
+[✓] ${parameter#}<br>
 [−] ${parameter##}<br>
 
 [−] Control groups and sub-shells: (), {}<br>
