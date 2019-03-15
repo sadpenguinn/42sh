@@ -50,6 +50,7 @@ static int		parse_files(char **av)
 	read(fd, script, len + 1);
 	close(fd);
 	lex = lexer(script, len);
+	lexer_print(lex->lexems);
 	ft_strdel(&script);
 	g_tokens = lex->lexems;
 	ast = inputunit();

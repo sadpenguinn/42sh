@@ -23,7 +23,7 @@ int		built_exit(char **av, char **env)
 	int		ret;
 
 	env = NULL;
-	ft_putendl("Товарищ капитан, только на меня не спускайте, блядь.");
+	ft_putendl("\x1b[47mТоварищ \x1b[0m\x1b[1m\x1b[34mКАПИТАН\x1b[0m\x1b[47m, только на меня не спускайте, \x1b[0m\x1b[1m\x1b[34mБЛЯДЬ\x1b[0m\x1b[47m!\x1b[0m");
 	if (av[1] && ft_str_is_numeric(av[1]))
 	{
 		ret = ft_atoi(av[1]);

@@ -91,6 +91,7 @@ extern int				g_dontexec;
 # define SHELL_DEFAULT_PATH "/bin/42sh"
 # define SHELL_DEFAULT_HOME "/"
 # define SHELL_DEFAULT_LAST "0"
+# define SHELL_DEFAULT_RC "/.42shrc"
 
 /*
 ** Bool defines, used in builtins

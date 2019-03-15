@@ -63,6 +63,36 @@ typedef struct	s_env
 #  define SHERR_CNTOPF					9
 # endif
 
+# ifndef C_COLORS
+#  define C_COLORS
+#  define C_DEFAULT "\x1b[0m"
+#  define C_BOLD "\x1b[1m"
+#  define C_LIGHT "\x1b[2m"
+#  define C_RM_LIGHT "\x1b[22m"
+#  define C_UNDERLINE "\x1b[4m"
+#  define C_RM_UNDERLINE "\x1b[24m"
+#  define C_BLINK "\x1b[5m"
+#  define C_RM_BLINK "\x1b[25m"
+
+#  define C_BLACK "\x1b[30m"
+#  define C_RED "\x1b[31m"
+#  define C_GREEN "\x1b[32m"
+#  define C_YELLOW "\x1b[33m"
+#  define C_BLUE "\x1b[34m"
+#  define C_PURPLE "\x1b[35m"
+#  define C_AQUA "\x1b[36m"
+#  define C_GRAY "\x1b[37m"
+
+#  define BG_BLACK "\x1b[40m"
+#  define BG_RED "\x1b[41m"
+#  define BG_GREEN "\x1b[42m"
+#  define BG_YELLOW "\x1b[43m"
+#  define BG_BLUE "\x1b[44m"
+#  define BG_PURPLE "\x1b[45m"
+#  define BG_AQUA "\x1b[46m"
+#  define BG_GRAY "\x1b[47m"
+# endif
+
 /*
 ** Implementation of UNIX standard functions glob and match
 */
