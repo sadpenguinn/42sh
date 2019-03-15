@@ -2,6 +2,23 @@
 #include "execute.h"
 #include "builtins.h"
 
+static void		type_print_arr(char **arr)
+{
+	int		i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		ft_putstr(arr[i]);
+		ft_putchar(' ');
+		i++;
+	}
+	if (i > 0)
+		ft_putchar('\n');
+}
+
 static int		type_parse_flags(char **av, int *flags)
 {
 	int		i;
@@ -64,7 +81,7 @@ static int		type_find_alias(char *arg, int *flags)
 	else
 	{
 		ft_putstr(" is an alias for ");
-		print_str_arr(alias->value);
+		type_print_arr(alias->value);
 	}
 	return (1);
 }

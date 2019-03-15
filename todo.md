@@ -17,7 +17,7 @@
 [✓] cd<br>
 [✓] echo<br>
 [✓] exit<br>
-[−] type<br>
+[✓] type<br>
 
 [✓] \&&, \||<br>
 
@@ -26,14 +26,13 @@
 [✓] Possibility to list shell intern variables via built-in set (no option required)<br>
 [✓] Intern and environement variables revocation, via built-in unset (no optionrequired)<br>
 [✓] Environment variable creation for unique command, for instance: HOME=/tmp cd<br>
-[−] Simple expansion of parameters depending on syntax ${} (no additionnal for-mat required)<br>
+[−] Simple expansion of parameters depending on syntax ${} (no additionnal format required)<br>
 [−] Exit code access of previously command via the expansion ${?}<br>
 
 [−] Job control monitoring<br>
 [−] Built-in jobs<br>
 [−] Built-in fg<br>
 [−] Built-in bg<br>
-[−] Built-in test<br>
 [−] &<br>
 
 [−] Correct monitoring of signals<br>

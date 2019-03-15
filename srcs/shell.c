@@ -29,6 +29,7 @@ int		main(int ac, char **av, char **env)
 	t_string	*line;
 	t_lexer		*lex;
 	t_astree	*ast;
+	int			last;
 
 	init(env);
 	if (argv_parser(ac, av))
@@ -45,7 +46,10 @@ int		main(int ac, char **av, char **env)
 		g_tokens = lex->lexems;
 		ast = inputunit();
 		if (g_dontexec == FALSE)
-			g_last = execute(ast);
+		{
+			last = execute(ast);
+			ssetenv("?", ft_itoa(last), ENV_RO);
+		}
 		freeastree(ast);
 		lexer_free(lex);
 	}

@@ -19,6 +19,7 @@
 
 int		built_exit(char **av, char **env)
 {
+	char	*last;
 	int		ret;
 
 	env = NULL;
@@ -30,5 +31,7 @@ int		built_exit(char **av, char **env)
 		exit(ret);
 	}
 	destroy();
-	exit(g_last);
+	if ((last = sgetenv("?", ENV_ALL)))
+		exit(ft_atoi(last));
+	exit(SHERR_OK);
 }

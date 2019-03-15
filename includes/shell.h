@@ -84,14 +84,13 @@ extern int				g_status;
 extern int				g_echoe;
 extern int				g_dontexec;
 
-extern int				g_last;
-
 /*
 ** Default path to 42 shell
 */
 
 # define SHELL_DEFAULT_PATH "/bin/42sh"
 # define SHELL_DEFAULT_HOME "/"
+# define SHELL_DEFAULT_LAST "0"
 
 /*
 ** Bool defines, used in builtins
