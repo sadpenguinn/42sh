@@ -20,7 +20,7 @@ t_astree	*inputunit(void)
 	g_parseerr = 0;
 	if (g_curtok >= ((size_t *)g_tokens)[2])
 		return (0);
-	res = simple_list1();
+	res = list1();
 	if (!(simple_list_terminator()))
 		return (parseerror(res));
 	return (res);

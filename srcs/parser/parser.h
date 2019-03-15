@@ -24,9 +24,6 @@ extern void			*g_tokens;
 extern int			g_parseerr;
 
 t_astree			*inputunit(void);
-t_astree			*simple_list1(void);
-t_astree			*simple_list2(void);
-t_astree			*simple_list3(void);
 t_astree			*pipeline_command(void);
 t_astree			*pipeline(void);
 t_astree			*command(void);

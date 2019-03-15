@@ -209,9 +209,6 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/shell_command.c
 					srcs/parser/simple_command.c
 					srcs/parser/simple_command_element.c
-					srcs/parser/simple_list1.c
-					srcs/parser/simple_list2.c
-					srcs/parser/simple_list3.c
 					srcs/parser/simple_list_terminator.c
 					srcs/parser/subshell.c
 					srcs/parser/word_list.c)

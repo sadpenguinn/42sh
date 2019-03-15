@@ -17,6 +17,7 @@ int		set_alias_arg(t_list **args)
 	int		i;
 	char	*arg1;
 	char	**alias;
+
 	if (!args || !*args)
 		return (1);
 	arg1 = (char *)(*args)->data;
