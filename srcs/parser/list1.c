@@ -50,6 +50,7 @@ t_astree		*list1(void)
 	t_astree		*root;
 	t_astree		*res[2];
 
+	newline_list();
 	if (!(res[0] = list2()))
 		return (0);
 	if (!(res[1] = list1_rest()))
