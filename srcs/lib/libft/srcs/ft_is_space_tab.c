@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   symbol_to_string.c                                 :+:      :+:    :+:   */
+/*   ft_is_space_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 17:05:38 by narchiba          #+#    #+#             */
-/*   Updated: 2019/02/26 18:29:22 by narchiba         ###   ########.fr       */
+/*   Created: 2019/03/16 14:10:32 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/16 14:10:34 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "readline.h"
-
-size_t	symbol_to_string(t_uchar c, char *str)
+int	ft_is_space_tab(int c)
 {
-	size_t	i;
-	size_t	n;
-
-	i = 0;
-	n = get_utf_offset_right(*((char *)&c));
-	while (i <= n)
-	{
-		str[i] = (char)((c >> (i * 8)) & 0xFF);
-		i++;
-	}
-	return (i);
+	if (c == '\t' || c == ' ')
+		return (1);
+	return (0);
 }

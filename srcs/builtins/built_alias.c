@@ -1,6 +1,25 @@
 #include "builtins.h"
 #include "shell.h"
 
+static void		alias_print_alias(char *key)
+{
+	t_aliastb	*alias;
+	int			i;
+
+	i = 0;
+	if (!(alias = alias_find(key, g_aliases)))
+		return ;
+	ft_putstr(alias->key);
+	ft_putchar('=');
+	while (alias->value[i])
+	{
+		ft_putstr(alias->value[i]);
+		ft_putchar(' ');
+		i++;
+	}
+	ft_putchar('\n');
+}
+
 static int		alias_parse_assignments(char **av)
 {
 	char	**arr;
@@ -10,6 +29,12 @@ static int		alias_parse_assignments(char **av)
 	i = 1;
 	while (av[i])
 	{
+		if (!ft_strchr(av[i], '='))
+		{
+			alias_print_alias(av[i]);
+			i++;
+			continue ;
+		}
 		arr = split_assignments(av[i]);
 		value = ft_strsplit(arr[1], ' ');
 		alias_insert(arr[0], value, g_aliases);

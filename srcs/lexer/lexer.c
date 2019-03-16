@@ -183,11 +183,7 @@ void				build_lexems(char *str, void **lexems, char *string)
 	char	*lex;
 
 	while ((lex = dfa(&str, &string)))
-	{
-		ft_putnbrendl(g_state);
-		ft_putendl(lex);
 		push_token(lexems, lex, g_state);
-	}
 }
 
 t_lexer				*lexer(char const *str, size_t len)

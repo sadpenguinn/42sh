@@ -24,7 +24,7 @@ static int	are_default_readline_mode_shortcuts(t_matrix *matrix, t_uchar c)
 	if (c == END1 || c == END2)
 		return (move_cursor_end(matrix));
 	if (c == DEL)
-		return (del(matrix));
+		return (del_symbol(matrix));
 	if (c == CTRL_P)
 		return (move_history_prev());
 	if (c == CTRL_N)

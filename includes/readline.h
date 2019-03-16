@@ -180,6 +180,7 @@ typedef struct	s_history
 	int			is_replace;
 	t_string	*event;
 	char		find_char;
+	char		prev_find_option;
 	int			redo_undo;
 }				t_history;
 
@@ -227,12 +228,13 @@ int				vi_mode(t_uchar c);
 int				modes_handling(t_uchar c);
 int				esc_code_handling(t_uchar c);
 
-int				normal_mode(t_matrix *matrix, t_uchar c);
-int				normal_mode_del(t_matrix *matrix, t_uchar c);
-int				normal_mode_yank(t_matrix *matrix, t_uchar c);
-int				insert_mode(t_matrix *matrix, t_uchar c);
-int				replace_mode(t_matrix *matrix, t_uchar c);
-int				visual_mode(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal_del(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal_yank(t_matrix *matrix, t_uchar c);
+int				are_default_vi_normal_mode_shortcuts(t_matrix *matrix, t_uchar c);
+int				vi_mode_insert(t_matrix *matrix, t_uchar c);
+int				vi_mode_replace(t_matrix *matrix, t_uchar c);
+int				vi_mode_visual(t_matrix *matrix, t_uchar c);
 
 int				paste_before(t_matrix *matrix);
 int				paste_after(t_matrix *matrix);
@@ -247,16 +249,25 @@ int				del_string(t_matrix *matrix);
 int				del_begin_alnum(t_matrix *matrix);
 int				del_next_alnum(t_matrix *matrix);
 int				del_end_alnum(t_matrix *matrix);
+int				del_find_next_char(t_matrix *matrix);
+int				del_find_back_char(t_matrix *matrix);
+int				del_find_char_usual_order(t_matrix *matrix);
+int				del_find_char_reverse_order(t_matrix *matrix);
 
 int				yank_begin_word(t_matrix *matrix);
 int				yank_next_word(t_matrix *matrix);
 int				yank_end_word(t_matrix *matrix);
 int				yank_end(t_matrix *matrix);
 int				yank_home(t_matrix *matrix);
+int				yank_begin(t_matrix *matrix);
 int				yank_string(t_matrix *matrix);
 int				yank_begin_alnum(t_matrix *matrix);
 int				yank_next_alnum(t_matrix *matrix);
 int				yank_end_alnum(t_matrix *matrix);
+int				yank_find_next_char(t_matrix *matrix);
+int				yank_find_back_char(t_matrix *matrix);
+int				yank_find_char_usual_order(t_matrix *matrix);
+int				yank_find_char_reverse_order(t_matrix *matrix);
 
 t_cursor		matrix_string_insert(t_matrix *matrix, t_cursor pos,
 		const char *str, size_t size);
@@ -288,8 +299,10 @@ int				move_cursor_begin_alnum(t_matrix *matrix);
 int				move_cursor_end_matrix(t_matrix *matrix);
 int				move_cursor_next_char(t_matrix *matrix);
 int				move_cursor_back_char(t_matrix *matrix);
+int				move_cursor_find_char_usual_order(t_matrix *matrix);
+int				move_cursor_find_char_reverse_order(t_matrix *matrix);
 
-int				del(t_matrix *matrix);
+int				del_symbol(t_matrix *matrix);
 int				back_space(t_matrix *matrix);
 
 int				print_default(t_matrix *matrix);
@@ -341,6 +354,9 @@ void			add_lines_text(t_matrix *matrix);
 void			add_text(t_matrix *matrix, size_t row, size_t col);
 void			add_line(t_line	*line, size_t start, size_t end,
 		size_t row);
+size_t			add_spaces(t_line *line, size_t pos, size_t end, size_t row);
+size_t			add_non_spaces(t_line *line, size_t start, size_t end,
+		size_t row);
 
 void			add_line_prefix(t_matrix *matrix, size_t cur_row);
 
@@ -364,8 +380,10 @@ size_t			get_cursor_pos_end_word(t_matrix *matrix);
 size_t			get_cursor_pos_next_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_begin_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_end_alnum(t_matrix *matrix);
-size_t			get_cursor_pos_back_char(t_matrix *matrix);
-size_t			get_cursor_pos_next_char(t_matrix *matrix);
+size_t			get_cursor_pos_find_back_char(t_matrix *matrix);
+size_t			get_cursor_pos_find_next_char(t_matrix *matrix);
+size_t			get_cursor_pos_find_char_usual_order(t_matrix *matrix);
+size_t			get_cursor_pos_find_char_reverse_order(t_matrix *matrix);
 
 size_t			get_space_left_pos(const char *buf, size_t pos);
 size_t			get_space_right_pos(const char *buf, size_t pos, size_t len);
@@ -393,12 +411,13 @@ int				plus_case(t_line *line, size_t pos, int plus_flag);
 
 void			check_swap(t_cursor *start, t_cursor *end);
 
-void			set_points(t_cursor *point1, t_cursor *point2);
-
 void			action_add(t_cursor start, t_cursor end, const char *buf,
 		int act);
 
 int				undo(t_matrix *matrix);
 int				redo(t_matrix *matrix);
+int				large_undo_redo(t_matrix *matrix);
+
+void			set_points(t_cursor *point1, t_cursor *point2);
 
 #endif

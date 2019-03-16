@@ -58,8 +58,7 @@ static int	validate_sum(char *key, char *value)
 	return (free_sum(sum, path, 0));
 }
 
-static int	find_builtin(const char *bin, void **ret)
-{
+static int	find_builtin(const char *bin, void **ret) {
 	if (!ft_strcmp(bin, "cd"))
 	{
 		*ret = built_cd;
@@ -112,11 +111,19 @@ static int	find_builtin(const char *bin, void **ret)
 	else if (!ft_strcmp(bin, "jobs"))
 		*ret = built_jobs;
 	else if (!ft_strcmp(bin, "bg"))
+	{
 		*ret = built_bg;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "fg"))
+	{
 		*ret = built_fg;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "type"))
 		*ret = built_type;
+	else if (!ft_strcmp(bin, "test"))
+		*ret = built_test;
 	else
 		return (PATH_NULL);
 	return (PATH_BUILT);

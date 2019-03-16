@@ -1,15 +1,17 @@
 #include "readline.h"
 
-static int	are_default_vi_mode_visual_shortcuts(t_matrix *matrix, t_uchar c)
+static int	are_default_vi_mode_visual_basic_shortcuts(t_matrix *matrix, t_uchar c)
 {
 	if (c == CTRL_B || c == LEFT || c == BS || c == 'h')
 		return (move_cursor_left(matrix));
 	if (c == CTRL_F || c == RIGHT || c == 'l')
 		return (move_cursor_right(matrix));
-	if (c == HOME1 || c == HOME2)
+	if (c == HOME1 || c == HOME2 || c == '0' || c == '|')
 		return (move_cursor_home(matrix));
-	if (c == END1 || c == END2)
+	if (c == END1 || c == END2 | c == '$')
 		return (move_cursor_end(matrix));
+	if (c == '^')
+		return (move_cursor_begin(matrix));
 	if (c == 'W')
 		return (move_cursor_next_word(matrix));
 	if (c == 'B')
@@ -25,13 +27,20 @@ static int	are_default_vi_mode_visual_shortcuts(t_matrix *matrix, t_uchar c)
 	return (0);
 }
 
+static int	are_default_vi_mode_visual_advanced_shortcuts(t_matrix *matrix, t_uchar c)
+{
+	matrix = NULL;
+	c = 0;
+	return (0);
+}
+
 static int	del_yank(t_matrix *matrix, t_uchar c)
 {
 	t_cursor	point1;
 	t_cursor	point2;
 
 	g_vi_mode = NORMAL_MODE;
-	if (c == 'd' || c == DEL)
+	if (c == 'd' || c == DEL || c == 'x')
 	{
 		set_points(&point1, &point2);
 		*matrix->cursor = matrix_string_delete(point1, point2);
@@ -65,16 +74,18 @@ static int	is_normal_mode(t_matrix *matrix, t_uchar c)
 	return (0);
 }
 
-int		visual_mode(t_matrix *matrix, t_uchar c)
+int		vi_mode_visual(t_matrix *matrix, t_uchar c)
 {
 	if (c == ESC)
 	{
 		g_vi_mode = NORMAL_MODE;
 		return (1);
 	}
-	if (c == 'y' || c == 'd' || c == DEL)
+	if (c == 'y' || c == 'd' || c == DEL || c == 'x')
 		return (del_yank(matrix, c));
-	if (are_default_vi_mode_visual_shortcuts(matrix, c))
+	if (are_default_vi_mode_visual_basic_shortcuts(matrix, c))
+		return (1);
+	if (are_default_vi_mode_visual_advanced_shortcuts(matrix, c))
 		return (1);
 	if (is_normal_mode(matrix, c))
 		return (1);
