@@ -95,3 +95,27 @@ size_t		get_cursor_pos_end_alnum(t_matrix *matrix)
 		col -= 1 + get_utf_offset_left(line->buf, col - 1);
 	return (col);
 }
+
+size_t	get_cursor_pos_find_char_usual_order(t_matrix *matrix)
+{
+	char	c;
+
+	c = g_history->prev_find_option;
+	if (c != 'f' && c != 'F')
+		return (matrix->cursor->col);
+	if (c == 'f')
+		return (get_cursor_pos_find_next_char(matrix));
+	return (get_cursor_pos_find_back_char(matrix));
+}
+
+size_t	get_cursor_pos_find_char_reverse_order(t_matrix *matrix)
+{
+	char	c;
+
+	c = g_history->prev_find_option;
+	if (c != 'f' && c != 'F')
+		return (matrix->cursor->col);
+	if (c == 'F')
+		return (get_cursor_pos_find_next_char(matrix));
+	return (get_cursor_pos_find_back_char(matrix));
+}

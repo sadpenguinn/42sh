@@ -13,7 +13,7 @@
 #include "readline.h"
 #include "libft.h"
 
-int	normal_mode_yank(t_matrix *matrix, t_uchar c)
+int	vi_mode_normal_yank(t_matrix *matrix, t_uchar c)
 {
 	if (c == 'B')
 		return (yank_begin_word(matrix));

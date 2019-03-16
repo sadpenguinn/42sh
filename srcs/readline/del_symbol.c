@@ -12,7 +12,7 @@
 
 #include "readline.h"
 
-int		del(t_matrix *matrix)
+int		del_symbol(t_matrix *matrix)
 {
 	t_cursor	pos;
 	t_line		*line;

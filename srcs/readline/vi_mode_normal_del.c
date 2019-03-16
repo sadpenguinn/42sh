@@ -13,7 +13,7 @@
 #include "readline.h"
 #include "libft.h"
 
-int	normal_mode_del(t_matrix *matrix, t_uchar c)
+static int	vi_mode_normal_del_basic(t_matrix *matrix, t_uchar c)
 {
 	if (c == 'B')
 		return (del_begin_word(matrix));
@@ -38,9 +38,19 @@ int	normal_mode_del(t_matrix *matrix, t_uchar c)
 		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
 		return (del_string(matrix));
 	}
-	if (c == ';')
-		del_find_next_char(matrix);
-	if (c == ',')
-		del_find_back_char(matrix);
+	return (0);
+}
+
+static int	vi_mode_normal_del_advanced(t_matrix *matrix, t_uchar c)
+{
+	return (0);
+}
+
+int	vi_mode_normal_del(t_matrix *matrix, t_uchar c)
+{
+	if (vi_mode_normal_del_basic(matrix, c))
+		return (1);
+	if (vi_mode_normal_del_advanced(matrix, c))
+		return (1);
 	return (1);
 }

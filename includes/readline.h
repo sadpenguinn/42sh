@@ -180,6 +180,7 @@ typedef struct	s_history
 	int			is_replace;
 	t_string	*event;
 	char		find_char;
+	char		prev_find_option;
 	int			redo_undo;
 }				t_history;
 
@@ -227,12 +228,13 @@ int				vi_mode(t_uchar c);
 int				modes_handling(t_uchar c);
 int				esc_code_handling(t_uchar c);
 
-int				normal_mode(t_matrix *matrix, t_uchar c);
-int				normal_mode_del(t_matrix *matrix, t_uchar c);
-int				normal_mode_yank(t_matrix *matrix, t_uchar c);
-int				insert_mode(t_matrix *matrix, t_uchar c);
-int				replace_mode(t_matrix *matrix, t_uchar c);
-int				visual_mode(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal_del(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal_yank(t_matrix *matrix, t_uchar c);
+int				are_default_vi_normal_mode_shortcuts(t_matrix *matrix, t_uchar c);
+int				vi_mode_insert(t_matrix *matrix, t_uchar c);
+int				vi_mode_replace(t_matrix *matrix, t_uchar c);
+int				vi_mode_visual(t_matrix *matrix, t_uchar c);
 
 int				paste_before(t_matrix *matrix);
 int				paste_after(t_matrix *matrix);
@@ -290,8 +292,10 @@ int				move_cursor_begin_alnum(t_matrix *matrix);
 int				move_cursor_end_matrix(t_matrix *matrix);
 int				move_cursor_next_char(t_matrix *matrix);
 int				move_cursor_back_char(t_matrix *matrix);
+int				move_cursor_find_char_usual_order(t_matrix *matrix);
+int				move_cursor_find_char_reverse_order(t_matrix *matrix);
 
-int				del(t_matrix *matrix);
+int				del_symbol(t_matrix *matrix);
 int				back_space(t_matrix *matrix);
 
 int				print_default(t_matrix *matrix);
@@ -371,6 +375,8 @@ size_t			get_cursor_pos_begin_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_end_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_find_back_char(t_matrix *matrix);
 size_t			get_cursor_pos_find_next_char(t_matrix *matrix);
+size_t			get_cursor_pos_find_char_usual_order(t_matrix *matrix);
+size_t			get_cursor_pos_find_char_reverse_order(t_matrix *matrix);
 
 size_t			get_space_left_pos(const char *buf, size_t pos);
 size_t			get_space_right_pos(const char *buf, size_t pos, size_t len);
