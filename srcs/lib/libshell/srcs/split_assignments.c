@@ -34,7 +34,7 @@ char	**split_assignments(char *str)
 		return (pair);
 	}
 	pair[0] = ft_strdup(str);
-	pair[1] = NULL;
+	pair[1] = ft_strnew(0);
 	pair[2] = NULL;
 	return (pair);
 }

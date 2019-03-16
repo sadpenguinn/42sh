@@ -68,7 +68,6 @@ void	parse_config(void)
 	char		*path;
 	int			fd;
 
-	ft_putendl("UE");
 	path = ft_strjoin(sgetenv("HOME", ENV_ALL), SHELL_DEFAULT_RC, 0);
 	fd = open(path, O_CREAT, S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
 	close(fd);
@@ -77,8 +76,8 @@ void	parse_config(void)
 	fd = open(path, 'r');
 	read(fd, script, len + 1);
 	close(fd);
+	ft_strdel(&path);
 	lex = lexer(script, len);
-	lexer_print(lex->lexems);
 	ft_strdel(&script);
 	g_tokens = lex->lexems;
 	ast = inputunit();

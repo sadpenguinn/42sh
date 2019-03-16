@@ -58,63 +58,50 @@ static int	validate_sum(char *key, char *value)
 	return (free_sum(sum, path, 0));
 }
 
-static int	find_builtin(const char *bin, void **ret)
-{
-	if (!ft_strcmp(bin, "cd"))
-	{
+static int	find_builtin(const char *bin, void **ret) {
+	if (!ft_strcmp(bin, "cd")) {
 		*ret = built_cd;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "echo"))
+	} else if (!ft_strcmp(bin, "echo"))
 		*ret = built_echo;
 	else if (!ft_strcmp(bin, "env"))
 		*ret = built_env;
-	else if (!ft_strcmp(bin, "hash"))
-	{
+	else if (!ft_strcmp(bin, "hash")) {
 		*ret = built_hash;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "setenv"))
-	{
+	} else if (!ft_strcmp(bin, "setenv")) {
 		*ret = built_setenv;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "unsetenv"))
-	{
+	} else if (!ft_strcmp(bin, "unsetenv")) {
 		*ret = built_unsetenv;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "exit"))
-	{
+	} else if (!ft_strcmp(bin, "exit")) {
 		*ret = built_exit;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "export"))
-	{
+	} else if (!ft_strcmp(bin, "export")) {
 		*ret = built_export;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "set"))
-	{
+	} else if (!ft_strcmp(bin, "set")) {
 		*ret = built_set;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "alias"))
-	{
+	} else if (!ft_strcmp(bin, "alias")) {
 		*ret = built_alias;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "unalias"))
-	{
+	} else if (!ft_strcmp(bin, "unalias")) {
 		*ret = built_unalias;
 		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "jobs"))
+	} else if (!ft_strcmp(bin, "jobs"))
 		*ret = built_jobs;
 	else if (!ft_strcmp(bin, "bg"))
+	{
 		*ret = built_bg;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "fg"))
+	{
 		*ret = built_fg;
+		return (PATH_NOFORK);
+	}
 	else if (!ft_strcmp(bin, "type"))
 		*ret = built_type;
 	else
