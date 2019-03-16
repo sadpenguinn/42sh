@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/15 21:16:22 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/16 22:28:50 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 char			**autocomplete(t_line *line_info, int pos);
 extern char		*g_built_in_lists[];
-char			*atcml_get_pattern(char *buf, size_t pos);
-char			*atcml_get_rel_dir(char *buf, size_t pos);
+char			*atcml_get_pattern(char *buf, int pos);
+char			*atcml_get_rel_dir(char *buf, int pos);
 int				check_env_a_case(char c, char cb, int pos);
 int				check_oth_a_case(t_line *line_info, int pos);
 int				get_autocomplite_type(t_line *line_info,
