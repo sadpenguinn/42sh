@@ -259,10 +259,15 @@ int				yank_next_word(t_matrix *matrix);
 int				yank_end_word(t_matrix *matrix);
 int				yank_end(t_matrix *matrix);
 int				yank_home(t_matrix *matrix);
+int				yank_begin(t_matrix *matrix);
 int				yank_string(t_matrix *matrix);
 int				yank_begin_alnum(t_matrix *matrix);
 int				yank_next_alnum(t_matrix *matrix);
 int				yank_end_alnum(t_matrix *matrix);
+int				yank_find_next_char(t_matrix *matrix);
+int				yank_find_back_char(t_matrix *matrix);
+int				yank_find_char_usual_order(t_matrix *matrix);
+int				yank_find_char_reverse_order(t_matrix *matrix);
 
 t_cursor		matrix_string_insert(t_matrix *matrix, t_cursor pos,
 		const char *str, size_t size);

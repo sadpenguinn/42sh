@@ -1,6 +1,6 @@
 #include "readline.h"
 
-int	del_find_next_char(t_matrix *matrix)
+int	yank_find_next_char(t_matrix *matrix)
 {
 	t_cursor	pos;
 	size_t		col;
@@ -12,11 +12,11 @@ int	del_find_next_char(t_matrix *matrix)
 	pos.col = get_cursor_pos_right(matrix);
 	pos.row = matrix->cursor->row;
 	matrix->cursor->col = col;
-	*matrix->cursor = matrix_string_delete(*matrix->cursor, pos);
+	matrix_string_yank(*matrix->cursor, pos);
 	return (1);
 }
 
-int	del_find_back_char(t_matrix *matrix)
+int	yank_find_back_char(t_matrix *matrix)
 {
 	t_cursor	pos;
 	size_t		col;
@@ -28,11 +28,11 @@ int	del_find_back_char(t_matrix *matrix)
 	pos.col = matrix->cursor->col;
 	pos.row = matrix->cursor->row;
 	matrix->cursor->col = col;
-	*matrix->cursor = matrix_string_delete(pos, *matrix->cursor);
+	matrix_string_yank(*matrix->cursor, pos);
 	return (1);
 }
 
-int	del_find_char_usual_order(t_matrix *matrix)
+int	yank_find_char_usual_order(t_matrix *matrix)
 {
 	char	c;
 
@@ -40,11 +40,11 @@ int	del_find_char_usual_order(t_matrix *matrix)
 	if (c != 'f' && c != 'F')
 		return (1);
 	if (c == 'f')
-		return (del_find_next_char(matrix));
-	return (del_find_back_char(matrix));
+		return (yank_find_next_char(matrix));
+	return (yank_find_back_char(matrix));
 }
 
-int	del_find_char_reverse_order(t_matrix *matrix)
+int	yank_find_char_reverse_order(t_matrix *matrix)
 {
 	char	c;
 
@@ -52,6 +52,6 @@ int	del_find_char_reverse_order(t_matrix *matrix)
 	if (c != 'f' && c != 'F')
 		return (1);
 	if (c == 'F')
-		return (del_find_next_char(matrix));
-	return (del_find_back_char(matrix));
+		return (yank_find_next_char(matrix));
+	return (yank_find_back_char(matrix));
 }
