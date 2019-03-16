@@ -20,8 +20,11 @@ size_t	count_string_symbols(const char *buf,
 	symbols = 0;
 	while (left_limit < right_limit)
 	{
+		if (buf[left_limit] == '\t')
+			symbols += TAB_LEN;
+		else
+			symbols++;
 		left_limit += 1 + get_utf_offset_right(buf[left_limit]);
-		symbols++;
 	}
 	return (symbols);
 }
@@ -35,8 +38,11 @@ size_t	count_string_cols(const char *buf, size_t symbols)
 	i = 0;
 	while (i < symbols)
 	{
+		if (buf[col] == '\t')
+			i += TAB_LEN;
+		else
+			i++;
 		col += 1 + get_utf_offset_right(buf[col]);
-		i++;
 	}
 	return (col);
 }

@@ -247,6 +247,8 @@ int				del_string(t_matrix *matrix);
 int				del_begin_alnum(t_matrix *matrix);
 int				del_next_alnum(t_matrix *matrix);
 int				del_end_alnum(t_matrix *matrix);
+int				del_find_next_char(t_matrix *matrix);
+int				del_find_back_char(t_matrix *matrix);
 
 int				yank_begin_word(t_matrix *matrix);
 int				yank_next_word(t_matrix *matrix);
@@ -364,8 +366,8 @@ size_t			get_cursor_pos_end_word(t_matrix *matrix);
 size_t			get_cursor_pos_next_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_begin_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_end_alnum(t_matrix *matrix);
-size_t			get_cursor_pos_back_char(t_matrix *matrix);
-size_t			get_cursor_pos_next_char(t_matrix *matrix);
+size_t			get_cursor_pos_find_back_char(t_matrix *matrix);
+size_t			get_cursor_pos_find_next_char(t_matrix *matrix);
 
 size_t			get_space_left_pos(const char *buf, size_t pos);
 size_t			get_space_right_pos(const char *buf, size_t pos, size_t len);

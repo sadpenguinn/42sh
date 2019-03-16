@@ -27,6 +27,7 @@ set(SRC_LIB srcs/fatal_error.c
         srcs/ft_islower.c
         srcs/ft_isprint.c
         srcs/ft_isspace.c
+		srcs/ft_is_space_tab.c
         srcs/ft_isupper.c
         srcs/ft_isxdigit.c
         srcs/ft_itoa.c

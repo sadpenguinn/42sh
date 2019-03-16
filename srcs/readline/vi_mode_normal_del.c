@@ -38,5 +38,9 @@ int	normal_mode_del(t_matrix *matrix, t_uchar c)
 		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
 		return (del_string(matrix));
 	}
+	if (c == ';')
+		del_find_next_char(matrix);
+	if (c == ',')
+		del_find_back_char(matrix);
 	return (1);
 }

@@ -62,7 +62,7 @@ size_t	get_cursor_pos_end_word(t_matrix *matrix)
 	return (col);
 }
 
-size_t	get_cursor_pos_back_char(t_matrix *matrix)
+size_t	get_cursor_pos_find_back_char(t_matrix *matrix)
 {
 	size_t	col;
 	t_line	*line;
@@ -80,7 +80,7 @@ size_t	get_cursor_pos_back_char(t_matrix *matrix)
 	return (col);
 }
 
-size_t	get_cursor_pos_next_char(t_matrix *matrix)
+size_t	get_cursor_pos_find_next_char(t_matrix *matrix)
 {
 	size_t	col;
 	t_line	*line;

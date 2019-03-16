@@ -163,6 +163,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/paste_text.c
 					srcs/readline/del_text_1.c
 					srcs/readline/del_text_2.c
+					srcs/readline/del_text_3.c
 					srcs/readline/yank_text_1.c
 					srcs/readline/yank_text_2.c
 					srcs/readline/lex_check_bash_word.c

@@ -34,30 +34,54 @@ void			set_points(t_cursor *point1, t_cursor *point2)
 	}
 }
 
+static int		count_spaces(char c)
+{
+	if (c == ' ')
+		return (1);
+	return (TAB_LEN);
+}
+
+static void		add_spaces_to_array(size_t *n)
+{
+	while (*n)
+	{
+		array_add(" ", 1);
+		(*n)--;
+	}
+}
+
 static size_t	add_spaces(t_line *line, size_t start, size_t end, size_t row)
 {
 	size_t		pos;
 	t_cursor	point1;
 	t_cursor	point2;
+	size_t		cnt;
 
 	set_points(&point1, &point2);
 	pos = start;
-	while (pos < end && line->buf[pos] == ' ' &&
+	cnt = 0;
+	while (pos < end && ft_is_space_tab(line->buf[pos]) &&
 		   point1.col != pos && point2.col != pos)
-		pos++;
-	array_add(line->buf + start, pos - start);
+//		pos++;
+		cnt += count_spaces(line->buf[pos++]);
+	add_spaces_to_array(&cnt);
+//	array_add(line->buf + start, pos - start);
 	start = pos;
 	if (point1.row == row && g_vi_mode == VISUAL_MODE && pos == point1.col)
 			array_add(BG_COLOR_RED, ft_strlen(BG_COLOR_RED));
-	while (pos < end && line->buf[pos] == ' ' && point2.col != pos)
-		pos++;
-	array_add(line->buf + start, pos - start);
+	while (pos < end && ft_is_space_tab(line->buf[pos]) && point2.col != pos)
+		cnt += count_spaces(line->buf[pos++]);
+//		pos++;
+//	array_add(line->buf + start, pos - start);
+	add_spaces_to_array(&cnt);
 	start = pos;
 	if (point2.row == row && g_vi_mode == VISUAL_MODE && pos == point2.col)
 		array_add(BG_DEFAULT_COLOR, ft_strlen(BG_DEFAULT_COLOR));
-	while (pos < end && line->buf[pos] == ' ')
-		pos++;
-	array_add(line->buf + start, pos - start);
+	while (pos < end && ft_is_space_tab(line->buf[pos]))
+		cnt += count_spaces(line->buf[pos++]);
+//		pos++;
+//	array_add(line->buf + start, pos - start);
+	add_spaces_to_array(&cnt);
 	return (pos);
 }
 
@@ -70,20 +94,20 @@ static size_t	add_non_spaces(t_line *line, size_t start, size_t end,
 
 	set_points(&point1, &point2);
 	pos = start;
-	while (pos < end && line->buf[pos] != ' ' &&
+	while (pos < end && !ft_is_space_tab(line->buf[pos]) &&
 		   point1.col != pos && point2.col != pos)
 		pos++;
 	array_add(line->buf + start, pos - start);
 	start = pos;
 	if (point1.row == row && g_vi_mode == VISUAL_MODE && pos == point1.col)
 		array_add(BG_COLOR_RED, ft_strlen(BG_COLOR_RED));
-	while (pos < end && line->buf[pos] != ' ' && point2.col != pos)
+	while (pos < end && !ft_is_space_tab(line->buf[pos]) && point2.col != pos)
 		pos++;
 	array_add(line->buf + start, pos - start);
 	start = pos;
 	if (point2.row == row && g_vi_mode == VISUAL_MODE && pos == point2.col)
 		array_add(BG_DEFAULT_COLOR, ft_strlen(BG_DEFAULT_COLOR));
-	while (pos < end && line->buf[pos] != ' ')
+	while (pos < end && !ft_is_space_tab(line->buf[pos]))
 		pos++;
 	array_add(line->buf + start, pos - start);
 	return (pos);

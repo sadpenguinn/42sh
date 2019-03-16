@@ -26,14 +26,13 @@ int	del_string(t_matrix *matrix)
 int	del_begin_word(t_matrix *matrix)
 {
 	t_cursor	pos;
-	size_t		col;
 
-	col = matrix->cursor->col;
-	matrix->cursor->col = get_cursor_pos_begin_word(matrix);
-	pos.col = get_cursor_pos_left(matrix);
+	pos.col = get_cursor_pos_begin_word(matrix);
+	if (pos.col == matrix->cursor->col)
+		return (1);
 	pos.row = matrix->cursor->row;
-	matrix->cursor->col = col;
 	matrix_string_delete(*matrix->cursor, pos);
+	*matrix->cursor = pos;
 	return (1);
 }
 
@@ -42,6 +41,8 @@ int	del_next_word(t_matrix *matrix)
 	t_cursor	pos;
 
 	pos.col = get_cursor_pos_next_word(matrix);
+	if (pos.col == matrix->cursor->col)
+		return (1);
 	pos.row = matrix->cursor->row;
 	matrix_string_delete(*matrix->cursor, pos);
 	return (1);
@@ -54,6 +55,8 @@ int	del_end_word(t_matrix *matrix)
 
 	col = matrix->cursor->col;
 	matrix->cursor->col = get_cursor_pos_end_word(matrix);
+	if (col == matrix->cursor->col)
+		return (1);
 	pos.col = get_cursor_pos_right(matrix);
 	pos.row = matrix->cursor->row;
 	matrix->cursor->col = col;
@@ -66,6 +69,8 @@ int	del_end(t_matrix *matrix)
 	t_cursor	pos;
 
 	pos.col = get_cursor_pos_end(matrix);
+	if (pos.col == matrix->cursor->col)
+		return (1);
 	pos.row = matrix->cursor->row;
 	matrix_string_delete(*matrix->cursor, pos);
 	return (1);
