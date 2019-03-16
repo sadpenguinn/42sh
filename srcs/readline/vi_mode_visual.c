@@ -29,6 +29,8 @@ static int	are_default_vi_mode_visual_basic_shortcuts(t_matrix *matrix, t_uchar 
 
 static int	are_default_vi_mode_visual_advanced_shortcuts(t_matrix *matrix, t_uchar c)
 {
+	matrix = NULL;
+	c = 0;
 	return (0);
 }
 

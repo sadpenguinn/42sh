@@ -101,6 +101,8 @@ int		built_unalias(char **av, char **env);
 
 int		built_type(char **av, char **env);
 
+int		built_test(char **av, char **env);
+
 /*
 ** Internal function for echo
 */
