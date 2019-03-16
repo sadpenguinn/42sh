@@ -343,6 +343,9 @@ void			add_lines_text(t_matrix *matrix);
 void			add_text(t_matrix *matrix, size_t row, size_t col);
 void			add_line(t_line	*line, size_t start, size_t end,
 		size_t row);
+size_t			add_spaces(t_line *line, size_t pos, size_t end, size_t row);
+size_t			add_non_spaces(t_line *line, size_t start, size_t end,
+		size_t row);
 
 void			add_line_prefix(t_matrix *matrix, size_t cur_row);
 
@@ -395,12 +398,12 @@ int				plus_case(t_line *line, size_t pos, int plus_flag);
 
 void			check_swap(t_cursor *start, t_cursor *end);
 
-void			set_points(t_cursor *point1, t_cursor *point2);
-
 void			action_add(t_cursor start, t_cursor end, const char *buf,
 		int act);
 
 int				undo(t_matrix *matrix);
 int				redo(t_matrix *matrix);
+
+void			set_points(t_cursor *point1, t_cursor *point2);
 
 #endif

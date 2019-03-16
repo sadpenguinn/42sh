@@ -105,6 +105,7 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/newline_handling.c
 					srcs/readline/add_style.c
 					srcs/readline/add_text.c
+					srcs/readline/add_words.c
 					srcs/readline/symbol_to_string.c
 					srcs/readline/set_matrix_limits.c
 					srcs/readline/matrix_to_string.c
