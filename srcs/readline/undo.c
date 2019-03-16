@@ -33,3 +33,16 @@ int			undo(t_matrix *matrix)
 	matrix->cursor->col = line->len;
 	return (1);
 }
+
+int			large_undo_redo(t_matrix *matrix)
+{
+	if (matrix->modif->cur == 0)
+	{
+		while (matrix->modif->cur != matrix->modif->len - 1)
+			redo(matrix);
+		return (1);
+	}
+	while (matrix->modif->cur)
+		undo(matrix);
+	return (1);
+}

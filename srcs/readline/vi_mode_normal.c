@@ -151,6 +151,8 @@ int			normal_mode(t_matrix *matrix, t_uchar c)
 		return (1);
 	if (c == 'u')
 		return (undo(matrix));
+	if (c == 'U')
+		return (large_undo_redo(matrix));
 	if (c == CTRL_R)
 		return (redo(matrix));
 	if (is_insert_mode(matrix, c))

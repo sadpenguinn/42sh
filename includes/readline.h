@@ -403,6 +403,7 @@ void			action_add(t_cursor start, t_cursor end, const char *buf,
 
 int				undo(t_matrix *matrix);
 int				redo(t_matrix *matrix);
+int				large_undo_redo(t_matrix *matrix);
 
 void			set_points(t_cursor *point1, t_cursor *point2);
 
