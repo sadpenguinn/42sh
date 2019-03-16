@@ -141,8 +141,6 @@ static int	replace_symbol(t_matrix *matrix, t_uchar c)
 
 int			normal_mode(t_matrix *matrix, t_uchar c)
 {
-	if (c == CTRL_R)
-		return (1);
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'd')
 		return (normal_mode_del(matrix, c));
 	if (g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] == 'y')
@@ -151,6 +149,10 @@ int			normal_mode(t_matrix *matrix, t_uchar c)
 		return (replace_symbol(matrix, c));
 	if (is_find_char(matrix, c))
 		return (1);
+	if (c == 'u')
+		return (undo(matrix));
+	if (c == CTRL_R)
+		return (redo(matrix));
 	if (is_insert_mode(matrix, c))
 		return (1);
 	if (are_default_normal_mode_shortcuts(matrix, c))

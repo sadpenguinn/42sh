@@ -32,11 +32,12 @@ static void	read_history_from_file(int fd)
 		if (g_history->size == g_history->len)
 			history_resize(g_history);
 		g_history->len++;
-		g_history->matrix[g_history->len - 1] = matrix_init();
-		matrix_insert_line(g_history->matrix[g_history->len - 1], 0);
-		matrix_string_insert(g_history->matrix[g_history->len - 1],
+		g_history->cur = g_history->len - 1;
+		g_history->matrix[g_history->cur] = matrix_init();
+		matrix_insert_line(g_history->matrix[g_history->cur], 0);
+		matrix_string_insert(g_history->matrix[g_history->cur],
 				pos, str, len);
-		string_fill(g_history->matrix[g_history->len - 1]->str_history,
+		string_fill(g_history->matrix[g_history->cur]->str_history,
 				str, len);
 		free(str);
 	}
@@ -75,6 +76,8 @@ static void	init_history(void)
 
 void		history_fill(void)
 {
+	t_matrix	*matrix;
+
 	init_history();
 	if (g_history->len)
 		g_history->last_hst_matrix =
@@ -84,5 +87,7 @@ void		history_fill(void)
 	g_history->len++;
 	g_history->cur = g_history->len - 1;
 	g_history->matrix[g_history->cur] = matrix_init();
-	matrix_insert_line(g_history->matrix[g_history->cur], 0);
+	matrix = g_history->matrix[g_history->cur];
+	matrix_insert_line(matrix, 0);
+	matrix_string_insert(matrix, *matrix->cursor, "", 0);
 }

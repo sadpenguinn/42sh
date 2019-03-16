@@ -118,6 +118,11 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/add_line_prefix.c
 					srcs/readline/get_lines_info.c
 					srcs/readline/matrix_init.c
+					srcs/readline/modification_init.c
+					srcs/readline/modification_resize.c
+					srcs/readline/modification_free.c
+					srcs/readline/action_add.c
+					srcs/readline/action_free.c
 					srcs/readline/line_init.c
 					srcs/readline/line_free.c
 					srcs/readline/matrix_free.c
@@ -165,6 +170,8 @@ set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/bang_handling.c
 					srcs/readline/bang_cases.c
 					srcs/readline/set_backslash.c
+					srcs/readline/undo.c
+					srcs/readline/redo.c
 					srcs/readline/check_cursor_swap.c)
 
 set(LEXER_SRC		srcs/lexer/lexer.c

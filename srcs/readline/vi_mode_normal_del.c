@@ -27,10 +27,12 @@ int	normal_mode_del(t_matrix *matrix, t_uchar c)
 		return (del_next_alnum(matrix));
 	if (c == 'e')
 		return (del_end_alnum(matrix));
-	if (c == '$')
+	if (c == '$' || c == END1 || c == END2)
 		return (del_end(matrix));
-	if (c == '|' || c == '0')
+	if (c == '|' || c == '0' || c == HOME1 || c == HOME2)
 		return (del_home(matrix));
+	if (c == '^')
+		return (del_begin(matrix));
 	if (c == 'd')
 	{
 		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;

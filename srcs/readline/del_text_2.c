@@ -12,17 +12,6 @@
 
 #include "readline.h"
 
-int	del_string(t_matrix *matrix)
-{
-	t_cursor	pos;
-
-	pos.col = get_cursor_pos_end(matrix);
-	pos.row = matrix->cursor->row;
-	matrix->cursor->col = get_cursor_pos_begin(matrix);
-	matrix_string_delete(*matrix->cursor, pos);
-	return (1);
-}
-
 int	del_begin_alnum(t_matrix *matrix)
 {
 	t_cursor	pos;
@@ -57,6 +46,28 @@ int	del_end_alnum(t_matrix *matrix)
 	pos.col = get_cursor_pos_right(matrix);
 	pos.row = matrix->cursor->row;
 	matrix->cursor->col = col;
+	matrix_string_delete(*matrix->cursor, pos);
+	return (1);
+}
+
+int	del_home(t_matrix *matrix)
+{
+	t_cursor	pos;
+
+	pos.col = matrix->cursor->col;
+	pos.row = matrix->cursor->row;
+	matrix->cursor->col = get_cursor_pos_home(matrix);
+	matrix_string_delete(*matrix->cursor, pos);
+	return (1);
+}
+
+int	del_begin(t_matrix *matrix)
+{
+	t_cursor	pos;
+
+	pos.col = matrix->cursor->col;
+	pos.row = matrix->cursor->row;
+	matrix->cursor->col = get_cursor_pos_begin(matrix);
 	matrix_string_delete(*matrix->cursor, pos);
 	return (1);
 }

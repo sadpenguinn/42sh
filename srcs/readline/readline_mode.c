@@ -42,6 +42,14 @@ static int	are_default_readline_mode_shortcuts(t_matrix *matrix, t_uchar c)
 	return (0);
 }
 
+static int	ctrl_t_handling(t_matrix *matrix)
+{
+	back_space(matrix);
+	move_cursor_right(matrix);
+	paste_before(matrix);
+	return (move_cursor_right(matrix));
+}
+
 int			readline_mode(t_uchar c)
 {
 	char		str[sizeof(t_uchar)];
@@ -53,8 +61,12 @@ int			readline_mode(t_uchar c)
 		return (1);
 	}
 	matrix = g_history->matrix[g_history->cur];
+	if (c == CTRL__)
+		return (undo(matrix));
 	if (are_default_readline_mode_shortcuts(matrix, c))
 		return (1);
+	if (c == CTRL_T)
+		return (ctrl_t_handling(matrix));
 	if (c == '\t' && g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] != CTRL_V)
 		return (print_autocomplete(matrix));
 	if (c == '\n')

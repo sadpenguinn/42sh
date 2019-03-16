@@ -21,6 +21,7 @@ void	matrix_free(t_matrix *matrix)
 		return ;
 	cursor_free(matrix->cursor);
 	string_free(matrix->str_history);
+	modification_free(matrix->modif);
 	i = 0;
 	while (i < matrix->len)
 		line_free(matrix->lines[i++]);

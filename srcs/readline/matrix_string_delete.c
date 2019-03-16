@@ -41,6 +41,8 @@ t_cursor	matrix_string_delete(t_cursor left, t_cursor right)
 	line = matrix->lines[left.row];
 	if (left.row == right.row)
 	{
+		if (g_history->redo_undo == 0)
+			action_add(left, right, line->buf + left.col, DELETE);
 		line_string_delete(line, left.col, right.col - left.col);
 		return (left);
 	}

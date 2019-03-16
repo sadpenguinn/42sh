@@ -69,10 +69,16 @@
 
 # include <sys/ioctl.h>
 # include <string.h>
+# include <stdio.h>
 
 enum	e_bang
 {
 	NO_BANGS = 0, BANG_REPLACED = 1, BANG_ERROR = 2
+};
+
+enum	e_act
+{
+	INSERT = 0, DELETE = 1
 };
 
 enum	e_keys
@@ -81,7 +87,10 @@ enum	e_keys
 	RIGHT = 0x435b1b, LEFT = 0x445b1b, CTRL_F = 0x6, CTRL_B = 0x2,
 	BS = 0x7f, DEL = 0x7e335b1b,
 	HOME1 = 0x485b1b, END1 = 0x465b1b, HOME2 = 0x7e315b1b, END2 = 0x7e345b1b,
-	ESC = 0x1b
+	ESC = 0x1b,
+	CTRL__ = 31, CTRL_T = 20,
+	CTRL_H = 8, CTRL_L = 12,
+	CTRL_V = 026, CTRL_R = 022, CTRL_D = 04
 };
 
 enum	e_editing_modes
@@ -97,14 +106,8 @@ enum	e_vi_mode_editing_modes
 enum	e_allocation_params
 {
 	HISTORY_DEFAULT_SIZE = 10, BUF_DEFAULT_SIZE = 5, RATIO = 2,
-	MATRIX_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10
+	MATRIX_ARRAY_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10, MODIF_ARRAY_DEFAULT_SIZE = 10
 };
-
-# define CTRL_V 026
-# define CTRL_R 022
-# define CTRL_D 04
-# define CTRL_H 8
-# define CTRL_L 12
 
 typedef	unsigned long long int	t_uchar;
 
@@ -135,16 +138,33 @@ typedef	struct	s_line
 	char		*buf;
 }				t_line;
 
+typedef	struct	s_action
+{
+	int			act;
+	t_cursor	start;
+	t_cursor	end;
+	char		*buf;
+}				t_action;
+
+typedef	struct	s_modification
+{
+	size_t		len;
+	size_t		size;
+	size_t		cur;
+	t_action	**actions;
+}				t_modification;
+
 typedef	struct	s_matrix
 {
-	size_t		size;
-	size_t		len;
-	t_line		**lines;
-	t_cursor	*cursor;
-	size_t		left_limit;
-	size_t		right_limit;
-	t_string	*str_history;
-	t_cursor	point;
+	size_t			size;
+	size_t			len;
+	t_line			**lines;
+	t_cursor		*cursor;
+	size_t			left_limit;
+	size_t			right_limit;
+	t_string		*str_history;
+	t_cursor		point;
+	t_modification	*modif;
 }				t_matrix;
 
 typedef struct	s_history
@@ -160,6 +180,7 @@ typedef struct	s_history
 	int			is_replace;
 	t_string	*event;
 	char		find_char;
+	int			redo_undo;
 }				t_history;
 
 extern t_history		*g_history;
@@ -178,6 +199,7 @@ t_matrix		*matrix_init(void);
 t_line			*line_init(void);
 t_string		*string_init(void);
 t_cursor		*cursor_init(void);
+t_modification	*modification_init(void);
 
 t_matrix		*matrix_dup(t_matrix *src);
 t_line			*line_dup(t_line *src);
@@ -220,6 +242,7 @@ int				del_next_word(t_matrix *matrix);
 int				del_end_word(t_matrix *matrix);
 int				del_end(t_matrix *matrix);
 int				del_home(t_matrix *matrix);
+int				del_begin(t_matrix *matrix);
 int				del_string(t_matrix *matrix);
 int				del_begin_alnum(t_matrix *matrix);
 int				del_next_alnum(t_matrix *matrix);
@@ -247,6 +270,7 @@ size_t			line_string_insert(t_line *line, size_t pos,
 void			line_resize(t_line *line, size_t new_size, size_t old_size);
 void			matrix_resize(t_matrix *matrix, size_t new_size,
 		size_t old_size);
+void			modification_resize(t_modification *modif, size_t new_size, size_t old_size);
 
 int				move_cursor_left(t_matrix *matrix);
 int				move_cursor_right(t_matrix *matrix);
@@ -281,6 +305,8 @@ void			cursor_free(t_cursor *cursor);
 void			string_free(t_string *str);
 void			matrix_free(t_matrix *matrix);
 void			history_free(t_history *history);
+void			action_free(t_action *action);
+void			modification_free(t_modification *modif);
 
 void			line_del(t_line **line);
 void			string_del(t_string **str);
@@ -368,5 +394,11 @@ int				plus_case(t_line *line, size_t pos, int plus_flag);
 void			check_swap(t_cursor *start, t_cursor *end);
 
 void			set_points(t_cursor *point1, t_cursor *point2);
+
+void			action_add(t_cursor start, t_cursor end, const char *buf,
+		int act);
+
+int				undo(t_matrix *matrix);
+int				redo(t_matrix *matrix);
 
 #endif

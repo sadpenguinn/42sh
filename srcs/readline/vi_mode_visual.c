@@ -51,6 +51,8 @@ static int	del_yank(t_matrix *matrix, t_uchar c)
 static int	is_normal_mode(t_matrix *matrix, t_uchar c)
 {
 	g_vi_mode = NORMAL_MODE;
+	if (c == 'u' || c == 'U' || c == CTRL_R)
+		return (1);
 	if (c == CTRL_P)
 		return (move_history_prev());
 	if (c == CTRL_N)
@@ -65,8 +67,6 @@ static int	is_normal_mode(t_matrix *matrix, t_uchar c)
 
 int		visual_mode(t_matrix *matrix, t_uchar c)
 {
-	if (c == CTRL_R)
-		return (1);
 	if (c == ESC)
 	{
 		g_vi_mode = NORMAL_MODE;
