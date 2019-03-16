@@ -251,6 +251,8 @@ int				del_next_alnum(t_matrix *matrix);
 int				del_end_alnum(t_matrix *matrix);
 int				del_find_next_char(t_matrix *matrix);
 int				del_find_back_char(t_matrix *matrix);
+int				del_find_char_usual_order(t_matrix *matrix);
+int				del_find_char_reverse_order(t_matrix *matrix);
 
 int				yank_begin_word(t_matrix *matrix);
 int				yank_next_word(t_matrix *matrix);
