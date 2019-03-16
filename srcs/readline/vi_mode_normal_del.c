@@ -43,6 +43,8 @@ static int	vi_mode_normal_del_basic(t_matrix *matrix, t_uchar c)
 
 static int	vi_mode_normal_del_advanced(t_matrix *matrix, t_uchar c)
 {
+	matrix = NULL;
+	c = 0;
 	return (0);
 }
 
