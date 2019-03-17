@@ -13,24 +13,24 @@
 #include "readline.h"
 #include "shell.h"
 
-char	*get_buffer_content(void)
+char		*get_buffer_content(void)
 {
 	return (g_history->buffer->buf);
 }
 
-size_t	get_buffer_len(void)
+size_t		get_buffer_len(void)
 {
 	return (g_history->buffer->len);
 }
 
-void	buffer_del(void)
+static void	buffer_del(void)
 {
 	free(g_history->buffer->buf);
 	g_history->buffer->len = 0;
 	g_history->buffer->buf = NULL;
 }
 
-void	buffer_add(const char *str, size_t size)
+void		buffer_add(const char *str, size_t size)
 {
 	buffer_del();
 	g_history->buffer->buf = (char *)xmalloc(sizeof(char) * size);

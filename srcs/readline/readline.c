@@ -14,6 +14,7 @@
 #include <string.h>
 #include "term.h"
 #include <unistd.h>
+#include <signal.h>
 
 t_history		*g_history;
 int				g_mode;
@@ -24,8 +25,20 @@ int				g_syntax;
 struct winsize	g_w;
 t_uchar			g_shortcuts[SHORTCUT_ARRAY_SIZE];
 
+void			sigwinch_handler(int sig)
+{
+	if (sig == SIGWINCH)
+	{
+		array_add(CURSOR_CLEAR_SCREEN, strlen(CURSOR_CLEAR_SCREEN));
+		array_flush();
+		print_default(g_history->matrix[g_history->cur]);
+		get_term_params(&g_w);
+	}
+}
+
 void			init_readline(void)
 {
+	signal(SIGWINCH, sigwinch_handler);
 	get_term_params(&g_w);
 	set_term();
 	g_heredoc = 0;
