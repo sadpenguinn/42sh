@@ -1,0 +1,8 @@
+-c[prefix each line with hash mark]
+-h[help]
+-k[suppress merging of filenames in report]
+-l[list only the filenames]
+-t[overrides histogram, generates csv output]
+-u[suppress sorting of filenames in report]
+-v[show progress]
+-V[print version number]

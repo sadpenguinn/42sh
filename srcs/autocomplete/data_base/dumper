@@ -1,0 +1,8 @@
+-d[be verbose while dumping]
+--verbose[be verbose while dumping]
+-q[be quiet while dumping (default)]
+--quiet[be quiet while dumping (default)]
+-h[output help information and exit]
+--help[output help information and exit]
+-v[output version information and exit]
+--version[output version information and exit]

@@ -1,0 +1,8 @@
+-A[creates item for All Users instead of just current user]
+--allusers[creates item for All Users instead of just current user]
+-D[creates a Desktop icon for running /zsh.bat]
+--desktop[creates a Desktop icon for running /zsh.bat]
+-P[creates a Program menu item for running /zsh.bat]
+--smprograms[creates a Program menu item for running /zsh.bat]
+-h[display help information]
+--help[display help information]

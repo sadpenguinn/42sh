@@ -1,0 +1,5 @@
+-v[be verbose]
+--verbose[be verbose]
+-t[dump the physical USB device hierarchy as a tree]
+-V[print version info and exit]
+--version[print version info and exit]

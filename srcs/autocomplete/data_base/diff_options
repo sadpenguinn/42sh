@@ -1,0 +1,5 @@
+-c[output a context diff]
+-e[output an ed script]
+-f[output a reversed ed script]
+-b[skip trailing white spaces]
+-r[recursively compare subdirectories]

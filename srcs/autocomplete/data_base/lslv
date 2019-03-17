@@ -1,0 +1,4 @@
+-p[display logical volume allocation map for the physical volume]
+-l[list physical volumes in logical volume]
+-m[list partition numbers]
+-n[accesses information from the descriptor area of physical volume]

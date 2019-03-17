@@ -1,0 +1,7 @@
+-i[read text into X selection (default)]
+-o[print selection to standard output]
+-f[copy input additionally to standard output]
+-l[number of selection requests to wait before exiting]
+-t[specify data format]
+-d[X display to connect to]
+-h[display usage information]

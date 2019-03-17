@@ -1,0 +1,2 @@
+-u[host environment user whom command runs as]
+-U[jail environment user whom command runs as]

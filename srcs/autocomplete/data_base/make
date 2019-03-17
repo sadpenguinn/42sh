@@ -1,0 +1,5 @@
+-C[change directory first]
+-I[include directory for makefiles]
+-f[specify makefile]
+-o[specify file not to remake]
+-W[pretend file was modified]

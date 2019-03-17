@@ -1,0 +1,5 @@
+-h[help]
+-S[match strings only]
+-L[list all files in package]
+-l[almost-emulation of dpkg -l]
+-s[print status of package]

@@ -1,0 +1,4 @@
+-c[print byte counts]
+-m[print character counts]
+-w[print word counts]
+-l[print line counts]

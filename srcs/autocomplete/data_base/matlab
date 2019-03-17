@@ -1,0 +1,5 @@
+-h[display arguments]
+-n[display final environment variables, and exit]
+-e[display all environment variables and values, and exit]
+-c[set location of the license file]
+-r[start MATLAB and execute the MATLAB_command]

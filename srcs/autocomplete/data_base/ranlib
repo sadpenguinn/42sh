@@ -1,0 +1,7 @@
+-s[preferred type ToC (default)]
+-a[original type ToC]
+-c[include common symbols]
+-L[4.4bsd archive extended format #1 (default)]
+-T[truncate names to 16 chars, per pre-4.4.bsd format]
+-f[warn about fat archives]
+-t[do not rebuild ToC (ignored)]

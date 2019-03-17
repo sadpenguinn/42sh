@@ -1,0 +1,6 @@
+-a[unmount all mounted file systems]
+-A[unmount all mounted file systems except the root]
+-f[force unmount]
+-h[unmount all filesystems associated with host]
+-t[unmount all filesystems of specified type]
+-v[verbose mode]

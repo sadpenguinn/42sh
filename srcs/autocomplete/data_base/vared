@@ -1,0 +1,5 @@
+-A[edit associative array]
+-a[edit array parameter]
+-c[create parameter or change type]
+-h[allow access to history]
+-e[exit on EOF (^D)]

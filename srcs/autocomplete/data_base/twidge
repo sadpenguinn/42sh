@@ -1,0 +1,4 @@
+-c[config file]
+--config[config file]
+-d[enable debugging output]
+--debug[enable debugging output]

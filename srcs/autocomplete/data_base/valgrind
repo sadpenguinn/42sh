@@ -1,0 +1,7 @@
+-h[show help information]
+--help[show help information]
+--version[show version]
+-q[run silently; only print error msgs]
+--quiet[run silently; only print error msgs]
+-v[be more verbose]
+--verbose[be more verbose]

@@ -1,0 +1,8 @@
+-f[restrict examination to files open in the same file systems as the named file arguments]
+-M[extract values associated with the name list from the specified core]
+-N[extract the name list from the specified system]
+-m[include memory-mapped files in the listing]
+-n[numerical format]
+-p[report all files open by the specified process]
+-u[report all files open by the specified user]
+-v[verbose mode]

@@ -1,0 +1,3 @@
+-s[Specify user login shell]
+-l[Specify location of user]
+-u[Specify authentication name]

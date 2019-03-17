@@ -1,0 +1,7 @@
+-V[version]
+-C[compression]
+-d[debug]
+-f[foreground]
+-s[disable multithreaded operation]
+-r[mount read-only]
+-h[help]

@@ -1,0 +1,3 @@
+--help[display help information]
+--version[display version information]
+--traceback[print traceback on exception]

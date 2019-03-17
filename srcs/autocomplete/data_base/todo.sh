@@ -1,0 +1,6 @@
+-d[alternate config file]
+-f[force, no confirmation]
+-h[display help]
+-p[plain mode, no colours]
+-v[verbose mode, confirmation messages]
+-V[display version etc.]

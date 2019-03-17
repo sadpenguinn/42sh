@@ -1,0 +1,8 @@
+-h[display help]
+--help[display help]
+-v[be more verbose]
+-V[be more verbose]
+--verbose[be more verbose]
+--silent[be less verbose]
+--nolistsdownload[do not download Release or index files]
+--keepunreferencedfiles[do not delete files that are no longer used]

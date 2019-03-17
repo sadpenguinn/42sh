@@ -1,0 +1,6 @@
+-h[display help information]
+--help[display help information]
+-V[display version information]
+--version[display version information]
+-r[specify method]
+-l[specify login id]

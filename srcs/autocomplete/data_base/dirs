@@ -1,0 +1,4 @@
+-c[clear the directory stack]
+-l[display directory names in full]
+-v[display numbered list of directory stack]
+-p[display directory entries one per line]

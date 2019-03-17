@@ -1,0 +1,3 @@
+-n[don't output old defs as comments]
+-o[only output changes for tables in both databases]
+--help[display usage]

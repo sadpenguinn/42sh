@@ -1,0 +1,5 @@
+-h[help]
+--help[help]
+-d[start up as daemon]
+--daemon[start up as daemon]
+-v[print information about pressed keys]

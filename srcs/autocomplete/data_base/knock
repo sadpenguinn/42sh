@@ -1,0 +1,8 @@
+-u[UDP mode]
+--udp[UDP mode]
+-v[verbose]
+--verbose[verbose]
+-V[display version]
+--version[display version]
+-h[help]
+--help[help]

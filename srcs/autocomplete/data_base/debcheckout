@@ -1,0 +1,8 @@
+-a[rewrite anonymous checkout URLs to authenticated ones]
+--auth[rewrite anonymous checkout URLs to authenticated ones]
+-d[print detailed information; do not checkout]
+--details[print detailed information; do not checkout]
+-h[show usage message]
+--help[show usage message]
+-p[print summary information; do not checkout]
+--print[print summary information; do not checkout]

@@ -1,1 +1,7 @@
--s -S : (-n)-b[number non-blank output lines] (-v)-e[display $ at the end of each line (implies -v)] -n[number all output lines] -s[squeeze multiple blank lines into one] (-v)-t[display tab as ^I (implies -v)] -u[do not buffer output] -v[display non-printing chars as ^X or M-a] (-)*:files:_files
+-b[number non-blank output lines]
+-e[display $ at the end of each line (implies -v)]
+-n[number all output lines]
+-s[squeeze multiple blank lines into one]
+-t[display tab as ^I (implies -v)]
+-u[do not buffer output]
+-v[display non-printing chars as ^X or M-a]

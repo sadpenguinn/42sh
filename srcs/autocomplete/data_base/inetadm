@@ -1,0 +1,6 @@
+-l[list service instance properties]
+-e[enable specified instance]
+-d[disable specified instance]
+-p[list inet service properties]
+-m[modify service instance properties]
+-M[modify inet service properties]

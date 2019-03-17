@@ -1,0 +1,8 @@
+-M[target machine]
+-m[virtual RAM size (default=128)]
+-k[use keyboard layout]
+-s[wait gdb connection to port 1234]
+-p[change gdb connection port]
+-S[do not start CPU at startup]
+-d[output log in /tmp/qemu.log]
+-g[set initial graphic mode]

@@ -1,0 +1,3 @@
+-d[omit trailing periods from filenames]
+-D[disable deep directory relocation]
+-f[follow symbolic links]

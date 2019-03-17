@@ -1,0 +1,6 @@
+--help[display help information]
+--version[display version information]
+-a[synonym for --predict=always]
+-n[synonym for --predict=never]
+--server[specify command to run server helper]
+--client[specify command to run client helper]

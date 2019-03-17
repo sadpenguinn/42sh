@@ -1,0 +1,3 @@
+-u[display or set time in UTC]
+-n[only set time on current machine]
+-j[do not try to set date]

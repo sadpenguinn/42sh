@@ -1,0 +1,5 @@
+-c[show comments]
+-f[full path matching]
+-o[overwrite files]
+-y[assume yes on all queries]
+-h[print help information]

@@ -1,0 +1,7 @@
+-c[start in interactive mode]
+-D[print all debug information to stderr]
+-q[quiet mode, no output]
+--help[show usage information]
+--version[show version information]
+-r[use realtime scheduling policy (SCHED_FIFO)]
+-x[truncate outputs]

@@ -1,0 +1,7 @@
+-n[no reverse lookups]
+-N[always reverse lookup]
+-S[set TCP SYN flag]
+-A[set TCP ACK flag]
+-E[send ECN SYN packets]
+-F[set IP don't fragment bit]
+-d[enable debugging]

@@ -1,0 +1,6 @@
+-o[lists only active volume groups]
+-n[specify physical volume to access variable descriptor from]
+-i[reads volume group names from standard input]
+-l[list logical volumes in volume group]
+-M[list mapping of physical and logical partition numbers]
+-p[list physical volumes used by volume group]

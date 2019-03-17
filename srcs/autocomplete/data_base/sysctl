@@ -1,0 +1,6 @@
+-a[list all]
+-A[show all opaques (values suppressed)]
+-b[binary output]
+-n[show only variable values]
+-w[write mode]
+-X[show all opaques (entire values)]

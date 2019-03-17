@@ -1,0 +1,5 @@
+-f[specify authfile]
+-v[verbose mode]
+-q[quiet mode]
+-b[break locks]
+-i[ignore locks]

@@ -1,0 +1,4 @@
+-f[ignore nonexistent files, never prompt]
+-i[prompt before every removal]
+-r[remove directories and their contents recursively]
+-R[remove directories and their contents recursively]

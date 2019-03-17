@@ -1,0 +1,4 @@
+-s[read commands from standard input]
+--shinstdin[read commands from standard input]
+-b[end of option processing, like --]
+-c[run a command]

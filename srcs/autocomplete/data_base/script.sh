@@ -6,10 +6,7 @@ do
  	then
     	echo $file
 	else
-		if [ -z $(cat $file) ]
-        then rm $file
-        fi
-    	#echo "file = $file"
+    	cat $file | grep -Eo '(\-([a-zA-Z]|(-[a-zA-Z]+))\[.*?\])' >  ${file#_}
 		#echo $TMP > $NORM_FILE
     	#echo "ok"
     	#zsh $file

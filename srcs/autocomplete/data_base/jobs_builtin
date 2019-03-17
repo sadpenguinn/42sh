@@ -1,0 +1,6 @@
+-Z[specify string to replace shell's argument and environment with]
+-d[show directory from which each job was started]
+-l[list process IDs]
+-p[list process groups]
+-r[list only running jobs]
+-s[list only stopped jobs]

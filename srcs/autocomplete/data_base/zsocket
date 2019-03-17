@@ -1,0 +1,5 @@
+-v[verbose output]
+-d[target file descriptor]
+-l[open a socket listening]
+-a[accept an incoming connection]
+-t[return if no incoming connections are pending]

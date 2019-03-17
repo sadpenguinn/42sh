@@ -1,0 +1,3 @@
+-u[append the user name of the process owner to each PID]
+-c[list all processes accessing files on the filesystem specified by name]
+-f[list all processes accessing named files]

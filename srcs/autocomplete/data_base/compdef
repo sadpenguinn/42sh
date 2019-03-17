@@ -1,0 +1,3 @@
+-N[completion for named command]
+-p[completion for command matching pattern]
+-P[completion for command matching pattern]

@@ -1,0 +1,8 @@
+-p[preserve file attributes]
+-q[quiet, don't show statistics]
+-r[copy directories recursively]
+-v[show verbose messages]
+-P[connect to specified port]
+-l[connect with specified username]
+-C[enable compression]
+-i[specify private key file for authentication]

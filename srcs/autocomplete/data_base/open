@@ -1,0 +1,3 @@
+-a[specify application]
+-e[open with TextEdit]
+-f[reads input from standard input and opens with TextEdit]
