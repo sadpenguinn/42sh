@@ -62,5 +62,6 @@ int	vi_mode_replace(t_matrix *matrix, t_uchar c)
 	ft_memset(str, 0, sizeof(t_uchar));
 	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
 			str, symbol_to_string(c, str));
+	g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
 	return (1);
 }

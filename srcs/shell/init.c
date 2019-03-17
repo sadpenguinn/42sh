@@ -53,7 +53,7 @@ int				g_status = 0;
 
 int				g_echoe = TRUE;
 int				g_dontexec = FALSE;
-int				g_syntax = SYNTAX_ON;
+int				g_syntax = SYNTAX_OFF;
 
 #include "lexer.h"
 #include "parser.h"

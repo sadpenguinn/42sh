@@ -32,9 +32,9 @@ int		main(void)
 	while (c != '\n')
 	{
 		c = 0;
-		ret = read(0, &c, 1);
-		printf("\nnbr = %lld\n", c);
-		printf("\nret = %d\n", ret);
+		ret = read(0, &c, 8);
+		printf("nbr = %llx\n", c);
+		printf("nbr = %lld\n\n", c);
 	}
 	unset_term();
 	return (0);

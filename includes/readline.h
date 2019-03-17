@@ -88,9 +88,9 @@ enum	e_keys
 	BS = 0x7f, DEL = 0x7e335b1b,
 	HOME1 = 0x485b1b, END1 = 0x465b1b, HOME2 = 0x7e315b1b, END2 = 0x7e345b1b,
 	ESC = 0x1b,
+	CTRL_V = 026, CTRL_R = 022, CTRL_D = 04,
 	CTRL__ = 31, CTRL_T = 20,
 	CTRL_H = 8, CTRL_L = 12,
-	CTRL_V = 026, CTRL_R = 022, CTRL_D = 04
 };
 
 enum	e_editing_modes
@@ -235,6 +235,7 @@ int				are_default_vi_normal_mode_shortcuts(t_matrix *matrix, t_uchar c);
 int				vi_mode_insert(t_matrix *matrix, t_uchar c);
 int				vi_mode_replace(t_matrix *matrix, t_uchar c);
 int				vi_mode_visual(t_matrix *matrix, t_uchar c);
+int				vi_mode_visual_is_normal_mode(t_matrix *matrix, t_uchar c);
 
 int				paste_before(t_matrix *matrix);
 int				paste_after(t_matrix *matrix);
@@ -389,7 +390,6 @@ size_t			get_space_left_pos(const char *buf, size_t pos);
 size_t			get_space_right_pos(const char *buf, size_t pos, size_t len);
 
 void			buffer_add(const char *str, size_t size);
-void			buffer_free(void);
 char			*get_buffer_content(void);
 size_t			get_buffer_len(void);
 
@@ -419,5 +419,7 @@ int				redo(t_matrix *matrix);
 int				large_undo_redo(t_matrix *matrix);
 
 void			set_points(t_cursor *point1, t_cursor *point2);
+
+void			sigwinch_handler(int sig);
 
 #endif
