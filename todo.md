@@ -5,7 +5,6 @@
 [✓] Run commands with their parameters and PATH monitoring<br>
 [✓] Error monitoring, without using errno, and return values of commands<br>
 [✓] Correct spaces and tabulations monitoring<br>
-`Ctrl-V + Tab == 4 spaces. Is it OK?`
 
 **21sh Part**
 
