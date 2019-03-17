@@ -1,0 +1,19 @@
+echo "It works"
+echo It works""
+setenv FOO bar
+echo $?
+echo $FOO
+unsetenv FOO
+echo $?
+foo
+echo $?
+echo OK | cat -e
+echo "Testing redirections," > test.txt
+cat test.txt
+echo "with multiple lines" >> test.txt
+cat test.txt
+wc -c < test.txt |  awk '{$1=$1};1'
+echo START; touch newfile; echo END
+mkdir test ; cd test ; ls -a ; ls | cat | wc -c > fifi ; cat fifi |  awk '{$1=$1};1'
+rm nosuchfile 2>&-
+echo "No dollar character" 1>&2 | cat -e
