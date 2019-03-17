@@ -33,11 +33,6 @@ static int	vi_mode_normal_yank_basic(t_matrix *matrix, t_uchar c)
 		return (yank_home(matrix));
 	if (c == '^')
 		return (yank_begin(matrix));
-	if (c == 'y')
-	{
-		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
-		return (yank_string(matrix));
-	}
 	return (0);
 }
 
@@ -51,10 +46,20 @@ static int	vi_mode_normal_yank_advanced(t_matrix *matrix, t_uchar c)
 		return (yank_find_char_reverse_order(matrix));
 	if (c == ',')
 		return (yank_find_char_usual_order(matrix));
+	if (c == 'd')
+	{
+		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
+		return (1);
+	}
+	if (c == 'y')
+	{
+		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
+		return (yank_string(matrix));
+	}
 	return (0);
 }
 
-int	vi_mode_normal_yank(t_matrix *matrix, t_uchar c)
+int			vi_mode_normal_yank(t_matrix *matrix, t_uchar c)
 {
 	if (vi_mode_normal_yank_advanced(matrix, c))
 		return (1);

@@ -88,9 +88,9 @@ enum	e_keys
 	BS = 0x7f, DEL = 0x7e335b1b,
 	HOME1 = 0x485b1b, END1 = 0x465b1b, HOME2 = 0x7e315b1b, END2 = 0x7e345b1b,
 	ESC = 0x1b,
+	CTRL_V = 026, CTRL_R = 022, CTRL_D = 04,
 	CTRL__ = 31, CTRL_T = 20,
 	CTRL_H = 8, CTRL_L = 12,
-	CTRL_V = 026, CTRL_R = 022, CTRL_D = 04
 };
 
 enum	e_editing_modes

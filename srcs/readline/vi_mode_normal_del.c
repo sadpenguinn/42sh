@@ -33,11 +33,6 @@ static int	vi_mode_normal_del_basic(t_matrix *matrix, t_uchar c)
 		return (del_home(matrix));
 	if (c == '^')
 		return (del_begin(matrix));
-	if (c == 'd')
-	{
-		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
-		return (del_string(matrix));
-	}
 	return (0);
 }
 
@@ -51,6 +46,16 @@ static int	vi_mode_normal_del_advanced(t_matrix *matrix, t_uchar c)
 		return (del_find_char_reverse_order(matrix));
 	if (c == ',')
 		return (del_find_char_usual_order(matrix));
+	if (c == 'y')
+	{
+		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
+		return (1);
+	}
+	if (c == 'd')
+	{
+		g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
+		return (del_string(matrix));
+	}
 	return (0);
 }
 

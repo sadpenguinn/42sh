@@ -38,7 +38,6 @@ int		main(int ac, char **av, char **env)
 		destroy();
 		return (EXIT_SUCCESS);
 	}
-	g_mode = VI;
 	while ((line = readline()))
 	{
 		lex = lexer(line->buf, line->len);
