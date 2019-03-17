@@ -1,1 +1,0 @@
--s -A -* (-w -X *)-a[list all] (-w -X *)-A[show all opaques (values suppressed)] (-w)-b[binary output] (-w)-n[show only variable values] (-a -A -b -n -X)-w[write mode] (-a -A -w *)-X[show all opaques (entire values)] (-a -A -X)*:sysctl variable:_multi_parts ${words[(r)-w]:+-S=} -i . _cache_sysctlvars

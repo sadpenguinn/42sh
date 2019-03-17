@@ -1,1 +1,0 @@
---format[specify the format of song display]:format string --no-status[prevent printing song status on completion] *::mpc command:_mpc_command

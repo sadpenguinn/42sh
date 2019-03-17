@@ -1,1 +1,0 @@
--C -v[verbose] -w[wait time]:time (seconds) 1: :->command *:: :->options

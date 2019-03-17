@@ -1,1 +1,0 @@
--s -f[specify authfile]:authfile:_files (-q)-v[verbose mode] (-v)-q[quiet mode] -b[break locks] -i[ignore locks] *::command:->command

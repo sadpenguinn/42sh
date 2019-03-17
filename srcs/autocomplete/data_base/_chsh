@@ -1,1 +1,0 @@
-: -s[Specify user login shell]:shell:(${(Z+Cn+)"$(</etc/shells)"}) -l[Specify location of user]:node: -u[Specify authentication name]:auth user: 1:user name:_users

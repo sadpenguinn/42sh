@@ -1,2 +1,0 @@
--C -s (-a -d -C)-u[restrict to interfaces which are up] (-a -u -C)-d[restrict to interfaces which are down] (-a -C -m -L 1 *)-l[list interfaces] -a[apply to all interfaces] 1:network interface:_net_interfaces -r ": 	
-\-" ::address family:(atalk ether inet inet6 ax25 ddp ipx netrom) *:option:->options

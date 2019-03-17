@@ -1,1 +1,0 @@
-(-v --verbose)-v[be verbose] (-v --verbose)--verbose[be verbose] -s:bus and/or devnum to show: -d:vendor and product to show:->vendorproduct -D:device to show:_files -t[dump the physical USB device hierarchy as a tree] (-V --version)-V[print version info and exit] (-V --version)--version[print version info and exit]

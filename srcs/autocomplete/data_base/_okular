@@ -1,1 +1,0 @@
-(-p --page)-p[page of the document to be shown]:page:  (-p --page)--page[page of the document to be shown]:page:  --presentation[start the document in presentation mode] --unique[unique instance control] *:Okular documents:_files -g '*.(#i)({pdf,ps,eps,dvi}(.gz|.bz2)(#c,1)|djvu|tiff|chm|cbr|cbz)(-.)'

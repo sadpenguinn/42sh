@@ -1,1 +1,0 @@
--C -s -S !-a !-n *-N[completion for named command] *-p[completion for command matching pattern] *-P[completion for command matching pattern] :completion function:->cfun *:commands:->com

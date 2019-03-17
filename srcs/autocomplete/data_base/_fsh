@@ -1,1 +1,0 @@
--C (- : *)-h[display help information] (- : *)--help[display help information] (- : *)-V[display version information] (- : *)--version[display version information] -r[specify method]:method:(rsh ssh) -l[specify login id]:login:_users (-T --timeout)-T:idle timeout: (-T --timeout)--timeout:idle timeout: :remote host name:_hosts (-):command: _command_names -e *::args:->command

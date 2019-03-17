@@ -1,1 +1,0 @@
--C -s -t+[termination character]:termination character: -f[case insensitive] -d[dictionary order] :string:->string :dictionary file:_files

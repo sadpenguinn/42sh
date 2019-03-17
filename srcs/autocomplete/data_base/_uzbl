@@ -1,1 +1,0 @@
-(-u --uri)-u:uri to load:_urls (-u --uri)--uri=:uri to load:_urls (-v --verbose)-v[verbose] (-v --verbose)--verbose[verbose] (-n --name)-n:instance name (-n --name)--name=:instance name (-c --config)-c:config file:_files (-c --config)--config=:config file:_files --display=:X display:_x_display --help[help]

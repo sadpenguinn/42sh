@@ -1,1 +1,0 @@
--C (-4)-c[specify credentials cache to use]:cache:_files (-4)-e[specify encryption type]:encryption type -q[suppress printing] (- :)-h[display help information] (-c -e)-4[kerberos 4 tickets] :principal:->principal

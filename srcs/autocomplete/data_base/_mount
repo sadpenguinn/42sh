@@ -1,1 +1,0 @@
--C -s (*)-a[unmount all mounted file systems] -A[unmount all mounted file systems except the root] -f[force unmount] -h[unmount all filesystems associated with host]:host:_hosts -t[unmount all filesystems of specified type]:file system type:_sequence -s, _file_systems -v[verbose mode] *:dev or dir:->udevordir

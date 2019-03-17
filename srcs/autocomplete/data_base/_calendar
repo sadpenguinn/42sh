@@ -1,8 +1,0 @@
--a [process files of all users]
--A [print today and the following num days]
--b [enforce special KOI8 date calculation mode]
--B [print today and the previous num days]
--f [use file as the default calendar]
--l [print today and the following num days]
--w [print today and the following num days only if today is Friday]
--t [act as though today is the date specified]
