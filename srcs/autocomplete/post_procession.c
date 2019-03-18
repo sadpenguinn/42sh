@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 01:56:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 15:09:47 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:22:36 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,7 @@ char	*cut_begin_ius_flags(char *str, char *word)
 		j++;
 		i++;
 	}
-	word[j] = ' ';
-	word[++j] = 0;
+	word[j] = 0;
 	return (word);
 }
 
