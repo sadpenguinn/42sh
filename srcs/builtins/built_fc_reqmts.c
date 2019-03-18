@@ -1,18 +1,7 @@
 #include "builtins.h"
 #include "readline.h"
 #include "vector.h"
-
-void	write_lines(void **fc_history, int fd, int *flags, char **av)
-{
-	size_t	left_limit;
-	size_t	right_limit;
-
-	(void)av;
-	(void)fd;
-	built_fc_set_limits_default(&left_limit, &right_limit, *fc_history);
-	if (flags[1])
-		built_fc_swap_limits(&left_limit, &right_limit);
-}
+#include "libft.h"
 
 void	built_fc_swap_limits(size_t *left_limit, size_t *right_limit)
 {
@@ -39,6 +28,12 @@ int		built_fc_usage(int error)
 	if (error == FC_ERROR_FLAGS)
 	{
 		array_add("fc usage: \n", ft_strlen("fc usage: \n"));
+		array_add("  fc [-r] [-e editor] [first [last]]\n",
+				ft_strlen("  fc [-r] [-e editor] [first [last]]\n"));
+		array_add("  fc -l [-nr] [first [last]]\n",
+				ft_strlen("  fc -l [-nr] [first [last]]\n"));
+		array_add("  fc -s [old=new] [first]\n",
+				ft_strlen("  fc -s [old=new] [first]\n"));
 	}
 	if (error == FC_ERROR_ARGS)
 		array_add("fc: too many arguments\n", ft_strlen("fc: too many arguments\n"));
@@ -47,4 +42,3 @@ int		built_fc_usage(int error)
 	array_flush();
 	return (0);
 }
-

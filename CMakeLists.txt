@@ -258,6 +258,7 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_set.c
 					srcs/builtins/built_fc.c
 					srcs/builtins/built_fc_reqmts.c
+					srcs/builtins/built_fc_write_lines.c
 					srcs/builtins/built_fc_case_default.c
 					srcs/builtins/built_fc_case_e.c
 					srcs/builtins/built_fc_case_l.c

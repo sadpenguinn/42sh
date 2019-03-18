@@ -62,3 +62,11 @@ void		array_flush(void)
 	free(g_arr);
 	g_arr = NULL;
 }
+
+void		array_flush_fd(int fd)
+{
+	write(fd, g_arr->buf, g_arr->len);
+	free(g_arr->buf);
+	free(g_arr);
+	g_arr = NULL;
+}

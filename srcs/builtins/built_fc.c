@@ -71,7 +71,7 @@ static int	parse_flags(char **av, int *flags)
 	return (i);
 }
 
-static int	run_fc(char **av, int i, int *flags, void **fc_history)
+static int	run_fc(char **av, int i, int *flags, void *fc_history)
 {
 	int	cnt;
 
@@ -110,7 +110,7 @@ int			built_fc(char **av, char **env)
 		vector_free(&fc_history);
 		return (SHERR_OK);
 	}
-	run_fc(av, ret, flags, &fc_history);
+	run_fc(av, ret, flags, fc_history);
 	fc_history_free(fc_history);
 	vector_free(&fc_history);
 	return (SHERR_OK);

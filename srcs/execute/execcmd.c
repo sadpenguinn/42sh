@@ -48,16 +48,16 @@ static void		applycmdredir(t_astree *root)
 	}
 }
 
-int				execcmd(t_astree *root, int fd[2], int job, int isfork)
+int				execcmd(t_astree *root, int fd[2], int isfork)
 {
 	pid_t		pid;
 
 	if (root->type != CMDREDIR)
-		return (execshellcmd(root, fd, job, isfork));
+		return (execshellcmd(root, fd, isfork));
 	if (!(pid = xfork()))
 	{
 		applycmdredir(root);
-		exit(execshellcmd(root->left, fd, job, isfork));
+		exit(execshellcmd(root->left, fd, isfork));
 	}
 	if (pid == -1)
 		return (-1);

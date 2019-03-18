@@ -27,5 +27,5 @@ int		execsubshell(t_astree *root, int fd[2], int isfork)
 		pid = xfork();
 	if (isfork || !pid)
 		exit(execlist1(root->left, fd, 1));
-	return (xwaitpid(pid, 0));
+	return (xwaitpid(pid, WUNTRACED));
 }

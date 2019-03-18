@@ -39,7 +39,7 @@ int			add_pipe_redir(t_list **redlst, int fd[2])
 	return (0);
 }
 
-static int	execcommand(char **aven[2], t_list *redirs, int job, int isfork)
+static int	execcommand(char **aven[2], t_list *redirs, int isfork)
 {
 	void	*cmd;
 	pid_t	pid;
@@ -50,8 +50,8 @@ static int	execcommand(char **aven[2], t_list *redirs, int job, int isfork)
 		return (((int (*)(char **, char **))cmd)(aven[0], aven[1]));
 	if (!isfork && (pid = xfork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
-	if (job)
-		dup2(open("/dev/null", O_RDONLY | O_CLOEXEC), 0);
+	/* if (job) */
+	/* 	dup2(open("/dev/null", O_RDONLY | O_CLOEXEC), 0); */
 	applyredir(redirs);
 	if (g_cmdtype == PATH_BIN)
 		exit(execve((char *)cmd, aven[0], aven[1]));
@@ -115,7 +115,7 @@ int			set_envs(t_list *envs)
 */
 #include <signal.h>
 
-int			execscmd(t_astree *root, int fd[2], int job, int isfork)
+int			execscmd(t_astree *root, int fd[2], int isfork)
 {
 	t_list	*cmd[3];
 	char	**aven[2];
@@ -126,13 +126,13 @@ int			execscmd(t_astree *root, int fd[2], int job, int isfork)
 	if (!aven[0] || !aven[0][0])
 		pid = set_envs(cmd[1]);
 	else
-		pid = execcommand(aven, cmd[2], job, isfork);
+		pid = execcommand(aven, cmd[2], isfork);
 	freecmd(cmd, aven);
 	if (pid == -1 || pid == 0)
 		return (pid);
 	if (g_cmdtype == PATH_NOFORK)
 		return (pid);
-	if (job || isfork)
+	if (g_isjob || isfork)
 		return (pid);
-	return (xwaitpid(pid, 0));
+	return (xwaitpid(pid, WUNTRACED));
 }

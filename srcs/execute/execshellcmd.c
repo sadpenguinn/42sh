@@ -12,7 +12,7 @@
 
 #include "execute.h"
 
-int		execshellcmd(t_astree *root, int fd[2], int job, int isfork)
+int		execshellcmd(t_astree *root, int fd[2], int isfork)
 {
 	if (root->type == FUNCTION)
 		return (execfunction(root));
@@ -35,6 +35,6 @@ int		execshellcmd(t_astree *root, int fd[2], int job, int isfork)
 	if (root->type == SUBSHELL)
 		return (execsubshell(root, fd, isfork));
 	if (root->type == COMMAND)
-		return (execscmd(root, fd, job, isfork));
+		return (execscmd(root, fd, isfork));
 	return (execlist1(root, fd,  0));
 }

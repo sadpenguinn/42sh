@@ -369,6 +369,7 @@ int				move_history_next(void);
 void			array_add(const char *str, size_t len);
 char			*array_to_string(void);
 void			array_flush(void);
+void			array_flush_fd(int fd);
 
 size_t			get_cursor_pos_home(t_matrix *matrix);
 size_t			get_cursor_pos_begin(t_matrix *matrix);
