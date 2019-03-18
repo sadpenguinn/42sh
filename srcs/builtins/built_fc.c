@@ -48,9 +48,8 @@ static int		parse_string(char *script)
 	int 		last;
 	char 		*tmp;
 
-	ft_putstr(script);
+	ft_putendl(script);
 	lex = lexer(script, ft_strlen(script));
-	ft_strdel(&script);
 	g_tokens = lex->lexems;
 	ast = inputunit();
 	last = execute(ast);
