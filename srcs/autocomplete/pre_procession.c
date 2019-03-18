@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 17:59:30 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 20:34:21 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ char	**get_flags_autocompile(char *str)
 	res = xmalloc(sizeof(char *) * (len + 1));
 	res = get_autocomplite_flags_mas(str, res, &iter);
 	close(fd_to_free);
-	return (res);	
+	return (res);
 }
 
 char	**get_only_fi_di_autocompile(char *str)

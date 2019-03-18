@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 16:12:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 19:56:13 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 20:33:03 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ char	*autocomplete_beautifulizing_string(char *str, int max)
 
 	i = 0;
 	j = 0;
-	res = xmalloc(sizeof(char) * 
-			(ft_strlen(str) - (ft_strchr(str, '[') - str) + max + 1));
+	res = xmalloc(sizeof(char) * (ft_strlen(str) + max + 1));
 	while (str[i] != '[')
 	{
 		res[j] = str[i];
