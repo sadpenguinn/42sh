@@ -4,9 +4,11 @@
 
 void	write_lines(void **fc_history, int fd, int *flags, char **av)
 {
-	size_t	*left_limit;
-	size_t	*right_limit;
+	size_t	left_limit;
+	size_t	right_limit;
 
+	(void)av;
+	(void)fd;
 	built_fc_set_limits_default(&left_limit, &right_limit, *fc_history);
 	if (flags[1])
 		built_fc_swap_limits(&left_limit, &right_limit);
