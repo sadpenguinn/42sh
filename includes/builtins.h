@@ -32,6 +32,13 @@
 #  define SHERR_INVSNTX					5
 # endif
 
+# ifndef FC_ERROR
+#  define FC_ERROR
+#  define FC_ERROR_EVENT 1
+#  define FC_ERROR_ARGS 2
+#  define FC_ERROR_FLAGS 3
+# endif
+
 /*
 ** Builtin 'cd' that supports working with 'OLDPWD' / 'PWD' / 'CDPATH' variables.
 ** It also supports moving to the previous directory with '-' flag, but without
@@ -113,7 +120,10 @@ int		built_fc_case_default(char **av, int i, int *flags, void **fc_history);
 int		built_fc_case_e(char **av, int i, int *flags, void **fc_history);
 int		built_fc_case_l(char **av, int i, int *flags, void **fc_history);
 int		built_fc_case_s(char **av, int i, int *flags, void **fc_history);
-int		built_fc_usage(void);
+int		built_fc_usage(int error);
+void	built_fc_swap_limits(size_t *left_limit, size_t *right_limit);
+void	built_fc_set_limits_default(size_t *left_limit, size_t *right_limit, void *fc_history);
+void	write_lines(void **fc_history, int fd, int *flags, char **av);
 
 /*
 ** Internal function for echo

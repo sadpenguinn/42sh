@@ -23,7 +23,7 @@ static int		parse_string(char *script)
 	return (1);
 }
 
-int	built_fc_case_s(char **av, int i, int *flags, void **fc_history)
+int				built_fc_case_s(char **av, int i, int *flags, void **fc_history)
 {
 	char	**str;
 

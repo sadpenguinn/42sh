@@ -51,9 +51,9 @@ static int	parse_flags(char **av, int *flags)
 		{
 			if ((av[i][k] != 'e' && av[i][k] != 'r' && av[i][k] != 'l'
 			&& av[i][k] != 'n' && av[i][k] != 's')
-			|| flags[0] == 1 || flags[4] == 1 || (av[i][k] == 's' && i > 1)
-			|| (av[i][k] == 'e' && (flags[2] == 1 || flags[3] == 1 || flags[4] == 1)))
-				return (built_fc_usage());
+			|| flags[0] || flags[4] || (av[i][k] == 's' && i > 1)
+			|| (av[i][k] == 'e' && (flags[2] || flags[3] || flags[4])))
+				return (built_fc_usage(FC_ERROR_FLAGS));
 			if (av[i][k] == 'e')
 				flags[0] = 1;
 			else if (av[i][k] == 'r')
@@ -73,11 +73,22 @@ static int	parse_flags(char **av, int *flags)
 
 static int	run_fc(char **av, int i, int *flags, void **fc_history)
 {
-	if (flags[0] == 1)
+	int	cnt;
+
+	cnt = i;
+	while (av[cnt])
+		cnt++;
+	if (flags[0])
+	{
+		if (cnt - i > 3)
+			return (built_fc_usage(FC_ERROR_ARGS));
 		return (built_fc_case_e(av, i, flags, fc_history));
-	if (flags[3] == 1)
+	}
+	if (cnt - i > 2)
+		return (built_fc_usage(FC_ERROR_ARGS));
+	if (flags[3])
 		return (built_fc_case_l(av, i, flags, fc_history));
-	if (flags[4] == 1)
+	if (flags[4])
 		return (built_fc_case_s(av, i, flags, fc_history));
 	return (built_fc_case_default(av, i, flags, fc_history));
 }
@@ -102,4 +113,5 @@ int			built_fc(char **av, char **env)
 	run_fc(av, ret, flags, &fc_history);
 	fc_history_free(fc_history);
 	vector_free(&fc_history);
+	return (SHERR_OK);
 }
