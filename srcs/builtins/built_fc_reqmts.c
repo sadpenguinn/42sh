@@ -28,6 +28,12 @@ int		built_fc_usage(int error)
 	if (error == FC_ERROR_FLAGS)
 	{
 		array_add("fc usage: \n", ft_strlen("fc usage: \n"));
+		array_add("  fc [-r] [-e editor] [first [last]]\n",
+				ft_strlen("  fc [-r] [-e editor] [first [last]]\n"));
+		array_add("  fc -l [-nr] [first [last]]\n",
+				ft_strlen("  fc -l [-nr] [first [last]]\n"));
+		array_add("  fc -s [old=new] [first]\n",
+				ft_strlen("  fc -s [old=new] [first]\n"));
 	}
 	if (error == FC_ERROR_ARGS)
 		array_add("fc: too many arguments\n", ft_strlen("fc: too many arguments\n"));
