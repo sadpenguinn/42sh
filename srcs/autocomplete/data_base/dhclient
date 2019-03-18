@@ -1,0 +1,3 @@
+-e[exit if configuration failed after a certain time]
+-p[port to transmit to / listen on]
+-d[force to run in foreground]

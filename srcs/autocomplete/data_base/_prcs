@@ -1,1 +1,0 @@
--C (* -)-h[print out help] (* -)-H[print out help] (* -)--help[print out help] (* -)--version[display program version] *:: :->subcmd

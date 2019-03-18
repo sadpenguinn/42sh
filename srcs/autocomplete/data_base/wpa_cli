@@ -1,0 +1,4 @@
+-h[help]
+-v[shown version information]
+-B[run a daemon in the background]
+-a[run in daemon mode]

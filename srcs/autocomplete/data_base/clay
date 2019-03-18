@@ -1,0 +1,4 @@
+-S[emit assembler code]
+-c[emit object code]
+-g[keep debug symbol information]
+-v[display version info]

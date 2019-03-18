@@ -1,1 +1,0 @@
--s -1[suppress lines unique to first file] -2[suppress lines unique to second file] -3[suppress lines that appear in both files] 1:file to compare:_files 2:file to compare:_files -i[case insensitive comparison of lines]

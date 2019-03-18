@@ -1,0 +1,5 @@
+-V[display version]
+--version[display version]
+-h[display help]
+--help[display help]
+-H[display verbose help]

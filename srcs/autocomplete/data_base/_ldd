@@ -1,3 +1,0 @@
-*: : _alternative
-    "executables:executable:_files -g \^\*.so\(\-\*\)"
-      "shared-objects:shared object:_files -g \*.so\(-.\)"

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/15 21:16:22 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 16:24:09 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "shell.h"
 # include "execute.h"
 # include "parser.h"
+# include "get_next_line.h"
+# include <fcntl.h>
 # include <stdio.h>
 
 /*
@@ -28,21 +30,25 @@
 
 # define ERROR_AUTOCOMLITE			0
 # define ENV_AUTOCOMLITE			1
-# define FLAGS_AUTOCOMLITE			3
+# define FLAGS_AUTOCOMLITE			2
 # define OTHER_AUTOCOMLITE			3
 # define ONLY_FI_DIR_AUTOCOMLITE	4
 
-char			**autocomplete(t_line *line_info, int pos);
+# define PATH_TO_FLAGS_DB			"/srcs/autocomplete/data_base/"
+
 extern char		*g_built_in_lists[];
-char			*atcml_get_pattern(char *buf, size_t pos);
-char			*atcml_get_rel_dir(char *buf, size_t pos);
+extern char		g_path_to_database[999];
+
+char			**autocomplete(t_line *line_info, int pos);
+char			*atcml_get_pattern(char *buf, int pos);
+char			*atcml_get_rel_dir(char *buf, int pos);
 int				check_env_a_case(char c, char cb, int pos);
 int				check_oth_a_case(t_line *line_info, int pos);
 int				get_autocomplite_type(t_line *line_info,
 				int pos, int *pos_start);
 char			*ft_strendchr(char *str, char c);
 char			*dir_or_file_case(char *str, char *word);
-char			*cut_begin_in_unique_suggetion(char *str, char *word);
+char			*cut_begin_in_unique_suggetion(char *str, char *word, int type);
 int				get_mas_env_autocompl_len(char *str);
 char			**get_mas_env_autocompl(char *str);
 char			**tab_cat(char **to_str, char **from_str);
@@ -60,6 +66,14 @@ char			**get_mas_of_suggetions(char *word, int type);
 char			**sugg_delete_repeats(char **str);
 int				sugg_check_repeats_in_all_mass(char **str, size_t pos, char *c);
 char			**sugg_free_and_set_one(char **str, size_t pos);
-char			**sugg_get_common_repeat(char **str, char *sugg_word);
+char			**sugg_get_common_repeat(char **str, char *sugg_word, int type);
+int				get_autocomplite_flags_len(char *str, int *fd_to_free);
+char			**get_autocomplite_flags_mas(char *str, char **res, int *c);
+void			init_autocomplete(void);
+char			*autocomplete_get_real_programm_name(char *str);
+char			*get_autocomplite_real_flags(char *str, int strdup);
+char			*cut_begin_ius_flags(char *str, char *word);
+
+void			printmas_delete(char **str);
 
 #endif

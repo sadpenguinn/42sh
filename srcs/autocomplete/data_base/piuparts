@@ -1,0 +1,3 @@
+-p[use /var/cache/pbuilder/base.tgz]
+--pbuilder[use /var/cache/pbuilder/base.tgz]
+-V[version]

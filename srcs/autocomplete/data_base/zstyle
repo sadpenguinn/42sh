@@ -1,0 +1,3 @@
+-L[output in form of zstyle commands]
+-d[delete style definitions]
+-e[value is evaluated when style is looked up]

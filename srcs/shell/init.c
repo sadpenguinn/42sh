@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkertzma <nkertzma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:31:05 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/02/25 21:56:31 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/18 12:39:34 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ int				g_status = 0;
 
 int				g_echoe = TRUE;
 int				g_dontexec = FALSE;
-int				g_syntax = SYNTAX_ON;
+int				g_syntax = SYNTAX_OFF;
 
 #include "lexer.h"
 #include "parser.h"
 #include "execute.h"
+#include "autocomplete.h"
 
 void	parse_config(void)
 {
@@ -99,5 +100,6 @@ void	init(char **env)
 	init_functions();
 	init_function_args();
 	init_signals();
+	init_autocomplete();
 	parse_config();
 }

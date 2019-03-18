@@ -1,0 +1,7 @@
+-h[help]
+-q[quiet]
+-l[list comments]
+-a[append comments]
+-w[overwrite comments]
+-t[tag and value]
+-c[tag file]

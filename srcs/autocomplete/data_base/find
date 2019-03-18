@@ -1,0 +1,2 @@
+-H[only follow symlinks when resolving command-line arguments]
+-L[follow symlinks]

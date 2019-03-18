@@ -88,9 +88,9 @@ enum	e_keys
 	BS = 0x7f, DEL = 0x7e335b1b,
 	HOME1 = 0x485b1b, END1 = 0x465b1b, HOME2 = 0x7e315b1b, END2 = 0x7e345b1b,
 	ESC = 0x1b,
+	CTRL_V = 026, CTRL_R = 022, CTRL_D = 04,
 	CTRL__ = 31, CTRL_T = 20,
 	CTRL_H = 8, CTRL_L = 12,
-	CTRL_V = 026, CTRL_R = 022, CTRL_D = 04
 };
 
 enum	e_editing_modes
@@ -180,6 +180,7 @@ typedef struct	s_history
 	int			is_replace;
 	t_string	*event;
 	char		find_char;
+	char		prev_find_option;
 	int			redo_undo;
 }				t_history;
 
@@ -227,12 +228,14 @@ int				vi_mode(t_uchar c);
 int				modes_handling(t_uchar c);
 int				esc_code_handling(t_uchar c);
 
-int				normal_mode(t_matrix *matrix, t_uchar c);
-int				normal_mode_del(t_matrix *matrix, t_uchar c);
-int				normal_mode_yank(t_matrix *matrix, t_uchar c);
-int				insert_mode(t_matrix *matrix, t_uchar c);
-int				replace_mode(t_matrix *matrix, t_uchar c);
-int				visual_mode(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal_del(t_matrix *matrix, t_uchar c);
+int				vi_mode_normal_yank(t_matrix *matrix, t_uchar c);
+int				are_default_vi_normal_mode_shortcuts(t_matrix *matrix, t_uchar c);
+int				vi_mode_insert(t_matrix *matrix, t_uchar c);
+int				vi_mode_replace(t_matrix *matrix, t_uchar c);
+int				vi_mode_visual(t_matrix *matrix, t_uchar c);
+int				vi_mode_visual_is_normal_mode(t_matrix *matrix, t_uchar c);
 
 int				paste_before(t_matrix *matrix);
 int				paste_after(t_matrix *matrix);
@@ -249,16 +252,23 @@ int				del_next_alnum(t_matrix *matrix);
 int				del_end_alnum(t_matrix *matrix);
 int				del_find_next_char(t_matrix *matrix);
 int				del_find_back_char(t_matrix *matrix);
+int				del_find_char_usual_order(t_matrix *matrix);
+int				del_find_char_reverse_order(t_matrix *matrix);
 
 int				yank_begin_word(t_matrix *matrix);
 int				yank_next_word(t_matrix *matrix);
 int				yank_end_word(t_matrix *matrix);
 int				yank_end(t_matrix *matrix);
 int				yank_home(t_matrix *matrix);
+int				yank_begin(t_matrix *matrix);
 int				yank_string(t_matrix *matrix);
 int				yank_begin_alnum(t_matrix *matrix);
 int				yank_next_alnum(t_matrix *matrix);
 int				yank_end_alnum(t_matrix *matrix);
+int				yank_find_next_char(t_matrix *matrix);
+int				yank_find_back_char(t_matrix *matrix);
+int				yank_find_char_usual_order(t_matrix *matrix);
+int				yank_find_char_reverse_order(t_matrix *matrix);
 
 t_cursor		matrix_string_insert(t_matrix *matrix, t_cursor pos,
 		const char *str, size_t size);
@@ -290,8 +300,10 @@ int				move_cursor_begin_alnum(t_matrix *matrix);
 int				move_cursor_end_matrix(t_matrix *matrix);
 int				move_cursor_next_char(t_matrix *matrix);
 int				move_cursor_back_char(t_matrix *matrix);
+int				move_cursor_find_char_usual_order(t_matrix *matrix);
+int				move_cursor_find_char_reverse_order(t_matrix *matrix);
 
-int				del(t_matrix *matrix);
+int				del_symbol(t_matrix *matrix);
 int				back_space(t_matrix *matrix);
 
 int				print_default(t_matrix *matrix);
@@ -357,6 +369,7 @@ int				move_history_next(void);
 void			array_add(const char *str, size_t len);
 char			*array_to_string(void);
 void			array_flush(void);
+void			array_flush_fd(int fd);
 
 size_t			get_cursor_pos_home(t_matrix *matrix);
 size_t			get_cursor_pos_begin(t_matrix *matrix);
@@ -371,12 +384,13 @@ size_t			get_cursor_pos_begin_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_end_alnum(t_matrix *matrix);
 size_t			get_cursor_pos_find_back_char(t_matrix *matrix);
 size_t			get_cursor_pos_find_next_char(t_matrix *matrix);
+size_t			get_cursor_pos_find_char_usual_order(t_matrix *matrix);
+size_t			get_cursor_pos_find_char_reverse_order(t_matrix *matrix);
 
 size_t			get_space_left_pos(const char *buf, size_t pos);
 size_t			get_space_right_pos(const char *buf, size_t pos, size_t len);
 
 void			buffer_add(const char *str, size_t size);
-void			buffer_free(void);
 char			*get_buffer_content(void);
 size_t			get_buffer_len(void);
 
@@ -406,5 +420,7 @@ int				redo(t_matrix *matrix);
 int				large_undo_redo(t_matrix *matrix);
 
 void			set_points(t_cursor *point1, t_cursor *point2);
+
+void			sigwinch_handler(int sig);
 
 #endif

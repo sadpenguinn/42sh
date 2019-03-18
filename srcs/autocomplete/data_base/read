@@ -1,0 +1,8 @@
+-r[raw mode]
+-q[read y or n character from terminal]
+-d[specify delimiter to terminate input instead of newline]
+-z[read entry from editor buffer stack]
+-e[input read is echoed and not assigned]
+-E[input read is echoed]
+-s[suppress terminal echoing]
+-A[first name is taken as an array]

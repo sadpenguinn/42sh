@@ -24,7 +24,7 @@ static void		build_hash_parse(char **av)
 {
 	if (!ft_strcmp(av[1], "-p"))
 		built_hash_parg(av);
-	else if (!ft_strcmp(av[1], "-R"))
+	else if (!ft_strcmp(av[1], "-r"))
 	{
 		destroy_path();
 		init_path();
@@ -43,11 +43,7 @@ int				built_hash(char **av, char **env)
 {
 	env = NULL;
 	if (!av[1])
-	{
-		destroy_path();
-		init_path();
 		hash_foreach(g_path, print_bin);
-	}
 	else
 		build_hash_parse(av);
 	return (SHERR_OK);

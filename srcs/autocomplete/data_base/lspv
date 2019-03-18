@@ -1,0 +1,5 @@
+-l[list logical volumes on physical volume]
+-p[list partitions on physical volume]
+-M[list mapping of physical and logical partition numbers]
+-n[specify physical volume to access variable descriptor from]
+-v[specify volume group id to access info based on]

@@ -56,6 +56,11 @@ static int		built_export_parse(char **av, char **env)
 		print_str_arr(env);
 		return (SHERR_OK);
 	}
+	else if (av[1][0] == '-')
+	{
+		sputcmderr(sstrerr(SHERR_INVSNTX), "export", av[1]);
+		return (SHERR_ERR);
+	}
 	else
 		return (built_export_assignment(av));
 }

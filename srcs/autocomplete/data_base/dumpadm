@@ -1,0 +1,8 @@
+-n[dont run savecore on reboot]
+-u[update dump configuration from dumpadm.conf]
+-y[run savecore on reboot]
+-c[set dump content]
+-d[set dump device]
+-m[set minfree size ]
+-s[set the savecore directory]
+-r[alternate root directory]

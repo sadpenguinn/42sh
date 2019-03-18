@@ -1,0 +1,6 @@
+-a[act on regular or global aliases]
+-f[act on functions]
+-r[act on reserved words]
+-s[act on suffix aliases]
+-p[act on pattern characters]
+-m[treat arguments as patterns]

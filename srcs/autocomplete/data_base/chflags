@@ -1,0 +1,4 @@
+-H[follow symlinks on the command line (specify with -R)]
+-L[follow all symlinks (specify with -R)]
+-P[do not follow symlinks (specify with -R)]
+-R[recurse directories]

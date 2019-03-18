@@ -1,0 +1,3 @@
+-c[source <file> prior to other configuration files]
+-d[enable debug mode]
+-v[enable verbose mode]

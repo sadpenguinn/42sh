@@ -1,0 +1,4 @@
+-c[specify credentials cache to use]
+-e[specify encryption type]
+-q[suppress printing]
+-h[display help information]

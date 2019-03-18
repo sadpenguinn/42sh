@@ -1,1 +1,0 @@
--s -A -* (-L -P)-H[follow symlinks on the command line (specify with -R)] (-H -P)-L[follow all symlinks (specify with -R)] (-L -H)-P[do not follow symlinks (specify with -R)] -R[recurse directories] :file flag:_values -s , "file flags" $flags[@] *:file:_files "$own"

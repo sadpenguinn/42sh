@@ -1,0 +1,6 @@
+-b[select only specified bytes]
+-c[select only specified characters]
+-d[use alternate field delimiter]
+-f[select only specified fields]
+-n[do not split multi-byte characters]
+-s[suppress lines with no delimiters]

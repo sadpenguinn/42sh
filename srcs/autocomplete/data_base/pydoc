@@ -1,0 +1,4 @@
+-k[search keyword]
+-p[start web server on specified port]
+-w[write out HTML in current directory]
+-g[start gui]

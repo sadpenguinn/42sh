@@ -1,0 +1,3 @@
+-v[indicate result of command search]
+-V[show result of command search in verbose form]
+-p[use default PATH to find command]

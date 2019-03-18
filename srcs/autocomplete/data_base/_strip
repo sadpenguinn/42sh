@@ -1,1 +1,0 @@
--l[strip line information only] -V[display version information on stderr and exit] -x[do not strip the symbol table] 1:executable:_files -g "*(-*)" *::executable:_files -g "*(-*)"

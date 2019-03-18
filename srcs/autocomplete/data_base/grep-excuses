@@ -1,0 +1,5 @@
+--noconf[do not read any config files]
+--wipnity[get information from release.debian.org]
+-w[get information from release.debian.org]
+--version[display version information]
+--help[display help information]

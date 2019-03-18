@@ -24,7 +24,7 @@ static int	are_default_vi_mode_replace_shortcuts(t_matrix *matrix, t_uchar c)
 	if (c == END1 || c == END2)
 		return (move_cursor_end(matrix));
 	if (c == DEL)
-		return (del(matrix));
+		return (del_symbol(matrix));
 	if (c == CTRL_P)
 		return (move_history_prev());
 	if (c == CTRL_N)
@@ -33,16 +33,12 @@ static int	are_default_vi_mode_replace_shortcuts(t_matrix *matrix, t_uchar c)
 		return (move_cursor_up(matrix));
 	if (c == DOWN)
 		return (move_cursor_down(matrix));
-	if (c == CTRL_H)
-		return (move_cursor_begin_word(matrix));
-	if (c == CTRL_L)
-		return (move_cursor_end_word(matrix));
 	if (c == BS)
 		return (back_space(matrix));
 	return (0);
 }
 
-int	replace_mode(t_matrix *matrix, t_uchar c)
+int	vi_mode_replace(t_matrix *matrix, t_uchar c)
 {
 	char	str[sizeof(t_uchar)];
 
@@ -53,8 +49,6 @@ int	replace_mode(t_matrix *matrix, t_uchar c)
 	}
 	if (are_default_vi_mode_replace_shortcuts(matrix, c))
 		return (1);
-	if (c == BS)
-		return (back_space(matrix));
 	if (c == '\t' && g_shortcuts[SHORTCUT_ARRAY_SIZE - 2] != CTRL_V)
 		return (print_autocomplete(matrix));
 	if (c == '\n')
@@ -64,9 +58,10 @@ int	replace_mode(t_matrix *matrix, t_uchar c)
 		g_vi_mode = NORMAL_MODE;
 		return (1);
 	}
-	del(matrix);
+	del_symbol(matrix);
 	ft_memset(str, 0, sizeof(t_uchar));
 	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
 			str, symbol_to_string(c, str));
+	g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
 	return (1);
 }

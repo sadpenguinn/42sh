@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/15 22:08:07 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:16:18 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,36 @@ int		check_onlyfd_case(t_line *line_info, int pos)
 	return (0);
 }
 
+int		check_only_flags_case(char *str, int pos)
+{
+	if (str[pos] == '-' && pos - 1 > 0 && (str[pos - 1] == ' '
+			|| (str[pos - 1] == '-' && (pos - 2) && str[pos - 2] == ' ')))
+	{
+		pos -= 2;
+		while (pos >= 0)
+		{
+			if (str[pos] != ' ')
+				return (1);
+			if (!pos)
+				return (0);
+			pos--;
+		}
+		return (0);
+	}
+	else
+		return (0);
+}
+
+int		get_position_in_flags_case(char *str, int pos)
+{
+	pos -= 2;
+	while (str[pos] == ' ' && pos >= 0)
+		pos--;
+	while (str[pos] != ' ' && pos > 0)
+		pos--;
+	return (pos);
+}
+
 int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 {
 	if (pos < 0)
@@ -46,10 +76,15 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 			*pos_start = pos;
 			return (ONLY_FI_DIR_AUTOCOMLITE);
 		}
+		else if (check_only_flags_case(line_info->buf, pos))
+		{
+			*pos_start = get_position_in_flags_case(line_info->buf, pos);
+			return (FLAGS_AUTOCOMLITE);
+		}
 		else if (check_oth_a_case(line_info, pos))
 		{
 			*pos_start = ((line_info->buf[pos] == ' ' || line_info->buf[pos] ==
-						'(' || line_info->buf[pos - 1] == ';') ? pos + 1 : pos);
+				'(' || (pos && line_info->buf[pos - 1] == ';')) ? pos + 1 : pos);
 			return (OTHER_AUTOCOMLITE);
 		}
 		pos--;
@@ -78,6 +113,40 @@ char	**get_mas_other_autocompile(char *str)
 	return (res);
 }
 
+void	printmas_delete(char **str)
+{
+	int i;
+
+	i = 0;
+	if (!str)
+	{
+		printf("Total NULL :(\n");
+		return ;
+	}
+	while (str[i])
+	{
+		printf("str[%d] = %s\n", i, str[i]); /////////////////////
+		i++;
+	}
+}
+
+char	**get_flags_autocompile(char *str)
+{
+	int		len;
+	int		iter;
+	char	**res;
+	int		fd_to_free;
+
+	iter = 0;
+	len = get_autocomplite_flags_len(str, &fd_to_free);
+	if (!len)
+		return (NULL);
+	res = xmalloc(sizeof(char *) * (len + 1));
+	res = get_autocomplite_flags_mas(str, res, &iter);
+	close(fd_to_free);
+	return (res);	
+}
+
 char	**get_only_fi_di_autocompile(char *str)
 {
 	int		len;
@@ -103,6 +172,8 @@ char	**get_mas_of_suggetions(char *word, int type)
 		res = get_only_fi_di_autocompile(word);
 	else if (type == OTHER_AUTOCOMLITE)
 		res = get_mas_other_autocompile(word);
+	else if (type == FLAGS_AUTOCOMLITE)
+		res = get_flags_autocompile(word);
 	else
 		return (NULL);
 	return (res);

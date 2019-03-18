@@ -1,1 +1,0 @@
---system[connect to system bus] --literal[print literal replies] 1:service name:->service 2:path:->path 3:method:->method *:arguments:->arguments

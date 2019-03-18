@@ -1,0 +1,3 @@
+-l[use a login shell]
+-s[run the specified shell]
+-c[pass command to shell]

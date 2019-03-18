@@ -1,0 +1,4 @@
+-d[increase debug level]
+-v[increase verbosity level]
+-V[increase scsi command transport verbosity level]
+-s[do not print a status report for failed scsi commands]

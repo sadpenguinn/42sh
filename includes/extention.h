@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 22:38:51 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 16:20:06 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <pwd.h>
 # include "libshell.h"
 # include "shell.h"
+# include "expression.h"
 
 /*
 ** ${parameter:-word} 1
@@ -71,5 +72,6 @@ char	*get_grade_redir(char *str);
 char	*extention_get_just_command(char *str);
 int		check_process_substitution_expand(char *str);
 int		get_fdnumber_of_substitution(char *str, int state);
+char	*get_arithm_extention(char *str);
 
 #endif

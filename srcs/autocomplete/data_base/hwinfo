@@ -1,0 +1,5 @@
+--help[show usage info]
+--version[show libhd version]
+--short[just a short listing]
+--log[write info to logfile]
+--debug[set debuglevel]

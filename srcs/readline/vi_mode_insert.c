@@ -24,7 +24,7 @@ static int	are_default_vi_mode_insert_shortcuts(t_matrix *matrix, t_uchar c)
 	if (c == END1 || c == END2)
 		return (move_cursor_end(matrix));
 	if (c == DEL)
-		return (del(matrix));
+		return (del_symbol(matrix));
 	if (c == CTRL_P)
 		return (move_history_prev());
 	if (c == CTRL_N)
@@ -42,7 +42,7 @@ static int	are_default_vi_mode_insert_shortcuts(t_matrix *matrix, t_uchar c)
 	return (0);
 }
 
-int			insert_mode(t_matrix *matrix, t_uchar c)
+int			vi_mode_insert(t_matrix *matrix, t_uchar c)
 {
 	char	str[sizeof(t_uchar)];
 
@@ -65,5 +65,6 @@ int			insert_mode(t_matrix *matrix, t_uchar c)
 	ft_memset(str, 0, sizeof(t_uchar));
 	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
 			str, symbol_to_string(c, str));
+	g_shortcuts[SHORTCUT_ARRAY_SIZE - 1] = 0;
 	return (1);
 }

@@ -1,0 +1,8 @@
+-a[mode to use while on AC power]
+-b[mode to use while on battery power]
+-i[CPU idle percent level when begin to degrade performance]
+-n[mode to use normally when the AC line state is unknown]
+-p[polling interval (in milliseconds) for AC line state and system idle levels]
+-P[alternative pidfile]
+-r[CPU idle percent level where to increase performance]
+-v[verbose mode]

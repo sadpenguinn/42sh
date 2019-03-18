@@ -1,0 +1,8 @@
+-q[be less verbose]
+--quiet[be less verbose]
+-u[do not decode]
+--dump[do not decode]
+-h[display usage information]
+--help[display usage information]
+-V[display version information]
+--version[display version information]

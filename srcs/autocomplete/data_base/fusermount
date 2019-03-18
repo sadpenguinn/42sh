@@ -1,0 +1,6 @@
+-h[display help information]
+-V[display version information]
+-o[specify mount options]
+-u[unmount a fuse mount]
+-z[unmount lazily (work even when if the resource is still busy)]
+-q[suppress nonessential output]

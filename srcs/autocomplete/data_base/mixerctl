@@ -1,0 +1,6 @@
+-a[Print all device variables and their current values]
+-f[Specify an alternative audio mixing device]
+-n[Suppress printing of the variable name]
+-q[Suppress all printing when setting a variable]
+-t[Attempt to select the next possible value of an enum]
+-v[Show all possible values of variables]

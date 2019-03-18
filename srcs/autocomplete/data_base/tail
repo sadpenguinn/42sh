@@ -1,0 +1,4 @@
+-f[wait for new data to be appended to the file]
+-r[display the file in reverse order]
+-F[implies -f, but also detect file rename]
+-q[suppress the headers when displaying multiple files]

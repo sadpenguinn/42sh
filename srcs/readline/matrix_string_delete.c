@@ -21,7 +21,6 @@ size_t		line_string_delete(t_line *line, size_t pos, size_t size)
 		return (pos);
 	if (size > line->len - pos)
 		size = line->len - pos;
-	buffer_free();
 	buffer_add(line->buf + pos, size);
 	line->symbols -= count_string_symbols(line->buf, pos, pos + size);
 	ft_memmove(line->buf + pos, line->buf + pos + size,

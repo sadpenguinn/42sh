@@ -1,0 +1,4 @@
+-u[restrict to interfaces which are up]
+-d[restrict to interfaces which are down]
+-l[list interfaces]
+-a[apply to all interfaces]

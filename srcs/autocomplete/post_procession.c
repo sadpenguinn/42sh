@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 01:56:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 06:41:22 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:40:53 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,18 @@ char	**sugg_free_and_set_one(char **str, size_t pos)
 	return (res);
 }
 
-char	**sugg_get_common_repeat(char **str, char *sugg_word)
+char	**sugg_get_common_repeat(char **str, char *sugg_word, int type)
 {
 	size_t	len;
 	char	tmp;
 	size_t	pos_start;
 	char	*buf;
 
-	buf = ft_strendchr(sugg_word, '/');
-	if (buf)
+	if (type == FLAGS_AUTOCOMLITE)
+		sugg_word = get_autocomplite_real_flags(sugg_word, 0);
+	else if ((buf = ft_strendchr(sugg_word, '/')))
 		sugg_word = buf + 1;
+	// printf("before = %s\n", sugg_word);
 	pos_start = ft_strlen(sugg_word) - ((sugg_word[0] == '$') ? 1 : 0);
 	len = 0;
 	tmp = 'a';
@@ -96,7 +98,27 @@ char	**sugg_get_common_repeat(char **str, char *sugg_word)
 	return (str);
 }
 
-char	*cut_begin_in_unique_suggetion(char *str, char *word)
+char	*cut_begin_ius_flags(char *str, char *word)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	str = get_autocomplite_real_flags(str, 0);
+	while (str[i] && word[i] && str[i] == word[i])
+		i++;
+	while (word[i] && word[i] != '[' && word[i] != ' ')
+	{
+		word[j] = word[i];
+		j++;
+		i++;
+	}
+	word[j] = 0;
+	return (word);
+}
+
+char	*cut_begin_in_unique_suggetion(char *str, char *word, int type)
 {
 	int		i;
 	int		j;
@@ -104,6 +126,8 @@ char	*cut_begin_in_unique_suggetion(char *str, char *word)
 
 	j = 0;
 	i = 0;
+	if (type == FLAGS_AUTOCOMLITE)
+		return (cut_begin_ius_flags(str, word));
 	if (str[0] == '$')
 		str = &str[1];
 	buf = ft_strendchr(str, '/');

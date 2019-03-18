@@ -1,0 +1,6 @@
+-l[specify alternate wrapper library]
+--lib[specify alternate wrapper library]
+--faked[specify alternate faked binary]
+-s[save the fakeroot environment on exit]
+-i[load a previously saved environment]
+-u[use real ownership of previously unknown files]

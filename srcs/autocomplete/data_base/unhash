@@ -1,0 +1,5 @@
+-d[remove named directories]
+-a[remove aliases]
+-s[remove suffix aliases]
+-f[remove functions]
+-m[treat arguments as patterns]

@@ -1,0 +1,5 @@
+-f[specify code set of input file]
+-t[specify code set for output]
+-c[omit invalid characters from output]
+-s[suppress warnings]
+-l[list all character code sets]

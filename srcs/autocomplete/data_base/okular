@@ -1,0 +1,4 @@
+-p[page of the document to be shown]
+--page[page of the document to be shown]
+--presentation[start the document in presentation mode]
+--unique[unique instance control]

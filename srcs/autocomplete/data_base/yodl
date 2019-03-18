@@ -1,0 +1,4 @@
+-t[enable tracing mode]
+-v[enable verbose mode]
+-w[enable warnings]
+-h[show usage information]

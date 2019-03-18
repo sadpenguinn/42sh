@@ -1,0 +1,8 @@
+--flash[load and flash all supplied images]
+-f[load and flash all supplied images]
+--load[only load all supplied images]
+-l[only load all supplied images]
+--reboot[reboot the board]
+-R[reboot the board]
+-i[print out the board type]
+-c[cold flash the device]

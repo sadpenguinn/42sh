@@ -1,0 +1,2 @@
+-a[convert all whitespace, instead of just initial whitespace]
+-t[use comma separated list of tab positions]

@@ -1,0 +1,5 @@
+-l[list themes]
+-c[show selected theme]
+-h[help]
+-p[preview theme(s)]
+-s[set and save theme]

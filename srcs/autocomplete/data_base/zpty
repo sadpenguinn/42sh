@@ -1,0 +1,8 @@
+-e[echo input characters]
+-b[io to pseudo-terminal blocking]
+-d[delete command]
+-w[send string to command]
+-n[do not add a newline to the result]
+-L[list defined commands as calls]
+-r[read string from command]
+-t[test if output is available before reading]

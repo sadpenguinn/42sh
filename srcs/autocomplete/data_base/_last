@@ -1,1 +1,0 @@
--s -h[limit sessions by hostname]:host:_hosts -t[limit sessions by tty]:tty:_ttys -D *:user:_users

@@ -1,0 +1,8 @@
+-n[suppress automatic printing of pattern space]
+-e[specify sed commands to run]
+-f[add contents of file to commands to run]
+-r[use extended regular expressions]
+-E[use extended regular expressions]
+-a[delay opening files listed with w function]
+-i[edit files in-place, running scripts separately for each file]
+-l[make output line buffered]

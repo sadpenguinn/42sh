@@ -1,1 +1,0 @@
--C -s -b[background] -c[crlf] -f[fork] -q[quit] -r[read only] -v[verbose] -w[write only] -s[server] -l[loop] -p[program]:command:->command :arg1:->arg1 :arg2:->arg2

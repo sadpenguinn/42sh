@@ -1,1 +1,0 @@
--C -s -f[don't report errors] -h[operate on symlinks them self] -R[change files and directories recursively] (-H -L -P)-L[follow all symlinks] (-H -L -P)-H[follow symlinks on the command line] (-H -L -P)-P[do not follow symlinks (default)] -v[output info for every file processed] (--reference)1: :->owner *:files:->files

@@ -43,6 +43,8 @@ static int		parse_files(char **av)
 	t_astree	*ast;
 	size_t		len;
 	int			fd;
+	int 		last;
+	char 		*tmp;
 
 	len = get_file_size(av[1]);
 	script = (char *)xmalloc((sizeof(char) * (len + 1)));
@@ -53,7 +55,10 @@ static int		parse_files(char **av)
 	ft_strdel(&script);
 	g_tokens = lex->lexems;
 	ast = inputunit();
-	execute(ast);
+	last = execute(ast);
+	tmp = ft_itoa(last);
+	ssetenv("?", tmp, ENV_RO);
+	ft_strdel(&tmp);
 	freeastree(ast);
 	lexer_free(lex);
 	return (1);

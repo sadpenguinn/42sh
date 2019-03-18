@@ -1,0 +1,6 @@
+-E[Disable escape character]
+-e[Specify escape character]
+-l[Specify username]
+-C[Connect to zone console]
+-d[Disconnect on zone halt]
+-S["Safe" login mode]

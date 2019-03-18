@@ -16,7 +16,6 @@ size_t	line_string_yank(t_line *line, size_t pos, size_t size)
 {
 	if (size == 0)
 		return (pos);
-	buffer_free();
 	buffer_add(line->buf + pos, size);
 	return (pos + size);
 }

@@ -1,0 +1,7 @@
+-f[don't report errors]
+-h[operate on symlinks them self]
+-R[change files and directories recursively]
+-L[follow all symlinks]
+-H[follow symlinks on the command line]
+-P[do not follow symlinks (default)]
+-v[output info for every file processed]

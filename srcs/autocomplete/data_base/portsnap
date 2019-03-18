@@ -1,0 +1,7 @@
+-d[store working files in workdir]
+-f[read configuration options from conffile]
+-I[update INDEX only. (update command only)]
+-k[trust an RSA key with SHA256 hash of KEY]
+-l[merge the specified local describes file into the INDEX]
+-p[location of uncompressed ports tree]
+-s[server from which to fetch updates]

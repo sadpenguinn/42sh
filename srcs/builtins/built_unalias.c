@@ -3,7 +3,7 @@
 
 static int		unalias_print_usage(void)
 {
-	ft_putstr("HUITA");
+	sputcmderr("Must be called with argument or flag", "unalias", "");
 	return (SHERR_OK);
 }
 

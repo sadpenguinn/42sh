@@ -1,0 +1,8 @@
+--browser[open a browser window]
+-c[perform a quick set of self-check tests]
+--check[perform a quick set of self-check tests]
+-n[only create windows for explicitly specified URIs]
+-q[quit Nautilus]
+--quit[quit Nautilus]
+--help[show a summary of options]
+--version[show version]
