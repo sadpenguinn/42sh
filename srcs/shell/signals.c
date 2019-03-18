@@ -23,68 +23,24 @@ void			vkill(void *cmd)
 	kill(g_signal, (int)cmd);
 }
 
-void			sigtstp(void)
+
+void			handle_sigtstp(int sig)
 {
-	pid_t	*pid;
-
-	/* if (g_pids) */
-	/* 	vector_foreach(g_pids, vkill); */
-
-	/* while ((pid = vector_pop_back(&g_pids))) */
-	/* { */
-	/* 	kill(pid, SIGSTOP); */
-	/* 	vector_push_back(&g_jobs, &pid); */
-	/* } */
-
-	printf("IN sigtstp\n");
-	if (!vector_get_len(g_pids))
-		return ;
-	while ((pid = vector_back(g_pids)))
-	{
-		vector_push_back(&g_jobs, pid);
-		printf("sleep:%d\n", *pid);
-		kill(*pid, SIGTSTP);
-		vector_pop_back(&g_pids);
-		/* dup2(0, 0); */
-	}
+	(void)sig;
+	/* printf("sigtstp handle\n"); */
 }
 
-void			shell_handler(int sig)
+void			handle_sigint(int sig)
 {
-	g_signal = sig;
-	if (sig == SIGTSTP)
-	{
-		sigtstp();
-		return ;
-	}
-	if (sig == SIGINT)
-	{
-		g_vi_mode = INSERT_MODE;
-		dup2(0, 0);
-	}
-	if (sig == SIGINT || sig == SIGQUIT || sig == SIGTSTP)
-	{
-		if (g_pids)
-		{
-			g_execerr = 1;
-			vector_foreach(g_pids, vkill);
-		}
-	}
+	(void)sig;
+	g_vi_mode = INSERT_MODE;
+	printf("sigint handle\n");
 }
 
 void			init_signals(void)
 {
-	struct sigaction	action;
-	sigset_t			set;
-
-	sigemptyset(&set);
-	sigaddset(&set, SIGINT);
-	sigaddset(&set, SIGQUIT);
-	sigaddset(&set, SIGTSTP);
-	ft_memset(&action, 0, sizeof(action));
-	action.sa_handler = shell_handler;
-	action.sa_mask = set;
-	sigaction(SIGINT, &action, 0);
-	sigaction(SIGQUIT, &action, 0);
-	sigaction(SIGTSTP, &action, 0);
+	signal(SIGTSTP, handle_sigtstp);
+	signal(SIGINT, handle_sigint);
+	signal(SIGTTOU, SIG_IGN);
+	/* signal(SIGTTIN, SIG_IGN); */
 }

@@ -12,19 +12,19 @@
 
 #include "execute.h"
 
-int		execlist2(t_astree *root, int fd[2], int job, int isfork)
+int		execlist2(t_astree *root, int fd[2], int isfork)
 {
 	if (!root)
-		return (EXIT_SUCCESS);
+		return (EXIT_FAILURE);
 	if (root->type != LIST2 && root->type != OR_IF)
-		return (execlist3(root, fd, job, isfork));
-	if (!root->right && job)
-		return (execlist3(root->left, fd, EC_FG, isfork));
-	if (execlist3(root->left, fd, EC_NOFG, isfork) == EXIT_SUCCESS)
+		return (execlist3(root, fd, isfork));
+	/* if (!root->right && job) */
+	/* 	return (execlist3(root->left, fd, EC_FG, isfork)); */
+	if (execlist3(root->left, fd, isfork) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
 	if (g_execerr)
 		return (-1);
-	if (execlist2(root->right, fd, job, isfork) == EXIT_SUCCESS)
+	if (execlist2(root->right, fd, isfork) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }

@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <signal.h>
 
-static int	pipe_create(t_astree *root, int fd[2], int job, int isfork)
+static int	pipe_create(t_astree *root, int fd[2], int isfork)
 {
 	int		pipefd[2];
 	int		cmdfd[2];
@@ -29,23 +29,23 @@ static int	pipe_create(t_astree *root, int fd[2], int job, int isfork)
 	cmdfd[0] = fd[0];
 	cmdfd[1] = pipefd[1];
 	if (!(pid = xfork()))
-		exit(execcmd(root->left, cmdfd, 0, 1));
+		exit(execcmd(root->left, cmdfd, 1));
 	close(cmdfd[1]);
 	fd[0] = pipefd[0];
-	status = execpipes(root->right, fd, job, isfork);
-	kill(pid, SIGINT);
-	xwaitpid(pid, 0);
+	status = execpipes(root->right, fd, isfork);
+	/* kill(pid, SIGINT); */
+	xwaitpid(pid, WUNTRACED);
 	return (status);
 }
 
-int			execpipes(t_astree *root, int fd[2], int job, int isfork)
+int			execpipes(t_astree *root, int fd[2], int isfork)
 {
 	pid_t	pid;
 
 	if (root->right)
-		return (pipe_create(root, fd, job, isfork));
+		return (pipe_create(root, fd, isfork));
 	if (!(pid = xfork()))
-		exit(execcmd(root->left, fd, 0, 1));
+		exit(execcmd(root->left, fd, 1));
 	close(fd[0]);
-	return (xwaitpid(pid, 0));
+	return (xwaitpid(pid, WUNTRACED));
 }

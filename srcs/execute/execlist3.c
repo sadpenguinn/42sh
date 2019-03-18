@@ -12,19 +12,19 @@
 
 #include "execute.h"
 
-int		execlist3(t_astree *root, int fd[2], int job, int isfork)
+int		execlist3(t_astree *root, int fd[2], int isfork)
 {
 	if (!root)
 		return (EXIT_SUCCESS);
 	if (root->type != LIST3 && root->type != AND_IF)
-		return (execpipecmd(root, fd, job, isfork));
-	if (!root->right)
-		return (execpipecmd(root->left, fd, job, isfork));
-	if (execpipecmd(root->left, fd, EC_NOFG, isfork) != EXIT_SUCCESS)
+		return (execpipecmd(root, fd, isfork));
+	/* if (!root->right) */
+	/* 	return (execpipecmd(root->left, fd, isfork)); */
+	if (execpipecmd(root->left, fd, isfork) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	if (g_execerr)
 		return (-1);
-	if (execlist3(root->right, fd, job, isfork) != EXIT_SUCCESS)
+	if (execlist3(root->right, fd, isfork) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

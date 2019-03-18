@@ -12,12 +12,17 @@
 
 #include "execute.h"
 
+pid_t	g_pgid;
+int		g_isjob;
+
 int		execute(t_astree *root)
 {
 	int		res;
 	int		fd[2];
 	int		tmp_err;
 
+	g_pgid = -1;
+	g_isjob = 0;
 	tmp_err = g_execerr;
 	g_execerr = 0;
 	if (!root)
@@ -25,6 +30,7 @@ int		execute(t_astree *root)
 	fd[0] = 0;
 	fd[1] = 1;
 	res = execlist1(root, fd, 0);
+	tcsetpgrp(0, getpgid(getpid()));
 	g_execerr = tmp_err;
 	return (res);
 }

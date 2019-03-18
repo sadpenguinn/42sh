@@ -23,6 +23,8 @@
 
 extern int				g_execerr;
 extern void				*g_pids;
+extern pid_t			g_pgid;
+extern int				g_isjob;
 
 /*
 **	Flags for g_redirf
@@ -71,19 +73,19 @@ int						execute(t_astree *root);
 int						execlist1(t_astree *root,
 									int fd[2], int isfork);
 int						execlist2(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execlist3(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execpipecmd(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execpipes(t_astree	*root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execcmd(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execshellcmd(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 int						execscmd(t_astree *root,
-									int fd[2], int job, int isfork);
+									int fd[2], int isfork);
 
 int						execfor(t_astree *root,
 									int fd[2], int isfork);
