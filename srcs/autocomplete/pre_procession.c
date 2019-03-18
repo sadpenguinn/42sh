@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 15:16:18 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 17:59:30 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ int		check_only_flags_case(char *str, int pos)
 
 int		get_position_in_flags_case(char *str, int pos)
 {
-	pos -= 2;
-	while (str[pos] == ' ' && pos >= 0)
+	while (pos >= 0)
+	{
+		if (str[pos] != ' ' && str[pos] != '-' && (!pos || str[pos - 1] == ' '))
+			return (pos);
 		pos--;
-	while (str[pos] != ' ' && pos > 0)
-		pos--;
-	return (pos);
+	}
+	return (0);
 }
 
 int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)

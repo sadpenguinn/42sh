@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 16:12:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 14:26:48 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 17:37:04 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,22 @@
 char	*autocomplete_get_real_programm_name(char *str)
 {
 	int i;
-	int	pos_end;
-
-	i = ft_strlen(str);
-	while (str[i] != ' ')
-		i--;
-	while (str[i] == ' ')
-		i--;
-	pos_end = i;
-	while (i && str[i] != ' ')
-		i--;
-	return (ft_strndup(&str[i], pos_end - i + 1));
+	int	pr_begin;
+	int	pr_end;
+	
+	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	pr_begin = i;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i + 1] == ' ')
+			pr_end = i;
+		if (str[i] == '-')
+			break;
+		i++;
+	}
+	return (ft_strndup(&str[pr_begin], pr_end - pr_begin + 1));
 }
 
 int		get_autocomplite_flags_len(char *str, int *fd_to_free)
