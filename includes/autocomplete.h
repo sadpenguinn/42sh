@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/16 22:28:50 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 10:49:17 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "shell.h"
 # include "execute.h"
 # include "parser.h"
+# include "get_next_line.h"
+# include <fcntl.h>
 # include <stdio.h>
 
 /*
@@ -28,9 +30,11 @@
 
 # define ERROR_AUTOCOMLITE			0
 # define ENV_AUTOCOMLITE			1
-# define FLAGS_AUTOCOMLITE			3
+# define FLAGS_AUTOCOMLITE			2
 # define OTHER_AUTOCOMLITE			3
 # define ONLY_FI_DIR_AUTOCOMLITE	4
+
+# define PATH_TO_FLAGS_DB			"srcs/autocomplete/data_base/"
 
 char			**autocomplete(t_line *line_info, int pos);
 extern char		*g_built_in_lists[];
@@ -61,5 +65,7 @@ char			**sugg_delete_repeats(char **str);
 int				sugg_check_repeats_in_all_mass(char **str, size_t pos, char *c);
 char			**sugg_free_and_set_one(char **str, size_t pos);
 char			**sugg_get_common_repeat(char **str, char *sugg_word);
+int				get_autocomplite_flags_len(char *str, int *fd_to_free);
+char			**get_autocomplite_flags_mas(char *str, char **res, int *c);
 
 #endif
