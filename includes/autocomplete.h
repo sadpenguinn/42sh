@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 12:53:43 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 14:32:26 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ char			**get_mas_of_suggetions(char *word, int type);
 char			**sugg_delete_repeats(char **str);
 int				sugg_check_repeats_in_all_mass(char **str, size_t pos, char *c);
 char			**sugg_free_and_set_one(char **str, size_t pos);
-char			**sugg_get_common_repeat(char **str, char *sugg_word);
+char			**sugg_get_common_repeat(char **str, char *sugg_word, int type);
 int				get_autocomplite_flags_len(char *str, int *fd_to_free);
 char			**get_autocomplite_flags_mas(char *str, char **res, int *c);
 void			init_autocomplete(void);
+char			*autocomplete_get_real_programm_name(char *str);
+char			*get_autocomplite_real_flags(char *str, int strdup);
 
 void			printmas_delete(char **str);
 

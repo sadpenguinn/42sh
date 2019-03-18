@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 01:56:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 11:55:15 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 14:32:48 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,15 @@ char	**sugg_free_and_set_one(char **str, size_t pos)
 	return (res);
 }
 
-char	**sugg_get_common_repeat(char **str, char *sugg_word)
+char	**sugg_get_common_repeat(char **str, char *sugg_word, int type)
 {
 	size_t	len;
 	char	tmp;
 	size_t	pos_start;
 	char	*buf;
 
-	// printf("after  = %s\n", sugg_word);
-	if ((buf = ft_strendchr(sugg_word, '-')))
-		sugg_word = buf;
+	if (type == FLAGS_AUTOCOMLITE)
+		sugg_word = get_autocomplite_real_flags(sugg_word, 0);
 	else if ((buf = ft_strendchr(sugg_word, '/')))
 		sugg_word = buf + 1;
 	// printf("before = %s\n", sugg_word);

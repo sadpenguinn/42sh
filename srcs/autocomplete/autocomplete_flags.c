@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 16:12:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 12:55:46 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 14:26:48 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ char	*autocomplete_get_real_programm_name(char *str)
 	int	pos_end;
 
 	i = ft_strlen(str);
-	while (str[i] != '-')
+	while (str[i] != ' ')
 		i--;
-	i--;
 	while (str[i] == ' ')
 		i--;
 	pos_end = i;
@@ -57,16 +56,32 @@ int		get_autocomplite_flags_len(char *str, int *fd_to_free)
 	return (res + 1);
 }
 
+char	*get_autocomplite_real_flags(char *str, int strdup)
+{
+	char	*res;
+	int		i;
+
+	i = (int)ft_strlen(str);
+	while (i >= 0 && str[i] != ' ')
+		i--;
+	res = &str[i + 1];
+	if (strdup)
+		res = ft_strdup(res);
+	return (res);
+}
+
 char	**get_autocomplite_flags_mas(char *str, char **res, int *c)
 {
 	int		fd;
 	char	*line;
 	char	*prog;
 	char	*tmp;
+	char	*flag;
 
 	if (!ft_strchr(str, '-'))
 		return (0);
 	prog = autocomplete_get_real_programm_name(str);
+	flag = get_autocomplite_real_flags(str, 0);
 	tmp = prog;
 	prog = ft_strjoin(g_path_to_database, prog, 0);
 	free(tmp);
@@ -75,9 +90,12 @@ char	**get_autocomplite_flags_mas(char *str, char **res, int *c)
 		return (0);
 	while ((get_next_line(fd, &line)) > 0)
 	{
-		res[*c] = ft_strdup(line);
+		if (!(ft_strncmp(flag, line, ft_strlen(flag))))
+		{
+			res[*c] = ft_strdup(line);
+			(*c)++;
+		}
 		free(line);
-		(*c)++;
 	}
 	close(fd);
 	free(prog);

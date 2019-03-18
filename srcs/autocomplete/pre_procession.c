@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 12:54:40 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 14:15:13 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int		check_onlyfd_case(t_line *line_info, int pos)
 
 int		check_only_flags_case(char *str, int pos)
 {
-	if (str[pos] == '-' && pos - 1 > 0 && str[pos - 1] == ' ')
+	if (str[pos] == '-' && pos - 1 > 0 && (str[pos - 1] == ' '
+			|| (str[pos - 1] == '-' && (pos - 2) && str[pos - 2] == ' ')))
 	{
 		pos -= 2;
 		while (pos >= 0)
