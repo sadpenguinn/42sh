@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 16:12:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 10:50:45 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 11:10:22 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		get_autocomplite_flags_len(char *str, int *fd_to_free)
 		return (0);
 	res = 0;
 	prog = autocomplete_get_real_programm_name(str);
-	printf("Program name = %s\n", prog);
+	// printf("Program name = %s\n", prog);
 	tmp = prog;
 	prog = ft_strjoin(PATH_TO_FLAGS_DB, prog, 0);
 	free(tmp);
@@ -50,7 +50,7 @@ int		get_autocomplite_flags_len(char *str, int *fd_to_free)
 	while ((get_next_line(*fd_to_free, &line)) > 0)
 	{
 		res++;
-		printf("Line = %s\n", line);
+		// printf("Line = %s\n", line);
 	}
 	free(prog);
 	return (res + 1);
