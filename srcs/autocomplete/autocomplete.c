@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 11:10:27 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 12:55:55 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*g_built_in_lists[] =
 {
 	"cd", "echo", "env", "exit", "hash", "set", "setenv", "unsetenv", NULL
 };
+
+char	g_path_to_database[999];
 
 char	*ft_erase_spases_in_begin(char *str, int *type)
 {
@@ -33,6 +35,16 @@ char	*ft_erase_spases_in_begin(char *str, int *type)
 	ft_strcpy(res, &str[i]);
 	free(str);
 	return (res);
+}
+
+void	init_autocomplete(void)
+{
+	char	*tmp;
+
+	getcwd(g_path_to_database, sizeof(g_path_to_database));
+	tmp = ft_strjoin(g_path_to_database, PATH_TO_FLAGS_DB, 0);
+	ft_strcpy(g_path_to_database, tmp);
+	free(tmp);
 }
 
 char	**autocomplete(t_line *line_info, int pos)

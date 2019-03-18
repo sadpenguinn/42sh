@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 16:12:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 11:10:22 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 12:55:46 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,20 @@ int		get_autocomplite_flags_len(char *str, int *fd_to_free)
 		return (0);
 	res = 0;
 	prog = autocomplete_get_real_programm_name(str);
-	// printf("Program name = %s\n", prog);
 	tmp = prog;
-	prog = ft_strjoin(PATH_TO_FLAGS_DB, prog, 0);
+	prog = ft_strjoin(g_path_to_database, prog, 0);
+	// printf("Program name = |%s|\n", prog);
 	free(tmp);
 	*fd_to_free = open(prog, O_RDONLY);
+	free(prog);
 	if (*fd_to_free < 0)
 		return (0);
 	while ((get_next_line(*fd_to_free, &line)) > 0)
 	{
 		res++;
+		free(line);
 		// printf("Line = %s\n", line);
 	}
-	free(prog);
 	return (res + 1);
 }
 
@@ -67,18 +68,18 @@ char	**get_autocomplite_flags_mas(char *str, char **res, int *c)
 		return (0);
 	prog = autocomplete_get_real_programm_name(str);
 	tmp = prog;
-	prog = ft_strjoin(PATH_TO_FLAGS_DB, prog, 0);
+	prog = ft_strjoin(g_path_to_database, prog, 0);
 	free(tmp);
 	fd = open(prog, O_RDONLY);
 	if (fd < 0)
 		return (0);
 	while ((get_next_line(fd, &line)) > 0)
 	{
-		res[*c] = line;
+		res[*c] = ft_strdup(line);
+		free(line);
 		(*c)++;
 	}
 	close(fd);
-	res[*c] = NULL;
 	free(prog);
 	return (res);
 }

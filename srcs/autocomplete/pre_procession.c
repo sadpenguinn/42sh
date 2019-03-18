@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 10:50:07 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 12:54:40 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,23 @@ char	**get_mas_other_autocompile(char *str)
 	return (res);
 }
 
+void	printmas_delete(char **str)
+{
+	int i;
+
+	i = 0;
+	if (!str)
+	{
+		printf("Total NULL :(\n");
+		return ;
+	}
+	while (str[i])
+	{
+		printf("str[%d] = %s\n", i, str[i]); /////////////////////
+		i++;
+	}
+}
+
 char	**get_flags_autocompile(char *str)
 {
 	int		len;
@@ -126,7 +143,7 @@ char	**get_flags_autocompile(char *str)
 	res = xmalloc(sizeof(char *) * (len + 1));
 	res = get_autocomplite_flags_mas(str, res, &iter);
 	close(fd_to_free);
-	return (res);
+	return (res);	
 }
 
 char	**get_only_fi_di_autocompile(char *str)

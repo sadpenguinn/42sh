@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 10:49:17 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 12:53:43 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@
 # define OTHER_AUTOCOMLITE			3
 # define ONLY_FI_DIR_AUTOCOMLITE	4
 
-# define PATH_TO_FLAGS_DB			"srcs/autocomplete/data_base/"
+# define PATH_TO_FLAGS_DB			"/srcs/autocomplete/data_base/"
+
+extern char		*g_built_in_lists[];
+extern char		g_path_to_database[999];
 
 char			**autocomplete(t_line *line_info, int pos);
-extern char		*g_built_in_lists[];
 char			*atcml_get_pattern(char *buf, int pos);
 char			*atcml_get_rel_dir(char *buf, int pos);
 int				check_env_a_case(char c, char cb, int pos);
@@ -67,5 +69,8 @@ char			**sugg_free_and_set_one(char **str, size_t pos);
 char			**sugg_get_common_repeat(char **str, char *sugg_word);
 int				get_autocomplite_flags_len(char *str, int *fd_to_free);
 char			**get_autocomplite_flags_mas(char *str, char **res, int *c);
+void			init_autocomplete(void);
+
+void			printmas_delete(char **str);
 
 #endif

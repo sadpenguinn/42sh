@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 01:56:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 06:41:22 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 11:55:15 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,12 @@ char	**sugg_get_common_repeat(char **str, char *sugg_word)
 	size_t	pos_start;
 	char	*buf;
 
-	buf = ft_strendchr(sugg_word, '/');
-	if (buf)
+	// printf("after  = %s\n", sugg_word);
+	if ((buf = ft_strendchr(sugg_word, '-')))
+		sugg_word = buf;
+	else if ((buf = ft_strendchr(sugg_word, '/')))
 		sugg_word = buf + 1;
+	// printf("before = %s\n", sugg_word);
 	pos_start = ft_strlen(sugg_word) - ((sugg_word[0] == '$') ? 1 : 0);
 	len = 0;
 	tmp = 'a';
