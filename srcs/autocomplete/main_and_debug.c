@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:07:25 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 15:05:52 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 17:39:18 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		main(int argc, char **argv, char **env)
 	t_line	*line_info;
 
 	argc++;
-	test = ft_strdup("ls -a");
+	test = ft_strdup("ls -l -");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));
