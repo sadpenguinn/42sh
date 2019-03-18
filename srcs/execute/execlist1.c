@@ -31,6 +31,7 @@ int		execlist1(t_astree *root, int fd[2], int isfork)
 {
 	int		res;
 
+	g_pgid = -1;
 	if (!root)
 		return (EXIT_SUCCESS);
 	if (root->type != LIST1 && root->type != AND && root->type != SEMI &&

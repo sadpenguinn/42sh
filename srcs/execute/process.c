@@ -22,7 +22,8 @@ pid_t	xfork(void)
 		return (pid);
 	if (g_pgid == -1)
 		g_pgid = pid;
-	setpgid(pid, g_pgid);
+	if (setpgid(pid, g_pgid) == -1)
+		setpgid(pid, (g_pgid = getpgid(pid)));
 	if (g_isjob == EC_NOFG)
 		tcsetpgrp(0, g_pgid);
 	return (pid);
@@ -35,6 +36,7 @@ int		xwaitpid(pid_t pid, int options)
 
 	(void)options;
 	res = waitpid(pid, &status, WUNTRACED);
+	tcsetpgrp(0, getpgid(getpid()));
 	if (WIFSTOPPED(status))
 	{
 		vector_push_back(&g_jobs, &pid);

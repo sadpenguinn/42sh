@@ -50,8 +50,8 @@ t_redir	*redirfileerror(char *file, t_redir *redir)
 
 int		cmdexitsig(pid_t pid, int sig)
 {
-	if (g_execerr || sig == SIGINT)
-		return (1);
+	if (sig == SIGINT)
+		return (g_execerr = 1);
 	ft_putnbr_fd(pid, STDERR_FILENO);
 	if (sig == SIGSEGV)
 		ft_putstr_fd("\tSegmentation fault\n", STDERR_FILENO);
