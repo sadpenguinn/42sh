@@ -23,11 +23,11 @@ static int		parse_string(char *script)
 	return (1);
 }
 
-int				built_fc_case_s(char **av, int i, int *flags, void **fc_history)
+int				built_fc_case_s(char **av, int i, int *flags, void *fc_history)
 {
 	char	**str;
 
-	str = (char **)vector_front(*fc_history);
+	str = (char **)vector_front(fc_history);
 	parse_string(*str);
 	(void)av;
 	(void)i;

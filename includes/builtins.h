@@ -116,14 +116,14 @@ int		built_fc(char **av, char **env);
 ** Internal function for fc
 */
 
-int		built_fc_case_default(char **av, int i, int *flags, void **fc_history);
-int		built_fc_case_e(char **av, int i, int *flags, void **fc_history);
-int		built_fc_case_l(char **av, int i, int *flags, void **fc_history);
-int		built_fc_case_s(char **av, int i, int *flags, void **fc_history);
+int		built_fc_case_default(char **av, int i, int *flags, void *fc_history);
+int		built_fc_case_e(char **av, int i, int *flags, void *fc_history);
+int		built_fc_case_l(char **av, int i, int *flags, void *fc_history);
+int		built_fc_case_s(char **av, int i, int *flags, void *fc_history);
 int		built_fc_usage(int error);
 void	built_fc_swap_limits(size_t *left_limit, size_t *right_limit);
 void	built_fc_set_limits_default(size_t *left_limit, size_t *right_limit, void *fc_history);
-void	write_lines(void **fc_history, int fd, int *flags, char **av);
+int		built_fc_write_lines(void *fc_history, int fd, int *flags, char **av);
 
 /*
 ** Internal function for echo
