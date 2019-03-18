@@ -106,6 +106,16 @@ int		built_test(char **av, char **env);
 int		built_fc(char **av, char **env);
 
 /*
+** Internal function for fc
+*/
+
+int		built_fc_case_default(char **av, int i, int *flags, void **fc_history);
+int		built_fc_case_e(char **av, int i, int *flags, void **fc_history);
+int		built_fc_case_l(char **av, int i, int *flags, void **fc_history);
+int		built_fc_case_s(char **av, int i, int *flags, void **fc_history);
+int		built_fc_usage(void);
+
+/*
 ** Internal function for echo
 */
 

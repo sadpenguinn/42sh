@@ -3,12 +3,8 @@
 #include "get_next_line.h"
 #include "readline.h"
 #include <pwd.h>
-#include "lexer.h"
-#include "parser.h"
-#include "execute.h"
-#include "readline.h"
 
-static void	read_history_from_disk(void **vector)
+static void	fc_read_history_from_disk(void **vector)
 {
 	int				fd;
 	char			*file_name;
@@ -42,33 +38,6 @@ static void	fc_history_free(void *fc_history)
 	}
 }
 
-static int		parse_string(char *script)
-{
-	t_lexer		*lex;
-	t_astree	*ast;
-	int 		last;
-	char 		*tmp;
-
-	ft_putendl(script);
-	lex = lexer(script, ft_strlen(script));
-	g_tokens = lex->lexems;
-	ast = inputunit();
-	last = execute(ast);
-	tmp = ft_itoa(last);
-	ssetenv("?", tmp, ENV_RO);
-	ft_strdel(&tmp);
-	freeastree(ast);
-	lexer_free(lex);
-	return (1);
-}
-
-static int	fc_usage(void)
-{
-	array_add("fc usage: \n", ft_strlen("fc usage: \n"));
-	array_flush();
-	return (0);
-}
-
 static int	parse_flags(char **av, int *flags)
 {
 	int		k;
@@ -84,7 +53,7 @@ static int	parse_flags(char **av, int *flags)
 			&& av[i][k] != 'n' && av[i][k] != 's')
 			|| flags[0] == 1 || flags[4] == 1 || (av[i][k] == 's' && i > 1)
 			|| (av[i][k] == 'e' && (flags[2] == 1 || flags[3] == 1 || flags[4] == 1)))
-				return (fc_usage());
+				return (built_fc_usage());
 			if (av[i][k] == 'e')
 				flags[0] = 1;
 			else if (av[i][k] == 'r')
@@ -102,51 +71,15 @@ static int	parse_flags(char **av, int *flags)
 	return (i);
 }
 
-static int	run_fc_editor(char **av, int i, int *flags, void **fc_history)
-{
-	(void)av;
-	(void)i;
-	(void)flags;
-	(void)fc_history;
-}
-
-static int	run_fc_default(char **av, int i, int *flags, void **fc_history)
-{
-	(void)av;
-	(void)i;
-	(void)flags;
-	(void)fc_history;
-}
-
-static int	run_fc_list(char **av, int i, int *flags, void **fc_history)
-{
-	(void)av;
-	(void)i;
-	(void)flags;
-	(void)fc_history;
-}
-
-static int	run_fc_sub(char **av, int i, int *flags, void **fc_history)
-{
-	(void)av;
-	(void)i;
-	(void)flags;
-	(void)fc_history;
-}
-
 static int	run_fc(char **av, int i, int *flags, void **fc_history)
 {
-	char	**str;
-
-	str = (char **)vector_front(*fc_history);
-	parse_string(*str);
 	if (flags[0] == 1)
-		return (run_fc_editor(av, i, flags, fc_history));
+		return (built_fc_case_e(av, i, flags, fc_history));
 	if (flags[3] == 1)
-		return (run_fc_list(av, i, flags, fc_history));
+		return (built_fc_case_l(av, i, flags, fc_history));
 	if (flags[4] == 1)
-		return (run_fc_sub(av, i, flags, fc_history));
-	return (run_fc_default(av, i, flags, fc_history));
+		return (built_fc_case_s(av, i, flags, fc_history));
+	return (built_fc_case_default(av, i, flags, fc_history));
 }
 
 int			built_fc(char **av, char **env)
@@ -158,7 +91,7 @@ int			built_fc(char **av, char **env)
 	env = NULL;
 	ft_memset(flags, 0, sizeof(int) * 5);
 	fc_history = vector_create(sizeof(void *));
-	read_history_from_disk(&fc_history);
+	fc_read_history_from_disk(&fc_history);
 	ret = parse_flags(av, flags);
 	if (ret == 0)
 	{
