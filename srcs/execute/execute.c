@@ -22,6 +22,7 @@ int		execute(t_astree *root)
 	int		tmp_err;
 
 	g_isjob = 0;
+	g_pgid = -1;
 	tmp_err = g_execerr;
 	g_execerr = 0;
 	if (!root)
