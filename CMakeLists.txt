@@ -285,7 +285,8 @@ set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/strins_sheets.c
 					srcs/extention/strsplit_for_extention.c
 					srcs/extention/pre_processings.c
-					srcs/extention/get_fd_of_redirs.c)
+					srcs/extention/get_fd_of_redirs.c
+					srcs/extention/arithm_extention.c)
 
 set(EXPR			srcs/expr/expression.c)
 

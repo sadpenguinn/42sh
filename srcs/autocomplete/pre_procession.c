@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 14:15:13 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:16:18 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
 		else if (check_oth_a_case(line_info, pos))
 		{
 			*pos_start = ((line_info->buf[pos] == ' ' || line_info->buf[pos] ==
-						'(' || line_info->buf[pos - 1] == ';') ? pos + 1 : pos);
+				'(' || (pos && line_info->buf[pos - 1] == ';')) ? pos + 1 : pos);
 			return (OTHER_AUTOCOMLITE);
 		}
 		pos--;

@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 14:32:26 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 16:24:09 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				get_autocomplite_type(t_line *line_info,
 				int pos, int *pos_start);
 char			*ft_strendchr(char *str, char c);
 char			*dir_or_file_case(char *str, char *word);
-char			*cut_begin_in_unique_suggetion(char *str, char *word);
+char			*cut_begin_in_unique_suggetion(char *str, char *word, int type);
 int				get_mas_env_autocompl_len(char *str);
 char			**get_mas_env_autocompl(char *str);
 char			**tab_cat(char **to_str, char **from_str);
@@ -72,6 +72,7 @@ char			**get_autocomplite_flags_mas(char *str, char **res, int *c);
 void			init_autocomplete(void);
 char			*autocomplete_get_real_programm_name(char *str);
 char			*get_autocomplite_real_flags(char *str, int strdup);
+char			*cut_begin_ius_flags(char *str, char *word);
 
 void			printmas_delete(char **str);
 

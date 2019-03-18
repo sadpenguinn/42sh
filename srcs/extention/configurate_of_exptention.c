@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:38:01 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 22:36:57 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/18 16:01:34 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ char	*get_content_of_expression(char *str)
 		res = get_ex_tilda(str);
 	else if (str[1] != '(' && str[1] != '[' && str[1] != '{')
 		res = classic_get_env(&str[1]);
+	else if (str[1] == '[' || (str[1] == '(' && str[2] == '('))
+		res = get_arithm_extention(str);
 	else if (ft_strstr(str, ":-"))
 		res = use_a_default_value(str);
 	else if (ft_strstr(str, ":="))
