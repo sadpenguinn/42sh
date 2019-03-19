@@ -80,7 +80,10 @@ set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/post_procession.c
 					srcs/autocomplete/pre_procession.c
 					srcs/autocomplete/autocomplete_flags.c
-					srcs/autocomplete/beautifylizing_flags_output.c)
+					srcs/autocomplete/beautifylizing_flags_output.c
+					srcs/autocomplete/autocomplete_backslashing.c
+					srcs/autocomplete/autocomplete_other.c
+					srcs/autocomplete/autocomplete_get_type.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/heredoc.c

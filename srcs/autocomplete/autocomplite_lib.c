@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 03:49:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/16 23:38:01 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/19 09:24:14 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*atcml_get_pattern(char *buf, int pos)
 	l_p = pos;
 	while (l_p > 0 && check)
 	{
-		if ((buf[l_p - 1] == ' ' || buf[l_p - 1] == '/') && 
+		if ((buf[l_p - 1] == ' ' || buf[l_p - 1] == '/') &&
 						(!(l_p - 1) || buf[l_p - 2] != '\\'))
 			check = 0;
 		else
@@ -66,37 +66,6 @@ char	*atcml_get_pattern(char *buf, int pos)
 	pattern = ft_strjoin(tmp, "*", 1);
 	return (pattern);
 }
-
-// char	*atcml_get_rel_dir(char *buf, int pos)
-// {
-// 	size_t	left_pos;
-// 	char	*tmp;
-
-// 	if (!(ft_strchr(buf, '/')))
-// 		return (ft_strdup("./"));
-// 	if (pos)
-// 		pos--;
-// 	while (pos && buf[pos] != '/' && buf[pos - 1] != ' ')
-// 		pos--;
-// 	if (pos && buf[pos - 1] == ' ' && (pos - 1) && buf[pos - 2] == '\\')
-// 	{
-// 		pos--;
-// 		while (pos && buf[pos] != '/' && buf[pos - 1] != ' ')
-// 			pos--;
-// 	}
-// 	left_pos = pos;
-// 	while (left_pos && buf[left_pos - 1] != ' ')
-// 		left_pos--;
-// 	if (left_pos && buf[left_pos - 1] == ' ' && (left_pos - 1) && buf[left_pos - 2] == '\\')
-// 	{
-// 		left_pos--;
-// 		while (left_pos && buf[left_pos - 1] != ' ')
-// 			left_pos--;
-// 	}
-// 	tmp = ft_strndup(buf + left_pos, pos - left_pos + 1);
-// 	expand_backslash_handling(&tmp, 1);
-// 	return (tmp);
-// }
 
 char	*atcml_get_rel_dir(char *buf, int pos)
 {
