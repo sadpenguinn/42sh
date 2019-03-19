@@ -25,6 +25,7 @@ extern int				g_execerr;
 extern void				*g_pids;
 extern pid_t			g_pgid;
 extern int				g_isjob;
+extern int				g_job;
 
 /*
 **	Flags for g_redirf

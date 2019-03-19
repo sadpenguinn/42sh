@@ -33,7 +33,8 @@ static int	pipe_create(t_astree *root, int fd[2], int isfork)
 	close(cmdfd[1]);
 	fd[0] = pipefd[0];
 	status = execpipes(root->right, fd, isfork);
-	/* kill(pid, SIGINT); */
+	if (!g_job)
+		kill(pid, SIGINT);
 	xwaitpid(pid, WUNTRACED);
 	return (status);
 }

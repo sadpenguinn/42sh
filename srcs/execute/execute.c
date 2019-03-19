@@ -14,6 +14,7 @@
 
 pid_t	g_pgid;
 int		g_isjob = 0;
+int		g_job = 0;
 
 int		execute(t_astree *root)
 {

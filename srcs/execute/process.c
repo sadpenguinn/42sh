@@ -19,7 +19,10 @@ pid_t	xfork(void)
 	pid_t	pid;
 
 	if (!(pid = fork()))
+	{
+		signal(SIGTSTP, SIG_DFL);
 		return (pid);
+	}
 	vector_push_back(&g_pids, &pid);
 	if (g_pgid == -1)
 		g_pgid = pid;
@@ -37,6 +40,8 @@ int		xwaitpid(pid_t pid, int options)
 
 	(void)options;
 	res = waitpid(pid, &status, options);
+	if (g_job)
+		return (EXIT_FAILURE);
 	if (WIFSTOPPED(status))
 		return (addjob(JOB_STOP, 0));
 	if (g_pgid)
