@@ -32,6 +32,8 @@
 #  define SHERR_INVSNTX					5
 # endif
 
+# define BUILTT_FC_TMP_FILE ".fc_tmp_file"
+
 # ifndef FC_ERROR
 #  define FC_ERROR
 #  define FC_ERROR_EVENT 1
@@ -122,8 +124,12 @@ int		built_fc_case_l(char **av, int i, int *flags, void *fc_history);
 int		built_fc_case_s(char **av, int i, int *flags, void *fc_history);
 int		built_fc_usage(int error);
 void	built_fc_swap_limits(size_t *left_limit, size_t *right_limit);
-void	built_fc_set_limits_default(size_t *left_limit, size_t *right_limit, void *fc_history);
+void	built_fc_set_limits_default(size_t *left_limit, size_t *right_limit,
+		void *fc_history, int *flags);
 int		built_fc_write_lines(void *fc_history, int fd, int *flags, char **av);
+int		built_fc_parse_string(char *script, int print);
+int		built_fc_open_tmp_file(char **file_name);
+void	built_fc_write_history_changes(void);
 
 /*
 ** Internal function for echo

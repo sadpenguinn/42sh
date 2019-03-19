@@ -19,14 +19,13 @@
 
 static void	read_history_from_file(int fd)
 {
-	int			ret;
 	char		*str;
 	size_t		len;
 	t_cursor	pos;
 
 	pos.row = 0;
 	pos.col = 0;
-	while ((ret = get_next_line(fd, &str)))
+	while ((get_next_line(fd, &str)))
 	{
 		len = ft_strlen(str);
 		if (g_history->size == g_history->len)

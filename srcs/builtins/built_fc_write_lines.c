@@ -3,7 +3,8 @@
 #include "vector.h"
 #include "libft.h"
 
-static int	built_fc_set_limit_word_case(size_t *limit, const char *str, void *fc_history)
+static int	built_fc_set_limit_word_case(size_t *limit,
+		const char *str, void *fc_history)
 {
 	size_t	i;
 	size_t	len;
@@ -29,7 +30,8 @@ static int	built_fc_set_limit_word_case(size_t *limit, const char *str, void *fc
 	return (built_fc_usage(FC_ERROR_EVENT));
 }
 
-static int	built_fc_set_limit_nbr_case(size_t *limit, const char *str, void *fc_history)
+static int	built_fc_set_limit_nbr_case(size_t *limit,
+		const char *str, void *fc_history)
 {
 	*limit = (size_t)ft_atoi(str);
 	if (*limit)
@@ -39,7 +41,8 @@ static int	built_fc_set_limit_nbr_case(size_t *limit, const char *str, void *fc_
 	return (1);
 }
 
-static int	built_fc_set_limit(size_t *limit, const char *str, void *fc_history)
+static int	built_fc_set_limit(size_t *limit,
+		const char *str, void *fc_history)
 {
 	if (str == NULL || str[0] == '\0')
 		return (1);
@@ -56,7 +59,8 @@ static int	built_fc_set_limit(size_t *limit, const char *str, void *fc_history)
 	return (built_fc_set_limit_word_case(limit, str, fc_history));
 }
 
-static void	built_fc_add_string(void *fc_history, const int *flags, size_t pos)
+static void	built_fc_add_string(void *fc_history,
+		const int *flags, size_t pos)
 {
 	char	*str;
 
@@ -73,12 +77,13 @@ static void	built_fc_add_string(void *fc_history, const int *flags, size_t pos)
 	array_add("\n", 1);
 }
 
-int			built_fc_write_lines(void *fc_history, int fd, int *flags, char **av)
+int			built_fc_write_lines(void *fc_history,
+		int fd, int *flags, char **av)
 {
 	size_t	left_limit;
 	size_t	right_limit;
 
-	built_fc_set_limits_default(&left_limit, &right_limit, fc_history);
+	built_fc_set_limits_default(&left_limit, &right_limit, fc_history, flags);
 	if (av[0])
 		if (!built_fc_set_limit(&left_limit, av[0], fc_history))
 			return (1);
@@ -87,14 +92,15 @@ int			built_fc_write_lines(void *fc_history, int fd, int *flags, char **av)
 			return (1);
 	if (flags[1])
 		built_fc_swap_limits(&left_limit, &right_limit);
-	while (left_limit != right_limit)
-	{
-		built_fc_add_string(fc_history, flags, left_limit);
-		if (left_limit < right_limit)
-			left_limit++;
-		else
-			left_limit--;
-	}
+	if (flags[4] == 0)
+		while (left_limit != right_limit)
+		{
+			built_fc_add_string(fc_history, flags, left_limit);
+			if (left_limit < right_limit)
+				left_limit++;
+			else
+				left_limit--;
+		}
 	built_fc_add_string(fc_history, flags, left_limit);
 	array_flush_fd(fd);
 	return (1);
