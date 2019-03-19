@@ -14,11 +14,21 @@
 
 int		execpipecmd(t_astree *root, int fd[2], int isfork)
 {
+	int		res;
+	int		vect;
+
 	if (!(root) || !(root->left))
 		return (-1);
+	vect = g_pids ? 0 : 1;
+	if (vect)
+		g_pids = vector_create(sizeof(pid_t));
 	if (root->type == NOT)
-		return (!execpipecmd(root->left, fd, isfork));
-	if (root->left->type == REST)
-		return (execpipes(root->left, fd, isfork));
-	return (execcmd(root->left, fd, 0));
+		res = !execpipecmd(root->left, fd, isfork);
+	else if (root->left->type == REST)
+		res = execpipes(root->left, fd, isfork);
+	else
+		res = execcmd(root->left, fd, isfork);
+	if (vect)
+		vector_free(&g_pids);
+	return (res);
 }

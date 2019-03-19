@@ -117,6 +117,15 @@ int						cmdexitsig(pid_t pid, int sig);
 t_redir					*redirfileerror(char *file, t_redir *redir);
 
 /*
+**	Jobs
+*/
+
+int						addjob(int state, pid_t pid);
+
+# define JOB_RUN		1
+# define JOB_STOP		2
+
+/*
 **	initcmd.c
 **	Init command args
 */

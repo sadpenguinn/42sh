@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "shell.h"
+#include "execute.h"
 
 void	init_jobs(void)
 {
-	g_jobs = vector_create(sizeof(pid_t));
+	g_jobs = vector_create(sizeof(t_job));
 }

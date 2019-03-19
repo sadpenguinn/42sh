@@ -95,7 +95,6 @@ void	init(char **env)
 	init_env(env);
 	init_path();
 	init_jobs();
-	init_pids();
 	init_aliases();
 	init_functions();
 	init_function_args();

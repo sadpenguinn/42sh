@@ -27,6 +27,7 @@ static int execjob(t_astree *root, int fd[2])
 		setpgrp();
 		exit (pocessjob(root, fd));
 	}
+	addjob(JOB_RUN, pid);
 	vector_push_back(&g_jobs, &pid);
 	printf("[%lu] %d\n", vector_get_len(g_jobs), pid);
 	return (0);

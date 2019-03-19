@@ -13,7 +13,7 @@
 #include "execute.h"
 
 pid_t	g_pgid;
-int		g_isjob = 0;;
+int		g_isjob = 0;
 
 int		execute(t_astree *root)
 {

@@ -16,14 +16,6 @@
 
 extern int		g_execerr;
 
-static int		g_signal;
-
-void			vkill(void *cmd)
-{
-	kill(g_signal, (int)cmd);
-}
-
-
 void			handle_sigtstp(int sig)
 {
 	(void)sig;
@@ -41,9 +33,13 @@ void			handle_sigint(int sig)
 void			handle_sigin(int sig)
 {
 	(void)sig;
-	printf("sigIN handle\n");
-	printf("gpid:%d\nterm group:%d\n", getpgrp(), tcgetpgrp(0));
-	exit(0);
+	tcsetpgrp(0, getpgid(getpid()));
+}
+
+void			handle_sigchld(int sig)
+{
+	(void)sig;
+	/* printf("SIGCHLD\n"); */
 }
 
 void			init_signals(void)
@@ -52,4 +48,5 @@ void			init_signals(void)
 	signal(SIGINT, handle_sigint);
 	signal(SIGTTOU, SIG_IGN);
 	signal(SIGTTIN, handle_sigin);
+	signal(SIGCHLD, handle_sigchld);
 }

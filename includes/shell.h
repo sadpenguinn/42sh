@@ -160,7 +160,6 @@ void					init_env(char **env);
 void					init_path(void);
 void					init_jobs(void);
 void					init_process(void);
-void					init_pids(void);
 void					init_functions(void);
 void					init_function_args(void);
 void					init_aliases(void);
