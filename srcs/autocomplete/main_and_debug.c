@@ -63,7 +63,7 @@ int		main(int argc, char **argv, char **env)
 	t_line	*line_info;
 
 	argc++;
-	test = ft_strdup("vim ");
+	test = ft_strdup("cd tests/");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));

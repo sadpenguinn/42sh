@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 10:13:03 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/19 19:11:09 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char	**autocomplete(t_line *line_info, int pos)
 	if (!res || !res[0])
 	{
 		free(word_to_acmlt);
+		if (res && !res[0])
+			free(res);
 		return (NULL);
 	}
 	res = sugg_delete_repeats(res);

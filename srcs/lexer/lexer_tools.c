@@ -70,7 +70,8 @@ int				push_token(void **lexems, char *lexem, int state)
 		state == 2 || state == 4 || state == 14 || state == 16 ||
 		state == 17 || state == 27 || state == 29 || state == 30 ||
 		state == 33 || state == 35 || state == 72 || state == 79 ||
-		state == 81 || state == 83 || state == 85 || state == 86)
+		state == 81 || state == 83 || state == 85 || state == 86 ||
+		state == 105 || state == 107)
 		new.type = WORD;
 	new.word = lexem;
 	if (!(vector_push_back(lexems, (void *)(&new))))
