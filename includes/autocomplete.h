@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 10:14:33 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/19 15:05:32 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define FLAGS_AUTOCOMLITE			2
 # define OTHER_AUTOCOMLITE			3
 # define ONLY_FI_DIR_AUTOCOMLITE	4
+# define ONLY_FI_AUTOCOMPLITE		5
+# define ONLY_DIR_AUTOCOMPLETE		6
 
 # define PATH_TO_FLAGS_DB			"/srcs/autocomplete/data_base/"
 
@@ -81,6 +83,12 @@ char			**get_only_fi_di_autocompile(char *str);
 int				check_onlyfd_case(t_line *line_info, int pos);
 int				check_only_flags_case(char *str, int pos);
 int				get_position_in_flags_case(char *str, int pos);
+int				check_only_files_case_type(char *str);
+int				check_only_dir_case_type(char *str);
+char			**get_only_fi_autocompile(char *str);
+char			**get_only_fi_autocompile_len(char *str, int *count);
+char			**get_only_dir_autocompile(char *str);
+char			**processing_hidden_files(char **res, char *str);
 
 void			printmas_delete(char **str);
 

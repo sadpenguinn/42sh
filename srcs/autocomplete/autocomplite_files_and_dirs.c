@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 11:47:07 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/19 15:05:38 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,35 +90,6 @@ char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 	}
 	free(out_glob);
 	res[*c] = NULL;
-	return (res);
-}
-
-char		**processing_hidden_files(char **res, char *str)
-{
-	int	i;
-	int	j;
-
-	str = atcml_get_pattern(str, ft_strlen(str));
-	if (str[0] == '.')
-	{
-		free(str);
-		return (res);
-	}
-	free(str);
-	i = 0;
-	j = 0;
-	while (res[j])
-	{
-		while (res[i][0] == '.' && res[j] && res[j][0] == '.')
-		{
-			free(res[j]);
-			j++;
-		}
-		res[i] = res[j];
-		i++;
-		j++;
-	}
-	res[i] = NULL;
 	return (res);
 }
 
