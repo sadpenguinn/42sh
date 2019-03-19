@@ -79,7 +79,8 @@ set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/autocomplite_specific_cases.c
 					srcs/autocomplete/post_procession.c
 					srcs/autocomplete/pre_procession.c
-					srcs/autocomplete/autocomplete_flags.c)
+					srcs/autocomplete/autocomplete_flags.c
+					srcs/autocomplete/beautifylizing_flags_output.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/heredoc.c
