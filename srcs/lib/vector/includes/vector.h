@@ -20,6 +20,7 @@
 
 int			vector_to_array(void **vector);
 void		*vector_get_elem(void *vector, size_t i);
+int			vector_del_elem(void **vector, size_t i);
 size_t		vector_get_len(void *vector);
 int			vector_push_back(void **vector, const void *data);
 int			vector_is_empty(void *vector);

@@ -12,6 +12,7 @@ set(SRC_LIB srcs/vector_back.c
 			srcs/vector_get_len.c
 			srcs/vector_is_empty.c
 			srcs/vector_pop_back.c
+			srcs/vector_del_elem.c
 			srcs/vector_push_back.c
 			srcs/vector_to_array.c
 			srcs/ft_ceil.c

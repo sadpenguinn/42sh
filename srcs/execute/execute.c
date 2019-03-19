@@ -13,7 +13,7 @@
 #include "execute.h"
 
 pid_t	g_pgid;
-int		g_isjob;
+int		g_isjob = 0;
 
 int		execute(t_astree *root)
 {
@@ -21,8 +21,8 @@ int		execute(t_astree *root)
 	int		fd[2];
 	int		tmp_err;
 
-	g_pgid = -1;
 	g_isjob = 0;
+	g_pgid = -1;
 	tmp_err = g_execerr;
 	g_execerr = 0;
 	if (!root)

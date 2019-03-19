@@ -43,8 +43,6 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/destroy.c
 					srcs/shell/destroy_env.c
 					srcs/shell/destroy_path.c
-					srcs/shell/destroy_pids.c
-					srcs/shell/init_pids.c
 					srcs/shell/init_jobs.c
 					srcs/shell/destroy_jobs.c
 					srcs/shell/signals.c
@@ -253,6 +251,7 @@ set(EXECUTE_SRC		srcs/execute/errors.c
 					srcs/execute/getredir.c
 					srcs/execute/function.c
 					srcs/execute/process.c
+					srcs/execute/job.c
 					srcs/execute/alias.c)
 
 set(BUILTIN_SRC		srcs/builtins/built_cd.c

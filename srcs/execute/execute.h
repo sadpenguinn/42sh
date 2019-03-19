@@ -55,19 +55,17 @@ typedef struct			s_redir
 	int		fd[2];
 }						t_redir;
 
-typedef struct			s_cmd
-{
-	t_astree	*root;
-	void		*ppid;
-	int			fd[2];
-	int			job;
-}						t_cmd;
-
 typedef struct			s_func
 {
 	char		*name;
 	t_astree	*func;
 }						t_func;
+
+typedef struct			s_job
+{
+	int		state;
+	void	*pids;
+}						t_job;
 
 int						execute(t_astree *root);
 int						execlist1(t_astree *root,
@@ -117,6 +115,15 @@ int						forkerror(char *cmd);
 int						threaderror(void);
 int						cmdexitsig(pid_t pid, int sig);
 t_redir					*redirfileerror(char *file, t_redir *redir);
+
+/*
+**	Jobs
+*/
+
+int						addjob(int state, pid_t pid);
+
+# define JOB_RUN		1
+# define JOB_STOP		2
 
 /*
 **	initcmd.c

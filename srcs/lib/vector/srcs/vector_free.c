@@ -16,9 +16,9 @@ void	vector_free(void **vector)
 {
 	size_t	**arr;
 
-	arr = (size_t **)(vector);
-	if (!(arr))
+	if (!vector || !*vector)
 		return ;
+	arr = (size_t **)(vector);
 	free(*arr);
 	*arr = NULL;
 }

@@ -50,8 +50,6 @@ static int	execcommand(char **aven[2], t_list *redirs, int isfork)
 		return (((int (*)(char **, char **))cmd)(aven[0], aven[1]));
 	if (!isfork && (pid = xfork()))
 		return ((pid == -1) ? forkerror(aven[0][0]) : pid);
-	/* if (job) */
-	/* 	dup2(open("/dev/null", O_RDONLY | O_CLOEXEC), 0); */
 	applyredir(redirs);
 	if (g_cmdtype == PATH_BIN)
 		exit(execve((char *)cmd, aven[0], aven[1]));
@@ -132,7 +130,7 @@ int			execscmd(t_astree *root, int fd[2], int isfork)
 		return (pid);
 	if (g_cmdtype == PATH_NOFORK)
 		return (pid);
-	if (g_isjob || isfork)
+	if (isfork)
 		return (pid);
 	return (xwaitpid(pid, WUNTRACED));
 }

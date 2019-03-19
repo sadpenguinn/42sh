@@ -20,10 +20,12 @@ pid_t	xfork(void)
 
 	if (!(pid = fork()))
 		return (pid);
+	vector_push_back(&g_pids, &pid);
 	if (g_pgid == -1)
 		g_pgid = pid;
-	setpgid(pid, g_pgid);
-	if (g_isjob == EC_NOFG)
+	if (setpgid(pid, g_pgid) == -1)
+		setpgid(pid, (g_pgid = getpgid(pid)));
+	if (!g_isjob)
 		tcsetpgrp(0, g_pgid);
 	return (pid);
 }
@@ -34,13 +36,11 @@ int		xwaitpid(pid_t pid, int options)
 	pid_t	res;
 
 	(void)options;
-	res = waitpid(pid, &status, WUNTRACED);
+	res = waitpid(pid, &status, options);
 	if (WIFSTOPPED(status))
-	{
-		vector_push_back(&g_jobs, &pid);
-		printf("[%lu] + %d suspended\n", vector_get_len(g_jobs), pid);
-		return (EXIT_FAILURE);
-	}
+		return (addjob(JOB_STOP, 0));
+	if (g_pgid)
+		vector_pop_back(&g_pids);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
