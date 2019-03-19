@@ -24,7 +24,7 @@ static int			dfa_ret(int *i, int flag)
 
 int					dfa_check_state(char **str, int state, int *i)
 {
-	if (state == 94 || state == 100)
+	if (state == 94 || state == 100 || state == 104 || state == 106)
 	{
 		if ((*str)[*i] == '(')
 			return (dfa_ret(i, 1));

@@ -41,7 +41,7 @@ int		main(int ac, char **av, char **env)
 	while ((line = readline()))
 	{
 		lex = lexer(line->buf, line->len);
-	/*	lexer_print(lex->lexems);
+		/*lexer_print(lex->lexems);
 		ft_putendl("======");*/
 		string_del(&line);
 		g_tokens = lex->lexems;
