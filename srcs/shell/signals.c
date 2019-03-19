@@ -38,10 +38,18 @@ void			handle_sigint(int sig)
 	printf("sigint handle\n");
 }
 
+void			handle_sigin(int sig)
+{
+	(void)sig;
+	printf("sigIN handle\n");
+	printf("gpid:%d\nterm group:%d\n", getpgrp(), tcgetpgrp(0));
+	exit(0);
+}
+
 void			init_signals(void)
 {
 	signal(SIGTSTP, handle_sigtstp);
 	signal(SIGINT, handle_sigint);
 	signal(SIGTTOU, SIG_IGN);
-	/* signal(SIGTTIN, SIG_IGN); */
+	signal(SIGTTIN, handle_sigin);
 }

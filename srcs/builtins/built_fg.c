@@ -18,7 +18,7 @@ int				built_fg(char **av, char **env)
 	pgid = getpgid(pid);
 	tcsetpgrp(0, pgid);
 	killpg(pgid, SIGCONT);
-	xwaitpid(pgid, 0);
+	xwaitpid(pgid, WUNTRACED);
 	tcsetpgrp(0, getpgid(getpid()));
 
 	return (SHERR_OK);

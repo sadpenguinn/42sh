@@ -12,7 +12,12 @@
 
 #include "execute.h"
 
-static int execjob(t_astree *root, int fd[2], int isfork)
+static int pocessjob(t_astree *root, int fd[2])
+{
+	return (execlist2(root, fd, 1));
+}
+
+static int execjob(t_astree *root, int fd[2])
 {
 	pid_t	pid;
 
@@ -20,7 +25,7 @@ static int execjob(t_astree *root, int fd[2], int isfork)
 	{
 		g_isjob = 1;
 		setpgrp();
-		exit (execlist2(root, fd, isfork));
+		exit (pocessjob(root, fd));
 	}
 	vector_push_back(&g_jobs, &pid);
 	printf("[%lu] %d\n", vector_get_len(g_jobs), pid);
@@ -38,7 +43,7 @@ int		execlist1(t_astree *root, int fd[2], int isfork)
 		root->type != NEWLINE)
 		return (execlist2(root, fd, isfork));
 	if (root->right && root->right->type == AND)
-		res = execjob(root->left, fd, isfork);
+		res = execjob(root->left, fd);
 	else
 		res = execlist2(root->left, fd, isfork);
 	if (!root->right || !root->right->left)
