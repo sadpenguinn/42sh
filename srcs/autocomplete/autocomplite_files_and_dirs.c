@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 11:16:02 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:47:07 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,11 @@ char		**processing_hidden_files(char **res, char *str)
 	j = 0;
 	while (res[j])
 	{
-		if (res[i][0] == '.')
-			while (res[j] && res[j][0] == '.')
-			{
-				free(res[j]);
-				j++;
-			}
+		while (res[i][0] == '.' && res[j] && res[j][0] == '.')
+		{
+			free(res[j]);
+			j++;
+		}
 		res[i] = res[j];
 		i++;
 		j++;
