@@ -21,17 +21,21 @@ int				built_fg(char **av, char **env)
 	pid_t	pid;
 	pid_t	pgid;
 
-	if (!vector_get_len(g_jobs))
-		return (0);
-	/* pid = *(pid_t *)vector_back(g_jobs); */
-	/* vector_pop_back(&g_jobs); */
-	/* pgid = getpgid(pid); */
-	/* tcsetpgrp(0, pgid); */
-	/* killpg(pgid, SIGCONT); */
-	/* xwaitpid(pgid, WUNTRACED); */
-	/* tcsetpgrp(0, getpgid(getpid())); */
-	job = vector_back(g_jobs);
-	vector_pop_back(&g_jobs);
+	if (av && av[1] && ft_str_is_numeric(av[2]))
+	{
+		// Delete i-element here
+		if (!vector_get_len(g_jobs))
+			return (0);
+		job = vector_back(g_jobs);
+		vector_pop_back(&g_jobs);
+	}
+	else
+	{
+		if (!vector_get_len(g_jobs))
+			return (0);
+		job = vector_back(g_jobs);
+		vector_pop_back(&g_jobs);
+	}
 	g_pids = job->pids;
 	pid = *(pid_t *)vector_back(g_pids);
 	pgid = getpgid(pid);
