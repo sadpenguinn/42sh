@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:07:25 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 17:39:18 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/19 10:43:01 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,23 @@
 void			*g_tokens = NULL;
 unsigned int	g_curtok = 0;
 int				g_parseerr = 0;
+
+void	printmas_delete(char **str)
+{
+	int i;
+
+	i = 0;
+	if (!str)
+	{
+		printf("Total NULL :(\n");
+		return ;
+	}
+	while (str[i])
+	{
+		printf("str[%d] = %s\n", i, str[i]);
+		i++;
+	}
+}
 
 void	printmas(char **str)
 {
@@ -46,7 +63,7 @@ int		main(int argc, char **argv, char **env)
 	t_line	*line_info;
 
 	argc++;
-	test = ft_strdup("ls -l -");
+	test = ft_strdup("vim ");
 	(void)argv;
 	init(env);
 	line_info = xmalloc(sizeof(t_line));

@@ -77,7 +77,14 @@ set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/autocomplite_specific_cases.c
 					srcs/autocomplete/post_procession.c
 					srcs/autocomplete/pre_procession.c
-					srcs/autocomplete/autocomplete_flags.c)
+					srcs/autocomplete/autocomplete_flags.c
+					srcs/autocomplete/beautifylizing_flags_output.c
+					srcs/autocomplete/autocomplete_backslashing.c
+					srcs/autocomplete/autocomplete_other.c
+					srcs/autocomplete/autocomplete_get_type.c
+					srcs/autocomplete/clever_autocomplete_checks.c
+					srcs/autocomplete/autocomplete_files_or_dirs.c
+					srcs/autocomplete/processing_hidden_files.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
 					srcs/readline/heredoc.c

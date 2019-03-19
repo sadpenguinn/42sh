@@ -51,6 +51,8 @@
 [−] ${parameter%%}<br>
 [✓] ${parameter#}<br>
 [−] ${parameter##}<br>
+[✓] $[5 + 3arithm]<br>
+[✓] $((5 + 3arithm))<br>
 
 [−] Control groups and sub-shells: (), {}<br>
 [−] Control substitution: $()<br>
@@ -80,3 +82,12 @@
 [−] Autocompletion for order/built-in parameters<br>
 
 [−] Compliant with POSIX<br>
+
+BUGS:
+
+BUGS IN ARITHMETIC:
+    1) Division byzero
+    2) Just division
+
+BUGS IN BUTCH:
+    1) If extention returns NULL - 42sh seg fault

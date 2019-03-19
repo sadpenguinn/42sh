@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/16 23:38:05 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/19 15:05:38 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int			get_autocomplite_files_dir_len(char *str)
 	len = ft_strlen(str);
 	pattern = atcml_get_pattern(str, len);
 	real_dir = atcml_get_rel_dir(str, len);
-	// expand_backslash_handling(&real_dir, 1);
-	// printf("\npattern = |%s|\ndir = |%s|\n", pattern, real_dir);
 	if (xglob(pattern, real_dir, &res, (size_t *)&res_len))
 	{
 		free(pattern);
@@ -66,45 +64,6 @@ static char	**get_slashes_and_spases_lile_dirs(char **res, char *str)
 	return (res);
 }
 
-char		*autocomplite_backsl_str(char *str)
-{
-	char	*res;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 0;
-	res = xmalloc(sizeof(char) * (ft_strlen(str) + 1 + ft_strchrc(str, ' ')));
-	while (str[i])
-	{
-		if (str[i] == ' ')
-		{
-			res[j] = '\\';
-			j++;
-		}
-		res[j] = str[i];
-		i++;
-		j++;
-	}
-	free(str);
-	return (res);
-}
-
-char		**autocomplite_get_backslashing(char **str)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	while (str[i])
-	{
-		if ((tmp = ft_strchr(str[i], ' ')) && tmp[1])
-			str[i] = autocomplite_backsl_str(str[i]);
-		i++;
-	}
-	return (str);
-}
-
 char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 {
 	int		i;
@@ -131,5 +90,21 @@ char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 	}
 	free(out_glob);
 	res[*c] = NULL;
+	return (res);
+}
+
+char		**get_only_fi_di_autocompile(char *str)
+{
+	int		len;
+	int		iter;
+	char	**res;
+
+	iter = 0;
+	len = get_autocomplite_files_dir_len(str);
+	if (!len)
+		return (NULL);
+	res = xmalloc(sizeof(char *) * (len + 1));
+	res = get_autocomplite_files_dir_mas(str, res, &iter);
+	res = processing_hidden_files(res, str);
 	return (res);
 }

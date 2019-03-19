@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arithm_extention.c                                 :+:      :+:    :+:   */
+/*   clever_autocomplete_checks.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 15:58:20 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 16:38:36 by bbaelor-         ###   ########.fr       */
+/*   Created: 2019/03/19 12:56:34 by bbaelor-          #+#    #+#             */
+/*   Updated: 2019/03/19 13:11:37 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "extention.h"
+#include "autocomplete.h"
 
-char	*get_arithm_extention(char *str)
+int		check_only_files_case_type(char *str)
 {
-	char	*expression_ex;
-	char	*res;
+	if (!ft_strcmp(str, "vim") || !ft_strcmp(str, "nano") ||
+		!ft_strcmp(str, "emacs") || !ft_strcmp(str, "cat"))
+		return (1);
+	return (0);
+}
 
-	if (str[1] == '[')
-		expression_ex = ft_strndup(&str[2], ft_strlen(&str[1]) - 2);
-	else
-		expression_ex = ft_strndup(&str[3], ft_strlen(&str[2]) - 3);
-	res = expression(expression_ex);
-	if (g_exprerr)
-	{
-		write(1, "42sh: Division by zero\n", 23);
-		return (NULL);
-	}
-	return (res);
+int		check_only_dir_case_type(char *str)
+{
+	if (!ft_strcmp(str, "cd"))
+		return (1);
+	return (0);
 }
