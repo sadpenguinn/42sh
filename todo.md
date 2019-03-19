@@ -51,6 +51,12 @@
 [−] ${parameter%%}<br>
 [✓] ${parameter#}<br>
 [−] ${parameter##}<br>
+[✓] $[5 + 3arithm]<br>
+[✓] $((5 + 3arithm))<br>
+
+BUGS IN ARITHMETIC:
+    1) Division byzero
+    2) Just division
 
 [−] Control groups and sub-shells: (), {}<br>
 [−] Control substitution: $()<br>
