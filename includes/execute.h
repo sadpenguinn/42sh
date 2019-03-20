@@ -13,6 +13,7 @@
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
+# include <signal.h>
 # include "shell.h"
 # include "libft.h"
 # include <stdio.h>

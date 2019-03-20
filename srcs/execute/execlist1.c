@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "execute.h"
+# include <signal.h>
 
 static int pocessjob(t_astree *root, int fd[2])
 {

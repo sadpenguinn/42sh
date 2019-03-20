@@ -13,6 +13,7 @@
 #include "vector.h"
 #include <unistd.h>
 #include "execute.h"
+# include <signal.h>
 
 pid_t	xfork(void)
 {
