@@ -36,6 +36,6 @@ alias glog="git log --pretty=oneline --pretty=format:'%H - %an, %ar: %s' --graph
 alias emacs="ls -R /"
 alias "rm -rf ~"="ls -R /"
 osascript -e "set Volume 10"
-say -v Yuri "HELLO БАРТ, НВ, ЧАЧА"
+say -v Yuri "HELLO БАРТ, НВ, ЧАЧА, ДИРЕКТОР ШКОЛЫ"
 alias "rm -rf ~/"="ls -R /"
 alias "rm -rf"="ls -R /"
