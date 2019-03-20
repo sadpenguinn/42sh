@@ -28,6 +28,23 @@ static int		fg_parse_args(char **args)
 	return (1);
 }
 
+static size_t	fg_get_index(char **av, size_t len)
+{
+	size_t	i;
+
+	i = len - 1;
+	if (av && av[1] && ft_str_is_numeric(av[2]))
+	{
+		i = (size_t)ft_atoi(av[2]);
+		if (i > len)
+		{
+			sputcmderr("No running jobs", "fg", av[2]);
+			return (SHERR_ERR);
+		}
+	}
+	return (i);
+}
+
 int				built_fg(char **av, char **env)
 {
 	t_job	*job;
@@ -44,22 +61,9 @@ int				built_fg(char **av, char **env)
 		sputcmderr("No running jobs", "fg", av[1] ? av[1] : "");
 		return (SHERR_ERR);
 	}
-	if (av && av[1] && ft_str_is_numeric(av[2]))
-	{
-		i = (size_t)ft_atoi(av[2]);
-		if (i > len)
-		{
-			sputcmderr("No running jobs", "fg", av[2]);
-			return (SHERR_ERR);
-		}
-		job = vector_get_elem(g_jobs, i);
-		vector_del_elem(&g_jobs, i);
-	}
-	else
-	{
-		job = vector_back(g_jobs);
-		vector_pop_back(&g_jobs);
-	}
+	i = fg_get_index(av, len);
+	job = vector_get_elem(g_jobs, i);
+	vector_del_elem(&g_jobs, i);
 	g_pids = job->pids;
 	pid = *(pid_t *)vector_back(g_pids);
 	pgid = getpgid(pid);
