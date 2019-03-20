@@ -30,8 +30,7 @@ int				built_fg(char **av, char **env)
 	pid = *(pid_t *)vector_back(g_pids);
 	pgid = getpgid(pid);
 	tcsetpgrp(0, pgid);
-	if (job->state == JOB_STOP)
-		killpg(pgid, SIGCONT);
+	killpg(pgid, SIGCONT);
 	xwaitpid(pid, WUNTRACED);
 	if (g_job)
 		return (SHERR_OK);

@@ -166,6 +166,5 @@ int 		lex_check_bash_word(const char *str, size_t len)
 		ret == 29 || ret == 31 || ret == 32 || ret == 38 ||
 		ret == 42 || ret == 47 || ret == 52)
 		return (1);
-	else
-		return (0);
+	return (0);
 }

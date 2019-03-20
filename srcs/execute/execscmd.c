@@ -22,7 +22,7 @@
 
 static int	g_cmdtype;
 
-int			add_pipe_redir(t_list **redlst, int fd[2])
+int			add_pipe_redir(t_list **redlst, const int fd[2])
 {
 	t_redir		*redir[2];
 
