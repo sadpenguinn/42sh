@@ -4,15 +4,6 @@
 #include <signal.h>
 #include <errno.h>
 
-void			killpids(void *data)
-{
-	pid_t pid;
-
-	pid = *(pid_t *)data;
-	kill(pid, SIGINT);
-	waitpid(pid, 0, WUNTRACED);
-}
-
 static int		fg_parse_args(char **args)
 {
 	if (args[1] && !ft_str_is_numeric(args[1]))
@@ -30,6 +21,7 @@ static int		fg_parse_args(char **args)
 
 int				built_fg(char **av, char **env)
 {
+	void	*pidstmp;
 	t_job	*job;
 	pid_t	pid;
 	pid_t	pgid;
@@ -60,14 +52,17 @@ int				built_fg(char **av, char **env)
 		job = vector_back(g_jobs);
 		vector_pop_back(&g_jobs);
 	}
+	pidstmp = g_pids;
 	g_pids = job->pids;
 	pid = *(pid_t *)vector_back(g_pids);
 	pgid = getpgid(pid);
 	tcsetpgrp(0, pgid);
 	killpg(pgid, SIGCONT);
 	xwaitpid(pid, WUNTRACED);
+
+	g_pids = pidstmp;
 	if (g_job)
 		return (SHERR_OK);
-	vector_foreach(g_pids, killpids);
+	/* vector_foreach(g_pids, killpids); */
 	return (SHERR_OK);
 }

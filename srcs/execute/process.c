@@ -21,6 +21,7 @@ pid_t	xfork(void)
 
 	if (!(pid = fork()))
 	{
+		signal(SIGINT, SIG_DFL);
 		signal(SIGTSTP, SIG_DFL);
 		return (pid);
 	}

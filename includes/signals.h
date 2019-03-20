@@ -1,8 +1,9 @@
 #ifndef SIGNALS_H
 # define SIGNALS_H
 
-void			handle_sigchld(int sig);
-
 extern void		(*g_sigchld)(int);
+
+void			handle_sigchld(int sig);
+void			freepids(void **pids);
 
 #endif

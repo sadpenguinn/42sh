@@ -23,7 +23,6 @@ int		execute(t_astree *root)
 	int		fd[2];
 	int		tmp_err;
 
-	signal(SIGCHLD, SIG_DFL);
 	g_pgid = -1;
 	tmp_err = g_execerr;
 	g_isjob = 0;
@@ -35,6 +34,5 @@ int		execute(t_astree *root)
 	res = execlist1(root, fd, 0);
 	tcsetpgrp(0, getpgid(getpid()));
 	g_execerr = tmp_err;
-	signal(SIGCHLD, g_sigchld);
 	return (res);
 }

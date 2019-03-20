@@ -29,7 +29,7 @@ static void		exited(int num, pid_t pid, int res)
 	ft_putstr_fd("[", STDERR_FILENO);
 	ft_putnbr_fd(num, STDERR_FILENO);
 	ft_putstr_fd("]", STDERR_FILENO);
-	ft_putstr_fd(" + ", STDERR_FILENO);
+	ft_putstr_fd(" - ", STDERR_FILENO);
 	ft_putnbr_fd(pid, STDERR_FILENO);
 	ft_putstr_fd(" done (", STDERR_FILENO);
 	ft_putnbr_fd(res, STDERR_FILENO);
@@ -41,7 +41,7 @@ static void		signaled(int num, pid_t pid, int sig)
 	ft_putstr_fd("[", STDERR_FILENO);
 	ft_putnbr_fd(num, STDERR_FILENO);
 	ft_putstr_fd("]", STDERR_FILENO);
-	ft_putstr_fd(" + ", STDERR_FILENO);
+	ft_putstr_fd(" - ", STDERR_FILENO);
 	ft_putnbr_fd(pid, STDERR_FILENO);
 	ft_putstr_fd(" terminated (", STDERR_FILENO);
 	if (sig == SIGALRM)
@@ -65,40 +65,45 @@ static void		signaled(int num, pid_t pid, int sig)
 	ft_putstr_fd(")\n", STDERR_FILENO);
 }
 
+static int		check_status(int num, pid_t pid)
+{
+	int		status;
+
+	if (!waitpid(pid, &status, WNOHANG | WUNTRACED))
+		return (0);
+	if (WIFSTOPPED(status))
+	{
+		stopped(num, pid, WSTOPSIG(status));
+		return (0);
+	}
+	if (WIFEXITED(status))
+		exited(num, pid, WEXITSTATUS(status));
+	if (WIFSIGNALED(status))
+		signaled(num, pid, WTERMSIG(status));
+	return (1);
+}
+
 void			handle_sigchld(int sig)
 {
 	size_t	count;
 	size_t	i;
 	t_job	*job;
 	int		pid;
-	int		status;
 
 	(void)sig;
-	printf("SIGCHLD\n");
 	if (!(count = vector_get_len(g_jobs)))
 		return ;
-	printf("...SIGCHLD...\n");
 	i = 0;
 	while (i < count)
 	{
 		job = (t_job *)vector_get_elem(g_jobs, i);
 		pid = *(pid_t*)vector_back(job->pids);
-		waitpid(pid, &status, WNOHANG);
 		i++;
-		if (status == job->status)
+		if (!check_status(i, pid))
 			continue ;
-		if (WIFSTOPPED(status))
-		{
-			stopped(i, pid, WSTOPSIG(status));
-			continue ;
-		}
-		if (WIFEXITED(status))
-			exited(i, pid, WEXITSTATUS(status));
-		if (WIFSIGNALED(status))
-			signaled(i, pid, WTERMSIG(status));
-		printf("%lu|%lu\n", vector_get_len(g_jobs), i);
-		vector_del_elem(&g_jobs, i - 1);
-		/* vector_pop_back(&g_jobs); */
-		printf(">%lu\n", vector_get_len(g_jobs));
+		i--;
+		count--;
+		freepids(&(job->pids));
+		vector_del_elem(&g_jobs, i);
 	}
 }
