@@ -17,3 +17,16 @@ echo START; touch newfile; echo END
 mkdir test ; cd test ; ls -a ; ls | cat | wc -c > fifi ; cat fifi |  awk '{$1=$1};1'
 rm nosuchfile 2>&-
 echo "No dollar character" 1>&2 | cat -e
+
+bar (){ echo OK }
+bar
+type bar
+alias l="bar"
+type l
+unalias ls
+type ls
+type ffffffffffffffff
+
+set -o vi
+set -o emacs
+set -o syntax

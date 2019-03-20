@@ -14,3 +14,7 @@ END
 .
 ..
 5
+OK
+bar is a shell function
+l is an alias for bar
+ls is /bin/ls
