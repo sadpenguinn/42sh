@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 17:52:37 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/20 20:21:31 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 20:23:48 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int		cond_switcher_for_one_other(char *flag, char *arg);
 int		cond_switcher_for_one(char *flag, char *arg);
 int		cond_switcher_for_two(char *flag, char *arg1, char *arg2);
 void	conditions_processing(char **argv, int *res, int *i);
-char    *strsplit_to_conditions(char *str);
+char    **strsplit_to_conditions(char *str);
 
 #endif
