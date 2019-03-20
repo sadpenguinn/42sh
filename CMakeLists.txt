@@ -277,7 +277,9 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_bg.c
 					srcs/builtins/built_fg.c
 					srcs/builtins/built_alias.c
-					srcs/builtins/built_unalias.c srcs/builtins/built_type.c srcs/builtins/built_test.c)
+					srcs/builtins/built_unalias.c
+					srcs/builtins/built_type.c
+					srcs/builtins/built_test.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
@@ -318,8 +320,7 @@ set(EXPR_PARSER		srcs/expr/exprparser/expr.c
 					srcs/expr/exprparser/postincdec.c
 					srcs/expr/exprparser/preincdec.c
 					srcs/expr/exprparser/preunary.c
-					srcs/expr/exprparser/variable.c
-					)
+					srcs/expr/exprparser/variable.c)
 
 set(EXPR_CALC		srcs/expr/exprcalc/calc.c
 					srcs/expr/exprcalc/bits_operators.c
@@ -327,8 +328,7 @@ set(EXPR_CALC		srcs/expr/exprcalc/calc.c
 					srcs/expr/exprcalc/calcerror.c
 					srcs/expr/exprcalc/logical_operators.c
 					srcs/expr/exprcalc/math_operators.c
-					srcs/expr/exprcalc/variable.c
-					)
+					srcs/expr/exprcalc/variable.c)
 
 include_directories(${INC})
 include_directories(${PARSER_INC})
