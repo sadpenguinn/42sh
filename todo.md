@@ -91,3 +91,4 @@ BUGS IN ARITHMETIC:
 
 BUGS IN BUTCH:
     1) If extention returns NULL - 42sh seg fault
+    2) ls -la | cet (killed)
