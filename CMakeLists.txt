@@ -46,6 +46,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_jobs.c
 					srcs/shell/destroy_jobs.c
 					srcs/shell/signals.c
+					srcs/shell/sigchld.c
 					srcs/shell/argv_parser.c
 					srcs/shell/parse_input.c
 					srcs/shell/init_functions.c

@@ -16,6 +16,7 @@ int		addjob(int state, pid_t pid)
 		job.pids = g_pids;
 		g_pids = 0;
 	}
+	waitpid(*(pid_t*)vector_back(job.pids), &(job.status), WNOHANG);
 	g_job = 1;
 	job.state = state;
 	vector_push_back(&g_jobs, &job);

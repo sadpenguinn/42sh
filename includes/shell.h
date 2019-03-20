@@ -44,6 +44,17 @@ typedef struct			s_astree
 }						t_astree;
 
 /*
+** Struct for jobs
+*/
+
+typedef struct			s_job
+{
+	int		state;
+	int		status;
+	void	*pids;
+}						t_job;
+
+/*
 ** Global variables with env, aliases and paths hashes/arrays.
 ** 'roenv' arrays stores only read-only variables
 */
@@ -177,7 +188,7 @@ int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
 
 /*
-**	Execute command and return READONLY descriptor with result
+**	Execute command and return descriptor
 **	If parser or execute error returns -1
 */
 

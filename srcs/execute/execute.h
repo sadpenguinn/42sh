@@ -62,12 +62,6 @@ typedef struct			s_func
 	t_astree	*func;
 }						t_func;
 
-typedef struct			s_job
-{
-	int		state;
-	void	*pids;
-}						t_job;
-
 int						execute(t_astree *root);
 int						execlist1(t_astree *root,
 									int fd[2], int isfork);

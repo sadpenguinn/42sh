@@ -13,7 +13,6 @@
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-# include <signal.h>
 # include "shell.h"
 # include "libft.h"
 # include <stdio.h>
@@ -62,12 +61,6 @@ typedef struct			s_func
 	char		*name;
 	t_astree	*func;
 }						t_func;
-
-typedef struct			s_job
-{
-	int		state;
-	void	*pids;
-}						t_job;
 
 int						execute(t_astree *root);
 int						execlist1(t_astree *root,
@@ -134,6 +127,6 @@ int						addjob(int state, pid_t pid);
 
 int						initcmd(t_astree *root,
 									int fd[2], t_list *cmd[3], char **aven[2]);
-int						add_pipe_redir(t_list **redlst, int fd[2]);
+int						add_pipe_redir(t_list **redlst, const int fd[2]);
 
 #endif

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <signal.h>
+#include "signals.h"
 #include "shell.h"
 #include "readline.h"
 
@@ -34,12 +35,6 @@ void			handle_sigin(int sig)
 {
 	(void)sig;
 	tcsetpgrp(0, getpgid(getpid()));
-}
-
-void			handle_sigchld(int sig)
-{
-	(void)sig;
-	/* printf("SIGCHLD\n"); */
 }
 
 void			init_signals(void)
