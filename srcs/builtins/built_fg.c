@@ -13,6 +13,21 @@ void			killpids(void *data)
 	waitpid(pid, 0, WUNTRACED);
 }
 
+static int		fg_parse_args(char **args)
+{
+	if (args[1] && !ft_str_is_numeric(args[1]))
+	{
+		sputcmderr(sstrerr(SHERR_INVSNTX), "fg", args[1]);
+		return (0);
+	}
+	else if (args[1] && args[2])
+	{
+		sputcmderr(sstrerr(SHERR_INVSNTX), "fg", args[2]);
+		return (0);
+	}
+	return (1);
+}
+
 int				built_fg(char **av, char **env)
 {
 	t_job	*job;
@@ -22,13 +37,21 @@ int				built_fg(char **av, char **env)
 	size_t	i;
 
 	env = NULL;
+	if (!av || !av[0] || !(fg_parse_args(av)))
+		return (SHERR_ERR);
 	if (!(len = vector_get_len(g_jobs)))
-		return (0);
+	{
+		sputcmderr("No running jobs", "fg", av[1] ? av[1] : "");
+		return (SHERR_ERR);
+	}
 	if (av && av[1] && ft_str_is_numeric(av[2]))
 	{
 		i = (size_t)ft_atoi(av[2]);
 		if (i > len)
-			return (0);
+		{
+			sputcmderr("No running jobs", "fg", av[2]);
+			return (SHERR_ERR);
+		}
 		job = vector_get_elem(g_jobs, i);
 		vector_del_elem(&g_jobs, i);
 	}
