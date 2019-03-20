@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:40:02 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/03/09 05:11:30 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 13:32:56 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static size_t	get_files_count(char *path)
 	return (count);
 }
 
-void			glob_free(char ***matches, int i)
+void			glob_free(char ***matches, size_t i)
 {
-	while (i >= 0)
+	while (i != (size_t)-1)
 	{
 		free((*matches)[i]);
 		i--;
@@ -49,7 +49,7 @@ static int		read_dir(DIR *dirp, char *pattern, char ***matches, size_t *cnt)
 		{
 			if (!((*matches)[i] = ft_strdup(cdir->d_name)))
 			{
-				glob_free(matches, (int)i);
+				glob_free(matches, i);
 				return (-1);
 			}
 			i++;

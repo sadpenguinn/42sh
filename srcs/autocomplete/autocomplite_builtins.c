@@ -6,17 +6,17 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:27:22 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 06:41:39 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:51:59 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-int		get_autocomplite_built_in_mas_len(char *str)
+size_t	get_autocomplite_built_in_mas_len(char *str)
 {
 	int		i;
 	size_t	len_word;
-	int		counter;
+	size_t	counter;
 
 	counter = 0;
 	len_word = ft_strlen(str);

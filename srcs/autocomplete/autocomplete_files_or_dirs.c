@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:06:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 14:55:27 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:23:30 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**get_only_fi_autocompile(char *str)
 	i = 0;
 	if (!(all = get_only_fi_autocompile_len(str, &c)))
 		return (NULL);
-	res = xmalloc(sizeof(char *) * (c + 1));
+	res = xmalloc(sizeof(char *) * (UL)(c + 1));
 	while (all[i])
 	{
 		if (all[i][ft_strlen(all[i]) - 1] == ' ')
@@ -60,7 +60,7 @@ char	**get_only_fi_autocompile(char *str)
 	return (res);
 }
 
-char	**get_only_dir_autocompile_len(char *str, int *count)
+static char	**get_only_dir_autocompile_len(char *str, int *count)
 {
 	int		i;
 	int		c;
@@ -92,7 +92,7 @@ char	**get_only_dir_autocompile(char *str)
 	i = 0;
 	if (!(all = get_only_dir_autocompile_len(str, &c)))
 		return (NULL);
-	res = xmalloc(sizeof(char *) * (c + 1));
+	res = xmalloc(sizeof(char *) * (UL)(c + 1));
 	while (all[i])
 	{
 		if (all[i][ft_strlen(all[i]) - 1] == '/')

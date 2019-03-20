@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 09:56:27 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 09:57:03 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:53:16 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**get_mas_other_autocompile(char *str)
 {
-	int		len;
+	size_t	len;
 	int		iter;
 	char	**res;
 

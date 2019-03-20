@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:04:29 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 19:11:09 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 13:22:08 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	init_autocomplete(void)
 	free(tmp);
 }
 
-char	**autocomplete(t_line *line_info, int pos)
+char	**autocomplete(t_line *line_info, size_t pos)
 {
 	int		type;
-	int		pos_start;
+	size_t	pos_start;
 	char	*word_to_acmlt;
 	char	**res;
 

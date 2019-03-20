@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 16:12:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 10:08:17 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 13:20:34 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ char	*cut_begin_ius_flags(char *str, char *word)
 
 char	*autocomplete_get_real_programm_name(char *str)
 {
-	int i;
-	int	pr_begin;
-	int	pr_end;
+	size_t	i;
+	size_t	pr_begin;
+	size_t	pr_end;
 
 	i = 0;
+	pr_end = 0;
 	while (str[i] && str[i] == ' ')
 		i++;
 	pr_begin = i;
@@ -53,11 +54,11 @@ char	*autocomplete_get_real_programm_name(char *str)
 	return (ft_strndup(&str[pr_begin], pr_end - pr_begin + 1));
 }
 
-int		get_autocomplite_flags_len(char *str, int *fd_to_free)
+size_t	get_autocomplite_flags_len(char *str, int *fd_to_free)
 {
 	char	*line;
 	char	*prog;
-	int		res;
+	size_t	res;
 	char	*tmp;
 
 	if (!(ft_strchr(str, '-')))
@@ -93,7 +94,7 @@ char	*get_autocomplite_real_flags(char *str, int strdup)
 	return (res);
 }
 
-char	**get_autocomplite_flags_mas(char *str, char **res, int *c)
+char	**get_autocomplite_flags_mas(char *str, char **res, size_t *c)
 {
 	int		fd;
 	char	*line;

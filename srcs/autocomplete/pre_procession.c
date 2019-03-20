@@ -6,13 +6,13 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 14:06:36 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 13:18:45 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-int		check_onlyfd_case(t_line *line_info, int pos)
+int		check_onlyfd_case(t_line *line_info, size_t pos)
 {
 	if (pos && (pos - 1) && line_info->buf[pos] == ' ' &&
 												line_info->buf[pos - 1] != '\\')
@@ -28,13 +28,13 @@ int		check_onlyfd_case(t_line *line_info, int pos)
 	return (0);
 }
 
-int		check_only_flags_case(char *str, int pos)
+int		check_only_flags_case(char *str, size_t pos)
 {
 	if (str[pos] == '-' && pos - 1 > 0 && (str[pos - 1] == ' '
 			|| (str[pos - 1] == '-' && (pos - 2) && str[pos - 2] == ' ')))
 	{
 		pos -= 2;
-		while (pos >= 0)
+		while (pos > 0)
 		{
 			if (str[pos] != ' ')
 				return (1);
@@ -48,9 +48,9 @@ int		check_only_flags_case(char *str, int pos)
 		return (0);
 }
 
-int		get_position_in_flags_case(char *str, int pos)
+size_t	get_position_in_flags_case(char *str, size_t pos)
 {
-	while (pos >= 0)
+	while (pos > 0)
 	{
 		if (str[pos] != ' ' && str[pos] != '-' && (!pos || str[pos - 1] == ' '))
 			return (pos);
@@ -61,8 +61,8 @@ int		get_position_in_flags_case(char *str, int pos)
 
 char	**get_flags_autocompile(char *str)
 {
-	int		len;
-	int		iter;
+	size_t	len;
+	size_t	iter;
 	char	**res;
 	int		fd_to_free;
 
@@ -70,7 +70,7 @@ char	**get_flags_autocompile(char *str)
 	len = get_autocomplite_flags_len(str, &fd_to_free);
 	if (!len)
 		return (NULL);
-	res = xmalloc(sizeof(char *) * (len + 1));
+	res = xmalloc(sizeof(char *) * (UL)(len + 1));
 	res = get_autocomplite_flags_mas(str, res, &iter);
 	close(fd_to_free);
 	return (res);

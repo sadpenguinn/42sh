@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:34:24 by nkertzma          #+#    #+#             */
-/*   Updated: 2019/03/09 03:31:29 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:54:55 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct	s_env
 */
 
 int				xglob(char *pattern, char *path, char ***matches, size_t *cnt);
-void			glob_free(char ***matches, int i);
+void			glob_free(char ***matches, size_t i);
 int				xmatch(char *s1, char *s2);
 
 /*
@@ -132,7 +132,7 @@ void			print_str_arr(char *const *arr);
 size_t			size_str_arr(char *const *arr);
 char			**split_assignments(char *str);
 
-size_t  		get_file_size(const char *file);
+size_t			get_file_size(const char *file);
 
 int				check_varname(const char *str);
 

@@ -6,18 +6,18 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:28:16 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 05:35:06 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:50:50 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-int		autocomplite_hash_find_len(t_hash *hash, char *str)
+size_t	autocomplite_hash_find_len(t_hash *hash, char *str)
 {
 	t_hshtb	*ptr;
 	size_t	size;
 	size_t	i;
-	int		counter;
+	size_t	counter;
 
 	if (!hash || !hash->table || !str)
 		return (1);

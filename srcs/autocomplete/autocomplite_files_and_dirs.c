@@ -6,16 +6,16 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 15:05:38 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:49:50 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-int			get_autocomplite_files_dir_len(char *str)
+size_t		get_autocomplite_files_dir_len(char *str)
 {
 	size_t	len;
-	int		res_len;
+	size_t	res_len;
 	char	**res;
 	char	*pattern;
 	char	*real_dir;
@@ -23,7 +23,7 @@ int			get_autocomplite_files_dir_len(char *str)
 	len = ft_strlen(str);
 	pattern = atcml_get_pattern(str, len);
 	real_dir = atcml_get_rel_dir(str, len);
-	if (xglob(pattern, real_dir, &res, (size_t *)&res_len))
+	if (xglob(pattern, real_dir, &res, &res_len))
 	{
 		free(pattern);
 		free(real_dir);
@@ -95,7 +95,7 @@ char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 
 char		**get_only_fi_di_autocompile(char *str)
 {
-	int		len;
+	size_t	len;
 	int		iter;
 	char	**res;
 
