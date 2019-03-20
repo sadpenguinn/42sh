@@ -1,0 +1,40 @@
+#██╗  ██╗██████╗ ███████╗██╗  ██╗
+#██║  ██║╚════██╗██╔════╝██║  ██║
+#███████║ █████╔╝███████╗███████║
+#╚════██║██╔═══╝ ╚════██║██╔══██║
+#     ██║███████╗███████║██║  ██║
+#     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
+
+export LANG=en_US.UTF-8
+export VIRTUALENVWRAPPER_PYTHON=~/.brew/bin/python3
+
+alias ls="ls -G"
+alias l='ls -G -l -a -h'
+alias ll='ls -G -l -h'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias '~'='cd /'
+alias '~'='cd ~'
+alias md='mkdir -p'
+alias rd=rmdir
+
+alias ex="exit"
+alias cl="clear"
+alias v="nvim"
+alias im="nvim"
+alias vi="nvim"
+alias vim="nvim"
+alias vimm="nvim"
+alias gcc="gcc -Wall -Wextra -Werror"
+alias norm="norminette"
+
+alias glog="git log --pretty=oneline --pretty=format:'%H - %an, %ar: %s' --graph"
+
+# Dzhab killer
+
+alias emacs="ls -R /"
+alias "rm -rf ~"="ls -R /"
+alias "rm -rf ~/"="ls -R /"
+alias "rm -rf"="ls -R /"

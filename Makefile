@@ -7,6 +7,7 @@ BUILD_DIR	:= build
 all: ./build/Makefile
 	@ $(MAKE) -C $(BUILD_DIR)
 	@ cp $(BUILD_DIR)/$(NAME) .
+	@ cp -f .42shrc ~
 
 ./build/Makefile:
 	@ $(MKDIR) $(BUILD_DIR) > /dev/null
