@@ -1,0 +1,44 @@
+=============TESTING...=============
+
+It works
+It works
+0
+bar
+0
+0
+OK$
+Testing redirections,
+Testing redirections,
+with multiple lines
+42
+START
+END
+.
+..
+5
+
+=============DIFFERENCE=============
+
+*** basic.right	2019-03-17 15:42:42.000000000 +0300
+--- buf	2019-03-20 17:06:55.000000000 +0300
+***************
+*** 3,9 ****
+  0
+  bar
+  0
+! 1
+  OK$
+  Testing redirections,
+  Testing redirections,
+--- 3,9 ----
+  0
+  bar
+  0
+! 0
+  OK$
+  Testing redirections,
+  Testing redirections,
+
+==========SOME TESTS FAILED=========
+
+              (︶︹︺)              
