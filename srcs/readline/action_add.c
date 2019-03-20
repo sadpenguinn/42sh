@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   action_add.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/20 15:11:26 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/20 15:13:05 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "shell.h"
 
-static void actions_free(t_modification *modif)
+static void	actions_free(t_modification *modif)
 {
 	if (modif->len == 0 || modif->cur == modif->len - 1)
 		return ;

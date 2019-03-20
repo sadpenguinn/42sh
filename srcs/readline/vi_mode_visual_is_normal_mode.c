@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vi_mode_visual_is_normal_mode.c                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/20 15:19:24 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/20 15:19:25 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "libft.h"
 
@@ -46,7 +58,7 @@ static int	replace_string_by_symbol(t_matrix *matrix, t_uchar c)
 	{
 		ft_memset(str, 0, sizeof(t_uchar));
 		*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
-											   str, symbol_to_string(c, str));
+				str, symbol_to_string(c, str));
 		symbols--;
 	}
 	move_cursor_left(matrix);

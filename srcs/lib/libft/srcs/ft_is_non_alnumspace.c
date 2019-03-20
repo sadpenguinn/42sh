@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modification_resize.c                              :+:      :+:    :+:   */
+/*   ft_is_non_alnumspace.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/20 15:16:20 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/20 15:16:21 by narchiba         ###   ########.fr       */
+/*   Created: 2019/03/20 15:23:06 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/20 15:27:39 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "readline.h"
-#include "shell.h"
+#include "libft.h"
 
-void	modification_resize(t_modification *modif,
-		size_t new_size, size_t old_size)
+int	ft_is_non_alnumspace(char c)
 {
-	modif->actions = (t_action **)xrealloc(modif->actions,
-			sizeof(t_action *) * new_size, sizeof(t_action *) * old_size);
-	modif->size = new_size;
+	if (!ft_isalnum(c) && c != ' ')
+		return (1);
+	return (0);
 }

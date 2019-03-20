@@ -6,7 +6,7 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:28:11 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/08 13:28:23 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/20 15:18:48 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	are_default_vi_mode_replace_shortcuts(t_matrix *matrix, t_uchar c)
 	return (0);
 }
 
-int	vi_mode_replace(t_matrix *matrix, t_uchar c)
+int			vi_mode_replace(t_matrix *matrix, t_uchar c)
 {
 	char	str[sizeof(t_uchar)];
 

@@ -6,19 +6,12 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:58:24 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/08 12:58:37 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/20 15:25:31 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 #include "libft.h"
-
-static int	ft_is_non_alnumspace(char c)
-{
-	if (!ft_isalnum(c) && c != ' ')
-		return (1);
-	return (0);
-}
 
 size_t		get_cursor_pos_next_alnum(t_matrix *matrix)
 {
@@ -96,7 +89,7 @@ size_t		get_cursor_pos_end_alnum(t_matrix *matrix)
 	return (col);
 }
 
-size_t	get_cursor_pos_find_char_usual_order(t_matrix *matrix)
+size_t		get_cursor_pos_find_char_usual_order(t_matrix *matrix)
 {
 	char	c;
 
@@ -108,7 +101,7 @@ size_t	get_cursor_pos_find_char_usual_order(t_matrix *matrix)
 	return (get_cursor_pos_find_back_char(matrix));
 }
 
-size_t	get_cursor_pos_find_char_reverse_order(t_matrix *matrix)
+size_t		get_cursor_pos_find_char_reverse_order(t_matrix *matrix)
 {
 	char	c;
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   print_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 17:01:20 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/09 11:18:53 by narchiba         ###   ########.fr       */
+/*   Created: 2019/03/20 15:17:00 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/20 15:17:19 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			print_search(t_matrix *matrix)
 	return (1);
 }
 
-int		print_event_message(void)
+int			print_event_message(void)
 {
 	array_add(SHELL_NAME, ft_strlen(SHELL_NAME));
 	array_add(": ", 2);
