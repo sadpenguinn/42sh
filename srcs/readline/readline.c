@@ -40,7 +40,6 @@ void			init_readline(void)
 {
 	signal(SIGWINCH, sigwinch_handler);
 	get_term_params(&g_w);
-	set_term();
 	g_heredoc = 0;
 	print_prompt();
 	history_fill();
@@ -71,6 +70,5 @@ t_string		*readline(void)
 		return (str);
 	}
 	history_del(&g_history);
-	unset_term();
 	return (NULL);
 }

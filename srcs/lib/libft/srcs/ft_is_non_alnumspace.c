@@ -14,7 +14,7 @@
 
 int	ft_is_non_alnumspace(char c)
 {
-	if (!ft_isalnum(c) && c != ' ')
+	if (!ft_isalnum(c) && !(ft_is_space_tab(c)))
 		return (1);
 	return (0);
 }

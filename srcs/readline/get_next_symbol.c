@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <errno.h>
+#include "term.h"
 
 t_uchar		get_next_symbol(size_t size)
 {
@@ -23,7 +25,9 @@ t_uchar		get_next_symbol(size_t size)
 	c = 0;
 	if (size > sizeof(t_uchar))
 		size = sizeof(t_uchar);
+	set_term();
 	ret = read(0, &c, size);
+	unset_term();
 	if (ret == -1 && g_heredoc)
 		return ('\n');
 	while (ret == -1)
@@ -35,7 +39,9 @@ t_uchar		get_next_symbol(size_t size)
 		g_history->matrix[g_history->cur] = matrix_init();
 		matrix_insert_line(g_history->matrix[g_history->cur], 0);
 		print_default(g_history->matrix[g_history->cur]);
+		set_term();
 		ret = read(0, &c, size);
+		unset_term();
 	}
 	return (c);
 }
