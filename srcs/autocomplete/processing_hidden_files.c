@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:05:07 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 15:53:50 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:21:10 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ char		**processing_hidden_files(char **all, char *str)
 	j = 0;
 	if (!(check_point(str)))
 		return (all);
-	res = xmalloc(sizeof(char *) * (processing_hidden_files_len(all) + 1));
+	res = xmalloc(sizeof(char *) *
+						(unsigned int)(processing_hidden_files_len(all) + 1));
 	while (all[i])
 	{
 		if (all[i] && all[i][0] && all[i][0] != '.')

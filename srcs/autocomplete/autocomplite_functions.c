@@ -6,15 +6,15 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:26:35 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/09 06:42:08 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:52:32 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-int		get_autocomplite_functions_mas_len(char *str)
+size_t	get_autocomplite_functions_mas_len(char *str)
 {
-	int		counter;
+	size_t	counter;
 	size_t	i;
 	size_t	n;
 	size_t	len;

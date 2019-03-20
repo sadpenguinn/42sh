@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 03:49:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 09:24:14 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:45:06 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ char	*ft_strlastchr(char *str, char c)
 	return (tmp);
 }
 
-char	*atcml_get_pattern(char *buf, int pos)
+char	*atcml_get_pattern(char *buf, size_t pos)
 {
 	char	*pattern;
 	char	*tmp;
-	int		l_p;
+	size_t	l_p;
 	int		check;
 
 	check = 1;
@@ -67,7 +67,7 @@ char	*atcml_get_pattern(char *buf, int pos)
 	return (pattern);
 }
 
-char	*atcml_get_rel_dir(char *buf, int pos)
+char	*atcml_get_rel_dir(char *buf, size_t pos)
 {
 	char	*last;
 	char	*tmp;
@@ -77,17 +77,17 @@ char	*atcml_get_rel_dir(char *buf, int pos)
 	if (!(ft_strchr(buf, '/')))
 		return (ft_strdup("./"));
 	last = ft_strlastchr(buf, '/');
-	while (pos >= 0 && buf[pos])
+	while (pos > 0 && buf[pos])
 	{
-		if (buf[pos] == ' ' && (!pos || buf[pos - 1] != '\\'))
+		if (buf[pos] == ' ' && (buf[pos - 1] != '\\'))
 		{
-			tmp = ft_strjoin(ft_strndup(&buf[pos], last - &buf[pos]), "/", 1);
+			tmp = ft_strjoin(ft_strndup(&buf[pos], (UL)(last - &buf[pos])), "/", 1);
 			expand_backslash_handling(&tmp, 1);
 			return (tmp);
 		}
 		pos--;
 	}
-	tmp = ft_strjoin(ft_strndup(buf, last - buf), "/", 1);
+	tmp = ft_strjoin(ft_strndup(buf, (UL)(last - buf)), "/", 1);
 	expand_backslash_handling(&tmp, 1);
 	return (tmp);
 }

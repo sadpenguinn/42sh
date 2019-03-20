@@ -6,13 +6,13 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:11:16 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 15:53:19 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 13:15:07 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-char		*get_real_prog_name_files_dir(char *str, int i)
+char		*get_real_prog_name_files_dir(char *str, size_t i)
 {
 	while (i > 0)
 	{
@@ -20,10 +20,10 @@ char		*get_real_prog_name_files_dir(char *str, int i)
 			break ;
 		i--;
 	}
-	return (ft_strndup(&str[i], ft_strchr(&str[i], ' ') - &str[i]));
+	return (ft_strndup(&str[i], (size_t)(ft_strchr(&str[i], ' ') - &str[i])));
 }
 
-static int	check_list_of_clever_autocomlete(char *str, int i)
+static int	check_list_of_clever_autocomlete(char *str, size_t i)
 {
 	char	*prog;
 	int		res;
@@ -38,8 +38,8 @@ static int	check_list_of_clever_autocomlete(char *str, int i)
 	return (res);
 }
 
-int			get_type_fd_flags_other(t_line *line_info, int pos,
-																int *pos_start)
+int			get_type_fd_flags_other(t_line *line_info, size_t pos,
+															size_t *pos_start)
 {
 	if (check_onlyfd_case(line_info, pos))
 	{
@@ -61,12 +61,11 @@ int			get_type_fd_flags_other(t_line *line_info, int pos,
 		return (ERROR_AUTOCOMLITE);
 }
 
-int			get_autocomplite_type(t_line *line_info, int pos, int *pos_start)
+int			get_autocomplite_type(t_line *line_info,
+												size_t pos, size_t *pos_start)
 {
-	if (pos < 0)
-		return (ERROR_AUTOCOMLITE);
 	pos--;
-	while (pos >= 0)
+	while (pos != (UL)-1)
 	{
 		if (line_info->buf[pos] == '$' || (line_info->buf[pos] == '{' &&
 			pos > 0 && line_info->buf[pos - 1] == '$'))

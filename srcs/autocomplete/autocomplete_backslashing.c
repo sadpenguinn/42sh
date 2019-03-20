@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 09:59:10 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 09:59:29 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:36:04 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char		*autocomplite_backsl_str(char *str)
 
 	j = 0;
 	i = 0;
-	res = xmalloc(sizeof(char) * (ft_strlen(str) + 1 + ft_strchrc(str, ' ')));
+	res = xmalloc(sizeof(char) * (ft_strlen(str) + 1 +
+													(UL)ft_strchrc(str, ' ')));
 	while (str[i])
 	{
 		if (str[i] == ' ')
