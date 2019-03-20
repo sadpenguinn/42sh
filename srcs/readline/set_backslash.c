@@ -12,7 +12,7 @@
 
 #include <string.h>
 
-void	set_backslash(char *buf, size_t pos, int *backslash)
+void	set_backslash(const char *buf, size_t pos, int *backslash)
 {
 	if (buf[pos] == '\\')
 	{

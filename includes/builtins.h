@@ -125,7 +125,7 @@ int		built_fc_case_s(char **av, int i, int *flags, void *fc_history);
 int		built_fc_usage(int error);
 void	built_fc_swap_limits(size_t *left_limit, size_t *right_limit);
 void	built_fc_set_limits_default(size_t *left_limit, size_t *right_limit,
-		void *fc_history, int *flags);
+		void *fc_history, const int *flags);
 int		built_fc_write_lines(void *fc_history, int fd, int *flags, char **av);
 int		built_fc_parse_string(char *script, int print);
 int		built_fc_open_tmp_file(char **file_name);

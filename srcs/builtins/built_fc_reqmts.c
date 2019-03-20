@@ -62,7 +62,7 @@ void	built_fc_swap_limits(size_t *left_limit, size_t *right_limit)
 }
 
 void	built_fc_set_limits_default(size_t *left_limit, size_t *right_limit,
-		void *fc_history, int *flags)
+		void *fc_history, const int *flags)
 {
 	*right_limit = vector_get_len(fc_history);
 	if (*right_limit - 1)

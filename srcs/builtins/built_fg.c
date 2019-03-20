@@ -15,23 +15,33 @@ void			killpids(void *data)
 
 int				built_fg(char **av, char **env)
 {
-	av = NULL;
-	env = NULL;
-
 	t_job	*job;
 	pid_t	pid;
 	pid_t	pgid;
+	size_t	len;
+	size_t	i;
 
-	if (!vector_get_len(g_jobs))
+	env = NULL;
+	if (!(len = vector_get_len(g_jobs)))
 		return (0);
-	job = vector_back(g_jobs);
-	vector_pop_back(&g_jobs);
+	if (av && av[1] && ft_str_is_numeric(av[2]))
+	{
+		i = (size_t)ft_atoi(av[2]);
+		if (i > len)
+			return (0);
+		job = vector_get_elem(g_jobs, i);
+		vector_del_elem(&g_jobs, i);
+	}
+	else
+	{
+		job = vector_back(g_jobs);
+		vector_pop_back(&g_jobs);
+	}
 	g_pids = job->pids;
 	pid = *(pid_t *)vector_back(g_pids);
 	pgid = getpgid(pid);
 	tcsetpgrp(0, pgid);
-	if (job->state == JOB_STOP)
-		killpg(pgid, SIGCONT);
+	killpg(pgid, SIGCONT);
 	xwaitpid(pid, WUNTRACED);
 	if (g_job)
 		return (SHERR_OK);
