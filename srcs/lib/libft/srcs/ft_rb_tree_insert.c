@@ -85,7 +85,7 @@ static int				fill_in_node(t_rb_tree_node *node,
 		node->color = RED;
 	node->left = NULL;
 	node->right = NULL;
-	if (!(node->data = malloc(size)))
+	if (!(node->data = xmalloc(size)))
 	{
 		free(node);
 		return (0);
@@ -97,7 +97,7 @@ static int				fill_in_node(t_rb_tree_node *node,
 
 t_rb_tree_node			*ft_rb_tree_insert(const void *data,
 		size_t size, t_rb_tree_node **root,
-		int (*cmp)(const void *data1, const void *data2))
+		int (*cmp)(const void *, const void *))
 {
 	t_rb_tree_node	*cur;
 	t_rb_tree_node	*parent;
@@ -111,7 +111,7 @@ t_rb_tree_node			*ft_rb_tree_insert(const void *data,
 			return (cur);
 		cur = (cmp(data, cur->data) > 0) ? cur->right : cur->left;
 	}
-	if (!(cur = malloc(sizeof(t_rb_tree_node))))
+	if (!(cur = xmalloc(sizeof(t_rb_tree_node))))
 		return (NULL);
 	if (!(fill_in_node(cur, parent, data, size)))
 		return (NULL);

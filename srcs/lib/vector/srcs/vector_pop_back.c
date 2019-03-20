@@ -24,8 +24,7 @@ int		vector_pop_back(void **vector)
 		&& arr[1] != ft_floorl(ARR_SIZE * A))
 	{
 		size = (size_t)ft_ceill(arr[1] / A);
-		if (!(tmp = (size_t *)malloc(sizeof(size_t) * 3 + size * arr[0])))
-			return (0);
+		tmp = (size_t *)xmalloc(sizeof(size_t) * 3 + size * arr[0]);
 		ft_memcpy((void *)tmp, (void *)arr, arr[0] * arr[2] +
 				sizeof(size_t) * 3);
 		tmp[1] = size;

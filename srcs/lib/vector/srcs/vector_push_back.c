@@ -18,16 +18,16 @@ int		vector_push_back(void **vector, const void *data)
 	size_t	*arr;
 	size_t	*tmp;
 	size_t	n;
+	size_t	size;
 
 	arr = (size_t *)(*vector);
 	if (arr[1] == arr[2])
 	{
-		if (!(tmp = (size_t *)malloc(sizeof(size_t) * 3 +
-						arr[0] * (size_t)ft_floorl(arr[1] * A))))
-			return (0);
+		size = (size_t)ft_floorl(arr[1] * A);
+		tmp = (size_t *)xmalloc(sizeof(size_t) * 3 + size * arr[0]);
 		ft_memcpy((void *)tmp, (void *)arr, arr[0] * arr[2] +
 				sizeof(size_t) * 3);
-		tmp[1] = (size_t)ft_floorl(tmp[1] * A);
+		tmp[1] = size;
 		vector_free(vector);
 		arr = tmp;
 		*vector = arr;

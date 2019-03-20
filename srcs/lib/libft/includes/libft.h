@@ -145,6 +145,7 @@ char						*ft_ltoa(long n);
 int							ft_isalpha(int c);
 int							ft_isdigit(int c);
 int							ft_isalnum(int c);
+int							ft_is_non_alnumspace(char c);
 int							ft_isascii(int c);
 int							ft_isprint(int c);
 int							ft_toupper(int c);
@@ -197,22 +198,20 @@ void						*xrealloc(void *p, size_t newsize, size_t oldsize);
 void						**ft_joinvect(void **arr1, void **arr2, int free2);
 t_rb_tree_node				*ft_rb_tree_find(const void *data,
 									t_rb_tree_node *node,
-									int (*cmp)(const void *data1,
-									const void *data2));
+									int (*cmp)(const void *, const void *));
 void						ft_rb_tree_delete(t_rb_tree_node *node,
 									t_rb_tree_node **root);
 t_rb_tree_node				*ft_rb_tree_minimum(t_rb_tree_node *node);
 t_rb_tree_node				*ft_rb_tree_maximum(t_rb_tree_node *node);
 void						ft_rb_tree_traversal_postorder(t_rb_tree_node *root,
-									void (*f)(t_rb_tree_node *node));
+									void (*f)(t_rb_tree_node *));
 void						ft_rb_tree_traversal_inorder(t_rb_tree_node *root,
-									void (*f)(t_rb_tree_node *node));
+									void (*f)(t_rb_tree_node *));
 void						ft_rb_tree_traversal_preorder(t_rb_tree_node *root,
-									void (*f)(t_rb_tree_node *ndoe));
+									void (*f)(t_rb_tree_node *));
 t_rb_tree_node				*ft_rb_tree_insert(const void *data,
 									size_t size, t_rb_tree_node **root,
-									int (*cmp)(const void *data1,
-												const void *data2));
+									int (*cmp)(const void *, const void *));
 void						ft_rb_tree_rotate_right(t_rb_tree_node *x,
 											t_rb_tree_node **root);
 void						ft_rb_tree_rotate_left(t_rb_tree_node *x,

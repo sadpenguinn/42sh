@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   are_default_vi_normal_mode_shortcuts.c             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/20 15:12:06 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/20 15:13:57 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 
-static int	are_default_vi_normal_mode_basic_shortcuts(t_matrix *matrix, t_uchar c)
+static int	are_default_vi_normal_mode_basic_shortcuts(t_matrix *matrix,
+		t_uchar c)
 {
 	if (c == 'W')
 		return (move_cursor_next_word(matrix));
@@ -30,7 +43,7 @@ static int	are_default_vi_normal_mode_basic_shortcuts(t_matrix *matrix, t_uchar 
 }
 
 static int	are_default_vi_normal_mode_advanced_shortcuts(t_matrix *matrix,
-														 t_uchar c)
+		t_uchar c)
 {
 	if (c == '|' || c == '0' || c == HOME1 || c == HOME2)
 		return (move_cursor_home(matrix));
@@ -72,4 +85,3 @@ int			are_default_vi_normal_mode_shortcuts(t_matrix *matrix, t_uchar c)
 		return (redo(matrix));
 	return (0);
 }
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_words.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/20 15:11:53 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/20 15:13:19 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readline.h"
 #include "libft.h"
 
@@ -47,7 +59,7 @@ size_t			add_spaces(t_line *line, size_t pos, size_t end, size_t row)
 	set_points(&point1, &point2);
 	cnt = 0;
 	while (pos < end && ft_is_space_tab(line->buf[pos]) &&
-		   point1.col != pos && point2.col != pos)
+			point1.col != pos && point2.col != pos)
 		cnt += count_spaces(line->buf[pos++]);
 	add_spaces_to_array(cnt);
 	cnt = 0;
@@ -75,7 +87,7 @@ size_t			add_non_spaces(t_line *line, size_t start, size_t end,
 	set_points(&point1, &point2);
 	pos = start;
 	while (pos < end && !ft_is_space_tab(line->buf[pos]) &&
-		   point1.col != pos && point2.col != pos)
+			point1.col != pos && point2.col != pos)
 		pos++;
 	array_add(line->buf + start, pos - start);
 	start = pos;

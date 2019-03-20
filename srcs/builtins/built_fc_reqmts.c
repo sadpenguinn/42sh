@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_fc_reqmts.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/20 15:29:56 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/20 15:31:08 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtins.h"
 #include "readline.h"
 #include "vector.h"
@@ -7,7 +19,7 @@
 #include "execute.h"
 #include <pwd.h>
 
-int	built_fc_open_tmp_file(char **file_name)
+int		built_fc_open_tmp_file(char **file_name)
 {
 	int				fd;
 	struct passwd	*pw;
@@ -23,8 +35,8 @@ int		built_fc_parse_string(char *script, int print)
 {
 	t_lexer		*lex;
 	t_astree	*ast;
-	int 		last;
-	char 		*tmp;
+	int			last;
+	char		*tmp;
 
 	if (print)
 		ft_putstr(script);

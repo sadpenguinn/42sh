@@ -20,7 +20,6 @@ void		init_haredoc(void)
 {
 	signal(SIGWINCH, sigwinch_handler);
 	get_term_params(&g_w);
-	set_term();
 	g_heredoc = 1;
 	history_fill();
 }
@@ -44,6 +43,5 @@ t_string	*heredoc(void)
 	str = string_init();
 	matrix_to_string(g_history->matrix[g_history->cur], str);
 	history_del(&g_history);
-	unset_term();
 	return (str);
 }

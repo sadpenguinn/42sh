@@ -83,12 +83,11 @@
 
 [−] Compliant with POSIX<br>
 
-BUGS:
+**Bugs**
 
-BUGS IN ARITHMETIC:
-    1) Division byzero
-    2) Just division
+Ariphmetic:<br>
+    1) Division by zero<br>
 
-BUGS IN BUTCH:
-    1) If extention returns NULL - 42sh seg fault
-    2) ls -la | cet (killed)
+Butch code:<br>
+    1) If extention returns NULL - 42sh seg fault<br>
+    2) ls -la | cet (killed)<br>

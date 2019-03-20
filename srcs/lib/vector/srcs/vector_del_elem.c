@@ -8,7 +8,7 @@ int		vector_del_elem(void **vector, size_t i)
 	size_t	*arr;
 	size_t	size;
 
-	arr = (size_t *)vector;
+	arr = (size_t *)(*vector);
 	if (i >= arr[2])
 		return (1);
 	if (i == arr[2] - 1)

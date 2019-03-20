@@ -6,7 +6,7 @@
 /*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 11:01:49 by narchiba          #+#    #+#             */
-/*   Updated: 2019/03/09 11:01:51 by narchiba         ###   ########.fr       */
+/*   Updated: 2019/03/20 15:17:28 by narchiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			print_autocomplete(t_matrix *matrix)
 	if (cnt > 1)
 		return (print_possibilities(matrix, matches, cnt));
 	*matrix->cursor = matrix_string_insert(matrix, *matrix->cursor,
-										   matches[0], ft_strlen(matches[0]));
+			matches[0], ft_strlen(matches[0]));
 	free(matches[0]);
 	free(matches);
 	return (1);

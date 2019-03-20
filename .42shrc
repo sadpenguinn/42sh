@@ -8,6 +8,9 @@
 export LANG=en_US.UTF-8
 export VIRTUALENVWRAPPER_PYTHON=~/.brew/bin/python3
 
+set -o vi
+set -o syntax
+
 alias ls="ls -G"
 alias l='ls -G -l -a -h'
 alias ll='ls -G -l -h'
@@ -22,11 +25,7 @@ alias rd=rmdir
 
 alias ex="exit"
 alias cl="clear"
-alias v="nvim"
-alias im="nvim"
-alias vi="nvim"
-alias vim="nvim"
-alias vimm="nvim"
+alias vi="vim"
 alias gcc="gcc -Wall -Wextra -Werror"
 alias norm="norminette"
 

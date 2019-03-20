@@ -30,6 +30,7 @@ set(SRC_LIB srcs/fatal_error.c
 		srcs/ft_is_space_tab.c
         srcs/ft_isupper.c
         srcs/ft_isxdigit.c
+		srcs/ft_is_non_alnumspace.c
         srcs/ft_itoa.c
         srcs/ft_itoa_base.c
         srcs/ft_listlast.c

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_fc_write_lines.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: narchiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/20 15:29:48 by narchiba          #+#    #+#             */
+/*   Updated: 2019/03/20 15:31:29 by narchiba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtins.h"
 #include "readline.h"
 #include "vector.h"
@@ -16,10 +28,10 @@ static int	built_fc_set_limit_word_case(size_t *limit,
 	while (i--)
 	{
 		if (ft_strncmp(str, *((char **)vector_get_elem(fc_history, i)),
-					   len) == 0)
+					len) == 0)
 		{
 			flag = 1;
-			break;
+			break ;
 		}
 	}
 	if (flag)
