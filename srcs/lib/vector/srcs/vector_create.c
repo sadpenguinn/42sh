@@ -11,14 +11,13 @@
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 void	*vector_create(size_t elem_byte_size)
 {
 	size_t	*arr;
 
-	if (!(arr = (size_t *)malloc(sizeof(size_t) * 3 +
-					elem_byte_size * ARR_SIZE)))
-		return (NULL);
+	arr = (size_t *)xmalloc(sizeof(size_t) * 3 + elem_byte_size * ARR_SIZE);
 	arr[0] = elem_byte_size;
 	arr[1] = ARR_SIZE;
 	arr[2] = 0;

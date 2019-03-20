@@ -15,7 +15,7 @@
 #include <string.h>
 
 void	ft_rb_tree_traversal_inorder(t_rb_tree_node *root,
-		void (*f)(t_rb_tree_node *node))
+		void (*f)(t_rb_tree_node *))
 {
 	if (root == NULL)
 		return ;

@@ -15,7 +15,7 @@
 #include <string.h>
 
 t_rb_tree_node	*ft_rb_tree_find(const void *data,
-		t_rb_tree_node *node, int (*cmp)(const void *data1, const void *data2))
+		t_rb_tree_node *node, int (*cmp)(const void *, const void *))
 {
 	while (node != NULL)
 	{
