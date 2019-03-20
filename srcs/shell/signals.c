@@ -34,7 +34,7 @@ void			handle_sigint(int sig)
 void			handle_sigin(int sig)
 {
 	(void)sig;
-	tcsetpgrp(0, getpgid(getpid()));
+	tcsetpgrp(0, getpgrp());
 }
 
 void			init_signals(void)

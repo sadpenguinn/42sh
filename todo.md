@@ -91,3 +91,7 @@ Ariphmetic:<br>
 Butch code:<br>
     1) If extention returns NULL - 42sh seg fault<br>
     2) ls -la | cet (killed)<br>
+    3) bar ()<br>
+    {<br>
+        ls<br>
+    }<br>

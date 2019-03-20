@@ -11,15 +11,55 @@
 /* ************************************************************************** */
 
 #include <string.h>
+#include <limits.h>
+#include <sys/types.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int		test_bytes(const char *p)
 {
-	const char *begin;
+	int		i;
 
-	if (!s)
-		return (0);
-	begin = s;
-	while (*s++)
-		;
-	return (s - begin - 1);
+	i = 0;
+	while (i < 4)
+	{
+		if (p[i] == '\0')
+			return (i);
+		i++;
+	}
+	if (LONG_BIT == 64)
+		while (i < 8)
+		{
+			if (p[i] == '\0')
+				return (i);
+			i++;
+		}
+	return (8);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	const char			*p;
+	const unsigned long	*lp;
+	int					ret;
+
+	p = str;
+	while ((uintptr_t)p & LONGPTR_MASK)
+	{
+	    if (*p == '\0')
+	    	return (p - str);
+	    p++;
+	}
+	lp = (const unsigned long *)p;
+	while (1)
+	{
+	    if ((*lp - MASK_01) & MASK_80)
+        {
+	    	p = (const char *)lp;
+	    	ret = test_bytes(p);
+	    	if (ret != 8)
+	    		return (p - str + ret);
+        }
+	    lp++;
+	}
+	return (0);
 }

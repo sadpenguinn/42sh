@@ -32,7 +32,7 @@ int		execute(t_astree *root)
 	fd[0] = 0;
 	fd[1] = 1;
 	res = execlist1(root, fd, 0);
-	tcsetpgrp(0, getpgid(getpid()));
+	tcsetpgrp(0, getpgrp());
 	g_execerr = tmp_err;
 	return (res);
 }

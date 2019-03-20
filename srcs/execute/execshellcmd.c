@@ -11,6 +11,12 @@
 /* ************************************************************************** */
 
 #include "execute.h"
+#include "conditions.h"
+
+int		execcond(t_astree *root)
+{
+
+}
 
 int		execshellcmd(t_astree *root, int fd[2], int isfork)
 {
@@ -31,7 +37,7 @@ int		execshellcmd(t_astree *root, int fd[2], int isfork)
 	if (root->type == ARITH)
 		return (1);
 	if (root->type == COND)
-		return (1);
+		return (execcond(root));
 	if (root->type == SUBSHELL)
 		return (execsubshell(root, fd, isfork));
 	if (root->type == COMMAND)
