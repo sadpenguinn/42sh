@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 17:55:05 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 17:55:08 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/20 20:11:32 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int		conditions(char **argv)
 	int res;
 	int n;
 
-	n = ft_tab_len(argv);
+	if (!(n = ft_tab_len(argv)))
+		return (1);
 	res = 0;
 	i = 0;
 	while (argv[i])
