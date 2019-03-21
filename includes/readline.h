@@ -23,7 +23,9 @@
 
 # define CURSOR_CLEAR_TO_END_SCREEN "\e[0J"
 # define CURSOR_CLEAR_TO_START_SCREEN "\e[1J"
-# define CURSOR_CLEAR_SCREEN "\ec"
+# define CURSOR_CLEAR_SCREEN_AND_START "\ec"
+# define CURSOR_CLEAR_SCREEN "\e[2J"
+# define CURSOR_MOVE_START "\e[1;1H"
 
 # define TEXT_COLOR_BLACK "\e[30m"
 # define TEXT_COLOR_RED "\e[31m"
