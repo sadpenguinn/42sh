@@ -25,3 +25,10 @@ fclean: clean
 	@ $(RM) $(NAME).dSYM
 
 re: fclean all
+
+run: all
+	./$(NAME)
+
+valgrind: all
+	valgrind --leak-check=yes --suppressions=./objc.supp  --log-file=valgrind.log ./42sh
+	zsh -c 'PID=$$(cat valgrind.log| head -n 1 | \grep -Eo "==[0-9]*==" | tr -d "="); cat valgrind.log | grep "$$PID"'

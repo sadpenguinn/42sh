@@ -70,3 +70,4 @@ cmake-build-debug
 *.autosave
 .#*
 .DS_Store
+*.log

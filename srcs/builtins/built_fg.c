@@ -63,11 +63,16 @@ int				built_fg(char **av, char **env)
 		return (SHERR_ERR);
 	i--;
 	job = *(t_job *)vector_get_elem(g_jobs, i);
+	printf("jobs get\n");
 	vector_del_elem(&g_jobs, i);
 	pidstmp = g_pids;
 	g_pids = job.pids;
 	pid = *(pid_t *)vector_back(g_pids);
-	pgid = getpgid(pid);
+
+	/* pgid = getpgid(pid); */
+	// XXX - only for valgrind
+	pgid = pid;
+
 	tcsetpgrp(0, pgid);
 	killpg(pgid, SIGCONT);
 	xwaitpid(pid, WUNTRACED);

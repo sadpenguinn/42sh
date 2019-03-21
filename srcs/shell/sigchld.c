@@ -45,13 +45,11 @@ static void		signaled(int num, pid_t pid, int sig)
 	ft_putnbr_fd(pid, STDERR_FILENO);
 	ft_putstr_fd(" terminated (", STDERR_FILENO);
 	if (sig == SIGALRM)
-		ft_putstr_fd("SIGALRM", STDERR_FILENO);
-	if (sig == SIGFPE)
 		ft_putstr_fd("SIGFPE", STDERR_FILENO);
 	if (sig == SIGHUP)
 		ft_putstr_fd("SIGHUP", STDERR_FILENO);
-	if (sig == SIGILL)
-		ft_putstr_fd("SIGILL", STDERR_FILENO);
+	if (sig == SIGKILL)
+		ft_putstr_fd("SIGKILL", STDERR_FILENO);
 	if (sig == SIGINT)
 		ft_putstr_fd("SIGINT", STDERR_FILENO);
 	if (sig == SIGPIPE)

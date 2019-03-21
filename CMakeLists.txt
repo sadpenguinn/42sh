@@ -87,6 +87,7 @@ set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/autocomplete_get_type.c
 					srcs/autocomplete/clever_autocomplete_checks.c
 					srcs/autocomplete/autocomplete_files_or_dirs.c
+					srcs/autocomplete/autocomplete_only_exec.c
 					srcs/autocomplete/processing_hidden_files.c)
 
 set(READLINE_SRC 	srcs/readline/readline.c
