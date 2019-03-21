@@ -22,7 +22,6 @@
 
 void			*g_tokens = NULL;
 unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
 
 int		main(int ac, char **av, char **env)
 {
