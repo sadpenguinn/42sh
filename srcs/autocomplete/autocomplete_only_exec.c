@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 10:45:40 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/21 12:31:11 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/21 14:27:44 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,76 @@ int		check_only_exec_case(char *str, size_t pos)
 	return (0);
 }
 
-// char	*get_real_file(char *el_str, char *str)
-// {
-// 	char *real_dir;
-// 	char *full_path;
+char	*get_real_file(char *el_str, char *str)
+{
+	char *real_dir;
+	char *full_path;
 
-// 	full_path = 
+	// printf("Мне пришла строка |%s| и файл |%s|\n", str, el_str);
+	real_dir = atcml_get_rel_dir(str, ft_strlen(str));
+	// printf("Получается, что путь = |%s|\n", real_dir);
+	full_path = ft_strjoin(real_dir, el_str, 0);
+	full_path[ft_strlen(full_path) - 1] = '\0';
+	// printf("Таким образом, full_path = |%s|\n", full_path);
+	free(real_dir);
+	return (full_path);
+}
 
-// 	real_dir = atcml_get_rel_dir(str);
+int		get_only_exec_mas_len(char **all, char *str)
+{
+	int			counter;
+	int			i;
+	char		*full_path;
 
-// }
+	i = 0;
+	counter = 0;
+	while (all[i])
+	{
+		full_path = get_real_file(all[i], str);
+		if (f_conditions(full_path) && x_conditions(full_path))
+			counter++;
+		i++;
+		free(full_path);
+	}
+	return (counter);
+}
 
-// int		get_only_exec_mas_len(char **all, char *str)
-// {
-// 	struct stat	*buff;
-// 	int			res;
-// 	int			counter;
-// 	int			i;
+char	**get_only_exec_mas_filling(char **all, char *str, char **res_mas)
+{
+	int			counter;
+	int			i;
+	int			j;
+	char		*full_path;
 
-// 	buff = xmalloc(sizeof(struct stat));
-// 	i = 0;
-// 	res = 0;
-// 	counter = 0;
-// 	while (all[i])
-// 	{
-// 		atcml_get_rel_dir(str, ft_strlen(str));
-// 		if (stat(str, buff) == -1)
-// 		{
-// 			printf("\nКакая-то ошибка, ТАК БЫТЬ НЕ ДОЛЖНО\n buff = |%s|\n", buff);
-// 			return (0);
-// 		}
-// 		if (buff->st_mode & S_IXUSR)
-// 			counter++;
-// 		i++;
-// 	}
-// 	free(buff);
-// 	return (res);
-// }
+	i = 0;
+	j = 0;
+	counter = 0;
+	while (all[i])
+	{
+		full_path = get_real_file(all[i], str);
+		if (f_conditions(full_path) && x_conditions(full_path))
+		{
+			res_mas[j] = ft_strdup(all[i]);
+			j++;
+		}
+		free(all[i]);
+		free(full_path);
+		i++;
+	}
+	res_mas[j] = NULL;
+	free(all);
+	return (res_mas);
+}
 
 char	**get_only_exec_fi_mas(char *str)
 {
-	// char **all;
-	// char **res;
+	char	**all;
+	char	**res;
+	int		len;
 
-	(void)str;
-	// all = get_only_fi_di_autocompile(str);
-	return (NULL);
+	all = get_only_fi_di_autocompile(str);
+	len = get_only_exec_mas_len(all, str);
+	res = xmalloc(sizeof(char *) * (len + 1));
+	res = get_only_exec_mas_filling(all, str, res);
+	return (res);
 }

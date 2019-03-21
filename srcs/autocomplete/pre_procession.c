@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:33:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/20 13:18:45 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/21 13:08:30 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ char	**get_mas_of_suggetions(char *word, int type)
 		res = get_only_fi_autocompile(word);
 	else if (type == ONLY_DIR_AUTOCOMPLETE)
 		res = get_only_dir_autocompile(word);
+	else if (type == ONLY_EXEC_PROGS)
+		res = get_only_exec_fi_mas(word);
 	else
 		return (NULL);
 	return (res);
