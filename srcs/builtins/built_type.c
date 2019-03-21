@@ -159,6 +159,10 @@ static int		type_iterate_args(char **av, int i, int *flags)
 	return (flag);
 }
 
+/*
+** type [-afptP] [name …]
+*/
+
 int				built_type(char **av, char **env)
 {
 	int		flags[5];

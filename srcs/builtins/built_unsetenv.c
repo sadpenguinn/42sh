@@ -30,8 +30,7 @@ static int		parse_flags(char **av, char **key)
 
 /*
 ** Removes variable from the environment.
-** Following syntax are supported:
-** unsetenv USER
+** unsetenv [name]
 */
 
 int				built_unsetenv(char **av, char **env)

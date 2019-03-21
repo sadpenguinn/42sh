@@ -59,7 +59,7 @@ void			built_hash_targ(char **av)
 	while (av[i])
 	{
 		if ((cell = hash_find(av[i], g_path)))
-			print_bin(cell->key, cell->value);
+			hash_print_bin(cell->key, cell->value);
 		i++;
 	}
 }
@@ -70,14 +70,14 @@ void			built_hash_larg(char **av)
 	int		i;
 
 	if (!av[2])
-		hash_foreach(g_path, print_bin);
+		hash_foreach(g_path, hash_print_bin);
 	else
 	{
 		i = 2;
 		while (av[i])
 		{
 			if ((cell = hash_find(av[i], g_path)))
-				print_bin(cell->key, cell->value);
+				hash_print_bin(cell->key, cell->value);
 			i++;
 		}
 	}

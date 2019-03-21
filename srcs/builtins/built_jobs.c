@@ -1,11 +1,15 @@
 #include "builtins.h"
 #include "shell.h"
 
+/*
+** jobs [jobspec]
+*/
+
 int				built_jobs(char **av, char **env)
 {
-    size_t	len;
-    size_t	i;
-    pid_t	pid;
+    size_t		len;
+    size_t		i;
+    pid_t		pid;
 
     av = NULL;
     env = NULL;

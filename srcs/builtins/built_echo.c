@@ -83,7 +83,7 @@ static int			echo_parse_flags(char **av, int *flags)
 }
 
 /*
-** Builtin 'echo' parses flags and print strings.
+** Builtin 'echo' parses flags and prints strings.
 ** The following flags are supported: -n, -e, -E.
 ** -n -- print string without '\n' at the end.
 ** -e -- interpret sequences.

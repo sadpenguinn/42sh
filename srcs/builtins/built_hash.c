@@ -13,14 +13,20 @@
 #include "shell.h"
 #include "builtins.h"
 
-void			print_bin(char *key, char *value)
+int				hash_print_error(char *arg)
+{
+	sputcmderr(sstrerr(SHERR_INVSNTX), "hash", arg);
+	return (SHERR_ERR);
+}
+
+void			hash_print_bin(char *key, char *value)
 {
 	ft_putstr(key);
 	ft_putchar('=');
 	ft_putendl(value);
 }
 
-static void		build_hash_parse(char **av)
+static int		build_hash_parse(char **av)
 {
 	if (!ft_strcmp(av[1], "-p"))
 		built_hash_parg(av);
@@ -36,15 +42,18 @@ static void		build_hash_parse(char **av)
 	else if (!ft_strcmp(av[1], "-l"))
 		built_hash_larg(av);
 	else
-		return ;
+		return (hash_print_error(av[1]));
+	return (SHERR_OK);
 }
+
+/*
+** hash [-r] [-p filename] [-dt]
+*/
 
 int				built_hash(char **av, char **env)
 {
 	env = NULL;
 	if (!av[1])
-		hash_foreach(g_path, print_bin);
-	else
-		build_hash_parse(av);
-	return (SHERR_OK);
+		hash_foreach(g_path, hash_print_bin);
+	return (build_hash_parse(av));
 }

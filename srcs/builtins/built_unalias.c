@@ -41,6 +41,11 @@ static int		unalias_parse_params(char **av)
 		return (unalias_remove_alias(av));
 }
 
+/*
+** unalias [-a] [name … ]
+** -a removes all variables
+*/
+
 int				built_unalias(char **av, char **env)
 {
 	env = NULL;

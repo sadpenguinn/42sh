@@ -32,7 +32,7 @@ static int		parse_flags(char **av, char **key, char **value)
 /*
 ** Adds variable to the environment.
 ** Following syntax are supported:
-** setenv USER pahom
+** setenv [name value]
 */
 
 int				built_setenv(char **av, char **env)

@@ -65,6 +65,13 @@ static int		built_export_parse(char **av, char **env)
 		return (built_export_assignment(av));
 }
 
+/*
+** Mark each name to be passed to child processes in the environment
+** -n - delete variables
+** -p - like an export without flags, prints list of variables
+** export [-n] [-p] [name[=value]]
+*/
+
 int				built_export(char **av, char **env)
 {
 	if (av[1])

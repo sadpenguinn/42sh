@@ -14,7 +14,7 @@
 #include "builtins.h"
 
 /*
-** Just prints environment. If passed arguments, env display an error
+** Just prints environment
 */
 
 int		built_env(char **av, char **env)
