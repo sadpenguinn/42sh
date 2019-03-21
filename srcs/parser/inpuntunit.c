@@ -12,6 +12,8 @@
 
 #include "parser.h"
 
+int				g_parseerr = 0;
+
 t_astree	*inputunit(void)
 {
 	t_astree	*res;

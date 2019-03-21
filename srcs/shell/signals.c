@@ -28,7 +28,7 @@ void			handle_sigint(int sig)
 	(void)sig;
 	g_vi_mode = INSERT_MODE;
 	g_execerr = 1;
-	printf("sigint handle\n");
+	close(0);
 }
 
 void			handle_sigin(int sig)
