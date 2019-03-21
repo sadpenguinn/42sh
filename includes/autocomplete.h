@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/21 11:26:45 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/21 14:00:51 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "execute.h"
 # include "parser.h"
 # include "get_next_line.h"
+# include "conditions.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/stat.h>
@@ -97,6 +98,7 @@ int				get_type_fd_flags_other(t_line *line_info, size_t pos,
 char			*get_real_prog_name_files_dir(char *str, size_t i);
 char			**get_flags_autocompile(char *str);
 int				check_only_exec_case(char *str, size_t pos);
+char			**get_only_exec_fi_mas(char *str);
 
 void			printmas_delete(char **str);
 
