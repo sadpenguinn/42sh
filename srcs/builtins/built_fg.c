@@ -63,7 +63,6 @@ int				built_fg(char **av, char **env)
 		return (SHERR_ERR);
 	i--;
 	job = *(t_job *)vector_get_elem(g_jobs, i);
-	printf("jobs get\n");
 	vector_del_elem(&g_jobs, i);
 	pidstmp = g_pids;
 	g_pids = job.pids;

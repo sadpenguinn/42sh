@@ -63,7 +63,7 @@ static void		signaled(int num, pid_t pid, int sig)
 	ft_putstr_fd(")\n", STDERR_FILENO);
 }
 
-static int		check_status(int num, pid_t pid)
+static int		check_status(int num, pid_t pid, t_job *job)
 {
 	int		status;
 
@@ -72,6 +72,17 @@ static int		check_status(int num, pid_t pid)
 	if (WIFSTOPPED(status))
 	{
 		stopped(num, pid, WSTOPSIG(status));
+		job->state = JOB_STOP;
+		return (0);
+	}
+	if (WIFCONTINUED(status))
+	{
+		ft_putstr_fd("[", STDERR_FILENO);
+		ft_putnbr_fd(num, STDERR_FILENO);
+		ft_putstr_fd("] ", STDERR_FILENO);
+		ft_putnbr_fd(pid, STDERR_FILENO);
+		ft_putstr_fd(" continued\n", STDERR_FILENO);
+		job->state = JOB_RUN;
 		return (0);
 	}
 	if (WIFEXITED(status))
@@ -97,7 +108,7 @@ void			handle_sigchld(int sig)
 		job = (t_job *)vector_get_elem(g_jobs, i);
 		pid = *(pid_t*)vector_back(job->pids);
 		i++;
-		if (!check_status(i, pid))
+		if (!check_status(i, pid, job))
 			continue ;
 		i--;
 		count--;

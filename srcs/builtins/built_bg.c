@@ -2,50 +2,80 @@
 #include "builtins.h"
 #include "shell.h"
 
-static int		bg_parse_args(char **av)
+static int		fg_parse_args(char **args)
 {
-	if (!av || !av[1])
-		return (SHERR_ERR);
-	if (!av[2])
+	if (!args[1])
+		return (1);
+	if (args[1] && !ft_str_is_numeric(args[1]))
 	{
-		sputcmderr(sstrerr(SHERR_INVSNTX), "bg", "");
-		return (SHERR_ERR);
+		sputcmderr(sstrerr(SHERR_INVSNTX), "fg", args[1]);
+		return (0);
 	}
-	if (av[3])
+	else if (args[1] && args[2] != 0)
 	{
-		sputcmderr(sstrerr(SHERR_INVSNTX), "bg", av[3]);
-		return (SHERR_ERR);
+		sputcmderr(sstrerr(SHERR_INVSNTX), "fg", args[2]);
+		return (0);
 	}
-	return (SHERR_OK);
+	else if (!ft_atoi(args[1]))
+	{
+		sputcmderr(sstrerr(SHERR_INVSNTX), "fg", args[1]);
+		return (0);
+	}
+	return (1);
+}
+
+static size_t	fg_get_index(char **av)
+{
+	size_t	i;
+	size_t	len;
+
+	if (!(len = vector_get_len(g_jobs)))
+	{
+		sputcmderr("No running jobs", "fg", av[1] ? av[1] : "current");
+		return (0);
+	}
+	i = len;
+	if (av[1] && ft_str_is_numeric(av[1]))
+	{
+		i = (size_t)ft_atoi(av[1]);
+		if (i > len)
+		{
+			sputcmderr("No running jobs", "fg", av[2]);
+			return (0);
+		}
+	}
+	return (i);
 }
 
 int				built_bg(char **av, char **env)
 {
-	size_t	len;
+	t_job	*job;
 	pid_t	pid;
-	pid_t	p;
+	pid_t	pgid;
 	size_t	i;
 
-	i = 0;
 	env = NULL;
-	if ((bg_parse_args(av) == SHERR_ERR))
+	if (!(fg_parse_args(av)) || !(i = fg_get_index(av)))
 		return (SHERR_ERR);
-	pid = ft_atoi(av[2]);
-	len = vector_get_len(av[1]);
-	if ((size_t)pid >= len)
+	i--;
+	job = (t_job *)vector_get_elem(g_jobs, i);
+	if (job->state == JOB_RUN)
 	{
-		sputcmderr("No running process", "bg", av[2]);
-		return (SHERR_ERR);
+		ft_putstr_fd("bg: job already in background\n", STDERR_FILENO);
+		return (EXIT_FAILURE);
 	}
-	while (i < len)
-	{
-		if ((p = *(pid_t *)vector_get_elem(g_pids, i)) == pid)
-		{
-			killpg(p, SIGCONT);
-			return (SHERR_OK);
-		}
-		i++;
-	}
-	sputcmderr("No running process", "bg", av[2]);
-	return (SHERR_ERR);
+	pid = *(pid_t *)vector_back(job->pids);
+
+	/* pgid = getpgid(pid); */
+	// XXX - only for valgrind
+	pgid = pid;
+
+	ft_putstr_fd("[", STDERR_FILENO);
+	ft_putnbr_fd(i, STDERR_FILENO);
+	ft_putstr_fd("] ", STDERR_FILENO);
+	ft_putnbr_fd(pid, STDERR_FILENO);
+	ft_putstr_fd(" continued\n", STDERR_FILENO);
+	job->state = JOB_RUN;
+	killpg(pgid, SIGCONT);
+	return (SHERR_OK);
 }

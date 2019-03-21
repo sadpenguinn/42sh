@@ -197,4 +197,14 @@ int						argv_parser(int ac, char **av);
 
 int						substitution(char *cmd);
 
+
+/*
+**	Jobs
+*/
+
+int						addjob(int state, pid_t pid);
+
+# define JOB_RUN		1
+# define JOB_STOP		2
+
 #endif

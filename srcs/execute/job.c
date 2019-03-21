@@ -20,6 +20,10 @@ int		addjob(int state, pid_t pid)
 	g_job = 1;
 	job.state = state;
 	vector_push_back(&g_jobs, &job);
-	printf("[%lu] + suspended\n", vector_get_len(g_jobs));
+	ft_putstr_fd("[", STDERR_FILENO);
+	ft_putnbr_fd(vector_get_len(g_jobs), STDERR_FILENO);
+	ft_putstr_fd("] ", STDERR_FILENO);
+	ft_putnbr_fd(pid, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 	return (EXIT_FAILURE);
 }

@@ -37,12 +37,12 @@ Builtins:<br>
 [−] Exit code access of previously command via the expansion _${?}_<br>
 
 [−] Job control monitoring<br>
-[−] Built-in _jobs_<br>
-[−] Built-in _fg_<br>
+[+] Built-in _jobs_<br>
+[+] Built-in _fg_<br>
 [−] Built-in _bg_<br>
-[−] _&_<br>
+[+] _&_<br>
 
-[−] Correct monitoring of signals<br>
+[+] Correct monitoring of signals<br>
 
 [✓] Each built-in must have enounced options by POSIX, except _set_ / _unset_<br>
 
