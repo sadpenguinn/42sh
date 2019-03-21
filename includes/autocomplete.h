@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/20 13:22:46 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/21 09:46:36 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define ONLY_FI_DIR_AUTOCOMLITE	4
 # define ONLY_FI_AUTOCOMPLITE		5
 # define ONLY_DIR_AUTOCOMPLETE		6
+# define ONLY_EXEC_PROGS			7
 
 # define PATH_TO_FLAGS_DB			"/srcs/autocomplete/data_base/"
 

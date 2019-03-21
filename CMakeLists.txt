@@ -65,7 +65,8 @@ set(CONDITIONS_SRC	srcs/conditions/b_to_g_conditions.c
 					srcs/conditions/l_to_s_conditions.c
 					srcs/conditions/num_conditions.c
 					srcs/conditions/strings_conditions.c
-					srcs/conditions/u_to_x_conditions.c)
+					srcs/conditions/u_to_x_conditions.c
+					srcs/conditions/strsplit_conditions.c)
 
 set(AUTOCOMPLI_SRC	srcs/autocomplete/autocomplete.c
 					srcs/autocomplete/autocomplite_builtins.c
