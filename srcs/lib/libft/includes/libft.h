@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <limits.h>
 
 # define STYLE_DEF		0
 # define STYLE_BOLD		1
@@ -43,13 +44,8 @@
 # define RED 1
 # define BLACK 0
 
-# if LONG_BIT == 32
-#  define MASK_01 0x01010101
-#  define MASK_80 0x80808080
-# elif LONG_BIT == 64
-#  define MASK_01 0x0101010101010101
-#  define MASK_80 0x8080808080808080
-# endif
+# define MASK_01 0x0101010101010101
+# define MASK_80 0x8080808080808080
 
 # define LONGPTR_MASK (sizeof(long) - 1)
 

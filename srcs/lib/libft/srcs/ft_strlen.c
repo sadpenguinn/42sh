@@ -10,29 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <string.h>
 #include <limits.h>
 #include <sys/types.h>
-#include "libft.h"
+#include <stdint.h>
 
 int		test_bytes(const char *p)
 {
 	int		i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 8)
 	{
 		if (p[i] == '\0')
 			return (i);
 		i++;
 	}
-	if (LONG_BIT == 64)
-		while (i < 8)
-		{
-			if (p[i] == '\0')
-				return (i);
-			i++;
-		}
 	return (8);
 }
 
