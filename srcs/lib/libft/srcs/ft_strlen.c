@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 17:54:03 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/02/27 12:51:34 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/21 10:13:32 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ size_t	ft_strlen(const char *str)
 	p = str;
 	while ((uintptr_t)p & LONGPTR_MASK)
 	{
-	    if (*p == '\0')
-	    	return (p - str);
-	    p++;
+		if (*p == '\0')
+			return (p - str);
+		p++;
 	}
 	lp = (const unsigned long *)p;
 	while (1)
 	{
-	    if ((*lp - MASK_01) & MASK_80)
-        {
-	    	p = (const char *)lp;
-	    	ret = test_bytes(p);
-	    	if (ret != 8)
-	    		return (p - str + ret);
-        }
-	    lp++;
+		if ((*lp - MASK_01) & MASK_80)
+		{
+			p = (const char *)lp;
+			ret = test_bytes(p);
+			if (ret != 8)
+				return (p - str + ret);
+		}
+		lp++;
 	}
 	return (0);
 }
