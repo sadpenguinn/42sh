@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include "term.h"
+#include "shell.h"
 
 t_uchar		get_next_symbol(size_t size)
 {
@@ -23,10 +24,9 @@ t_uchar		get_next_symbol(size_t size)
 	ssize_t	ret;
 
 	c = 0;
-	if (size > sizeof(t_uchar))
-		size = sizeof(t_uchar);
+	size = (size > sizeof(t_uchar)) ? sizeof(t_uchar) : size;
 	set_term();
-	ret = read(0, &c, size);
+	ret = read(g_stdin_fd, &c, size);
 	unset_term();
 	if (ret == -1 && g_heredoc)
 		return ('\n');
@@ -40,7 +40,8 @@ t_uchar		get_next_symbol(size_t size)
 		matrix_insert_line(g_history->matrix[g_history->cur], 0);
 		print_default(g_history->matrix[g_history->cur]);
 		set_term();
-		ret = read(0, &c, size);
+		g_stdin_fd = dup(STDIN_FILENO);
+		ret = read(g_stdin_fd, &c, size);
 		unset_term();
 	}
 	return (c);
