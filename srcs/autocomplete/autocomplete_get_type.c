@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:11:16 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/20 13:15:07 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/21 10:57:15 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ int			get_autocomplite_type(t_line *line_info,
 		{
 			*pos_start = pos;
 			return (ENV_AUTOCOMLITE);
+		}
+		else if (check_only_exec_case(line_info->buf, pos))
+		{
+			*pos_start = pos + 1;
+			return (ONLY_EXEC_PROGS);
 		}
 		else if (check_onlyfd_case(line_info, pos) ||
 				check_only_flags_case(line_info->buf, pos) ||

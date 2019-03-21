@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 20:45:31 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/21 10:30:58 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/21 12:30:08 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char		*validation_brackets(char *str)
 	if (!(str[0] == '[' && str[1] == ' ' && 
 		str[len - 1] == ']') && str[len - 2] == ' ')
 		return (NULL);
-	res = ft_strndup(&str[2], len - 2);
+	res = ft_strndup(&str[2], len - 3);
 	printf("res = |%s|\n", res);
 	free(str);
 	return (res);

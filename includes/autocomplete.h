@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 18:01:24 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/21 09:46:36 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/21 11:26:45 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <sys/stat.h>
 
 /*
 ** support of flags_autocomlite not realized yes, so it's reason, why
@@ -95,6 +96,7 @@ int				get_type_fd_flags_other(t_line *line_info, size_t pos,
 															size_t *pos_start);
 char			*get_real_prog_name_files_dir(char *str, size_t i);
 char			**get_flags_autocompile(char *str);
+int				check_only_exec_case(char *str, size_t pos);
 
 void			printmas_delete(char **str);
 
