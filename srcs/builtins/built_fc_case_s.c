@@ -103,7 +103,6 @@ int				built_fc_case_s(char **av, int i, int *flags, void *fc_history)
 	built_fc_parse_string(script, 1);
 	free(first);
 	free(second);
-	free(script);
 	free(file_name);
 	built_fc_write_history_changes();
 	return (1);

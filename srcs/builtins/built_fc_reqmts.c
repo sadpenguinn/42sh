@@ -49,7 +49,8 @@ int		built_fc_parse_string(char *script, int print)
 	ft_strdel(&tmp);
 	freeastree(ast);
 	lexer_free(lex);
-	return (1);
+	free(script);
+	return (last);
 }
 
 void	built_fc_swap_limits(size_t *left_limit, size_t *right_limit)

@@ -28,16 +28,16 @@ int	built_fc_case_e(char **av, int i, int *flags, void *fc_history)
 	array_add(" ", 1);
 	array_add(file_name, ft_strlen(file_name));
 	script = array_to_string();
-	built_fc_parse_string(script, 0);
-	free(script);
-	len = get_file_size(file_name);
-	script = (char *)xmalloc((sizeof(char) * (len + 1)));
-	fd = open(file_name, O_CREAT | O_RDONLY, 0777);
-	read(fd, script, len + 1);
-	close(fd);
-	built_fc_parse_string(script, 1);
-	free(script);
+	if ((built_fc_parse_string(script, 0)) == 0)
+	{
+		len = get_file_size(file_name);
+		script = (char *)xmalloc((sizeof(char) * (len + 1)));
+		fd = open(file_name, O_CREAT | O_RDONLY, 0777);
+		read(fd, script, len + 1);
+		close(fd);
+		built_fc_parse_string(script, 1);
+		built_fc_write_history_changes();
+	}
 	free(file_name);
-	built_fc_write_history_changes();
 	return (1);
 }
