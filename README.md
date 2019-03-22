@@ -104,3 +104,7 @@ Butch code:<br>
         ls<br>
     }<br>
     4) alias glog="git log --pretty=oneline --pretty=format:'%H - %an, %ar: %s' --graph"<br>
+
+Todo:<br>
+    1) ${?}, ${0}<br>
+    2) Replace and refactor config parser<br>
