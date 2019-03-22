@@ -30,5 +30,7 @@ run: all
 	./$(NAME)
 
 valgrind: all
-	valgrind  --leak-check=full --show-leak-kinds=all --suppressions=./objc.supp  --log-file=valgrind.log ./42sh
+	valgrind  --leak-check=full --suppressions=./objc.supp  --log-file=valgrind.log ./42sh
 	zsh -c 'PID=$$(cat valgrind.log| head -n 1 | \grep -Eo "==[0-9]*==" | tr -d "="); cat valgrind.log | grep "$$PID"'
+
+# --show-leak-kinds=all

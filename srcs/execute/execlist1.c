@@ -25,6 +25,7 @@ static int execjob(t_astree *root, int fd[2])
 	if (!(pid = fork()))
 	{
 		signal(SIGTSTP, SIG_DFL);
+		signal(SIGTTOU, SIG_DFL);
 		g_isjob = 1;
 		g_pgid = setpgrp();
 		exit (pocessjob(root, fd));

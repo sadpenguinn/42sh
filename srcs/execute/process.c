@@ -43,7 +43,9 @@ int		xwaitpid(pid_t pid, int options)
 	(void)options;
 	res = waitpid(pid, &status, options);
 	if (g_job)
-		return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
+	if (!g_job)
+		tcsetpgrp(0, getpgrp());
 	if (WIFSTOPPED(status))
 		return (addjob(JOB_STOP, 0));
 	if (g_pgid)

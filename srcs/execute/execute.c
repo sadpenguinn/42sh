@@ -16,6 +16,7 @@
 pid_t	g_pgid;
 int		g_isjob = 0;
 int		g_job = 0;
+int		g_run;
 
 int		execute(t_astree *root)
 {
@@ -27,6 +28,7 @@ int		execute(t_astree *root)
 	tmp_err = g_execerr;
 	g_isjob = 0;
 	g_execerr = 0;
+	g_run = 1;
 	if (!root)
 		return (EXIT_FAILURE);
 	fd[0] = 0;
@@ -34,5 +36,6 @@ int		execute(t_astree *root)
 	res = execlist1(root, fd, 0);
 	tcsetpgrp(0, getpgrp());
 	g_execerr = tmp_err;
+	g_run = 0;
 	return (res);
 }

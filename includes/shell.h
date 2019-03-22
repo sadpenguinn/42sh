@@ -195,7 +195,8 @@ int						argv_parser(int ac, char **av);
 **	If parser or execute error returns -1
 */
 
-int						substitution(char *cmd);
+int						substitution(char *cmd, int isoutput);
+char					*subtitution_output(char *cmd);
 
 
 /*

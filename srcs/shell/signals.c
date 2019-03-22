@@ -16,6 +16,7 @@
 #include "readline.h"
 
 extern int		g_execerr;
+extern int		g_run;
 
 void			handle_sigtstp(int sig)
 {
@@ -28,7 +29,8 @@ void			handle_sigint(int sig)
 	(void)sig;
 	g_vi_mode = INSERT_MODE;
 	g_execerr = 1;
-	close(g_stdin_fd);
+	if (!(g_run))
+		close(g_stdin_fd);
 }
 
 void			handle_sigin(int sig)
