@@ -30,19 +30,19 @@ Builtins:<br>
 
 [✓] Intern variable creation depending on syntax: _name=value_<br>
 [✓] Intern variable exportation to the environment, via built-in _export_<br>
-[✓] Possibility to list shell intern variables via built-in _set_ (-n, -o options)<br>
-[−] Intern and environement variables revocation, via built-in _unset_ (no optionrequired)<br>
+[✓] Possibility to list shell intern variables via built-in _set_ (_-n, -o_ options)<br>
+[✓] Intern and environement variables revocation, via built-in _unset_ (_-n, -v, -f_ options)<br>
 [✓] Environment variable creation for unique command, for instance: _HOME=/tmp cd_<br>
 [−] Simple expansion of parameters depending on syntax _${}_ (no additionnal format required)<br>
 [−] Exit code access of previously command via the expansion _${?}_<br>
 
 [−] Job control monitoring<br>
-[+] Built-in _jobs_<br>
-[+] Built-in _fg_<br>
+[✓] Built-in _jobs_<br>
+[✓] Built-in _fg_<br>
 [−] Built-in _bg_<br>
-[+] _&_<br>
+[✓] _&_<br>
 
-[+] Correct monitoring of signals<br>
+[✓] Correct monitoring of signals<br>
 
 [✓] Each built-in must have enounced options by POSIX, except _set_ / _unset_<br>
 

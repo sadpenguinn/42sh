@@ -20,7 +20,7 @@ void			init_env(char **env)
 	i = 0;
 	g_hash_env = hash_init(INITIAL_ENV_HASH_SIZE, HSH_OW);
 	g_hash_roenv = hash_init(INITIAL_ENV_HASH_SIZE, HSH_OW);
-	while (env[i])
+	while (env && env[i])
 	{
 		pair = split_assignments(env[i]);
 		hash_insert(pair[0], pair[1], g_hash_env);
