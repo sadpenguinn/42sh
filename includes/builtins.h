@@ -118,6 +118,16 @@ int		built_test(char **av, char **env);
 int		built_set(char **av, char **env);
 
 /*
+** Remove each variable or function name
+** unset [-fnv] [name]
+** If the -v option is given, each name refers to a shell variable and that variable is removed
+** If the -f option is given, each name refers to a shell function and that function is removed
+** If the -n option is given, each name refers to a shell variable and that variable value is removed
+*/
+
+int		built_unset(char **av, char **env);
+
+/*
 ** Just prints environment
 */
 
@@ -219,6 +229,5 @@ int		built_fc_write_lines(void *fc_history, int fd, int *flags, char **av);
 int		built_fc_parse_string(char *script, int print);
 int		built_fc_open_tmp_file(char **file_name);
 void	built_fc_write_history_changes(void);
-
 
 #endif

@@ -283,7 +283,9 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_alias.c
 					srcs/builtins/built_unalias.c
 					srcs/builtins/built_type.c
-					srcs/builtins/built_test.c srcs/builtins/built_alias_reqmts.c)
+					srcs/builtins/built_test.c
+					srcs/builtins/built_alias_reqmts.c
+					srcs/builtins/built_unset.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c

@@ -93,13 +93,29 @@ void	parse_config(void)
 	lexer_free(lex);
 }
 
-void	init(char **env)
+static void		init_arguments(char **av)
+{
+	char	*tmp;
+	int 	i;
+
+	i = 0;
+	while (av[i])
+	{
+		tmp = ft_itoa(i);
+		ssetenv(tmp, av[i], ENV_RO);
+		ft_strdel(&tmp);
+		i++;
+	}
+}
+
+void	init(char **env, char **av)
 {
 	if (INITIAL_ENV_HASH_SIZE <= 0 || INITIAL_PATH_HASH_SIZE <= 0 ||
 		INITIAL_PATH_SUMS_HASH_SIZE <= 0)
 		die();
 	g_stdin_fd = dup(STDIN_FILENO);
 	init_env(env);
+	init_arguments(av);
 	init_path();
 	init_jobs();
 	init_aliases();
