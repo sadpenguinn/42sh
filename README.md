@@ -67,13 +67,13 @@ Builtins:<br>
 [−] Arithmetic expansion: _(())_<br>
 [−] Process substitution: _<()_, _>()_<br>
 
-[−] !!<br>
-[−] !word<br>
-[−] !number<br>
-[−] !-number<br>
-[−] File for history<br>
-[−] Built-in _fc_<br>
-[−] Search via _Ctrl-R_<br>
+[✓] !!<br>
+[✓] !word<br>
+[✓] !number<br>
+[✓] !-number<br>
+[✓] File for history<br>
+[✓] Built-in _fc_<br>
+[✓] Search via _Ctrl-R_<br>
 
 [✓] Contextual autocomplete<br>
 
