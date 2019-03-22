@@ -169,7 +169,7 @@ void					print_astree(t_astree *root);
 ** input and arguments, prototype for init signal handler
 */
 
-void					init(char **env);
+void					init(char **env, char **av);
 void					init_env(char **env);
 void					init_path(void);
 void					init_jobs(void);

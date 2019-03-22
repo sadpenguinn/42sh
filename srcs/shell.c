@@ -31,7 +31,7 @@ int		main(int ac, char **av, char **env)
 	int			last;
 	char		*tmp;
 
-	init(env);
+	init(env, av);
 	if (argv_parser(ac, av))
 	{
 		destroy();
