@@ -170,7 +170,7 @@ void					print_astree(t_astree *root);
 */
 
 void					init(char **env, char **av);
-void					init_env(char **env);
+void					init_env(char **env, char **av);
 void					init_path(void);
 void					init_jobs(void);
 void					init_process(void);
@@ -187,6 +187,7 @@ void					destroy_aliases(void);
 void					destroy_functions(void);
 void					destroy_function_args(void);
 void					init_signals(void);
+void					parse_config(void);
 int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
 
