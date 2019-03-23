@@ -11,7 +11,7 @@ static int	unset_print_error(char *arg)
 static int	unset_destroy_all()
 {
 	destroy_env();
-	init_env(NULL);
+	init_env(NULL, NULL);
 	destroy_functions();
 	destroy_function_args();
 	init_functions();

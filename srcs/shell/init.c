@@ -12,6 +12,10 @@
 
 #include "shell.h"
 #include "readline.h"
+#include "lexer.h"
+#include "parser.h"
+#include "execute.h"
+#include "autocomplete.h"
 
 /*
 ** Global variables with env, aliases and paths hashes/arrays.
@@ -61,61 +65,13 @@ int				g_syntax = SYNTAX_OFF;
 
 int				g_stdin_fd;
 
-#include "lexer.h"
-#include "parser.h"
-#include "execute.h"
-#include "autocomplete.h"
-
-void	parse_config(void)
-{
-	char		*script;
-	t_lexer		*lex;
-	t_astree	*ast;
-	size_t		len;
-	char		*path;
-	int			fd;
-
-	path = ft_strjoin(sgetenv("HOME", ENV_ALL), SHELL_DEFAULT_RC, 0);
-	fd = open(path, O_CREAT, S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
-	close(fd);
-	len = get_file_size(path);
-	script = (char *)xmalloc((sizeof(char) * (len + 1)));
-	fd = open(path, 'r');
-	read(fd, script, len + 1);
-	close(fd);
-	ft_strdel(&path);
-	lex = lexer(script, len);
-	ft_strdel(&script);
-	g_tokens = lex->lexems;
-	ast = inputunit();
-	execute(ast);
-	freeastree(ast);
-	lexer_free(lex);
-}
-
-static void		init_arguments(char **av)
-{
-	char	*tmp;
-	int 	i;
-
-	i = 0;
-	while (av[i])
-	{
-		tmp = ft_itoa(i);
-		ssetenv(tmp, av[i], ENV_RO);
-		ft_strdel(&tmp);
-		i++;
-	}
-}
-
 void	init(char **env, char **av)
 {
 	if (INITIAL_ENV_HASH_SIZE <= 0 || INITIAL_PATH_HASH_SIZE <= 0 ||
 		INITIAL_PATH_SUMS_HASH_SIZE <= 0)
 		die();
 	g_stdin_fd = dup(STDIN_FILENO);
-	init_env(env);
-	init_arguments(av);
+	init_env(env, av);
 	init_path();
 	init_jobs();
 	init_aliases();
