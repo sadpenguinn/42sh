@@ -64,7 +64,6 @@ char		**expand_v(char *str)
 			iterator_for_expand(str, res, &i, &j);
 		}
 	}
-	res[j] = '\0';
 	return (strsplit_for_extention(res));
 }
 
@@ -93,6 +92,6 @@ char		*expand(char *str)
 		else
 			iterator_for_expand(str, res, &i, &j);
 	}
-	res[j] = '\0';
+	free(str);
 	return (res);
 }

@@ -6,14 +6,16 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:35:33 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 16:09:24 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/23 16:46:51 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "extention.h"
 #include "shell.h"
-#include "execute.h"
+#include "readline.h"
+#include "lexer.h"
 #include "parser.h"
+#include "execute.h"
 
 /*
 ** Global variables for parser
@@ -21,7 +23,6 @@
 
 void			*g_tokens = NULL;
 unsigned int	g_curtok = 0;
-int				g_parseerr = 0;
 
 void	printmas(char **str)
 {
@@ -39,9 +40,13 @@ void	printmas(char **str)
 
 void	testing()
 {
+	char	*str;
+
+	str = expand("echo ${2:=1234}");
 	// printf("        $HOME = %s\n", expand("test $hOME"));
 	// printf("${HOME:-word} = %s\n", expand("test ${hOME:-word}"));
-	printf("|%s|\n", expand("$[5 + 4]"));
+	printf("|%s|\n", str);
+	free(str);
 	// printf("${HOME:+word} = %s\n", expand("test ${hOME:+word}"));
 	// printf("     ${#HOME} = %s\n", expand("test ${#hsOME}"));
 	// printf("     ${HOME%%} = %s\n", expand("test ${hOME%}"));
@@ -78,5 +83,6 @@ int		main(int argc, char **argv, char **env)
 	// 	if (ft_atoi(argv[1]) == 2)
 	// 		printmas(expand_v(argv[2]));
 	// }
+	destroy_env();
 	return (0);
 }
