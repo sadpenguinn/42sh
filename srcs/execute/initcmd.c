@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr.h                                             :+:      :+:    :+:   */
+/*   initcmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amerlon- <amerlon-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:08:43 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/01/22 21:34:09 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/24 10:57:07 by amerlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ static int	expand_assign(t_list *assign)
 			val++;
 		val++;
 		res = val;
-		val = expand(val);
+		if (!(val = expand(val)))
+			break ;
 		*res = 0;
 		res = ft_stradd(bgn, val, 1);
 		assign->data = (void *)res;
 		assign = assign->next;
 	}
+	if (assign)
+		return (1);
 	return (0);
 }
 
@@ -75,7 +78,8 @@ static char	**get_argv(t_list *args)
 	while (lst)
 	{
 		arg = (char *)lst->data;
-		lst->data = (char **)expand_v(arg);
+		if (!(lst->data = (char **)expand_v(arg)))
+			return (0);
 		free(arg);
 		lst = lst->next;
 	}

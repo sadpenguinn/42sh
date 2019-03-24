@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_and_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amerlon- <amerlon-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:35:33 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/23 16:46:51 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/24 10:41:41 by amerlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	testing()
 {
 	char	*str;
 
-	str = expand("echo ${2:=1234}");
+	str = expand("echo $((3 / 0))");
 	// printf("        $HOME = %s\n", expand("test $hOME"));
 	// printf("${HOME:-word} = %s\n", expand("test ${hOME:-word}"));
 	printf("|%s|\n", str);
@@ -59,7 +59,7 @@ int		main(int argc, char **argv, char **env)
 {
 	// char *res;
 
-	init_env(env);
+	init_env(env, argv);
 	// hash_print(g_hash_env);
 	// sgetenv("HOwqdqwME");
 	//ssetenv("a", "a1 a2 a3 a4");
