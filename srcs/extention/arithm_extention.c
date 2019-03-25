@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arithm_extention.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amerlon- <amerlon-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:58:20 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/24 10:35:38 by amerlon-         ###   ########.fr       */
+/*   Updated: 2019/03/25 16:59:30 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ char	*get_arithm_extention(char *str)
 	else
 		expression_ex = ft_strndup(&str[3], ft_strlen(&str[2]) - 3);
 	res = expression(expression_ex);
+	free(expression_ex);
 	if (g_calcerr)
 	{
+		if (res)
+			free(res);
 		write(1, "42sh: Division by zero\n", 23);
 		return (NULL);
 	}
