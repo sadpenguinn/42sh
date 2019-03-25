@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:58:20 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 16:59:30 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:31:48 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ char	*get_arithm_extention(char *str)
 	{
 		if (res)
 			free(res);
-		write(1, "42sh: Division by zero\n", 23);
+		ft_putstr_fd("\e[0;31m42sh: Division by zero\e[0m\n",
+						STDERR_FILENO);
 		return (NULL);
 	}
 	return (res);
