@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libshell.h"
+#include "../includes/libshell.h"
 
 /*
 ** Internal function for puts command error with arguments

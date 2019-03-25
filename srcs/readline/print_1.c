@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "libshell.h"
+#include "../lib/libshell/includes/libshell.h"
 
 int			print_default(t_matrix *matrix)
 {

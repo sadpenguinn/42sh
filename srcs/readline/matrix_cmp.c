@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "libshell.h"
+#include "../lib/libshell/includes/libshell.h"
 
 int	matrix_cmp(t_matrix *matrix1, t_matrix *matrix2)
 {

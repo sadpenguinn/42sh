@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "libshell.h"
+#include "../includes/libshell.h"
 
 /*
 ** Returns pointer to string in hash table represents environment variable.

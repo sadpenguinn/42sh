@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "libshell.h"
+#include "../includes/libshell.h"
 
 /*
 ** Unset environment variable. If variable is found in hash table

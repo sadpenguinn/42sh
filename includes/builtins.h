@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "libshell.h"
+# include "../srcs/lib/libshell/includes/libshell.h"
 # include "libalias.h"
 
 /*

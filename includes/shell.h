@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include "libhash.h"
 # include "libalias.h"
-# include "libshell.h"
+# include "../srcs/lib/libshell/includes/libshell.h"
 # include "vector.h"
 
 /*

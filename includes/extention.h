@@ -14,7 +14,7 @@
 # define EXTENTION_H
 
 # include <pwd.h>
-# include "libshell.h"
+# include "../srcs/lib/libshell/includes/libshell.h"
 # include "shell.h"
 # include "expression.h"
 

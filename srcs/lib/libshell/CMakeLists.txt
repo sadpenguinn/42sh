@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 project(libshell)
 
 set(NAME		shell)
-set(INC			../../../includes)
+set(INC			../includes)
 set(LIBFT_INC	../libft/includes)
 set(LIBHASH_INC	../libhash/includes)
 set(VECTOR_INC	../vector/includes)
@@ -21,7 +21,8 @@ set(SRC_LIB		srcs/xglob.c
 				srcs/sgetpath.c
 				srcs/sunsetenv.c
 				srcs/get_cmd_path.c
-        		srcs/split_assignments.c srcs/get_file_size.c)
+        		srcs/split_assignments.c
+				srcs/get_file_size.c)
 
 include_directories(${INC})
 include_directories(${LIBFT_INC})

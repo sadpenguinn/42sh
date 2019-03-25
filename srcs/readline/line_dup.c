@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "libshell.h"
+#include "../lib/libshell/includes/libshell.h"
 
 t_line	*line_dup(t_line *src)
 {
