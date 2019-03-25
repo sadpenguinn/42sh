@@ -32,6 +32,7 @@ char				*expression(char *arg)
 		exfreeastree(root);
 		return ((char *)0);
 	}
+	lexer_free(lexer);
 	exfreeastree(root);
 	return (ft_itoa(res));
 }
