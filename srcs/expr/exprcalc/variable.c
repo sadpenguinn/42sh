@@ -22,7 +22,7 @@ static char *recursivevar(char *var)
 		return (var);
 	if (val && !check_varname(val))
 	{
-		g_calcerr = 1;
+		g_exprerr = 1;
 		ft_putstr_fd("42sh: bad variable value:", STDERR_FILENO);
 		ft_putstr_fd(val, STDERR_FILENO);
 		return ((char *)0);

@@ -17,8 +17,6 @@
 * g_sherror must be declared in 42sh.c
 */
 
-int			g_calcerr = 0;
-
 intmax_t	applay_unary(t_astree *root)
 {
 	if (root->type == EX_ADD)
@@ -98,5 +96,5 @@ intmax_t	calc(t_astree *root)
 		return (applay_unary(root));
 	if (root->type == EX_EXPR)
 		return (operators[root->right->type - OPSHIFT](calc(root->left), root->right));
-	return (-1488);
+	return (0);
 }
