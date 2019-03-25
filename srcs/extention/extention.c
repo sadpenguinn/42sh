@@ -39,6 +39,15 @@ static int	tilda_case_check(char *str, int i)
 	return (0);
 }
 
+char        *free_and_null(char *str, char *res)
+{
+    if (str)
+        free(str);
+    if (res)
+        free(res);
+    return (NULL);
+}
+
 char		**expand_v(char *str)
 {
 	char	*res;
@@ -54,7 +63,7 @@ char		**expand_v(char *str)
 				|| check_process_substitution_expand(&str[i]))
 		{
 			if (!(buf = get_pahom(&str[i], &i, &fuck_norm[0])))
-				return (NULL);
+				free_and_null(str, res);
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j = fuck_you_fucking_norm(buf, j);
 		}
@@ -84,7 +93,7 @@ char		*expand(char *str)
 						|| check_process_substitution_expand(&str[i]))
 		{
 			if (!(buf = get_pahom(&str[i], &i, &f_n[0])))
-				return (NULL);
+			    return (free_and_null(str, res));
 			res = remalloc_result_of_extention(str, res, buf, f_n[0]);
 			j += ft_strlen(buf);
 			free(buf);

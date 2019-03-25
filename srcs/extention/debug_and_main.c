@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_and_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amerlon- <amerlon-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:35:33 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/24 10:41:41 by amerlon-         ###   ########.fr       */
+/*   Updated: 2019/03/25 16:54:35 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	testing()
 {
 	char	*str;
 
-	str = expand("echo $((3 / 0))");
+	str = expand("$[1]");
 	// printf("        $HOME = %s\n", expand("test $hOME"));
 	// printf("${HOME:-word} = %s\n", expand("test ${hOME:-word}"));
 	printf("|%s|\n", str);
