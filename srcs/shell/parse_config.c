@@ -28,7 +28,7 @@ static char		*config_get_path(void)
 	return (ft_strjoin(sgetenv("HOME", ENV_ALL), SHELL_DEFAULT_RC, 0));
 }
 
-static size_t	config_init(char *config)
+static size_t	config_init(char **config)
 {
 	char		*path;
 	size_t		len;
@@ -37,9 +37,9 @@ static size_t	config_init(char *config)
 	path = config_get_path();
 	config_create_confile(path);
 	len = get_file_size(path);
-	config = (char *)xmalloc((sizeof(char) * (len + 1)));
+	*config = (char *)xmalloc((sizeof(char) * (len + 1)));
 	fd = open(path, 'r');
-	read(fd, config, len + 1);
+	read(fd, *config, len + 1);
 	close(fd);
 	ft_strdel(&path);
 	return (len);
@@ -53,7 +53,7 @@ void			parse_config(void)
 	size_t		len;
 
 	config = NULL;
-	len = config_init(config);
+	len = config_init(&config);
 	lex = lexer(config, len);
 	ft_strdel(&config);
 	g_tokens = lex->lexems;
