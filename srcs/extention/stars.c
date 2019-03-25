@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 04:33:35 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/02/28 04:43:23 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:41:56 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ static int		get_result_of_glob(char **str, char *code, int n, int begin)
 	return (remalloc_result_of_glob(str, pre_result, n, begin));
 }
 
+int				get_len_of_subex(char *str)
+{
+	if (str[0] != '$')
+		return (0);
+	return (get_len_of_dollar(str));
+}
+
 void			processing_stars(char **str)
 {
 	int		brackets[2];
@@ -98,6 +105,7 @@ void			processing_stars(char **str)
 	counter = 0;
 	while ((*str)[i])
 	{
+		i += get_len_of_subex(&((*str)[i]));
 		if ((*str)[i] == '\'' && !brackets[1])
 			brackets[0] = (brackets[0] + 1) % 2;
 		if ((*str)[i] == '\"' && !brackets[0])

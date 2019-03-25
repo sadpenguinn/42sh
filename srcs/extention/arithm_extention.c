@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:58:20 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 19:31:48 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:41:21 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_arithm_extention(char *str)
 		expression_ex = ft_strndup(&str[3], ft_strlen(&str[2]) - 3);
 	res = expression(expression_ex);
 	free(expression_ex);
-	if (g_calcerr)
+	if (g_exprerr)
 	{
 		if (res)
 			free(res);
