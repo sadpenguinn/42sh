@@ -33,8 +33,8 @@ Builtins:<br>
 [✓] Possibility to list shell intern variables via built-in _set_ (_-n, -o_ options)<br>
 [✓] Intern and environement variables revocation, via built-in _unset_ (_-n, -v, -f_ options)<br>
 [✓] Environment variable creation for unique command, for instance: _HOME=/tmp cd_<br>
-[−] Simple expansion of parameters depending on syntax _${}_ (no additionnal format required)<br>
-[−] Exit code access of previously command via the expansion _${?}_<br>
+[✓] Simple expansion of parameters depending on syntax _${}_ (no additionnal format required)<br>
+[✓] Exit code access of previously command via the expansion _${?}_<br>
 
 [✓] Job control monitoring<br>
 [✓] Built-in _jobs_<br>
