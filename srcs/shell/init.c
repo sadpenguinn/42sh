@@ -16,6 +16,7 @@
 #include "parser.h"
 #include "execute.h"
 #include "autocomplete.h"
+#include "builtins.h"
 
 /*
 ** Global variables with env, aliases and paths hashes/arrays.
@@ -60,7 +61,32 @@ int				g_dontexec = FALSE;
 int				g_syntax = SYNTAX_OFF;
 
 /*
-**	Copy stdin descriptos
+** Arrays with builtins and links to them
+*/
+
+char	*g_built_in_lists[19] =
+{
+	"cd", "echo", "exit", "export", "hash", "alias", "unalias", "type",
+	"test", "set", "unset", "env", "setenv", "unsetenv", "jobs", "bg",
+	"fg", "fc", NULL
+};
+
+int		(*g_built_in_funcs[19])(char **, char **) =
+{
+	built_cd, built_echo, built_exit, built_export, built_hash, built_alias,
+	built_unalias, built_type, built_test, built_set, built_unset, built_env,
+	built_setenv, built_unsetenv, built_jobs, built_bg, built_fg, built_fc, NULL
+};
+
+int		g_built_in_ret[18] =
+{
+	PATH_NOFORK, PATH_BUILT, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK,
+	PATH_NOFORK, PATH_NOFORK, PATH_BUILT, PATH_NOFORK, PATH_NOFORK, PATH_BUILT,
+	PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK
+};
+
+/*
+**	Copy stdin descriptors
 */
 
 int				g_stdin_fd;

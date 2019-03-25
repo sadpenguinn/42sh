@@ -95,6 +95,9 @@ extern int				g_status;
 extern int				g_echoe;
 extern int				g_dontexec;
 
+/*
+**	Copy stdin descriptors
+*/
 
 extern int				g_stdin_fd;
 
@@ -197,7 +200,6 @@ int						argv_parser(int ac, char **av);
 */
 
 int						substitution(char *cmd);
-
 
 /*
 **	Jobs

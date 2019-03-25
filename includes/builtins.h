@@ -120,9 +120,12 @@ int		built_set(char **av, char **env);
 /*
 ** Remove each variable or function name
 ** unset [-fnv] [name]
-** If the -v option is given, each name refers to a shell variable and that variable is removed
-** If the -f option is given, each name refers to a shell function and that function is removed
-** If the -n option is given, each name refers to a shell variable and that variable value is removed
+** If the -v option is given, each name refers to a shell variable
+** and that variable is removed
+** If the -f option is given, each name refers to a shell function
+** and that function is removed
+** If the -n option is given, each name refers to a shell variable
+** and that variable value is removed
 */
 
 int		built_unset(char **av, char **env);

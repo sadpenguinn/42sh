@@ -19,7 +19,7 @@
 # include <sys/stat.h>
 # include "libft.h"
 
-int     conditions(char **argv);
+int		conditions(char **argv);
 int		ft_tab_len(char **str);
 int		conditions_print_error_syntax_message(char *str);
 int		conditions_print_error_syntax(void);
@@ -48,6 +48,6 @@ int		cond_switcher_for_one_other(char *flag, char *arg);
 int		cond_switcher_for_one(char *flag, char *arg);
 int		cond_switcher_for_two(char *flag, char *arg1, char *arg2);
 void	conditions_processing(char **argv, int *res, int *i);
-char    **strsplit_to_conditions(char *str);
+char	**strsplit_to_conditions(char *str);
 
 #endif
