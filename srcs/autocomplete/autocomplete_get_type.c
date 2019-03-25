@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:11:16 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/21 10:57:15 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 00:15:43 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			get_autocomplite_type(t_line *line_info,
 												size_t pos, size_t *pos_start)
 {
 	pos--;
-	while (pos != (UL) -1)
+	while (pos != (UL)(-1))
 	{
 		if (line_info->buf[pos] == '$' || (line_info->buf[pos] == '{' &&
 			pos > 0 && line_info->buf[pos - 1] == '$'))

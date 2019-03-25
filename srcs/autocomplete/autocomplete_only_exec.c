@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 10:45:40 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/21 14:27:44 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 00:17:10 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,9 @@ char	*get_real_file(char *el_str, char *str)
 	char *real_dir;
 	char *full_path;
 
-	// printf("Мне пришла строка |%s| и файл |%s|\n", str, el_str);
 	real_dir = atcml_get_rel_dir(str, ft_strlen(str));
-	// printf("Получается, что путь = |%s|\n", real_dir);
 	full_path = ft_strjoin(real_dir, el_str, 0);
 	full_path[ft_strlen(full_path) - 1] = '\0';
-	// printf("Таким образом, full_path = |%s|\n", full_path);
 	free(real_dir);
 	return (full_path);
 }

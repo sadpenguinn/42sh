@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 02:25:48 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/20 12:49:50 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 00:16:27 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	**get_slashes_and_spases_lile_dirs(char **res, char *str)
 	return (res);
 }
 
-char 		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
+char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 {
 	int		i;
 	size_t	len;

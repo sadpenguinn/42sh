@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 03:49:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/20 12:45:06 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 00:16:44 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ char	*atcml_get_rel_dir(char *buf, size_t pos)
 	{
 		if (buf[pos] == ' ' && (buf[pos - 1] != '\\'))
 		{
-			tmp = ft_strjoin(ft_strndup(&buf[pos], (UL)(last - &buf[pos])), "/", 1);
+			tmp = ft_strjoin(ft_strndup(&buf[pos],
+											(UL)(last - &buf[pos])), "/", 1);
 			expand_backslash_handling(&tmp, 1);
 			return (tmp);
 		}
