@@ -201,7 +201,7 @@ int						argv_parser(int ac, char **av);
 */
 
 int						substitution(char *cmd, int isoutput);
-char					*subtitution_output(char *cmd);
+char					*substitution_output(char *cmd);
 
 /*
 **	Jobs

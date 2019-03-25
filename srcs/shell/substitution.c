@@ -25,9 +25,8 @@ static int exec_substitution(t_astree *root, int isoutput)
 	resfd = fd[isoutput ? 0 : 1];
 	/* fd[0] = 0; */
 	fd[isoutput ? 0 : 1] = isoutput ? 0 : 1;
-	if (g_dontexec == FALSE)
-		if (root)
-			execlist1(root, fd, 0);
+	if (g_dontexec == FALSE && root)
+		execlist1(root, fd, 0);
 	close(fd[isoutput ? 1 : 0]);
 	if (g_execerr || g_parseerr)
 	{
@@ -55,20 +54,23 @@ int			substitution(char *cmd, int isoutput)
 }
 
 
-char		*subtitution_output(char *cmd)
+char		*substitution_output(char *cmd)
 {
 	int		fd;
+	int		count;
 	char	*res;
 	char	buff[100];
-	char	count;
 
 	if ((fd = substitution(cmd, 1)) == -1)
 		return ((char *)0);
 	res = xmalloc(sizeof(char));
 	res[0] = 0;
 	while ((count = read(fd, buff, 100)) > 0)
+	{
+		buff[count] = 0;
 		res = ft_stradd(res, buff, 0);
-	if (count)
+	}
+	if (count == 0)
 		return (res);
 	free(res);
 	return ((char *)0);

@@ -6,7 +6,7 @@
 /*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:46:37 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/03/01 12:37:05 by nkertzma         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:54:43 by bwerewol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		execute(t_astree *root)
 	int		res;
 	int		fd[2];
 	int		tmp_err;
+	int		execute(t_astree *root);
 
 	g_pgid = -1;
 	tmp_err = g_execerr;
