@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 19:51:01 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 00:12:13 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*get_output_of_programm(char *str);
 char	*erase_repetitions_recursion(char *str);
 char	*classic_get_env(char *str);
 char	*get_content_of_expression(char *str);
+char	*get_content_of_expression_helper(char **str, char **res);
 int		get_len_of_name_var(char *str);
 int		get_len_of_dollar(char *str);
 char	*get_pahom(char *str, int *i, int *len_of_expression);
@@ -74,5 +75,10 @@ int		check_process_substitution_expand(char *str);
 int		get_fdnumber_of_substitution(char *str, int state);
 char	*get_arithm_extention(char *str);
 char	*ft_strjoin_helper(char *str1, char *str2, int is_free1, int is_free2);
+char	*get_string_from_tab_after_xglob(char **str);
+char	*get_content_of_other_ex(char *str);
+char	*get_ex_tilda(char *str);
+char	*get_len_of_value(char *str);
+char	*use_an_alternate_value(char *str);
 
 #endif

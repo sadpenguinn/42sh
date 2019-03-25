@@ -6,38 +6,11 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 04:33:35 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 23:52:09 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 00:08:18 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "extention.h"
-
-char			*get_string_from_tab(char **str)
-{
-	int		i;
-	int		len;
-	char	*res;
-
-	len = 0;
-	i = 0;
-	while (str[i])
-	{
-		len += ft_strlen(str[i]) + 1;
-		i++;
-	}
-	res = xmalloc(sizeof(char) * (len + 1));
-	i = 0;
-	while (str[i])
-	{
-		ft_strcat(res, str[i]);
-		if (str[i + 1])
-			ft_strcat(res, " ");
-		free(str[i]);
-		i++;
-	}
-	free(str);
-	return (res);
-}
 
 static int		remalloc_result_of_glob(char **str, char **res_glob,
 										int i, int begin)
@@ -47,7 +20,7 @@ static int		remalloc_result_of_glob(char **str, char **res_glob,
 	char	*buf;
 	int		to_return;
 
-	just_string = get_string_from_tab(res_glob);
+	just_string = get_string_from_tab_after_xglob(res_glob);
 	res = xmalloc(sizeof(char) * ((ft_strlen(*str) + ft_strlen(just_string))));
 	buf = ft_strndup(*str, begin);
 	ft_strcat(res, buf);
@@ -61,6 +34,20 @@ static int		remalloc_result_of_glob(char **str, char **res_glob,
 	return (to_return);
 }
 
+static int		counter_for_get_res_glob(const char *code,
+											int state, int i, int *dump_path)
+{
+	while (code[i] && code[i] != ' ')
+	{
+		if (code[i] == '*')
+			state = 1;
+		if (code[i] == '/' && !state)
+			(*dump_path) = (i);
+		i++;
+	}
+	return (i);
+}
+
 static int		get_result_of_glob(char **str, char *code, int n, int begin)
 {
 	int		i;
@@ -72,32 +59,25 @@ static int		get_result_of_glob(char **str, char *code, int n, int begin)
 	state = 0;
 	i = 0;
 	dump_path = -1;
-	while (code[i] && code[i] != ' ')
-	{
-		if (code[i] == '*')
-			state = 1;
-		if (code[i] == '/' && !state)
-			dump_path = i;
-		i++;
-	}
+	i = counter_for_get_res_glob(code, state, i, &dump_path);
 	if (dump_path == -1)
-		state = xglob((tmp = ft_strndup(code, i)), ".", &pre_result,
-						(size_t *)&dump_path);
+		state = xglob(
+		(tmp = ft_strndup(code, i)), ".", &pre_result, (size_t *)&dump_path);
 	else
-		state = xglob((tmp = ft_strndup(&code[dump_path + 1], i)),
+		state = xglob(
+			(tmp = ft_strndup(&code[dump_path + 1], i)),
 			ft_strndup(*str, dump_path + 1), &pre_result, (size_t *)&dump_path);
 	free(tmp);
-	if (state || !pre_result)
-		return (n);
-	if (!pre_result[0])
+	if (state || !pre_result || !pre_result[0])
 	{
-		free(pre_result);
+		if (!pre_result[0])
+			free(pre_result);
 		return (n);
 	}
 	return (remalloc_result_of_glob(str, pre_result, n, begin));
 }
 
-int				get_len_of_subex(char *str)
+static int		get_len_of_subex(char *str)
 {
 	if (str[0] != '$')
 		return (0);

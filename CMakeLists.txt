@@ -305,7 +305,9 @@ set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/strsplit_for_extention.c
 					srcs/extention/pre_processings.c
 					srcs/extention/get_fd_of_redirs.c
-					srcs/extention/arithm_extention.c)
+					srcs/extention/arithm_extention.c
+					srcs/extention/swither_to_expand.c
+					srcs/extention/string_processing_stars.c)
 
 set(EXPR			srcs/expr/expression.c)
 
