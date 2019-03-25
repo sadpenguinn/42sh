@@ -25,6 +25,7 @@ set(VECTOR_DIR		srcs/lib/vector)
 set(VECTOR_INC		srcs/lib/vector/includes)
 set(LIBSHELL		shell)
 set(LIBSHELL_DIR	srcs/lib/libshell)
+set(LIBSHELL_INC	srcs/lib/libshell/includes)
 set(MATH_LIB		m)
 
 if (APPLE)
@@ -57,7 +58,7 @@ set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_aliases.c
 					srcs/shell/substitution.c
 					srcs/shell/destroy_aliases.c
-					srcs/lib/libshell/srcs/check_varname.c)
+					srcs/lib/libshell/srcs/check_varname.c srcs/shell/parse_config.c)
 
 set(CONDITIONS_SRC	srcs/conditions/b_to_g_conditions.c
 					srcs/conditions/cond_flags_switcher.c
@@ -285,7 +286,7 @@ set(BUILTIN_SRC		srcs/builtins/built_cd.c
 					srcs/builtins/built_type.c
 					srcs/builtins/built_test.c
 					srcs/builtins/built_alias_reqmts.c
-					srcs/builtins/built_unset.c)
+					srcs/builtins/built_unset.c srcs/builtins/built_cd_reqmts.c srcs/builtins/built_unset_reqmts.c srcs/builtins/built_type_reqmts.c)
 
 set(EXPAND_SRC		srcs/extention/configurate_of_exptention.c
 					srcs/extention/configure_remalloc.c
@@ -342,6 +343,7 @@ include_directories(${LIBFT_INC})
 include_directories(${LIBHASH_INC})
 include_directories(${LIBALIAS_INC})
 include_directories(${VECTOR_INC})
+include_directories(${LIBSHELL_INC})
 
 add_subdirectory(${LIBFT_DIR})
 add_subdirectory(${LIBHASH_DIR})

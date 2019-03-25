@@ -1,55 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_unset.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/25 14:15:42 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/25 14:15:45 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtins.h"
 #include "shell.h"
 #include "execute.h"
-
-static int	unset_print_error(char *arg)
-{
-	sputcmderr(sstrerr(SHERR_INVSNTX), "unset", arg);
-	return (0);
-}
-
-static int	unset_destroy_all()
-{
-	destroy_env();
-	init_env(NULL);
-	destroy_functions();
-	destroy_function_args();
-	init_functions();
-	init_function_args();
-	return (SHERR_OK);
-}
-
-static int	unset_parse_flags(char **av, int *flags)
-{
-	int		i;
-
-	i = 1;
-	while (av[i])
-	{
-		if (!ft_strcmp(av[i], "-f"))
-			flags[0] = 1;
-		else if (!ft_strcmp(av[i], "-n"))
-			flags[1] = 1;
-		else if (!ft_strcmp(av[i], "-v"))
-			flags[2] = 1;
-		else if (av[i][0] == '-')
-			return (unset_print_error(av[i]));
-		else
-			return (1);
-		i++;
-	}
-	return (1);
-}
-
-char 		**unset_for(char **av)
-{
-	int 	i;
-
-	i = 1;
-	while (av[i] && av[i][0] == '-')
-		i++;
-	return (av + i);
-}
 
 int			unset_executen(char **av)
 {
@@ -68,23 +31,6 @@ int			unset_executen(char **av)
 		i++;
 	}
 	return (SHERR_OK);
-}
-
-void		unset_delete_function(char *func)
-{
-	t_func	*function;
-	size_t	len;
-	size_t	i;
-
-	i = 0;
-	len = vector_get_len(g_func);
-	while (i < len)
-	{
-		function = (t_func *)vector_get_elem(g_func, i);
-		if (!ft_strcmp(function->name, func))
-			vector_del_elem(&g_func, i);
-		i++;
-	}
 }
 
 int			unset_executef(char **av)
@@ -143,9 +89,12 @@ int			unset_execute(char **av)
 /*
 ** Remove each variable or function name
 ** unset [-fnv] [name]
-** If the -v option is given, each name refers to a shell variable and that variable is removed
-** If the -f option is given, each name refers to a shell function and that function is removed
-** If the -n option is given, each name refers to a shell variable and that variable value is removed
+** If the -v option is given, each name refers to a shell variable
+** and that variable is removed
+** If the -f option is given, each name refers to a shell function
+** and that function is removed
+** If the -n option is given, each name refers to a shell variable
+** and that variable value is removed
 */
 
 int			built_unset(char **av, char **env)

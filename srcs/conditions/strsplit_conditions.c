@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 20:45:31 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/21 12:30:08 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/22 20:08:53 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ static char		*validation_brackets(char *str)
 	if (!str)
 		return (NULL);
 	len = ft_strlen(str);
-	if (!(str[0] == '[' && str[1] == ' ' && 
+	if (!(str[0] == '[' && str[1] == ' ' &&
 		str[len - 1] == ']') && str[len - 2] == ' ')
 		return (NULL);
-	res = ft_strndup(&str[2], len - 3);
+	if (len - 4 < 1)
+		return (0);
+	res = ft_strndup(&str[2], len - 4);
 	printf("res = |%s|\n", res);
 	free(str);
 	return (res);
@@ -57,8 +59,7 @@ static char		*ft_word_cpy(char **s)
 	len = 0;
 	while ((*s)[len] && ft_isspace((*s)[len]))
 		len++;
-	if ((str = (char *)xmalloc(sizeof(char) * (len + 1))) == (char *)0)
-		return ((char *)0);
+	str = (char *)xmalloc(sizeof(char) * (len + 1));
 	rtn = str;
 	while (**s && !ft_isspace(**s))
 		*str++ = *(*s)++;
@@ -73,10 +74,15 @@ char			**strsplit_to_conditions(char *str)
 	char	**split;
 
 	if (!(str = validation_brackets(str)))
+	{
+		free(str);
 		return (NULL);
+	}
+	split = ft_strsplit(str, ' ');
+	free(str);
+	return (split);
 	count = ft_word_count(str);
-	if ((split = (char **)xmalloc(sizeof(char *) * (count + 1))) == (char **)0)
-		return ((char **)0);
+	split = (char **)xmalloc(sizeof(char *) * (count + 1));
 	split[count] = (char *)0;
 	i = 0;
 	while (i < count)

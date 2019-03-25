@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "libshell.h"
+# include "../srcs/lib/libshell/includes/libshell.h"
 # include "libalias.h"
 
 /*
@@ -42,7 +42,7 @@
 # endif
 
 /*
-** Builtin 'cd' that supports working with 'OLDPWD' / 'PWD' / 'CDPATH' variables.
+** Builtin 'cd' that supports working with 'OLDPWD', 'PWD', 'CDPATH' variables.
 ** It also supports moving to the previous directory with '-' flag, but without
 ** handling stack like '-3', '-10', etc.
 */
@@ -120,9 +120,12 @@ int		built_set(char **av, char **env);
 /*
 ** Remove each variable or function name
 ** unset [-fnv] [name]
-** If the -v option is given, each name refers to a shell variable and that variable is removed
-** If the -f option is given, each name refers to a shell function and that function is removed
-** If the -n option is given, each name refers to a shell variable and that variable value is removed
+** If the -v option is given, each name refers to a shell variable
+** and that variable is removed
+** If the -f option is given, each name refers to a shell function
+** and that function is removed
+** If the -n option is given, each name refers to a shell variable
+** and that variable value is removed
 */
 
 int		built_unset(char **av, char **env);
@@ -157,6 +160,15 @@ int		echo_switch(char **av, int i, int *flags);
 int		echo_usage(char c);
 
 /*
+** Internal functions for cd
+*/
+
+char	*cd_get_oldpwd(char *def);
+void	cd_set_pwd(const char *str);
+char	*cd_get_home(void);
+char	*cd_get_path(char **av, int i, char *home);
+
+/*
 ** Internal functions for hash
 */
 
@@ -170,10 +182,21 @@ void	built_hash_larg(char **av);
 ** Internal functions for alias
 */
 
-int			alias_print_error(char *arg);
-void		alias_print_alias(char *key);
-int			alias_parse_assignments(char **av);
-int			alias_print_aliases(void);
+int		alias_print_error(char *arg);
+void	alias_print_alias(char *key);
+int		alias_parse_assignments(char **av);
+int		alias_print_aliases(void);
+
+/*
+** Internal functions for type
+*/
+
+int		type_find_function(char *arg, int *flags);
+int		type_find_alias(char *arg, int *flags);
+int		type_find_builtin(char *arg, int *flags);
+int		type_find_keyword(char *arg, int *flags);
+int		type_find_bin(char *arg, int *flags);
+void	type_print_arr(char **arr);
 
 /*
 ** Internal functions for set
@@ -183,6 +206,16 @@ int		built_set_usage(void);
 int		built_set_toggle(int *var, int fval, int sval);
 int		built_set_gvar(int *var, int val);
 void	built_set_print(void);
+
+/*
+** Internal functions for unset
+*/
+
+int		unset_print_error(char *arg);
+int		unset_destroy_all(void);
+int		unset_parse_flags(char **av, int *flags);
+char	**unset_for(char **av);
+void	unset_delete_function(char *func);
 
 // The following source files should be added comments
 

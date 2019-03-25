@@ -15,7 +15,7 @@ static size_t			alias_check_avail(t_alias *alias)
 	return (0);
 }
 
-#include "libshell.h"
+#include "../../libshell/includes/libshell.h"
 
 static t_aliastb		*alias_insert_cell(const char *key, char **value,
 											t_alias *alias, t_aindex index)

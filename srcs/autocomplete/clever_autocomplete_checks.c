@@ -12,11 +12,11 @@
 
 #include "autocomplete.h"
 
-
 /*
 **	If you know some cases with only files - please report me.
 **	This case is off, beacause user must can open a file in dir :(
 */
+
 int		check_only_files_case_type(char *str)
 {
 	if (!ft_strcmp(str, "vim") || !ft_strcmp(str, "nano") ||

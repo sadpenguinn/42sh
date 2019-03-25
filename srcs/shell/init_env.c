@@ -12,7 +12,24 @@
 
 #include "shell.h"
 
-void			init_env(char **env)
+static void		init_arguments(char **av)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	if (!av)
+		return ;
+	while (av[i])
+	{
+		tmp = ft_itoa(i);
+		ssetenv(tmp, av[i], ENV_RO);
+		ft_strdel(&tmp);
+		i++;
+	}
+}
+
+void			init_env(char **env, char **av)
 {
 	char	**pair;
 	int		i;
@@ -31,4 +48,5 @@ void			init_env(char **env)
 	hash_insert("?", SHELL_DEFAULT_LAST, g_hash_roenv);
 	fill_genv(&g_env, g_hash_env);
 	fill_genv(&g_roenv, g_hash_roenv);
+	init_arguments(av);
 }

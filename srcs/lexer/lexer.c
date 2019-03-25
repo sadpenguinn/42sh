@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libshell.h"
+#include "../lib/libshell/includes/libshell.h"
 #include "lexer.h"
 
 static int			g_branch_table[129][110] =

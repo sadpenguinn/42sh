@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_alias_reqmts.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/25 14:06:45 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/25 14:06:47 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtins.h"
 #include "shell.h"
 
@@ -10,7 +22,7 @@ int			alias_print_error(char *arg)
 void		alias_print_alias(char *key)
 {
 	t_aliastb	*alias;
-	int				i;
+	int			i;
 
 	i = 0;
 	if (!(alias = alias_find(key, g_aliases)))

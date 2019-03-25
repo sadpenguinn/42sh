@@ -12,11 +12,6 @@
 
 #include "autocomplete.h"
 
-char	*g_built_in_lists[] =
-{
-	"cd", "echo", "env", "exit", "hash", "set", "setenv", "unsetenv", NULL
-};
-
 char	g_path_to_database[999];
 
 char	*ft_erase_spases_in_begin(char *str, int *type)

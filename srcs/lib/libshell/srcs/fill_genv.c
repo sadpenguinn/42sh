@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libshell.h"
+#include "../includes/libshell.h"
 #include "shell.h"
 
 static char		*build_env_str(t_hshtb *ptr)

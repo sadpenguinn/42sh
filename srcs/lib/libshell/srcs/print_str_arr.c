@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libshell.h"
+#include "../includes/libshell.h"
 
 /*
 ** Prints two-dimensional array of strings

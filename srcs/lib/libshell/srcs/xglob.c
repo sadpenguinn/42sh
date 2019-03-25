@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libshell.h"
+#include "../includes/libshell.h"
 
 static size_t	get_files_count(char *path)
 {

@@ -13,6 +13,9 @@
 #ifndef AUTOCOMPLETE_H
 # define AUTOCOMPLETE_H
 
+# include <fcntl.h>
+# include <stdio.h>
+# include <sys/stat.h>
 # include "readline.h"
 # include "extention.h"
 # include "libft.h"
@@ -21,9 +24,6 @@
 # include "parser.h"
 # include "get_next_line.h"
 # include "conditions.h"
-# include <fcntl.h>
-# include <stdio.h>
-# include <sys/stat.h>
 
 /*
 ** support of flags_autocomlite not realized yes, so it's reason, why

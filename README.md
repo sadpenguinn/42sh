@@ -33,13 +33,13 @@ Builtins:<br>
 [✓] Possibility to list shell intern variables via built-in _set_ (_-n, -o_ options)<br>
 [✓] Intern and environement variables revocation, via built-in _unset_ (_-n, -v, -f_ options)<br>
 [✓] Environment variable creation for unique command, for instance: _HOME=/tmp cd_<br>
-[−] Simple expansion of parameters depending on syntax _${}_ (no additionnal format required)<br>
-[−] Exit code access of previously command via the expansion _${?}_<br>
+[✓] Simple expansion of parameters depending on syntax _${}_ (no additionnal format required)<br>
+[✓] Exit code access of previously command via the expansion _${?}_<br>
 
-[−] Job control monitoring<br>
+[✓] Job control monitoring<br>
 [✓] Built-in _jobs_<br>
 [✓] Built-in _fg_<br>
-[−] Built-in _bg_<br>
+[✓] Built-in _bg_<br>
 [✓] _&_<br>
 
 [✓] Correct monitoring of signals<br>
@@ -98,13 +98,6 @@ Ariphmetic:<br>
 
 Butch code:<br>
     1) If extention returns NULL, 42sh gives seg fault<br>
-    2) ls -la | cet (killed)<br>
-    3) bar ()<br>
-    {<br>
-        ls<br>
-    }<br>
-    4) alias glog="git log --pretty=oneline --pretty=format:'%H - %an, %ar: %s' --graph"<br>
+    2) alias glog="git log --pretty=oneline --pretty=format:'%H - %an, %ar: %s' --graph"<br>
 
 Todo:<br>
-    1) ${?}, ${0}<br>
-    2) Replace and refactor config parser<br>

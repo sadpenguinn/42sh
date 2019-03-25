@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include "libhash.h"
 # include "libalias.h"
-# include "libshell.h"
+# include "../srcs/lib/libshell/includes/libshell.h"
 # include "vector.h"
 
 /*
@@ -96,6 +96,9 @@ extern int				g_status;
 extern int				g_echoe;
 extern int				g_dontexec;
 
+/*
+**	Copy stdin descriptors
+*/
 
 extern int				g_stdin_fd;
 
@@ -171,7 +174,7 @@ void					print_astree(t_astree *root);
 */
 
 void					init(char **env, char **av);
-void					init_env(char **env);
+void					init_env(char **env, char **av);
 void					init_path(void);
 void					init_jobs(void);
 void					init_process(void);
@@ -188,6 +191,7 @@ void					destroy_aliases(void);
 void					destroy_functions(void);
 void					destroy_function_args(void);
 void					init_signals(void);
+void					parse_config(void);
 int						parse_input(int ac, char **av);
 int						argv_parser(int ac, char **av);
 
@@ -198,7 +202,6 @@ int						argv_parser(int ac, char **av);
 
 int						substitution(char *cmd, int isoutput);
 char					*subtitution_output(char *cmd);
-
 
 /*
 **	Jobs

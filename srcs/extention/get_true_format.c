@@ -62,6 +62,7 @@ char	*assign_a_default_value(char *str)
 	}
 	res = ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1);
 	push_to_enviroment(&tmp[2], res);
+	free(tmp);
 	return (res);
 }
 
