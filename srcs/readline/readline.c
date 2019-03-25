@@ -30,15 +30,18 @@ void			sigwinch_handler(int sig)
 {
 	if (sig == SIGWINCH)
 	{
-		array_add(CURSOR_CLEAR_SCREEN_AND_START,
-				ft_strlen(CURSOR_CLEAR_SCREEN_AND_START));
-		array_add(CURSOR_CLEAR_SCREEN, ft_strlen(CURSOR_CLEAR_SCREEN));
-		array_add(CURSOR_MOVE_START, ft_strlen(CURSOR_MOVE_START));
-		array_flush();
 		get_term_params(&g_w);
-		g_history->last_offset = 0;
-		print_prompt();
-		print_default(g_history->matrix[g_history->cur]);
+		if (g_history)
+		{
+			array_add(CURSOR_CLEAR_SCREEN_AND_START,
+					  ft_strlen(CURSOR_CLEAR_SCREEN_AND_START));
+			array_add(CURSOR_CLEAR_SCREEN, ft_strlen(CURSOR_CLEAR_SCREEN));
+			array_add(CURSOR_MOVE_START, ft_strlen(CURSOR_MOVE_START));
+			array_flush();
+			g_history->last_offset = 0;
+			print_prompt();
+			print_default(g_history->matrix[g_history->cur]);
+		}
 	}
 }
 
