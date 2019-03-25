@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "readline.h"
-#include "libshell.h"
+#include "../lib/libshell/includes/libshell.h"
 
 t_cursor	*cursor_dup(t_cursor *src)
 {

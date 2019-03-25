@@ -17,7 +17,7 @@
 
 #include <unistd.h>
 #include "execute.h"
-#include "libshell.h"
+#include "../lib/libshell/includes/libshell.h"
 #include "extention.h"
 
 static int	g_cmdtype;

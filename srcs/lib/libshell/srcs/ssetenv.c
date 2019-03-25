@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "libshell.h"
+#include "../includes/libshell.h"
 
 /*
 ** Sets new environment variable. Value may be NULL.

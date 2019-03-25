@@ -12,7 +12,7 @@
 
 #include <sys/stat.h>
 #include "shell.h"
-#include "libshell.h"
+#include "../includes/libshell.h"
 #include "builtins.h"
 
 extern char	*g_built_in_lists[];

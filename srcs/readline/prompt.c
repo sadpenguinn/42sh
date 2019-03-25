@@ -15,7 +15,7 @@
 #include <pwd.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include "libshell.h"
+#include "../lib/libshell/includes/libshell.h"
 
 #ifndef PATH_MAX
 # define PATH_MAX 4096
