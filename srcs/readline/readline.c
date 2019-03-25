@@ -36,9 +36,12 @@ void			sigwinch_handler(int sig)
 		array_add(CURSOR_MOVE_START, ft_strlen(CURSOR_MOVE_START));
 		array_flush();
 		get_term_params(&g_w);
-		g_history->last_offset = 0;
-		print_prompt();
-		print_default(g_history->matrix[g_history->cur]);
+		if (g_history)
+		{
+			g_history->last_offset = 0;
+			print_prompt();
+			print_default(g_history->matrix[g_history->cur]);
+		}
 	}
 }
 
