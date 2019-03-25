@@ -101,4 +101,3 @@ Butch code:<br>
     2) alias glog="git log --pretty=oneline --pretty=format:'%H - %an, %ar: %s' --graph"<br>
 
 Todo:<br>
-    1) ${?}, ${0}<br>

@@ -11,10 +11,21 @@
 /* ************************************************************************** */
 
 #include "autocomplete.h"
+#include "builtins.h"
 
 char	*g_built_in_lists[] =
 {
-	"cd", "echo", "env", "exit", "hash", "set", "setenv", "unsetenv", NULL
+	"cd", "echo", "exit", "export", "hash", "alias", "unalias", "type", "test", "set", "unset", "env", "setenv", "unsetenv", "jobs", "bg", "fg", "fc", NULL
+};
+
+int		(*g_built_in_funcs[])(char **, char **) =
+{
+	built_cd, built_echo, built_exit, built_export, built_hash, built_alias, built_unalias, built_type, built_test, built_set, built_unset, built_env, built_setenv, built_unsetenv, built_jobs, built_bg, built_fg, built_fc, NULL
+};
+
+int		g_built_in_ret[] =
+{
+	PATH_NOFORK, PATH_BUILT, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_BUILT, PATH_NOFORK, PATH_NOFORK, PATH_BUILT, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, PATH_NOFORK, NULL
 };
 
 char	g_path_to_database[999];

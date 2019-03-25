@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_config.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/25 13:54:18 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/25 13:54:20 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 #include "lexer.h"
 #include "parser.h"
@@ -13,16 +25,13 @@ static void		config_create_confile(char *path)
 
 static char		*config_get_path(void)
 {
-	return  (ft_strjoin(sgetenv("HOME", ENV_ALL), SHELL_DEFAULT_RC, 0));
+	return (ft_strjoin(sgetenv("HOME", ENV_ALL), SHELL_DEFAULT_RC, 0));
 }
 
-void	parse_config(void)
+static size_t	config_init(char *config)
 {
-	char		*config;
-	t_lexer		*lex;
-	t_astree	*ast;
-	size_t		len;
 	char		*path;
+	size_t		len;
 	int			fd;
 
 	path = config_get_path();
@@ -33,6 +42,18 @@ void	parse_config(void)
 	read(fd, config, len + 1);
 	close(fd);
 	ft_strdel(&path);
+	return (len);
+}
+
+void			parse_config(void)
+{
+	char		*config;
+	t_lexer		*lex;
+	t_astree	*ast;
+	size_t		len;
+
+	config = NULL;
+	len = config_init(config);
 	lex = lexer(config, len);
 	ft_strdel(&config);
 	g_tokens = lex->lexems;

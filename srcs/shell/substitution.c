@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   substitution.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/25 13:54:49 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/25 13:54:51 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 #include "lexer.h"
 #include "parser.h"
 #include "execute.h"
 
-static int exec_substitution(t_astree *root)
+static int	exec_substitution(t_astree *root)
 {
 	int			fd[2];
 	int			resfd;

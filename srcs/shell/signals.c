@@ -20,7 +20,6 @@ extern int		g_execerr;
 void			handle_sigtstp(int sig)
 {
 	(void)sig;
-	/* printf("sigtstp handle\n"); */
 }
 
 void			handle_sigint(int sig)

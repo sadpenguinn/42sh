@@ -42,7 +42,7 @@
 # endif
 
 /*
-** Builtin 'cd' that supports working with 'OLDPWD' / 'PWD' / 'CDPATH' variables.
+** Builtin 'cd' that supports working with 'OLDPWD', 'PWD', 'CDPATH' variables.
 ** It also supports moving to the previous directory with '-' flag, but without
 ** handling stack like '-3', '-10', etc.
 */
@@ -157,6 +157,15 @@ int		echo_switch(char **av, int i, int *flags);
 int		echo_usage(char c);
 
 /*
+** Internal functions for cd
+*/
+
+char	*cd_get_oldpwd(char *def);
+void	cd_set_pwd(const char *str);
+char	*cd_get_home(void);
+char	*cd_get_path(char **av, int i, char *home);
+
+/*
 ** Internal functions for hash
 */
 
@@ -170,10 +179,10 @@ void	built_hash_larg(char **av);
 ** Internal functions for alias
 */
 
-int			alias_print_error(char *arg);
-void		alias_print_alias(char *key);
-int			alias_parse_assignments(char **av);
-int			alias_print_aliases(void);
+int		alias_print_error(char *arg);
+void	alias_print_alias(char *key);
+int		alias_parse_assignments(char **av);
+int		alias_print_aliases(void);
 
 /*
 ** Internal functions for set

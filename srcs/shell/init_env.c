@@ -15,7 +15,7 @@
 static void		init_arguments(char **av)
 {
 	char	*tmp;
-	int 	i;
+	int		i;
 
 	i = 0;
 	if (!av)

@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <pwd.h>
-#include "shell.h"
 #include "builtins.h"
+#include "shell.h"
 
 static int		cd_parse_flags(char **av, int *flags)
 {
@@ -35,57 +35,6 @@ static int		cd_parse_flags(char **av, int *flags)
 		i++;
 	}
 	return (i);
-}
-
-static char		*cd_get_oldpwd(char *def)
-{
-	char	*oldpwd;
-
-	oldpwd = sgetenv("OLDPWD", ENV_ALL);
-	return (oldpwd ? oldpwd : def);
-}
-
-static void		cd_set_pwd(const char *str)
-{
-	char	*buf;
-	size_t	size;
-
-	size = 100;
-	buf = (char *)xmalloc(sizeof(char) * size);
-	if (getcwd(buf, size))
-		ssetenv(str, buf, ENV_EXP);
-	else
-		ssetenv(str, "/", ENV_EXP);
-	ft_strdel(&buf);
-}
-
-static char		*cd_get_home(void)
-{
-	struct passwd	*passwd;
-	uid_t			uid;
-	char			*home;
-
-	if (!(home = sgetenv("HOME", ENV_ALL)))
-	{
-		uid = getuid();
-		if (!(passwd = getpwuid(uid)))
-			return (SHELL_DEFAULT_HOME);
-		return (passwd->pw_dir);
-	}
-	return (home);
-}
-
-static char		*cd_get_path(char **av, int i, char *home)
-{
-	char	*path;
-
-	if (!av[i])
-		path = ft_strdup(home);
-	else if (!ft_strcmp(av[i], "-"))
-		path = ft_strdup(cd_get_oldpwd(home));
-	else
-		path = ft_strdup(av[i]);
-	return (path);
 }
 
 static int		cd_try_chdir(char *path)
@@ -127,7 +76,7 @@ static int		cd_iterate_cdpath(char **av, int i)
 }
 
 /*
-** Builtin 'cd' that supports working with 'OLDPWD' / 'PWD' / 'CDPATH' variables.
+** Builtin 'cd' that supports working with 'OLDPWD', 'PWD', 'CDPATH' variables.
 ** It also supports moving to the previous directory with '-' flag, but without
 ** handling stack like '-3', '-10', etc.
 */

@@ -36,21 +36,13 @@ static int		print_help(void)
 	return (1);
 }
 
-static int		parse_files(char **av)
+static void		execute_files(char *script, size_t len)
 {
-	char		*script;
 	t_lexer		*lex;
 	t_astree	*ast;
-	size_t		len;
-	int			fd;
-	int 		last;
-	char 		*tmp;
+	int			last;
+	char		*tmp;
 
-	len = get_file_size(av[1]);
-	script = (char *)xmalloc((sizeof(char) * (len + 1)));
-	fd = open(av[1], 'r');
-	read(fd, script, len + 1);
-	close(fd);
 	lex = lexer(script, len);
 	ft_strdel(&script);
 	g_tokens = lex->lexems;
@@ -61,6 +53,20 @@ static int		parse_files(char **av)
 	ft_strdel(&tmp);
 	freeastree(ast);
 	lexer_free(lex);
+}
+
+static int		parse_files(char **av)
+{
+	char		*script;
+	size_t		len;
+	int			fd;
+
+	len = get_file_size(av[1]);
+	script = (char *)xmalloc((sizeof(char) * (len + 1)));
+	fd = open(av[1], 'r');
+	read(fd, script, len + 1);
+	close(fd);
+	execute_files(script, len);
 	return (1);
 }
 

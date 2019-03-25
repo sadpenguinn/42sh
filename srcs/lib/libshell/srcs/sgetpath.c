@@ -15,6 +15,10 @@
 #include "libshell.h"
 #include "builtins.h"
 
+extern char	*g_built_in_lists[];
+extern int	(*g_built_in_funcs[])(char **, char **);
+extern int	g_built_in_ret[];
+
 static char	*get_path(char *key, char *value)
 {
 	size_t	klen;
@@ -58,85 +62,22 @@ static int	validate_sum(char *key, char *value)
 	return (free_sum(sum, path, 0));
 }
 
-static int	find_builtin(const char *bin, void **ret) {
-	if (!ft_strcmp(bin, "cd"))
+static int	find_builtin(const char *bin, void **ret)
+{
+	int		i;
+
+	i = 0;
+	while (g_built_in_lists[i])
 	{
-		*ret = built_cd;
-		return (PATH_NOFORK);
+		if (!ft_strcmp(g_built_in_lists[i], bin))
+		{
+			*ret = g_built_in_funcs[i];
+			return (g_built_in_ret[i]);
+		}
+		i++;
 	}
-	else if (!ft_strcmp(bin, "echo"))
-		*ret = built_echo;
-	else if (!ft_strcmp(bin, "env"))
-		*ret = built_env;
-	else if (!ft_strcmp(bin, "hash"))
-	{
-		*ret = built_hash;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "setenv"))
-	{
-		*ret = built_setenv;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "unsetenv"))
-	{
-		*ret = built_unsetenv;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "exit"))
-	{
-		*ret = built_exit;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "export"))
-	{
-		*ret = built_export;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "set"))
-	{
-		*ret = built_set;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "alias"))
-	{
-		*ret = built_alias;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "unalias"))
-	{
-		*ret = built_unalias;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "jobs"))
-		*ret = built_jobs;
-	else if (!ft_strcmp(bin, "bg"))
-	{
-		*ret = built_bg;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "fg"))
-	{
-		*ret = built_fg;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "type"))
-		*ret = built_type;
-	else if (!ft_strcmp(bin, "test"))
-		*ret = built_test;
-	else if (!ft_strcmp(bin, "fc"))
-	{
-		*ret = built_fc;
-		return (PATH_NOFORK);
-	}
-	else if (!ft_strcmp(bin, "unset"))
-	{
-		*ret = built_unset;
-		return (PATH_NOFORK);
-	}
-	else
-		return (PATH_NULL);
-	return (PATH_BUILT);
+	*ret = NULL;
+	return (PATH_NULL);
 }
 
 /*

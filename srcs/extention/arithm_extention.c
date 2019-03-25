@@ -12,6 +12,8 @@
 
 #include "extention.h"
 
+extern int	g_calcerr;
+
 char	*get_arithm_extention(char *str)
 {
 	char	*expression_ex;

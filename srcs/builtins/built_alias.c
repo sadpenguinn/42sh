@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_alias.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkertzma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/25 14:06:31 by nkertzma          #+#    #+#             */
+/*   Updated: 2019/03/25 14:06:32 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtins.h"
 #include "shell.h"
 
@@ -17,7 +29,7 @@ static int		alias_parse_params(char **av)
 **  -p flag means - print list of all aliases
 */
 
-int					built_alias(char **av, char **env)
+int				built_alias(char **av, char **env)
 {
 	env = NULL;
 	return (alias_parse_params(av));

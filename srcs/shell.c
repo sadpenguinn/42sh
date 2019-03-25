@@ -23,7 +23,7 @@
 void			*g_tokens = NULL;
 unsigned int	g_curtok = 0;
 
-int		main(int ac, char **av, char **env)
+static void		readshell(void)
 {
 	t_string	*line;
 	t_lexer		*lex;
@@ -31,17 +31,9 @@ int		main(int ac, char **av, char **env)
 	int			last;
 	char		*tmp;
 
-	init(env, av);
-	if (argv_parser(ac, av))
-	{
-		destroy();
-		return (EXIT_SUCCESS);
-	}
 	while ((line = readline()))
 	{
 		lex = lexer(line->buf, line->len);
-		/*lexer_print(lex->lexems);
-		ft_putendl("======");*/
 		string_del(&line);
 		g_tokens = lex->lexems;
 		ast = inputunit();
@@ -55,6 +47,17 @@ int		main(int ac, char **av, char **env)
 		freeastree(ast);
 		lexer_free(lex);
 	}
+}
+
+int				main(int ac, char **av, char **env)
+{
+	init(env, av);
+	if (argv_parser(ac, av))
+	{
+		destroy();
+		return (EXIT_SUCCESS);
+	}
+	readshell();
 	destroy();
 	return (EXIT_SUCCESS);
 }
