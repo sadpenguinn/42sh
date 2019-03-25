@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 04:33:35 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 19:41:56 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 23:52:09 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ char			*get_string_from_tab(char **str)
 		ft_strcat(res, str[i]);
 		if (str[i + 1])
 			ft_strcat(res, " ");
+		free(str[i]);
 		i++;
 	}
+	free(str);
 	return (res);
 }
 
@@ -54,6 +56,7 @@ static int		remalloc_result_of_glob(char **str, char **res_glob,
 	ft_strcat(res, &(*str)[i + 1]);
 	free(buf);
 	free(just_string);
+	free(*str);
 	*str = res;
 	return (to_return);
 }
@@ -64,6 +67,7 @@ static int		get_result_of_glob(char **str, char *code, int n, int begin)
 	int		dump_path;
 	int		state;
 	char	**pre_result;
+	char	*tmp;
 
 	state = 0;
 	i = 0;
@@ -77,13 +81,19 @@ static int		get_result_of_glob(char **str, char *code, int n, int begin)
 		i++;
 	}
 	if (dump_path == -1)
-		state = xglob(ft_strndup(code, i), ".", &pre_result,
+		state = xglob((tmp = ft_strndup(code, i)), ".", &pre_result,
 						(size_t *)&dump_path);
 	else
-		state = xglob(ft_strndup(&code[dump_path + 1], i), ft_strndup(*str,
-						dump_path + 1), &pre_result, (size_t *)&dump_path);
-	if (state || !pre_result || !pre_result[0])
+		state = xglob((tmp = ft_strndup(&code[dump_path + 1], i)),
+			ft_strndup(*str, dump_path + 1), &pre_result, (size_t *)&dump_path);
+	free(tmp);
+	if (state || !pre_result)
 		return (n);
+	if (!pre_result[0])
+	{
+		free(pre_result);
+		return (n);
+	}
 	return (remalloc_result_of_glob(str, pre_result, n, begin));
 }
 
@@ -91,19 +101,23 @@ int				get_len_of_subex(char *str)
 {
 	if (str[0] != '$')
 		return (0);
+	if (str[0] == '*')
+		return (0);
 	return (get_len_of_dollar(str));
 }
 
 void			processing_stars(char **str)
 {
 	int		brackets[2];
-	int		i;
-	int		counter;
+	size_t	i;
+	size_t	len;
+	size_t	counter;
 
 	ft_bzero(brackets, sizeof(int) * 2);
 	i = 0;
 	counter = 0;
-	while ((*str)[i])
+	len = ft_strlen(*str);
+	while (i < len && (*str)[i])
 	{
 		i += get_len_of_subex(&((*str)[i]));
 		if ((*str)[i] == '\'' && !brackets[1])
@@ -111,7 +125,8 @@ void			processing_stars(char **str)
 		if ((*str)[i] == '\"' && !brackets[0])
 			brackets[1] = (brackets[1] + 1) % 2;
 		if ((*str)[i] == '*' && !brackets[0] && !brackets[1])
-			i += get_result_of_glob(str, &(*str)[i - counter], i, i - counter);
+			i += get_result_of_glob(str, &(*str)[i - counter], (int)i,
+															(int)(i - counter));
 		else if ((*str)[i] != ' ')
 			counter++;
 		else

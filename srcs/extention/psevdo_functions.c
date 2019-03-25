@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 20:27:51 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 23:50:52 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_output_of_programm(char *str)
 {
 	char	*tmp;
 	char	*res;
-	
+
 	tmp = ft_strndup(&str[2], ft_strlen(&str[2]) - 1);
 	res = substitution_output(tmp);
 	free(tmp);
@@ -38,6 +38,5 @@ int		get_fdnumber_of_substitution(char *str, int state)
 	int tmp;
 
 	tmp = substitution(str, state);
-	// printf("sub ret = %d, state = %d\n", tmp, state);
 	return (tmp);
 }

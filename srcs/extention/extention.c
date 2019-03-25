@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 19:20:20 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 23:48:46 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static int	tilda_case_check(char *str, int i)
 	return (0);
 }
 
-char        *free_and_null(char *str, char *res)
+char		*free_and_null(char *str, char *res)
 {
-    if (str)
-        free(str);
-    if (res)
-        free(res);
-    return (NULL);
+	if (str)
+		free(str);
+	if (res)
+		free(res);
+	return (NULL);
 }
 
 char		**expand_v(char *str)
@@ -63,7 +63,7 @@ char		**expand_v(char *str)
 				|| check_process_substitution_expand(&str[i]))
 		{
 			if (!(buf = get_pahom(&str[i], &i, &fuck_norm[0])))
-				return ((char **)free_and_null(NULL, res));
+				return ((char **)free_and_null(str, res));
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j = fuck_you_fucking_norm(buf, j);
 		}
@@ -73,6 +73,7 @@ char		**expand_v(char *str)
 			iterator_for_expand(str, res, &i, &j);
 		}
 	}
+	free(str);
 	return (strsplit_for_extention(res));
 }
 
@@ -93,7 +94,7 @@ char		*expand(char *str)
 						|| check_process_substitution_expand(&str[i]))
 		{
 			if (!(buf = get_pahom(&str[i], &i, &f_n[0])))
-			    return (free_and_null(str, res));
+				return (free_and_null(str, res));
 			res = remalloc_result_of_extention(str, res, buf, f_n[0]);
 			j += ft_strlen(buf);
 			free(buf);

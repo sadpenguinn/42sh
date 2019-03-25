@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 22:04:35 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/16 21:29:13 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 23:36:26 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ char		*pre_processing_in_expand(int *f_n, char **str, int *i, int *j)
 
 char		*pre_processing_in_expand_v(int *f_n, char **str, int *i, int *j)
 {
+	char *tmp;
+
+	tmp = ft_strdup(*str);
+	*str = tmp;
 	processing_stars(str);
 	frashing_values(f_n, i, j);
 	return (xmalloc(sizeof(char) * (ft_strlen(*str) + 1)));

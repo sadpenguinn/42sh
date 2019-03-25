@@ -6,13 +6,14 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 22:30:31 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 20:24:03 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 23:51:08 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "extention.h"
 
-char	*ft_strjoin_helper(char *str1, char *str2, int is_free1, int is_free2)
+char		*ft_strjoin_helper(char *str1, char *str2, int is_free1,
+																int is_free2)
 {
 	char	*res;
 
