@@ -114,6 +114,7 @@ static char	**get_envp(t_list *envs)
 int			initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 {
 	bzero(cmd, sizeof(t_list *) * 3);
+	g_initcmd_err = 0;
 	add_pipe_redir(&cmd[2], fd);
 	if (get_cmd_attr(root, cmd, 1))
 		return (1);
