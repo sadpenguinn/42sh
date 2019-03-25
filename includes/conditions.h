@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 17:52:37 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/21 10:01:10 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 01:47:38 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <sys/stat.h>
 # include "libft.h"
+# include "extention.h"
 
 int		conditions(char **argv);
 int		ft_tab_len(char **str);

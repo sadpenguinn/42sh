@@ -6,13 +6,13 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 17:55:05 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/20 20:56:19 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 02:20:58 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conditions.h"
 
-void	conditions_processing(char **argv, int *res, int *i)
+void		conditions_processing(char **argv, int *res, int *i)
 {
 	int t_i;
 
@@ -29,27 +29,43 @@ void	conditions_processing(char **argv, int *res, int *i)
 	}
 }
 
-int		conditions(char **argv)
+static int	destr(char **str, int to_return)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	return (to_return);
+}
+
+int			conditions(char **argv)
 {
 	int	i;
 	int res;
 	int n;
 
 	if (!(n = ft_tab_len(argv)))
-		return (1);
+		return (destr(argv, 0));
+	if (n == 1)
+		return (destr(argv, 1));
 	res = 0;
 	i = 0;
 	while (argv[i])
 	{
 		if (!(ft_strcmp(argv[i], "-a")))
-			return ((res * (conditions(&argv[i + 1]))) ? 1 : 0);
+			return (destr(argv, (res * (conditions(&argv[i + 1]))) ? 1 : 0));
 		else if (!(ft_strcmp(argv[i], "-o")))
-			return ((conditions(&argv[i + 1])) ? 1 : res);
+			return (destr(argv, (conditions(&argv[i + 1])) ? 1 : res));
 		else if ((argv[i][0] == '-' && n - i < 2)
 						|| (!(argv[i][0] == '-') && n - i < 3))
-			return (conditions_print_error_syntax());
+			return (destr(argv, conditions_print_error_syntax()));
 		else
 			conditions_processing(argv, &res, &i);
 	}
-	return (res);
+	return (destr(argv, res));
 }
