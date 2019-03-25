@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:30:34 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 22:58:38 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:20:20 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char		**expand_v(char *str)
 				|| check_process_substitution_expand(&str[i]))
 		{
 			if (!(buf = get_pahom(&str[i], &i, &fuck_norm[0])))
-				free_and_null(str, res);
+				return ((char **)free_and_null(NULL, res));
 			res = remalloc_result_of_extention(str, res, buf, fuck_norm[0]);
 			j = fuck_you_fucking_norm(buf, j);
 		}

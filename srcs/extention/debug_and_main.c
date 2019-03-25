@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:35:33 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 16:54:35 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:21:12 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	printmas(char **str)
 	int i;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		printf("str[%d] = %s\n", i, str[i]);
 		free(str[i]);
@@ -42,7 +42,7 @@ void	testing()
 {
 	char	*str;
 
-	str = expand("$[1]");
+	str = expand("$[5/0]");
 	// printf("        $HOME = %s\n", expand("test $hOME"));
 	// printf("${HOME:-word} = %s\n", expand("test ${hOME:-word}"));
 	printf("|%s|\n", str);
@@ -57,7 +57,7 @@ void	testing()
 
 int		main(int argc, char **argv, char **env)
 {
-	// char *res;
+//	char *res;
 
 	init_env(env, argv);
 	// hash_print(g_hash_env);
@@ -67,7 +67,7 @@ int		main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-	testing();
+	//testing();
 	// printmas(expand_v("te\\ st"));
 
 	// if (argc != 3)
@@ -76,12 +76,12 @@ int		main(int argc, char **argv, char **env)
 	// {
 	// 	if (ft_atoi(argv[1]) == 1)
 	// 	{
-	// 		res = expand(argv[2]);
-	// 		printf("res = %s\n", res);
-	// 		free(res);
+//			res = expand("$[5 / 0]");
+//			printf("res = %s\n", res);
+//			free(res);
 	// 	}
 	// 	if (ft_atoi(argv[1]) == 2)
-	// 		printmas(expand_v(argv[2]));
+	 		printmas(expand_v("$[5/0]"));
 	// }
 	destroy_env();
 	return (0);
