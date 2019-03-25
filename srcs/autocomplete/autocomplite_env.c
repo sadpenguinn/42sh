@@ -44,7 +44,8 @@ char	**get_mas_env_autocompl(char *str)
 	{
 		if (!(ft_strncmp(g_env.env[i], str, ft_strlen(str))))
 		{
-			res[j] = ft_strndup(g_env.env[i], (UL)(ft_strchr(g_env.env[i], '=') - g_env.env[i]));
+			res[j] = ft_strndup(g_env.env[i],
+					(UL)(ft_strchr(g_env.env[i], '=') - g_env.env[i]));
 			j++;
 		}
 		i++;

@@ -64,7 +64,7 @@ static char	**get_slashes_and_spases_lile_dirs(char **res, char *str)
 	return (res);
 }
 
-char		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
+char 		**get_autocomplite_files_dir_mas(char *str, char **res, int *c)
 {
 	int		i;
 	size_t	len;

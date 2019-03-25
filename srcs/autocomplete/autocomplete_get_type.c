@@ -65,7 +65,7 @@ int			get_autocomplite_type(t_line *line_info,
 												size_t pos, size_t *pos_start)
 {
 	pos--;
-	while (pos != (UL)-1)
+	while (pos != (UL) -1)
 	{
 		if (line_info->buf[pos] == '$' || (line_info->buf[pos] == '{' &&
 			pos > 0 && line_info->buf[pos - 1] == '$'))

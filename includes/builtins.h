@@ -188,6 +188,17 @@ int		alias_parse_assignments(char **av);
 int		alias_print_aliases(void);
 
 /*
+** Internal functions for type
+*/
+
+int		type_find_function(char *arg, int *flags);
+int		type_find_alias(char *arg, int *flags);
+int		type_find_builtin(char *arg, int *flags);
+int		type_find_keyword(char *arg, int *flags);
+int		type_find_bin(char *arg, int *flags);
+void	type_print_arr(char **arr);
+
+/*
 ** Internal functions for set
 */
 
@@ -195,6 +206,16 @@ int		built_set_usage(void);
 int		built_set_toggle(int *var, int fval, int sval);
 int		built_set_gvar(int *var, int val);
 void	built_set_print(void);
+
+/*
+** Internal functions for unset
+*/
+
+int		unset_print_error(char *arg);
+int		unset_destroy_all(void);
+int		unset_parse_flags(char **av, int *flags);
+char	**unset_for(char **av);
+void	unset_delete_function(char *func);
 
 // The following source files should be added comments
 

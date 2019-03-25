@@ -12,7 +12,7 @@
 
 #include "autocomplete.h"
 
-char	**get_only_fi_autocompile_len(char *str, int *count)
+char		**get_only_fi_autocompile_len(char *str, int *count)
 {
 	int		i;
 	int		c;
@@ -32,7 +32,7 @@ char	**get_only_fi_autocompile_len(char *str, int *count)
 	return (res);
 }
 
-char	**get_only_fi_autocompile(char *str)
+char		**get_only_fi_autocompile(char *str)
 {
 	int		i;
 	int		j;
@@ -80,7 +80,7 @@ static char	**get_only_dir_autocompile_len(char *str, int *count)
 	return (res);
 }
 
-char	**get_only_dir_autocompile(char *str)
+char		**get_only_dir_autocompile(char *str)
 {
 	int		i;
 	int		j;
