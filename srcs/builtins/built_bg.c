@@ -66,9 +66,9 @@ int				built_bg(char **av, char **env)
 	}
 	pid = *(pid_t *)vector_back(job->pids);
 
-	/* pgid = getpgid(pid); */
+	pgid = getpgid(pid);
 	// XXX - only for valgrind
-	pgid = pid;
+	/* pgid = pid; */
 
 	ft_putstr_fd("[", STDERR_FILENO);
 	ft_putnbr_fd(i, STDERR_FILENO);

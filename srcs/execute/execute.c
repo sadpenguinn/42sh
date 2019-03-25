@@ -16,6 +16,7 @@
 pid_t	g_pgid;
 int		g_isjob = 0;
 int		g_job = 0;
+void	*g_sub_pids = 0;
 int		g_run;
 
 int		execute(t_astree *root)

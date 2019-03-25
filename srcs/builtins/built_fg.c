@@ -50,27 +50,22 @@ static size_t	fg_get_index(char **av)
 	return (i);
 }
 
-int				built_fg(char **av, char **env)
+static int		wait_fg(size_t i)
 {
 	void	*pidstmp;
 	t_job	job;
 	pid_t	pid;
 	pid_t	pgid;
-	size_t	i;
 
-	env = NULL;
-	if (!(fg_parse_args(av)) || !(i = fg_get_index(av)))
-		return (SHERR_ERR);
-	i--;
 	job = *(t_job *)vector_get_elem(g_jobs, i);
 	vector_del_elem(&g_jobs, i);
 	pidstmp = g_pids;
 	g_pids = job.pids;
 	pid = *(pid_t *)vector_back(g_pids);
 
-	/* pgid = getpgid(pid); */
 	// XXX - only for valgrind
-	pgid = pid;
+	pgid = getpgid(pid);
+	/* pgid = pid; */
 
 	tcsetpgrp(0, pgid);
 	killpg(pgid, SIGCONT);
@@ -79,5 +74,17 @@ int				built_fg(char **av, char **env)
 	if (g_job)
 		return (SHERR_OK);
 	freepids(&(job.pids));
+	if (job.sub_pids)
+		freepids(&(job.sub_pids));
 	return (SHERR_OK);
+}
+
+int				built_fg(char **av, char **env)
+{
+	size_t	i;
+
+	env = NULL;
+	if (!(fg_parse_args(av)) || !(i = fg_get_index(av)))
+		return (SHERR_ERR);
+	return (wait_fg(--i));
 }

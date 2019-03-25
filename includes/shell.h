@@ -52,6 +52,7 @@ typedef struct			s_job
 	int		state;
 	int		status;
 	void	*pids;
+	void	*sub_pids;
 }						t_job;
 
 /*

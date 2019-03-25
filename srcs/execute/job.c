@@ -1,5 +1,15 @@
 #include "execute.h"
 
+static void	print_job(pid_t pid)
+{
+
+	ft_putstr_fd("[", STDERR_FILENO);
+	ft_putnbr_fd(vector_get_len(g_jobs), STDERR_FILENO);
+	ft_putstr_fd("] ", STDERR_FILENO);
+	ft_putnbr_fd(pid, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+}
+
 int		addjob(int state, pid_t pid)
 {
 	t_job	job;
@@ -11,19 +21,17 @@ int		addjob(int state, pid_t pid)
 	}
 	else
 	{
-		if (!g_pids)
+		if (!(job.pids = g_pids))
 			return (EXIT_FAILURE);
-		job.pids = g_pids;
 		g_pids = 0;
 	}
-	waitpid(*(pid_t*)vector_back(job.pids), &(job.status), WNOHANG);
+	pid = *(pid_t*)vector_back(job.pids);
+	waitpid(pid, &(job.status), WNOHANG);
 	g_job = 1;
+	job.sub_pids = g_sub_pids;
+	g_sub_pids = 0;
 	job.state = state;
 	vector_push_back(&g_jobs, &job);
-	ft_putstr_fd("[", STDERR_FILENO);
-	ft_putnbr_fd(vector_get_len(g_jobs), STDERR_FILENO);
-	ft_putstr_fd("] ", STDERR_FILENO);
-	ft_putnbr_fd(*(pid_t*)vector_back(job.pids), STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	print_job(pid);
 	return (EXIT_FAILURE);
 }

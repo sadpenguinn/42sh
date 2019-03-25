@@ -36,6 +36,7 @@ set(SRC_LIB srcs/fatal_error.c
         srcs/ft_listlast.c
         srcs/ft_listnew.c
 		srcs/ft_listdel.c
+		srcs/ft_listlen.c
         srcs/ft_memalloc.c
 		srcs/ft_free.c
         srcs/ft_memccpy.c
@@ -117,6 +118,7 @@ set(SRC_LIB srcs/fatal_error.c
 		srcs/ft_rb_tree_traversal_postorder.c
 		srcs/ft_rb_tree_traversal_preorder.c
 		srcs/ft_joinvect.c
+		srcs/ft_clearvect.c
 		srcs/get_next_line.c
         srcs/ft_atoi_base.c
         srcs/ft_strchrc.c)

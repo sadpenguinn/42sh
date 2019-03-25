@@ -18,12 +18,6 @@
 extern int		g_execerr;
 extern int		g_run;
 
-void			handle_sigtstp(int sig)
-{
-	(void)sig;
-	/* printf("sigtstp handle\n"); */
-}
-
 void			handle_sigint(int sig)
 {
 	(void)sig;
@@ -41,7 +35,7 @@ void			handle_sigin(int sig)
 
 void			init_signals(void)
 {
-	signal(SIGTSTP, handle_sigtstp);
+	signal(SIGTSTP, SIG_IGN);
 	signal(SIGINT, handle_sigint);
 	signal(SIGTTOU, SIG_IGN);
 	signal(SIGTTIN, handle_sigin);

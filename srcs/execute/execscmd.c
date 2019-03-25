@@ -10,15 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <strings.h>
+/* #include <stdio.h> */
+/* #include <stdlib.h> */
+/* #include <string.h> */
+/* #include <strings.h> */
 
 #include <unistd.h>
 #include "execute.h"
 #include "libshell.h"
 #include "extention.h"
+#include "signals.h"
 
 static int	g_cmdtype;
 
@@ -84,6 +85,8 @@ static int	freecmd(t_list *cmd[3], char **aven[2])
 	ft_listdel(&cmd[0], &ft_free);
 	ft_listdel(&cmd[1], &ft_free);
 	ft_listdel(&cmd[2], &ft_free);
+	if (g_sub_pids)
+		freepids(&g_sub_pids);
 	return (0);
 }
 
@@ -111,7 +114,6 @@ int			set_envs(t_list *envs)
 **	aven[0] - argv[][]
 **	aven[1] - envp[][]
 */
-#include <signal.h>
 
 int			execscmd(t_astree *root, int fd[2], int isfork)
 {

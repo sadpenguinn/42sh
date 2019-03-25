@@ -13,6 +13,8 @@
 #include "execute.h"
 #include "extention.h"
 
+static int	g_initcmd_err;
+
 static int	expand_assign(t_list *assign)
 {
 	char *bgn;
@@ -66,25 +68,22 @@ static int	get_cmd_attr(t_astree *root, t_list *cmd[3], int assignment)
 static char	**get_argv(t_list *args)
 {
 	t_list	*lst;
-	char	*arg;
 	char	**argv;
+	char	**tmp;
 
 	if (!args)
 		return (xmalloc(sizeof(char *)));
 	lst = args;
-	while (lst)
+	argv = xmalloc(sizeof(char *));
+	while ((args))
 	{
-		arg = (char *)lst->data;
-		lst->data = (char **)expand_v(arg);
-		free(arg);
-		lst = lst->next;
-	}
-	argv = (char **)args->data;
-	args->data = 0;
-	while ((args = args->next))
-	{
-		argv = (char **)ft_joinvect((void **)argv, (void **)args->data, 1);
-		args->data = 0;
+		if ((tmp = expand_v(args->data)))
+			argv = (char **)ft_joinvect((void **)argv, (void **)tmp, 1);
+		else
+			g_initcmd_err = 1;
+		// XXX free?
+		/* free(arg); */
+		args = args->next;
 	}
 	return (argv);
 }
@@ -92,17 +91,9 @@ static char	**get_argv(t_list *args)
 static char	**get_envp(t_list *envs)
 {
 	int		i;
-	t_list	*lst;
 	char	**envp;
 
-	i = 0;
-	lst = envs;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	envp = xmalloc(sizeof(char *) * (i + 1));
+	envp = xmalloc(sizeof(char *) * (ft_listlen(envs) + 1));
 	i = 0;
 	while (envs)
 	{
@@ -127,6 +118,12 @@ int			initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 		return (1);
 	set_alias_arg(&cmd[0]);
 	aven[0] = get_argv(cmd[0]);
+	if (g_initcmd_err)
+	{
+		ft_clearvect((void **)aven[0]);
+		return (1);
+	}
 	aven[1] = get_envp(cmd[1]);
+	g_sub_pids = vector_create(sizeof(pid_t));
 	return (0);
 }

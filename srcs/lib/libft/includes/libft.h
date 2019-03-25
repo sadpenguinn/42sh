@@ -65,6 +65,7 @@ void						*ft_pop(t_list **begin);
 t_list						*ft_push_back(t_list **begin, void *data);
 t_list						*ft_listlast(t_list *begin);
 void						ft_listdel(t_list **begin, void (*f)(void *data));
+size_t						ft_listlen(t_list *begin);
 
 /*
 ** Binary tree
@@ -203,6 +204,7 @@ int							fatal_error(char *message, int err);
 void						*xmalloc(size_t bytes);
 void						*xrealloc(void *p, size_t newsize, size_t oldsize);
 void						**ft_joinvect(void **arr1, void **arr2, int free2);
+void						ft_clearvect(void **arr);
 t_rb_tree_node				*ft_rb_tree_find(const void *data,
 									t_rb_tree_node *node,
 									int (*cmp)(const void *, const void *));
