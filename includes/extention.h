@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 16:50:55 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/18 16:20:06 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:51:01 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ char	*extention_get_just_command(char *str);
 int		check_process_substitution_expand(char *str);
 int		get_fdnumber_of_substitution(char *str, int state);
 char	*get_arithm_extention(char *str);
+char	*ft_strjoin_helper(char *str1, char *str2, int is_free1, int is_free2);
 
 #endif

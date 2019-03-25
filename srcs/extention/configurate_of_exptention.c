@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:38:01 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 16:49:26 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 20:01:02 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ char	*get_content_of_expression_helper(char **str, char **res)
 		*res = get_small_redir(*str);
 	else if ((*str)[0] == '>')
 		*res = get_grade_redir(*str);
+	else if ((*str)[1] == '(')
+		*res = get_output_of_programm(*str);
 	else if (ft_strstr(*str, "%"))
 		*res = remove_smallest_suffix_pattern(*str);
 	else if (ft_strstr(*str, "##"))

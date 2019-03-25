@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:33:45 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/14 23:07:05 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/25 20:11:23 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 char	*get_output_of_programm(char *str)
 {
-	return (ft_strdup(str));
+	char	*tmp;
+	char	*res;
+	
+	tmp = ft_strndup(&str[2], ft_strlen(&str[2]) - 1);
+	printf("Отправляю в с_оут - |%s|\n", tmp);
+	res = subtitution_output(tmp);
+	printf("с_оут - |%s|\n", res);
+	free(tmp);
+	return (res);
 }
 
 void	push_to_enviroment(char *name, char *val)
@@ -29,7 +37,9 @@ char	*get_content_of_var(char *str)
 
 int		get_fdnumber_of_substitution(char *str, int state)
 {
-	(void)str;
-	state++;
-	return (282);
+	int tmp;
+
+	tmp = substitution(str, state);
+	// printf("sub ret = %d, state = %d\n", tmp, state);
+	return (tmp);
 }
