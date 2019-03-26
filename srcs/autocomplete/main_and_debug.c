@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_and_debug.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:07:25 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 10:43:01 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 07:15:29 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		main(int argc, char **argv, char **env)
 	argc++;
 	test = ft_strdup("cd tests/");
 	(void)argv;
-	init(env);
+	init(env, argv);
 	line_info = xmalloc(sizeof(t_line));
 	line_info->buf = test;
 	res = autocomplete(line_info, ft_strlen(test));
