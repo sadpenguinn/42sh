@@ -12,7 +12,7 @@
 
 #include "calc.h"
 
-static char *recursivevar(char *var)
+static char	*recursivevar(char *var)
 {
 	char	*val;
 
@@ -50,7 +50,7 @@ intmax_t	get_post_incdec(t_astree *root)
 	return (tmp);
 }
 
-char	*get_pre_incdec(t_astree *root)
+char		*get_pre_incdec(t_astree *root)
 {
 	char		*val;
 	char		*var;

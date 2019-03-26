@@ -12,21 +12,47 @@
 
 #include "calc.h"
 
-intmax_t	op_sub(intmax_t operator, t_astree *node)
+intmax_t	op_pow(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator - calc(node->left);
+	tmp = ft_pow(operator, calc(node->left));
 	if (node->right)
 		return (g_operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
 }
 
-intmax_t	op_add(intmax_t operator, t_astree *node)
+intmax_t	op_mul(intmax_t operator, t_astree *node)
 {
 	intmax_t	tmp;
 
-	tmp = operator + calc(node->left);
+	tmp = operator * calc(node->left);
+	if (node->right)
+		return (g_operators[node->right->type - OPSHIFT](tmp, node->right));
+	return (tmp);
+}
+
+intmax_t	op_mod(intmax_t operator, t_astree *node)
+{
+	intmax_t	tmp;
+	intmax_t	ret;
+
+	if (!(ret = calc(node->left)))
+		return (calcerror(CL_DIVZERO));
+	tmp = operator % ret;
+	if (node->right)
+		return (g_operators[node->right->type - OPSHIFT](tmp, node->right));
+	return (tmp);
+}
+
+intmax_t	op_div(intmax_t operator, t_astree *node)
+{
+	intmax_t	tmp;
+	intmax_t	ret;
+
+	if (!(ret = calc(node->left)))
+		return (calcerror(CL_DIVZERO));
+	tmp = operator / ret;
 	if (node->right)
 		return (g_operators[node->right->type - OPSHIFT](tmp, node->right));
 	return (tmp);
