@@ -74,7 +74,7 @@ t_astree		*arith_for_command(void)
 	root = xmalloc(sizeof(t_astree));
 	root->type = FOR;
 	if (!(root->left = get_word()))
-		return (savecur(g_curtok - 1, 0));
+		return (savecur(g_curtok - 1, root));
 	if (!(root->right = get_compound_list()))
 		return (parseerror(root));
 	return (root);

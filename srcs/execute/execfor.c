@@ -58,7 +58,7 @@ static int	execarithfor(t_astree *root, int fd[2], int isfork)
 	arith = root->left->content;
 	body = root->right;
 	for_first(arith);
-	while (for_second(arith))
+	while (for_second(arith) && !g_execerr)
 	{
 		res = execlist1(body, fd, isfork);
 		for_last(arith);
@@ -78,7 +78,7 @@ int			execfor(t_astree *root, int fd[2], int isfork)
 	body = root->right;
 	var = root->left->left->content;
 	root = root->left->right;
-	while (root)
+	while (root && !g_execerr)
 	{
 		ssetenv(var, root->content, ENV_RO);
 		res = execlist1(body, fd, isfork);
