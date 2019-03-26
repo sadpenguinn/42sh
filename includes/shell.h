@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/03/02 19:09:56 by tony             ###   ########.fr       */
+/*   Updated: 2019/03/26 19:06:26 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,14 @@ extern int				g_stdin_fd;
 
 # define TRUE 1
 # define FALSE 0
+
+/*
+** for functions
+*/
+
+intmax_t	for_first(char *str);
+intmax_t	for_second(char *str);
+intmax_t	for_last(char *str);
 
 /*
 ** Defines for initialize shell environment/path/aliases
