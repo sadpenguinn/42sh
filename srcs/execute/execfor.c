@@ -47,18 +47,7 @@
 */
 
 #include "execute.h"
-
-int			for_check(char *arith)
-{
-	(void)arith;
-	return (0);
-}
-
-int			for_init(char *arith)
-{
-	(void)arith;
-	return (0);
-}
+#include "shell.h"
 
 static int	execarithfor(t_astree *root, int fd[2], int isfork)
 {
@@ -68,9 +57,12 @@ static int	execarithfor(t_astree *root, int fd[2], int isfork)
 
 	arith = root->left->content;
 	body = root->right;
-	for_init(arith);
-	while (for_check(arith))
+	for_first(arith);
+	while (for_second(arith))
+	{
 		res = execlist1(body, fd, isfork);
+		for_last(arith);
+	}
 	return (res);
 }
 

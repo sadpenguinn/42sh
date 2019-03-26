@@ -41,6 +41,7 @@ set(MAIN			srcs/shell.c)
 set(SHELL_SRC		srcs/shell/init.c
 					srcs/shell/init_env.c
 					srcs/shell/init_path.c
+					srcs/shell/for.c
 					srcs/shell/destroy.c
 					srcs/shell/destroy_env.c
 					srcs/shell/destroy_path.c
