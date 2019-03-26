@@ -108,7 +108,8 @@ enum	e_vi_mode_editing_modes
 enum	e_allocation_params
 {
 	HISTORY_DEFAULT_SIZE = 10, BUF_DEFAULT_SIZE = 5, RATIO = 2,
-	MATRIX_ARRAY_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10, MODIF_ARRAY_DEFAULT_SIZE = 10
+	MATRIX_ARRAY_DEFAULT_SIZE = 10, ARRAY_DEFAULT_SIZE = 10,
+	MODIF_ARRAY_DEFAULT_SIZE = 10
 };
 
 typedef	unsigned long long int	t_uchar;
@@ -233,7 +234,8 @@ int				esc_code_handling(t_uchar c);
 int				vi_mode_normal(t_matrix *matrix, t_uchar c);
 int				vi_mode_normal_del(t_matrix *matrix, t_uchar c);
 int				vi_mode_normal_yank(t_matrix *matrix, t_uchar c);
-int				are_default_vi_normal_mode_shortcuts(t_matrix *matrix, t_uchar c);
+int				are_default_vi_normal_mode_shortcuts
+									(t_matrix *matrix, t_uchar c);
 int				vi_mode_insert(t_matrix *matrix, t_uchar c);
 int				vi_mode_replace(t_matrix *matrix, t_uchar c);
 int				vi_mode_visual(t_matrix *matrix, t_uchar c);
@@ -284,7 +286,8 @@ size_t			line_string_insert(t_line *line, size_t pos,
 void			line_resize(t_line *line, size_t new_size, size_t old_size);
 void			matrix_resize(t_matrix *matrix, size_t new_size,
 		size_t old_size);
-void			modification_resize(t_modification *modif, size_t new_size, size_t old_size);
+void			modification_resize(t_modification *modif,
+			size_t new_size, size_t old_size);
 
 int				move_cursor_left(t_matrix *matrix);
 int				move_cursor_right(t_matrix *matrix);
