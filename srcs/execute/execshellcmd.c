@@ -13,6 +13,17 @@
 #include "execute.h"
 #include "conditions.h"
 
+static int	execarith(char *expr)
+{
+	char		*calc;
+	intmax_t	res;
+
+	calc = expression(expr);
+	res = ft_atoi(calc);
+	free(calc);
+	return (res ? EXIT_SUCCESS : EXIT_FAILURE);
+}
+
 int		execshellcmd(t_astree *root, int fd[2], int isfork)
 {
 	if (root->type == FUNCTION)
@@ -30,7 +41,7 @@ int		execshellcmd(t_astree *root, int fd[2], int isfork)
 	if (root->type == IF)
 		return (execif(root, fd, 0));
 	if (root->type == ARITH)
-		return (1);
+		return (execarith(root->content));
 	if (root->type == COND)
 		return (!conditions(strsplit_to_conditions(root->content)));
 	if (root->type == SUBSHELL)
