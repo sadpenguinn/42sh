@@ -214,7 +214,6 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/here_end.c
 					srcs/parser/if_command.c
 					srcs/parser/inpuntunit.c
-					srcs/parser/print_astree.c
 					srcs/parser/io_file.c
 					srcs/parser/io_here.c
 					srcs/parser/list1.c
@@ -227,7 +226,6 @@ set(PARSER_SRC		srcs/parser/arith_command.c
 					srcs/parser/pattern_list.c
 					srcs/parser/pipeline.c
 					srcs/parser/pipeline_command.c
-					srcs/parser/print_astree.c
 					srcs/parser/redirection.c
 					srcs/parser/redirection_list.c
 					srcs/parser/select_command.c

@@ -76,7 +76,7 @@ static t_astree	*other_commands(void)
 		return (res);
 	if (type == FOR && (res = for_command()))
 		return (res);
-	return (arith_command());
+	return ((t_astree *)0);
 }
 
 t_astree		*shell_command(void)
@@ -102,5 +102,7 @@ t_astree		*shell_command(void)
 		return (group_command());
 	if (type == COND)
 		return (cond_command());
+	if (type == ARITH)
+		return (arith_command());
 	return (other_commands());
 }

@@ -55,6 +55,7 @@ static int	execarithfor(t_astree *root, int fd[2], int isfork)
 	char		*arith;
 	t_astree	*body;
 
+	res = 0;
 	arith = root->left->content;
 	body = root->right;
 	for_first(arith);
