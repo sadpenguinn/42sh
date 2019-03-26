@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 18:17:36 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/26 19:05:12 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 19:09:39 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ intmax_t	for_first(char *str)
 	res_split = ft_strsplit(str, ';');
 	if (tab_len(res_split) != 3)
 		return (for_tab_free(res_split));
-	to_expand = &((res_split[0])[1]);
+	to_expand = &((res_split[0])[2]);
 	to_expand = expand(to_expand);
 	res_expr = expression(to_expand);
 	res = ft_atoi(res_expr);
@@ -105,7 +105,7 @@ intmax_t	for_last(char *str)
 	res_split = ft_strsplit(str, ';');
 	if (tab_len(res_split) != 3)
 		return (0);
-	tmp = ft_strndup(res_split[2], ft_strlen(res_split[2]) - 1);
+	tmp = ft_strndup(res_split[2], ft_strlen(res_split[2]) - 2);
 	free(res_split[2]);
 	res_split[3] = tmp;
 	to_expand = res_split[2];
