@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strsplit_conditions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 20:45:31 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/26 02:57:38 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:07:39 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char		**rewriting_mas(char **str, int len)
 	char	**res;
 
 	len--;
-	res = xmalloc(sizeof(char *) * len);
+	res = xmalloc(sizeof(char *) * (len + 1));
 	i = 1;
 	free(str[0]);
 	while (i < len)

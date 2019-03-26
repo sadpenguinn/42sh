@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conditions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 17:55:05 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/26 02:20:58 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:17:17 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ static int	destr(char **str, int to_return)
 	int	i;
 
 	i = 0;
+	if (!str)
+	{
+		ft_putstr_fd("\e[0;31m42sh: Invalid syntax\e[0m\n", 2);
+		return (0);
+	}
 	while (str[i])
 	{
 		free(str[i]);
