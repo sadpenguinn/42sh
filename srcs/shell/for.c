@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 18:17:36 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/26 19:09:39 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 19:18:03 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ intmax_t	for_last(char *str)
 		return (0);
 	tmp = ft_strndup(res_split[2], ft_strlen(res_split[2]) - 2);
 	free(res_split[2]);
-	res_split[3] = tmp;
+	res_split[2] = tmp;
 	to_expand = res_split[2];
 	to_expand = expand(to_expand);
 	res_expr = expression(to_expand);
