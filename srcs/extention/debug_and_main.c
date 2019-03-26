@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_and_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 20:35:33 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 23:39:10 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:12:36 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	testing()
 {
 	char	*str;
 
-	str = expand("*wedwqed");
+	str = expand("echo ${SSH_AUTH_SOCK#/ssh}");
 	// printf("        $HOME = %s\n", expand("test $hOME"));
 	// printf("${HOME:-word} = %s\n", expand("test ${hOME:-word}"));
 	printf("|%s|\n", str);
@@ -81,7 +81,7 @@ int		main(int argc, char **argv, char **env)
 			// free(res);
 	// 	}
 	// 	if (ft_atoi(argv[1]) == 2)
-	printmas(expand_v("*sefsef"));
+	printmas(expand_v("echo ${SSH_AUTH_SOCK#/ssh}"));
 	// }
 	destroy_env();
 	return (0);

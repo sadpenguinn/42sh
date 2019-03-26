@@ -99,5 +99,6 @@ Ariphmetic:<br>
 Butch code:<br>
     1) If extention returns NULL, 42sh gives seg fault<br>
     2) alias glog="git log --pretty=oneline --pretty=format:'%H - %an, %ar: %s' --graph"<br>
+    3) while [1]; do ls; done<br>
 
 Todo:<br>
