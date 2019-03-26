@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   remove_suffix_prefix_patterns.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbaelor- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 19:15:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/26 17:14:23 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:36:17 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "extention.h"
 
-static char	*get_resl_pattern(char *str)
+static char		*get_resl_pattern(char *str)
 {
 	int		i;
 	int		count;
@@ -32,7 +32,7 @@ static char	*get_resl_pattern(char *str)
 	return (res);
 }
 
-char	*remove_smallest_suffix_pattern(char *str)
+char			*remove_smallest_suffix_pattern(char *str)
 {
 	char	*tmp;
 	char	*pattern;
@@ -59,7 +59,7 @@ char	*remove_smallest_suffix_pattern(char *str)
 	return (res);
 }
 
-char	*remove_smallest_prefix_pattern(char *str)
+char			*remove_smallest_prefix_pattern(char *str)
 {
 	char	*tmp;
 	char	*pattern;
@@ -81,7 +81,7 @@ char	*remove_smallest_prefix_pattern(char *str)
 	if (!(ft_strncmp(pattern, res, ft_strlen(pattern))))
 		res = ft_strdup(&res[ft_strlen(pattern)]);
 	else
-		res = ft_strdup(res);	
+		res = ft_strdup(res);
 	free(tmp);
 	free(pattern);
 	return (res);
