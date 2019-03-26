@@ -1,0 +1,539 @@
+## Makefile for 42sh
+##
+## Maded by nkertzma, 29 March 2019
+##
+
+NAME=				42sh
+
+CC=					gcc
+
+SRC_DIR=			srcs
+
+INC_DIR=			includes
+
+INC_LIBFT=			$(SRC_DIR)/lib/libft/includes
+
+INC_LIBALIAS=		$(SRC_DIR)/lib/libalias/includes
+
+INC_LIBHASH=		$(SRC_DIR)/lib/libhash/includes
+
+INC_LIBSHELL=		$(SRC_DIR)/lib/libshell/includes
+
+INC_LIBVECTOR=		$(SRC_DIR)/lib/vector/includes
+
+SRC_MAIN=			$(SRC_DIR)/shell.c
+
+SRC_SHELL=			$(SRC_DIR)/shell/init.c\
+                    $(SRC_DIR)/shell/init_env.c\
+                    $(SRC_DIR)/shell/init_path.c\
+                    $(SRC_DIR)/shell/destroy.c\
+                    $(SRC_DIR)/shell/destroy_env.c\
+                    $(SRC_DIR)/shell/destroy_path.c\
+                    $(SRC_DIR)/shell/init_jobs.c\
+                    $(SRC_DIR)/shell/destroy_jobs.c\
+                    $(SRC_DIR)/shell/signals.c\
+                    $(SRC_DIR)/shell/sigchld.c\
+                    $(SRC_DIR)/shell/freepids.c\
+                    $(SRC_DIR)/shell/argv_parser.c\
+                    $(SRC_DIR)/shell/parse_input.c\
+                    $(SRC_DIR)/shell/init_functions.c\
+                    $(SRC_DIR)/shell/destroy_functions.c\
+                    $(SRC_DIR)/shell/init_function_args.c\
+                    $(SRC_DIR)/shell/destroy_function_args.c\
+                    $(SRC_DIR)/shell/init_aliases.c\
+                    $(SRC_DIR)/shell/substitution.c\
+                    $(SRC_DIR)/shell/destroy_aliases.c\
+                    $(SRC_DIR)/lib/libshell/srcs/check_varname.c\
+                    $(SRC_DIR)/shell/parse_config.c
+
+SRC_CONDITIONS=		$(SRC_DIR)/conditions/b_to_g_conditions.c\
+                    $(SRC_DIR)/conditions/cond_flags_switcher.c\
+                    $(SRC_DIR)/conditions/cond_print_errors.c\
+                    $(SRC_DIR)/conditions/cond_string_sheets.c\
+                    $(SRC_DIR)/conditions/conditions.c\
+                    $(SRC_DIR)/conditions/l_to_s_conditions.c\
+                    $(SRC_DIR)/conditions/num_conditions.c\
+                    $(SRC_DIR)/conditions/strings_conditions.c\
+                    $(SRC_DIR)/conditions/u_to_x_conditions.c\
+                    $(SRC_DIR)/conditions/strsplit_conditions.c
+
+SRC_AUTOCOMPLETE=	$(SRC_DIR)/autocomplete/autocomplete.c\
+                    $(SRC_DIR)/autocomplete/autocomplite_builtins.c\
+                    $(SRC_DIR)/autocomplete/autocomplite_env.c\
+                    $(SRC_DIR)/autocomplete/autocomplite_files_and_dirs.c\
+                    $(SRC_DIR)/autocomplete/autocomplite_functions.c\
+                    $(SRC_DIR)/autocomplete/autocomplite_in_hash.c\
+                    $(SRC_DIR)/autocomplete/autocomplite_lib.c\
+                    $(SRC_DIR)/autocomplete/autocomplite_specific_cases.c\
+                    $(SRC_DIR)/autocomplete/post_procession.c\
+                    $(SRC_DIR)/autocomplete/pre_procession.c\
+                    $(SRC_DIR)/autocomplete/autocomplete_flags.c\
+                    $(SRC_DIR)/autocomplete/beautifylizing_flags_output.c\
+                    $(SRC_DIR)/autocomplete/autocomplete_backslashing.c\
+                    $(SRC_DIR)/autocomplete/autocomplete_other.c\
+                    $(SRC_DIR)/autocomplete/autocomplete_get_type.c\
+                    $(SRC_DIR)/autocomplete/clever_autocomplete_checks.c\
+                    $(SRC_DIR)/autocomplete/autocomplete_files_or_dirs.c\
+                    $(SRC_DIR)/autocomplete/autocomplete_only_exec.c\
+                    $(SRC_DIR)/autocomplete/processing_hidden_files.c
+
+SRC_READLINE=		$(SRC_DIR)/readline/readline.c\
+                    $(SRC_DIR)/readline/heredoc.c\
+                    $(SRC_DIR)/readline/history_save.c\
+                    $(SRC_DIR)/readline/history_fill.c\
+                    $(SRC_DIR)/readline/history_resize.c\
+                    $(SRC_DIR)/readline/array.c\
+                    $(SRC_DIR)/readline/check_next_symbol.c\
+                    $(SRC_DIR)/readline/term.c\
+                    $(SRC_DIR)/readline/prompt.c\
+                    $(SRC_DIR)/readline/resize_windows.c\
+                    $(SRC_DIR)/readline/matrix_resize.c\
+                    $(SRC_DIR)/readline/line_resize.c\
+                    $(SRC_DIR)/readline/check_esc_code.c\
+                    $(SRC_DIR)/readline/matrix_string_insert.c\
+                    $(SRC_DIR)/readline/matrix_string_delete.c\
+                    $(SRC_DIR)/readline/matrix_string_yank.c\
+                    $(SRC_DIR)/readline/matrix_insert_line.c\
+                    $(SRC_DIR)/readline/utf.c\
+                    $(SRC_DIR)/readline/back_space_symbol.c\
+                    $(SRC_DIR)/readline/del_symbol.c\
+                    $(SRC_DIR)/readline/matrix_erase_line.c\
+                    $(SRC_DIR)/readline/get_next_symbol.c\
+                    $(SRC_DIR)/readline/newline_handling.c\
+                    $(SRC_DIR)/readline/add_style.c\
+                    $(SRC_DIR)/readline/add_text.c\
+                    $(SRC_DIR)/readline/add_words.c\
+                    $(SRC_DIR)/readline/symbol_to_string.c\
+                    $(SRC_DIR)/readline/set_matrix_limits.c\
+                    $(SRC_DIR)/readline/matrix_to_string.c\
+                    $(SRC_DIR)/readline/count_string_objects.c\
+                    $(SRC_DIR)/readline/print_1.c\
+                    $(SRC_DIR)/readline/print_2.c\
+                    $(SRC_DIR)/readline/readline_mode.c\
+                    $(SRC_DIR)/readline/search_mode.c\
+                    $(SRC_DIR)/readline/add_cursor_offset.c\
+                    $(SRC_DIR)/readline/reset_last_offset.c\
+                    $(SRC_DIR)/readline/add_line_prefix.c\
+                    $(SRC_DIR)/readline/get_lines_info.c\
+                    $(SRC_DIR)/readline/matrix_init.c\
+                    $(SRC_DIR)/readline/modification_init.c\
+                    $(SRC_DIR)/readline/modification_resize.c\
+                    $(SRC_DIR)/readline/modification_free.c\
+                    $(SRC_DIR)/readline/action_add.c\
+                    $(SRC_DIR)/readline/action_free.c\
+                    $(SRC_DIR)/readline/line_init.c\
+                    $(SRC_DIR)/readline/line_free.c\
+                    $(SRC_DIR)/readline/matrix_free.c\
+                    $(SRC_DIR)/readline/history_free.c\
+                    $(SRC_DIR)/readline/line_del.c\
+                    $(SRC_DIR)/readline/matrix_del.c\
+                    $(SRC_DIR)/readline/history_del.c\
+                    $(SRC_DIR)/readline/matrix_dup.c\
+                    $(SRC_DIR)/readline/line_dup.c\
+                    $(SRC_DIR)/readline/matrix_cmp.c\
+                    $(SRC_DIR)/readline/history_move.c\
+                    $(SRC_DIR)/readline/cursor_free.c\
+                    $(SRC_DIR)/readline/cursor_init.c\
+                    $(SRC_DIR)/readline/cursor_dup.c\
+                    $(SRC_DIR)/readline/string_init.c\
+                    $(SRC_DIR)/readline/string_free.c\
+                    $(SRC_DIR)/readline/string_del.c\
+                    $(SRC_DIR)/readline/string_dup.c\
+                    $(SRC_DIR)/readline/string_fill.c\
+                    $(SRC_DIR)/readline/get_cursor_pos_1.c\
+                    $(SRC_DIR)/readline/get_cursor_pos_2.c\
+                    $(SRC_DIR)/readline/get_cursor_pos_3.c\
+                    $(SRC_DIR)/readline/get_space_pos.c\
+                    $(SRC_DIR)/readline/move_cursor_1.c\
+                    $(SRC_DIR)/readline/move_cursor_2.c\
+                    $(SRC_DIR)/readline/move_cursor_3.c\
+                    $(SRC_DIR)/readline/move_cursor_4.c\
+                    $(SRC_DIR)/readline/vi_mode.c\
+                    $(SRC_DIR)/readline/readline_buffer.c\
+                    $(SRC_DIR)/readline/add_shortcut.c\
+                    $(SRC_DIR)/readline/modes_handling.c\
+                    $(SRC_DIR)/readline/vi_mode_normal.c\
+                    $(SRC_DIR)/readline/are_default_vi_normal_mode_shortcuts.c\
+                    $(SRC_DIR)/readline/vi_mode_normal_del.c\
+                    $(SRC_DIR)/readline/vi_mode_normal_yank.c\
+                    $(SRC_DIR)/readline/vi_mode_insert.c\
+                    $(SRC_DIR)/readline/vi_mode_replace.c\
+                    $(SRC_DIR)/readline/vi_mode_visual.c\
+                    $(SRC_DIR)/readline/vi_mode_visual_is_normal_mode.c\
+                    $(SRC_DIR)/readline/paste_text.c\
+                    $(SRC_DIR)/readline/del_text_1.c\
+                    $(SRC_DIR)/readline/del_text_2.c\
+                    $(SRC_DIR)/readline/del_text_3.c\
+                    $(SRC_DIR)/readline/yank_text_1.c\
+                    $(SRC_DIR)/readline/yank_text_2.c\
+                    $(SRC_DIR)/readline/yank_text_3.c\
+                    $(SRC_DIR)/readline/lex_check_bash_word.c\
+                    $(SRC_DIR)/readline/are_quotes.c\
+                    $(SRC_DIR)/readline/bang_handling.c\
+                    $(SRC_DIR)/readline/bang_cases.c\
+                    $(SRC_DIR)/readline/set_backslash.c\
+                    $(SRC_DIR)/readline/undo.c\
+                    $(SRC_DIR)/readline/redo.c\
+                    $(SRC_DIR)/readline/check_cursor_swap.c
+
+SRC_LEXER=			$(SRC_DIR)/lexer/lexer.c\
+                    $(SRC_DIR)/lexer/lexer_tools.c\
+                    $(SRC_DIR)/lexer/dfa_tools.c
+
+SRC_PARSER=			$(SRC_DIR)/parser/arith_command.c\
+                    $(SRC_DIR)/parser/arith_for_command.c\
+                    $(SRC_DIR)/parser/case_clause.c\
+                    $(SRC_DIR)/parser/case_clause_sequence.c\
+                    $(SRC_DIR)/parser/case_command.c\
+                    $(SRC_DIR)/parser/check_words.c\
+                    $(SRC_DIR)/parser/command.c\
+                    $(SRC_DIR)/parser/compound_list.c\
+                    $(SRC_DIR)/parser/cond_command.c\
+                    $(SRC_DIR)/parser/elif_clause.c\
+                    $(SRC_DIR)/parser/filename.c\
+                    $(SRC_DIR)/parser/for_command.c\
+                    $(SRC_DIR)/parser/function_body.c\
+                    $(SRC_DIR)/parser/function_def.c\
+                    $(SRC_DIR)/parser/group_command.c\
+                    $(SRC_DIR)/parser/here_end.c\
+                    $(SRC_DIR)/parser/if_command.c\
+                    $(SRC_DIR)/parser/inpuntunit.c\
+                    $(SRC_DIR)/parser/io_file.c\
+                    $(SRC_DIR)/parser/io_here.c\
+                    $(SRC_DIR)/parser/list1.c\
+                    $(SRC_DIR)/parser/list2.c\
+                    $(SRC_DIR)/parser/list3.c\
+                    $(SRC_DIR)/parser/list_terminator.c\
+                    $(SRC_DIR)/parser/newline_list.c\
+                    $(SRC_DIR)/parser/otherfunc.c\
+                    $(SRC_DIR)/parser/pattern.c\
+                    $(SRC_DIR)/parser/pattern_list.c\
+                    $(SRC_DIR)/parser/pipeline.c\
+                    $(SRC_DIR)/parser/pipeline_command.c\
+                    $(SRC_DIR)/parser/print_astree.c\
+                    $(SRC_DIR)/parser/redirection.c\
+                    $(SRC_DIR)/parser/redirection_list.c\
+                    $(SRC_DIR)/parser/select_command.c\
+                    $(SRC_DIR)/parser/shell_command.c\
+                    $(SRC_DIR)/parser/simple_command.c\
+                    $(SRC_DIR)/parser/simple_command_element.c\
+                    $(SRC_DIR)/parser/simple_list_terminator.c\
+                    $(SRC_DIR)/parser/subshell.c\
+                    $(SRC_DIR)/parser/word_list.c
+
+SRC_EXECUTE=		$(SRC_DIR)/execute/errors.c\
+                    $(SRC_DIR)/execute/execute.c\
+                    $(SRC_DIR)/execute/execlist1.c\
+                    $(SRC_DIR)/execute/execlist2.c\
+                    $(SRC_DIR)/execute/execlist3.c\
+                    $(SRC_DIR)/execute/execpipecmd.c\
+                    $(SRC_DIR)/execute/execpipes.c\
+                    $(SRC_DIR)/execute/execcmd.c\
+                    $(SRC_DIR)/execute/execshellcmd.c\
+                    $(SRC_DIR)/execute/execfunction.c\
+                    $(SRC_DIR)/execute/execfor.c\
+                    $(SRC_DIR)/execute/execcase.c\
+                    $(SRC_DIR)/execute/execuntilwhile.c\
+                    $(SRC_DIR)/execute/execif.c\
+                    $(SRC_DIR)/execute/execsubshell.c\
+                    $(SRC_DIR)/execute/execscmd.c\
+                    $(SRC_DIR)/execute/initcmd.c\
+                    $(SRC_DIR)/execute/getredir.c\
+                    $(SRC_DIR)/execute/function.c\
+                    $(SRC_DIR)/execute/process.c\
+                    $(SRC_DIR)/execute/job.c\
+                    $(SRC_DIR)/execute/alias.c
+
+SRC_BUILTIN=		$(SRC_DIR)/builtins/built_cd.c\
+                    $(SRC_DIR)/builtins/built_echo.c\
+                    $(SRC_DIR)/builtins/built_env.c\
+                    $(SRC_DIR)/builtins/built_setenv.c\
+                    $(SRC_DIR)/builtins/built_unsetenv.c\
+                    $(SRC_DIR)/builtins/built_exit.c\
+                    $(SRC_DIR)/builtins/built_echo_reqmts.c\
+                    $(SRC_DIR)/builtins/built_set.c\
+                    $(SRC_DIR)/builtins/built_fc.c\
+                    $(SRC_DIR)/builtins/built_fc_reqmts.c\
+                    $(SRC_DIR)/builtins/built_fc_write_lines.c\
+                    $(SRC_DIR)/builtins/built_fc_case_default.c\
+                    $(SRC_DIR)/builtins/built_fc_case_e.c\
+                    $(SRC_DIR)/builtins/built_fc_case_l.c\
+                    $(SRC_DIR)/builtins/built_fc_case_s.c\
+                    $(SRC_DIR)/builtins/built_hash.c\
+                    $(SRC_DIR)/builtins/built_export.c\
+                    $(SRC_DIR)/builtins/built_hash_reqmts.c\
+                    $(SRC_DIR)/builtins/built_set_rqmts.c\
+                    $(SRC_DIR)/builtins/built_jobs.c\
+                    $(SRC_DIR)/builtins/built_bg.c\
+                    $(SRC_DIR)/builtins/built_fg.c\
+                    $(SRC_DIR)/builtins/built_alias.c\
+                    $(SRC_DIR)/builtins/built_unalias.c\
+                    $(SRC_DIR)/builtins/built_type.c\
+                    $(SRC_DIR)/builtins/built_test.c\
+                    $(SRC_DIR)/builtins/built_alias_reqmts.c\
+                    $(SRC_DIR)/builtins/built_unset.c\
+                    $(SRC_DIR)/builtins/built_cd_reqmts.c\
+                    $(SRC_DIR)/builtins/built_unset_reqmts.c\
+                    $(SRC_DIR)/builtins/built_type_reqmts.c
+
+SRC_EXPAND=			$(SRC_DIR)/extention/configurate_of_exptention.c\
+                    $(SRC_DIR)/extention/configure_remalloc.c\
+                    $(SRC_DIR)/extention/extention.c\
+                    $(SRC_DIR)/extention/get_true_format.c\
+                    $(SRC_DIR)/extention/norma_fucking_sheet.c\
+                    $(SRC_DIR)/extention/psevdo_functions.c\
+                    $(SRC_DIR)/extention/remove_suffix_prefix_patterns.c\
+                    $(SRC_DIR)/extention/spec_cases.c\
+                    $(SRC_DIR)/extention/stars.c\
+                    $(SRC_DIR)/extention/strins_sheets.c\
+                    $(SRC_DIR)/extention/strsplit_for_extention.c\
+                    $(SRC_DIR)/extention/pre_processings.c\
+                    $(SRC_DIR)/extention/get_fd_of_redirs.c\
+                    $(SRC_DIR)/extention/arithm_extention.c\
+                    $(SRC_DIR)/extention/swither_to_expand.c\
+                    $(SRC_DIR)/extention/string_processing_stars.c
+
+SRC_EXPR=			$(SRC_DIR)/expr/expression.c
+
+SRC_EXPR_LEXER=		$(SRC_DIR)/expr/exprlexer/exprlexer.c
+
+SRC_EXPR_PARSER=	$(SRC_DIR)/expr/exprparser/expr.c\
+                	$(SRC_DIR)/expr/exprparser/expr1.c\
+                	$(SRC_DIR)/expr/exprparser/expr2.c\
+                	$(SRC_DIR)/expr/exprparser/expr3.c\
+                	$(SRC_DIR)/expr/exprparser/expr4.c\
+                	$(SRC_DIR)/expr/exprparser/expr5.c\
+                	$(SRC_DIR)/expr/exprparser/expr6.c\
+                	$(SRC_DIR)/expr/exprparser/expr7.c\
+                	$(SRC_DIR)/expr/exprparser/expr8.c\
+                	$(SRC_DIR)/expr/exprparser/expr9.c\
+                	$(SRC_DIR)/expr/exprparser/expr10.c\
+                	$(SRC_DIR)/expr/exprparser/expr11.c\
+                	$(SRC_DIR)/expr/exprparser/expr12.c\
+                	$(SRC_DIR)/expr/exprparser/expr13.c\
+                	$(SRC_DIR)/expr/exprparser/expr14.c\
+                	$(SRC_DIR)/expr/exprparser/operand.c\
+                	$(SRC_DIR)/expr/exprparser/otherfunc.c\
+                	$(SRC_DIR)/expr/exprparser/postincdec.c\
+                	$(SRC_DIR)/expr/exprparser/preincdec.c\
+                	$(SRC_DIR)/expr/exprparser/preunary.c\
+                	$(SRC_DIR)/expr/exprparser/variable.c
+
+SRC_EXPR_CALC=		$(SRC_DIR)/expr/exprcalc/calc.c\
+              		$(SRC_DIR)/expr/exprcalc/bits_operators.c\
+              		$(SRC_DIR)/expr/exprcalc/calcarray.c\
+              		$(SRC_DIR)/expr/exprcalc/calcerror.c\
+              		$(SRC_DIR)/expr/exprcalc/logical_operators.c\
+              		$(SRC_DIR)/expr/exprcalc/math_operators.c\
+              		$(SRC_DIR)/expr/exprcalc/variable.c
+
+SRC_LIBFT=			$(SRC_DIR)/lib/libft/srcs/fatal_error.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_atoi.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_ltoa.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_count.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_del.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_infix.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_ins.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_new.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_prefix.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_search.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_sort.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_btree_suffix.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_bzero.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_charsize.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_err_msg.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isalnum.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isalpha.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isascii.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isblank.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_iscntrl.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isdigit.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isgraph.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_islower.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isprint.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isspace.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_is_space_tab.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isupper.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_isxdigit.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_is_non_alnumspace.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_itoa.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_itoa_base.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_listlast.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_listnew.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_listdel.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_listlen.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memalloc.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_free.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memccpy.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memchr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memcmp.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memcpy.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memdel.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memdup.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memmove.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_memset.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_numlen.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_pathadd.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_pop.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_pow.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_push.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_push_back.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putchar.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putchar_fd.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putendl.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putendl_fd.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putnbr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putnbr_fd.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putnbrendl.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putnchr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putstr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_putstr_fd.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_str_is_alpha.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_str_is_lowercase.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_str_is_number.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_str_is_numeric.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_str_is_printable.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_str_is_uppercase.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_stradd.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strcat.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strchr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strclr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strcmp.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strcolor.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strcpy.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strdel.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strdup.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strequ.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_striter.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_striteri.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strjoin.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strlcat.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strlen.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strlowcase.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strmap.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strmapi.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strncat.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strncmp.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strncpy.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strndup.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strnequ.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strnew.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strnstr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strnum.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strnum_base.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strrchr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strrev.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strsplit.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strstr.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strsub.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strtrim.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strupcase.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_tolower.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_toupper.c\
+        			$(SRC_DIR)/lib/libft/srcs/xmalloc.c\
+        			$(SRC_DIR)/lib/libft/srcs/xrealloc.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_delete.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_find.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_insert.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_maximum.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_minimum.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_rotate_left.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_rotate_right.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_traversal_inorder.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_traversal_postorder.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_rb_tree_traversal_preorder.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_joinvect.c\
+					$(SRC_DIR)/lib/libft/srcs/ft_clearvect.c\
+					$(SRC_DIR)/lib/libft/srcs/get_next_line.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_atoi_base.c\
+        			$(SRC_DIR)/lib/libft/srcs/ft_strchrc.c
+
+SRC_LIBALIAS=		$(SRC_DIR)/lib/libalias/srcs/alias_clean.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_delete.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_find.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_foreach.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_index.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_insert.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_search.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_init.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_realloc.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_free_fields.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_tools.c\
+            		$(SRC_DIR)/lib/libalias/srcs/alias_print.c
+
+SRC_LIBHASH=		$(SRC_DIR)/lib/libhash/srcs/hash_clean.c\
+            		$(SRC_DIR)/lib/libhash/srcs/hash_delete.c\
+            		$(SRC_DIR)/lib/libhash/srcs/hash_find.c\
+            		$(SRC_DIR)/lib/libhash/srcs/hash_foreach.c\
+            		$(SRC_DIR)/lib/libhash/srcs/hash_index.c\
+            		$(SRC_DIR)/lib/libhash/srcs/hash_test.c\
+            		$(SRC_DIR)/lib/libhash/srcs/hash_print.c\
+            		$(SRC_DIR)/lib/libhash/srcs/hash_insert.c\
+					$(SRC_DIR)/lib/libhash/srcs/hash_search.c\
+            		$(SRC_DIR)/lib/libhash/srcs/hash_init.c\
+					$(SRC_DIR)/lib/libhash/srcs/hash_get_size.c\
+					$(SRC_DIR)/lib/libhash/srcs/hash_get_len.c\
+					$(SRC_DIR)/lib/libhash/srcs/hash_realloc.c\
+					$(SRC_DIR)/lib/libhash/srcs/hash_free_fields.c
+
+SRC_LIBSHELL=		$(SRC_DIR)/lib/libshell/srcs/xglob.c\
+					$(SRC_DIR)/lib/libshell/srcs/xmatch.c\
+					$(SRC_DIR)/lib/libshell/srcs/die.c\
+					$(SRC_DIR)/lib/libshell/srcs/free_str_arr.c\
+					$(SRC_DIR)/lib/libshell/srcs/print_str_arr.c\
+					$(SRC_DIR)/lib/libshell/srcs/size_str_arr.c\
+					$(SRC_DIR)/lib/libshell/srcs/fill_genv.c\
+					$(SRC_DIR)/lib/libshell/srcs/sputerr.c\
+					$(SRC_DIR)/lib/libshell/srcs/sputcmderr.c\
+					$(SRC_DIR)/lib/libshell/srcs/sstrerr.c\
+					$(SRC_DIR)/lib/libshell/srcs/sgetenv.c\
+					$(SRC_DIR)/lib/libshell/srcs/ssetenv.c\
+					$(SRC_DIR)/lib/libshell/srcs/sgetpath.c\
+					$(SRC_DIR)/lib/libshell/srcs/sunsetenv.c\
+					$(SRC_DIR)/lib/libshell/srcs/get_cmd_path.c\
+        			$(SRC_DIR)/lib/libshell/srcs/split_assignments.c\
+					$(SRC_DIR)/lib/libshell/srcs/get_file_size.c
+
+SRC_LIBVECTOR=		$(SRC_DIR)/lib/vector/srcs/vector_back.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_create.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_foreach.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_free.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_front.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_get_elem.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_get_len.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_is_empty.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_pop_back.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_del_elem.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_push_back.c\
+					$(SRC_DIR)/lib/vector/srcs/vector_to_array.c\
+					$(SRC_DIR)/lib/vector/srcs/ft_ceil.c\
+					$(SRC_DIR)/lib/vector/srcs/ft_floorl.c
+
+OBJ=				$(SRC_MAIN:.c=.o) $(SRC_SHELL:.c=.o) $(SRC_CONDITIONS:.c=.o)\
+					$(SRC_AUTOCOMPLETE:.c=.o) $(SRC_READLINE:.c=.o) $(SRC_LEXER:.c=.o)\
+					$(SRC_PARSER:.c=.o) $(SRC_EXECUTE:.c=.o) $(SRC_BUILTIN:.c=.o)\
+					$(SRC_EXPAND:.c=.o) $(SRC_EXPR:.c=.o) $(SRC_EXPR_LEXER:.c=.o)\
+					$(SRC_EXPR_PARSER:.c=.o) $(SRC_EXPR_CALC:.c=.o) $(SRC_LIBFT:.c=.o)\
+					$(SRC_LIBALIAS:.c=.o) $(SRC_LIBHASH:.c=.o) $(SRC_LIBSHELL:.c=.o)\
+					$(SRC_LIBVECTOR:.c=.o)
+
+IFLAGS=				-I $(INC_DIR) -I $(INC_LIBFT) -I $(INC_LIBALIAS)\
+					-I $(INC_LIBHASH) -I $(INC_LIBSHELL) -I $(INC_LIBVECTOR)
+
+CFLAGS=				-Wall -Wextra -Werror $(IFLAGS)
+
+RM=					rm -rf
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+		$(CC) -o $(NAME) $(OBJ)
+clean:
+		$(RM) $(OBJ)
+
+fclean: clean
+		$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
