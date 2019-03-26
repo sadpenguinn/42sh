@@ -31,7 +31,7 @@
 
 #include "execute.h"
 
-static void		applycmdredir(t_astree *root)
+static int		applycmdredir(t_astree *root)
 {
 	t_redir		*redir;
 	t_astree	*redthree;
@@ -39,13 +39,16 @@ static void		applycmdredir(t_astree *root)
 	redthree = root->right;
 	while (redthree)
 	{
-		redir = get_redir(redthree->left);
+		if (!(redir = get_redir(redthree->left)))
+			return (1);
 		if (redir->type == REDIRECT)
 			dup2(redir->fd[1], redir->fd[0]);
 		if (redir->type == CLOSEFD)
 			close(redir->fd[0]);
+		free(redir);
 		redthree = redthree->right;
 	}
+	return (0);
 }
 
 int				execcmd(t_astree *root, int fd[2], int isfork)
@@ -56,7 +59,8 @@ int				execcmd(t_astree *root, int fd[2], int isfork)
 		return (execshellcmd(root, fd, isfork));
 	if (!(pid = xfork()))
 	{
-		applycmdredir(root);
+		if (applycmdredir(root))
+			exit(1);
 		exit(execshellcmd(root->left, fd, isfork));
 	}
 	if (pid == -1)
