@@ -21,7 +21,7 @@
 
 extern int		g_calcerr;
 
-extern intmax_t	(*operators[500])(intmax_t operator, t_astree *node);
+extern intmax_t	(*g_operators[])(intmax_t operator, t_astree *node);
 
 intmax_t		calc(t_astree *root);
 intmax_t		calcerror(int err);

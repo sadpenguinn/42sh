@@ -336,11 +336,14 @@ set(EXPR_PARSER		srcs/expr/exprparser/expr.c
 					srcs/expr/exprparser/variable.c)
 
 set(EXPR_CALC		srcs/expr/exprcalc/calc.c
-					srcs/expr/exprcalc/bits_operators.c
 					srcs/expr/exprcalc/calcarray.c
 					srcs/expr/exprcalc/calcerror.c
+					srcs/expr/exprcalc/bits_operators.c
+					srcs/expr/exprcalc/bits_operators2.c
 					srcs/expr/exprcalc/logical_operators.c
+					srcs/expr/exprcalc/logical_operators2.c
 					srcs/expr/exprcalc/math_operators.c
+					srcs/expr/exprcalc/math_operators2.c
 					srcs/expr/exprcalc/variable.c)
 
 include_directories(${INC})

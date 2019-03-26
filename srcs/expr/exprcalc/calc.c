@@ -12,11 +12,6 @@
 
 #include "calc.h"
 
-/*
-* Missing EX_COND, EX_QUES, EX_COL, all ASSIGNments
-* g_sherror must be declared in 42sh.c
-*/
-
 intmax_t	applay_unary(t_astree *root)
 {
 	if (root->type == EX_ADD)
@@ -45,7 +40,6 @@ intmax_t	get_ques(t_astree *root)
 **       (expr)EX_EXPR   NULL
 */
 
-
 intmax_t	get_assign(t_astree *root)
 {
 	intmax_t	tmp;
@@ -56,7 +50,8 @@ intmax_t	get_assign(t_astree *root)
 	if (!(var = get_pre_incdec(root->left)))
 		return (0);
 	if (root->right->type != EX_ASSIGN)
-		tmp = operators[root->right->type - OPSHIFT](ft_atoi(sgetenv(var, ENV_ALL)), root->right);
+		tmp = g_operators[root->right->type -
+						OPSHIFT](ft_atoi(sgetenv(var, ENV_ALL)), root->right);
 	else
 		tmp = calc(root->right->left);
 	val = ft_itoa(tmp);
@@ -91,10 +86,11 @@ intmax_t	calc(t_astree *root)
 		return (get_ques(root));
 	if (root->type == EX_ASSIGN)
 		return (get_assign(root));
-	if (root->type == EX_ADD || root->type == EX_SUB || root->type == EX_LNOT ||
-		root->type == EX_BNOT)
+	if (root->type == EX_ADD || root->type == EX_SUB ||
+		root->type == EX_LNOT || root->type == EX_BNOT)
 		return (applay_unary(root));
 	if (root->type == EX_EXPR)
-		return (operators[root->right->type - OPSHIFT](calc(root->left), root->right));
-	return (0);
+		return (g_operators[root->right->type -
+						OPSHIFT](calc(root->left), root->right));
+		return (0);
 }

@@ -10,37 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expression.h"
-#include "lexer.h"
-#include "exprlexer.h"
-#include "expr.h"
+#include "calc.h"
 
-unsigned int		g_excurtok;
-void				*g_extokens = NULL;
-int					g_exprerr;
-
-char				*expression(char *arg)
+intmax_t	op_rsh(intmax_t operator, t_astree *node)
 {
-	t_lexer		*lexer;
-	t_astree	*root;
-	intmax_t	res;
+	intmax_t	tmp;
 
-	lexer = exprlexer(arg, ft_strlen(arg));
-	g_extokens = lexer->lexems;
-	g_excurtok = 0;
-	g_exprerr = 0;
-	root = expr();
-	if (g_exprerr)
-		return ((char *)0);
-	if (!root)
-		return (ft_itoa(0));
-	res = calc(root);
-	if (g_exprerr)
-	{
-		exfreeastree(root);
-		return ((char *)0);
-	}
-	lexer_free(lexer);
-	exfreeastree(root);
-	return (ft_itoa(res));
+	tmp = operator >> calc(node->left);
+	if (node->right)
+		return (g_operators[node->right->type - OPSHIFT](tmp, node->right));
+	return (tmp);
+}
+
+intmax_t	op_lsh(intmax_t operator, t_astree *node)
+{
+	intmax_t	tmp;
+
+	tmp = operator << calc(node->left);
+	if (node->right)
+		return (g_operators[node->right->type - OPSHIFT](tmp, node->right));
+	return (tmp);
 }
