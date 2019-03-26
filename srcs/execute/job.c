@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expr.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/07 14:08:43 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/01/22 21:34:09 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execute.h"
 
 static void	print_job(pid_t pid)
 {
-
 	ft_putstr_fd("[", STDERR_FILENO);
 	ft_putnbr_fd(vector_get_len(g_jobs), STDERR_FILENO);
 	ft_putstr_fd("] ", STDERR_FILENO);
@@ -10,7 +21,7 @@ static void	print_job(pid_t pid)
 	ft_putstr_fd("\n", STDERR_FILENO);
 }
 
-int		addjob(int state, pid_t pid)
+int			addjob(int state, pid_t pid)
 {
 	t_job	job;
 

@@ -18,8 +18,6 @@ int		execlist3(t_astree *root, int fd[2], int isfork)
 		return (EXIT_SUCCESS);
 	if (root->type != LIST3 && root->type != AND_IF)
 		return (execpipecmd(root, fd, isfork));
-	/* if (!root->right) */
-	/* 	return (execpipecmd(root->left, fd, isfork)); */
 	if (execpipecmd(root->left, fd, isfork) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	if (g_execerr)

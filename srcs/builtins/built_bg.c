@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execlist1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/13 20:43:35 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/27 22:48:24 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
 #include "builtins.h"
 #include "shell.h"
@@ -65,11 +77,7 @@ int				built_bg(char **av, char **env)
 		return (EXIT_FAILURE);
 	}
 	pid = *(pid_t *)vector_back(job->pids);
-
 	pgid = getpgid(pid);
-	// XXX - only for valgrind
-	/* pgid = pid; */
-
 	ft_putstr_fd("[", STDERR_FILENO);
 	ft_putnbr_fd(i, STDERR_FILENO);
 	ft_putstr_fd("] ", STDERR_FILENO);

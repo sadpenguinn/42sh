@@ -84,8 +84,6 @@ static char	**get_argv(t_list *args)
 			argv = (char **)ft_joinvect((void **)argv, (void **)tmp, 1);
 		else
 			g_initcmd_err = 1;
-		// XXX free?
-		/* free(arg); */
 		args = args->next;
 	}
 	return (argv);
@@ -128,6 +126,7 @@ int			initcmd(t_astree *root, int fd[2], t_list *cmd[3], char **aven[2])
 		return (1);
 	}
 	aven[1] = get_envp(cmd[1]);
-	g_sub_pids = vector_create(sizeof(pid_t));
+	if (!g_sub_pids)
+		g_sub_pids = vector_create(sizeof(pid_t));
 	return (0);
 }
