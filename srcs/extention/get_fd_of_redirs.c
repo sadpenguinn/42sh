@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 22:30:31 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/26 17:41:55 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:10:47 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,14 @@ int			check_process_substitution_expand(char *str)
 char		*get_small_redir(char *str)
 {
 	char	*tmp_c;
+	char	*to_free;
 	char	*tmp_num;
 	char	*res;
 
 	tmp_c = extention_get_just_command(str);
+	to_free = tmp_c;
+	tmp_c = expand(tmp_c);
+	free(to_free);
 	tmp_num = ft_itoa(get_fdnumber_of_substitution(tmp_c, 1));
 	res = ft_strjoin("/dev/fd/", tmp_num, 0);
 	free(tmp_c);
@@ -76,10 +80,14 @@ char		*get_small_redir(char *str)
 char		*get_grade_redir(char *str)
 {
 	char	*tmp_c;
+	char	*to_free;
 	char	*tmp_num;
 	char	*res;
 
 	tmp_c = extention_get_just_command(str);
+	to_free = tmp_c;
+	tmp_c = expand(tmp_c);
+	free(to_free);
 	tmp_num = ft_itoa(get_fdnumber_of_substitution(tmp_c, 0));
 	res = ft_strjoin("/dev/fd/", tmp_num, 0);
 	free(tmp_num);
