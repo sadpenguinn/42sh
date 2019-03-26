@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 04:33:35 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/26 00:08:18 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:51:38 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static int		remalloc_result_of_glob(char **str, char **res_glob,
 	ft_strcat(res, buf);
 	ft_strcat(res, just_string);
 	to_return = ft_strlen(res);
-	ft_strcat(res, &(*str)[i + 1]);
 	free(buf);
 	free(just_string);
 	free(*str);
 	*str = res;
+	i++;
 	return (to_return);
 }
 
