@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 01:56:58 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/19 10:08:09 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:57:33 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ char	**sugg_get_common_repeat(char **str, char *sugg_word, int type)
 		sugg_word = get_autocomplite_real_flags(sugg_word, 0);
 	else if ((buf = ft_strendchr(sugg_word, '/')))
 		sugg_word = buf + 1;
-	pos_start = ft_strlen(sugg_word) - ((sugg_word[0] == '$') ? 1 : 0);
+	pos_start = ft_strlen(sugg_word) -
+				((sugg_word[0] == '$' || sugg_word[0] == '{') ? 1 : 0);
 	len = 0;
 	tmp = 'a';
 	while (sugg_check_repeats_in_all_mass(str, pos_start + len, &tmp))
@@ -107,7 +108,7 @@ char	*cut_begin_in_unique_suggetion(char *str, char *word, int type)
 	i = 0;
 	if (type == FLAGS_AUTOCOMLITE)
 		return (cut_begin_ius_flags(str, word));
-	if (str[0] == '$')
+	if (str[0] == '$' || str[0] == '{')
 		str = &str[1];
 	buf = ft_strendchr(str, '/');
 	if ((buf && !ft_strcmp(buf + 1, word)) || !ft_strcmp(str, word))
