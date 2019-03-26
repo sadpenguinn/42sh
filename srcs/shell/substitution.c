@@ -15,7 +15,7 @@
 #include "parser.h"
 #include "execute.h"
 
-static int exec_substitution(t_astree *root, int isoutput)
+static int	exec_substitution(t_astree *root, int isoutput)
 {
 	int			fd[2];
 	int			resfd;
@@ -52,7 +52,6 @@ int			substitution(char *cmd, int isoutput)
 	lexer_free(lex);
 	return (resfd);
 }
-
 
 char		*substitution_output(char *cmd)
 {
