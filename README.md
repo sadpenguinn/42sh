@@ -62,10 +62,10 @@ Builtins:<br>
 [✓] $[5 + 3 arithm]<br>
 [✓] $((5 + 3 arithm))<br>
 
-[−] Control groups and sub-shells: _()_, _{}_<br>
-[−] Control substitution: _$()_<br>
+[✓] Control groups and sub-shells: _()_, _{}_<br>
+[✓] Control substitution: _$()_<br>
 [−] Arithmetic expansion: _(())_<br>
-[−] Process substitution: _<()_, _>()_<br>
+[✓] Process substitution: _<()_, _>()_<br>
 
 [✓] !!<br>
 [✓] !word<br>
@@ -83,7 +83,7 @@ Builtins:<br>
 
 [✓] Hash table and built-in _hash_<br>
 
-[−] Built-in _test_ and operations: _-b, -c, -d, -e, -f, -g, -L, -p, -r, -S, -s, -u, -w, -x, -z, =, !=, -eq, -ne, -ge, -lt, -le, !_<br>
+[✓] Built-in _test_ and operations: _-b, -c, -d, -e, -f, -g, -L, -p, -r, -S, -s, -u, -w, -x, -z, =, !=, -eq, -ne, -ge, -lt, -le, !_<br>
 
 [−] Shell scripting (_while, for, if, case, function, etc._)<br>
 

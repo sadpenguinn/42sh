@@ -6,7 +6,7 @@
 /*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 22:30:31 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/25 23:51:08 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:41:55 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ char		*get_grade_redir(char *str)
 	tmp_num = ft_itoa(get_fdnumber_of_substitution(tmp_c, 0));
 	res = ft_strjoin("/dev/fd/", tmp_num, 0);
 	free(tmp_num);
-	res = ft_strjoin_helper(res, "\n", 1, 0);
-	res = ft_strjoin_helper(res, substitution_output(tmp_c), 1, 1);
 	free(tmp_c);
 	return (res);
 }
