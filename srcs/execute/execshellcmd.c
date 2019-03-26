@@ -37,5 +37,5 @@ int		execshellcmd(t_astree *root, int fd[2], int isfork)
 		return (execsubshell(root, fd, isfork));
 	if (root->type == COMMAND)
 		return (execscmd(root, fd, isfork));
-	return (execlist1(root, fd,  0));
+	return (execlist1(root, fd, 0));
 }

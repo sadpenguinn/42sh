@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "execute.h"
-# include <signal.h>
+#include <signal.h>
 
-static int execjob(t_astree *root, int fd[2])
+static int	execjob(t_astree *root, int fd[2])
 {
 	pid_t	pid;
 
@@ -23,13 +23,13 @@ static int execjob(t_astree *root, int fd[2])
 		signal(SIGTTOU, SIG_DFL);
 		g_isjob = 1;
 		g_pgid = setpgrp();
-		exit (execlist2(root, fd, 1));
+		exit(execlist2(root, fd, 1));
 	}
 	addjob(JOB_RUN, pid);
 	return (0);
 }
 
-int		execlist1(t_astree *root, int fd[2], int isfork)
+int			execlist1(t_astree *root, int fd[2], int isfork)
 {
 	int		res;
 

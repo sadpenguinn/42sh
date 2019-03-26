@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execlist1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bwerewol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/13 20:43:35 by bwerewol          #+#    #+#             */
+/*   Updated: 2019/02/27 22:48:24 by nkertzma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
 #include <errno.h>
 #include "builtins.h"
@@ -62,11 +74,7 @@ static int		wait_fg(size_t i)
 	pidstmp = g_pids;
 	g_pids = job.pids;
 	pid = *(pid_t *)vector_back(g_pids);
-
-	// XXX - only for valgrind
 	pgid = getpgid(pid);
-	/* pgid = pid; */
-
 	tcsetpgrp(0, pgid);
 	killpg(pgid, SIGCONT);
 	xwaitpid(pid, WUNTRACED);
