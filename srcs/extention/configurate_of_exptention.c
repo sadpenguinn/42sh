@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   configurate_of_exptention.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 19:38:01 by bbaelor-          #+#    #+#             */
-/*   Updated: 2019/03/26 00:09:55 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:54:27 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ char	*use_an_alternate_value(char *str)
 	while (str[i + 1] != ':')
 		i++;
 	tmp = ft_strndup(str, i + 1);
-	res = (&tmp[2]);
-	free(tmp);
-	if (!res)
+	res = &(tmp[2]);
+	if (!get_content_of_var(res))
+	{
+		free(tmp);
 		return (ft_strdup(""));
+	}
+	free(tmp);
 	tmp = (ft_strndup(&str[i + 3], ft_strlen(&str[i + 3]) - 1));
 	return (tmp);
 }
