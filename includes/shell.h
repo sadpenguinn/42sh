@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbaelor- <bbaelor-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbaelor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:39:09 by bwerewol          #+#    #+#             */
-/*   Updated: 2019/03/26 19:06:26 by bbaelor-         ###   ########.fr       */
+/*   Updated: 2019/03/27 10:33:52 by bbaelor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,10 @@ extern int				g_stdin_fd;
 /*
 ** for functions
 */
+
+# if defined(__linux__)
+	typedef __intmax_t intmax_t;
+# endif
 
 intmax_t	for_first(char *str);
 intmax_t	for_second(char *str);
