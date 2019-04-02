@@ -1,5 +1,5 @@
 # 42sh
-Pahom's shell, some segflts and ~~amazing~~ useless readline.
+Pahom's shell, some segflts.
 
 **Minishell Part**
 
@@ -90,15 +90,3 @@ Builtins:<br>
 [✓] Autocompletion for order/built-in parameters<br>
 
 [✓] Compliant with POSIX<br>
-
-**Bugs**
-
-Ariphmetic:<br>
-    1) Division by zero<br>
-
-Butch code:<br>
-    1) If extention returns NULL, 42sh gives seg fault<br>
-    2) alias glog="git log --pretty=oneline --pretty=format:'%H - %an, %ar: %s' --graph"<br>
-    3) while [1]; do ls; done<br>
-
-Todo:<br>
