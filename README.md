@@ -1,5 +1,9 @@
 # 42sh
-Pahom's shell, some segflts.
+
+42sh is a unix-like shell we developped with 4 team members in C. It is a final project in [School 42](https://www.42.us.org/), which opens up access to the First Internship. 42sh includes mandatory parts of two latest projects and many bonuses in the extra part. We implemented almost all.<br>
+
+[Subject](./42sh.en.pdf)<br>
+[Norm](./norm.en.pdf) (42 code-style)<br>
 
 **Minishell Part**
 
@@ -64,7 +68,7 @@ Builtins:<br>
 
 [✓] Control groups and sub-shells: _()_, _{}_<br>
 [✓] Control substitution: _$()_<br>
-[−] Arithmetic expansion: _(())_<br>
+[✓] Arithmetic expansion: _(())_<br>
 [✓] Process substitution: _<()_, _>()_<br>
 
 [✓] !!<br>
@@ -85,7 +89,7 @@ Builtins:<br>
 
 [✓] Built-in _test_ and operations: _-b, -c, -d, -e, -f, -g, -L, -p, -r, -S, -s, -u, -w, -x, -z, =, !=, -eq, -ne, -ge, -lt, -le, !_<br>
 
-[−] Shell scripting (_while, for, if, case, function, etc._)<br>
+[✓] Shell scripting (_while, for, if, case, function, etc._)<br>
 
 [✓] Autocompletion for order/built-in parameters<br>
 
