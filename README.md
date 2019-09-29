@@ -5,6 +5,8 @@
 [Subject](./42sh.en.pdf)<br>
 [Norm](./norm.en.pdf) (42 code-style)<br>
 
+***Compiling: make***
+
 **Minishell Part**
 
 [✓] Prompt display<br>
